@@ -1179,6 +1179,11 @@ code {
   }
 }
 @media screen and (max-width: 780px) {
+  .devdocs .edit-on-github {
+    display: block;
+    margin: -12px 0 24px 0;
+    float: none;
+  }
   h1 {
     font-size: 26px;
   }

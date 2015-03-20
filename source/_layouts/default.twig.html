@@ -1,0 +1,93 @@
+<!doctype html>
+
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<title>{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}</title>
+
+	<meta name="description" content="{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}: {% if page.description is defined %}{{ page.description }}{% else %}{{ page.project.description }}{% endif %}" />
+
+	<link rel="stylesheet" href="{{ site.url }}/components/highlightjs/styles/github.css?{{ date().timestamp }}" />
+
+	<link href="{{ site.url }}/{{ theme_path('assets/css/basic.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">
+	<link href="{{ site.url }}/{{ theme_path('assets/css/icons.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">
+	<link href="{{ site.url }}/{{ theme_path('assets/css/anchor.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<div class="wrapper">
+<!-- Header -->
+<header class="main-header">
+	<div class="container">
+		<!-- LOGO -->
+		<a href="{{ site.url }}/" title="Shopware Developer Dokumentation" class="logo">
+			<img src="{{ site.url }}/{{ theme_path('assets/img/logo-devdocs.png') }}" />
+		</a>
+
+		<ul class="main-nav-container">
+			<li class="main-nav-col">
+				<a href="{{ site.url }}/sysadmins-guide/"><span>Sysadmin's Guide</span></a>
+			</li>
+
+			<li class="main-nav-col">
+				<a href="{{ site.url }}/developers-guide/"><span>Developer's Guide</span></a>
+			</li>
+
+			<li class="main-nav-col">
+				<a href="{{ site.url }}/designers-guide/"><span>Designer's Guide</span></a>
+			</li>
+
+			<li class="main-nav-col">
+				<a href="http://wiki.shopware.com"><span>Back to Wiki</span></a>
+			</li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+</header>
+
+<div class="devdocs content container">
+	<div class="inner-container">
+		{% if site.github_enabled and page.github_link %}
+		<a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+		{% endif %}
+	{% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<!-- Footer -->
+<footer class="main-footer">
+	<div class="container">
+		<div class="main-footer-bottom-col1">
+			<p class="small"> {{ "now"|date("Y") }} © shopware AG - All rights reserved</p>
+			<p class="small"><a href="http://www.shopware.com/legal-notice" title="Imprint">Imprint</a> | <a href="http://shopware.com/general-terms-conditions">Terms and Conditions</a></p>
+			<span style="font-size: 30px" class="icon icon-shopware"></span>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</footer>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/anchor.js') }}?{{ date().timestamp }}"></script>
+<script src="{{ site.url }}/components/highlightjs/highlight.pack.js?{{ date().timestamp }}"></script>
+<script>
+addAnchors('.content h2, .content h3, .content h4');
+hljs.initHighlightingOnLoad();
+</script>
+
+</body>
+</html>

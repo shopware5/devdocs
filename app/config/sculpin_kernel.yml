@@ -1,0 +1,5 @@
+sculpin_content_types:
+    posts:
+        enabled: false
+sculpin:
+    ignore: ["**/*.less"]

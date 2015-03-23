@@ -1,10 +1,8 @@
 ---
 layout: default
-title: Installation Guide
+title: Shopware 5 Installation Guide
 github_link: sysadmins-guide/installation-guide/index.md
 ---
-# Shopware 5 Installation Guide
-
 ## Shopware 5 Installer
 
 Shopware 5 features a redesigned installer. If you have used the Shopware 4 installer, you will find the new version features a familiar workflow, while improving the previous experience.

@@ -1,11 +1,8 @@
 ---
 layout: default
-title: Shopware 5 essentials of plugin development
+title: Shopware 5 Plugin Update Guide
 github_link: developers-guide/shopware-5-plugin-update-guide/index.md
 ---
-
-# Shopware 5 Plugin Update Guide
-
 ## Introduction
 
 In this guide we provide you with all essential information you need to keep your plugins Shopware 5.0 compatible!

@@ -1,11 +1,8 @@
 ---
 layout: default
-title: Shopware 5 upgrade guide
+title: Shopware 5 Upgrade guide
 github_link: developers-guide/shopware-5-upgrade-guide-for-developers/index.md
 ---
-
-# Shopware 5 Upgrade guide for developers
-
 ## General
 
 In this document, developers will find all information and changes made in Shopware version 5.

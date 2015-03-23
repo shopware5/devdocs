@@ -4,13 +4,11 @@ title: Shopware 5 performance
 github_link: developers-guide/shopware-5-performance.md
 ---
 
-# Shopware 5 performance
-
 ## Introduction
 
 In this document we detail the performance related details of Shopware 5. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability.
 
-# Caching
+## Caching
 
 Shopware uses multiple caches for different contents. Most of them are included and enabled out of the box with Shopware, and require no additional configuration to perform adequately on most scenarios.
 
@@ -18,7 +16,7 @@ Shopware uses multiple caches for different contents. Most of them are included 
 
 The HTTP Cache is a caching layer between your application and the customer's browser. Shopware includes a PHP implementation of an HTTP Cache, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance.
 
-You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this 
+You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this
 [article](http://wiki.shopware.com/Understanding-the-shopware-http-Cache_detail_1809_928.html)
 
 ## Theme Cache
@@ -28,10 +26,10 @@ You can learn more about Shopware's HTTP cache, its configuration options, behav
 In previous Shopware versions, JavaScript and CSS files were served as-is to the browser. Additionally, if plugins or custom templates added additional content files, they would be loaded separately by the browser, resulting in additional HTTP calls to the server.
 
 In Shopware 5, along with the introduction of the new theme system, we created theme cache system. The theme cache is responsible for greatly optimizing the above process:
- 
+
 - Registered LESS files are compiled into CSS
 - All CSS and JavaScript files are merged into single .css and .js files
-- The resulting files are minimized 
+- The resulting files are minimized
 
 This results in less server requests, less bandwidth usage and faster response times to the client. Both the core and plugin CSS and JavaScript files can be handled by both the LESS compiler and the theme cache. For info on how you can register your plugin resources to be handled by them, please refer to the [Theme startup guide](/designers-guide/theme-startup-guide).
 
@@ -78,14 +76,14 @@ Shopware 5.0 will have PHP 5.4 as minimum requirement, which is, at the time of 
 ## Other caches
 
 Other caching layers exist (Smarty, Doctrine, etc) that help boost Shopware's performance. These caches were not significantly changed during Shopware 5's development, and you can refer to their native documentation for help and details.
- 
+
 # Article loading
 
 Listing articles and their details is the most common operation in any shop. The amount of information it involves can also make it one of the most system demanding operations, so, in Shopware 5, we implemented a complete new article loading mechanism, that's both easy to customise and fast.
 
 ## The new article loading system
 
-Previously, whenever you wanted to load article information, you would iterate over a list of article IDs and, for each of them, load the necessary information. Different methods existed to load more or less detailed information, depending on the current request's context. Most of them can be found on the sArticles class. This has the downside of resulting in multiple database queries for each article, multiplied by the number of articles to be loaded, creating a significant performance bottleneck. 
+Previously, whenever you wanted to load article information, you would iterate over a list of article IDs and, for each of them, load the necessary information. Different methods existed to load more or less detailed information, depending on the current request's context. Most of them can be found on the sArticles class. This has the downside of resulting in multiple database queries for each article, multiplied by the number of articles to be loaded, creating a significant performance bottleneck.
 
 In Shopware 5, a completely new article loading mechanism was introduced. The existing methods to load articles were maintained, but their implementation was refactored to use the new services, so you will always get the best performance possible, even if your plugins were not specifically designed for the new service system.
 

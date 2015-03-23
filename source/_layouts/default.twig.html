@@ -57,7 +57,14 @@
 		{% if site.github_enabled and page.github_link %}
 		<a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
 		{% endif %}
-	{% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+
+		{% if page.title is defined %}
+		<h1>
+			{{ page.title }}
+		</h1>
+		{% endif %}
+
+		{% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
 	</div>
 
 	<div class="clearfix"></div>

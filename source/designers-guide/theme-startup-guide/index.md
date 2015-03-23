@@ -3,9 +3,6 @@ layout: default
 title: Shopware 5 Theme Startup Guide
 github_link: designers-guide/theme-startup-guide/index.md
 ---
-
-# Shopware 5 Theme Startup Guide
-
 ![Responsive theme](screen-responsive.jpg)
 
 *Category listing in the Responsive theme*

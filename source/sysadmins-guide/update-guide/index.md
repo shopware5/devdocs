@@ -1,10 +1,8 @@
 ---
 layout: default
-title: Update Guide
+title: Shopware 5 Update Guide
 github_link: sysadmins-guide/update-guide/index.md
 ---
-
-# Shopware 5 Update Guide
 
 ## Updating to Shopware 5
 

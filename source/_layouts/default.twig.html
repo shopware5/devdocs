@@ -1,20 +1,14 @@
 <!doctype html>
-
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if IE 9]>    <html class="no-js ie9 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}</title>
-
 	<meta name="description" content="{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}: {% if page.description is defined %}{{ page.description }}{% else %}{{ page.project.description }}{% endif %}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 	<link rel="stylesheet" href="{{ site.url }}/components/highlightjs/styles/github.css?{{ date().timestamp }}" />
-
 	<link href="{{ site.url }}/{{ theme_path('assets/css/basic.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">
 	<link href="{{ site.url }}/{{ theme_path('assets/css/icons.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">
 	<link href="{{ site.url }}/{{ theme_path('assets/css/anchor.css') }}?{{ date().timestamp }}" rel="stylesheet" media="screen">

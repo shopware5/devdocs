@@ -148,14 +148,15 @@ After you get the `"BUILD SUCCESSFUL"` message you can run the full build comman
     $ ant build-unit
 
 ### Step 3
-Now edit your .htaccess and change the Rewrite Path to /shopware.
+Now edit your .htaccess file in the root of your Shopware Project and change the Rewrite Path to /shopware.
+
 Change 
 
-#RewriteBase /shopware/
+    $ #RewriteBase /shopware/
 
 to 
 
-RewriteBase /shopware/
+    $ RewriteBase /shopware/
 
 After the build is complete you can view your full installed Shopware under:
 

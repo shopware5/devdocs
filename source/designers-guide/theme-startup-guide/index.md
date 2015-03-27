@@ -403,11 +403,11 @@ public function createConfig(Form\Container\TabContainer $container)
     );
 
     // Create the textfield
-    $textField = $this->createTextField(array(
+    $textField = $this->createTextField(
     	'basic_font_size',
     	'Basic font size',
     	'16px'
-    ));
+    );
 
     $fieldset->addElement($textField);
 

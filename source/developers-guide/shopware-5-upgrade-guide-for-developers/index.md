@@ -293,5 +293,30 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Added a new config to improve the quality of the thumbnail generation
 * implement a new seo router to increase the performance of the seo url rendering
 
+## 5.0.0 RC1
+* New orders will no longer set `s_order.transactionID` automatically from POST data. 3rd party plugins can still use this value as before.
+* Fix translation API, rename all `localeId` references to `shopId`. Create / update / delete with `localeId` are still supported as legacy.
+* `\Shopware\Models\Translation\Translation` now correctly relates to `Shop` model instead of `Locale`.
+* widgets/recommendations - boughtAction & viewedAction calls no more the `sGetPromotionById` function.
+* Added emotion positioning number for ordering emotions by position number if there are more emotions on one page
+* Replaced `closeOverlay` with `openOverlay` option in the loading indicator to improve the simplicity.
+* Removed overlay options in the modal box and loading indicator jQuery plugin.
+* Overlay jQuery plugin now only provides the closeOnClick, onClick and onClose options. To style the overlay, use the corresponding less file.
+* Removed several unused methods from `Shopware_Controllers_Backend_Config`
+* Removed several unused JavaScript files from the backend
+* Removed classes:
+    * `ConfigIframe.php` backend controller
+    * `Viewport.php` frontend controller
+* Removed template files:
+    * `backend\index\iframe.tpl`
+* Removed commands `sw:store:download:update` and `sw:store:licenseplugin`.
+* Added `sw:store:download` command to download, install and update plugins.
+* Added `sw:store:list:integrated` command to list all Shopware 5 integrated plugins.
+* `Shopware.model.Container` provides now the raw record value as id parameter to the `searchAssociationAction` to request the whole record on form load.
+* Added way to early exit the dispatch.
+    * After `Enlight_Controller_Front_RouteShutdown` a response containing a redirect will not enter the dispatch loop.
+* `HttpCache` plugin is no longer handled by the Plugin manager. Use the `Performance` window to enable/configure the Http cache instead
+* `\Shopware\Models\Emotion\Repository::getListQuery` function replaced by `getListingQuery`.
+
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

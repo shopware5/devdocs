@@ -24,7 +24,7 @@ OPcache improves PHP performance by storing precompiled script bytecode in share
 
 ## Strategy of aggregate functions
 Shopware uses aggregate tables which improves the store front performance.
-The following data sources are aggregated in shopware:
+The following data sources are aggregated in Shopware:
 
 - top seller (s_articles_top_seller_ro)
 - similar shown (s_articles_similar_shown_ro)
@@ -32,15 +32,15 @@ The following data sources are aggregated in shopware:
 - search index & keywords (s_search_index & s_search_keywords)
 - seo urls (s_core_rewrite_urls)
 
-Each of this aggregated data can have an own strategy when the data has to be build into the tables:
+Each of these aggregated data can have an own strategy when the data has to be built into the tables:
 
 - Live **[default]** > on demand, when the data is requested in the store front
-- Cronjob  > configured shopware cron job at night
-- Manual > only over the backend or own implementation
+- Cronjob  > executed together with other Shopware's cron tasks
+- Manual > only generated over the backend or using your own implementation
 
-It is recommend to configure the "Cronjob" strategy.
+We recommend using the "Cronjob" strategy. Don't forget to configure you system to execute Shopware's cron tasks periodically.
 
 ## Productive mode (Http cache)
-You have the opportunity to switch between "productive" and "development" mode. The development mode disables the http cache and allows you to prepare your shop to going live.
-After you modified all data, enable the "productive" mode and the http cache is enabled.
+You have the opportunity to switch between "productive" and "development" mode. The development mode disables the HTTP cache and allows you to prepare your shop before going live.
+After you modify all data, enable the shop to "productive" mode to enable the HTTP cache.
 

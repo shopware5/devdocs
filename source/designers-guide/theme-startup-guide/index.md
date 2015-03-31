@@ -87,7 +87,7 @@ As part of the restructuring of the theme, we updated the list of browsers which
 * Opera version 15 with Blink engine or above
 * Internet Explorer version 9 or above
 
-Please keep in mind that older browsers doesn't support all available HTML5 and CSS3 features.
+Please keep in mind that older browsers don't support all available HTML5 and CSS3 features.
 
 ### Comparison with the Shopware 4 template
 

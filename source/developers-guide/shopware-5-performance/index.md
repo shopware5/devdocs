@@ -2,6 +2,7 @@
 layout: default
 title: Shopware 5 performance
 github_link: developers-guide/shopware-5-performance.md
+indexed: true
 ---
 
 ## Introduction

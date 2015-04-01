@@ -54,7 +54,7 @@
 
 <div class="devdocs content container">
 	<div class="inner-container">
-		{% if site.github_enabled and page.github_link %}
+	    {% if site.github_enabled and page.github_link %}
 		<a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
 		{% endif %}
 
@@ -90,6 +90,9 @@
 addAnchors('.content h2, .content h3, .content h4');
 hljs.initHighlightingOnLoad();
 </script>
+
+{% block scripts_after %}
+{% endblock %}
 
 {% if site.google_analytics_tracking_id %}
 <script type="text/javascript">

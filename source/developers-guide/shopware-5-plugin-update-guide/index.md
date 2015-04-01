@@ -2,6 +2,7 @@
 layout: default
 title: Shopware 5 Plugin Update Guide
 github_link: developers-guide/shopware-5-plugin-update-guide/index.md
+indexed: true
 ---
 ## Introduction
 

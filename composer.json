@@ -9,5 +9,10 @@
   },
   "config": {
     "component-dir": "source/components"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shopware\\Devdocs\\": "app/src/"
+    }
   }
 }

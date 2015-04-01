@@ -2,6 +2,7 @@
 layout: default
 title: Optimize Shopware Performance
 github_link: sysadmins-guide/optimize-performance/index.md
+indexed: true
 tags:
   - performance
   - tips

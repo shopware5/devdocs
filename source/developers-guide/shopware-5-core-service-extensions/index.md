@@ -2,6 +2,7 @@
 layout: default
 title: Service extensions
 github_link: developers-guide/shopware-5-core-service-extensions/index.md
+indexed: true
 ---
 ## Introduction
 

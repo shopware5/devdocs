@@ -6,6 +6,7 @@ tags:
   - phpstorm
   - vagrant
   - tools
+indexed: true
 ---
 ## Vagrant Shopware Box
 

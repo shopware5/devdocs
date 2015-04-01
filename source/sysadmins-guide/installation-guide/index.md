@@ -2,6 +2,7 @@
 layout: default
 title: Shopware 5 Installation Guide
 github_link: sysadmins-guide/installation-guide/index.md
+indexed: true
 ---
 ## Shopware 5 Installer
 

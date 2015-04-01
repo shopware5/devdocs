@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fbcd755e5b49f66eca3c1804effffa9d",
+    "hash": "078e936687ac3e78a617ccc18f6b88bb",
     "packages": [
         {
             "name": "components/highlightjs",
@@ -54,16 +54,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "829199c0530ea131262c804924f921447c71d4e8"
+                "reference": "f10c71475167a4661225b14560ca0a400d730829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/829199c0530ea131262c804924f921447c71d4e8",
-                "reference": "829199c0530ea131262c804924f921447c71d4e8",
+                "url": "https://api.github.com/repos/composer/composer/zipball/f10c71475167a4661225b14560ca0a400d730829",
+                "reference": "f10c71475167a4661225b14560ca0a400d730829",
                 "shasum": ""
             },
             "require": {
-                "justinrainbow/json-schema": "~1.3",
+                "justinrainbow/json-schema": "~1.4",
                 "php": ">=5.3.2",
                 "seld/jsonlint": "~1.0",
                 "symfony/console": "~2.5",
@@ -114,7 +114,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2015-03-16 13:11:02"
+            "time": "2015-03-29 14:37:42"
         },
         {
             "name": "dflydev/ant-path-matcher",
@@ -453,12 +453,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-embedded-composer-core.git",
-                "reference": "55b6e4db3a9cc21025ab10e1e7e69c52aaa0ea8d"
+                "reference": "ec7461d8ddcecc8041212c1acf6f6d020be773a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-embedded-composer-core/zipball/55b6e4db3a9cc21025ab10e1e7e69c52aaa0ea8d",
-                "reference": "55b6e4db3a9cc21025ab10e1e7e69c52aaa0ea8d",
+                "url": "https://api.github.com/repos/dflydev/dflydev-embedded-composer-core/zipball/ec7461d8ddcecc8041212c1acf6f6d020be773a0",
+                "reference": "ec7461d8ddcecc8041212c1acf6f6d020be773a0",
                 "shasum": ""
             },
             "require": {
@@ -500,7 +500,7 @@
                 "embedded",
                 "extensibility"
             ],
-            "time": "2014-09-17 04:27:17"
+            "time": "2015-03-23 20:10:26"
         },
         {
             "name": "dflydev/placeholder-resolver",
@@ -808,16 +808,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "1.3.7",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "87b54b460febed69726c781ab67462084e97a105"
+                "reference": "2465fe486c864e30badaa4d005ebdf89dbc503f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/87b54b460febed69726c781ab67462084e97a105",
-                "reference": "87b54b460febed69726c781ab67462084e97a105",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2465fe486c864e30badaa4d005ebdf89dbc503f3",
+                "reference": "2465fe486c864e30badaa4d005ebdf89dbc503f3",
                 "shasum": ""
             },
             "require": {
@@ -870,7 +870,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2014-08-25 02:48:14"
+            "time": "2015-03-27 16:41:39"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1266,12 +1266,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "7aaa3d20fce87030d5f4094f4394c7c1e1f0e19d"
+                "reference": "c73a58466fc9182cc79c3bf9a0e90cd1e7487d94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/7aaa3d20fce87030d5f4094f4394c7c1e1f0e19d",
-                "reference": "7aaa3d20fce87030d5f4094f4394c7c1e1f0e19d",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/c73a58466fc9182cc79c3bf9a0e90cd1e7487d94",
+                "reference": "c73a58466fc9182cc79c3bf9a0e90cd1e7487d94",
                 "shasum": ""
             },
             "require": {
@@ -1302,7 +1302,7 @@
                 }
             ],
             "description": "Allows installation of Components via Composer.",
-            "time": "2014-09-16 17:57:47"
+            "time": "2015-03-30 03:26:38"
         },
         {
             "name": "sculpin/sculpin",
@@ -1310,12 +1310,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sculpin/sculpin.git",
-                "reference": "72334e1fb92a17e309cd4e2a5cd9206cf7efa8e8"
+                "reference": "a7ececfb572c89774a7949210aeb491232f1b1cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/72334e1fb92a17e309cd4e2a5cd9206cf7efa8e8",
-                "reference": "72334e1fb92a17e309cd4e2a5cd9206cf7efa8e8",
+                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/a7ececfb572c89774a7949210aeb491232f1b1cf",
+                "reference": "a7ececfb572c89774a7949210aeb491232f1b1cf",
                 "shasum": ""
             },
             "require": {
@@ -1400,7 +1400,7 @@
                 "site",
                 "static"
             ],
-            "time": "2015-03-14 18:09:09"
+            "time": "2015-04-01 07:32:14"
         },
         {
             "name": "sculpin/sculpin-theme-composer-plugin",

@@ -1038,6 +1038,11 @@ code {
 .devdocs {
   /* TABLES */
 }
+.devdocs #search input {
+  width: 300px;
+  border: 1px solid #cad9e0;
+  padding: 3px;
+}
 .devdocs img {
   max-width: 100%;
 }

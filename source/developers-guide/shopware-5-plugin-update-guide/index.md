@@ -9,6 +9,181 @@ In this guide we provide you with all essential information you need to keep you
 
 The most changes are optional, so the old syntax should still work.
 
+## Template extensions
+You should neither use the method __extendsTemplate__ nor __extendsBlock__ for responsive templates anymore, since your templates won't be extensible then. Instead you should use the auto-loading of shopware.
+The following example shows how template extensions plugins need to be updated, to achieve the best possible result for the shopware 5 templates.
+The following source code is taken from the SwagExample1 plugin for shopware 4, which displays a top seller slider and a banner to the article detail page:
+
+#### SwagExample1/Bootstrap.php
+```php
+<?php
+class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+{
+    public function install()
+    {
+        $this->subscribeEvent('Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail', 'onSecureDetailPostDispatch');
+
+        $form = $this->Form();
+        $form->setElement(
+            'mediaselection',
+            'mediaselection',
+            ['label' => 'Media', 'value' => NULL]
+        );
+
+        return true;
+    }
+
+    public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
+    {
+        /**@var $controller Shopware_Controllers_Frontend_Listing*/
+        $controller = $arguments->getSubject();
+        $controller->View()->addTemplateDir($this->Path() . 'Views/');
+        $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
+        $controller->View()->mediaSelection = $this->Config()->mediaselection;
+    }
+}
+```
+
+#### SwagExample1/Views/frontend/detail/example1.tpl
+```smarty
+{block name="frontend_detail_index_detail"}
+    {block name="frontend_detail_example"}
+        <div class="example--own-topseller">
+            {block name="frontend_detail_example_headline"}
+                <h1 class="own-topseller--headline">My topseller</h1>
+            {/block}
+
+            {block name="frontend_detail_example_img"}
+                <img class="own-topseller--img" src="{link file={$mediaSelection}}" alt="Test" />
+            {/block}
+
+            {block name="frontend_detail_example_topseller"}
+                <div class="own-topseller--container">
+                    {action module=widgets controller=listing action=top_seller sCategory=3}
+                </div>
+            {/block}
+        </div>
+    {/block}
+{/block}
+
+```
+
+The goal is to make this plugin now compatible with the new shopware 5 template and the old shopware 4 template:
+For this purpose, the following should be considered:
+<ul>
+    <li>Inside the PostDispatch, we have to distinguished between the different template version, to load different templates.</li>
+    <li>The extendsTemplate function should not be used in the new template, otherwise the plugin template can not be overwritten by other templates.</li>
+    <li>In order for the plugin template can be easily extended by others, the template adjustments should be extracted to a separate file.</li>
+</ul>
+
+First, the template structure is revised. The example1.tpl is now divided into three new files:
+<ul>
+    <li>SwagExample1/Views/emotion/detail/example1.tpl (Entry point to extends the emotion template)</li>
+    <li>SwagExample1/Views/responsive/detail/index.tpl (Entry point to extends the responsive template)</li>
+    <li>SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl (Contains the source code for the extension)</li>
+</ul>
+
+The new files contain the following source code:
+#### SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl
+```smarty
+{block name="frontend_detail_example"}
+    <div class="example--own-topseller">
+        {block name="frontend_detail_example_headline"}
+            <h1 class="own-topseller--headline">My topseller</h1>
+        {/block}
+
+        {block name="frontend_detail_example_img"}
+            <img class="own-topseller--img" src="{link file={$mediaSelection}}" alt="Test" />
+        {/block}
+
+        {block name="frontend_detail_example_topseller"}
+            <div class="own-topseller--container">
+                {action module=widgets controller=listing action=top_seller sCategory=3}
+            </div>
+        {/block}
+    </div>
+{/block}
+```
+
+#### SwagExample1/Views/emotion/frontend/detail/example1.tpl
+```smarty
+{block name="frontend_detail_index_detail"}
+    {include file="frontend/swag_example1/detail_extension.tpl"}
+{/block}
+```
+
+#### SwagExample1/Views/responsive/frontend/detail/index.tpl
+```smarty
+{extends file="parent:frontend/detail/index.tpl"}
+
+{block name="frontend_detail_index_detail"}
+    {include file="frontend/swag_example1/detail_extension.tpl"}
+{/block}
+```
+<br>
+__Notice: Template extensions for the responsive template are loaded via the inheritance hierarchy based on the file system. Therefore, this template should be extends via {extends file = ".."}.__
+
+The files SwagExample1/Views/responsive/frontend/detail/index.tpl and SwagExample1/Views/emotion/frontend/detail/example1.tpl only serve as an entry point into the original template.
+The source code for displaying the top seller sliders and the banner element, which was previously located directly in the extended template file, has now been made available globally in a separate template file.
+This file is now included simply by both templates.
+This has the following advantages:
+<ul>
+    <li>Avoid duplicate source code</li>
+    <li>Extensible plugin template for other developers</li>
+</ul>
+
+Now only the bootstrap has to be adapted, that it loads the correct template directory for the corresponding Template Version.
+The new plugin Bootstrap now looks like this:
+```php
+<?php
+
+class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+{
+    public function install()
+    {
+        $this->subscribeEvent('Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail', 'onSecureDetailPostDispatch');
+
+        $form = $this->Form();
+        $form->setElement(
+            'mediaselection',
+            'mediaselection',
+            ['label' => 'Media', 'value' => NULL]
+        );
+
+        return true;
+    }
+
+    public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
+    {
+        /**@var $controller Shopware_Controllers_Frontend_Listing*/
+        $controller = $arguments->getSubject();
+
+        $controller->View()->addTemplateDir($this->Path() . 'Views/common/');
+
+        if (Shopware()->Shop()->getTemplate()->getVersion() >= 3) {
+            $controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
+        } else {
+            $controller->View()->addTemplateDir($this->Path() . 'Views/emotion/');
+            $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
+        }
+
+        $controller->View()->mediaSelection = $this->Config()->mediaselection;
+    }
+}
+```
+
+The following has been changed:
+<ul>
+    <li>First, the "Views/common/" directory is registered as a template directory. Templates inside this directory are now available for both template versions.</li>
+    <li>Then it will check which shop template version is active to load the different templates</li>
+    <li>Responsive - Template files for the responsive template loaded automatically over the inheritance by using the same names. Therefore, only the template directory must registered here</li>
+    <li>Emotion - In the emotion template we can load the template extension as well as in shopware 4. After the template directory is registered, the template file is loaded via __extendsTemplate__.</li>
+</ul>
+
+__Notice: Do not use "_default/" or "_emotion/" at the beginning of the extend-call. Use "parent:" instead.__
+
+__Notice: To allow other templates can easily extend the plugin templates, should firstly the template are in a separate file and provided to the other with own Smarty blocks to allow different entry point.
+
 ## Uninstall
 
 During the uninstallation process, the user can now be prompted which data he wishes to remove.
@@ -44,42 +219,6 @@ public function secureUninstall()
 }
 ```
 
-## extendsTemplate() and extendsBlock()
-You should neither use the method __extendsTemplate__ nor __extendsBlock__ for responsive templates anymore, since your templates won't be extensible then.
-Instead you should use the auto-loading of Shopware.
-
-E.g. you need to append something to the block __frontend_checkout_cart_panel__ from the file __Themes/Frontend/Bare/frontend/checkout/cart.tpl__.
-Just create the same file- and folder-structure in your plugin, so it looks like this:
-
-__yourPlugin/Views/responsive/frontend/checkout/cart.tpl__
-
-##### cart.tpl - Using extends in Smarty instead of PHP
-```smarty
-{extends file="parent:frontend/checkout/cart.tpl"}
-
-{block name="frontend_checkout_cart_panel"}
-	Your changes here.
-{/block}
-```
-
-__Notice: Do not use "_default/" or "_emotion/" at the beginning of the extend-call. Use "parent:" instead.__
-
-##Templates / Smarty Änderungen
-###Checking template version
-Important: Please try to modify your plugin to be is compatible with both 4.3 and 5.
-In this case you need to implement version-checks on several parts of the code, e.g. while adding a template directory.
-First of all, if you use a folder __Views/frontend__, it has to be moved into __Views/emotion__, so we can create another folder called __Views/responsive__.
-This way we can create both the old emotion-template as well as your new responsive-template.
-
-##### Bootstrap.php - Template switch
-```php
-$version = Shopware()->Shop()->getTemplate()->getVersion();
-if ($version >= 3) {
-    $view->addTemplateDir($this->Path() . 'Views/responsive/');
-} else {
-    $view->addTemplateDir($this->Path() . 'Views/emotion/');
-}
-```
 ### Less
 For styling our responsive template we used Less, which can be used exactly like CSS.
 Anyway Less implements nice features to improve and simplify your css-code.
@@ -88,7 +227,7 @@ Therefore it would be great to see if you use it as well.
 For more information on how to use Less, have a look [here](http://lesscss.org/).
 
 
-#### IntegrationL
+#### Integration
 Less-files are loaded by creating a new event in the install-method of our plugin.
 
 ##### Bootstrap.php - Using .less files in responsive template
@@ -340,176 +479,6 @@ Views/
 ```
 Basically we only added a "frontend"-folder and created the structure for the less-files, which we include later.
 
-### Version-Switch for addTemplateDir
-Due to the new structure inside of the "Views"-folder, we also have to change the usage of our addTemplateDir-method.
-All we need to do here is to add an if-condition to check the template-version.
-An example occurrence of the "addTemplateDir"-method is in the __onSecureDetailPostDispatch__-method.
-
-#### Old onSecureDetailPostDispatch
-```php
-public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $controller Shopware_Controllers_Frontend_Listing*/
-        $controller = $arguments->getSubject();
-        $controller->View()->addTemplateDir($this->Path() . 'Views/');
-        $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-        $controller->View()->mediaSelection = $this->Config()->mediaselection;
-    }
-```
-
-#### New onSecureDetailPostDispatch
-```php
-public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $controller Shopware_Controllers_Frontend_Listing*/
-	$controller = $arguments->getSubject();
-	if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
-		$controller->View()->addTemplateDir($this->Path() . 'Views/emotion/');
-	} else {
-		$controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
-	}
-	$controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-	$controller->View()->mediaSelection = $this->Config()->mediaselection;
-    }
-```
-
-All we do here is asking for the template-version, which is 3 in case of a responsive-template and 2 or less in case of an emotion- or default-template and include the
-template-folder then.
-
-#### Extended version-switch for addTemplateDir
-In some plugins we got three folders inside of our __Views__-folder:
-___default__, __emotion__ and __responsive__.
-
-In this case we also like to implement the addTemplateDir-method like this:
-
-```php
-$templateVersion = Shopware()->Shop()->getTemplate()->getVersion();
-switch ($templateVersion) {
-	case 2:
-		$template = '_emotion';
-		break;
-	case 3:
-		$template = 'responsive';
-		break;
-	default:
-		$template = '_default';
-		break;
-}
-$view->addTemplateDir($this->Path() . '/Views/' . $template);
-```
-
-### Handling extendsTemplate
-In the next step, we have to make sure no  single call of __extendsTemplate__ is executed while using the new responsive template.
-When searching for __extendsTemplate__ in the plugin folder, we will find another two occurrences, one of them also being in the __onSecureDetailPostDispatch__.
-
-#### Old onSecureDetailPostDispatch
-```php
-public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $controller Shopware_Controllers_Frontend_Listing*/
-	$controller = $arguments->getSubject();
-	if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
-		$controller->View()->addTemplateDir($this->Path() . 'Views/emotion/');
-	} else {
-		$controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
-	}
-	$controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-	$controller->View()->mediaSelection = $this->Config()->mediaselection;
-    }
-```
-
-
-#### New onSecureDetailPostDispatch
-```php
-public function onSecureDetailPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $controller Shopware_Controllers_Frontend_Listing*/
-        $controller = $arguments->getSubject();
-        if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
-            $controller->View()->addTemplateDir($this->Path() . 'Views/emotion/');
-            $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-        } else {
-            $controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
-        }
-        $controller->View()->mediaSelection = $this->Config()->mediaselection;
-    }
-```
-
-So what have we done here?
-We simply moved the "extendsTemplate"-call into the if-condition, which only matches when the template-version is below 3 - in case of using the responsive-template the "extendsTemplate"-method will never be called now.
-
-### Creating new templates
-It's time to create a new template, as the responsive/frontend-folder is still empty.
-There's no need to create a completely new template, we simply "update" the old templates a little bit by using new the class-naming and adding some new html-elements.
-We don't use any "extendsTemplate"-method anymore now, which includes the template - but how do we extend the shopware-templates now?
-Quite easy: We look up, which smarty-blocks our extended template used to extend and find them in the default-template.
-Afterwards we create the same file- and folder-structure in our plugin and use the "extending" of smarty itself.
-The following example will help you understand:
-
-In the example-plugin we only used one template: __SwagExample1/Views/emotion/frontend/detail/example1.tpl__
-#### example1.tpl
-```html
-
-{block name="frontend_detail_index_detail"}
-    <h1>My topseller</h1>
-
-    <img style="width: 50%; display: block;"
-        src="{link file={$mediaSelection}}" alt="Test" />
-
-    {action module=widgets controller=listing action=top_seller sCategory=3}
-
-    {*{action module=widgets controller=emotion categoryId=3}*}
-{/block}
-
-```
-
-There is exactly one block being used: __frontend_detail_index_detail__
-Now we can look up where this block comes from, in this case the block-name leads us to the right file.
-The block is originally implemented in the file __Themes/Frontend/Bare/frontend/detail/index.tpl__, which is the same folder-structure we'll create now.
-Therefore we need to create a "detail"-folder inside the following folder __SwagExample1/Views/responsive/frontend__.
-Inside of the new "detail"-folder we need to create the index.tpl.
-
-As you probably know, this would currently overwrite the default index.tpl and not just extend it.
-In order to extend the original template now, we add following lines into the detail.tpl:
-
-```smarty
-{extends file="parent:frontend/detail/index.tpl"}
-
-{block name="frontend_detail_index_detail"}
-{/block}
-```
-
-By using the smarty "extend"-function we can still extend other templates without using the php-function "extendsTemplate".
-All we do is looking up the original template to copy the structure.
-
-Now we can start creating the actual template inside of the block.
-The old template __example1.tpl__ used several elements:
-As we can see a little above, a headline, an img-tag and the smarty-action-plugin were used.
-Let's implement all these elements using this new html-structure.
-
-#### New template - index.tpl
-```html
-{extends file="parent:frontend/detail/index.tpl"}
-
-{block name="frontend_detail_index_detail"}
-	<div class="example--own-topseller">
-		<h1 class="own-topseller--headline">My topseller</h1>
-
-		<img class="own-topseller--img" src="{link file={$mediaSelection}}" alt="Test" />
-
-		<div class="own-topseller--container">
-			{action module=widgets controller=listing action=top_seller sCategory=3}
-		</div>
-	</div>
-{/block}
-```
-
-First of all we use a new parent-child naming for the classes, in this case we created a parent-container with the class "example--own-topseller".
-Every following child-class starts with "own-topseller" now and then proceeds with another child-name, e.g. "own-topseller--headline".
-
-The img-tag lost its inline-styles, which we will include in the less-files in the next step.
-And the last element, the actual implementation of a topseller which is fully responsible by default, got a wrapping container.
-That's it for the template.
 
 ### Implement new less-structure
 We already created the basic folders in a step above.
@@ -600,27 +569,8 @@ Below we'll list up all files we've changed:
 
 class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
-    public function getVersion() {
-        return '1.0.0';
-    }
-
-    public function getInfo()
-    {
-        return array(
-            'label' => 'Example 1: Plugin Controller & Template Extension'
-        );
-    }
-
-    public function uninstall() {
-        return true;
-    }
-
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Dispatcher_ControllerPath_Frontend_Example1', 'onGetController');
-
-//        $this->subscribeEvent('Enlight_Controller_Action_PostDispatch', 'onPostDispatch');
-//        $this->subscribeEvent('Enlight_Controller_Action_PostDispatch_Frontend_Detail', 'onPostDispatch');
         $this->subscribeEvent('Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail', 'onSecureDetailPostDispatch');
 
         // Subscribe the needed event for less merge and compression
@@ -630,76 +580,13 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
         );
 
         $form = $this->Form();
-        $form->setElement('text', 'text',
-            array(
-                'label' => 'Text',
-                'value' => NULL
-            )
-        );
-        $form->setElement('datetime', 'datetime',
-            array(
-                'label' => 'Date-Time',
-                'value' => NULL
-            )
-        );
-        $form->setElement('mediaselection','mediaselection',
-            array(
-                'label' => 'Media',
-                'value' => NULL
-            )
-        );
-        $form->setElement('select', 'select',
-            array('label' => 'Select',
-                'store' => array(
-                    array(1, 'Testvariable 1'),
-                    array(2, 'Testvariable 2'),
-                    array(3, 'Testvariable 3')
-                )
-            )
+        $form->setElement(
+            'mediaselection',
+            'mediaselection',
+            ['label' => 'Media', 'value' => NULL]
         );
 
         return true;
-    }
-
-
-    public function onGetController(Enlight_Event_EventArgs $arguments)
-        {
-            if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
-                $this->Application()->Template()->addTemplateDir(
-                    $this->Path() . '/Views/emotion/'
-                );
-            } else {
-                $this->Application()->Template()->addTemplateDir(
-                    $this->Path() . '/Views/responsive'
-                );
-            }
-            return $this->Path() . 'Controllers/Frontend/Example1.php';
-        }
-
-
-    public function onPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        /**@var $controller Enlight_Controller_Action*/
-        $controller = $arguments->getSubject();
-        $request = $controller->Request();
-        $response = $controller->Response();
-
-        if (!$request->isDispatched()
-            || $response->isException()
-            || $request->getModuleName() != 'frontend'
-            || $request->getControllerName() != 'detail') {
-
-            return;
-        }
-
-        if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
-            $controller->View()->addTemplateDir($this->Path() . '/Views/emotion/');
-            $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-        } else {
-            $controller->View()->addTemplateDir($this->Path() . '/Views/responsive/');
-        }
-
-        $controller->View()->mediaSelection = $this->Config()->mediaselection;
     }
 
 
@@ -707,12 +594,17 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
     {
         /**@var $controller Shopware_Controllers_Frontend_Listing*/
         $controller = $arguments->getSubject();
-        if (Shopware()->Shop()->getTemplate()->getVersion() < 3) {
+
+        $controller->View()->addTemplateDir($this->Path() . 'Views/common/');
+
+        $template = Shopware()->Shop()->getTemplate();
+        if ($template->getVersion() >= 3) {
+            $controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
+        } else {
             $controller->View()->addTemplateDir($this->Path() . 'Views/emotion/');
             $controller->View()->extendsTemplate('frontend/detail/example1.tpl');
-        } else {
-            $controller->View()->addTemplateDir($this->Path() . 'Views/responsive/');
         }
+
         $controller->View()->mediaSelection = $this->Config()->mediaselection;
     }
 
@@ -766,30 +658,41 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 }
 ```
 
-#### Views/responsive/frontend/detail/index.tpl
-```html
+#### SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl
+```smarty
+{block name="frontend_detail_example"}
+    <div class="example--own-topseller">
+        {block name="frontend_detail_example_headline"}
+            <h1 class="own-topseller--headline">My topseller</h1>
+        {/block}
+
+        {block name="frontend_detail_example_img"}
+            <img class="own-topseller--img" src="{link file={$mediaSelection}}" alt="Test" />
+        {/block}
+
+        {block name="frontend_detail_example_topseller"}
+            <div class="own-topseller--container">
+                {action module=widgets controller=listing action=top_seller sCategory=3}
+            </div>
+        {/block}
+    </div>
+{/block}
+```
+
+#### SwagExample1/Views/emotion/frontend/detail/example1.tpl
+```smarty
+{block name="frontend_detail_index_detail"}
+    {include file="frontend/swag_example1/detail_extension.tpl"}
+{/block}
+```
+
+#### SwagExample1/Views/responsive/frontend/detail/index.tpl
+```smarty
 {extends file="parent:frontend/detail/index.tpl"}
 
 {block name="frontend_detail_index_detail"}
-	{block name="frontend_detail_example"}
-		<div class="example--own-topseller">
-			{block name="frontend_detail_example_headline"}
-				<h1 class="own-topseller--headline">My topseller</h1>
-			{/block}
-
-			{block name="frontend_detail_example_img"}
-				<img class="own-topseller--img" src="{link file={$mediaSelection}}" alt="Test" />
-			{/block}
-
-			{block name="frontend_detail_example_topseller"}
-				<div class="own-topseller--container">
-					{action module=widgets controller=listing action=top_seller sCategory=3}
-				</div>
-			{/block}
-		</div>
-	{/block}
+    {include file="frontend/swag_example1/detail_extension.tpl"}
 {/block}
-
 ```
 
 #### New folder-structure

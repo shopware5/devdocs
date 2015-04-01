@@ -318,5 +318,15 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * `HttpCache` plugin is no longer handled by the Plugin manager. Use the `Performance` window to enable/configure the Http cache instead
 * `\Shopware\Models\Emotion\Repository::getListQuery` function replaced by `getListingQuery`.
 
+## 5.0.0 RC2
+* SEO URL generation variable "statistic" has been translated and corrected to "static"
+* Theme config elements can now define, over the attributes array, if they are less compatible. Example: `attributes => ['lessCompatible' => false]`, default is set to true.
+* Implement plugin bootstrap helper functions: addHttpCacheRoute and removeHttpCacheRoute, to add and remove http cache routes.
+* Refactor getRandomArticle function of sArticles. Shopware_Modules_Articles_GetPromotionById_FilterSqlRandom event removed.
+* `Mark VAT ID number as required` moved to `Login / Registration` in `Basic Settings`. All other VAT ID validation options were removed. If you need VAT ID validation functionalities, please use the VAT ID Validation plugin available on the store.
+    * `sAdmin::sValidateVat()` removed
+* Removed supplier description on article detail page to prevent duplicated content for google remote crawling
+* Fix duplicate name parameter for backend extjs stores inside the config module. Repository class name sent before as `name` parameter. Now the stores uses `_repositoryClass` as parameter.
+
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

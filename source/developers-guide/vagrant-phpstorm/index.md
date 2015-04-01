@@ -83,8 +83,8 @@ Choose a unique name and the "SFTP" type.
 
 Fill in all required fields.
 
-* SFTP host: `127.0.0.1`
-* Port: `2222`
+* SFTP host: `33.33.33.10`
+* Port: `22`
 * Root Path: `/home/vagrant/www`
 * User name: `vagrant`
 * Password: `vagrant`
@@ -146,15 +146,30 @@ Input fields:
 After you get the `"BUILD SUCCESSFUL"` message you can run the full build command.
 
     $ ant build-unit
-  
+
+### Step 3
+Now edit your .htaccess file in the root of your Shopware Project and change the Rewrite Path to /shopware.
+
+Change 
+
+    $ #RewriteBase /shopware/
+
+to 
+
+    $ RewriteBase /shopware/
+
 After the build is complete you can view your full installed Shopware under:
 
 [http://33.33.33.10/shopware](http://33.33.33.10/shopware)
 
-### Step 3
+### Step 4
 Open the backend by adding a `/backend` to your default Shopware installation.
 
 [http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend)
+
+### Step 5
+Currently images are not imported correctly. Please go to the Plugin Manager and install the Plugin "Demo Daten installieren". Install and enable the Plugin and all images are working.
+
 
 * Default user: `demo`
 * Default pass: `demo`

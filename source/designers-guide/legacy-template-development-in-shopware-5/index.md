@@ -24,7 +24,7 @@ If you are using a clean installation of Shopware 5, you need to manually create
 As the new Shopware 5 Responsive theme has different requirements when compared with Shopware 4 templates, you might need to reconfigure some of your shop's settings in order for your template to work properly. This is applicable only if:
 
 * You are installing a Shopware 4 template on a clean Shopware 5 installation (no upgrade from Shopware 4)
-* You upgraded from Shopware 4 to 5 and changed your shop settings to support the new Responsive theme, like described in the [Shopware 5 update guide](/update-guide/)
+* You upgraded from Shopware 4 to 5 and changed your shop settings to support the new Responsive theme, like described in the [Shopware 5 update guide](/developers-guide/shopware-5-upgrade-guide-for-developers//)
 
 ## Shopware 4 template settings
 

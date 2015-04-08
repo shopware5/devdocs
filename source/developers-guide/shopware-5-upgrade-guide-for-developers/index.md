@@ -328,6 +328,14 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `sAdmin::sValidateVat()` removed
 * Removed supplier description on article detail page to prevent duplicated content for google remote crawling
 * Fix duplicate name parameter for backend extjs stores inside the config module. Repository class name sent before as `name` parameter. Now the stores uses `_repositoryClass` as parameter.
+* Removed shopware_storefront.product_gateway (\Shopware\Bundle\StoreFrontBundle\Gateway\ProductGatewayInterface).
+* \Shopware\Bundle\StoreFrontBundle\Service\Core\ProductService uses now the ListProductService to load the product data and converts the product structs by loaded list products.
+* Removed `\Shopware\Bundle\StoreFrontBundle\Gateway\DBAL\Hydrator\ProductHydrator::hydrateProduct` function.
+* Removed \Shopware\Bundle\StoreFrontBundle\Struct\ListProduct::STATE_TRANSLATED constant.
+* Removed Service `guzzle_http_client`, use `guzzle_http_client_factory` instead.
+* Added support for Bundle of CA Root Certificates. See: http://curl.haxx.se/docs/caextract.html.
+* Removed `setField` and `setMode` function in \Shopware\Bundle\SearchBundle\Facet\ProductAttributeFacet.
+* Removed unnecessary theme variable prefix for less compiler. Each theme config variable prefixed with "theme" . ucfirst($key) which generates @themeBrandPrimary. This variables were remapped inside responsive theme.
 
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

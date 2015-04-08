@@ -179,11 +179,11 @@ The following example shows how to use the mixin using a ```12px font-size```:
 
 ```
 p {
-	.unitize(12, 16, font-size);
+	.unitize(font-size, 12);
 }
 ```
 
-The second parameter defines the base value for the ```rem``` calculation. Relative measuring units are always based on the ```font-size``` of the ```html``` element. In almost every case, the default browser's ```font-size``` is 16px and that's why we use the value 16 here.
+Relative measuring units are always based on the ```font-size``` of the ```html``` element. In almost every case, the default browsers ```font-size``` is 16px and that's why the mixin uses 16 as default base value for the ```rem``` calculation. If you want to use a different base value you can simply add it as a third parameter.
 
 ### Available variables
 

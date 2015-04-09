@@ -319,6 +319,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * `HttpCache` plugin is no longer handled by the Plugin manager. Use the `Performance` window to enable/configure the Http cache instead
 * `\Shopware\Models\Emotion\Repository::getListQuery` function replaced by `getListingQuery`.
 
+
 ## 5.0.0 RC2
 * SEO URL generation variable "statistic" has been translated and corrected to "static"
 * Theme config elements can now define, over the attributes array, if they are less compatible. Example: `attributes => ['lessCompatible' => false]`, default is set to true.
@@ -336,6 +337,36 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Added support for Bundle of CA Root Certificates. See: http://curl.haxx.se/docs/caextract.html.
 * Removed `setField` and `setMode` function in \Shopware\Bundle\SearchBundle\Facet\ProductAttributeFacet.
 * Removed unnecessary theme variable prefix for less compiler. Each theme config variable prefixed with "theme" . ucfirst($key) which generates @themeBrandPrimary. This variables were remapped inside responsive theme.
+* fixed pagination problem in the listing if JavaScript is deactivated
+* improved the performance of the Advanced Menu, Advanced Emotion Worlds and Emotion Worlds
+* fixed problem with loading an Emotion World on a category page
+* added a time out if the Plugin Manager can't connect to the plugin store
+* fixed a SSL bug in the ajax search
+* optimized the LESS variable naming
+* fixed issues with PHP 5.6.6
+* the Product Service now uses the List Product Service
+* update Symfony from 2.6.4 to 2.6.6
+* fixed several design issues for the Off-Canvas cart
+* added color code validation for the theme configuration
+* fixed some design issues for the image slider
+* fixed several caching issues
+* fixed landing page master / slave issues
+* fixed blog articles without images
+* several rewriting fixes
+* fixed media manager image upload
+* added a confirmation message for deleting images in the media manager
+* fixed several styles for the IE 11
+* fixed several First Run Wizard bugs
+* fixed several Emotion World bugs 
+* fixed several SEO tags
+* fixed cache interaction between multiple Shopware installations
+* fixed tap on search results in the drop down search
+* fixed several bugs for the Surface
+* added missing smarty blocks to the analytics module
+* the configuration uses the array_replace_recursive method instead of array_merge
+* several improvements of the visitors statics
+* fixed a bug for the SEO URLs generating statistics bar
+* improved the password description
 
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

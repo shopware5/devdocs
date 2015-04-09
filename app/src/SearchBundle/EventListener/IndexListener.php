@@ -1,0 +1,70 @@
+<?php
+namespace Shopware\Devdocs\SearchBundle\EventListener;
+
+use Sculpin\Core\Sculpin;
+use Sculpin\Core\Event\SourceSetEvent;
+use Sculpin\Core\Source\AbstractSource;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class IndexListener implements EventSubscriberInterface
+{
+    /**
+     * @var string
+     */
+    private $outputDir;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return array(
+            Sculpin::EVENT_AFTER_RUN => 'afterRun',
+        );
+    }
+
+    /**
+     * @param string $outputDir
+     */
+    public function __construct($outputDir)
+    {
+        $this->outputDir = $outputDir;
+    }
+
+    /**
+     * @param \Sculpin\Core\Event\SourceSetEvent $event
+     */
+    public function afterRun(SourceSetEvent $event)
+    {
+        $documents = array();
+        /** @var AbstractSource $item */
+        foreach ($event->allSources() as $item) {
+            if ($item->data()->get('indexed')) {
+                $documents[] = $this->parseSource($item);
+            }
+        }
+
+        $output['entries'] = $documents;
+        $json = json_encode($output, JSON_PRETTY_PRINT);
+
+        file_put_contents($this->outputDir.'/index.json', $json);
+    }
+
+    /**
+     * @param AbstractSource $source
+     * @return array
+     */
+    private function parseSource(AbstractSource $source)
+    {
+        $tags = (is_array($source->data()->get('tags'))) ? $source->data()->get('tags') : array();
+
+        $document = array(
+            'title' => $source->data()->get('title'),
+            'body'  => strip_tags($source->content()),
+            'tags'  => implode(', ', $tags),
+            'url'   => $source->permalink()->relativeUrlPath(),
+        );
+
+        return $document;
+    }
+}

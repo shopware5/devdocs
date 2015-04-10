@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Getting started with shopware 5 templating
+title: Getting started with Shopware 5 templating
 github_link: designers-guide/getting-started/index.md
 indexed: true
 ---
 
 ##Introduction
-This guide will provide you a quick overview on basic templating in Shopware 5 by providing a step-by-step explanation based on an example project. The content is aimed at beginners and lays the groundwork for templating and styling of shopware themes. It shows the creation of a new theme and the usage of the smarty template-blocks to customize and add elements to the custom theme.
+This guide will provide you a quick overview on basic templating in Shopware 5 by providing a step by step explanation based on an example project. The content is aimed at beginners and lays the groundwork for templating and styling of Shopware themes. It shows the creation of a new theme and the usage of the Smarty template blocks to customize and add elements to the custom theme.
 
 ##Table of contents
 -   [Preview of the guide](#preview-of-the-guide)
@@ -22,38 +22,37 @@ This guide will provide you a quick overview on basic templating in Shopware 5 b
 ##Preview of the guide
 ![Guide preview](img-guide.jpg)
 
-This guide explains how to add a new theme to the shop, implement a new element into the template and add styling by using the css preprocessor less. The first task is to add a new theme and select it. As the second step, we want to add a button into the shop-navigation of the storefront and style it correctly, so it fits on any device size. And as a last task we change the color of the cart button to a gradient that matches the default primary colors.
+This guide explains how to add a new theme to the shop, implement a new element into the template and add styling by using the CSS pre-processor Less. The first task is to add a new theme and select it. In the second step, we want to add a button into the shop navigation of the frontend and style it correctly, so it fits on any device size. And as a last task we change the color of the cart button to a gradient that matches the default primary colors.
 
 #Templating
 ##Bare and responsive
-The default template folder of shopware 5 is the **Themes** folder in the root directory.    
-Inside the **frontend** folder, which is the focus of this guide, you can find our two default shopware 5 themes.
+The default template folder of Shopware 5 is the `Themes` folder in the root directory.    
+Inside the `frontend` folder, which is the focus of this guide, you can find our two default Shopware 5 themes.
 
-+   The **bare** theme is the base of the shopware storefront. It contains the basic element structure.
-+   The **responsive** theme contains the default shopware 5 responsive theme styling based on the bare theme.
++   The `Bare` theme is the base of the Shopware frontend. It contains the basic element structure.
++   The `Responsive` theme contains the default Shopware 5 Responsive theme styling based on the Bare theme.
 
-**Important:** Do not change the bare/responsive themes itself, otherwise the changes could be overwritten by future updates.
+__Important:__ Do not change the Bare/Responsive themes themselves, as the changes might be overwritten by future updates.
 
 ##Custom themes
 ![Adding a new theme](img-custom-theme.jpg)
 
-In order to create your theme you have to click on the **create theme** button inside the **backend theme manager** and give it a suiting name (in this example: TutorialTheme) and some additional information. 
-It will automatically create a folder inside the themes directory and add the required files for it to work.
+In order to create your theme, you have to click on the `Create theme` button inside the `Theme manager` and give it a suiting name (in this example: `TutorialTheme`) and some additional information. 
+It will automatically create a folder inside the `themes` directory and add the required files for it to work.
 
 The frontend folder now contains 3 themes:
-```
-Bare
-Responsive
-TutorialTheme
-```
+
+- `Bare`
+- `Responsive`
+- `TutorialTheme`
 
 ##Selecting themes
 ![Selecting a theme](img-select-theme.jpg)
 
-Before you can see any changes of the files you are editing, you have to select the new theme. To choose the theme, first refresh the themes using the **refresh themes** button and then simply click on the thumbnail image of your own created template and press the **Select theme** button.
+Before you can see any changes made to the files you are editing, you have to select the new theme. To choose the theme, first refresh the themes using the `Refresh themes` button and then simply click on the thumbnail image of your own created template and press the `Select theme` button.
 
 ##Directory structure
-The shopware directory structure that is located in the **Bare/Frontend** folder, contains subfolders (named after the controllers) that separate the template files into the specific storefront-areas they relate to.
+The Shopware directory structure that is located in the `Bare/Frontend` folder contains subfolders (named after the controllers) that separate the template files by the specific frontend areas they relate to.
 
 ```
 frontend
@@ -95,11 +94,11 @@ frontend
 ```
 
 ##Template inheritance
-While creating the theme you have the ability to choose an existing theme you want to inherit from. In this case you would want to inherit from the responsive theme. In other words, our new theme is based on both the shopware bare and responsive theme and can be easily overwritten by your new settings.
+While creating the theme you have the ability to choose an existing theme you want to inherit from. In this case you would want to inherit from the responsive theme. In other words, our new theme is based on Shopware's `Responsive` theme which, in turn, inherits from the `Bare` theme.
 
-If you want to edit a specific store region inside your new template, you would **extend** the already existing files that the bare theme provides. In order to do that, you have to **maintain the same directory structure** that the bare theme uses.
+If you want to edit a specific store section inside your new template, you would __extend__ the already existing files that the `Bare` theme provides. In order to do that, you have to __maintain the same directory structure__ that the `Bare` theme uses.
 
-So for instance, if you would like to modify the **header**, you would want to adopt the specific directories in order to be able to overwrite or extend the already existing elements. The storefront-header in the **shop-navigation.tpl** file (which is later included into the index.tpl) is located inside the **Frontend/Index** folder.
+So, for instance, if you would like to modify the `header`, you would want to recreate the specific directory structure in order to be able to overwrite or extend the already existing elements. The frontend header in the `shop-navigation.tpl` file (which is later included into the `index.tpl`) is located inside the `Frontend/Index` folder.
 
 This is how your template directory should look like.
 ```
@@ -109,25 +108,25 @@ TutorialTheme
  │      └── shop-navigation.tpl
 ```
 
-Inside your **new shop-navigation.tpl** file, you will have to extend the bare theme's **default shop-navigation.tpl** file by adding the **{extends}** command. It allows you to keep the original elements inside the bare theme's file, but also add other elements and overwrite the existing ones.
-The file path of the extends command has to fit the directory structure of the bare theme.
+Inside your new `shop-navigation.tpl` file, you will have to extend the `Bare` theme's default `shop-navigation.tpl` file by adding a `extends` function call. this allows you to keep the original elements from the `Bare` theme's file, but also add other elements and overwrite existing ones.
+The file path of the `extends` function call has to match the directory structure of the `Bare` theme.
 
 ```
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 ```
 
-If we wouldn't use the extends command, the whole shop-navigation.tpl file would be **overwritten** by our new empty file.
+Had we chosen not to use the `extends` function call, the content of the `shop-navigation.tpl` file from the inherited theme would be ignored when redering our theme, and our empty file would be used instead.
 
 ##Template blocks
-The bare theme's html structure is covered in smarty's **{block}** elements. These block elements group the storefront components into small isolated blocks that can be edited without having to touch the whole file. To add changes to the elements of the bare theme, you **can't** simply write code inside your file. To customize a block you have to call the correct shopware block name.
+The `Bare` theme's HTML structure is wrapped in Smarty's `block` elements. These block elements group the frontend components into small, isolated blocks that can be edited/overwritten individually. To add changes to the elements of the `Bare` theme, you __can't__ simply write code inside your file. To customize a block, you have to call the correct Shopware block name.
 
-You have 3 ways to interact with blocks and add your changes inside your new template file:
+There are 3 ways to interact with blocks and add your changes inside your new template file:
 
-+   append (adds content **after** the selected block)
-+   prepend (adds content **before** the selected block)
-+   overwrite (without calling append/prepend, **overwrites** the whole block)
++   `append` (adds content __after__ the selected block)
++   `prepend` (adds content __before__ the selected block)
++   `overwrite` (without calling append/prepend, __overwrites__ the whole block)
 
-In order to add a new button to your navigation, you would search for a fitting block and **append/prepend** a new element to it so it displays before or after the other buttons inside the shop navigation.
+In order to add a new button to your navigation menu, you would search for a fitting block and __append/prepend__ a new element to it, so it displays before or after the already existing buttons inside the shop navigation menu.
 
 ```
 {extends file="parent:frontend/index/shop-navigation.tpl"}
@@ -137,24 +136,22 @@ In order to add a new button to your navigation, you would search for a fitting 
 {/block}
 ```
 
-Now add the button between, which in the shop-navigation is placed inside a `<li>` element, to the start and the end of the block. In this example an icon is added to the button aswell.
+The navigation menu uses `<li>` elements to wrap its entries. In the example below, an icon is also added to the button.
 
 ```
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 
 {block name='frontend_index_checkout_actions' prepend}
     <li class="navigation--entry">
-        <a href="" class="btn starButton">
+        <a href="" class="btn starButton"> {* Add an URL to the href attribute to make your link work *}
             <i class="icon--star"></i>
         </a>
     </li>
 {/block}
 ```
-(Add a destination for the href attribute, to make your link work)
 
-
-##Add LESS files
-Less files can be added in a similar way as the template files. The directory structure has to match the structure of the source files of the responsive template. The sample directory structure would look like this:
+##Add Less files
+Less files can be added in a similar way to template files. The directory structure has to match the structure of the source files of the `Responsive` template. The sample directory structure would look like this:
 
 ```
 TutorialTheme
@@ -167,15 +164,15 @@ TutorialTheme
  │              └── all.less
 ```
 
-To add new less files, you need to create a new **all.less** file, which is required. Now you are able to create your own less files, add styling to them and simply import them into the all.less file.
-You can do that by using the **@import** command. If you have larger theme changes it is adviced to adapt the less-file subfolders of the responsive theme to have a better overview, but in this case we will just create a new less file called **navigation.less**.
+To add new Less files, you need to create a new `all.less` file. This file is required, and should be used exclusively to import other Less files, in which you will define your custom styling. Your custom Less files can be imported by using the `@import` function on your `all.less` file. If you have extensive theme changes, it's recommended to adapt the Less file subfolders of the `Responsive` theme to have a better overview, but in this case we will just create a new Less file called `navigation.less`.
 
 ```
 //inside the all.less file
 @import 'navigation';
 ```
 
-First of all you would add a bit of styling to the new button, so the icon is centered inside it. Inside the less files you are able to use all less **mixins** and **variables** of shopware itself (e.g. the unitize mixin, that helps to calculate the **px**-values into relative **rem**-values).
+The first step is to add some simple styling rules to the new button we just created, so that the icon is centered inside it. Inside the Less files, you are able to use all the Less __mixins__ and __variables__ that Shopware provides (e.g. the `unitize` mixin, that helps convert __px__ values into relative __rem__ values).
+
 ```
 .starButton i.icon--star {
     .unitize(font-size, 18);
@@ -186,10 +183,9 @@ a.btn.starButton {
 }
 ```
 
-In addition a few changes have to be made to fit the button completely into the design on mobile devices. To resolve all problems the
-search-bar width has to be reduced and the mobile menu text has to be hidden to avoid any element overlapping.
+Additionally, a few changes have to be made in order for the button to fit completely in the design for mobile devices. To address all problems, the search bar width has to be reduced and the mobile menu text has to be hidden to avoid any element overlapping.
 
-To hide the menu text, take the `offcanvas_left_trigger` block inside the shop-navigation.tpl file, and **overwrite** it (without append or prepend) with a new block without the description inside it.
+To hide the menu text, take the `offcanvas_left_trigger` block inside the `shop-navigation.tpl` file, and __overwrite__ it (without append or prepend) with a new block, without the description inside it.
 
 ```
 {block name='frontend_index_offcanvas_left_trigger'}
@@ -200,7 +196,7 @@ To hide the menu text, take the `offcanvas_left_trigger` block inside the shop-n
     </li>
 {/block}
 ```
-To change the search-bar width you can overwrite the default media query with the new width percentage.
+To change the search bar width, you can overwrite the default media query with the new width percentage.
 
 ```
 .starButton i.icon--star {
@@ -218,7 +214,7 @@ a.btn.starButton {
 }
 ```
 
-As the last step, the cart button color needs to be changed. As said before, inside the less files you have the ability to use all less mixins and variables that shopware provides. So to create a gradient that matches the default store color you can use the `@brand-primary` and `@brand-primary-light` variables in a combination with the `.linear-gradient` less mixin. The last step is to change the colors of the icon and price inside the cart button.
+As the last step, the cart button color needs to be changed. As said before, inside the Less files you have the ability to use all Less __mixins__ and __variables__ that Shopware provides. To create a gradient that matches the default store color you can use the `@brand-primary` and `@brand-primary-light` variables together with the `.linear-gradient` Less mixin. The last step is to change the colors of the icon and price inside the cart button.
 ```
 .starButton i.icon--star {
     .unitize(font-size, 18);

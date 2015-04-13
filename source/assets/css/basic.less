@@ -240,43 +240,52 @@ a:hover {
 /* TYPOGRAPHIE */
 h1, h2, h3, h4, h5, h6 {
 	word-wrap: break-word;
-	color: @blue05;
+	color: @gray05;
 	a {
 		color: @blue05;
 	}
 }
 
 h1 {
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 32px;
-	border-bottom: 1px solid @gray03;
+	border-bottom: 2px solid @gray03;
+    margin-top: 60px;
+	margin-bottom: 20px;
 	padding-bottom: 10px;
-	margin-bottom: 30px;
+}
+h1:first-of-type {
+    margin-top: 0;
+}
+h1 + h2 {
+    margin-top: 30px;
 }
 h2 {
+    border-bottom: 2px solid @gray03;
 	font-size: 24px;
-	font-weight: 300;
-	margin-bottom: 10px;
-	margin-top: 25px;
+	font-weight: 400;
+	margin-bottom: 15px;
+	margin-top: 70px;
+    padding-bottom: 5px;
 }
 
 h3 {
-	font-size: 21px;
+	font-size: 22px;
 	font-weight: 400;
-	margin-bottom: 15px;
-	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-top: 50px;
 }
 h4 {
 	font-size: 18px;
 	font-weight: 600;
-	margin-bottom: 15px;
-	margin-top: 10px;
+	margin-bottom: 5px;
+	margin-top: 40px;
 }
 h5 {
 	font-size: 14px;
 	font-weight: 600;
-	margin-bottom: 15px;
-	margin-top: 10px;
+	margin-bottom: 5px;
+	margin-top: 20px;
 }
 h6 {
 	font-size: 12px;
@@ -284,10 +293,16 @@ h6 {
 	margin-bottom: 15px;
 	margin-top: 10px;
 }
+h5 + pre {
+    margin-top: 8px;
+}
+pre {
+    margin: 15px 0;
+}
 
 p {
 	line-height: 31px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 
 	&.small {
 		font-size: 14px;
@@ -625,6 +640,10 @@ span {
 	border: 2px solid rgba(0, 0, 0, 0);
 	.border-radius(5px);
 	line-height: 26px;
+    
+    h3, h4 {
+        margin-top: 10px;
+    }
 }
 
 .alert-success {
@@ -996,7 +1015,7 @@ input.main-footer-newsletter-textfield {
 
 code {
     font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-    background-color: #EBF0F3;
+    background-color: #fafafa;
     display: inline;
     font-size: 13px;
     margin: 0 3px 0 3px;
@@ -1009,6 +1028,13 @@ code {
 }
 
 .devdocs {
+    font-size: 15px;
+
+    code.hljs {
+        background: #fafafa;
+        border: 1px solid #d8d8d8;
+    }
+    
 	#search input {
 		width: 300px;
 		border: 1px solid @gray03;
@@ -1018,10 +1044,12 @@ code {
 
 	img {
 		max-width: 100%;
+        margin-top: 15px;
 	}
 
 	.edit-on-github {
 		float: right;
+        margin-top: 8px;
 
 		.icon-github {
 			font-size: 24px;
@@ -1034,9 +1062,10 @@ code {
 	}
 
 	ul {
+        margin-bottom: 20px;
 		li {
-			position: relative;
-			padding: 10px 0 10px 30px;
+			position: relative;;
+            padding: 10px 0 6px 30px;
 			margin-left: 20px;
 			&:before {
 				content: '';
@@ -1053,27 +1082,30 @@ code {
 				position: absolute;
 				left: 0;
 				top: 21px;
-				margin-top: -5px;
+				margin-top: -3px;
 			}
 			li {
-				padding: 15px 0 0px 30px;
+				padding: 15px 0 0 30px;
 				&:before {
 					background: #cad9e0;
 					padding-bottom: 0;
 					margin-top: 0;
 				}
 			}
+            ul {
+                margin-bottom: 5px;
+            }
 		}
 	}
 
 	/* TABLES */
 	table {
+        margin: 30px 0;
 		max-width: 100%;
 		background-color: transparent;
 		border-collapse: collapse;
 		border-spacing: 0;
-		width: 100%;
-		margin-bottom: 20px;
+		width: 100%;;
 	}
 
 	table>thead>tr>th,
@@ -1188,6 +1220,9 @@ code {
 			margin: -12px 0 24px 0;
 			float: none;
 		}
+        ul li ul li {
+            margin-left: -30px;
+        }
 	}
 
 	h1 {

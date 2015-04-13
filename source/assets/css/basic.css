@@ -291,7 +291,7 @@ h4,
 h5,
 h6 {
   word-wrap: break-word;
-  color: #0e384f;
+  color: #52606B;
 }
 h1 a,
 h2 a,
@@ -302,35 +302,44 @@ h6 a {
   color: #0e384f;
 }
 h1 {
-  font-weight: 300;
+  border-bottom: 2px solid #cad9e0;
+  font-weight: 400;
   font-size: 32px;
-  border-bottom: 1px solid #cad9e0;
+  margin-top: 60px;
+  margin-bottom: 20px;
   padding-bottom: 10px;
-  margin-bottom: 30px;
+}
+h1:first-of-type {
+  margin-top: 0;
+}
+h1 + h2 {
+    margin-top: 30px;
 }
 h2 {
+  border-bottom: 2px solid #cad9e0;
   font-size: 24px;
-  font-weight: 300;
-  margin-bottom: 10px;
-  margin-top: 25px;
-}
-h3 {
-  font-size: 21px;
   font-weight: 400;
   margin-bottom: 15px;
-  margin-top: 10px;
+  margin-top: 70px;
+  padding-bottom: 5px;
+}
+h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 50px;
 }
 h4 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-top: 40px;
 }
 h5 {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 h6 {
   font-size: 12px;
@@ -338,9 +347,13 @@ h6 {
   margin-bottom: 15px;
   margin-top: 10px;
 }
+h5 + pre {
+    margin-top: 8px;
+}
 p {
   line-height: 31px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }
 p.small {
   font-size: 14px;
@@ -355,6 +368,13 @@ blockquote {
   padding: 0 15px;
   color: #93a6b3;
   margin: 0 0 0 15px;
+}
+pre {
+  margin: 15px 0;  
+}
+.devdocs code.hljs {
+  background: #fafafa;
+  border: 1px solid #d8d8d8;
 }
 strong {
   font-weight: 700;
@@ -678,7 +698,7 @@ span.large {
 /* ALERTS */
 .alert {
   padding: 10px 20px;
-  margin-bottom: 20px;
+  margin: 30px 0;
   border: 2px solid rgba(0, 0, 0, 0);
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -705,6 +725,10 @@ span.large {
   color: #541a25;
   border-color: rgba(197, 66, 91, 0.4);
   background: rgba(197, 66, 91, 0.2);
+}
+.alert h3,
+.alert h4 {
+    margin-top: 10px;
 }
 /* COLORS */
 .color-swatch {
@@ -815,7 +839,6 @@ span.large {
 }
 /* HEADER */
 .main-header {
-  background: #fff;
   width: 100%;
   background: #26556f;
 }
@@ -1023,11 +1046,10 @@ input.main-footer-newsletter-textfield {
   background-repeat: no-repeat;
 }
 code {
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-  background-color: #EBF0F3;
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace; 
+  background-color: #fafafa;
   display: inline;
   font-size: 13px;
-  margin: 0 3px 0 3px;
   padding: 2px 4px 2px 4px;
   border: 0px;
   -moz-border-radius: 0px;
@@ -1045,9 +1067,11 @@ code {
 }
 .devdocs img {
   max-width: 100%;
+  margin-top: 15px;
 }
 .devdocs .edit-on-github {
   float: right;
+  margin-top: 8px;  
 }
 .devdocs .edit-on-github .icon-github {
   font-size: 24px;
@@ -1056,9 +1080,12 @@ code {
 .devdocs em {
   font-style: italic;
 }
+.devdocs ul {
+    margin-bottom: 20px;
+}
 .devdocs ul li {
   position: relative;
-  padding: 10px 0 10px 30px;
+  padding: 10px 0 6px 30px;
   margin-left: 20px;
 }
 .devdocs ul li:before {
@@ -1076,10 +1103,13 @@ code {
   position: absolute;
   left: 0;
   top: 21px;
-  margin-top: -5px;
+  margin-top: -3px;
 }
 .devdocs ul li li {
-  padding: 15px 0 0px 30px;
+  padding: 15px 0 0 30px;
+}
+.devdocs ul li ul {
+    margin-bottom: 5px;
 }
 .devdocs ul li li:before {
   background: #cad9e0;
@@ -1092,7 +1122,7 @@ code {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  margin-bottom: 20px;
+  margin: 30px 0;
 }
 .devdocs table > thead > tr > th,
 .devdocs table > tbody > tr > th,
@@ -1219,4 +1249,10 @@ code {
     padding: 14px 25px;
     border-top: 2px solid rgba(14, 56, 79, 0.15);
   }
+  .devdocs ul li ul li {
+    margin-left: -30px;
+  }
 }
+
+
+

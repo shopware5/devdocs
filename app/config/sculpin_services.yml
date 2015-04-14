@@ -1,0 +1,7 @@
+services:
+    shopware_search.index.listener:
+        class: Shopware\Devdocs\SearchIndexListener
+        arguments:
+            - %sculpin.output_dir%
+        tags:
+            - { name: kernel.event_subscriber }

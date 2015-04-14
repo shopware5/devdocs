@@ -1,12 +1,12 @@
 <?php
-namespace Shopware\Devdocs\SearchBundle\EventListener;
+namespace Shopware\Devdocs;
 
 use Sculpin\Core\Sculpin;
 use Sculpin\Core\Event\SourceSetEvent;
 use Sculpin\Core\Source\AbstractSource;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class IndexListener implements EventSubscriberInterface
+class SearchIndexListener implements EventSubscriberInterface
 {
     /**
      * @var string

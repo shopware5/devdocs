@@ -4,51 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "02c6f066ba4d89a445f944621f43dcb8",
+    "hash": "078e936687ac3e78a617ccc18f6b88bb",
     "packages": [
-        {
-            "name": "bcremer/sculpin-commonmark-bundle",
-            "version": "0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bcremer/sculpin-commonmark-bundle.git",
-                "reference": "49613514295c509c70380ebd2a7e846be2cdc5da"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bcremer/sculpin-commonmark-bundle/zipball/49613514295c509c70380ebd2a7e846be2cdc5da",
-                "reference": "49613514295c509c70380ebd2a7e846be2cdc5da",
-                "shasum": ""
-            },
-            "require": {
-                "league/commonmark": "~0.7",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Bcremer\\Sculpin\\Bundle\\CommonMarkBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Benjamin Cremer",
-                    "email": "bc@benjamin-cremer.de"
-                }
-            ],
-            "description": "Sculpin league/commonmark bundle",
-            "keywords": [
-                "bundle",
-                "commonmark",
-                "markdown",
-                "sculpin"
-            ],
-            "time": "2015-04-13 19:41:05"
-        },
         {
             "name": "components/highlightjs",
             "version": "8.4.0",
@@ -97,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "4d134ce8a2aacb9566fee8deb8c514248fd2a983"
+                "reference": "f10c71475167a4661225b14560ca0a400d730829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/4d134ce8a2aacb9566fee8deb8c514248fd2a983",
-                "reference": "4d134ce8a2aacb9566fee8deb8c514248fd2a983",
+                "url": "https://api.github.com/repos/composer/composer/zipball/f10c71475167a4661225b14560ca0a400d730829",
+                "reference": "f10c71475167a4661225b14560ca0a400d730829",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +114,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2015-04-08 13:43:49"
+            "time": "2015-03-29 14:37:42"
         },
         {
             "name": "dflydev/ant-path-matcher",
@@ -990,65 +947,6 @@
             "time": "2014-12-12 05:04:05"
         },
         {
-            "name": "league/commonmark",
-            "version": "0.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "7fecb7bdef265e45c80c53e1000e2056a9463401"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7fecb7bdef265e45c80c53e1000e2056a9463401",
-                "reference": "7fecb7bdef265e45c80c53e1000e2056a9463401",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.3"
-            },
-            "replace": {
-                "colinodell/commonmark-php": "*"
-            },
-            "require-dev": {
-                "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.18",
-                "michelf/php-markdown": "~1.4",
-                "phpunit/phpunit": "~4.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.8-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\CommonMark\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "http://www.colinodell.com",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Markdown parser for PHP based on the CommonMark spec",
-            "homepage": "https://github.com/thephpleague/commonmark",
-            "keywords": [
-                "commonmark",
-                "markdown",
-                "parser"
-            ],
-            "time": "2015-03-08 17:48:53"
-        },
-        {
             "name": "michelf/php-markdown",
             "version": "1.5.0",
             "source": {
@@ -1412,12 +1310,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sculpin/sculpin.git",
-                "reference": "60c69756221c6961a8da8633d3959afcb6cb8b0f"
+                "reference": "a7ececfb572c89774a7949210aeb491232f1b1cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/60c69756221c6961a8da8633d3959afcb6cb8b0f",
-                "reference": "60c69756221c6961a8da8633d3959afcb6cb8b0f",
+                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/a7ececfb572c89774a7949210aeb491232f1b1cf",
+                "reference": "a7ececfb572c89774a7949210aeb491232f1b1cf",
                 "shasum": ""
             },
             "require": {
@@ -1475,8 +1373,8 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Sculpin\\": "src/Sculpin/"
+                "psr-0": {
+                    "Sculpin": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1502,7 +1400,7 @@
                 "site",
                 "static"
             ],
-            "time": "2015-04-10 01:33:20"
+            "time": "2015-04-01 07:32:14"
         },
         {
             "name": "sculpin/sculpin-theme-composer-plugin",
@@ -1584,17 +1482,17 @@
         },
         {
             "name": "symfony/class-loader",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/ClassLoader",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ClassLoader.git",
-                "reference": "861765b3e5f32979de5bd19ad2577cbb830a29d5"
+                "reference": "56bf6fe551ca013471541d866f73a6cc70ece9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/861765b3e5f32979de5bd19ad2577cbb830a29d5",
-                "reference": "861765b3e5f32979de5bd19ad2577cbb830a29d5",
+                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/56bf6fe551ca013471541d866f73a6cc70ece9c5",
+                "reference": "56bf6fe551ca013471541d866f73a6cc70ece9c5",
                 "shasum": ""
             },
             "require": {
@@ -1631,21 +1529,21 @@
             ],
             "description": "Symfony ClassLoader Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-27 10:19:51"
+            "time": "2015-03-13 17:37:22"
         },
         {
             "name": "symfony/config",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "d91be01336605db8da21b79bc771e46a7276d1bc"
+                "reference": "7a47189c7667ca69bcaafd19ef8a8941db449a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/d91be01336605db8da21b79bc771e46a7276d1bc",
-                "reference": "d91be01336605db8da21b79bc771e46a7276d1bc",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/7a47189c7667ca69bcaafd19ef8a8941db449a2c",
+                "reference": "7a47189c7667ca69bcaafd19ef8a8941db449a2c",
                 "shasum": ""
             },
             "require": {
@@ -1682,21 +1580,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "symfony/console",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "5b91dc4ed5eb08553f57f6df04c4730a73992667"
+                "reference": "53f86497ccd01677e22435cfb7262599450a90d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/5b91dc4ed5eb08553f57f6df04c4730a73992667",
-                "reference": "5b91dc4ed5eb08553f57f6df04c4730a73992667",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/53f86497ccd01677e22435cfb7262599450a90d1",
+                "reference": "53f86497ccd01677e22435cfb7262599450a90d1",
                 "shasum": ""
             },
             "require": {
@@ -1740,21 +1638,21 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-13 17:37:22"
         },
         {
             "name": "symfony/debug",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Debug",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "d49a46a20a8f0544aedac54466750ad787d3d3e3"
+                "reference": "5c1570dea188ade0c6c5e874c2f0a6570587aa1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/d49a46a20a8f0544aedac54466750ad787d3d3e3",
-                "reference": "d49a46a20a8f0544aedac54466750ad787d3d3e3",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/5c1570dea188ade0c6c5e874c2f0a6570587aa1c",
+                "reference": "5c1570dea188ade0c6c5e874c2f0a6570587aa1c",
                 "shasum": ""
             },
             "require": {
@@ -1801,21 +1699,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-22 16:55:57"
+            "time": "2015-03-13 17:37:22"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/DependencyInjection",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection.git",
-                "reference": "8e9007012226b4bd41f8afed855c452cf5edc3a6"
+                "reference": "a49245b2beebe332924561c30772b16e1d32f13a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/8e9007012226b4bd41f8afed855c452cf5edc3a6",
-                "reference": "8e9007012226b4bd41f8afed855c452cf5edc3a6",
+                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/a49245b2beebe332924561c30772b16e1d32f13a",
+                "reference": "a49245b2beebe332924561c30772b16e1d32f13a",
                 "shasum": ""
             },
             "require": {
@@ -1862,11 +1760,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-17 12:44:40"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
@@ -1925,17 +1823,17 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "4983964b3693e4f13449cb3800c64a9112c301b4"
+                "reference": "fdc5f151bc2db066b51870d5bea3773d915ced0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/4983964b3693e4f13449cb3800c64a9112c301b4",
-                "reference": "4983964b3693e4f13449cb3800c64a9112c301b4",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/fdc5f151bc2db066b51870d5bea3773d915ced0b",
+                "reference": "fdc5f151bc2db066b51870d5bea3773d915ced0b",
                 "shasum": ""
             },
             "require": {
@@ -1971,21 +1869,21 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-22 16:55:57"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "5dbe2e73a580618f5b4880fda93406eed25de251"
+                "reference": "bebc7479c566fa4f14b9bcef9e32e719eabec74e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/5dbe2e73a580618f5b4880fda93406eed25de251",
-                "reference": "5dbe2e73a580618f5b4880fda93406eed25de251",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/bebc7479c566fa4f14b9bcef9e32e719eabec74e",
+                "reference": "bebc7479c566fa4f14b9bcef9e32e719eabec74e",
                 "shasum": ""
             },
             "require": {
@@ -2021,21 +1919,21 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "8a6337233f08f7520de97f4ffd6f00e947d892f9"
+                "reference": "d527885e37b55ec0e3dc6f4b70566d0f9b2f2388"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/8a6337233f08f7520de97f4ffd6f00e947d892f9",
-                "reference": "8a6337233f08f7520de97f4ffd6f00e947d892f9",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/d527885e37b55ec0e3dc6f4b70566d0f9b2f2388",
+                "reference": "d527885e37b55ec0e3dc6f4b70566d0f9b2f2388",
                 "shasum": ""
             },
             "require": {
@@ -2075,21 +1973,21 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2015-04-01 16:50:12"
+            "time": "2015-03-13 17:37:22"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/HttpKernel",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "3829cacfe21eaf3f73604a62d79183d1f6e792c4"
+                "reference": "6f7b2d3ba8bf02cf77edb399696e85ef24a888a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/3829cacfe21eaf3f73604a62d79183d1f6e792c4",
-                "reference": "3829cacfe21eaf3f73604a62d79183d1f6e792c4",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/6f7b2d3ba8bf02cf77edb399696e85ef24a888a4",
+                "reference": "6f7b2d3ba8bf02cf77edb399696e85ef24a888a4",
                 "shasum": ""
             },
             "require": {
@@ -2153,21 +2051,21 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2015-04-01 16:55:26"
+            "time": "2015-03-17 14:58:46"
         },
         {
             "name": "symfony/process",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "a8bebaec1a9dc6cde53e0250e32917579b0be552"
+                "reference": "4d717f34f3d1d6ab30fbe79f7132960a27f4a0dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/a8bebaec1a9dc6cde53e0250e32917579b0be552",
-                "reference": "a8bebaec1a9dc6cde53e0250e32917579b0be552",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/4d717f34f3d1d6ab30fbe79f7132960a27f4a0dc",
+                "reference": "4d717f34f3d1d6ab30fbe79f7132960a27f4a0dc",
                 "shasum": ""
             },
             "require": {
@@ -2203,21 +2101,21 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.6.6",
+            "version": "v2.6.5",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "174f009ed36379a801109955fc5a71a49fe62dd4"
+                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/174f009ed36379a801109955fc5a71a49fe62dd4",
-                "reference": "174f009ed36379a801109955fc5a71a49fe62dd4",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
+                "reference": "0cd8e72071e46e15fc072270ae39ea1b66b10a9d",
                 "shasum": ""
             },
             "require": {
@@ -2253,7 +2151,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-30 15:54:10"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "twig/extensions",

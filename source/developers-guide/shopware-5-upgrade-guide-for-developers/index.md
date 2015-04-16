@@ -368,5 +368,20 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * fixed a bug for the SEO URLs generating statistics bar
 * improved the password description
 
+## 5.0.0 RC3
+* \Shopware\Bundle\SearchBundleDBAL\ConditionHandler\HasPriceConditionHandler now joins the prices as a 1:1 association for a performance improvement.
+* sCategories::sGetCategoryContent function returns no more the category articleCount. Variable is unused.
+* sCategories::sGetCategoryIdByArticleId function use now the s_articles_categories table.
+* added legacy template, support ends with Shopware 5.2
+* several Emotion template fixes
+* Shopping world slider heading turncate fix
+* fixed several upgrade issues
+* inactive sub categories was displayed in the Off-Canvas menu
+* tracked partner order was not displayed in the statistic
+* plugins can now be downloaded if you ware using Windows
+* fixed manual plugin upload for the Firefox
+* fixed several typos
+* fixed price group discount
+
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

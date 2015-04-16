@@ -10,7 +10,7 @@ Shopware 5 includes the new, ready to use Responsive theme, as well as the Bare 
 
 Keep in mind that your custom themes still need to be tested with Shopware 5 in a test environment, before being deployed into a production environment. Please read the [Shopware 5 Upgrade guide for developers](/developers-guide/shopware-5-upgrade-guide-for-developers/) to know more about what changed in Shopware 5.
 
-Additionally, although they are still supported, **Shopware 4 templates support in Shopware 5 is a deprecated feature**, and may be removed in future updates.
+Additionally, although they are still supported, **Shopware 4 templates support in Shopware 5 is a deprecated feature, and will be removed in Shopware 5.2.**
 
 ## Shopware 4 template installation and configuration
 
@@ -19,11 +19,11 @@ As before, there are two ways to add templates to Shopware:
 * As part of a plugin
 * Placing them in the `templates` folder on the root of your Shopware installation
 
-If you are using a clean installation of Shopware 5, you need to manually create the `templates` folder if you want to use the second option. The plugin approach works exactly like before.
+If you don't have a `template` folder in your clean Shopware 5 installation you can download a newer version of Shopware 5 (at least RC 3) where the Shopware 4 template is included.
 
 As the new Shopware 5 Responsive theme has different requirements when compared with Shopware 4 templates, you might need to reconfigure some of your shop's settings in order for your template to work properly. This is applicable only if:
 
-* You are installing a Shopware 4 template on a clean Shopware 5 installation (no upgrade from Shopware 4)
+* You are using a Shopware 4 template on a clean Shopware 5 installation (no upgrade from Shopware 4)
 * You upgraded from Shopware 4 to 5 and changed your shop settings to support the new Responsive theme, like described in the [Shopware 5 update guide](/developers-guide/shopware-5-upgrade-guide-for-developers//)
 
 ## Shopware 4 template settings

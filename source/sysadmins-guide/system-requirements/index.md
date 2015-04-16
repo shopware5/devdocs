@@ -27,7 +27,7 @@ The required server hardware is mostly dependent on the number of articles avail
 
 ### Web server / PHP settings:
 
-- memory_limit > 128M
+- memory_limit > 256M
 - magic_quotes_gpc deactivated
 - allow_url_fopen activated
 - register_globals deactivated

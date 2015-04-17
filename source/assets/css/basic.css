@@ -846,7 +846,7 @@ span.large {
 .logo {
   display: block;
   float: left;
-  margin-top: 11px;
+  margin-top: 12px;
 }
 .main-nav-container {
   position: relative;
@@ -1191,15 +1191,15 @@ code {
 .devdocs table > thead > tr > th {
   border-bottom: 1px solid #dfe4e7;
 }
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1074px) {
   .logo {
     margin-top: 0;
-    padding-top: 11px;
-    float: none;
+    padding-top: 12px;
+    float: left;
   }
   .main-nav-container {
     border-top: 2px solid rgba(14, 56, 79, 0.15);
-    float: none;
+    float: right;
     width: 100%;
   }
   .main-nav-col {
@@ -1252,7 +1252,114 @@ code {
   .devdocs ul li ul li {
     margin-left: -30px;
   }
+  div#searchBox {
+    position: absolute;
+    width: 74%;
+    right: 22%;
+  }
+  section#search-results {
+    width: 90%;
+    left: 4%;
+   }
 }
 
+.searchButton {
+    display: block;
+    float: right;
+    height: 72px;
+    position: relative;
+    font-size: 24px;
+    color: #FFFFFF;
+    padding: 18px 30px;
+    cursor: pointer;
+}
 
+.searchButton:hover,
+.searchButton:active,
+.searchButton:focus {
+    background-color: #20495e;
+}
 
+#searchBox {
+    display: none;
+    height: auto;
+    position: absolute;
+    width: 65%;
+    right: 84px;
+    z-index: 2;
+    margin-top: 10px;
+}
+
+#search-results {
+    box-shadow: 0 10px 25px -15px #000;
+    position: absolute;
+    z-index: 2;
+    top: 60px;
+    width: 65%;
+    right: 84px;
+    background: white;
+}
+
+#search-results h2 {
+    border-top: 1px solid #ebf0f3;
+    border-bottom: none;
+    font-size: 17px;
+    margin: 0 30px;
+    padding: 15px 0;
+}
+
+#search-results a {
+    display: block;
+}
+
+#search-results a:hover h2,
+#search-results a:focus h2,
+#search-results a:active h2 {
+    color: #1491e7;
+}
+
+#search-results a:hover,
+#search-results a:focus,
+#search-results a:active {
+    background-color: #ebf0f3;
+    outline: none;
+}
+
+input#search-query {
+    font-size: 24px;
+    height: 50px;
+    padding: 25px;
+    width: 100%;
+}
+
+#search-results p {
+    padding: 10px 30px;
+}
+
+#search-results article:first-of-type h2 {
+    border-top: 1px solid #ebf0f3;
+}
+
+#search-results article:last-of-type h2 {
+    border-bottom: none;
+    margin-bottom: 5px;
+}
+
+.logo {
+width: 25%;
+}
+
+#search-results .active {
+background-color: #ebf0f3;
+outline: none;
+}
+
+#search-results .active h2 {
+color: #1491e7;
+}
+
+@media screen and (max-width: 925px) {
+    #searchBox {
+        max-width: 600px;
+    }
+}

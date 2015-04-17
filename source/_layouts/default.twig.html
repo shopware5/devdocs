@@ -30,14 +30,29 @@
 		<a href="{{ site.url }}/" title="Shopware Developer Dokumentation" class="logo">
 			<img src="{{ site.url }}/{{ theme_path('assets/img/logo-devdocs.png') }}" />
 		</a>
+        
+            <span class="searchButton">
+                <i class="icon icon-search"></i>
+            </span>
+            
+            <div id="searchBox">
+                <form action="#" method="get">
+                    <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+                </form>
+            </div>
+
+        <section id="search-results" style="display: none;">
+            <div class="entries">
+            </div>
+        </section>
 
 		<ul class="main-nav-container">
-			<li class="main-nav-col">
-				<a href="{{ site.url }}/sysadmins-guide/"><span>Sysadmin's Guide</span></a>
-			</li>
+            <li class="main-nav-col">
+                <a href="{{ site.url }}/sysadmins-guide/"><span>Sysadmin's Guide</span></a>
+            </li>
 
-			<li class="main-nav-col">
-				<a href="{{ site.url }}/developers-guide/"><span>Developer's Guide</span></a>
+            <li class="main-nav-col">
+                <a href="{{ site.url }}/developers-guide/"><span>Developer's Guide</span></a>
 			</li>
 
 			<li class="main-nav-col">
@@ -48,6 +63,7 @@
 				<a href="http://wiki.shopware.com"><span>Back to Wiki</span></a>
 			</li>
 		</ul>
+        
 		<div class="clearfix"></div>
 	</div>
 </header>
@@ -90,6 +106,34 @@
 addAnchors('.content h2, .content h3, .content h4');
 hljs.initHighlightingOnLoad();
 </script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/URI.min.js') }}"></script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/lunr.min.js') }}"></script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/mustache.min.js') }}"></script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/jquery.lunr.search.js') }}"></script>
+<script src="{{ site.url }}/{{ theme_path('assets/js/jquery.expandSearch.js') }}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#search-query').lunrSearch({
+            baseUrl: '{{ site.url }}',
+            indexUrl: '{{ site.url }}/index.json',   // Url for the .json file containing search index data
+            results : '#search-results',  // selector for containing search results element
+            entries : '.entries',         // selector for search entries containing element (contained within results above)
+            template: '#search-results-template'  // selector for Mustache.js template
+        });
+    });
+</script>
+
+{% verbatim %}
+<script id="search-results-template" type="text/mustache">
+		{{#entries}}
+		<a class="entry" href="{{url}}">
+			<h2 class="entry-headline">
+				{{title}}
+			</h2>
+		</a>
+		{{/entries}}
+	</script>
+{% endverbatim %}
 
 {% block scripts_after %}
 {% endblock %}

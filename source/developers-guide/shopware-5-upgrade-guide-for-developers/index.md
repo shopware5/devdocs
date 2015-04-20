@@ -382,6 +382,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * fixed manual plugin upload for the Firefox
 * fixed several typos
 * fixed price group discount
+* added \__redirect parameter in frontend language switcher. Each language switcher requires now an additionally post parameter to redirect to the new shop <input type="hidden" name="__redirect" value="1">
 
 ## Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

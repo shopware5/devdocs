@@ -29,9 +29,10 @@ Themes in the Shopware community store have to be wrapped inside plugins in orde
 SwagTutorialTheme
  ├── Themes
  │    ├──Frontend
- │    │   ├── preview.png
- │    │   ├── Theme.php
- │    │   └── frontend
+ │    │   ├──TutorialTheme
+ │    │   │    ├── preview.png
+ │    │   │    ├── Theme.php
+ │    │   │    └── frontend
  └── Bootstrap.php
 ```
 

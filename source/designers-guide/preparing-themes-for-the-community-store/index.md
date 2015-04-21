@@ -60,3 +60,8 @@ class Shopware_Plugins_Frontend_SwagTutorialTheme_Bootstrap extends Shopware_Com
 
 The plugin should now be displayed inside the plugin manager and just has to be installed by the user to be able to select the theme in the theme manager along with all other themes. If this is the case, the plugin is ready to be published in the Shopware community store. 
 ![Inside the plugin manager](img-pm.jpg)
+
+##Result
+The example plugin as download:
+
++   [Final store-ready plugin - Download](SwagTutorialTheme.zip)

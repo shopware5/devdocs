@@ -17,6 +17,7 @@ indexed: true
     -   [Overwriting template files](#overwriting-template-files)
     -   [Extending template files](#extending-template-files)
     -   [Blocks](#blocks)
+-   [Register custom Smarty plugins](#register-custom-smarty-plugins)
 
 ## What is Smarty?
 
@@ -105,7 +106,7 @@ To handle a larger set of data, like a list of products, we can create dynamic o
 ```
 <ul>
     {foreach $sArticles as $item}
-	    <li>{$item.name}</li>
+        <li>{$item.name}</li>
     {/foreach}
 </ul>
 ```
@@ -126,7 +127,7 @@ To edit an existing template file in Shopware you do not have to copy the whole 
 ### Inherit a standard theme
 
 We recommend to always use the inheritance system when creating custom themes
-. It will save you a lot of time and work. With Shopware5 we offer two standard themes you can build on. The most common case is to build on the new **Shopware Responsive** theme. It is a very modern full responsive theme, which implements all amazing features of Shopware5. You only have to do your design changes without rebuilding the whole functionality of the shop. If you want to go even deeper and build your own features from scratch you can inherit the **Shopware Bare** theme which only implements the basic HTML structure. To specifiy which theme you want to inherit you add the correspondig name to the `Theme.php` of your own custom theme.
+. It will save you a lot of time and work. With Shopware 5 we offer two standard themes you can build on. The most common case is to build on the new **Shopware Responsive** theme. It is a very modern full responsive theme, which implements all amazing features of Shopware 5. You only have to do your design changes without rebuilding the whole functionality of the shop. If you want to go even deeper and build your own features from scratch you can inherit the **Shopware Bare** theme which only implements the basic HTML structure. To specifiy which theme you want to inherit you add the correspondig name to the `Theme.php` of your own custom theme.
 <br />
 <br />
 **Example:** *Specify a parent theme in the Theme.php*
@@ -136,7 +137,7 @@ class Theme extends \Shopware\Components\Theme
 {
     protected $extend = 'Responsive';
 
-	// ...
+    // ...
 }
 ```
 
@@ -169,9 +170,9 @@ Smarty blocks are used for structuring template code in logical segments. These 
 ```
 {block name="frontend_index_logo"}
 
-	<div class="logo--shop"> 
-		//...
-	</div>
+    <div class="logo--shop"> 
+        //...
+    </div>
 
 {/block}
 ```
@@ -190,9 +191,9 @@ The insert mode you want to use is just added as an attribute to the `{block}` t
 ```
 {block name="frontend_index_logo" append}
 
-	<div class="shop--slogan"> 
-		<h2>My shop is the best!</h2>
-	</div>
+    <div class="shop--slogan"> 
+        <h2>My shop is the best!</h2>
+    </div>
 
 {/block}
 ```
@@ -203,3 +204,14 @@ In the example we use the `append` attribute on the `frontend_index_logo` block 
 - **2.** Create the template file under the same structure in your own theme directory.
 - **3.** Add the `{extend}` tag at the beginning of your file and enter the path to the original file.
 - **4.** Define the `{block}` from the original file to replace it. Use the `append` or `prepend` attribute if you want to add new content.
+
+## Register custom Smarty plugins
+In Shopware 5 we added the ability to register your own custom Smarty plugins in your theme. This enables you to create new modifiers and Smarty functions. To register a new Smarty plugin just create the necessary directory structure in your theme directory. If you want to learn more about writing Smarty plugins you can see the **[official guide](http://www.smarty.net/docs/en/plugins.tpl)**.
+<br />
+<br />
+**Example:** *Path to custom Smarty plugins*
+
+```
+/_private/smarty/function.markdown.php
+/_private/smarty/modifier.picture.php
+```

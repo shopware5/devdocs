@@ -8,11 +8,13 @@ indexed: true
 
 Shopware 5 includes the new, ready to use Responsive theme, as well as the Bare theme that you can use as a starting point for your custom themes. While we recommend using these themes from now on, your existing Shopware 4 templates are still supported by Shopware 5.
 
-**Note: Within Shopware 5 we improved the theme inheritance system to let themes extend from each other. This gives you the possibility to create your own theme inheritance structure. If you want to use the new Shopware 5 themes you can find them in the `themes` directory.** As mentioned before we still support the Shopware 4 templates, so you can still find the older Shopware 4 templates in the `templates` directory. In the root of your Shopware 5 installation you can find both directorys:
-
-* `themes` directory: Contains the new Shopware 5 themes
-* `templates` directory: Contains the older Shopware 4 and below templates
-
+<div class="alert alert-info" role="alert">
+<strong>Note:</strong> In Shopware 5 we improved the theme inheritance system to let themes extend each other. This gives you the possibility to create your own theme inheritance structure. If you want to use the new Shopware 5, themes you can find them in the <strong>themes</strong> directory. As mentioned before, we still support the Shopware 4 templates, so you can still find the older Shopware 4 templates in the <strong>templates</strong> directory. In the root of your Shopware 5 installation you can find both directories:
+    <ul>
+    <li><code>themes</code> directory: Contains the new Shopware 5 themes</li>
+    <li><code>templates</code> directory: Contains the older Shopware 4 and below templates</li>
+    </ul>
+</div>
 
 Keep in mind that your custom themes still need to be tested with Shopware 5 in a test environment, before being deployed into a production environment. Please read the [Shopware 5 Upgrade guide for developers](/developers-guide/shopware-5-upgrade-guide-for-developers/) to know more about what changed in Shopware 5.
 

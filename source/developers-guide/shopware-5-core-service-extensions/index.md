@@ -51,7 +51,11 @@ class Shopware_Plugins_Frontend_ServiceExtension_Bootstrap
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onDispatch', 500);
+        $this->subscribeEvent(
+            'Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service',
+            'registerService',
+            500
+        );
         return true;
     }
 
@@ -60,7 +64,7 @@ class Shopware_Plugins_Frontend_ServiceExtension_Bootstrap
         $this->get('Loader')->registerNamespace('ShopwarePlugins\ServiceExtension', $this->Path());
     }
 
-    public function onDispatchEventListener()
+    public function registerService()
     {
         // implement your replacement/decoration logic here
     }
@@ -81,7 +85,11 @@ class Shopware_Plugins_Frontend_SwagRedis_Bootstrap
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onDispatch', 200);
+        $this->subscribeEvent(
+            'Enlight_Bootstrap_InitResource_shopware_storefront.list_product_service',
+            'replaceListProductService',
+            200
+        );
         return true;
     }
 
@@ -90,17 +98,15 @@ class Shopware_Plugins_Frontend_SwagRedis_Bootstrap
         $this->get('Loader')->registerNamespace('ShopwarePlugins\SwagRedis', $this->Path());
     }
 
-    public function onDispatch()
+    public function replaceListProductService()
     {
-        $redisService = new RedisProductService();
-
-        Shopware()->Container()->set('shopware_storefront.list_product_service', $redisService);
+        return new RedisProductService();
     }
 }
 ```
 
-As you can see, the old __shopware_storefront.list_product_service__ instance that existed in the DIC is overwritten by the __RedisProductService__ instance you provide.
-
+The Enlight_Bootstrap_InitResource allows to handle service initialisation.
+As you can see, the old __shopware_storefront.list_product_service__ instance that existed in the DIC is overwritten by the __RedisProductService__ instance you return.
 ```php
 <?php
 
@@ -156,7 +162,11 @@ class Shopware_Plugins_Frontend_SwagRedis_Bootstrap
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onDispatch', 200);
+        $this->subscribeEvent(
+            'Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service',
+            'decorateService',
+            200
+        );
         return true;
     }
 
@@ -165,14 +175,10 @@ class Shopware_Plugins_Frontend_SwagRedis_Bootstrap
         $this->get('Loader')->registerNamespace('ShopwarePlugins\SwagRedis', $this->Path());
     }
 
-    public function onDispatch()
+    public function decorateService()
     {
         $coreService  = Shopware()->Container()->get('shopware_storefront.list_product_service');
-
-        $redisService = new RedisProductService(
-            $coreService
-        );
-
+        $redisService = new RedisProductService($coreService);
         Shopware()->Container()->set('shopware_storefront.list_product_service', $redisService);
     }
 }
@@ -248,7 +254,11 @@ class Shopware_Plugins_Frontend_SwagElasticSearch_Bootstrap
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onDispatch', 400);
+        $this->subscribeEvent(
+            'Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service',
+            'decorateService',
+            400
+        );
         return true;
     }
 
@@ -257,14 +267,10 @@ class Shopware_Plugins_Frontend_SwagElasticSearch_Bootstrap
         $this->get('Loader')->registerNamespace('ShopwarePlugins\SwagElasticSearch', $this->Path());
     }
 
-    public function onDispatch()
+    public function decorateService()
     {
         $coreService  = Shopware()->Container()->get('shopware_storefront.list_product_service');
-
-        $elasticSearchService = new ElasticSearchProductService(
-            $coreService
-        );
-
+        $elasticSearchService = new ElasticSearchProductService($coreService);
         Shopware()->Container()->set('shopware_storefront.list_product_service', $elasticSearchService);
     }
 }
@@ -344,7 +350,11 @@ class Shopware_Plugins_Frontend_SwagLiveShopping_Bootstrap extends Shopware_Comp
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onDispatch', 600);
+        $this->subscribeEvent(
+            'Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service',
+            'decorateService',
+            600
+        );
         return true;
     }
 
@@ -356,7 +366,7 @@ class Shopware_Plugins_Frontend_SwagLiveShopping_Bootstrap extends Shopware_Comp
         );
     }
 
-    public function onDispatch()
+    public function decorateService()
     {
         $coreService = Shopware()->Container()->get('shopware_storefront.list_product_service');
         $newService = new LiveShoppingService($coreService);
@@ -429,3 +439,5 @@ This is rule is, of course, not always applicable, as undesired interactions or 
 This example is very academic, and not adequate for production environments, but it does illustrate a very important idea: decorating over replacing allows multiple plugins to extend the same service without causing conflicts or breaks in behaviour. It's even possible that your plugin never actually decorates the core implementation of a service, but an instance provided by another plugin you have installed in your current installation. If implemented correctly, this can be made fully transparent to you and your plugins, and multiple decoration layers can be added on the same service without undesired side effects.
 
 This doesn't mean you need to always decorate existing services. In some scenarios, full replacement might be a better solution than decorating. Just keep in mind that other plugins might want to decorate your service as if it where the core implementation, to ensure both your and other plugins work as expected.
+
+You can find a small <a href="{{ site.url }}/exampleplugins/SwagProductExtension.zip">example plugin here</a>.

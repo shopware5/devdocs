@@ -370,3 +370,5 @@ You can now install the plugin with Shopware's plugin manager. After installatio
 After clearing the cache, your frontend might look like this:
 
 ![Slogan of the day in the frontend](img/result.png)
+
+You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagSloganOfTheDay.zip">here</a>.

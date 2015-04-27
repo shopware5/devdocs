@@ -7,7 +7,7 @@ composerBin="./composer.phar"
 
 if [[ ! -x "$composerBin" ]]; then
     echo "Downloading composer..."
-    curl -s http://getcomposer.org/installer | php
+    curl -s https://getcomposer.org/installer | php
     chmod +x $composerBin
 else
     $composerBin self-update

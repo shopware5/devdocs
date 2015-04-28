@@ -12,6 +12,7 @@ indexed: true
 -   [Responsiveness in Shopware](#responsiveness-in-shopware)
 -   [Predefined mixins and components](#predefined-mixins-and-components)
 -   [LESS variables in Shopware](#less-variables-in-shopware)
+-   [Creating CSS source maps](#creating-css-source-maps)
 
 ## What is LESS?
 > Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
@@ -24,7 +25,7 @@ In Shopware 5 we included a PHP-parser for LESS. It enables the designer to use 
 - [Function Reference](http://lesscss.org/functions/)
 
 ## Why LESS?
-We offen get asked why we decided to use LESS instead of SASS or something else. Without starting a discussion war about CSS pre-processors we want to provide you with some arguments why we decided to use LESS in Shopware.
+We often get asked why we decided to use LESS instead of SASS or something else. Without starting a discussion war about CSS pre-processors we want to provide you with some arguments why we decided to use LESS in Shopware.
 
 - LESS is very lightweight and easy to learn for third party developers who never worked with CSS pre-processors
 - There is a stable PHP-parser for LESS
@@ -33,7 +34,7 @@ We offen get asked why we decided to use LESS instead of SASS or something else.
 No reason to get sad, SASS-lovers. Keep in mind that LESS is just a recommendation by us and the compiler a tool we wanted to provide to third party developers. You can use the pre-processor of your choice at any time. Feel free to compile files with other tools and add the compiled CSS to your theme.
 
 ## Using LESS in your theme
-It is very easy to use LESS in your own custom Shopware theme. Just create the corresponding directory in your public resources: `frontend/_public/src/less/`. In the `less/` directory you have to create an `all.less` file which will be added to the Shopware compiler automatically. Of course you can put all your code into one file, but for a better structure we recommend to create seperate files for each part of your theme and include them by using the `@import` method in the `all.less`.
+It is very easy to use LESS in your own custom Shopware theme. Just create the corresponding directory in your public resources: `frontend/_public/src/less/`. In the `less/` directory you have to create an `all.less` file which will be added to the Shopware compiler automatically. Of course you can put all your code into one file, but for a better structure we recommend to create separate files for each part of your theme and include them by using the `@import` method in the `all.less`.
 
 ## Responsiveness in Shopware
 We use LESS for some special purposes which are very helpful when creating full responsive themes.
@@ -90,7 +91,7 @@ For the Responsive theme we use CSS media queries to create different device bre
 
 ```
 
-Following the mobile first concpept you start creating your styles for the mobile viewport and proceed upwoards by using the `min-width` media query to start a new breakpoint at the given minimum screen size.
+Following the mobile first concept you start creating your styles for the mobile viewport and proceed upwards by using the `min-width` media query to start a new breakpoint at the given minimum screen size.
 
 ## Predefined mixins and components
 We already created several mixins for CSS3 cross-browser support and some other useful features. Also when extending from the Shopware Responsive theme you have access to all standard components like buttons, alerts, and so on. They all follow a simple CSS class syntax which you might know from other frameworks. For example creating a basic button you just add the class `btn` to your element. To make it a highlighted primary button you can extend the styles by adding additional configuration classes like `is--primary`. We have a complete documentation of all Shopware basic components in the **[Shopware 5 Styletile](https://devdocs.shopware.com/styletile/)**.
@@ -255,3 +256,14 @@ Here you get an overview about all defined LESS variables in the Shopware Respon
 @badge-download-bg: @highlight-info;
 @badge-download-color: #FFFFFF;
 ```
+
+## Creating CSS source maps
+To make a designers life easier when working with LESS we added the possibility to automatically create CSS source maps. This is very useful when debugging existing styles.
+
+![Theme settings](theme_settings.jpg)
+
+To enable the CSS source maps go to *Configuration* -> *Theme Manager* -> *Settings* -> *Create a CSS source map*.
+
+After clearing the theme cache you can see the mapping to the LESS files in your developer console.
+
+![Debugging styles with source maps](css_source_map.jpg)

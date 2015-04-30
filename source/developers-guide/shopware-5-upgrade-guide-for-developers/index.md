@@ -124,7 +124,6 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Template inheritance using `{extends file="[default]backend/..."}` is no longer supported and should be replaced by `{extends file="parent:backend/..."}`
 * Removed smarty variable `$sArticle.sNavigation` in product detail page
 * Removed support for flash banners. The associated template block `frontend_listing_swf_banner` is marked as deprecated
-* Removed the template files for the feed functionality, which was marked as deprecated in SW 3.5
 * Removed `Trusted Shops` from the basic settings. Functionality can now be found in `Trusted Shops Excellence` plugin
 * Removed support for `engine/Shopware/Configs/Custom.php`
     * Use `config.php` or `config_$environment.php` e.g. `config_production.php`
@@ -239,8 +238,6 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `s_cms_groups`
     * `s_core_auth.admin`
     * `s_core_auth.salted`
-    * `s_order_basket.liveshoppingID`
-    * `s_order_basket.liveshoppingID`
     * `s_order_basket.liveshoppingID`
     * `s_emarketing_banners.liveshoppingID`
     * `s_core_sessions.expireref`

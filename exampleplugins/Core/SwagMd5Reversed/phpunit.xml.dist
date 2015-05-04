@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/Bootstrap.php">
+<testsuite name="SwagMd5Reversed Test Suite">
+    <directory>tests</directory>
+</testsuite>
+</phpunit>

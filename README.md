@@ -29,13 +29,5 @@ It is important to put the plugin into the proper Frontend/Backend/Core subdirec
 
 `exampleplugins/Frontend/SwagSloganOfTheDay/` will result in `exampleplugins/SwagSloganOfTheDay.zip` in the generated output directory. Please not that the subdirectory is not part of the resulting directory/filename.
 
-## Generate production site and deploy to server
-
-```
-./deploy.sh
-```
-
-The production ready files will be generated in the directory `output_prod`.
-
 [2]: https://sculpin.io/
 [3]: https://sculpin.io/download

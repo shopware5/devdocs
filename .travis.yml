@@ -3,11 +3,19 @@ language: php
 php:
     - 5.5
 
+# whitelist
+branches:
+  only:
+    - master
+
 sudo: false
 
 cache:
   directories:
     - $HOME/.composer/cache
+
+before_install:
+    - openssl aes-256-cbc -K $encrypted_8d2e99642ba8_key -iv $encrypted_8d2e99642ba8_iv -in deploy_key.enc -out deploy_key -d
 
 before_script:
     - composer self-update
@@ -16,3 +24,6 @@ before_script:
 script:
     - ./vendor/bin/sculpin generate --env=prod --url="https://devdocs.shopware.com"
     - ./contrib/package_plugins.sh
+
+after_success:
+  - ./deploy.sh

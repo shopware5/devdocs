@@ -2,15 +2,19 @@
 layout: default
 title: Custom password encoder
 github_link: developers-guide/password-encoder/index.md
+tags:
+  - password
+  - hash
+  - example
 indexed: true
 ---
-By default shopware will use the best available password hashing algorithm on your system (e.g. bcrypt). For default usage there is **no need** to modify shopware's hashing algorithm.
+By default Shopware will use the best available password hashing algorithm on your system (e.g. bcrypt). For default usage there is **no need** to modify Shopware's hashing algorithm.
 
 If you are importing customer data from other shops, however, you might want to support the old hashing algorithm, so that you customers can still log in without changing the password.
 
 # General concept
 Any customer account is stored with two information in the `s_user` table: The *hash* of the password and the responsible *encoder* which takes care of hashing / comparing the password.
-In the backend settings of shopware, the default password encoder is defined. In the *auto* configuration (default) shopware will automatically pick the best hash algorithm available. 
+In the backend settings of Shopware, the default password encoder is defined. In the *auto* configuration (default) shopware will automatically pick the best hash algorithm available. 
 If the *live migration" setting is set to true, customers with "old" password hashes (e.g. md5 from a third party shop system import) will automatically be migrated to the new password hash,
 when they log in the next time.
 

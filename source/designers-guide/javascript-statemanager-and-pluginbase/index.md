@@ -115,14 +115,14 @@ $.plugin('example', {
              * Additionally you see that we're using the variable "this.$el" which
              * is the element that has instanciated the plugin.
              */
-            if(me.$el.is('plugin-example') {
+            if(me.$el.is('plugin-example')) {
                 
                 /**
                  * Now we're accessing the merged configuration of the plugin using
                  * the variable "this.opts".
                  */
                 me.$el.toggleClass(me.opts.activeCls);
-            });
+            }
         });
     },
     

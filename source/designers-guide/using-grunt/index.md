@@ -44,7 +44,7 @@ sudo npm install -g grunt-cli
 This will put the ```grunt``` command in your system path, allowing it to be run from any directory.
 
 ## Dump theme configuration
-Themes starting with Shopware 5 are providing the ability to configure them using an adminstiration module named "Theme Manager". Before we can use the Grunt tasks, we have to dump the theme configuration using the Shopware console.
+Themes starting with Shopware 5 are providing the ability to configure them using an administration module named "Theme Manager". Before we can use the Grunt tasks, we have to dump the theme configuration using the Shopware console.
 
 ```
 ./bin/console sw:theme:dump:configuration

@@ -2,6 +2,7 @@
 layout: default
 title: Use grunt to watch and compile LESS
 github_link: designers-guide/using-grunt/index.md
+shopware_version: 5.0.1
 indexed: true
 ---
 

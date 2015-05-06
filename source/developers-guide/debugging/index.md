@@ -150,29 +150,28 @@ to narrow down the error. The following list should help you doing that:
 
 Common backend development mistakes:
  
- * Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Views/backend/my_plugin/view/window` 
-  should become `Shopware.apps.MyPlugin.view.Window`
- * Referencing a wrong xtype: Whenever you use `xtype` to reference a ExtJS class, you should double check, if the referenced xtype actually exists.
- * Not registering the components: As ExtJS must actually know your components, you need to either register them in the `app.js` file or (when extending
- pre-existing modules) include them using smarty and extending the original original applications `app.js` block.
- * Missing call to `callParent(arguments);`: When implementing own components in ExtJS, you will overwrite base-components
- a lot. Whenever you are implementing a constructor like `initComponent` or `init` you should call `callParent(arguments);`
- so that ExtJS can handle the base component's logic.
- * Smarty errors: Remember that  smarty parses the javascript backend files. For that reason, javascript objects always need
- to have whitespaces before and after the opening and closing curly brace. This also applies for your comments! So if your IDE 
-  generates a DocBlock like this:
-      
+* Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Views/backend/my_plugin/view/window` 
+should become `Shopware.apps.MyPlugin.view.Window`
+* Referencing a wrong xtype: Whenever you use `xtype` to reference a ExtJS class, you should double check, if the referenced xtype actually exists.
+* Not registering the components: As ExtJS must actually know your components, you need to either register them in the `app.js` file or (when extending
+pre-existing modules) include them using smarty and extending the original original applications `app.js` block.
+* Missing call to `callParent(arguments);`: When implementing own components in ExtJS, you will overwrite base-components
+a lot. Whenever you are implementing a constructor like `initComponent` or `init` you should call `callParent(arguments);`
+so that ExtJS can handle the base component's logic.
+* Smarty errors: Remember that  smarty parses the javascript backend files. For that reason, javascript objects always need
+to have whitespaces before and after the opening and closing curly brace. This also applies for your comments! So if your IDE 
+generates a DocBlock like this:
+    
     ```
     // bad example
     /**
-     * 
-     * @returns {Array}
-     */
-     function: test() {
+    * 
+    * @returns {Array}
+    */
+    function: test() {
         return [];
-     }
+    }
     ```
-    
     Smarty will try to parse the snippet `{Array}` and raise an exception, as this is no valid smarty tag. The same applies
     for objects like this:
     
@@ -194,16 +193,3 @@ Common backend development mistakes:
         { name:"another test" },
     ]
     ```
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 

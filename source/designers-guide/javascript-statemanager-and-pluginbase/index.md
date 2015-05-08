@@ -19,7 +19,7 @@ indexed: true
 	* [Class methods](#class-methods)
 * [Working with stateful jQuery plugins](#working-with-stateful-jquery-plugins)
 	* [Passing a user configuration to the jQuery plugin](#passing-a-user-configuration-to-the-jquery-plugin)
-* [Adding javascript files to your them](#adding-javascript-files-to-your-theme)
+* [Adding javascript files to your theme](#adding-javascript-files-to-your-theme)
 * [Installing third-party components using bower](#installing-third-party-components-using-bower)
 
 ## Introducing

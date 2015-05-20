@@ -1,13 +1,21 @@
 ---
 layout: default
-title: Shopware 5 performance
-github_link: developers-guide/shopware-5-performance.md
+title: Shopware 5 performance guide for developers
+github_link: developers-guide/shopware-5-performance-for-devs/index.md
 indexed: true
+tags:
+  - performance
+  - tips
+  - cache
 ---
 
-## Introduction
+# Shopware 5 performance guide for developers
 
-In this document we detail the performance related details of Shopware 5. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability.
+In this document we cover the performance related features of Shopware 5, that you should both use as a plugin developer and configure as a shop administrator. This document presents some of techniques Shopware 5 uses to speed up internal processes, and that, most of the time, are available to you as a developer to take advantage of while developing your plugins. We also discuss core implementation details that are relevant for performance reasons, and that you should know of, even if they are not used directly by your plugins.
+
+<div class="alert alert-warning">
+<strong>Note:</strong> This guide only covers the details of Shopware 5 itself, and does not cover system configuration details. Please refer to the <a href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">Shopware 5 performance guide system administrators</a> for more details on how you can fine tune your server for improved performance. 
+</div>
 
 ## Caching
 
@@ -15,10 +23,12 @@ Shopware uses multiple caches for different contents. Most of them are included 
 
 ## HTTP Cache
 
-The HTTP Cache is a caching layer between your application and the customer's browser. Shopware includes a PHP implementation of an HTTP Cache, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance.
+The HTTP Cache is a caching layer between your application and the customer's browser. Shopware includes a PHP implemented HTTP Cache you can use without additional system dependencies associated with other equivalent tools. You can enable/disable the built in HTTP Cache by switching between "productive" and "development" modes in the Backend of your shop. The development mode disables the HTTP cache and allows you to prepare your shop before going live. After you modify all data, enable the shop to "productive" mode to enable the HTTP cache.
 
 You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this
 [article](http://wiki.shopware.com/Understanding-the-shopware-http-Cache_detail_1809_928.html)
+
+Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official Varnish configuration support for Enterprise customers.
 
 ## Theme Cache
 
@@ -54,29 +64,13 @@ The cache content is generated in one of two occasions:
 
 As the cache generation process can take a few seconds, we highly recommend that you do not rely on the first option, unless your are developing/debugging CSS or JavaScript content. When a Shopware 5 theme is configured and you clear the theme cache in the backend, a popup window will give you the possibility to warm up the theme cache. You can choose not to do this, but it's highly recommended that you warm up the cache at this point, specially in production environments. This process can last a few seconds per shop.
 
-## PHP version and Opcode cache
+## Doctrine cache
 
-Shopware's PHP code (and all PHP code) needs to be transformed from the format you see and understand into machine code your computer can actually execute. This process is complicated, and you don't need to know how it's done, but it is important to understand that it's executed on every incoming request to your server, meaning it can have a significant performance impact.
-
-An Opcode cache can be used during this code transformation process, caching the resulting machine code so it's reused across multiple requests. Skipping that transformation process will, naturally, result in better performance in all requests after the first one.
-
-### Opcode cache in PHP 5.5 and later
-
-One of the main changes in PHP 5.5 was the addition of Zend Optimiser+ opcode cache, now know as OPcache extension. This means that the opcode cache is installed and enabled by default (on most systems), speeding up your shop. Shopware will automatically clear this cache when needed, in some situations (i.e. when a new plugin is installed). Please keep in mind that, in some situations and depending on your system configuration, you might need to manually clear this cache. Refer to OPcache extension documentation for more information.
-
-### Opcode cache in PHP 5.4
-
-PHP 5.4 does not include a opcode cache out of the box, but you can (and we recommend) that you install APC opcode cache. Shopware is able to detect and clear this cache on some situations, when required, but you might need to clear it manually yourself when performing changes to your code. More info is available on the project's documentation page.
-
-### Other advantages to using PHP 5.5 or newer
-
-The inclusion of OPcache extension in PHP 5.5 was one of the big performance improvements added in that version, but not the only one. Other features were added that will make Shopware (and most PHP projects) perform better in the newer version. PHP 5.6 also includes performance improvements over PHP 5.5, and it's safe to assume that future releases will continue to provide faster results over previous versions.
-
-Shopware 5.0 will have PHP 5.4 as minimum requirement, which is, at the time of the release, the oldest supported PHP version. However, PHP 5.4 support will be dropped during Shopware 5's lifetime, and the minimum requirement will be raised to PHP 5.5. As such, we recommend using, whenever possible, PHP 5.5 or higher, not only for performance reasons, but also to ensure your system will support future releases of Shopware 5.
+Doctrine also has a caching layer that is enabled by default in Shopware 5. Your `config.php` file has an optional `model` section where you can, among other settings, change the storage mechanism for this cache. By default it detects whether you are using APCu (recommended) or XCache (in that order) and uses them if available. You can also explicitly declare a caching mechanism to be used, as long as you make sure it is properly configured in your system. Refer to [Doctrine's documentation page on caching](http://doctrine-orm.readthedocs.org/en/latest/reference/caching.html) for more details
 
 ## Other caches
 
-Other caching layers exist (Smarty, Doctrine, etc) that help boost Shopware's performance. These caches were not significantly changed during Shopware 5's development, and you can refer to their native documentation for help and details.
+Other caching layers exist that help boost Shopware's performance. These caches were not significantly changed during Shopware 5's development, and you can refer to their native documentation for help and details. You can provide these caches with configuration
 
 # Article loading
 
@@ -91,3 +85,24 @@ In Shopware 5, a completely new article loading mechanism was introduced. The ex
 Whether you directly use the DIC's services or the old core methods, article loading is now done in batch mode, meaning that, no mather how many articles you are loading, the number of queries executed is always the same. Also, the data loading approach has been refactored: depending on exactly what data you require, different services work together to build one or multiple queries, that will load the necessary data from the database and populate the necessary structs, giving your plugins access to data in a consistent and easily to handle format.
 
 The queries built by the article loading system have also been changed to improve performance: one-to-many and many-to-many database relations are not loaded in one single query, as this results in a performance penalty. Instead, the new article loading system handles each of these dimensions separately, in individual queries, and the data is then merged by PHP in memory, a much faster process. Again, batch queries are used, meaning that loading more articles do not result in more queries to the database.
+
+## Strategy of aggregate functions
+Shopware uses aggregate tables which improves the store front performance.
+The following data sources are aggregated in Shopware:
+
+- top seller (s_articles_top_seller_ro)
+- similar shown (s_articles_similar_shown_ro)
+- also bought (s_articles_also_bought_ro)
+- search index & keywords (s_search_index & s_search_keywords)
+- SEO urls (s_core_rewrite_urls)
+
+Each of these aggregated data can have an own strategy when the data has to be built into the tables:
+
+- Live **[default]** > on demand, when the data is requested in the store front
+- Cronjob  > executed together with other Shopware's cron tasks
+- Manual > only generated over the backend or using your own implementation
+
+We recommend using the "Cronjob" strategy. Don't forget to configure you system to execute Shopware's cron tasks periodically.
+
+
+

@@ -6,7 +6,8 @@
     "dflydev/embedded-composer-core": "@dev",
     "robloach/component-installer": "dev-master",
     "components/highlightjs": "~8.4.0",
-    "bcremer/sculpin-less-bundle": "dev-master"
+    "bcremer/sculpin-less-bundle": "dev-master",
+    "mavimo/sculpin-redirect-bundle": "@dev"
   },
   "config": {
     "component-dir": "source/components"

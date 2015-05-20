@@ -10,9 +10,9 @@ tags:
   - php
   - apc
   - cache
+redirect:
+  - /sysadmins-guide/optimize-performance/
 ---
-
-# Shopware 5 performance guide for system administrators
 
 In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
 
@@ -79,7 +79,7 @@ Apache configuration settings is often split into multiple files, to improve rea
 
 Nginx has been known to run Shopware on several server setups. If you wish to, you can use this web server instead of Apache. Note that this setup is not supported, so our support team will not be able to assist you should you run into problems with it.
 
-The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx blog might be a good place to start if you are looking for performance tips for your nginx configuration. 
+The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx blog might be a good place to start if you are looking for performance tips for your nginx configuration. You can also use the [nginx configuration for Shopware](https://github.com/bcremer/shopware-with-nginx) provided by [Benjamin Cremer](https://github.com/bcremer).
 
 ## PHP 
  

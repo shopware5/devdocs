@@ -1,0 +1,851 @@
+---
+layout: default
+title: REST API - Models
+github_link: developers-guide/rest-api/models/index.md
+indexed: false
+---
+
+# Table of contents
+* **[Article Attribute](#article-attribute)**
+* **[Article Detail](#article-detail)**
+* **[Billing](#billing)**
+* **[Billing Attribute](#billing-attribute)**
+* **[Category](#category)**
+* **[Configurator Group](#configurator-group)**
+* **[Configurator Option](#configurator-option)**
+* **[Configurator Set](#configurator-set)**
+* **[Country](#country)**
+* **[Currency](#currency)**
+* **[Customer Attribute](#customer-attribute)**
+* **[Customer Group](#customer-group)**
+* **[Customer Group Surcharge](#customer-group-surcharge)**
+* **[Debit](#debit)**
+* **[Dispatch](#dispatch)**
+* **[Document](#document)**
+* **[Document Attribute](#document-attribute)**
+* **[Document Type](#document-type)**
+* **[Download](#download)**
+* **[Image](#image)**
+* **[Link](#link)**
+* **[Locale](#locale)**
+* **[Order Attribute](#order-attribute)**
+* **[Order Detail](#order-detail)**
+* **[Order Detail Attribute](#order-detail-attribute)**
+* **[Order Status](#order-status)**
+* **[Payment Data](#payment-data)**
+* **[Payment Instance](#payment-instance)**
+* **[Price](#price)**
+* **[Price Group](#price-group)**
+* **[Price Group Attribute](#price-group-attribute)**
+* **[Price Group Option](#price-group-option)**
+* **[Property Value](#property-value)**
+* **[Related](#related)**
+* **[Shipping](#shipping)**
+* **[Shipping Attribute](#shipping-attribute)**
+* **[Shop](#shop)**
+* **[Similar](#similar)**
+* **[Supplier](#supplier)**
+* **[Tax](#tax)**
+* **[Translation](#translation)**
+
+
+
+
+
+## Article Attribute
+
+* **Model:** Shopware\Models\Attribute\Article
+* **Table:** s_articles_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| attr1          	  | string                |                                                 |
+| attr2          	  | string                |                                                 |
+| attr3          	  | string                |                                                 |
+| attr4          	  | string                |                                                 |
+| attr5          	  | string                |                                                 |
+| attr6          	  | string                |                                                 |
+| attr7          	  | string                |                                                 |
+| attr8          	  | string                |                                                 |
+| attr9          	  | string                |                                                 |
+| attr10          	  | string                |                                                 |
+| attr11          	  | string                |                                                 |
+| attr12          	  | string                |                                                 |
+| attr13          	  | string                |                                                 |
+| attr14          	  | string                |                                                 |
+| attr15          	  | string                |                                                 |
+| attr16          	  | string                |                                                 |
+| attr17          	  | string                |                                                 |
+| attr18          	  | string                |                                                 |
+| attr19          	  | string                |                                                 |
+| attr20          	  | string                |                                                 |
+| articleId			  | integer (foreign key) | **[Article](../api-resource-article)**			|
+| articleDetailId     |	integer (foreign key) | **[Detail](#article-detail)**                   |
+
+## Article Detail
+
+* **Model:** Shopware\Models\Article\Detail
+* **Table:** s_articles_details
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| number       		  | string                |                                                 |
+| supplierNumber      | string                |                                                 |
+| additionalText      | string                |                                                 |
+| weight              | string                |                                                 |
+| width               | string                |                                                 |
+| len                 | string                |                                                 |
+| height              | string                |                                                 |
+| ean                 | string                |                                                 |
+| purchaseUnit        | string                |                                                 |
+| descriptionLong     | string                |                                                 |
+| referenceUnit       | string                |                                                 |
+| packUnit            | string                |                                                 |
+| shippingTime        | string                |                                                 |
+| prices              | object array          | **[Price](#price)** 							|
+| configuratorOptions | object array          | **[ConfiguratorOption](#configurator-option)**  |
+| attribute           | object                | **[Attribute](#article-attribute)** 			|
+| id                  | integer (primary key) |                                                 |
+| articleId           | integer (foreign key) | **[Article](../api-resource-article)**          |
+| unitId              | integer (foreign key) |                                                 |
+| kind                | integer               |                                                 |
+| inStock             | integer               |                                                 |
+| position            | integer               |                                                 |
+| minPurchase         | integer               |                                                 |
+| purchaseSteps       | integer               |                                                 |
+| maxPurchase         | integer               |                                                 |
+| releaseDate         | date/time             |                                                 |
+| active              | boolean               |                                                 |
+| shippingFree        | boolean               |                                                 |
+
+## Billing
+
+* **Model:** Shopware\Models\Customer\Billing
+* **Table:** s_user_billingaddress
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerId       	  | integer (foreign key) |                                                 |
+| countryId       	  | integer (foreign key) | **[Country](#country)**                         |
+| stateId       	  | integer (foreign key) |                                                 |
+| company			  | string				  |													|
+| department		  | string				  |													|
+| salutation		  | string				  |													|
+| number			  | string				  |													|
+| firstName			  | string				  |													|
+| lastName			  | string				  |													|
+| street			  | string				  |													|
+| streetNumber		  | string				  |													|
+| zipCode			  | string				  |													|
+| city				  | string				  |													|
+| phone				  | string				  |													|
+| fax				  | string				  |													|
+| vatId				  | string				  |													|
+| birthday			  | date/time			  |													|
+| attribute			  | object				  |	**[BillingAttribute](#billing-attribute)**  	|
+
+## Billing Attribute
+
+* **Model:** Shopware\Models\Attribute\CustomerBilling
+* **Table:** s_user_billingaddress_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerBillingId	  | integer (foreign key) |                                                 |
+| text1				  | string				  |													|
+| text2				  | string				  |													|
+| text3				  | string				  |													|
+| text4				  | string				  |													|
+| text5				  | string				  |													|
+| text6				  | string				  |													|
+
+## Category
+
+* **Model:** Shopware\Models\Category\Category
+* **Table:** s_categories
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key) |                                                       |
+| name                  | string                |                                                       |
+
+## Configurator Group
+
+* **Model:** Shopware\Models\Article\Configurator\Group
+* **Table:** s_article_configurator_groups
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key  |                                                       |
+| description           | string                |                                                       |
+| name                  | string                |                                                       |
+| position              | integer               |                                                       |
+
+## Configurator Option
+
+* **Model:** Shopware\Models\Article\Configurator\Option
+* **Table:** s_article_configurator_options
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id             	    | integer (primary key) |                                                 |
+| groupId               | integer (foreign key) | **[ConfiguratorGroup](#configurator-group)**    |
+| name                  | string                |                                                 |
+| position              | integer               |                                                 |
+
+## Configurator Set
+
+* **Model:** Shopware\Models\Article\Configurator\Set
+* **Table:** s_article_configurator_sets
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key  |                                                       |
+| name                  | string                |                                                       |
+| public                | boolean               |                                                       |
+| type                  | integer               |                                                       |
+| groups                | object array          | **[ConfiguratorGroup](#configurator-group)**          |
+
+## Country
+
+* **Model:** Shopware\Models\Country\Country
+* **Table:** s_core_countries
+
+### Structure
+
+| Field               		  | Type                  | Original object                                 |
+|-----------------------------|-----------------------|-------------------------------------------------|
+| id 	         	  		  | integer (primary key) |                                                 |
+| name		      	  		  | string				  | 		                                        |
+| iso				  		  | string				  | 												|
+| isoName	      	  		  | string				  | 		                                        |
+| position			  		  | integer				  | 												|
+| description		  		  | string				  | 												|
+| shippingFree		  		  | boolean				  | 												|
+| taxFree			  		  | boolean				  | 												|
+| taxFreeUstId		  		  | boolean				  | 												|
+| taxFreeUstIdChecked 		  | boolean				  | 												|
+| active			  		  | boolean				  | 												|
+| iso3				  		  | string				  | 												|
+| displayStateInRegistration  | boolean				  | 												|
+| forceStateInRegistration	  | boolean				  | 												|
+| areaId					  | integer				  | 												|
+
+## Currency
+
+* **Model:** Shopware\Models\Shop\Currency
+* **Table:** s_core_currencies
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| currency	      	  | string				  | 		                                        |
+| name				  | string				  | 												|
+| default			  | boolean				  | 												|
+| factor			  | double				  | 												|
+| symbol			  | string				  | 												|
+| symbolPosition	  | integer				  | 												|
+| position			  | integer				  | 												|
+
+## Customer Attribute
+
+* **Model:** Shopware\Models\Attribute\Customer
+* **Table:** s_user_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer)**        |
+
+## Customer Group
+
+* **Model:** Shopware\Models\Customer\Group
+* **Table:** s_core_customergroups
+
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id             	    | integer (primary key) |                                                 |
+| key                   | string                |                                                 |
+| name                  | string                |                                                 |
+| tax                   | boolean               |                                                 |
+| taxInput              | boolean               |                                                 |
+| mode                  | boolean               |                                                 |
+| discount              | double                |                                                 |
+| minimumOrder          | double                |                                                 |
+| minimumOrderSurcharge | double                |                                                 |
+| basePrice             | double                |                                                 |
+| percent               | double                |                                                 |
+
+## Customer Group Surcharge
+
+* **Model:** Shopware\Models\Customer\Discount
+* **Table:** s_customergroups_discounts
+
+### Structure
+
+| Field            | Type			       | Original Object |
+|------------------|-----------------------|-----------------|
+| id               | integer (primary key) |                 |
+| discount         | integer               |                 |
+| value            | integer               |                 |
+
+## Debit
+
+* **Model:** Shopware\Models\Customer\Debit
+* **Table:** s_user_debit
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerId		  | integer (foreign key) |                                                 |
+| account			  | string				  |													|
+| bankCode			  | string				  |													|
+| bankName			  | string				  |													|
+| accountHolder		  | string				  |													|
+
+## Dispatch
+
+* **Model:** Shopware\Models\Dispatch\Dispatch
+* **Table:** s_premium_dispatch
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| name		      	  | string				  | 		                                        |
+| type				  | integer				  | 												|
+| description      	  | string				  | 		                                        |
+| comment	      	  | string				  | 		                                        |
+| active	      	  | boolean				  | 		                                        |
+| position      	  | integer				  | 		                                        |
+| calculation      	  | integer				  | 		                                        |
+| surchargeCalculation| integer				  | 		                                        |
+| taxCalculation   	  | integer				  | 		                                        |
+| shippingFree     	  | decimal				  | 		                                        |
+| multiShopId      	  | integer (foreign key) | **[Shop](#shop)**                               |
+| customerGroupId  	  | integer (foreign key) | **[CustomerGroup](#customer-group)**            |
+| bindShippingFree 	  | integer				  | 		                                        |
+| bindTimeFrom     	  | integer				  | 		                                        |
+| bindTimeTo      	  | integer				  | 		                                        |
+| bindInStock      	  | integer				  | 		                                        |
+| bindWeekdayFrom  	  | integer				  | 		                                        |
+| bindPriceTo      	  | integer				  | 		                                        |
+| bindSql	      	  | string				  | 		                                        |
+| statusLink      	  | string				  | 		                                        |
+| calculationSql   	  | string				  | 		                                        |
+
+## Document
+
+* **Model:** Shopware\Models\Order\Document\Document
+* **Table:** s_order_documents
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| date           	  | date/time			  | 		                                        |
+| typeId			  | integer (foreign key) | **[DocumentType](#document-type)**				|
+| customerId		  | integer (foreign key) | **[Customer](#customer)**						|
+| orderId			  |	integer (foreign key) | **[Order](#order)**								|
+| amount			  | double				  | 												|
+| documentId		  | integer (foreign key) | 												|
+| hash				  | string 				  |													|
+| type				  | object				  |	**[DocumentType](#document-type)**				|
+| attribute			  | object	 			  |	**[DocumentAttribute](#document-attribute)**	|
+
+## Document Attribute
+
+* **Model:** Shopware\Models\Attribute\Document
+* **Table:** s_order_documents_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| documentId       	  | integer (foreign key) | 		                                        |
+
+## Document Type
+
+* **Model:** Shopware\Models\Order\Document\Type
+* **Table:** s_order_documents
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| name           	  | string				  | 		                                        |
+| template			  | string				  | 												|
+| numbers			  | string				  | 												|
+| left				  | integer				  | 												|
+| right				  | integer				  | 												|
+| top				  | integer				  | 												|
+| bottom			  | integer				  | 												|
+| pageBreak			  | integer				  | 												|
+
+## Download
+
+* **Model:** Shopware\Models\Article\Download
+* **Table:** s_articles_downloads
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key) |                                                       |
+| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| name                  | string                |                                                       |
+| file                  | string                |                                                       |
+| size                  | int                   |                                                       |
+
+## Image
+
+* **Model:** Shopware\Models\Article\Image
+* **Table:** s_articles_img
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key  |                                                       |
+| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| articleDetailId       | integer (foreign key) | **[Detail](#article-detail)** 						|
+| description           | string                |                                                       |
+| path                  | string                |                                                       |
+| main                  | integer               |                                                       |
+| position              | integer               |                                                       |
+| width                 | integer               |                                                       |
+| height                | integer               |                                                       |
+| relations             | string                |                                                       |
+| extension             | string                |                                                       |
+| parentId              | integer               | 			                                            |
+| mediaId               | integer               | **[Media](../api-resource-media)**                    |
+
+## Link
+
+* **Model:** Shopware\Models\Article\Link
+* **Table:** s_articles_information
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (primary key) |                                                       |
+| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| name                  | string                |                                                       |
+| link                  | string                |                                                       |
+| target                | string                |                                                       |
+
+## Locale
+
+* **Model:** Shopware\Models\Shop\Locale
+* **Table:** s_core_locales
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| locale	      	  | string				  | 		                                        |
+| language			  | string				  | 												|
+| territory	      	  | string				  | 		                                        |
+
+## Order Attribute
+
+* **Model:** Shopware\Models\Attribute\OrderDetail
+* **Table:** s_order_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| orderId	      	  | integer (foreign key) | 		                                        |
+| attribute1		  | string				  | 												|
+| attribute2		  | string				  | 												|
+| attribute3		  | string				  | 												|
+| attribute4		  | string				  | 												|
+| attribute5		  | string				  | 												|
+| attribute6		  | string				  | 												|
+
+## Order Detail
+
+* **Model:** Shopware\Models\Order\Detail
+* **Table:** s_order_detail
+
+### Structure
+
+| Field               | Type                  | Original object                                 		|
+|---------------------|-----------------------|---------------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 		|
+| orderId       	  | string				  | **[Order](../api-resource-order)**              		|
+| articleId			  | integer (foreign key) | **[Article](../api-resource-article)**   				|
+| taxId				  | integer (foreign key) | **[Tax](#tax)**    										|
+| taxRate			  |	double				  | 														|
+| statusId			  | integer (foreign key) | **[Status](#order-status)**								|
+| number			  | string (foreign key)  | **[Order](../api-resource-order)**						|
+| articleNumber		  | string (foreign key)  | **[ArticleDetail](#article-detail)**					|
+| price				  | double				  |															|
+| quantity			  | integer 			  |															|
+| articleName		  | string 			  	  |															|
+| shipped			  | boolean 			  |															|
+| shippedGroup		  | integer 			  |															|
+| releaseDate		  | date/time 			  |															|
+| mode				  | integer 			  |															|
+| esdArticle		  | integer 			  |															|
+| config			  | string	 			  |															|
+| attribute			  | object	 			  |	**[OrderDetailAttribute](#order-detail-attribute)**		|
+
+## Order Detail Attribute
+
+* **Model:** Shopware\Models\Attribute\OrderDetail
+* **Table:** s_order_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| orderDetailId    	  | integer (foreign key) | **[OrderDetail](#order-detail)**               	|
+| attribute1		  | string				  |													|
+| attribute2		  | string				  |													|
+| attribute3		  | string				  |													|
+| attribute4		  | string				  |													|
+| attribute5		  | string				  |													|
+| attribute6		  | string				  |													|
+
+## Order Status
+
+* **Model:** Shopware\Models\Order\Status
+* **Table:** s_core_states
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| description      	  | string				  | 		                                        |
+| position			  | integer				  | 												|
+| group		      	  | string				  | 		                                        |
+| sendMail			  | boolean				  | 												|
+
+## Payment Data
+
+* **Model:** Shopware\Models\Customer\PaymentData
+* **Table:** s_core_payment_data
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| paymentMeanId		  | integer (foreign key) |                                                 |
+| useBillingData	  | string				  |													|
+| bankName			  | string				  |													|
+| bic				  | string				  |													|
+| iban				  | string				  |													|
+| accountNumber		  | string				  |													|
+| bankCode			  | string				  |													|
+| accountHolder		  | string				  |													|
+| createdAt			  | date/time			  |													|
+
+## Payment Instance
+
+* **Model:** Shopware\Models\Payment\PaymentInstance
+* **Table:** s_core_payment_instance
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| firstName      	  | string				  | 		                                        |
+| lastName			  | string				  | 												|
+| address	      	  | string				  | 		                                        |
+| zipCode			  | string				  | 												|
+| city				  | string				  | 												|
+| bankName			  | string				  | 												|
+| bankCode			  | string				  | 												|
+| accountNumber		  | string				  | 												|
+| accountHolder		  | string				  | 												|
+| bic				  | string				  | 												|
+| iban				  | string				  | 												|
+| amount			  | string				  | 												|
+| createdAt			  | date/time			  | 												|
+
+## Price
+
+* **Model:** Shopware\Models\Article\Price
+* **Table:** s_articles_prices
+
+### Structure
+
+| Field               | Type                  | Original object                                       |
+|---------------------|-----------------------|-------------------------------------------------------|
+| customerGroupKey	  | string (foreign key)  | **[CustomerGroup](#customer-group)** 				  |
+| customerGroup       | object                | **[CustomerGroup](#customer-group)** 				  |
+| articleDetailsId    | integer (foreign key) | **[Detail](#article-detail)**                         |
+| articleId           | integer (foreign key) | **[Article](../api-resources-article)**               |
+| id                  | integer (primary key) |                                                       |
+| from                | integer/string        |                                                       |
+| to                  | string                |                                                       |
+| price               | double                |                                                       |
+| pseudoPrice         | double                |                                                       |
+| basePrice           | double                |                                                       |
+| percent             | double                |                                                       |
+
+## Price Group
+
+* **Table:** s_core_pricegroups
+
+### Structure
+
+| Field               | Type                  | Original object                                       |
+|---------------------|-----------------------|-------------------------------------------------------|
+| id             	  | int (primary key)     |                                                       |
+| description         | string                |                                                       |
+
+## Property Group
+
+* **Model:** Shopware\Models\Property\Group
+* **Table:** s_filter
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id            	    | integer (primary key  |                                                 |
+| name                  | string                |                                                 |
+| position              | integer               |                                                 |
+| comparable            | boolean               |                                                 |
+| sortMode              | integer               |                                                 |
+
+## Property Group Attribute
+
+* **Model:** Shopware\Models\Attribute\PropertyGroup
+* **Table:** s_filter
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| propertyGroupId  	  | integer (foreign key) | 		                                        |
+
+## Property Group Option
+
+* **Model:** Shopware\Models\Property\Option
+* **Table:** s_filter_options
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| name		      	  | string				  | 		                                        |
+| filterable		  | boolean				  | 												|
+
+## Property Value
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| valueNumeric     	    | double                |                                                 |
+| position              | integer               |                                                 |
+| optionId              | integer               |                                                 |
+| id                    | integer (primary key) |                                                 |
+| value                 | string                |                                                 |
+
+## Related
+
+* **Table:** s_articles_relationships
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (foreign key) | **[Article](../api-resources-article)**               |
+| name                  | string                |                                                       |
+
+## Shipping
+
+* **Model:** Shopware\Models\Customer\Shipping
+* **Table:** s_user_shippingaddress
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer)**        |
+| countryId       	  | integer (foreign key) | **[Country](#country)**                         |
+| stateId       	  | integer (foreign key) | 		                                        |
+| company			  | string				  |													|
+| department		  | string				  |													|
+| salutation		  | string				  |													|
+| number			  | string				  |													|
+| firstName			  | string				  |													|
+| lastName			  | string				  |													|
+| street			  | string				  |													|
+| streetNumber		  | string				  |													|
+| zipCode			  | string				  |													|
+| city				  | string				  |													|
+| attribute			  | object				  |	**[SippingAttribute](#shipping-attribute)**		|
+
+## Shipping Attribute
+
+* **Model:** Shopware\Models\Attribute\CustomerShipping
+* **Table:** s_user_shippingaddress_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| customerShippingId  | integer (foreign key) |                                                 |
+| text1				  | string				  |													|
+| text2				  | string				  |													|
+| text3				  | string				  |													|
+| text4				  | string				  |													|
+| text5				  | string				  |													|
+| text6				  | string				  |													|
+
+## Shop
+
+* **Model:** Shopware\Models\Shop\Shop
+* **Table:** s_core_shops
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| mainId	      	  | integer (foreign key) | 		                                        |
+| categoryId		  | integer (foreign key) | **[Category](#category)**						|
+| name		      	  | string				  | 		                                        |
+| title				  | string				  | 												|
+| position			  | integer				  | 												|
+| host				  | string				  | 												|
+| basePath			  | string				  | 												|
+| baseUrl			  | string				  | 												|
+| hosts				  | string				  | 												|
+| secure			  | boolean				  | 												|
+| alwaysSecure		  | boolean				  | 												|
+| secureHost		  | string				  | 												|
+| secureBasePath	  | string				  | 												|
+| default			  | boolean				  | 												|
+| active			  | boolean				  | 												|
+| customerScope		  | boolean				  | 												|
+| locale			  | object				  | **[Locale](#locale)**							|
+
+**The locale is only available for languageSubShops.**
+
+## Similar
+
+* **Table:** s_articles_similar
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id            	    | integer (foreign key) | **[Article](../api-resources-article)**               |
+| name                  | string                |                                                       |
+
+## Supplier
+
+* **Model:** Shopware\Models\Article\Supplier
+* **Table:** s_articles_supplier
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id            	    | integer (primary key  |                                                 |
+| name                  | string                |                                                 |
+| image                 | string                |                                                 |
+| link                  | string                |                                                 |
+| description           | string                |                                                 |
+| metaTitle             | string                |                                                 |
+| metaDescription       | string                |                                                 |
+| metaKeywords          | string                |                                                 |
+
+## Tax
+
+* **Model:** Shopware\Models\Tax\Tax
+* **Table:** s_core_tax
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id             	    | integer (primary key) |                                                 |
+| tax                   | string                | 	                                              |
+| name                  | string                |                                                 |
+
+## Translation
+
+* **Model:** Shopware\Models\Article\Translation
+* **Table:** s_articles_translations
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| metaTitle            	| string                |                                                       |
+| attr1                 | string                |                                                       |
+| attr2                 | string                |                                                       |
+| attr3                 | string                |                                                       |
+| attr4                 | string                |                                                       |
+| attr5                 | string                |                                                       |
+| attr6                 | string                |                                                       |
+| attr7                 | string                |                                                       |
+| attr8                 | string                |                                                       |
+| attr9                 | string                |                                                       |
+| attr10                | string                |                                                       |
+| attr11                | string                |                                                       |
+| attr12                | string                |                                                       |
+| attr13                | string                |                                                       |
+| attr14                | string                |                                                       |
+| attr15                | string                |                                                       |
+| attr16                | string                |                                                       |
+| attr17                | string                |                                                       |
+| attr18                | string                |                                                       |
+| attr19                | string                |                                                       |
+| attr20                | string                |                                                       |
+| name                  | string                |                                                       |
+| description           | string                |                                                       |
+| descriptionLong       | string                |                                                       |
+| keywords              | string                |                                                       |
+| packUnit              | string                |                                                       |
+| shopId                | integer               |                                                       |

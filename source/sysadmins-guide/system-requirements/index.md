@@ -14,8 +14,9 @@ The required server hardware is mostly dependent on the number of articles avail
 - Possibility to set up cron jobs
 - Minimum 4 GB available hard disk space
 
- * The minimum required PHP version may be raised to 5.5 during Shopware 5 life cycle. We strongly recommend that you use PHP 5.5.
- * PHP 5.6.0 - 5.6.3 are not compatible caused by a [session bug](https://bugs.php.net/bug.php?id=68331)
+ (\*) The minimum required PHP version may be raised to 5.5 during Shopware 5 life cycle. We strongly recommend that you use PHP 5.5.
+ 
+ (\*) PHP 5.6.0 - 5.6.3 are not compatible caused by a [session bug](https://bugs.php.net/bug.php?id=68331)
 
 ### PHP Extensions / Web server:
 

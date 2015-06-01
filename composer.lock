@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a786c0e256be40bd1e1f3ab346698ca2",
+    "hash": "6141c7cab5968cce654c3b6296a26e0e",
     "packages": [
         {
             "name": "bcremer/sculpin-less-bundle",
@@ -101,7 +101,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/4aa431025b38d0783d47984a6f3a0c02b186fa58",
+                "url": "https://api.github.com/repos/composer/composer/zipball/bc45d9185513575434021527d7756420e9f4b2cf",
                 "reference": "4aa431025b38d0783d47984a6f3a0c02b186fa58",
                 "shasum": ""
             },
@@ -990,6 +990,52 @@
             "time": "2014-12-12 05:04:05"
         },
         {
+            "name": "mavimo/sculpin-redirect-bundle",
+            "version": "dev-master",
+            "target-dir": "Mavimo/Sculpin/Bundle/RedirectBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mavimo/sculpin-redirect-bundle.git",
+                "reference": "5c42c401942008de04aa1e1d64161ca105568e2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mavimo/sculpin-redirect-bundle/zipball/5c42c401942008de04aa1e1d64161ca105568e2a",
+                "reference": "5c42c401942008de04aa1e1d64161ca105568e2a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mavimo\\Sculpin\\Bundle\\RedirectBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Vito Moscaritolo",
+                    "email": "marco@mavimo.org",
+                    "homepage": "http://www.mavimo.org"
+                }
+            ],
+            "description": "Sculpin Redirect Bundle",
+            "homepage": "https://sculpin.io",
+            "keywords": [
+                "blog",
+                "blogging",
+                "redirect",
+                "site",
+                "static"
+            ],
+            "time": "2014-01-04 14:40:02"
+        },
+        {
             "name": "michelf/php-markdown",
             "version": "1.5.0",
             "source": {
@@ -1372,7 +1418,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/c73a58466fc9182cc79c3bf9a0e90cd1e7487d94",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/f65fc299829cdba628a25b8f3dd0c12bfa96c159",
                 "reference": "c73a58466fc9182cc79c3bf9a0e90cd1e7487d94",
                 "shasum": ""
             },
@@ -1416,7 +1462,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/f99d3a164cf004c7a6e26b212165940552a7e116",
+                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/8afd700bdf66d19ad1e79bbdc23e80b6de61e5a3",
                 "reference": "f99d3a164cf004c7a6e26b212165940552a7e116",
                 "shasum": ""
             },
@@ -2506,7 +2552,8 @@
         "dflydev/embedded-composer-console": 20,
         "dflydev/embedded-composer-core": 20,
         "robloach/component-installer": 20,
-        "bcremer/sculpin-less-bundle": 20
+        "bcremer/sculpin-less-bundle": 20,
+        "mavimo/sculpin-redirect-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

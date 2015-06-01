@@ -7,6 +7,7 @@ class SculpinKernel extends AbstractKernel
     protected function getAdditionalSculpinBundles()
     {
         return [
+            'Mavimo\Sculpin\Bundle\RedirectBundle\SculpinRedirectBundle',
             SculpinLessBundle::class_name
         ];
     }

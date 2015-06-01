@@ -1215,13 +1215,35 @@ input#search-query {
         margin-top: 15px;
     }
 
-    .edit-on-github {
+    .info {
+        display: block;
         float: right;
-        margin-top: 8px;
+        margin-left: 20px;
 
-        .icon-github {
-            font-size: 24px;
-            top: 4px;
+        .edit-on-github {
+            float: right;
+            margin-top: 8px;
+
+            .icon-github {
+                font-size: 24px;
+                top: 4px;
+            }
+        }
+
+        .version {
+            float: right;
+            margin-left: 20px;
+            display: inline-block;
+            margin-top: 11px;
+
+            .versionBadge {
+                margin-left: 5px;
+                border-radius: 5px;
+                padding: 3px 8px;
+                display: inline-block;
+                background-color: #1491e7;
+                color: white;
+            }
         }
     }
 
@@ -1413,11 +1435,29 @@ input#search-query {
 
 @media screen and (max-width: 780px) {
     .devdocs {
-        .edit-on-github {
-            display: block;
-            margin: -12px 0 24px 0;
-            float: none;
+
+        .info {
+            width: 100%;
+            margin-bottom: 10px;
+
+            .edit-on-github {
+                display: block;
+                margin: -12px 0 24px 0;
+                float: none;
+            }
+
+            .version {
+                display: block;
+                float: none;
+                margin-left: 0;
+                margin-bottom: 20px;
+                
+                .versionBadge {
+                    float: none;
+                }
+            }
         }
+
         ul li ul li {
             margin-left: -30px;
         }

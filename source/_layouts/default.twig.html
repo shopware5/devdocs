@@ -68,14 +68,21 @@
 
 <div class="devdocs content container">
 	<div class="inner-container">
-
-		{% if page.shopware_version %}
-			<span data-shopware-version="{{ page.shopware_version }}"></span>
-		{% endif %}
-
-	    {% if site.github_enabled and page.github_link %}
-		<a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
-		{% endif %}
+        
+        <div class="info">
+            
+            {% if page.shopware_version %}
+                <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
+                    <span class="versionDisc">as of version</span>
+                    <span class="versionBadge">{{ page.shopware_version }}</span>
+                </span>
+            {% endif %}
+    
+            {% if site.github_enabled and page.github_link %}
+            <a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+            {% endif %}
+            
+        </div>
 
 		{% if page.title is defined %}
 		<h1>

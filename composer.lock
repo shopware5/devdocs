@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6141c7cab5968cce654c3b6296a26e0e",
+    "hash": "c8e9a16f55173e0254cf48fd94e3f202",
     "packages": [
         {
             "name": "bcremer/sculpin-less-bundle",
-            "version": "dev-master",
+            "version": "0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcremer/sculpin-less-bundle.git",
-                "reference": "70e668643d44e82e50c69d100f08a92ab653230b"
+                "reference": "1945c0604048126016d03b7e8e12a390bcef891f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcremer/sculpin-less-bundle/zipball/70e668643d44e82e50c69d100f08a92ab653230b",
-                "reference": "70e668643d44e82e50c69d100f08a92ab653230b",
+                "url": "https://api.github.com/repos/bcremer/sculpin-less-bundle/zipball/139cae83dd97201df0991ab61f4f8b09aa93f35c",
+                "reference": "1945c0604048126016d03b7e8e12a390bcef891f",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "lessphp",
                 "sculpin"
             ],
-            "time": "2015-04-15 06:18:39"
+            "time": "2015-06-08 07:24:12"
         },
         {
             "name": "components/highlightjs",
@@ -101,7 +101,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/bc45d9185513575434021527d7756420e9f4b2cf",
+                "url": "https://api.github.com/repos/composer/composer/zipball/9fb2d4f2d642a0749decb41bc2fe4be2bf8bef7a",
                 "reference": "4aa431025b38d0783d47984a6f3a0c02b186fa58",
                 "shasum": ""
             },
@@ -1418,7 +1418,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/f65fc299829cdba628a25b8f3dd0c12bfa96c159",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/f249264ea72390ea68f480984ab705cb68c92148",
                 "reference": "c73a58466fc9182cc79c3bf9a0e90cd1e7487d94",
                 "shasum": ""
             },
@@ -1462,7 +1462,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/8afd700bdf66d19ad1e79bbdc23e80b6de61e5a3",
+                "url": "https://api.github.com/repos/sculpin/sculpin/zipball/b07fa508d7f49f490ee3c35d586c78b0c417e466",
                 "reference": "f99d3a164cf004c7a6e26b212165940552a7e116",
                 "shasum": ""
             },
@@ -2552,7 +2552,6 @@
         "dflydev/embedded-composer-console": 20,
         "dflydev/embedded-composer-core": 20,
         "robloach/component-installer": 20,
-        "bcremer/sculpin-less-bundle": 20,
         "mavimo/sculpin-redirect-bundle": 20
     },
     "prefer-stable": false,

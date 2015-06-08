@@ -1,3 +1,11 @@
 sculpin_content_types:
     posts:
         enabled: false
+
+sculpin:
+    ignore:
+        - assets/css/_imports/
+
+sculpin_less:
+    files:
+        - assets/css/basic.less

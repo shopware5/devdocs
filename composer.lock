@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bcremer/sculpin-less-bundle",
-            "version": "0.1",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcremer/sculpin-less-bundle.git",
-                "reference": "1945c0604048126016d03b7e8e12a390bcef891f"
+                "reference": "139cae83dd97201df0991ab61f4f8b09aa93f35c"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/bcremer/sculpin-less-bundle/zipball/139cae83dd97201df0991ab61f4f8b09aa93f35c",
-                "reference": "1945c0604048126016d03b7e8e12a390bcef891f",
+                "reference": "139cae83dd97201df0991ab61f4f8b09aa93f35c",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "lessphp",
                 "sculpin"
             ],
-            "time": "2015-06-08 07:24:12"
+            "time": "2015-06-08 07:43:05"
         },
         {
             "name": "components/highlightjs",

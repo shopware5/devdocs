@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Using CSS and JavaScript files in themes.
-github_link: designers-guide/css-file-usage/index.md
+github_link: designers-guide/css-and-js-files-usage/index.md
 indexed: true
 ---
 
@@ -18,7 +18,7 @@ ExampleTheme
                 └── example.js
 ```
 
-As the second step you will have to define the CSS or JavaScript files you would like to use inside your custom theme. This can be done by adding an array to your `Theme.php` file that contains the specific file paths, as the following examples show:
+As the second step you will have to define the CSS or JavaScript files you would like to use inside your custom theme. This can be done by adding an array to your `Theme.php` file that contains the specific file paths, as the following examples shows:
 
 #### Add CSS files: ####
 ```

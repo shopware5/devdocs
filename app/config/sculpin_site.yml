@@ -2,3 +2,42 @@ title: Shopware Developer Documentation
 githuburl: https://github.com/shopware/devdocs/blob/master/source/
 github_enabled: true
 google_analytics_tracking_id: UA-61070992-1
+
+
+authors:
+  bc:
+      name: Benjamin Cremer
+      title: Developer && Developer Advocate
+      twitter: http://twitter.com/benjamincremer
+      github: https://github.com/bcremer
+      bio: I am Developer and Advocate in the Core department of shopware. I do web and linux stuff.
+  dn:
+      name: Daniel Nögel
+      title: Developer
+      twitter: danielnoegel
+      github: https://github.com/dnoegel/
+      url: https://github.com/dnoegel/
+  dr:
+    name: Oliver Skroblin
+    title: Developer
+    github: https://github.com/oliverdenter
+
+  psc:
+      name: Philipp Schuch
+      title: Developer
+      twitter: https://twitter.com/PhilSchuch
+      github: https://github.com/Phil23
+      url: https://www.facebook.com/phil.schuch
+      bio: I am a web-developer in the frontend department of shopware. I test new technologies to create forward thinking user experience.
+
+  hd:
+      name: Dennis Höting
+      title: Developer, Team Leader
+      twitter: https://twitter.com/DennisHoeting
+      github: https://github.com/dennishoeting
+
+  viison:
+      name: VIISON (Guest Blogger)
+      url: http://viison.com
+      twitter: https://twitter.com/viison
+      bio: We are a talented team of web, mobile and application developers. With backgrounds in the tourism and financial            				industry we are able to think out of the box and bring new ideas           				to the table. Concept phase, visual design and usability           				considerations, implementation, ongoing enhancements           				and maintenance, we are up for the task.

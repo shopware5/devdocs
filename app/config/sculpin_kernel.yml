@@ -1,6 +1,11 @@
 sculpin_content_types:
     posts:
-        enabled: false
+        permalink: blog/:year/:month/:day/:slug_title/
+        path: blog/_posts
+        taxonomies:
+         - tags
+         - categories
+         - authors
 
 sculpin:
     ignore:

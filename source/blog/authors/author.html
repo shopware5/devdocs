@@ -1,0 +1,58 @@
+---
+layout: default
+title: Author
+generator: [posts_author_index, pagination]
+pagination:
+    provider: page.author_posts
+
+---
+
+{% block head_meta %}
+    <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/blog/authors/{{ page.author|url_encode(true) }}.xml" title="{{ site.title }} '{{ page.author }}' author feed" />
+    <meta name="robots" content="noindex, follow">
+{% endblock %}
+
+{% block title %}{{ page.title }} "{{ page.author }}"{% endblock %}
+{% block content %}
+
+<div class="author">
+
+{% set authorhandle = page.author %}
+
+{% if site.authors[authorhandle] %}
+{% set author = site.authors[authorhandle] %}
+    
+{% include 'author_box.twig' %}
+    
+<p>
+    {{ author.bio }}
+</p>
+
+<h2>Posts by {{ author.name }}</h2>
+<ul>
+{% for post in page.pagination.items %}
+    <li>
+        <div><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></div>
+        <span class="small">
+            <span class="icon icon-clock"></span> {{ post.date | date(site.default_date_format) }}
+        </span>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</div>
+
+<div>
+{% if page.pagination.previous_page or page.pagination.next_page %}
+    <nav class="article clearfix">
+    {% if page.pagination.previous_page %}
+    <a class="previous" href="{{ site.url }}{{ page.pagination.previous_page.url }}" title="Previous Page"><span class="title">Previous Page</span></a>
+    {% endif %}
+    {% if page.pagination.next_page %}
+    <a class="next" href="{{ site.url }}{{ page.pagination.next_page.url }}" title="Next Page"><span class="title">Next Page</span></a>
+    {% endif %}
+    </nav>
+{% endif %}
+</div>
+{% endblock content %}

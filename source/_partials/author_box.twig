@@ -1,0 +1,46 @@
+<div class="blog-user-info">
+	<div class="blog-avatar">
+		<img src="{{ site.url }}/blog/img/authors/author_{{ authorhandle|url_encode(true) }}.jpg" width="50" height="50">
+	</div>
+	<div class="blog-user">
+		<div class="user-info">
+			<a href="{{ site.url }}/blog/authors/{{ authorhandle|url_encode(true) }}">{{ author.name }}</a>
+            {% if author.title %}<span class="user-title">, {{ author.title }}</span>{% endif %}
+		</div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> {{ page.date | date(site.default_date_format) }}
+        </div>
+
+        <div class="user-services">
+
+            {% if author.twitter %}
+                <span class="user-service">
+                    <a href="{{ author.twitter }}" target="_blank" title="Twitter {{ author.name }}">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            {% endif %}
+
+            {% if author.url %}
+                <span class="user-service">
+                    <a href="{{ author.url }}" target="_blank" title="Website {{ author.name }}">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            {% endif %}
+
+            {% if author.github %}
+                <span class="user-service">
+                    <a href="{{ author.github }}" target="_blank" title="Github {{ author.name }}">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+            {% endif %}
+
+        </div>
+		<div class="clearfix"></div>
+	</div>
+
+    <div class="clearfix"></div>
+</div>

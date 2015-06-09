@@ -14,21 +14,21 @@
      *    $('.test').expandSearch();
      *
      * @example dom structure
-     * 
+     *
      *    <div id="searchBox">
      *       <form>
      *          <input id="search-query">
      *       </form>
      *    </div>
-     *        
-     *    <div id="search-results"> 
+     *
+     *    <div id="search-results">
      *       <div class="entries">
      *          <a class="entry">
      *              //content
      *          </a>
      *       </div>
      *    </div>
-     *    
+     *
      *    <span class="searchButton"></span>
      */
 
@@ -69,7 +69,7 @@
 
         me.$el = $(el);
         me.$body = $('body');
-        me.$search = $(me.opts.search);
+        me.$search = me.$el;
         me.$result = $(me.opts.results);
         me.$entries = $(me.opts.entries);
         me.$input = $('#' + me.opts.inputForm);
@@ -81,32 +81,10 @@
      * plugin init function
      */
     Plugin.prototype.init = function () {
-        var me = this,
-            query = me.getParameterByName('q');
-
-        me.$el.on('click.' + pluginName, $.proxy(me.onClick, me));
-        me.$body.on('click.' + pluginName, $.proxy(me.onBodyClick, me));
-        me.$body.on('keydown.' + pluginName, $.proxy(me.navigateResults, me));
-
-        if(query) {
-            me.$search.show();
-        }
-    };
-
-    /**
-     * Event listener which will be fired when the user clicks on the element {@link this.$el}
-     * @event click
-     */
-    Plugin.prototype.onClick = function() {
         var me = this;
 
-        me.$search.animate({width:'toggle'}, me.opts.animationSpeed, function () {
-            $('#' + me.opts.inputForm).focus();
-        });
-
-        if (me.$result.is(':visible')) {
-            me.$result.hide();
-        }
+        me.$body.on('click.' + pluginName, $.proxy(me.onBodyClick, me));
+        me.$body.on('keydown.' + pluginName, $.proxy(me.navigateResults, me));
     };
 
     /**
@@ -125,7 +103,6 @@
         }
 
         if (!me.$input.val().length || me.$result.is(':visible')) {
-            me.$search.hide();
             me.$result.hide();
             me.$input.val("");
         }
@@ -146,7 +123,7 @@
             activeElement = $(me.opts.entries).find('.' + me.opts.activeClass);
 
             if (activeElement.length === 1) {
-                if (key === 40) {
+                if (key === 40 || key == 9) { // down OR tab
                     event.preventDefault();
                     if (!activeElement.next().length) {
                         var entry = me.$entries.children().first();
@@ -156,7 +133,7 @@
                         activeElement.next().addClass(me.opts.activeClass);
                         activeElement.removeClass(me.opts.activeClass);
                     }
-                } else if (key === 38) {
+                } else if (key === 38) { // up
                     event.preventDefault();
                     if (!activeElement.prev().length) {
                         var entry = me.$entries.children().last();
@@ -168,10 +145,11 @@
                     }
                 }
             } else {
-                if (key === 40) {
+                if (key === 40 || key == 9) { // down OR tab
+                    event.preventDefault();
                     entry = $(me.opts.entries).children().first();
                     entry.addClass(me.opts.activeClass);
-                } else if (key === 38) {
+                } else if (key === 38) { // up
 
                     entry = $(me.opts.entries).children().last();
                     entry.addClass(me.opts.activeClass);
@@ -179,7 +157,7 @@
             }
         }
 
-        if(key === 13) {
+        if(key === 13) { // enter
             event.preventDefault();
 
             entry = $(me.opts.entries).find('.' + me.opts.activeClass);
@@ -187,17 +165,6 @@
                 window.location.href = entry.attr('href');
             }
         }
-    };
-
-    /**
-     * @param {String} name Query parameter
-     * @returns {undefined|string} returns the value of the query parameter
-     */
-    Plugin.prototype.getParameterByName = function (name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? undefined : decodeURIComponent(results[1].replace(/\+/g, " "));
     };
 
     $.fn.expandSearch = function (options) {
@@ -210,7 +177,7 @@
      * initial function call on DOM element
      */
     $(function() {
-        $('.searchButton').expandSearch();
+        $('#searchBox').expandSearch();
     });
 
 }) (jQuery, window, document);

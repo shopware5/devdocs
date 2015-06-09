@@ -1,0 +1,88 @@
+{% extends "default" %}
+{% if page.description is defined %} {% set page_description = page.description %} {% else %} {% set page_description = page.blocks.content|striptags|slice(0,155) %} {% endif %}
+
+{% block head_meta %}
+<meta name="description" content="{{ page_description }}">
+<meta name="keywords" content="{% for tag in page.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}"/>
+
+{% if page.authors %}
+{% set main_author = page.authors[0] %}
+    {% if site.authors[main_author] %}
+    <meta name="author" content="{{ site.authors[main_author]['name']|default(main_author) }}">
+    <link rel="author" href="{{ site.authors[main_author]['url'] }}">
+    {% endif %}
+{% endif %}
+
+<!-- Facebook -->
+<meta property="og:title" content="{{ page.title }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="{{ page_image }}"/>
+<meta property="og:url" content="{{ site.domain_url }}{{ page.url }}"/>
+<meta property="og:description" content="{{ page_description }}"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="{{ page.title }}"/>
+<meta name="twitter:description" content="{{ page_description }}"/>
+<meta name="twitter:image" content="{{ page_image }}"/>
+{% endblock %}
+
+{% block content_wrapper %}
+<article class="blog-post">
+
+    {% if page.authors %}
+    <div class="blog-authors">
+        {% for authorhandle in page.authors %}
+        {% if site.authors[authorhandle] %}
+        {% set author = site.authors[authorhandle] %}
+        {% include 'author_box.twig' %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="blog-detail-text">
+        {{ page.blocks.content|raw }}
+    </div>
+
+    <div class="additional clearfix">
+
+        {% if page.categories %}
+        <div class="categories">
+            <span class="desc">Categories:</span>
+            {% for category in page.categories %}
+            <a class="badge" href="{{ site.url }}/blog/categories/{{ category|url_encode(true) }}">{{ category }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if page.tags %}
+        <div class="tags">
+            <span class="desc">Tags:</span>
+            {% for tag in page.tags %}
+            <a class="badge" href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+    <a href="{{ site.url }}/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<!-- disqus -->
+<script type="text/javascript">
+    var disqus_shortname = 'shopware';
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+{% endblock %}

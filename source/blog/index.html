@@ -1,0 +1,51 @@
+---
+layout: default
+title: Blog
+generator: pagination
+pagination:
+max_per_page: 3
+use:
+- posts
+---
+{% for post in page.pagination.items %}
+    <article class="blog-post">
+        <header class="post-header">
+            <h2 class="header-title">
+                <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                <span class="small">
+                    <span class="icon icon-clock"></span> {{ post.date | date(site.default_date_format) }}
+                </span>
+            </h2>
+        </header>
+
+        {% if post.authors %}
+        <div class="post-authors">
+            {% for authorhandle in post.authors %}
+                {% if site.authors[authorhandle] %}
+                    {% set author = site.authors[authorhandle] %}
+                    {% include 'author_box.twig' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="post-desc">
+            {% if post.meta.excerpt %}
+                {{ post.meta.excerpt }}
+            {% else %}
+                {% set summary_array = post.blocks.content|raw|striptags|split(' ')%}
+                {{ summary_array|slice(0,70)|join(' ') }}...
+            {% endif %}
+        </div>
+
+        <a href="{{ site.url }}{{ post.url }}" title="Read more about {{ post.title }}" class="btn btn-default btn-xs">
+            Read more...
+        </a>
+    </article>
+{% endfor %}
+{% if page.pagination.previous_page or page.pagination.next_page %}
+    <ul class="pagination">
+        {% if page.pagination.previous_page %}<a href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}<br />
+        {% if page.pagination.next_page %}<a href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}<br />
+    </ul>
+{% endif %}

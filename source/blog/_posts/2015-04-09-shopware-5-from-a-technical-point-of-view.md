@@ -8,7 +8,7 @@ categories:
 authors: [viison]
 ---
 
-Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shoppers <a href="https://www.internetretailer.com/2015/03/09/nearly-half-digital-shoppers-top-retailers-are-mobile-only" target="_blank">preferring to use mobile devices</a> for online shopping, this is an important step to take. The core classes have also been revised and especially with the new <a href="https://devdocs.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle classes</a>, plugin authors and Shopware agencies now have a much easier time to customize article listings.
+Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shoppers <a href="https://www.internetretailer.com/2015/03/09/nearly-half-digital-shoppers-top-retailers-are-mobile-only" target="_blank">preferring to use mobile devices</a> for online shopping, this is an important step to take. The core classes have also been revised and especially with the new <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle classes</a>, plugin authors and Shopware agencies now have a much easier time to customize article listings.
 
 ![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_1.png)
 
@@ -53,7 +53,7 @@ class Shopware_Controllers_Frontend_ViisonLatestArticles extends Enlight_Control
     }
 }
 ```
-The ArticleAgeCondition is a custom filter criterion that performs the specific filtering that our plugin needs. Shopware also comes with a number of predefined conditions, so you do not always have to write these conditions yourself. The predefined conditions can be found in the <a href="https://devdocs.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle documentation</a>. The ArticleAgeCondition class is defined as follows:
+The ArticleAgeCondition is a custom filter criterion that performs the specific filtering that our plugin needs. Shopware also comes with a number of predefined conditions, so you do not always have to write these conditions yourself. The predefined conditions can be found in the <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle documentation</a>. The ArticleAgeCondition class is defined as follows:
 
 ```php
 class ArticleAgeCondition implements ConditionInterface

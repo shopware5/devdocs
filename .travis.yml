@@ -22,7 +22,7 @@ before_script:
     - composer install
 
 script:
-    - ./vendor/bin/sculpin generate --env=prod --url="https://devdocs.shopware.com"
+    - ./vendor/bin/sculpin generate --env=prod --url="https://developers.shopware.com"
     - ./contrib/package_plugins.sh
 
 after_success:

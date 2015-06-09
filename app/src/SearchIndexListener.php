@@ -40,6 +40,10 @@ class SearchIndexListener implements EventSubscriberInterface
         /** @var AbstractSource $item */
         foreach ($event->allSources() as $item) {
             if ($item->data()->get('indexed')) {
+                if ($item->isGenerated()) {
+                    continue;
+                }
+
                 $documents[] = $this->parseSource($item);
             }
         }

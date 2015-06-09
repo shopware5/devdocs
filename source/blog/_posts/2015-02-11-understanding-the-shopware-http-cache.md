@@ -8,8 +8,6 @@ categories:
 - dev
 
 authors: [dn]
-
-draft: true
 ---
 
 The shopware HTTP cache is available for production since shopware 4.1.0. It allows you to cache responses of the shop system, so that the next time the same page is requested, the answer can be returned much faster.

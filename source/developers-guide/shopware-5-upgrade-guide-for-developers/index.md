@@ -282,7 +282,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Email validation is now done using the `egulias/email-validator` library.
 * Added configuration `showEsd` to show/hide the ESD-Downloads in the customer accounts menu. (default = true)
 * Article image album sizes have been changed to match the requirements of the new template (only new installations)
-# \sArticles::sGetProductByOrdernumber result is now equals with the \sArticles::sGetPromotionById result.
+# \sArticles::sGetProductByOrdernumber result is equal with the \sArticles::sGetPromotionById result.
 
 ## 5.0.0 Beta 2 Changes
 * Renamed the shopware_searchdbal.product_number_search to shopware_search.product_number_search. Use shopware_search.product_number_search service for number searches.

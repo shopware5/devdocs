@@ -35,6 +35,8 @@ Inside the `frontend` folder, which is the focus of this guide, you can find our
 __Important:__ Do not change the Bare/Responsive themes themselves, as the changes might be overwritten by future updates.
 
 ##Custom themes
+
+### Creating a theme with the Theme Manager
 ![Adding a new theme](img-custom-theme.jpg)
 
 In order to create your theme, you have to click on the `Create theme` button inside the `Theme manager` and give it a suiting name (in this example: `TutorialTheme`) and some additional information. 
@@ -45,6 +47,15 @@ The frontend folder now contains 3 themes:
 - `Bare`
 - `Responsive`
 - `TutorialTheme`
+
+### Creating a theme with the Shopware CLI tools
+
+You can also create a new custom theme by using the `sw:theme:create` CLI command:
+
+```
+sw:theme:create --description="Text" --author="shopware AG" --license="MIT" Responsive TutorialThemeFolder TutorialTheme
+```
+If you need a general introduction regarding the CLI commands you can take a look at our [Shopware 5 CLI commands article](https://developers.shopware.com/developers-guide/shopware-5-cli-commands/).
 
 ##Selecting themes
 ![Selecting a theme](img-select-theme.jpg)

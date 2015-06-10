@@ -18,22 +18,21 @@ without loosing backward compatibility. In this post I want to discuss the techn
 # Hook?
 Generally there are several ways to extend Shopware. By default we distinguish *global events*, *application events* and *hooks*
 (for a brief overview see the [plugin quick start guide](http://devdocs.shopware.com/developers-guide/plugin-quick-start#logical-extensions)).
-In addition to that, you are able to [decorate shopware's core services](https://developers.shopware.com/developers-guide/shopware-5-core-service-extensions/).
+In addition to that, you are able to [decorate Shopware's core services](https://developers.shopware.com/developers-guide/shopware-5-core-service-extensions/).
 
-The main difference between events and hooks is the fact, that events are emitted at certain places in the source code
-where a kind shopware developer had extensibility in mind and added a (hopefully) useful event for you to use. Hooks 
-are a more generic approach and allow you to extend any public or protected method in certain classes. So even if no
+The main difference between events and hooks is the fact that events are emitted at certain places in the source code
+where a kind Shopware developer had extensibility in mind and added a (hopefully) useful event for you to use. Hooks 
+are a more generic approach and allow you to extend any public or protected method in certain classes. So, even if no
 explicit event is available, a hook might help you to extend Shopware's functionality. You are then able to modify
-input arguments, return values or replace a method entirely. For that reason, the hook system can be considered offering
-aspect oriented programming (AOP) in Shopware. 
+input arguments, return values or replace a method entirely. For that reason, the hook system can be considered as offering aspect oriented programming (AOP) in Shopware. 
 
 # What is AOP?
 AOP ([aspect oriented programming](http://en.wikipedia.org/wiki/Aspect-oriented_programming)) is a programming paradigm
-that addresses [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern) in a software. It allows you
+that addresses [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern) in software. It allows you
 to add behaviour to your objects, without having to modify the objects themselves. As PHP does not support AOP natively,
 it is usually added using other patterns like the proxy pattern. 
 So from an architectural point of view, one could consider Shopware implementing extensibility of some objects by using
-an AOP based paradigm. The up- and downsides of this will be discussed in the [Best practice?](#best-practice%3F) section. 
+an AOP based paradigm. The up and downsides of this will be discussed in the [Best practice?](#best-practice%3F) section. 
 
 # Implementation details
 ## Proxy pattern
@@ -41,8 +40,8 @@ Technically speaking the hook system makes use of the [proxy pattern](http://en.
 classes are not instantiated directly but with a generated proxy class, which inherits from the hooked class. 
 
 Whenever you request a core class, e.g. via `Shopware()->Modules()->Article()`, Shopware will return such a proxy for the
-class name (see \Shopware_Components_Modules::loadModule for more details). You can test it easily printing out the class
-name of your article core class `echo get_class(Shopware()->Modules()->Articles());` will print `Shopware_Proxies_sArticlesProxy`. 
+class name (see \Shopware_Components_Modules::loadModule for more details). You can test it easily by printing out the class
+name of your article core class: `echo get_class(Shopware()->Modules()->Articles());` will print `Shopware_Proxies_sArticlesProxy`. 
 
 ## What does the proxy do?
 So we already know, that - behind the scenes - we are always working with the proxy objects and not the actual class. In
@@ -163,12 +162,12 @@ The following diagram shows the rough call stack of hooked calls.
 
 # Best practice?
 Hooks are a double-edged sword in some regards. They are stable, powerful and add extensibility to a wide range of objects
-without the need, to take care of the extensibility in any single object. 
+without the need to take care of the extensibility in any single object. 
 There are downsides, however. As hooks allow you to directly bind to public and also protected methods, hookable classes are hard
-to maintain and hook callbacks might rely on implementation details, that might change. As there are no interfaces,
+to maintain and hook callbacks might rely on implementation details that might change. As there are no interfaces,
 it might be hard to detect those changes.
-Furthermore replace hooks do not allow multi-inheritance. If plugin A and plugin B use a replace hook and do a `executeParent` 
-at some point, always the main class will be called - so no nesting is possible, as it is using the 
+Furthermore, replace hooks do not allow multi-inheritance. If plugin A and plugin B use a replace hook and do a `executeParent` 
+at some point, the main class will be called always - so no nesting is possible, as it is using the 
 [decorator pattern](http://en.wikipedia.org/wiki/Decorator_pattern). In addition to that, replace hooks tend to
 lead developers to duplicate core logic into their plugin. When newer Shopware versions update the original method 
 (e.g. to fix a bug), replace hooks might still enforce the old behaviour.

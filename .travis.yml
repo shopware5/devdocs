@@ -3,11 +3,6 @@ language: php
 php:
     - 5.5
 
-# whitelist
-branches:
-  only:
-    - master
-
 sudo: false
 
 cache:
@@ -26,4 +21,4 @@ script:
     - ./contrib/package_plugins.sh
 
 after_success:
-  - ./deploy.sh
+    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && ./deploy.sh

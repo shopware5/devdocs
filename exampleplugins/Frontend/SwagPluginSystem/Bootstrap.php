@@ -1,14 +1,14 @@
 <?php
 
-use ShopwarePlugins\SwagProductExtension\StoreFrontBundle\ListProductService;
-use ShopwarePlugins\SwagProductExtension\StoreFrontBundle\SeoCategoryService;
+use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\ListProductService;
+use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\SeoCategoryService;
 
-class Shopware_Plugins_Frontend_SwagProductExtension_Bootstrap
+class Shopware_Plugins_Frontend_SwagPluginSystem_Bootstrap
     extends Shopware_Components_Plugin_Bootstrap
 {
     public function getLabel()
     {
-        return 'Produkterweiterung';
+        return 'Shopware 5 - Big picture of the plugin system';
     }
 
     public function install()
@@ -23,22 +23,46 @@ class Shopware_Plugins_Frontend_SwagProductExtension_Bootstrap
             'registerListProductService'
         );
 
-        $this->subscribeEvent('Enlight_Controller_Action_PostDispatchSecure_Frontend', 'addTemplateDir');
-        $this->subscribeEvent('Enlight_Controller_Action_PostDispatchSecure_Widgets',  'addTemplateDir');
+        $this->subscribeEvent(
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend',
+            'addTemplateDir'
+        );
+
+        $this->subscribeEvent(
+            'Enlight_Controller_Action_PostDispatchSecure_Widgets',
+            'addTemplateDir'
+        );
+
+        $this->subscribeEvent(
+            'Theme_Compiler_Collect_Plugin_Less',
+            'onCollectLessFiles'
+        );
+
         return true;
     }
 
     public function afterInit()
     {
         $this->get('Loader')->registerNamespace(
-            'ShopwarePlugins\SwagProductExtension',
+            'ShopwarePlugins\SwagPluginSystem',
             $this->Path()
+        );
+    }
+
+    /**
+     * @return \Shopware\Components\Theme\LessDefinition
+     */
+    public function onCollectLessFiles()
+    {
+        return new \Shopware\Components\Theme\LessDefinition(
+            [],
+            [__DIR__ . '/Views/frontend/_public/src/less/all.less']
         );
     }
 
     public function addTemplateDir()
     {
-        Shopware()->Container()->get('template')->addTemplateDir($this->Path() . 'Views/');
+        Shopware()->Container()->get('template')->addTemplateDir(__DIR__ . '/Views/');
     }
 
     public function registerSeoCategoryService()

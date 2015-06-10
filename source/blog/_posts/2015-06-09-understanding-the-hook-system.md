@@ -1,5 +1,5 @@
 ---
-title: Understanding the shopware hook system
+title: Understanding the Shopware hook system
 tags:
     - hook
     - extension

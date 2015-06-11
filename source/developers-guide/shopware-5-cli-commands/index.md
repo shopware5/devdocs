@@ -5,9 +5,19 @@ github_link: developers-guide/shopware-5-cli-commands/index.md
 indexed: true
 ---
 
-Shopware 5 includes several CLI commands that you can use to run operations that, for any reason, can or should not be executed from the browser interface. The commands described below will help you perform otherwise complicated tasks, or optimize, in the background, certain aspects of your shop, which will make it perform better.
+Shopware 5 includes several CLI commands that you can use to run operations that, for any reason, can or should not be executed from the browser interface. These commands will help you perform otherwise complicated tasks, or optimize, in the background, certain aspects of your shop, which will make it perform better.
 
-As CLI commands may be added in future releases, this document may not contain all the available commands. Moreover, plugins can add new, custom commands, that will not be covered here. To get a full list of the available CLI commands in your Shopware installation, type the following in a CLI shell:
+Besides the commands included in the core, plugins can define their own CLI commands, that can be executed like a core command, provided the related plugin is installed and active.
+
+## Using Shopware's CLI commands
+
+Shopware's CLI commands are executed by typing the following command on the shell interface, inside your Shopware installation folder
+
+```
+php bin/console <command> [arguments and options]
+```
+
+To get a full list of the available CLI commands in your Shopware installation, simply type:
 
 ```
 php bin/console
@@ -19,49 +29,93 @@ You can get detailed description for a specific command using the following synt
 php bin/console <command> --help
 ```
 
-## Snippets
+This will provide you with a description of the command's functionality, along with a detailed explanation of each of the command's arguments and options.
 
-### sw:snippets:find:missing
 
-This command expects a `locale` key (e.g. `en_GB`, see all possible value in `s_core_locales`) as a required argument. For that locale, it will check the snippets database table to find unique snippets (defined by a unique `name`-`namespace` pair) that are defined for other locales but not the given one. Those snippets are then exported into the ´snippets´ folder of your Shopware installation (by default, it doesn't exist in Shopware 5 installations, and it will be automatically created if needed) as .ini files. If the target file already exists, the new snippets will be appended to it.
+## Creating custom Shopware's CLI commands
 
-The command accepts two optional arguments:
+As a plugin developer, you can create your own custom CLI commands. To do so, your plugin's `Bootstrap.php` must first register the command itself:
 
-- `target`: Folder to which the snippets will be written. Defaults to `snippets`
+```
+<?php
 
-- `fallback`: By default, the exported snippets are left with empty values. If you provide a locale key in this argument, the snippets are exported with the value of the matching snippet in the fallback language (if available).
+    public function install()
+    {
+        //...
+        
+        
+        $this->subscribeEvent(
+            'Shopware_Console_Add_Command',
+            'onAddConsoleCommand'
+        );
 
-This command is useful in many situations. It can be used to find missing translations for your plugin's snippets, or to export complete snippet sets, if you wish to create a new translation plugin for Shopware.
+        return true;
+    }
+    
+    protected function registerMyComponentDir()
+    {
+        $this->Application()->Loader()->registerNamespace(
+            'Shopware\Plugin\SwagExample\Commands',
+            __DIR__  . '/Commands/'
+        );
+    }
+        
+    public function onAddConsoleCommand(Enlight_Event_EventArgs $args)
+    {
+        return new ArrayCollection(
+            new \Shopware\Plugin\SwagExample\Commands\ImportCommand();
+            new \Shopware\Plugin\SwagExample\Commands\ListCommand();
+        );
+    }
+```
+
+The above example registers 2 commands, `import` and `list`. You now need to implement these commands.
+
+Shopware's CLI commands are based on the Symfony 2 Console Component, which documentation you can find [here](http://symfony.com/doc/current/components/console/introduction.html). 
+
+```
+<?php
+namespace Shopware\Commands;
  
-### sw:snippets:remove
+use Shopware\Components\Model\ModelManager;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+ 
+class ImportCommand extends ShopwareCommand
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected function configure()
+    {
+        $this
+            ->setName('swagexample:import')
+            ->setDescription('Import data from file.')
+            ->addArgument(
+                'filepath',
+                InputArgument::REQUIRED,
+                'Path to file to read data from.'
+            )
+            ->setHelp(<<<EOF
+The <info>%command.name%</info> imports data from a file.
+EOF
+            );
+        ;
+    }
+ 
+    /**
+     * {@inheritdoc}
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $filePath = $input->getArgument('filepath');
+ 
+        $em = $this->container->get('models');
+ 
+        $output->writeln('<info>'.sprintf("Got filepath: %s.", $filepath).'</info>');
+    }
+}
+```
 
-This command requires a `folder` argument. It scans that folder (and subfolders) for .ini snippet files and, for those found, removes them from the database.
-
-### sw:snippets:to:db
-
-This command loads all snippets from the .ini files inside the`snippets` folder in your Shopware installation path into the database. 
-
-- `include-plugins`: If provided, the command will also search all your active plugins for a `snippets` folder, and import those too.
-
-- `force`: By default, if a snippet being imported already exists in the database, it will not be overwritten. Use the `force` argument to change this behaviour
-
-- `source`: use this argument if your wish to import snippets from a folder other that then `snippets` folder in the root of your Shopware installation.
-
-### sw:snippets:to:ini
-
-Exports snippets from the database into .ini files. It requires a ´locale´ argument (e.g. `en_GB`, see all possible value in `s_core_locales`) indicating which snippet set to export. If a file for a given namespace already exists, the snippets will be appended to the existing content.
-
-- `target`: Folder to which the snippets will be written. Defaults to `snippets`
-
-
-### sw:snippets:to:sql
-
-Loads snippets from the `snippets` folder of your Shopware installation and creates a SQL file that, when executed, will insert those snippets into the `s_core_snippets` table. It requires a `file` argument containing the desired location of the SQL file. 
-
-- `force`: By default, if the target `file` already exists, it will not be overwritten. Use this argument to change this behaviour.
-
-- `include-default-plugins`: Set this option to also export snippets included in Shopware's core plugins
-
-- `include-plugins`: If set, active plugin snippets will also be exported.
-
-- `update`: By default, the generated SQL script only performs inserts. If the `update` option is provided, it will also handle update scenarios when duplicates are found. If the existing database snippet has `dirty` = 0, the value will be overwritten. If `dirty` is 1, it's not changed. Please note that, for a large number of snippets, enabling update support will make the SQL statements significantly slower to execute upon importing.
+As you can see, a Shopware CLI command is very similar to a Symfony 2 command. You can use any of the features provided by the Symfony Console component, like you would in Symfony 2 itself.

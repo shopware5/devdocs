@@ -22,8 +22,7 @@ use:
         <div class="post-authors">
             {% for authorhandle in post.authors %}
                 {% if site.authors[authorhandle] %}
-                    {% set author = site.authors[authorhandle] %}
-                    {% include 'author_box.twig' %}
+                    {% include 'author_box.twig' with {'author': site.authors[authorhandle], 'date': post.date} %}
                 {% endif %}
             {% endfor %}
         </div>

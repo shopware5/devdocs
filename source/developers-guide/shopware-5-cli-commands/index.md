@@ -36,14 +36,12 @@ This will provide you with a description of the command's functionality, along w
 
 As a plugin developer, you can create your own custom CLI commands. To do so, your plugin's `Bootstrap.php` must first register the command itself:
 
-```
-<?php
+```php
 
+class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+{
     public function install()
     {
-        //...
-        
-        
         $this->subscribeEvent(
             'Shopware_Console_Add_Command',
             'onAddConsoleCommand'
@@ -51,37 +49,38 @@ As a plugin developer, you can create your own custom CLI commands. To do so, yo
 
         return true;
     }
-    
-    protected function registerMyComponentDir()
+
+    public function afterInit()
     {
-        $this->Application()->Loader()->registerNamespace(
-            'Shopware\Plugin\SwagExample\Commands',
-            __DIR__  . '/Commands/'
+        $this->get('Loader')->registerNamespace(
+            'ShopwarePlugins\\SwagExample',
+            __DIR__ . '/'
         );
     }
-        
+
     public function onAddConsoleCommand(Enlight_Event_EventArgs $args)
     {
         return new ArrayCollection(
-            new \Shopware\Plugin\SwagExample\Commands\ImportCommand();
-            new \Shopware\Plugin\SwagExample\Commands\ListCommand();
+            new \ShopwarePlugins\SwagExample\Commands\ImportCommand();
+            new \ShopwarePlugins\SwagExample\Commands\ListCommand();
         );
     }
+}
 ```
 
 The above example registers 2 commands, `import` and `list`. You now need to implement these commands.
 
-Shopware's CLI commands are based on the Symfony 2 Console Component, which documentation you can find [here](http://symfony.com/doc/current/components/console/introduction.html). 
+Shopware's CLI commands are based on the Symfony 2 Console Component, which documentation you can find [here](http://symfony.com/doc/current/components/console/introduction.html).
 
 ```
 <?php
 namespace Shopware\Commands;
- 
-use Shopware\Components\Model\ModelManager;
+
+use Shopware\Commands\ShopwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
- 
+
 class ImportCommand extends ShopwareCommand
 {
     /**
@@ -103,16 +102,16 @@ EOF
             );
         ;
     }
- 
+
     /**
      * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $filePath = $input->getArgument('filepath');
- 
+
         $em = $this->container->get('models');
- 
+
         $output->writeln('<info>'.sprintf("Got filepath: %s.", $filepath).'</info>');
     }
 }

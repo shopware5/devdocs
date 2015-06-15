@@ -6,6 +6,11 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    webuni.commonmark.tablextension:
+        class: Webuni\CommonMark\TableExtension\TableExtension
+        tags:
+            - { name: sculpin_commonmark.extension }
+
     shopware_devdocs.twig_extension:
         class: Shopware\Devdocs\TwigExtension
         arguments:

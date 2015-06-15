@@ -1,5 +1,7 @@
 <?php
+use Bcremer\Sculpin\Bundle\CommonMarkBundle\SculpinCommonMarkBundle;
 use Bcremer\Sculpin\Bundle\LessBundle\SculpinLessBundle;
+use Mavimo\Sculpin\Bundle\RedirectBundle\SculpinRedirectBundle;
 use Sculpin\Bundle\SculpinBundle\HttpKernel\AbstractKernel;
 
 class SculpinKernel extends AbstractKernel
@@ -7,8 +9,9 @@ class SculpinKernel extends AbstractKernel
     protected function getAdditionalSculpinBundles()
     {
         return [
-            'Mavimo\Sculpin\Bundle\RedirectBundle\SculpinRedirectBundle',
-            SculpinLessBundle::class_name
+            SculpinRedirectBundle::class,
+            SculpinLessBundle::class,
+            SculpinCommonMarkBundle::class
         ];
     }
 }

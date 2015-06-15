@@ -7,7 +7,9 @@
     "robloach/component-installer": "dev-master",
     "components/highlightjs": "~8.4.0",
     "bcremer/sculpin-less-bundle": "~0.1",
-    "mavimo/sculpin-redirect-bundle": "@dev"
+    "mavimo/sculpin-redirect-bundle": "@dev",
+    "bcremer/sculpin-commonmark-bundle": "^0.2.0",
+    "webuni/commonmark-table-extension": "@dev"
   },
   "config": {
     "component-dir": "source/components"

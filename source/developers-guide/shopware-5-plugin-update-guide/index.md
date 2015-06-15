@@ -70,7 +70,7 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 ```
 
 The goal is to make this plugin compatible with both the new Shopware 5 and the old Shopware 4 templates. For this purpose, the following should be considered:
-    
+
 - Inside the __PostDispatch__ event, we have to distinguish between the different template version and load the corresponding template files.
 - The __extendsTemplate__ function should not be used in the new template, otherwise the plugin template cannot be overwritten by other templates.
 - In order for the plugin template to be easily extended by others, the template adjustments should be extracted into a separate file.
@@ -291,7 +291,7 @@ variables.less | Includes all files in "_variables"
 }
 ```
 
-####Breakpoint sizes
+#### Breakpoint sizes
 
 Our responsive template uses media queries with specific breakpoint, so you can implement different styles for different browser window sizes.
 
@@ -520,7 +520,7 @@ E.g. as we need styles for the detail page, we will create a new file called __d
 @import "_modules/detail";
 ```
 
-The __detail.less__ will contain the actual styling info. 
+The __detail.less__ will contain the actual styling info.
 In the old __example1.tpl__ were some inline styles for the img tag.
 Let's replace them by using the new class of the img element:
 

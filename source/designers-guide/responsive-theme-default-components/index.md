@@ -5,9 +5,9 @@ github_link: designers-guide/responsive-theme-default-components/index.md
 indexed: true
 ---
 
-##Introduction
+## Introduction
 Within the new Shopware 5 Responsive Theme we provide you with many reusable components for easier template and plugin development. With our default components you can create buttons, panels, alert messages and other UI elements by using simple HTML code snippets. You can use these snippets within your smarty template `*.tpl` files.
- 
+
 We implemented a parent child class naming in our [LESS](../less) structure that helps you to identify template components. A quick example: The `panel` class is a parent class and all related child classes are prefixed with a `panel--` e.g. `panel--title` or `panel--body`. If you are already familiar with frontend frameworks like Bootstrap you will understand Shopware's components even more easily. This guide gives you a quick overview of the usage of the most important components. If you want further information take a look at our [Shopware 5 styletile](https://developers.shopware.com/styletile/).
 
 ## Quick examples
@@ -28,7 +28,7 @@ Creates a styled button which can have different appearances.
 <a class="btn is--secondary">Secondary Button</a>
 ```
 
-More styling options by adding classes to the `btn` element: 
+More styling options by adding classes to the `btn` element:
 
 - `is--large`: larger button height
 - `is--small`: smaller button height
@@ -53,8 +53,8 @@ Creates a content Panel which can have different appearances.
 </div>
 ```
 
-More styling options by adding classes to the `panel` element: 
- 
+More styling options by adding classes to the `panel` element:
+
 - `has--border`: Panel with border
 - `is--rounded`: Panel with rounded corners
 
@@ -80,7 +80,7 @@ Creates a styled alert message box.
 
 ```
 <div class="alert is--success is--rounded">
-	<div class="alert--icon">	
+	<div class="alert--icon">
 		<!-- Alert message icon -->
 		<i class="icon--element icon--check"></i>
 	</div>
@@ -90,7 +90,7 @@ Creates a styled alert message box.
 </div>
 ```
 
-Display different alert message types by adding classes to the `alert` element: 
+Display different alert message types by adding classes to the `alert` element:
 
 - `is--success`: Success message (green)
 - `is--error`: Error message (red)
@@ -178,13 +178,13 @@ Creates a section with multiple product boxes which can be slide by direction ar
 	<!-- Product slider direction arrows -->
 	<a class="product-slider--arrow arrow--next is--horizontal"></a>
 	<a class="product-slider--arrow arrow--prev is--horizontal"></a>
-	
+
 	<div class="product-slider--container is--horizontal">
-	
+
 		<div class="product-slider--item">
 			<!-- Include of the product box -->
 		</div>
-	
+
 	</div>
 </div>
 ```

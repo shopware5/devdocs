@@ -5,10 +5,10 @@ github_link: designers-guide/getting-started/index.md
 indexed: true
 ---
 
-##Introduction
+## Introduction
 This guide will provide you a quick overview on basic templating in Shopware 5 by providing a step by step explanation based on an example project. The content is aimed at beginners and lays the groundwork for templating and styling of Shopware themes. It shows the creation of a new theme and the usage of the Smarty template blocks to customize and add elements to the custom theme.
 
-##Table of contents
+## Table of contents
 -   [Preview of the guide](#preview-of-the-guide)
 -   [Bare and responsive theme](#bare-and-responsive)
 -   [Adding custom theme](#custom-themes)
@@ -19,14 +19,14 @@ This guide will provide you a quick overview on basic templating in Shopware 5 b
 -   [Adding LESS Files](#add-less-files)
 -   [Result and summary](#result)
 
-##Preview of the guide
+## Preview of the guide
 ![Guide preview](img-guide.jpg)
 
 This guide explains how to add a new theme to the shop, implement a new element into the template and add styling by using the CSS pre-processor Less. The first task is to add a new theme and select it. In the second step, we want to add a button into the shop navigation of the frontend and style it correctly, so it fits on any device size. And as a last task we change the color of the cart button to a gradient that matches the default primary colors.
 
-#Templating
-##Bare and responsive
-The default template folder of Shopware 5 is the `Themes` folder in the root directory.    
+# Templating
+## Bare and responsive
+The default template folder of Shopware 5 is the `Themes` folder in the root directory.
 Inside the `frontend` folder, which is the focus of this guide, you can find our two default Shopware 5 themes.
 
 +   The `Bare` theme is the base of the Shopware frontend. It contains the basic element structure.
@@ -34,12 +34,12 @@ Inside the `frontend` folder, which is the focus of this guide, you can find our
 
 __Important:__ Do not change the Bare/Responsive themes themselves, as the changes might be overwritten by future updates.
 
-##Custom themes
+## Custom themes
 
 ### Creating a theme with the Theme Manager
 ![Adding a new theme](img-custom-theme.jpg)
 
-In order to create your theme, you have to click on the `Create theme` button inside the `Theme manager` and give it a suiting name (in this example: `TutorialTheme`) and some additional information. 
+In order to create your theme, you have to click on the `Create theme` button inside the `Theme manager` and give it a suiting name (in this example: `TutorialTheme`) and some additional information.
 It will automatically create a folder inside the `themes` directory and add the required files for it to work.
 
 The frontend folder now contains 3 themes:
@@ -57,12 +57,12 @@ sw:theme:create --description="Text" --author="shopware AG" --license="MIT" Resp
 ```
 If you need a general introduction regarding the CLI commands you can take a look at our [Shopware 5 CLI commands article](https://developers.shopware.com/developers-guide/shopware-5-cli-commands/).
 
-##Selecting themes
+## Selecting themes
 ![Selecting a theme](img-select-theme.jpg)
 
 Before you can see any changes made to the files you are editing, you have to select the new theme. To choose the theme, first refresh the themes using the `Refresh themes` button and then simply click on the thumbnail image of your own created template and press the `Select theme` button.
 
-##Directory structure
+## Directory structure
 The Shopware directory structure that is located in the `Bare/Frontend` folder contains subfolders (named after the controllers) that separate the template files by the specific frontend areas they relate to.
 
 ```
@@ -104,7 +104,7 @@ frontend
  └── tellafriend
 ```
 
-##Template inheritance
+## Template inheritance
 While creating the theme you have the ability to choose an existing theme you want to inherit from. In this case you would want to inherit from the responsive theme. In other words, our new theme is based on Shopware's `Responsive` theme which, in turn, inherits from the `Bare` theme.
 
 If you want to edit a specific store section inside your new template, you would __extend__ the already existing files that the `Bare` theme provides. In order to do that, you have to __maintain the same directory structure__ that the `Bare` theme uses.
@@ -128,7 +128,7 @@ The file path of the `extends` function call has to match the directory structur
 
 Had we chosen not to use the `extends` function call, the content of the `shop-navigation.tpl` file from the inherited theme would be ignored when redering our theme, and our empty file would be used instead.
 
-##Template blocks
+## Template blocks
 The `Bare` theme's HTML structure is wrapped in Smarty's `block` elements. These block elements group the frontend components into small, isolated blocks that can be edited/overwritten individually. To add changes to the elements of the `Bare` theme, you __can't__ simply write code inside your file. To customize a block, you have to call the correct Shopware block name.
 
 There are 3 ways to interact with blocks and add your changes inside your new template file:
@@ -161,7 +161,7 @@ The navigation menu uses `<li>` elements to wrap its entries. In the example bel
 {/block}
 ```
 
-##Add Less files
+## Add Less files
 Less files can be added in a similar way to template files. The directory structure has to match the structure of the source files of the `Responsive` template. The sample directory structure would look like this:
 
 ```
@@ -169,7 +169,7 @@ TutorialTheme
  ├── frontend
  │   └── index
  │      └── shop-navigation.tpl
- │   └── _public   
+ │   └── _public
  │      └── src
  │          └── less
  │              └── all.less

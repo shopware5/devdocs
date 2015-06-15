@@ -5,7 +5,7 @@ github_link: designers-guide/edit-newsletter-and-document-templates/index.md
 indexed: true
 ---
 
-##Table of contents
+## Table of contents
 -   [Introduction](#introduction)
 -   [Edit newsletter templates](#edit-newsletter-templates)
     -   [Newsletter directory structure](#newsletter-directory-structure)
@@ -17,9 +17,9 @@ indexed: true
     -   [Documents directory structure](#documents-directory-structure)
     -   [Adding an article description](#adding-an-article-description)
 
-##Introduction
+## Introduction
 
-In this guide you will learn how to modify the default appearance of Shopware's newsletter and document templates. 
+In this guide you will learn how to modify the default appearance of Shopware's newsletter and document templates.
 
 <div class="alert alert-warning">
 <strong>Note:</strong> Before you start modifying your newsletter or document templates please keep in mind that you shouldn't apply any changes to the default <code>Bare</code> theme folder. This can cause issues during the next update process and your changes could be overwritten. You should always include your own newsletter and document modifications within your own Shopware theme. If your don't have a custom Shopware theme you should create one for newsletter and document editing.
@@ -28,14 +28,14 @@ In this guide you will learn how to modify the default appearance of Shopware's 
 In the following examples we will use a newly created theme called `NewsDocExample`:
 
  ![Newsletter theme](img-example-theme.jpg)
- 
+
  If you want further information about creating custom themes you can read our [Getting started guide](../getting-started/).
 
-##Edit newsletter templates
+## Edit newsletter templates
 
 In the following steps you will learn how to edit Shopware's default newsletter template. If you want an introduction in  general usage of the newsletter module please have a look at our [newsletter wiki tutorial](http://wiki.shopware.com/Newsletter_detail_933.html).
 
-###Newsletter directory structure
+### Newsletter directory structure
 Within the `newsletter` directory you can find all necessary files to edit the template:
 
 ```
@@ -61,7 +61,7 @@ If the newsletter recipient cannot display HTML emails, Shopware will use the ne
 
 ![Newsletter preview](img-newsletter-preview.jpg)
 
-###Change the newsletter logo
+### Change the newsletter logo
 
 To change the **newsletter logo (1)** navigate to the index directory of the Shopware default newsletter theme: `themes/Frontend/Bare/newsletter/index`. Now copy the `header.tpl` file into the matching directory of your created theme: `themes/Frontend/NewsDocExample/newsletter/index`. Within the copied file you can see the following code on line 4:
 
@@ -75,21 +75,21 @@ If you don't want to display the default shop logo you can simply replace the pa
 <img align="left" src="{link file='frontend/_public/src/img/logos/logo--newsletter.png' fullPath}" />
 ```
 
-###Change the newsletter headline
+### Change the newsletter headline
 
 In this example we will change the color of the **newsletter headline (2)** in the right top corner. To change the color you can also edit your copied `header.tpl` file from the logo example. You can find the desired code in line 7:
- 
+
 ```
 <span style="color:#999;font-size:13px;">NEWSLETTER</span>
 ```
- 
+
 Now you can modify the color property with another value. In this example we replace the color with a default red:
- 
+
 ```
 <span style="color:#ff0000;font-size:13px;">NEWSLETTER</span>
 ```
 
-###Change the newsletters general appearance
+### Change the newsletters general appearance
 
 At first navigate into the default newsletter theme again: `themes/Frontend/Bare/newsletter/index`. Now copy the `index.tpl` file into the matching directory of your created theme: `themes/Frontend/NewsDocExample/newsletter/index`.
 
@@ -105,7 +105,7 @@ In our example we will change the `bgcolor` attribute to a grey tone as well as 
 <table align="center" width="560" bgcolor="#d8d8d8" border="0" cellspacing="25" cellpadding="0" style="color:#8c8c8c; border:2px solid #ff0000;font-family:Arial,Helvetica;">
 ```
 
-###Change the newsletter footer
+### Change the newsletter footer
 
 To change the **newsletter footer (4)** you copy the `footer.tpl` within the `themes/Frontend/Bare/newsletter/index` directory into your matching theme directory as in the examples before. In our example we will edit the copyright snippet in line 21 and change its color to red:
 
@@ -115,11 +115,11 @@ To change the **newsletter footer (4)** you copy the `footer.tpl` within the `th
 </td>
 ```
 
-###Newsletter snippets
+### Newsletter snippets
 
 The newsletter elements like copyright information or the unsubscribe text are snippets which are namespaced in `newsletter/index/footer`. You can edit those snippets with the backend snippet module.
 
-##Edit document templates
+## Edit document templates
 
 In this quick example you will learn how to edit Shopware's default document template for invoices, delivery notes etc. The PDF document creation backend module provides you already with many customization features. If you'd like more information about the general usage please have a look at our [PDF document creation wiki tutorial](http://wiki.shopware.com/PDF-Belegerstellung_detail_1086.html).
 

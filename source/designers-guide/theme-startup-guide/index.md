@@ -14,7 +14,7 @@ This guide will introduce you to the new features and additions to the new Shopw
 
 ![Responsive theme](screen-responsive.jpg)
 
-##Table of contents
+## Table of contents
 +   [Feature overview](#feature-overview)
 +   [Compatibility note](#compatibility-note)
 +   [Comparison with the shopware 4 template](#comparison-with-the-shopware-4-template)
@@ -26,7 +26,7 @@ This guide will introduce you to the new features and additions to the new Shopw
 +   [The responsive theme](#the-responsive-theme)
 +   [Third-party components using bower](#installing-third-party-components-using-bower)
 
-##Feature overview
+## Feature overview
 - Theme inheritance system is now totally transparent and can easily be modified
 - Theme specific registration of Smarty Plugins
 - Snippets are now be directly included in the theme directory
@@ -67,7 +67,7 @@ This guide will introduce you to the new features and additions to the new Shopw
 	- Scalable icon set with 295 pre defined icons
 - Ajaxified the emotion worlds, note functionality and compare function
 
-##Compatibility note
+## Compatibility note
 We built the theme with maximal backward compatibility in mind and are proud to announce that all Smarty blocks which were be available in the "Emotion" template can also be found in the new "Responsive" theme.
 
 As part of the restructuring of the theme, we updated the list of browsers which are officially supported:
@@ -80,7 +80,8 @@ As part of the restructuring of the theme, we updated the list of browsers which
 
 Please keep in mind that older browsers don't support all available HTML5 and CSS3 features.
 
-##Comparison with the Shopware 4 template
+## Comparison with the Shopware 4 template
+
 |                                | Shopware 4 | Shopware 5 |
 |--------------------------------|------------|------------|
 | Total Smarty blocks            |        918 |       1831 |
@@ -90,20 +91,20 @@ Please keep in mind that older browsers don't support all available HTML5 and CS
 
 *Bare installation without any demo data.
 
-##Device examples
-#####Mobile view
+## Device examples
+##### Mobile view
 
 ![iPhone Portrait](screen-iphone-portrait.png)
 
 ![iPhone Landscape](screen-iphone-landscape.png)
 
-#####Tablet view
+##### Tablet view
 
 ![iPad Portrait](screen-ipad-portrait.png)
 
 ![iPad Landscape](screen-ipad-landscape.png)
 
-##Theme.php
+## Theme.php
 The ```Theme.php``` is the base file of each and every theme. It provides the basic information about the author, the license and a short description for the Theme Manager. Additionally, it provides access to the following features:
 
 - LESS compiler
@@ -140,7 +141,7 @@ class Theme extends \Shopware\Components\Theme
 }
 ```
 
-###Adding javascript files to your theme
+### Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
 
 Simply place your javascript files in the ```frontend/_public``` folder and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
@@ -152,10 +153,10 @@ protected $javascript = array(
 );
 ```
 
-###Adding LESS files to your theme
+### Adding LESS files to your theme
 The built-in LESS compiler searches for a file named ```all.less``` in the ```frontend/_public/src/less``` directory. You just have to create the necessary directory structure and your LESS code will automatically converted to CSS on the fly.
 
-###I don't know LESS, what can I do?
+### I don't know LESS, what can I do?
 You can add a ```$css``` array to your ```Theme.php``` file, similar to the ```$javascript``` array, with the paths of your CSS files:
 
 ```
@@ -430,7 +431,7 @@ Please notice that the ```_resources``` folder was renamed to ```_public```. Thi
 The third-party libraries can now be found under ```_public/vendors``` and the Shopware specific code under ```_public/src```.
 
 
-##Installing third-party components using bower
+## Installing third-party components using bower
 Open the ```bower.json``` file, which can be found in the root directory of the theme, and add your third-party component in the ```dependencies``` object:
 
 ```

@@ -42,7 +42,7 @@ port install nodejs
 
 
 ### Install the Grunt CLI
-In order to use Grunt in your project, you need to install [Grunt CLI](https://github.com/gruntjs/grunt-cli). 
+In order to use Grunt in your project, you need to install [Grunt CLI](https://github.com/gruntjs/grunt-cli).
 
 ```
 sudo npm install -g grunt-cli
@@ -61,7 +61,7 @@ Starting in Shopware 5, themes can be configured using the `Theme Manager` admin
 ./bin/console sw:theme:dump:configuration
 ```
 
-Running this command creates a JSON file named ```config_[shopid].json```, which contains the configuration of the theme and the LESS / JS files, which should be compiled using either LESS or Uglify. 
+Running this command creates a JSON file named ```config_[shopid].json```, which contains the configuration of the theme and the LESS / JS files, which should be compiled using either LESS or Uglify.
 
 ### Install project dependencies
 Now we need to install the dependencies. We install the Grunt library and additional Grunt plugins, which are necessary to compile LESS files for example:

@@ -45,28 +45,6 @@
         {{ page.blocks.content|raw }}
     </div>
 
-    <div class="additional clearfix">
-
-        {% if page.categories %}
-        <div class="categories">
-            <span class="desc">Categories:</span>
-            {% for category in page.categories %}
-            <a class="badge" href="{{ site.url }}/blog/categories/{{ category|url_encode(true) }}">{{ category }}</a>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if page.tags %}
-        <div class="tags">
-            <span class="desc">Tags:</span>
-            {% for tag in page.tags %}
-            <a class="badge" href="{{ site.url }}/blog/tags/{{ tag|url_encode(true) }}">{{ tag }}</a>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-    </div>
-
     <a href="{{ site.url }}/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
 
     <div class="clearfix"></div>

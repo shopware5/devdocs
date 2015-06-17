@@ -26,7 +26,7 @@ class Shopware_Plugins_Frontend_SwagSloganOfTheDay_Bootstrap extends Shopware_Co
 
     private function createConfig()
     {
-        $this->Form()->addElement(
+        $this->Form()->setElement(
             'select',
             'font-size',
             array(
@@ -40,7 +40,7 @@ class Shopware_Plugins_Frontend_SwagSloganOfTheDay_Bootstrap extends Shopware_Co
             )
         );
 
-        $this->Form()->addElement('boolean', 'italic', array(
+        $this->Form()->setElement('boolean', 'italic', array(
             'value' => true,
             'label' => 'Italic'
         ));

@@ -43,7 +43,7 @@ You can optionally still declare the namespace in that snippet. The namespace de
 
 As a rule of thumb, all interface texts that will be visible to the end user should be a snippet. The main advantage of snippet usage is internationalization. If your plugin uses snippets, it will be easy to identify and fix missing translations, making your plugin compatible with Shopware shops aimed at different markets.
 
-Another advantage is that snippets can be customized by the shop owner. Should he have special naming conventions for his shop, he will be able to adapt your plugin to his needs, instead of looking dor an alternative solution.
+Another advantage is that snippets can be customized by the shop owner. Should he have special naming conventions for his shop, he will be able to adapt your plugin to his needs, instead of looking for an alternative solution.
 
 While snippets are mostly used to translate plain text, they are flexible enough to be used in other scenarios. For example, snippets can contain HTML code, including inline CSS (which is, of course, not recommended), giving you and your customers even more customization possibilities.
 
@@ -65,6 +65,7 @@ array(
         'writeToDb' => true,
         'readFromIni' => false,
         'writeToIni' => false,
+        'showSnippetPlaceholder' => false //introduced in Shopware 5.0.2
     ),
 )
 ```
@@ -75,6 +76,8 @@ When handling snippets while rendering templates, the following workflow is used
 + If the snippet is not present in the database, has a default value set and `writeToDb` is true, Shopware will write that value into the database.
 + If `readFromIni` is true, Shopware will look for your snippet value in your .ini files.
 + If the snippet is not present in the .ini file, has a default value set and `writeToIni` is true, Shopware will write that value into an .ini file.
+
+The additional `showSnippetPlaceholder` (introduced in Shopware 5.0.2) option allows you to specify how you want Shopware to display empty and undefined snippets (snippets that are declared in your template files, but are not defined or defined as empty in your database and/or .ini files). By default, these snippets are displayed as an empty string, which is recommended for production environments. If you set this option to `true`, these snippets will be rendered as their name wrapped in hash signs. This makes it easier for you to identify and handle missing or empty snippets during development.
 
 The above example configuration values represent the default values that are used in Shopware. They are optimized for production environments, and should be used in those scenarios. You can change those values, at any time, for example, for development purposes.
 
@@ -119,6 +122,7 @@ array(
         'writeToDb' => false,
         'readFromIni' => true,
         'writeToIni' => true,
+        'showSnippetPlaceholder' => true //introduced in Shopware 5.0.2
     ),
 )
 ```
@@ -136,6 +140,7 @@ A few things to keep in mind when using this approach:
 - Changes made to snippets in the backend are not saved to .ini files
 - The automatically generated .ini files might not be so inside your plugin folder, but directly in Shopware's root folder. However, the internal folder structure is the same, so you can just move that folder inside your plugin once you are finished
 - Enabling `writeToIni` will write *ALL* missing snippets to .ini files. This means that if, for some reason, a missing snippet that does not belong to your template file is detected, it will also be written to .ini file, and might get mixed with your new snippets. For this reason it's recommended that you carefully review your .ini files once you are finished developing your plugin/theme.
+- If your template files have snippets with an empty default value, they will also be written to db/.ini file as an empty string. The `showSnippetPlaceholder` only affects the rendered value, not the value that is written into storage.  
 
 **Note: Shopware 5 includes some CLI commands that can prove useful when handling snippets. Please refer to [the related section](#snippet-cli-commands) for more details.**
 

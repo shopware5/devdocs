@@ -7,10 +7,10 @@ indexed: true
 
 ## Introduction
 
-In this article you can read more about using the category resource.
-The following part will show you examples including provided data and data you need to provide if you want to use this resource.
-Please read **[Category](../api-resource-category)** if you did not yet, to get more information about the category resource and the data it provides.
-Also we are using the API-Client of the following document **[API-Client](../)**.
+In this article, you will find examples of the provided resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
+Please read the page covering the **[category API resource](../api-resource-category)** if you haven't yet, to get more information about the category resource and the data it provides.
+
+These examples assume you are using the provided **[demo API client](../)**.
 
 
 ## Example 1 - Creating a category

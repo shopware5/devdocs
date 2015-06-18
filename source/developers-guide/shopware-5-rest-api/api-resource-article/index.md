@@ -1,46 +1,47 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Article End-Point
-github_link: developers-guide/shopware-5-rest-api/api-resource-article/index.md
+title: Shopware 5 Rest API - Article Resource
+github_link: developers-guide/shopware-5-rest-api/api resource-article/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's article-resource. With this resource, it is possible to 
-receive, update and delete any article of your shop. Also we will have a look at the provided data.
+In this part of the documentation you can learn more about the API's article resource. With this resource, it's possible to retrieve, update and delete any article of your shop. We will also have a look at the associated data structures.
 
  
 ## General Information
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/articles               | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/articles**
 
 ## Structure
-In this part, we will have a look at the data, provided by this end-point and its structure. You will be guided through all seven different operations separately.
+In this part, we will have a look at the data provided by this resource and its structure. You will be guided through all seven different operations separately.
  
 ### GET
 
 #### Required Parameters
 
-It is required to to parameterize this API-Call. The following parameters are available:
+This API call requires one of the following parameters to be defined:
 
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
 | Article Id    | id        | s_articles.id          | /api/articles/2                          |
 | Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
 
-* **useNumberAsId=true** - This tells the API to query the article's data by its detail number, not by its actual identifier. Otherwise the syntax is just **/api/articles/article id**. It is not possible to provide both parameter at the same time.
+* **useNumberAsId=true** - This tells the API to query the article's data by its detail number, instead of its actual identifier. Otherwise, the syntax is just **/api/articles/id**. It's not possible to provide both parameters at the same time.
 
 #### Optional Parameters
-Option parameters can be provided: language: id or locale (from s_core_locales). If used, the returned info will be provided in the specified language (if available) considerTaxInput: By default, all returned prices are net values. If the boolean "considerTaxInput" is set to true, gross values will be returned instead.
+Optional parameters can be provided: 
+* language `id` or `locale` (from `s_core_locales`). If used, the returned info will be provided in the specified language (if available) 
+* `considerTaxInput`: By default, all returned prices are net values. If the boolean `considerTaxInput` is set to true, gross values will be returned instead.
 
 | Identifier       | Parameter | DB column              | Example call                             |
 |------------------|-----------|------------------------|------------------------------------------|
@@ -49,16 +50,16 @@ Option parameters can be provided: language: id or locale (from s_core_locales).
 
 You can use one or more of these parameters together.
 
-Here is an example of a parameterized URL:
+Here is an example of a parametrized URL:
 
 * **http://my-shop-url/api/articles/2?considerTaxInput=true&language=de_DE**
 * **http://my-shop-url/api/articles/SW10003?useNumberAsId=true&considerTaxInput=true&language=de_DE**
 
 #### Return value
 
-This call will return an array of the model **Shopware\Models\Article\Article** (s_articles). 
+This call will return an array of the model **Shopware\Models\Article\Article** (`s_articles`). 
 
-The following part shows the fields, types and original objects of this array.
+The following table shows the fields, types and original objects of this array.
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
@@ -106,7 +107,10 @@ The following part shows the fields, types and original objects of this array.
 ### GET (List)
 
 #### Optional Parameters
-Option parameters can be provided: language: id or locale (from s_core_locales). If used, the returned info will be provided in the specified language (if available) considerTaxInput: By default, all returned prices are net values. If the boolean "considerTaxInput" is set to true, gross values will be returned instead.
+
+Optional parameters can be provided: 
+* language `id` or `locale` (from `s_core_locales`). If used, the returned info will be provided in the specified language (if available) 
+* `considerTaxInput`: By default, all returned prices are net values. If the boolean `considerTaxInput` is set to true, gross values will be returned instead.
 
 | Identifier       | Parameter | DB column              | Example call                             |
 |------------------|-----------|------------------------|------------------------------------------|
@@ -115,7 +119,7 @@ Option parameters can be provided: language: id or locale (from s_core_locales).
 
 You can use one or more of these parameters together.
 
-Here is an example of a parameterized URL:
+Here is an example of a parametrized URL:
 
 * **http://my-shop-url/api/articles/considerTaxInput=true&language=de_DE**
 
@@ -149,24 +153,15 @@ Here is an example of a parameterized URL:
 | availableFrom       | date/time             |                                                 |
 | availableTo         | date/time             |                                                 |
 
-### PUT
-
-Equivalent to **POST**. Articles can be identified using the following:
-
-| Identifier    | Parameter | DB column              | Example call                             |
-|---------------|-----------|------------------------|------------------------------------------|
-| Article Id    | id        | s_articles.id          | /api/articles/2                          |
-| Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
-
-### POST
+### POST (create)
 
 | Field                 | Type                  | Notice                                                                        |  Original Object / Database table                  |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|----------------------------------------------------|
 | name (required)       | string                |                                                                               |                                                    |
-| taxId (required)      | integer (foreign key) | Required if no tax-object provided                                            |  `s_core_tax.id`                                   |
+| taxId (required)      | integer (foreign key) | Required if no tax object provided                                            |  `s_core_tax.id`                                   |
 | tax (required)        | object                |                                                                               |  **[Tax](./models/tax)**                           |
 | mainDetail (required) | object                |                            													|  **[Detail](./models/article-detail)**             |
-| supplierId (required) | integer (foreign key) | Required if no supplier-object provided                                       |  `s_articles_supplier.id`                          |
+| supplierId (required) | integer (foreign key) | Required if no supplier object provided                                       |  `s_articles_supplier.id`                          |
 | supplier (required)   | object                | Will be created if it does not exist       					                |  **[Supplier](./models/supplier)**                 |
 | priceGroupId          | integer (foreign key) | 																				|  `s_core_pricegroups.id`          				 |
 | filterGroupId         | integer (foreign key) | 																				|  `s_filter.id`                                     |
@@ -197,12 +192,22 @@ Equivalent to **POST**. Articles can be identified using the following:
 | related               | object array          |                                                                               | **[Related](./models/related)**                    |
 | variants              | object array          |                                                                               | **[Detail](./models/article-detail)**              |
 
-## DELETE
+### PUT (update)
 
-The article(s) to delete can be defined using the following:
+Articles can be identified using the following:
+
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
 | Article Id    | id        | s_articles.id          | /api/articles/2                          |
 | Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
 
-```
+The data structure used is similar to the one used for creation (**POST** request)
+
+## DELETE
+
+The article(s) to delete can be defined using the following syntax:
+
+| Identifier    | Parameter | DB column              | Example call                             |
+|---------------|-----------|------------------------|------------------------------------------|
+| Article Id    | id        | s_articles.id          | /api/articles/2                          |
+| Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |

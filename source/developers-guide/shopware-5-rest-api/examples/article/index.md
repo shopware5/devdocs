@@ -7,14 +7,10 @@ indexed: true
 
 ## Introduction
 
-In this article you can read more about using the article resource.
-The following part will show you examples including provided data and data you need to provide if you want to use this resource.
-Please read **[Article](../api-resource-article)** if you did not yet, to get more information about the article resource and the data it provides.
-Also we are using the API-Client of the following document **[API-Client](../)**.
+In this article, you will find examples of the article resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
+Please read the page covering the **[article API resource](../api-resource-article)** if you haven't yet, to get more information about the article resource and the data it provides.
 
-**Keep in mind that I reduced the data, in case of illegibility**
-
-Instead of providing the data in the URL, the client also allows us to provided a parameter of type array. You can also place variables there. An example call would look like this then:
+These examples assume you are using the provided **[demo API client](../)**. One of its advantages is that, instead of providing query arguments directly in the URL, you can do so by means of method argument. The client application will, internally, handle the full URL generation. You can also place variables using this technique. An example call would look like this:
 
 ```
 $client->post('articles', array(
@@ -27,9 +23,7 @@ $client->post('articles', array(
 ```
 
 ## Example 1 - GET
-This example shows you how to obtain information about a single article. The API call looks like this in this case:
-
-You can use one of the following calls to get the article with the id '3'.
+These example show you how to obtain information about a single article, by using either its ID or article number. The API calls look, respectively, like this:
 ``` 
 $client->get('articles/3');
 $client->get('articles/SW10003?useNumberAsId=true);
@@ -294,10 +288,8 @@ $client->get('articles/SW10003?useNumberAsId=true);
 ``` 
 
 ## Example 2 - GET (List)
-This example shows you how to obtain information about a single article. The API call looks like this in this case:
-
-You can use one of the following calls to get the article with the id '3'.
-With the limit parameter it's possible to provide a limit for this call. The '2' says, that only two articles are being returned
+This example shows you how to obtain information about a single article.
+With the optional `limit` parameter, it's possible to specify how many articles you wish the API call to return.
 
 ``` 
 $client->get('articles');
@@ -370,7 +362,7 @@ $client->get('articles?limit=2);
 
 ## Example 3 - Update article data
 To update an article it's always required to provide the id of the article to update.
-In this example we will update the name of the article with the id 3
+In this example, we will update the name of the article with the id 3
 ```
 $client->put('articles/3?name=NewName');
 ```
@@ -386,9 +378,9 @@ $client->put('articles/3?name=NewName');
 ```
 
 ## Example 4 - Delete an article
-To delete an article it's always required to provide the id of the article to delete. When providing the number, an error will be returned ('Errormesage: Deleting articles by number isn't possible, yet.') with the response code 500.
+To delete an article, it's always required to provide the id of the article to delete. If the number is provided, an error will be returned with the response code 500.
 
-**Attention, this action can not be undone!**
+**Attention, this action can not be undone**
 
 ```
 $client->delete('articles/3');
@@ -397,11 +389,11 @@ $client->delete('articles/3');
 ### Result
 ```
 {
-		success: true
+    success: true
 }
 ```
 
-## Examble 5 - Article configuration / variation
+## Example 5 - Article configuration / variation
 
 ### Step 1 - Create a new article
 ```
@@ -534,7 +526,7 @@ $client->put('articles/193', $updateArticle);
 
 ```
 {
-		success: true
+    success: true
 }
 ```
 
@@ -567,24 +559,22 @@ $filterTest = array(
  
     'filterGroupId' => 1,
     'propertyValues' => array(
-            array(
-                'option' => array('name' => "Alcohol content"),
-                'value' => '10%'
-            ),
-            array(
-                'option' => array('name' => "Color"),
-                'value' => 'rot'
-            )
+        array(
+            'option' => array('name' => "Alcohol content"),
+            'value' => '10%'
+        ),
+        array(
+            'option' => array('name' => "Color"),
+            'value' => 'rot'
+        )
     )
- 
 );
 
 $client->post('articles', $filterTest);
 
 ``` 
 
-Options ("option") and values ("value") can be provided as name (s.a) or as identifier (ID). Since the values within option and options are unique in groups it's possible to auto recognize if a new one has to be added to the shop or an existing entry has to be updated,
-while propertyGroups ("filterGroupdID") have to be added through another resource **[PropertyGroups](../api-resource-property-group)**.
+Options (`option`) and values (`value`) can be identified by name (see example above) or by identifier (`id`). Since the values within option and options are unique in groups, it's possible to automatically recognize if a new one has to be added to the shop, or if an existing entry has to be updated. PropertyGroups (`filterGroupID`) have to be added through another resource **[PropertyGroups](../api-resource-property-group)**.
 
 ```
 $properties = array(
@@ -597,11 +587,11 @@ $properties = array(
 $client->post('propertyGroups', $properties);
 
 ```
-The returned identifier may be set as filterGroupId just like the example $filterTest shows.
+The returned identifier may be set as `filterGroupId`, just like the example `$filterTest` shows.
 
 ## Example 7 - Creating and referencing units
 
-Since shopware 4.0.5 it's possible to provide units by the key 'unit'. The snippet below shows you how:
+It's possible to specify units using the `unit` key. The snippet below shows how:
 
 ```
 $articleWithUnit = array(
@@ -628,7 +618,7 @@ $client->post('articles', articleWithUnit);
 
 ```
 
-The API itself checks if the unit (or name) does already exist. If it exists already, the old unit will be overwritten with the new values, otherwise it simply will be added as new unit to the shop.
+The API itself checks if the unit already exist. If it does, the old unit will be overwritten with the new values, otherwise it simply will be added as new unit to the shop.
 
 ## Further examples
 

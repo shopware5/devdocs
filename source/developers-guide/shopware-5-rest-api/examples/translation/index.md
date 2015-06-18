@@ -10,7 +10,7 @@ indexed: true
 In this article you can read more about using the translation resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
 Please read **[Translation](../api-resource-translation)** if you did not yet, to get more information about the orders resource and the data it provides.
-Also we are using the API-Client of the following document **[API-Client](../)**.
+Also we are using the API client of the following document **[API client](../)**.
 
 ## Example 1 - Creating a new translation
 

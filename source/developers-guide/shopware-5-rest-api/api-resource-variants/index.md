@@ -1,36 +1,31 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Variants End-Point
+title: Shopware 5 Rest API - Variants Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-variants/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's variants resource. With this resource, it is possible to 
-receive, delete and update any variant in your shops. Also we will have a look at the provided data.
+In this part of the documentation, you can learn more about the API's variants resource. With this resource, it's possible to retrieve, delete and update any variant in your shops. We will also have a look at the associated data structures.
 
 ## General Information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\Variants.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/variants		          | ![No](./img/no.png)      | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL
 
 * **http://my-shop-url/api/translations**
 
 ## GET
 
-You can receive data of variants by providing the specific id
+You can retrieve the variants data by providing the specific id
 
 * **http://my-shop-url/api/variants/id**
-
-Simply replace the 'id' with the specific identifier
 
 ### Required Parameters
 
@@ -39,7 +34,8 @@ Simply replace the 'id' with the specific identifier
 | Detail id			| id				| `s_articles_details.id`			  | /api/variants/2															|
 | Detail number		| number			| `s_articlies_details.ordernumber`	  | /api/variants/SW10003?useNumberAsId=true								|
 
-Option parameters can be provided: considerTaxInput: By default, all returned prices are net values. If the boolean "considerTaxInput" is set to true, gross values will be returned instead. Returns the following:
+Option parameters can be provided: 
+* `considerTaxInput`: By default, all returned prices are net values. If the boolean `considerTaxInput` is set to true, gross values will be returned instead.
 
 ### Return Value
 
@@ -129,7 +125,7 @@ To put data to a variant, simply provide one of the following parameters to iden
 
 **The data is the same as shown in the POST operation.**
 
-You can use this data to update variant.
+You can use this data to update a variant.
 | Model								| Table						|
 |-----------------------------------|---------------------------|
 | Shopware\Models\Article\Detail	| `s_articles_details`		|

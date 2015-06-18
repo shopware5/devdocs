@@ -1,36 +1,31 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Translations End-Point
+title: Shopware 5 Rest API - Translations Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-translation/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's translation resource. With this resource, it is possible to 
-receive, delete and update any translation in your shops. Also we will have a look at the provided data.
+In this part of the documentation you can learn more about the API's translation resource. With this resource, it is possible to retrieve, delete and update any translation in your shops. We will also have a look at the associated data structures.
 
 ## General Information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\Shops.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/translations	          | ![No](./img/no.png)     | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/translations**
 
 ## GET (List)
 
-You can receive data of translations by providing the specific id
+You can retrieve data of translations by providing the specific id
 
 * **http://my-shop-url/api/translations/id**
-
-Simply replace the 'id' with the specific identifier
 
 ### Return Value
 
@@ -39,17 +34,18 @@ Simply replace the 'id' with the specific identifier
 | type 	         	  | string				  |                                                 |
 | data		      	  | array				  | 		                                        |
 | key				  | integer 			  | 												|
-| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                    |
+| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                   |
 | locale			  | object				  | **[Locale](./models/locale)**					|
 
 *Since this returns a list, the following fields will be added to the array:*
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total amount of cache resources             |
-| success		      | boolean				  | Indicates if the call was stressful or not.		|
+| total				  | integer				  | The total number of translations                |
+| success		      | boolean				  | Indicates if the call was successful or not.	|
 
 ## POST
+
 To post a translation, you need to identify it by the following parameters
 
 ### Required Parameters
@@ -74,7 +70,7 @@ You can use this data to add a new translation to the shop
 | type 	         	  | string				  |                                                 |
 | data		      	  | array				  | 		                                        |
 | key				  | integer 			  | 												|
-| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                    |
+| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                   |
 
 You can post or put data by sending the following data to this URL:
 
@@ -89,11 +85,11 @@ You can post or put data by sending the following data to this URL:
 | sortMode			  | integer				  |															|
 
 ## DELETE
-To delete a shop, simply call this URL with the DELETE request:
+To delete a shop, simply call this URL with the `DELETE` request:
 
-* **http://my-shop-url/api/tanslations/id**
+* **http://my-shop-url/api/translations/id**
 
-Simply replace 'id' with the specific identifier.
+Replace the `id` with the specific translation id.
 
 ## Examples
 

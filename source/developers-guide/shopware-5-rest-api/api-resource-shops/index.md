@@ -1,36 +1,32 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Shops End-Point
+title: Shopware 5 Rest API - Shops Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-shops/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's shops resource. With this resource, it is possible to 
-receive, delete and update any shop in your system. Also we will have a look at the provided data.
+In this part of the documentation you can learn more about the API's shops resource. With this resource, it is possible to retrieve, delete and update any shop in your system. We will also have a look at the associated data structures.
 
 ## General Information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\Shops.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/shops		          | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/shops**
 
 ## GET
 
-You can receive data of a shop by providing the specific id
+You can retrieve data of a shop by providing the specific id
 
 * **http://my-shop-url/api/shops/id**
 
-Simply replace the 'id' with the specific identifier
 
 ### Return Value
 
@@ -57,9 +53,9 @@ Simply replace the 'id' with the specific identifier
 
 ## GET (List)
 
-To get more than one property group at once, simply remove the id parameter from the request URL.
+To get more than one shop at once, simply remove the id parameter from the request URL.
 
-* **http://my-shop-url/api/propertyGroups/**
+* **http://my-shop-url/api/shops/**
 
 ### Return value
 
@@ -87,13 +83,13 @@ To get more than one property group at once, simply remove the id parameter from
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total amount of cache resources             |
-| success		      | boolean				  | Indicates if the call was stressful or not.		|
+| total				  | integer				  | The total number of shop resources              |
+| success		      | boolean				  | Indicates if the call was successful or not.    |
 
 ## POST and PUT
 You can post or put data by sending the following data to this URL:
 
-* **(POST or PUT) http://my-shop-url/api/propertyGroups/id**
+* **(POST or PUT) http://my-shop-url/api/shops/id**
 
 | Field               | Type                  | Original Object			                                |
 |---------------------|-----------------------|---------------------------------------------------------|
@@ -108,7 +104,7 @@ To delete a shop, simply call this URL with the DELETE request:
 
 * **http://my-shop-url/api/shops/id**
 
-Simply replace 'id' with the specific identifier.
+Replace the `id` with the specific shop id.
 
 ## Examples
 

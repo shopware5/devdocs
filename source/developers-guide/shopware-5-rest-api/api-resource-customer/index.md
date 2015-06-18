@@ -1,27 +1,23 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Customer End-Point
+title: Shopware 5 Rest API - Customer Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-customer/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's customer resource. With this resource, it is possible to 
-receive, update and delete any customer of your shop. Also we will have a look at the provided data.
-
+In this part of the documentation you can learn more about the API's customer resource. With this resource, it is possible to retrieve, update and delete any customer of your shop. We will also have a look at the associated data structures.
 
 ## General Information
-You may find the related resource under
-**'engine\Shopware\Controllers\Api\Customers.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/customers              | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![Yes](./img/no.png)   | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply append your shop URL with
 
 * **http://my-shop-url/api/customers**
 
@@ -29,14 +25,14 @@ If you want to access this end-point, simply append your shop-URL with
 
 #### Required Parameters
 
-It is required to to parameterize this API-Call. The following parameters are available:
+It is required to parametrize this API call. The following parameters are available:
 
 | Identifier      | Parameter | DB column                    | Example call                              |
 |-----------------|-----------|------------------------------|-------------------------------------------|
 | Customer Id     | id        | s_user.id                    | /api/customers/2                          |
 | Customer number | number    | s_user_billingaddress.number | /api/customers/20003?useNumberAsId=true   |
 
-* **useNumberAsId=true** - This tells the API to query the customers's data by its number, not by its actual identifier. Otherwise the syntax is just **/api/customers/id**. It is not possible to provide both parameter at the same time.
+* **useNumberAsId=true** - This tells the API to query the customer's data by its number, instead of its actual identifier. Otherwise, the syntax is just **/api/customers/id**. It's not possible to provide both parameters at the same time.
 
 ### Return Value
 
@@ -79,16 +75,16 @@ It is required to to parameterize this API-Call. The following parameters are av
 
 ### Required Parameters
 For this operation no parameters are required.
-Simply call
+To get a list of all customers, simply query:
 
 * **http://my-shop-url/api/customers/**
-
-to get a list of all customers.
 
 ### Return Value
 | Model					             | Table			     |
 |------------------------------------|-----------------------|
 | Shopware\Models\Customer\Customer  | s_user				 |
+
+This API call returns an array of elements, one for each customer. Each of these elements has the following structure:
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
@@ -116,23 +112,24 @@ to get a list of all customers.
 | failedLogins			| integer				|																				|
 | lockedUntil			| date/time				|																				|
 
-*Since this returns a list, the following fields will be appended to the array:*
+Appended to the above mentioned list, you will also find the following data:
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total amount of category resources          |
-| success		      | boolean				  | Indicates if the call was stressful or not.		|
+| total				  | integer				  | The total number of category resources          |
+| success		      | boolean				  | Indicates if the call was successful or not.		|
 
 ## POST and PUT
 
-To post or put content, use the same data as provided in the GET operation.
+To `POST` or `PUT` content, use the same data as provided in the GET operation.
 
 ## DELETE
-To delete a customer, simply call the specified endpoint with the 'DELETE' operation as the following example shows:
+
+To delete a customer's data, simply call the specified resource with the `DELETE` operation, as the following example shows:
 
 * **(DELETE) http://my-shop-url/api/customers/id**
 
-and don't forget to replace the 'id' with the specific customer id.
+Replace the `id` with the specific customer id.
 
 ## Examples
 

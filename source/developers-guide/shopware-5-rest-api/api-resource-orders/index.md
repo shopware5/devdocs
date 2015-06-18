@@ -1,46 +1,39 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Orders End-Point
+title: Shopware 5 Rest API - Orders Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-orders/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's orders resource. With this resource, it is possible to 
-receive, and update any order in your shop. Also we will have a look at the provided data.
+In this part of the documentation, you can learn more about the API's orders resource. With this resource, it is possible to retrieve and update any order in your shop. We will also have a look at the associated data structures.
 
 
 ## General Information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\Orders.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/orders              	  | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![No](./img/no.png)    | ![No](./img/yes.png)  | ![No](./img/no.png)   |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/orders**
 
 ## GET
 
-You can receive an order by providing the specific id
-
-# GET
-
 #### Required Parameters
 
-It is required to to parameterize this API-Call. The following parameters are available:
+This API call requires one of the following parameters to be defined:
 
 | Identifier      | Parameter | DB column                    | Example call                           |
 |-----------------|-----------|------------------------------|----------------------------------------|
 | Order Id        | id        | s_order.id                   | /api/orders/2                          |
 | Order number    | number    | s_order.number               | /api/orders/20003?useNumberAsId=true   |
 
-* **useNumberAsId=true** - This tells the API to query the order's data by its number, not by its actual identifier. Otherwise the syntax is just **/api/orders/id**. It is not possible to provide both parameter at the same time.
+* **useNumberAsId=true** - This tells the API to query the order's data by its number, instead of its actual identifier. Otherwise, the syntax is just **/api/orders/id**. It's not possible to provide both parameter at the same time.
 
 ### Return Value
 

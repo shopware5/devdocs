@@ -11,16 +11,18 @@ in their shop to 3rd party applications. It also allows direct manipulation of t
 
 ## Basic Settings
 
-To enables access to the REST API, the shop owner must authorize one (or more) users in the Shopware backend. Simply open the Shopware backend and open the 'User Administration' window, under 'Settings'. 
-From the list of existing users displayed on this window, select 'Edit' for the desired user and mark the 'enabled' checkbox in the "API Access" section. 
-You will get a randomly generated API access key, which needs to be included in your API requests for authentication. After clicking 'Save', the changes will take effect. 
+To enables access to the REST API, the shop owner must authorize one (or more) users in the Shopware backend. Simply open the Shopware backend and open the `User Administration` window, under `Settings`. 
+From the list of existing users displayed on this window, select `Edit` for the desired user and mark the `enabled` checkbox in the `API Access` section. 
+You will get a randomly generated API access key, which needs to be included in your API requests for authentication. After clicking `Save`, the changes will take effect. 
 If the edited user is currently logged in, you might need to empty the backend cache, and then log out an log in for your changes to take effect.
 
-## List of API-Resources
+## List of API Resources
 
-You may click on the name, to get further details about the provided data of the specified resource.
+The API has multiple resources, each responsible for managing a specific data type. These resources can be found in the `engine/Shopware/Controllers/Api/` folder of your Shopware installation. Each resource has a correspondent URI, and supports a different set of operations.
 
-| Name                                                              |  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+To get more details about the data provided by each specified resource, click on its name.
+
+| Name                                                              |  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-------------------------------------------------------------------|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | **[Article](api-resource-article)**                               |  /api/articles              |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png) | ![Yes](img/yes.png)  | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
 | **[Cache](api-resource-cache)**                  				    |  /api/caches                |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![No](img/no.png)   | ![No](img/no.png)    | ![No](img/no.png)    | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
@@ -36,10 +38,10 @@ You may click on the name, to get further details about the provided data of the
 | **[Variants](api-resource-variants)**             				|  /api/variants              |  ![Yes](img/yes.png)   | ![No](img/no.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png)  | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
 | **[Version](api-resource-version)**				                |  /api/version               |  ![Yes](img/yes.png)   | ![No](img/no.png) 	 | ![No](img/no.png)   | ![No](img/no.png)    | ![No](img/no.png)    | ![No](img/no.png)   | ![No](img/no.png)   |
 
-## Using the REST-API in your own application
+## Using the REST API in your own application
 
-To connect to the REST-API, you need to implement an API Client.
-This class is the base for further steps and functionalities. You may also code your own API Client, since this is just an example.
+To connect to the REST API, you need a client application. As REST is widely used as an inter-application communication protocol, several client applications and integration libraries already exist, both free and commercially, for different platforms and languages. The following class illustrates a fully functional (yet basic) implementation of a REST client. Note that this example code is not maintained, and it's highly recommended that you don't use it in production environments.
+
 ```
 <?php
 class ApiClient {
@@ -138,7 +140,8 @@ class ApiClient {
 ```
 
 ### Creating the API client
-To successfully use this client, we need to initialize it. When creating it, we give the API URL a user name and the API key directly.
+To successfully use this client, we need to initialize it. When creating it, we give the client an API URL, an user name and the API key.
+
 ```
 $client = new ApiClient(
     //URL of shopware REST server
@@ -149,29 +152,30 @@ $client = new ApiClient(
     'myAPIKey'
 );
 ```
-### Triggering a call with the API client
-The newly created client now gives us the ability to call all resources. The first parameter describes the information that should be queried. With this information, full URL does not need to be passed. It is enough if the resource starts with the URL.
 
-So for example the article with the ID "3" is queried:
+### Triggering a call with the API client
+The newly created client now gives us the ability to call all resources. The first parameter describes the resource that should be queried. As the client already knows the resource's URL, we don't need to provide that information again. and can use only the resource's URI.
+
+So, for example, the article with the ID `3` can be queried like so:
 
 ```
 $client->get('articles/3');
 ```
 
-As soon as data is created or updated, a second parameter should be given with this call. This parameter must be an array with the data which should be changed or created.
+When creating or updating data, a second parameter needs to be given to these calls. This parameter must be an array containing the data which should be changed or created.
 
-## Addressing the API
+## Communicating with the API
 
-### Coding of queries
+### Query encoding
 
-It is important that when communicating with the Shopware API, all queries are transmitted as UTF8-encoded.
+It is important that, when communicating with the Shopware API, all transmitted queries are UTF8-encoded.
 The date must be in ISO 8601 format.
 
 More info about ISO can be found here:
 
 * [ISO_8601](http://en.wikipedia.org/wiki/ISO_8601)
 
-##### Dateformatting in PHP
+### Date formatting in PHP
 ```
 //Generate valid ISO-8601
 $now = new DateTime();
@@ -196,7 +200,8 @@ object(DateTime)#65 (3) {
 }
 ```
 
-##### Dateformatting in JavaScript
+### Date formatting in JavaScript
+
 ```
 // Generate valid ISO-8601
 var date = new Date();
@@ -208,11 +213,11 @@ var date = new Date(string);
 ```
 
 ## Examples
-* **[Examples using the article end-point](examples/article)**
-* **[Examples using the order end-point](examples/order)**
-* **[Examples using the customer end-point](examples/customer)**
-* **[Examples using the translation end-point](examples/translation)**
-* **[Examples using the category end-point](examples/category)**
+* **[Examples using the article resource](examples/article)**
+* **[Examples using the order resource](examples/order)**
+* **[Examples using the customer resource](examples/customer)**
+* **[Examples using the translation resource](examples/translation)**
+* **[Examples using the category resource](examples/category)**
 
 ## Questions?
 For further questions you should read the complete Shopware 5 upgrade guide.

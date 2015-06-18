@@ -1,34 +1,29 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Media End-Point
+title: Shopware 5 Rest API - Media Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-media/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's media resource. With this resource, it is possible to 
-receive, create and delete any media of your shop. Also we will have a look at the provided data.
+In this part of the documentation you can learn more about the API's media resource. With this resource, it is possible to retrieve, create and delete any media of your shop. We will also have a look at the associated data structures.
 
 ## General information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\Media.php**.
 
-This resources handles everything around the media that is stored in your shop. This includes article images, blog images or downloadable files.
+This resources handles everything related to the media that is stored in your shop. This includes article images, blog images and downloadable files.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/media                  | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![No](./img/yes.png)  | ![No](./img/no.png)    | ![Yes](./img/no.png)   | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
 
 ## GET
 
-To get information about a specific medium, you can simply call the API as shown in this example:
+To get information about a specific media, you can simply call the API as shown in this example:
 
 * **http://my-shop-url/api/media/id**
-
-And don't forget to replace 'id' with the specific identity.
 
 ### Return Value
 
@@ -51,7 +46,7 @@ And don't forget to replace 'id' with the specific identity.
 
 ## GET (List)
 
-To get list list of medias, simply call
+To get list list of media, simply call
 
 * **http://my-shop-url/api/media/**
 
@@ -62,6 +57,9 @@ without providing any id.
 | Model					             | Table			     |
 |------------------------------------|-----------------------|
 | Shopware\Models\Media\Media        | s_media               |
+
+This API call returns an array of elements, one for each media. Each of these elements has the following structure:
+
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
@@ -76,15 +74,15 @@ without providing any id.
 | created				| date/time				|																			    |
 | fileSize  			| integer				|																				|
 
-*Since this returns a list, the following fields will be appended to the array:*
+Appended to the above mentioned list, you will also find the following data:
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total amount of category resources          |
-| success		      | boolean				  | Indicates if the call was stressful or not.		|
+| total				  | integer				  | The total number of category resources          |
+| success		      | boolean				  | Indicates if the call was successful or not.	|
 
 ## POST 
-If you wish to add new data to the shop's media collection simply create an array and send it via POST request to the API.
+If you wish to add new data to the shop's media collection, simply create an array and send it via `POST` request to the API.
 The following keys can be provided in the array:
 
 | Model					             | Table			     |
@@ -104,14 +102,15 @@ The following keys can be provided in the array:
 | created				| date/time				| Auto generated if not provided											    |
 | fileSize  			| integer				| Auto generated if not provided												|
 
-**The most of those values are being generated automaticly (such as fileSize and created). It is not recommended to set them manually!**
+**The most of these values are generated automatically (such as `fileSize` and `created`). It is not recommended to set them manually**
+
 ## DELETE
 
-In order to delete a specifc medium simply call the following URL using the 'DELETE' operation:
+In order to delete a specific media, simply call the following URL using the `DELETE` operation:
 
 * **(DELETE) http://my-shop-url/api/media/id**
 
-Simply replace 'id' with the specific identifier.
+Replace the `id` with the specific media id.
 
 ## Examples
 

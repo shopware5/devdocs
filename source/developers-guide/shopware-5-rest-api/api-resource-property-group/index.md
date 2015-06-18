@@ -1,36 +1,31 @@
 ---
 layout: default
-title: Shopware 5 Rest API - Orders End-Point
+title: Shopware 5 Rest API - Property Groups Resource
 github_link: developers-guide/shopware-5-rest-api/api-resource-property-group/index.md
 indexed: true
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's PropertyGroups resource. With this resource, it is possible to 
-receive, and update any order in your shop. Also we will have a look at the provided data.
+In this part of the documentation, you can learn more about the API's property groups resource. With this resource, it's possible to retrieve and update any property group in your shop. We will also have a look at the associated data structures.
 
 ## General Information
-You may find the related resource under
-**engine\Shopware\Controllers\Api\PropertyGroups.php**.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Stack)      | POST             | DELETE          | DELETE (Stack)  |
+|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
 | /api/propertyGroups         | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
 
-If you want to access this end-point, simply append your shop-URL with
+If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/propertyGroups**
 
 ## GET
 
-You can receive a property group by providing the specific id
+You can retrieve a property group by using its id
 
 * **http://my-shop-url/api/propertyGroups/id**
-
-Simply replace the 'id' with the specific identifier
 
 ### Return Value
 
@@ -56,11 +51,12 @@ To get more than one property group at once, simply remove the id parameter from
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total amount of cache resources             |
-| success		      | boolean				  | Indicates if the call was stressful or not.		|
+| total				  | integer				  | The total number of cache resources             |
+| success		      | boolean				  | Indicates if the call was successful or not.    |
 
 ## POST and PUT
-You can post or put data by sending the following data to this URL:
+
+You can post or put data by querying the following URL:
 
 * **(POST or PUT) http://my-shop-url/api/propertyGroups/id**
 
@@ -73,11 +69,11 @@ You can post or put data by sending the following data to this URL:
 | sortMode			  | integer				  |															|
 
 ## DELETE
-To delete a property group, simply call this URL with the DELETE request:
+To delete a property group, simply query this URL with a `DELETE` request:
 
 * **http://my-shop-url/api/propertyGroups/id**
 
-Simply replace 'id' with the specific identifier.
+Replace the `id` with the specific property group id.
 
 ## Examples
 

@@ -537,7 +537,7 @@ In order to perform this action, an array like this is required:
 
 ```
 $filterTest = array(
-    'name' => 'My awesome booze',
+    'name' => 'My awesome liquor',
     'description' => 'hmmmmm',
  
     'active' => true,
@@ -578,7 +578,7 @@ Options (`option`) and values (`value`) can be identified by name (see example a
 
 ```
 $properties = array(
-     "name" => "Booze",
+     "name" => "Liquor",
      'position' => 1,
      'comparable' => 1,
      'sortmode' => 2

@@ -14,9 +14,9 @@ In this part of the documentation you can learn more about the API's article res
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/articles               | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
+|  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)            | POST                   | DELETE                | DELETE (Batch)        |
+|-----------------------------|-----------------------|-----------------------|-----------------------|------------------------|------------------------|-----------------------|-----------------------|
+| /api/articles               | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -210,4 +210,20 @@ The article(s) to delete can be defined using the following syntax:
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
 | Article Id    | id        | s_articles.id          | /api/articles/2                          |
-| Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
+
+## DELETE (Stack)
+
+In order to delete more than one article at once, it's possible to provide an array of ids to the REST API.
+Simply pass the array of article ids to the following URL (example)
+
+* **[DELETE] http://my-shop-url/articles/**
+
+without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.
+
+## PUT (Stack)
+
+Updating many articles at once requires an array of article data being provided to the following URL using the `PUT` request (example):
+
+* **[PUT] http://my-shop-url/articles/**
+
+Simply provide the same data as described in the create statement.

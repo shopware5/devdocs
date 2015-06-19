@@ -86,7 +86,7 @@ To get more than one shop at once, simply remove the id parameter from the reque
 | total				  | integer				  | The total number of shop resources              |
 | success		      | boolean				  | Indicates if the call was successful or not.    |
 
-## POST and PUT
+## POST (create) and PUT (update)
 You can post or put data by sending the following data to this URL:
 
 * **(POST or PUT) http://my-shop-url/api/shops/id**
@@ -105,7 +105,3 @@ To delete a shop, simply call this URL with the DELETE request:
 * **http://my-shop-url/api/shops/id**
 
 Replace the `id` with the specific shop id.
-
-## Examples
-
-TODO

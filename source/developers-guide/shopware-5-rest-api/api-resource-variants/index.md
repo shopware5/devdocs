@@ -71,7 +71,7 @@ Option parameters can be provided:
 | attribute			  | object				  | **[Attribute](./models/article-attribute)**				|
 | configuratorOptions | array				  | **[ConfiguratorOptions](./models/configurator-option)** |
 
-## POST
+## POST (create)
 To post a variant, you need to provide the data as shown below:
 
 
@@ -114,7 +114,7 @@ You can post or put data by sending the following data to this URL:
 
 * **(POST or PUT) http://my-shop-url/api/translations/id**
 
-## PUT
+## PUT (update)
 
 To put data to a variant, simply provide one of the following parameters to identify it:
 
@@ -166,6 +166,19 @@ To delete a variant, simply provide one of the following parameters to identify 
 | Detail Id			| id			| `s_articles_details.id`			| /api/variants/2									|
 | Detail number		| number		| `s_articles_details.ordernumber`	| /api/variants/SW10003?useNumberAsId=true			|
 
-## Examples
+## DELETE (Stack)
 
-TODO
+In order to delete more than one variant at once, it's possible to provide an array of ids to the REST API.
+Simply pass the array of article ids to the following URL (example)
+
+* **[DELETE] http://my-shop-url/variants/**
+
+without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.
+
+## PUT (update) (Stack)
+
+Updating many articles at once requires an array of variant data being provided to the following URL using the `PUT` request (example):
+
+* **[PUT] http://my-shop-url/variants/**
+
+Simply provide the same data as described in the create statement.

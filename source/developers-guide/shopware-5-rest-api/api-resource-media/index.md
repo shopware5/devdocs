@@ -57,7 +57,7 @@ without providing any id.
 | Model					             | Table			     |
 |------------------------------------|-----------------------|
 | Shopware\Models\Media\Media        | s_media               |
-
+and
 This API call returns an array of elements, one for each media. Each of these elements has the following structure:
 
 
@@ -81,7 +81,7 @@ Appended to the above mentioned list, you will also find the following data:
 | total				  | integer				  | The total number of category resources          |
 | success		      | boolean				  | Indicates if the call was successful or not.	|
 
-## POST 
+## POST (create)
 If you wish to add new data to the shop's media collection, simply create an array and send it via `POST` request to the API.
 The following keys can be provided in the array:
 
@@ -111,7 +111,3 @@ In order to delete a specific media, simply call the following URL using the `DE
 * **(DELETE) http://my-shop-url/api/media/id**
 
 Replace the `id` with the specific media id.
-
-## Examples
-
-TODO

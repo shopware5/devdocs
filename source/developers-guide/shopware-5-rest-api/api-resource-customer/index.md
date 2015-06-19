@@ -91,7 +91,7 @@ This API call returns an array of elements, one for each customer. Each of these
 | id				    | integer (primary key) | 							                                                    |
 | paymentId			    | integer (foreign key) | **[Payment](./models/payment-instance)**                                      |
 | groupKey			    | string (foreign key)  | **[CustomerGroup](./models/customer-group)**			                        |
-| shopId				| string (foreign key)  | **[Shop](./models/shop-shit-resource)** 										|
+| shopId				| string (foreign key)  | **[Shop](./models/shop)** 													|
 | priceGroupId			| integer (foreign key) | **[PriceGroup](./models/price-group)**      								    |
 | encoderName			| string				| 																		        |
 | hashPassword			| string				| 																				|
@@ -119,7 +119,7 @@ Appended to the above mentioned list, you will also find the following data:
 | total				  | integer				  | The total number of category resources          |
 | success		      | boolean				  | Indicates if the call was successful or not.		|
 
-## POST and PUT
+## POST (create) and PUT (update)
 
 To `POST` or `PUT` content, use the same data as provided in the GET operation.
 
@@ -130,7 +130,3 @@ To delete a customer's data, simply call the specified resource with the `DELETE
 * **(DELETE) http://my-shop-url/api/customers/id**
 
 Replace the `id` with the specific customer id.
-
-## Examples
-
-TODO

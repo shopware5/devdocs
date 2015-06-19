@@ -82,7 +82,7 @@ Appended to the above mentioned list, you will also find the following data:
 | success		      | boolean				  | Indicates if the call was successful or not.	|
 
 
-## POST and PUT
+## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
 | Model					             | Table			|
@@ -120,7 +120,3 @@ To delete a cache, simply call the specified resource with the `DELETE` operatio
 * **(DELETE) http://my-shop-url/api/categories/id**
 
 Replace the `id` with the specific category id.
-
-## Examples
-
-TODO

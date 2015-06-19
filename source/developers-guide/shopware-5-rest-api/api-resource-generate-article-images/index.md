@@ -21,7 +21,7 @@ If you want to access this resource, simply query the following URL:
 
 * **http://my-shop-url/api/customerGroups**
 
-## PUT
+## PUT (update)
 
 This operation allows you to regenerate the thumbnails of a specific article.
 
@@ -31,7 +31,3 @@ This operation allows you to regenerate the thumbnails of a specific article.
 | Article Number | number	   | s_articles_details.customernumber | /api/generateArticleImages/20003?useNumberAsId=true  |
 
 You can identify the product by either the ID or the detail number.
-
-## Examples
-
-TODO

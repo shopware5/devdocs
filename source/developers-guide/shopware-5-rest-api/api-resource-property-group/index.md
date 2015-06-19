@@ -13,9 +13,9 @@ In this part of the documentation, you can learn more about the API's property g
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/propertyGroups         | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
+|  Access URL                 | GET                      | GET (List)            | PUT                   | PUT (Batch)         | POST                   | DELETE                | DELETE (Batch)      |
+|-----------------------------|--------------------------|-----------------------|-----------------------|---------------------|------------------------|-----------------------|---------------------|
+| /api/propertyGroups         | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![No](./img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -37,7 +37,7 @@ You can retrieve a property group by using its id
 | comparable		  | boolean				  |															|
 | sortMode			  | integer				  |															|
 | options			  | array				  | **[Option](./models/property-group-option)**			|
-| attribute			  | array				  | **[Attribute](./models/property-group.attribute)**		|
+| attribute			  | array				  | **[Attribute](./models/property-group-attribute)**		|
 
 ## GET (List)
 
@@ -54,7 +54,7 @@ To get more than one property group at once, simply remove the id parameter from
 | total				  | integer				  | The total number of cache resources             |
 | success		      | boolean				  | Indicates if the call was successful or not.    |
 
-## POST and PUT
+## POST (create) and PUT (update)
 
 You can post or put data by querying the following URL:
 
@@ -75,6 +75,11 @@ To delete a property group, simply query this URL with a `DELETE` request:
 
 Replace the `id` with the specific property group id.
 
-## Examples
+## DELETE (Stack)
 
-TODO
+In order to delete more than one cache at once, it's possible to provide an array of ids to the REST API.
+Simply pass the array of cache ids to the following URL (example)
+
+* **[DELETE] http://my-shop-url/caches/**
+
+without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.

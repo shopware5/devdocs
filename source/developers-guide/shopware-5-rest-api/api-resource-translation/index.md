@@ -44,7 +44,7 @@ You can retrieve data of translations by providing the specific id
 | total				  | integer				  | The total number of translations                |
 | success		      | boolean				  | Indicates if the call was successful or not.	|
 
-## POST
+## POST (create)
 
 To post a translation, you need to identify it by the following parameters
 
@@ -91,6 +91,19 @@ To delete a shop, simply call this URL with the `DELETE` request:
 
 Replace the `id` with the specific translation id.
 
-## Examples
+## DELETE (Stack)
 
-TODO
+In order to delete more than one translation at once, it's possible to provide an array of ids to the REST API.
+Simply pass the array of translation ids to the following URL (example)
+
+* **[DELETE] http://my-shop-url/translations/**
+
+without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.
+
+## PUT (update) (Stack)
+
+Updating many articles at once requires an array of translation data being provided to the following URL using the `PUT` request (example):
+
+* **[PUT] http://my-shop-url/translations/**
+
+Simply provide the same data as described in the create statement.

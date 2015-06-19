@@ -84,7 +84,3 @@ To delete all caches, simply call
 * **(DELETE) http://my-shop-url/api/caches** 
 
 without providing a cache id.
-
-## Examples
-
-TODO

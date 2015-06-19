@@ -14,9 +14,9 @@ In this part of the documentation, you can learn more about the API's orders res
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/orders              	  | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![No](./img/no.png)    | ![No](./img/yes.png)  | ![No](./img/no.png)   |
+|  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)         | POST                | DELETE               | DELETE (Batch)      |
+|-----------------------------|-----------------------|-----------------------|-----------------------|------------------- -|---------------------|----------------------|---------------------|
+| /api/orders              	  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) | ![No](./img/no.png) | ![No](./img/yes.png) | ![No](./img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -85,6 +85,13 @@ This API call requires one of the following parameters to be defined:
 | paymentStatusId   	| integer (foreign key)	| **[Status](./models/payment-status)**											|
 | orderStatusId			| integer (foreign key) | **[OrderStatus](./models/order-status)**										|
 
-## Examples
+## PUT (update)
 
-TODO
+Orders can be identified using the following:
+
+| Identifier    | Parameter | DB column              | Example call                             |
+|---------------|-----------|------------------------|------------------------------------------|
+| Article Id    | id        | s_articles.id          | /api/articles/2                          |
+| Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
+
+The data structure used is similar to the one returned in the`GET` request.

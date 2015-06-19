@@ -110,7 +110,3 @@ To delete a customer group, simply call the specified resource with the `DELETE`
 * **(DELETE) http://my-shop-url/api/customerGroups/id**
 
 Replace the `id` with the specific customer group id.
-
-## Examples
-
-TODO

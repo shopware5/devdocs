@@ -15,9 +15,9 @@ This resources handles everything related to the media that is stored in your sh
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/media                  | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![No](./img/yes.png)  | ![No](./img/no.png)    | ![Yes](./img/no.png)   | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
+|  Access URL                 | GET                   | GET (List)            | PUT                  | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
+|-----------------------------|-----------------------|-----------------------|----------------------|---------------------|----------------------|-----------------------|---------------------|
+| /api/media                  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/yes.png) | ![No](./img/no.png) | ![Yes](./img/no.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) |
 
 ## GET
 

@@ -13,9 +13,9 @@ In this part of the documentation you can learn more about the API's translation
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/translations	          | ![No](./img/no.png)     | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
+|  Access URL                 | GET                | GET (List)            | PUT                   | PUT (Batch)            | POST                   | DELETE                | DELETE (Batch)        |
+|-----------------------------|--------------------|-----------------------|-----------------------|------------------------|------------------------|-----------------------|-----------------------|
+| /api/translations	          | ![No](./img/no.png)| ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png)  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -106,4 +106,4 @@ Updating many articles at once requires an array of translation data being provi
 
 * **[PUT] http://my-shop-url/translations/**
 
-Simply provide the same data as described in the create statement.
+Simply provide the same data as described in the `GET` request.

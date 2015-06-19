@@ -13,9 +13,9 @@ This resource allows you to regenerate article thumbnails.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/customerGroups         | ![No](./img/no.png)      | ![No](./img/no.png)   | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![No](./img/no.png)    | ![No](./img/no.png)   | ![No](./img/no.png)   |
+|  Access URL                 | GET                 | GET (List)          | PUT                   | PUT (Batch)         | POST                | DELETE              | DELETE (Batch)      |
+|-----------------------------|---------------------|---------------------|-----------------------|---------------------|---------------------|---------------------|---------------------|
+| /api/customerGroups         | ![No](./img/no.png) | ![No](./img/no.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) | ![No](./img/no.png) | ![No](./img/no.png) | ![No](./img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 

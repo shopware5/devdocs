@@ -14,9 +14,9 @@ In this part of the documentation you can learn more about the API's categories 
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
-|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
-| /api/categories             | ![Yes](./img/yes.png)    | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png)    | ![Yes](./img/no.png)   | ![Yes](./img/yes.png) | ![No](./img/no.png)   |
+|  Access URL                 | GET                   | GET (List)            | PUT                    | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
+|-----------------------------|-----------------------|-----------------------|------------------------|---------------------|----------------------|-----------------------|---------------------|
+| /api/categories             | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) |  ![Yes](./img/yes.png) | ![No](./img/no.png) | ![Yes](./img/no.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 

@@ -26,7 +26,7 @@
         opts = {
             
             // maximum height of the code panel (also set inside fixedCode class)
-            maxHeight: '300',
+            maxHeight: '370',
             
             // class when the code is expanded
             expandedClass: 'code-expanded',

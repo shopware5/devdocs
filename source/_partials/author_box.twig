@@ -4,7 +4,7 @@
 	</div>
 	<div class="blog-user">
 		<div class="user-info">
-			<a href="{{ site.url }}/blog/authors/{{ authorhandle|url_encode(true) }}">{{ author.name }}</a>
+			<a rel="author" href="{{ site.url }}/blog/authors/{{ authorhandle|url_encode(true) }}">{{ author.name }}</a>
             {% if author.title %}<span class="user-title">, {{ author.title }}</span>{% endif %}
 		</div>
 

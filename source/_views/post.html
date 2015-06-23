@@ -9,7 +9,7 @@
 {% set main_author = page.authors[0] %}
     {% if site.authors[main_author] %}
     <meta name="author" content="{{ site.authors[main_author]['name']|default(main_author) }}">
-    <link rel="author" href="{{ site.authors[main_author]['url'] }}">
+    <link rel="author" href="{{ site.url }}/blog/authors/{{ main_author|url_encode(true) }}">
     {% endif %}
 {% endif %}
 
@@ -35,7 +35,6 @@
         {% for authorhandle in page.authors %}
         {% if site.authors[authorhandle] %}
 		{% include 'author_box.twig' with {'author': site.authors[authorhandle], 'date': page.date} %}
-
 		{% endif %}
         {% endfor %}
     </div>

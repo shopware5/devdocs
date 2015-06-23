@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}</title>
+
+    {% block head_meta %}
     <meta name="description" content="{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}: {% if page.description is defined %}{{ page.description }}{% else %}{{ page.project.description }}{% endif %}"/>
+    {% endblock %}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 

@@ -1,5 +1,6 @@
 ---
 title: SSO with Nginx auth_request module
+description: Recently we had the challenge to connect a static website with our existing Single Sign-on (SSO) infrastructure
 tags:
 - nginx
 - development

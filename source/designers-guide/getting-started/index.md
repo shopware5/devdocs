@@ -254,7 +254,7 @@ a.btn.is--icon-left.cart--link {
 }
 ```
 
-#Result
+# Result
 ![Final Result](img-final.jpg)
 
 This guide provided you a simple tutorial on how to do a small template change with the following topics:

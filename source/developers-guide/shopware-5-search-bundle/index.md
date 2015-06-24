@@ -216,7 +216,7 @@ All selected values are now provided in the next request in the `sSupplier` requ
 ## Concept - Extendable
 The linked plugin shows how the Shopware search bundle can be extended. It registers custom sorting, condition and facet for the store front and implements a default extension for the `Shopware\Bundle\SearchBundleDBAL`:
 
-<a href="img/SwagSearchBundle.zip">Plugin download</a>
+<a href="{{ site.url }}/exampleplugins/SwagSearchBundle.zip">Plugin download</a>
 
 ## ProductSearch decorator
 In most cases, only a list of product numbers is not enough for the store front.

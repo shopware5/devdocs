@@ -26,7 +26,7 @@
         opts = {
             
             // maximum height of the code panel (also set inside fixedCode class)
-            maxHeight: '370',
+            maxHeight: 370,
             
             // class when the code is expanded
             expandedClass: 'code-expanded',
@@ -137,7 +137,11 @@
      * Function call on the DOM element.
      */
     $(function() {
-        $('pre').expandCode();
+        
+        window.setTimeout(function() {
+            $('pre').expandCode();
+        }, 500);
+        
     });
 
 }) (jQuery);

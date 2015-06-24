@@ -9,7 +9,7 @@
     "bcremer/sculpin-less-bundle": "~0.1",
     "mavimo/sculpin-redirect-bundle": "@dev",
     "bcremer/sculpin-commonmark-bundle": "^0.2.0",
-    "webuni/commonmark-table-extension": "@dev"
+    "webuni/commonmark-table-extension": "^0.1.0"
   },
   "config": {
     "component-dir": "source/components"

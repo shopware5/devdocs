@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6adf42ebe71c465bf65873a00115f2a2",
+    "hash": "db5fdfe60af1544eb5c60cb284dfc904",
     "packages": [
         {
             "name": "bcremer/sculpin-commonmark-bundle",
@@ -140,12 +140,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "8e9659bd8317ad3f623c4d17940380443cf8772c"
+                "reference": "84661296ffe281b6238cc29b39526b31f26f3918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/8e9659bd8317ad3f623c4d17940380443cf8772c",
-                "reference": "8e9659bd8317ad3f623c4d17940380443cf8772c",
+                "url": "https://api.github.com/repos/composer/composer/zipball/84661296ffe281b6238cc29b39526b31f26f3918",
+                "reference": "84661296ffe281b6238cc29b39526b31f26f3918",
                 "shasum": ""
             },
             "require": {
@@ -203,7 +203,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2015-06-14 09:10:46"
+            "time": "2015-06-24 09:14:40"
         },
         {
             "name": "dflydev/ant-path-matcher",
@@ -1037,16 +1037,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "91696c88df298f75fdd2075e4bb19c6dbd7338ca"
+                "reference": "8b681a57233f00578195573d7d251c2f143c1a5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/91696c88df298f75fdd2075e4bb19c6dbd7338ca",
-                "reference": "91696c88df298f75fdd2075e4bb19c6dbd7338ca",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/8b681a57233f00578195573d7d251c2f143c1a5d",
+                "reference": "8b681a57233f00578195573d7d251c2f143c1a5d",
                 "shasum": ""
             },
             "require": {
@@ -1058,7 +1058,7 @@
             },
             "require-dev": {
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.19",
+                "jgm/commonmark": "0.20",
                 "michelf/php-markdown": "~1.4",
                 "phpunit/phpunit": "~4.3",
                 "phpunit/phpunit-mock-objects": "2.3.0",
@@ -1067,7 +1067,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.8-dev"
+                    "dev-master": "0.9-dev"
                 }
             },
             "autoload": {
@@ -1094,7 +1094,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-04-29 18:01:46"
+            "time": "2015-06-19 00:39:51"
         },
         {
             "name": "mavimo/sculpin-redirect-bundle",
@@ -1521,12 +1521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "fed16e800d2fe023b567fe587984157d59a5f5cd"
+                "reference": "6f654095da6e364261093c2d9ca416e1027d0169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/fed16e800d2fe023b567fe587984157d59a5f5cd",
-                "reference": "fed16e800d2fe023b567fe587984157d59a5f5cd",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/6f654095da6e364261093c2d9ca416e1027d0169",
+                "reference": "6f654095da6e364261093c2d9ca416e1027d0169",
                 "shasum": ""
             },
             "require": {
@@ -1561,7 +1561,7 @@
                 }
             ],
             "description": "Allows installation of Components via Composer.",
-            "time": "2015-06-11 15:04:57"
+            "time": "2015-06-18 13:02:30"
         },
         {
             "name": "sculpin/sculpin",
@@ -2739,24 +2739,25 @@
         },
         {
             "name": "webuni/commonmark-table-extension",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webuni/commonmark-table-extension.git",
-                "reference": "14b7a1aa49499a986f6d8a5bfd5d210cd79439be"
+                "reference": "34d17b90b4aa0d7ca48a761da13dc8bcc53a1350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webuni/commonmark-table-extension/zipball/14b7a1aa49499a986f6d8a5bfd5d210cd79439be",
-                "reference": "14b7a1aa49499a986f6d8a5bfd5d210cd79439be",
+                "url": "https://api.github.com/repos/webuni/commonmark-table-extension/zipball/34d17b90b4aa0d7ca48a761da13dc8bcc53a1350",
+                "reference": "34d17b90b4aa0d7ca48a761da13dc8bcc53a1350",
                 "shasum": ""
             },
             "require": {
-                "league/commonmark": ">=0.7"
+                "league/commonmark": ">=0.9",
+                "php": ">=5.4"
             },
             "require-dev": {
-                "league/commonmark": "@dev",
-                "phpunit/phpunit": "~4.3"
+                "fabpot/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.3"
             },
             "type": "library",
             "extra": {
@@ -2787,7 +2788,7 @@
                 "markdown",
                 "table"
             ],
-            "time": "2015-05-26 14:22:23"
+            "time": "2015-06-24 10:08:37"
         }
     ],
     "packages-dev": [],
@@ -2799,8 +2800,7 @@
         "dflydev/embedded-composer-console": 20,
         "dflydev/embedded-composer-core": 20,
         "robloach/component-installer": 20,
-        "mavimo/sculpin-redirect-bundle": 20,
-        "webuni/commonmark-table-extension": 20
+        "mavimo/sculpin-redirect-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

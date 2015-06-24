@@ -57,8 +57,6 @@ class Shopware_Plugins_Frontend_SwagMd5Reversed_Bootstrap extends Shopware_Compo
         $hashes[] = new \Shopware\SwagMd5Reversed\Md5ReversedEncoder();
 
         return $hashes;
-
-
     }
 
     /**

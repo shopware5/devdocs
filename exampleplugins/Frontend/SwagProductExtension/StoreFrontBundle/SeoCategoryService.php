@@ -38,7 +38,7 @@ class SeoCategoryService
      */
     public function getList($listProducts, ShopContextInterface $context)
     {
-        $ids = array_map(function(ListProduct $product) {
+        $ids = array_map(function (ListProduct $product) {
             return $product->getId();
         }, $listProducts);
 

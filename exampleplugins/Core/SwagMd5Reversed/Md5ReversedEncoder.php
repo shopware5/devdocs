@@ -45,5 +45,4 @@ class Md5ReversedEncoder implements PasswordEncoderInterface
     {
         return false;
     }
-
 }

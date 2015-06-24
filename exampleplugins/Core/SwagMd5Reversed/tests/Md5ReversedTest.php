@@ -30,6 +30,4 @@ class Md5ReversedTest extends Shopware\Components\Test\Plugin\TestCase
 
         $this->assertFalse($isValid);
     }
-
-
 }

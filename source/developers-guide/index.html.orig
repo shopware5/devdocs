@@ -15,6 +15,9 @@ github_link: developers-guide/index.html
     <li><a href="{{ site.url }}/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a></li>
     <li><a href="{{ site.url }}/developers-guide/password-encoder/">Shopware password encoder</a></li>
     <li><a href="{{ site.url }}/developers-guide/debugging/">Debugging shopware</a></li>
+<<<<<<< HEAD
     <li><a href="{{ site.url }}/developers-guide/shopware-5-cli-commands/">Shopware 5 CLI commands</a></li>
-    <li><a href="{{ site.url }}/developers-guide/shopware-5-rest-api/">Shopware 5 REST API</a></li>
+=======
+	<li><a href="{{ site.url }}/developers-guide/shopware-5-rest-api/">Shopware 5 REST API</a></li>
+>>>>>>> 93d1b7c... Fixed typos and image paths
 </ul>

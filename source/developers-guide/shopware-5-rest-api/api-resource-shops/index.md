@@ -33,8 +33,8 @@ You can retrieve data of a shop by providing the specific id
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 |
-| mainId	      	  | integer (foreign key) | **[Shop](./models/shop)**                       |
-| categoryId		  | integer (foreign key) | **[Category](./models/category)**				|
+| mainId	      	  | integer (foreign key) | **[Shop](./models/#shop)**                      |
+| categoryId		  | integer (foreign key) | **[Category](./models/#category)**				|
 | name		      	  | string				  | 		                                        |
 | title				  | string				  | 												|
 | position			  | integer				  | 												|
@@ -49,7 +49,7 @@ You can retrieve data of a shop by providing the specific id
 | default			  | boolean				  | 												|
 | active			  | boolean				  | 												|
 | customerScope		  | boolean				  | 												|
-| currency			  | object				  | **[Currency](./models/currency)**				|
+| currency			  | object				  | **[Currency](./models/#currency)**				|
 
 ## GET (List)
 
@@ -62,8 +62,8 @@ To get more than one shop at once, simply remove the id parameter from the reque
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 |
-| mainId	      	  | integer (foreign key) | **[Shop](./models/shop)**                       |
-| categoryId		  | integer (foreign key) | **[Category](./models/category)**				|
+| mainId	      	  | integer (foreign key) | **[Shop](./models/#shop)**                      |
+| categoryId		  | integer (foreign key) | **[Category](./models/#category)**				|
 | name		      	  | string				  | 		                                        |
 | title				  | string				  | 												|
 | position			  | integer				  | 												|

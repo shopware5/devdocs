@@ -34,8 +34,8 @@ You can retrieve data of translations by providing the specific id
 | type 	         	  | string				  |                                                 |
 | data		      	  | array				  | 		                                        |
 | key				  | integer 			  | 												|
-| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                   |
-| locale			  | object				  | **[Locale](./models/locale)**					|
+| localeId	      	  | integer (foreign key) | **[Locale](./models/#locale)**                  |
+| locale			  | object				  | **[Locale](./models/#locale)**					|
 
 *Since this returns a list, the following fields will be added to the array:*
 
@@ -70,7 +70,7 @@ You can use this data to add a new translation to the shop
 | type 	         	  | string				  |                                                 |
 | data		      	  | array				  | 		                                        |
 | key				  | integer 			  | 												|
-| localeId	      	  | integer (foreign key) | **[Locale](./models/locale)**                   |
+| localeId	      	  | integer (foreign key) | **[Locale](./models/#locale)**                  |
 
 You can post or put data by sending the following data to this URL:
 

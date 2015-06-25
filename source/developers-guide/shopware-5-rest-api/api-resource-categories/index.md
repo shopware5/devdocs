@@ -41,7 +41,7 @@ Single category details can be retrieved via the category ID:
 | active	          | boolean				  |                     							                              |
 | name                | string                |       											                              |
 | position            | integer               |             									                              |
-| parentId            | integer (foreign key) | **[Category](./models/category)** 											  |
+| parentId            | integer (foreign key) | **[Category](./models/#category)** 											  |
 | childrenCount       | integer               | 														                      |
 | articleCount		  | integer				  | 														                      |
 
@@ -70,7 +70,7 @@ This API call returns an array of elements, one for each category. Each of these
 | active	          | boolean				  |                     							                              |
 | name                | string                |       											                              |
 | position            | integer               |             									                              |
-| parentId            | integer (foreign key) | **[Category](./models/category)**											  |
+| parentId            | integer (foreign key) | **[Category](./models/#category)**											  |
 | childrenCount       | integer               | 														                      |
 | articleCount		  | integer				  | 														                      |
 
@@ -93,7 +93,7 @@ Appended to the above mentioned list, you will also find the following data:
 |---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
 | name (required)     | string				  |                                                      |       						                                                 |
 | id     	          | integer (primary key) | If null, a new entity will be created    	         | `s_category.id`     							                                 |
-| parent              | object                | Required if no parentId is provided                  | **[Category](./models/category)**											 |
+| parent              | object                | Required if no parentId is provided                  | **[Category](./models/#category)**											 |
 | parentId            | integer               |                                                      | `s_category.id`            									                 |                
 | position            | integer               |                                                      | 																			     |
 | metaKeywords        | string                |												         | 														                         |

@@ -67,9 +67,9 @@ Option parameters can be provided:
 | shippingFree		  | boolean				  |															|
 | releaseDate		  | date/time			  |															|
 | shippingTime		  | string				  |															|
-| prices			  | array				  | **[Price](./models/price)**								|
-| attribute			  | object				  | **[Attribute](./models/article-attribute)**				|
-| configuratorOptions | array				  | **[ConfiguratorOptions](./models/configurator-option)** |
+| prices			  | array				  | **[Price](./models/#price)**							|
+| attribute			  | object				  | **[Attribute](./models/#article-attribute)**			|
+| configuratorOptions | array				  | **[ConfiguratorOptions](./models/#configurator-option)**|
 
 ## POST (create)
 To post a variant, you need to provide the data as shown below:
@@ -106,9 +106,9 @@ You can use this data to add a new variant to the shop
 | shippingFree		  | boolean				  |															|
 | releaseDate		  | date/time			  |															|
 | shippingTime		  | string				  |															|
-| prices			  | array				  | **[Price](./models/price)**								|
-| attribute			  | object				  | **[Attribute](./models/article-attribute)**				|
-| configuratorOptions | array				  | **[ConfiguratorOptions](./models/configurator-option)** |
+| prices			  | array				  | **[Price](./models/#price)**							|
+| attribute			  | object				  | **[Attribute](./models/#article-attribute)**			|
+| configuratorOptions | array				  | **[ConfiguratorOptions](./models/#configurator-option)**|
 
 You can post or put data by sending the following data to this URL:
 
@@ -154,9 +154,9 @@ You can use this data to update a variant.
 | shippingFree		  | boolean				  |															|
 | releaseDate		  | date/time			  |															|
 | shippingTime		  | string				  |															|
-| prices			  | array				  | **[Price](./models/price)**								|
-| attribute			  | object				  | **[Attribute](./models/article-attribute)**				|
-| configuratorOptions | array				  | **[ConfiguratorOptions](./models/configurator-option)** |
+| prices			  | array				  | **[Price](./models/#price)**							|
+| attribute			  | object				  | **[Attribute](./models/#article-attribute)**			|
+| configuratorOptions | array				  | **[ConfiguratorOptions](./models/#configurator-option)**|
 
 ## DELETE
 To delete a variant, simply provide one of the following parameters to identify it:

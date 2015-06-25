@@ -219,5 +219,7 @@ var date = new Date(string);
 * **[Examples using the translation resource](examples/translation)**
 * **[Examples using the category resource](examples/category)**
 
-## Questions?
-For further questions you should read the complete Shopware 5 upgrade guide.
+## Models
+
+You can find a list of all models at the following page:
+* **[Models](models/)**

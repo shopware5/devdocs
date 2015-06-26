@@ -66,7 +66,7 @@ class SearchIndexListener implements EventSubscriberInterface
             'title' => $source->data()->get('title'),
             'body'  => strip_tags($source->content()),
             'tags'  => implode(', ', $tags),
-            'url'   => $source->permalink()->relativeUrlPath(),
+            'url'   => rtrim($source->permalink()->relativeUrlPath(), '/').'/',
         );
 
         return $document;

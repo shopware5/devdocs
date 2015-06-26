@@ -61,6 +61,15 @@ aptitude update
 aptitude -t wheezy-backports install nginx-extras
 ```
 
+#### Debian Jessie
+
+On Debian Jessie the [nginx-extra](https://packages.debian.org/jessie/nginx-extras) package already includes the auth_request module.
+
+```bash
+aptitude install nginx-extras
+```
+
+
 #### Compile
 
 [Compile nginx](http://wiki.nginx.org/Install#Building_Nginx_From_Source) with the auth_request module:

@@ -16,7 +16,7 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)         | POST                | DELETE               | DELETE (Batch)      |
 |-----------------------------|-----------------------|-----------------------|-----------------------|------------------- -|---------------------|----------------------|---------------------|
-| /api/orders              	  | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![Yes](./img/yes.png) | ![No](./img/no.png) | ![No](./img/no.png) | ![No](./img/yes.png) | ![No](./img/no.png) |
+| /api/orders              	  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 

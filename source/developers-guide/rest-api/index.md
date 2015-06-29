@@ -45,15 +45,15 @@ To connect to the REST API, you need a client application. As REST is widely use
 ```
 <?php
 class ApiClient {
-    const METHODE_GET    = 'GET';
-    const METHODE_PUT    = 'PUT';
-    const METHODE_POST   = 'POST';
-    const METHODE_DELETE = 'DELETE';
+    const METHOD_GET    = 'GET';
+    const METHOD_PUT    = 'PUT';
+    const METHOD_POST   = 'POST';
+    const METHOD_DELETE = 'DELETE';
     protected $validMethods = array(
-        self::METHODE_GET,
-        self::METHODE_PUT,
-        self::METHODE_POST,
-        self::METHODE_DELETE
+        self::METHOD_GET,
+        self::METHOD_PUT,
+        self::METHOD_POST,
+        self::METHOD_DELETE
     );
     protected $apiUrl;
     protected $cURL;
@@ -71,7 +71,7 @@ class ApiClient {
         ));
     }
 
-    public function call($url, $method = self::METHODE_GET, $data = array(), $params = array()) {
+    public function call($url, $method = self::METHOD_GET, $data = array(), $params = array()) {
         if (!in_array($method, $this->validMethods)) {
             throw new Exception('Invalid HTTP-Methode: ' . $method);
         }
@@ -91,19 +91,19 @@ class ApiClient {
     }
 
     public function get($url, $params = array()) {
-        return $this->call($url, self::METHODE_GET, array(), $params);
+        return $this->call($url, self::METHOD_GET, array(), $params);
     }
 
     public function post($url, $data = array(), $params = array()) {
-        return $this->call($url, self::METHODE_POST, $data, $params);
+        return $this->call($url, self::METHOD_POST, $data, $params);
     }
 
     public function put($url, $data = array(), $params = array()) {
-        return $this->call($url, self::METHODE_PUT, $data, $params);
+        return $this->call($url, self::METHOD_PUT, $data, $params);
     }
 
     public function delete($url, $params = array()) {
-        return $this->call($url, self::METHODE_DELETE, array(), $params);
+        return $this->call($url, self::METHOD_DELETE, array(), $params);
     }
 
     protected function prepareResponse($result, $httpCode) {

@@ -52,7 +52,7 @@ The administration of your shop can be done completely online via the web browse
 
 ### Requirements:
 
-- Firefox, Chrome, Safari or Internet Explorer version 9 or higher.
+- Latest version of: Firefox, Chrome, Safari or Internet Explorer
 - JavaScript and Cookies enabled
 - 4 GB RAM
 - Dual-core CPU

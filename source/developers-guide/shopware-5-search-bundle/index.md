@@ -124,6 +124,8 @@ Shopware contains the following core facet results, which can be reused for each
 This abstract architecture allows third party developers to integrate new facets without implementing their own styling for the store front.
 **Example**: The `ShippingFreeFacet` and the `ImmediateDeliveryFacet` both use the `ValueListFacetResult` without defining their own template for the store front, but with different data sources.
 
+**Download attribute filter plugin**: <a href="img/SwagAttributeFilter.zip">Plugin download</a>
+
 
 ## Full implementation - with condition (with DBAL)
 The following example shows how the default `SearchBundleDBAL` implementation handles conditions.

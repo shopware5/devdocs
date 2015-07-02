@@ -9,9 +9,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-before_install:
-    - openssl aes-256-cbc -K $encrypted_8d2e99642ba8_key -iv $encrypted_8d2e99642ba8_iv -in deploy_key.enc -out deploy_key -d
-
 before_script:
     - composer self-update
     - composer install

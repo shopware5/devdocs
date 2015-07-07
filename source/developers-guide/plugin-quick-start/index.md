@@ -269,7 +269,7 @@ The calls to `$this->Config()->get('name')` will return our plugin configuration
 ```
 private function createConfig()
 {
-    $this->Form()->addElement(
+    $this->Form()->setElement(
         'select',
         'font-size',
         array(
@@ -283,7 +283,7 @@ private function createConfig()
         )
     );
 
-    $this->Form()->addElement('boolean', 'italic', array(
+    $this->Form()->setElement('boolean', 'italic', array(
         'value' => true,
         'label' => 'Italic'
     ));

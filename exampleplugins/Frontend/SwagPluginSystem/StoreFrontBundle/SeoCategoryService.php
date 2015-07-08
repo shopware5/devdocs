@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagProductExtension\StoreFrontBundle;
+namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Bundle\StoreFrontBundle\Service\CategoryServiceInterface;

@@ -440,4 +440,4 @@ This example is very academic, and not adequate for production environments, but
 
 This doesn't mean you need to always decorate existing services. In some scenarios, full replacement might be a better solution than decorating. Just keep in mind that other plugins might want to decorate your service as if it where the core implementation, to ensure both your and other plugins work as expected.
 
-You can find a small <a href="{{ site.url }}/exampleplugins/SwagProductExtension.zip">example plugin here</a>.
+You can find a small <a href="{{ site.url }}/exampleplugins/SwagPluginSystem.zip">example plugin here</a>.

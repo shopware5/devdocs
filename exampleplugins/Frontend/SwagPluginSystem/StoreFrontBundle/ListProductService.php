@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagProductExtension\StoreFrontBundle;
+namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
 
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
@@ -44,7 +44,7 @@ class ListProductService implements ListProductServiceInterface
             }
 
             $attribute = new Struct\Attribute(['category' => $categories[$productId]]);
-            $product->addAttribute('swag_seo_category', $attribute);
+            $product->addAttribute('swag_plugin_system', $attribute);
         }
         return $products;
     }

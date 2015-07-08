@@ -26,5 +26,18 @@ SHOPWARE_EOD;
 
     public function createConfig(Form\Container\TabContainer $container)
     {
+        $tab = $this->createTab('swag_custom_theme', 'Custom theme');
+        $container->addTab($tab);
+
+        $fieldSet = $this->createFieldSet('swag_custom_theme_field_set', 'Badge configuration');
+
+        $fieldSet->addElement(
+            $this->createColorPickerField('badge-seo-category-bg', 'Background seo category badge', '#e74c3c')
+        );
+        $fieldSet->addElement(
+            $this->createColorPickerField('badge-seo-category-color', 'Color seo category badge', '#fff')
+        );
+
+        $tab->addElement($fieldSet);
     }
 }

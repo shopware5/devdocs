@@ -12,14 +12,14 @@ indexed: true
 The main goal for Karma is to bring a productive testing environment to developers. The environment being one where they don't have to set up loads of configurations, but rather a place where developers can just write the code and get instant feedback from their tests.
 
 ## Requirements 
-Karma is based on Node.js, which makes it necessary to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your system. Node.js is available on a majority of systems and distrubition. If your system isn't listed below, please use the [official Node.js installation guide](https://github.com/joyent/node/wiki/Installation).
+Karma is based on Node.js, which makes it necessary to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your system. Node.js is available on a majority of systems and distrubition. If your system isn't listed below, please use the [official Node.js installation guide](https://github.com/nodesource/distributions).
 
-### Install Node.js/npm on Ubuntu 14.04
+### Install Node.js/npm on Ubuntu
 
 ```bash
-sudo apt-get update
-sudo apt-get install nodejs npm
-sudo ln -s /usr/bin/nodejs /usr/bin/node
+curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+# Then install with:
+sudo apt-get install -y nodejs
 ```
 
 ### Install Node.js/npm on Mac OS X

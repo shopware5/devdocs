@@ -7,13 +7,15 @@ indexed: true
 
 This document attempts to explain the basic styles and patterns used in the Shopware JavaScript codebase. New code should try to conform to these standards so that it is as easy to maintain as existing code. Of course every rule has an exception, but it's important to know the rules nonetheless!
 
+The coding styling is heavily inspired by [Mozilla's coding style](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style).
+
 ### Naming and formatting code
 
 #### Whitespace
 No tabs. No whitespace at the end of a line. Unix-style linebreaks ```\n```, not Windows-style ```\r\n```.
 
 #### Indention
-Four spaces per logic level. Switch case labels comsume a logic level
+Four spaces per logic level. Keep in mind `switch case` labels comsume a logic level as well.
 
 #### Control structures
 Use K&R bracing style: left brace at end of first line, cuddle else on both sides. Always brace controlled statements, even a single-line consequent of an if else else. This is redundant typically, but it avoids dangling else bugs, so it's safer at scale than fine-tuning.

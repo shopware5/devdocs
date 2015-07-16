@@ -13,8 +13,13 @@ tags:
 In this guide we introduce you the Elasticsearch(ES) implementation inside Shopware.
 
 Shopware uses two bundles for the ES implementation:
+
 1. ESIndexingBundle - Contains all components to index data from shopware to ES
-2. SearchBundleES   - Implementation of the SearchBundle over ES
+2. SearchBundleES   - Implementation of the SearchBundle using ES
+
+## Libraries
+
+We are using the official PHP low-level client for Elasticsearch [elasticsearch-php](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html) as well as the [ONGR](http://www.ongr.io/) Elasticsearch DSL library [ElasticsearchDSL](https://github.com/ongr-io/ElasticsearchDSL) that provides an objective query builder.
 
 ## Public API
 The following list contains all relevant events, interfaces and public api calls for elastic search:
@@ -45,7 +50,7 @@ The following list contains all relevant events, interfaces and public api calls
 | shopware_elastic_search.shop_indexer              | Starts indexing process for all shops
 | shopware_elastic_search.shop_analyzer             | Defines which ES analyzer(s) used in which shop
 | shopware_elastic_search.backlog_processor         | Process the backlog queue
-| shopware_search_es.product_number_search          | ProductNumberSearch over ES
+| shopware_search_es.product_number_search          | ProductNumberSearch using ES
 | shopware_search_es.search_term_query_builder      | Builds the search query for product search
 
 | DI-Container tag                                  | Description
@@ -218,7 +223,7 @@ Array
 The `english_analyzer` field uses, at indexing and search time, a pre configured english analyzer of ES. The `getType` function defines the unique name for the data type, in this example `blog`.
 
 ### Additional indexer
-After a data mapping defined, the data can be indexed over the `BlogDataIndexer`, which looks as follow:
+After a data mapping defined, the data can be indexed using the `BlogDataIndexer`, which looks as follow:
 
 ```php
 <?php
@@ -331,17 +336,17 @@ class BlogDataIndexer implements DataIndexerInterface
 ```
 
 The `populate` function is responsible to load all blog entries into ES for the provided shop.
-Since the shop indexer don't know how to iterate the `DataIndexer` rows, the iteration has to be inside the `populate` function. A progress can be displayed over the provided `ProgressHelperInterface`. First at all, the function selects all blog ids for the provided shop and provide them into an own `index` function. To separate data indexing and data loading the `BlogIndexer` loads blog data over his own `BlogProvider`.
+Since the shop indexer don't know how to iterate the `DataIndexer` rows, the iteration has to be inside the `populate` function. A progress can be displayed using the provided `ProgressHelperInterface`. First at all, the function selects all blog ids for the provided shop and provide them into an own `index` function. To separate data indexing and data loading the `BlogIndexer` loads blog data using his own `BlogProvider`.
 ```php
 $blog = $this->provider->get($ids);
 ```
 
-ES allows to execute multiple tasks, delete, update, insert inside a single request over the `bulk` API, [Bulk-API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) which expects the following parameters:
+ES allows to execute multiple tasks, delete, update, insert inside a single request using the `bulk` API, [Bulk-API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html) which expects the following parameters:
 - index (name of the ES index)
 - type  (mapping type, `blog` in this case)
 - body  (documents to index)
 
-To index a document over the bulk api it is required to send two array elements:
+To index a document using the bulk api it is required to send two array elements:
 ```php
 $this->client->bulk([
     'index' => $index->getName(),
@@ -353,8 +358,8 @@ $this->client->bulk([
 ]);
 ```
 
-Documents which will be provided over the bulk api has to be json serializable. In this case, the provider returns a `BlogStruct` which implements the `JsonSerializable` interface.
-The indexing process can be started over the console command `sw:es:index:populate` and looks after implementing this additional indexer as follow:
+Documents which will be provided using the bulk api has to be json serializable. In this case, the provider returns a `BlogStruct` which implements the `JsonSerializable` interface.
+The indexing process can be started using the console command `sw:es:index:populate` and looks after implementing this additional indexer as follow:
 ```
 $ php bin/console sw:es:index:populate
 
@@ -376,12 +381,12 @@ Indexing products
 ```
 
 <div class="alert alert-info" role="alert">
-    <strong>Note:</strong> Shopware creates a index for each shop, to separate language specify data. This prevents a language mixing inside an ES index, otherwise the search term would be mixed and a search couldn't be detect in which languages the customer search. This means, that each indexer has to index the data directly in the provided shop language. The shop can be accessed over the provided `ShopIndex` class. Additional, all restrictions to customer groups, shops or other has to be indexed too.
+    <strong>Note:</strong> Shopware creates a index for each shop, to separate language specify data. This prevents a language mixing inside an ES index, otherwise the search term would be mixed and a search couldn't be detect in which languages the customer search. This means, that each indexer has to index the data directly in the provided shop language. The shop can be accessed using the provided `ShopIndex` class. Additional, all restrictions to customer groups, shops or other has to be indexed too.
 </div>
 
 ### Additional synchronisation
 To keep the blog entries up to date, it is required to synchronize the blog data if some changes are made.
-As default shopware traces changes over [doctrine events](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/events.html).
+As default shopware traces changes using [doctrine events](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/events.html).
 The first step to synchronize blog entries is the registered `ORMBacklogSubscriber`. It registers the doctrine onFlush and postFlush event to trace data changes.
 ```php
 <?php
@@ -533,11 +538,11 @@ class ORMBacklogSubscriber implements EventSubscriber
 ```
 It separates between update, delete and insert of the shopware blog model. This class can be used as reference for each other implementation.
 To prevent database operation inside a doctrine flush event, the postFlush function registers a dynamic event listener for the `Enlight_Controller_Front_DispatchLoopShutdown` event to insert new backlogs at least of the request.
-New backlogs can easily added over the `shopware_elastic_search.backlog_processor` service. A `Backlog` struct contains the following data structure:
+New backlogs can easily added using the `shopware_elastic_search.backlog_processor` service. A `Backlog` struct contains the following data structure:
 - `event` >  which can be defined manually
 - `payload` > data which will be saved as json string
 
-After all, changes of blog entries are traced and will be stored in the `s_es_backlog` table. The synchronisation will be started over the `sw:es:backlog:sync` command.
+After all, changes of blog entries are traced and will be stored in the `s_es_backlog` table. The synchronisation will be started using the `sw:es:backlog:sync` command.
 To handle the backlog queue, it is required to register an additional `SynchronizerInterface`, which looks as follow:
 ```php
 <?php
@@ -610,11 +615,11 @@ class BlogSynchronizer implements SynchronizerInterface
     }
 }
 ```
-The `BlogSynchronizer` implements the `SynchronizerInterface` which defines that a `synchronize` has to be implemented, which has a `ShopIndex` parameter to define which ES index has to be synchronized and an array of `Backlog` structs which has to be processed. A Backlog struct contains the saved payload, which contains in this case the blog id. After all blog ids collected, the implementation provides them, with the ShopIndex, to his own `BlogIndexer` to index this ids again. By filtering the selected blog ids over the `filterShopBlog`, the BlogIndexer gets only ids for the provided shop. This logic can be placed in the BlogIndexer too, which is a detail of each implementation.
+The `BlogSynchronizer` implements the `SynchronizerInterface` which defines that a `synchronize` has to be implemented, which has a `ShopIndex` parameter to define which ES index has to be synchronized and an array of `Backlog` structs which has to be processed. A Backlog struct contains the saved payload, which contains in this case the blog id. After all blog ids collected, the implementation provides them, with the ShopIndex, to his own `BlogIndexer` to index this ids again. By filtering the selected blog ids using the `filterShopBlog`, the BlogIndexer gets only ids for the provided shop. This logic can be placed in the BlogIndexer too, which is a detail of each implementation.
 
 ### Decorate product search
 Now the plugin has to [decorate](/developers-guide/shopware-5-core-service-extensions/) the ```ProductSearch``` to search for blog entries:
-This is possible over following event:
+This is possible using following event:
 
 ```php
 use ShopwarePlugins\SwagESBlog\SearchBundleES\BlogSearch;
@@ -756,7 +761,7 @@ public function search(Criteria $criteria, Struct\ProductContextInterface $conte
 ```
 
 This function is the only public api of this class and has to return a `ProductSearchResult`.
-The product search should be executed over the original ProductSearchService, therefore the function calls the `search` function on the decorated service to get access on the original search result.
+The product search should be executed using the original ProductSearchService, therefore the function calls the `search` function on the decorated service to get access on the original search result.
 ```php
 $result = $this->coreService->search($criteria, $context);
 ```
@@ -771,6 +776,7 @@ if (!$criteria->hasCondition('search')) {
 
 In case the criteria contains a `search` condition the `searchBlog` function can be called to search for blog entries which matching for the provided search term.
 The searchBlog function builds first a [`MultiMatchQuery`](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html) for all relevant search fields:
+
 ```php
 /**@var $condition SearchTermCondition*/
 $condition = $criteria->getCondition('search');
@@ -780,13 +786,17 @@ $query = new MultiMatchQuery(
      ['operator' => 'AND']
  );
 ```
+
 To build the required search body structure shopware use the [`ONGR\ElasticsearchDSL\Search`](http://ongr.readthedocs.org/en/latest/components/ElasticsearchBundle/dsl/index.html) class which allows to build ES search queries:
+
 ```php
 $search = new Search();
 $search->addQuery($query);
 $search->setFrom(0)->setSize(5);
 ```
-ES searches can be executed directly over official [`Elasticsearch\Client`](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html).
+
+ES searches are executed using official client [`Elasticsearch\Client`](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html).
+
 ```php
 $index = $this->indexFactory->createShopIndex($context->getShop());
 $raw = $this->client->search([
@@ -795,6 +805,7 @@ $raw = $this->client->search([
     'body'  => $search->toArray()
 ]);
 ```
+
 The `indexFactory` is used to get the index name base on the current shop of the provided context.
 As result the client returns an array with all ES information of the search request:
 ```php
@@ -835,7 +846,7 @@ Array
         )
 )
 ```
-This data will be hydrated and converted to Blog structs over the `createBlogStructs` function:
+This data will be hydrated and converted to Blog structs using the `createBlogStructs` function:
 ```php
 private function createBlogStructs($raw)
 {
@@ -911,7 +922,7 @@ class BlogSettings implements SettingsInterface
     }
 }
 ```
-The `get` function has to return a nested array which will be provided to the `Elasticsearch\Client::putSettings`](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html) api.
+The `get` function has to return a nested array which will be provided to the [`Elasticsearch\Client::putSettings`](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html) api.
 This `blog_analyzer` contains defines a new custom analyzer for ES which contains only a [`lowercase`](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lowercase-tokenfilter.html) token filter, which means that all inputted data will be lowercase.
 Shopware provides a small tool to test analyzers, in case they were configured at indexing time.
 ```
@@ -1065,8 +1076,9 @@ class ProductMapping implements MappingInterface
     }
 }
 ```
-Product data can only be extended over `Attribute` structs, therefore the function adds a new product attribute `swag_es_product` with a field `my_name`.
-This field is filled over the decorated ProductProvider class and contains the product name and the product keywords:
+Product data can only be extended using `Attribute` structs, therefore the function adds a new product attribute `swag_es_product` with a field `my_name`.
+This field is filled using the decorated ProductProvider class and contains the product name and the product keywords:
+
 ```php
 <?php
 
@@ -1112,7 +1124,7 @@ class ProductProvider implements ProductProviderInterface
 ```
 
 ### Extend product search query
-Now it is time to extend the product search query to consider the new `my_name` field. The product search query for ES is build over the `SearchTermQueryBuilderInterface` of the `SearchBundleES`, which can be decorated like all other services of the DI-container:
+Now it is time to extend the product search query to consider the new `my_name` field. The product search query for ES is build using the `SearchTermQueryBuilderInterface` of the `SearchBundleES`, which can be decorated like all other services of the DI-container:
 ```php
 use ShopwarePlugins\SwagESProduct\SearchBundleES\SearchTermQueryBuilder;
 
@@ -1313,7 +1325,7 @@ ONGR\ElasticsearchDSL\Query\BoolQuery Object
 ### Additional Criteria parts
 In the following example, the plugin adds a new `Facet`, `Sorting` and `Condition` for the product listing, which access the product sales field.
 This example can be used for each other field which indexed for products.
-First the plugin has to register his own criteria parts (`Facet`, `Sorting` and `Condition`) over a `CriteriaRequestHandler`.
+First the plugin has to register his own criteria parts (`Facet`, `Sorting` and `Condition`) using a `CriteriaRequestHandler`.
 The criteria part classes has no dependency to any search implementation like DBAL or ES, they defined abstract and only describing how the search should be executed.
 The plugin bootstrap contains the additional source code:
 ```php
@@ -1358,7 +1370,7 @@ class Shopware_Plugins_Frontend_SwagESProduct_Bootstrap
 The `Shopware_SearchBundle_Collect_Criteria_Request_Handlers` event allows to register an additional `CriteriaRequestHandler`.
 By registering the `Shopware_SearchBundleES_Collect_Handlers` it is possible to register additional handlers for the `SearchBundleES`.
 Each criteria part should have his own handler class.
-First the plugin has to add the new criteria parts into the criteria for listings, this will be handled in the `CriteriaRequestHandler`, which called if a Criteria class should be generated over the request parameters:
+First the plugin has to add the new criteria parts into the criteria for listings, this will be handled in the `CriteriaRequestHandler`, which called if a Criteria class should be generated using the request parameters:
 ```php
 <?php
 
@@ -1772,7 +1784,7 @@ After the filter created, it is required to check if the filter should be added 
 1. post filter > Filters the result after the aggregations calculated
 2. normal filter > Filters the result before the aggregations calculated
 
-This can be checked over the criteria object, by using the `hasBaseCondition` function. If the `criteriaPart` is an `BaseCondition` the filter has to be added as normal filter, otherwise as post filter.
+This can be checked using the criteria object, by using the `hasBaseCondition` function. If the `criteriaPart` is an `BaseCondition` the filter has to be added as normal filter, otherwise as post filter.
 ```php
 if ($criteria->hasBaseCondition($criteriaPart->getName())) {
     $search->addFilter($filter);

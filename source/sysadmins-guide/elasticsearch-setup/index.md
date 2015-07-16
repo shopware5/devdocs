@@ -3,19 +3,26 @@ layout: default
 title: Elasticsearch setup
 github_link: sysadmins-guide/elasticsearch-setup/index.md
 shopware_version: 5.1.0
+tags:
+  - performance
+  - elasticsearch
+redirect:
+  - sysadmins-guide/elastic-search-setup/
+
 indexed: true
 ---
 
 ## Introduction
 
-During the development of Shopware 5, we greatly focused on improving frontend performance, especially for shops containing large sets of articles. While we feel were able to achieve our goal, some extremely demanding scenarios were still being handled in less than optimal time. In these shops, which can contain millions of different products, Shopware 5 requires an alternative to MySQL to be able to provide an optimal user experience in terms of both functionality and speed.
+For shops that contain millions of different products, Shopware 5 requires an alternative to MySQL to be able to provide an optimal user experience in terms of both functionality and speed.
 
-The solution to this problem is [Elasticsearch](https://www.elastic.co/products/elasticsearch). Elasticsearch is an open source search engine, built to handle such scenarios, where a set of millions of entries needs to be queried in just a few milliseconds.
+[Elasticsearch](https://www.elastic.co/products/elasticsearch) is an open source search engine, built to handle such scenarios, where a set of millions of entries needs to be queried in just a few milliseconds.
 
-Using our refactored core classes, introduced in Shopware 5.0, we are able to provide a seamless Elasticsearch integration that will greatly benefit those shops that, until now, due to their large volume of data, were not delivering ideal performance to their users.
+Shopware 5.0 is able to provide a seamless Elasticsearch integration that will greatly benefit those shops.
 
 <div class="alert alert-info" role="alert">
-    <strong>Note:</strong> Elasticsearch integration should be considered an advanced Shopware feature. It requires the installation and configuration of Elasticsearch itself, which might not be possible on all hosting plans or providers. Additionally, it will mostly benefit shops containing hundreds of thousands or millions of items. On smaller shops, its usage is not recommended, as you might not experience any visible benefits from it.
+    <strong>Note:</strong> Elasticsearch integration should be considered an advanced Shopware feature. It requires the installation and configuration of Elasticsearch itself as well as technical personal to monitor and maintain the synchronization continuously. This might not be possible on all hosting plans or providers.</br>
+    Additionally, it will mostly benefit shops containing hundreds of thousands or millions of items. On smaller shops, its usage is not recommended, as you might not experience any visible benefits from it.
 </div>
 
 ## Installation and configuration
@@ -71,16 +78,15 @@ In order to ensure data consistency between your MySQL database and your Elastic
 
 #### Live synchronization
 
-The `sw:es:backlog:sync` ensures your latest changes are propagated into Elasticsearch. It uses a queueing system, and it's execution time may greatly vary, depending on the pending operation list content. This command should be executed often (every few minutes) to ensure data consistency.
+The `sw:es:backlog:sync` command ensures your latest changes are propagated into Elasticsearch. It uses a queueing system, and it's execution time may greatly vary, depending on the pending operation list content. This command should be executed periodically to ensure data consistency.
 
 ```
 php bin/console sw:es:backlog:sync
 ```
 
-
 #### Data reindexing
 
-To ensure your MySQL database and your Elasticsearch instance are always synchronized, we recommend running a complete reindexing of your articles daily. This can be done by setting up a cron job that runs the following command:
+To ensure your MySQL database and your Elasticsearch instance are synchronized, we recommend running a complete reindexing of your articles daily. This can be done by setting up a cron job that runs the following command:
 
 ```
 php bin/console sw:es:index:populate
@@ -93,11 +99,11 @@ We recommend running this command every 24 hours, at a time when you server expe
 
 While this guide is not meant to cover the technical details of the integration implementation in depth, there are some concepts that you need to keep in mind when configuring the integration between Shopware and Elasticsearch. The first, and probably most important, is that Elasticsearch is NOT a MySQL replacement. Although they provide, to some extent, similar features, Elasticsearch is and should be seen as a complement to a DBMS, not as a replacement. As such, you will still require a running MySQL instance, and its configuration will still greatly affect Shopware's performance in most actions.
 
-Another vital detail you should keep in mind when using Elasticsearch with Shopware 5.1 is that the data stored in Elasticsearch is a duplicate of the data already present in your Shopware 5 database. Whenever changes are made to your data (for example, you edit an article description), that information is saved to MySQL and, only later, to Elasticsearch. All operations will be queued in the MySQL database.
+Another vital detail you should keep in mind when using Elasticsearch with Shopware 5.1 is that the data stored in Elasticsearch is a duplicate of the data already present in your Shopware 5 database. Whenever changes are made to your data (for example, you edit an article description), that information is saved to MySQL and, only later, to Elasticsearch.
 
 ### Using and understanding the data synchronization mechanism
 
-Some changes shop owners perform in the backend may affect a great number of entries on your database. For example, a change in your default tax rate could theoretically affect all your products. MySQL data is not greatly affected by this, as the gross value calculation is done when the article is loaded from the database (`StoreFrontBundle`). However, Elasticsearch may store gross values, to speed up performance. This has the obvious downside that, if your tax rate changes, you need to update all your products prices. If your shop has hundreds of thousands or millions of products, this operation can take a significant amount of time, even on a high performance application like Elasticsearch. To handle these scenarios, the Elasticsearch integration in Shopware 5 includes support for asynchronous data propagation to Elasticsearch.
+Some changes shop owners perform in the backend may affect a great number of entries on your database. For example, a change in your default tax rate could theoretically affect all your products. MySQL data is not greatly affected by this, as the gross value calculation is done when the article is loaded from the database. However, Elasticsearch may store gross values, to speed up performance. This has the obvious downside that, if your tax rate changes, you need to update all your products prices. If your shop has hundreds of thousands or millions of products, this operation can take a significant amount of time, even on a high performance application like Elasticsearch. To handle these scenarios, the Elasticsearch integration in Shopware 5 includes support for asynchronous data propagation to Elasticsearch.
 
 #### The queueing system
 
@@ -111,9 +117,9 @@ These events are handled by a CLI command included in Shopware 5.1, which you ca
 php bin/console sw:es:backlog:sync
 ```
 
-When executed, this command loads all operations from the queue which have not yet been executed. It then executes them, in the order in which they were queued. Notice that, contrary to what you might, this application will not stay alive until explicitly killed by the user. Once the queue is empty, the application exits, and will no longer process future queued events unless called again. This is due to the fact that it's not in the nature of PHP itself to be used as a language for the development of system services.
+When executed, this command loads all operations from the queue which have not yet been executed. It then executes them, in the order in which they were queued.
 
-It's highly recommended that you set up a cron job in your system to periodically execute this command, in order to ensure your MySQL database and Elasticsearch have consistent data. The configuration of this cron task will depend on your system's operating system, and is not part of the scope of this guide. However, this topic is covered in extensive online resources that you will easily find using your favourite search engine.
+It's highly recommended that you set up a cron job in your system to periodically execute this command, in order to ensure your MySQL database and Elasticsearch have consistent data. The configuration of this cron task will depend on your system's operating system, and is not part of the scope of this guide.
 
 #### Event handling workflow
 

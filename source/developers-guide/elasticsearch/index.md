@@ -1,13 +1,17 @@
 ---
 layout: default
 title: Elasticsearch development
-github_link: developers-guide/elastic-search/index.md
+github_link: developers-guide/elasticsearch/index.md
 shopware_version: 5.1.0
 indexed: true
+tags:
+  - performance
+  - elasticsearch
 ---
 
 ## Introduction
-In this guide we introduce you the Elasticsearch(ES) implementation inside shopware.
+In this guide we introduce you the Elasticsearch(ES) implementation inside Shopware.
+
 Shopware uses two bundles for the ES implementation:
 1. ESIndexingBundle - Contains all components to index data from shopware to ES
 2. SearchBundleES   - Implementation of the SearchBundle over ES

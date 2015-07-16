@@ -245,6 +245,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `s_core_sessions_backend.created`
     * `s_emarketing_promotions*`
     * `s_core_plugins.capability_dummy`
+    * `s_articles_details.impressions`
 
 ## Additions
 * New theme system

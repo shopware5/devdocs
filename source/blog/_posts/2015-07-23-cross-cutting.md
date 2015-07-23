@@ -13,49 +13,42 @@ categories:
 authors: [dn]
 ---
 
-In the last blog post I discussed [the shopware hook system](http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/)
-and also mentioned, that hooks are technically a way to address cross cutting concerns with an AOP approach.
+In the last blog post I discussed [the Shopware hook system](http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/)
+and also mentioned that hooks are technically a way to address cross cutting concerns with an AOP approach.
 In this blog entry I want to have a deeper look into cross cutting concerns and ways to address them in PHP.
 
 # What is a "concern"?
-Talking about `cross cutting concerns` raises the questions, what are `concerns` in the first place? In regards of computer
+Talking about `cross cutting concerns` raises the question: what are `concerns` in the first place? In the context of computer
 science, [wikipedia defines](https://en.wikipedia.org/wiki/Concern_(computer_science)) concerns as
 
 > a particular set of information that has an effect on the code of a computer program
 
-An information could be anything from knowledge of a certain calculation to a concrete functional requirement you need to
-reflect in your code. Writing modular programs, you usually will try to split your code in independent parts which interact
-with each other and hide the actual implementation to each other.
+Information can be anything from knowledge of a certain calculation to a concrete functional requirement you need to
+reflect in your code. When writing modular programs, you usually will try to split your code in independent parts, which interact with each other and hide their actual implementation from each other.
 The general design principle behind this is the so called **[separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)**,
 as it suggests to structure the code by concerns: Usually you will try to separate the price calculation from view related
-things like "formatting the price". This way of organizing the code will usually to more understandable, reusable and
+things like "formatting the price". This way of organizing the code will usually lead to more understandable, reusable and
 maintainable code, as you are able to change the details of e.g. a class without having to take care of other classes.
 
 The well known acronym [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) covers this aspect in the
-**single responsibility principle** which if often summarized to "there should onl be one reason to change the code of a class".
+**single responsibility principle**, which is often summarized to "there should only be one reason to change the code of a class".
 If there are multiple reasons to change your class (e.g. the price calculation changed, the logger syntax changed or the
-security policy changed) your class is responsible for multiple concerns (calculation, logging, security) and violates
+security policy changed), your class is responsible for multiple concerns (calculation, logging, security), and violates
 the **separation of concerns** approach as well as the **single responsibility principle**.
 
 # Cross cutting concerns
-So usually developers will try to identify the main concerns of their software and split it into separate classes or functions.
-There are system-level and peripheral cases, however, where such a clear separation of concerns is not possible: Usually logging,
-security aspects or internationalisation issues are examples for concerns that needs to be taken care of in wide ranges of the
-application and that "cross cut" many other components. Those concerns are called "cross cutting concerns" in differentiation to "core concerns".
+Usually developers will try to identify the main concerns of their software and split them into separate classes or functions.
+There are system-level and peripheral cases, however, where such clear separation of concerns is not possible: logging, security aspects or internationalisation issues are common examples of these concerns. These cases need to be taken care of in a wide range of the application, and usually "cross cut" many other components. Those concerns are called "cross cutting concerns" in differentiation to "core concerns".
 
 ![Structural overview of hooks](/blog/img/cross-cutting.png)
 
 As you can see in the image above, you might have several core concerns like "cart", "account" or "price calculation" that
-are split into separate classes and namespaces. Writing object oriented code, there are usually a lot of patterns to
-address this kind of issues and model an architecture, that separate those concerns in a proper way.
-On the other hand, the cross-cutting concerns need to be taken care of in
-all of the core concerns and are not that easy to implement properly. In many cases, this kind of concerns lead to
-scattering (duplication) of code or tangling (tight coupling ) of the code.
+are split into separate classes and namespaces. When writing object oriented code, there are usually a lot of patterns to
+address this kind of issues, allowing you to create architecture that separate those concerns in a proper way.
+On the other hand, the cross cutting concerns need to be taken care of in all of the core concerns, and are not that easy to implement properly. In many cases, this kind of concerns leads to scattering (duplication) of code or tangling (tight coupling) of the code.
 
-Cross cutting concerns are not a bad thing per se - they are a need of any modern application. But many applications
-fall short of implementing those concerns in a way, that principles as DRY (don't repeat yourself) or SRP (singe responsibility principle)
-are archived. For that reason "cross cutting concerns" should be considered a generic term for a certain kind of
-architectural needs of an application.
+Cross cutting concerns are not a bad thing *per se* - they are a need of any modern application. But many applications
+fall short when implementing those concerns in a way that respects principles such as DRY (don't repeat yourself) or SRP (singe responsibility principle). For that reason "cross cutting concerns" should be considered a generic term for a certain kind of architectural needs of an application.
 
 # Example
 
@@ -89,9 +82,9 @@ class Cart
 
 What are the core and cross cutting concerns here?
 
-The actual core concern is creating a new purchase to the database. Elements like privilege checking, logging and transaction
-could be considered cross cutting concerns, as these elements will affect many other components of your application, too.
-Building the application like this will scatter e.g. the log-concern all over your classes and massively bloat the implementation. 
+The actual core concern is creating a new purchase in the database. Elements like privilege checking, logging and transaction
+could be considered cross cutting concerns, as these elements will also affect other components of your application.
+Building the application like this will scatter e.g. the log concern all over your classes and massively bloat the implementation. 
 
 # How to deal with cross cutting concerns
 
@@ -100,8 +93,8 @@ One common approach to address cross cutting concerns is event based programming
  and the PubSub pattern.
 
 ### Observer pattern
-In case of the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) our `Cart` class would maintain a list
-of dependents and notify them about relevant events.
+In case of the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern), our `Cart` class would maintain a list
+of dependencies, and notify them about relevant events.
 
 ```
 class Cart
@@ -134,7 +127,7 @@ class Cart
 }
 ```
 
-With this we can easily register our dependent services to `Cart` without actually being forced to deal with e.g. logging
+With this, we can easily register our dependent services in `Cart`, without actually being forced to deal with e.g. logging
 there. A possible observer might look like this:
 
 ```
@@ -156,20 +149,19 @@ class Logger implements Observer
 }
 ```
 
-Such an observer can easily be subscribed using e.g. `$container->get('cart')->addObserver(new Logger());`. The same way
-we could easily wrap the purchase in a transaction or do the permission check in the `cart.beforePurchase` notification.
+This observer can easily be subscribed to by using e.g. `$container->get('cart')->addObserver(new Logger());`. In the same way, we could easily wrap the purchase in a transaction or do the permission check in the `cart.beforePurchase` notification.
 
-As you can see, the `notify` method is quite generic and deals with a `$context` object one might discuss. If it is more
-suitable for your case, you could easily create a `CartObserver` interface with two more specific handle methods like
-`notifyBeforePurchase($itemId, $customerId)` and `notifyAfterPurchase($itemId, $customerId)`. PHP even comes with own
-observer interface `SplObserver` and `SplSubject` - but those might not be suitable in any case and do pass a reference
+As you can see, the `notify` method is quite generic in dealing with the `$context` object. If it is more
+suitable for your case, you could easily create a `CartObserver` interface with two more specific handler methods, like
+`notifyBeforePurchase($itemId, $customerId)` and `notifyAfterPurchase($itemId, $customerId)`. PHP even comes with its own
+`SplObserver` and `SplSubject` observer interfaces - but those might not be suitable for all cases and do pass a reference
 of the object to the observers, which might be questionable or not sufficient.   
 
 ### PubSub
 The [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) is another event based
 pattern that allows you to address cross cutting concerns. 
 
-While the observer pattern forces the objects to care about their observers by themselves, PubSub introduces an own 
+While the observer pattern forces the objects to care about their observers itself, PubSub introduces its own 
 service to take care of this. This central instance will take care of subscriptions as well as of notifications.
 
 ```
@@ -239,31 +231,25 @@ which makes subscribing events even easier and is also available in Shopware.
 Both approaches will allow you to remove the direct dependency to logging, transactions and ACL from the cart implementation
 and address those issues in specific observers / subscribers. 
 
-Both patterns tend to hide the actually executed code of the `Cart` class a bit, as the dependencies are registered during runtime
-and cannot be statically inspected. For that reason, you cannot tell beforehands, if e.g. only the `Logger` service is subscribed
-or also the ACL service. This kind of abstraction can make debugging harder.
+Both patterns tend to hide the actually executed code of the `Cart` class a bit, as the dependencies are registered during runtime and cannot be statically inspected. For that reason, you cannot tell beforehand if e.g. only the `Logger` service is subscribed or also the ACL service. This kind of abstraction can make debugging harder.
  
-Another common problem is the handling of context information: In the observer example a simple `Array` was used, which is convenient
+Another common problem is the handling of context information: In the observer example, a simple `Array` was used, which is convenient
 but might lead to issues regarding typos and debuggability. This might easily be changed to event objects, as
 the PubSub example shows: The classes `BeforePurchaseEvent` and `AfterPurchaseEvent` define a clean interface for a specific
 event and can easily inspected for debugging reasons.
-I already mentioned, that the PHP [SplObserver](http://php.net/manual/de/class.splobserver.php) interface for an observer pattern
-defines, that a reference of the subject (the `Cart` class in our case) is passed. From my experience with the Shopware
-event system, I would consider this a bad practice, as this will allow the observers to hardly bind to the subject, even though
-this might not be necessary at all. Selectively passing relevant context information also will make sure, that the observer
- do not modify e.g. internal state of the passed class. 
+I already mentioned that the PHP [SplObserver](http://php.net/manual/de/class.splobserver.php) interface for an observer pattern defines that a reference to the subject (the `Cart` class in our case) is passed. From my experience with the Shopware event system, I would consider this a bad practice, as this will allow the observers to hardly bind to the subject, even though this might not be necessary at all. Selectively passing relevant context information also will make sure that the observer does not modify e.g. internal state of the passed class. 
  
 This is related to a third issue I'd like to address: In many cases some kind of "backchannel" is wanted, so that a 
 event listener can e.g. filter some context variables (`filter` event in Shopware) or return objects (`notifyUntil`).
 This might be considered bad practice, too, as multiple event listener changing the same event object by reference will lead
 to hard to debug errors and side effects in some cases. Speaking of [loose coupling](https://en.wikipedia.org/wiki/Loose_coupling)
 as one of the main goals for our event system, by-reference changes of context objects and behavioural decisions depending
-on the return value of an event, are not ideal but hard to avoid. 
+on the return value of an event are not ideal but hard to avoid. 
 
 ## Command Bus
 The command bus is based on the [command pattern](https://en.wikipedia.org/wiki/Command_pattern) extended by an additional service layer
-and also allows you to address cross cutting concerns easily. The generally idea is, to not call services directly, but
-have a "command bus" service, which "dispatched" your commands to the corresponding handler.
+and also allows you to address cross cutting concerns easily. The generally idea is to not call services directly, but
+have a "command bus" service, which "dispatches" your commands to the corresponding handler.
 
 The `Cart` example above might look like this:
 
@@ -315,7 +301,7 @@ class CommandBus implements CommandBusInterface
 }
 ```
 
-A setup like this will allow you, to process a new purchase calling:
+A setup like this will allow you to process a new purchase calling:
 
 ```
 $container->get('command_bus')->handle(new PurchaseCommand(3, 15));
@@ -352,31 +338,30 @@ class LoggerDecorator implements CommandBusInterface
     }
 }
 ```
-In this case the command is explicitly checked against `PurchaseCommand`, without this check, we'd even get a very
+
+In this case the command is explicitly checked against `PurchaseCommand`. Without this check, we'd get a very
 general logger. 
 
 ### Conclusion
-The `CommandBus` pattern takes another approach then the observer and PubSub pattern. The commands are first class citizens
-of your application, which makes it easy, to tell core and cross cutting concerns apart. Instead of having a primary 
-"core service" one the one hand which is tightly coupled to your application and observers / subscribers on the other hand
+The `CommandBus` pattern takes another approach than the observer and PubSub patterns. The commands are first class citizens
+of your application, which makes it easy to tell core and cross cutting concerns apart. Instead of having a primary 
+"core service" on the one hand, which is tightly coupled to your application, and observers / subscribers on the other hand
 which communicate with some kind of messaging system, the messaging system (more precise: command bus) becomes a central
-part of your application. By decorating this "central part", its easy to cover wide ranges of your service layers and 
+part of your application. By decorating this "central part", it's easy to cover wide ranges of your service layers and 
 take care of cross cutting concerns.
 
-As the `CommandBus` addresses the service layer itself, its not a "drop in" solution like the observer / PubSub pattern is 
+As the `CommandBus` addresses the service layer itself, it's not a "drop in" solution like the observer / PubSub pattern is 
 in many cases. Especially in legacy applications with a tangled service layer, refactoring the services into small command
 handlers might not always be that easy to accomplish. When it comes to returning results, things even get a bit disputable:
-Often it is argued, that Commands should not return anything. This, however, seems to refer to [CQS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation)
-even though a CommandBus does not necessarily imply CQS. Anyway: Usually the [domain event pattern](http://martinfowler.com/eaaDev/DomainEvent.html) is the recommended
-solution for this kind of problems, a small PHP example can be found in Benjamin Eberlei's blog post
+Often it is argued that Commands should not return anything. This, however, seems to refer to [CQS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation),
+even though a CommandBus does not necessarily imply CQS. Anyway: Usually the [domain event pattern](http://martinfowler.com/eaaDev/DomainEvent.html) is the recommended solution for this kind of problems, a small PHP example can be found in Benjamin Eberlei's blog post
 [Decoupling applications with domain events](http://www.whitewashing.de/2012/08/25/decoupling_applications_with_domain_events.html). 
 
 
-
 ## AOP
-As discussed in [the shopware hook system](http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/),
-AOP is another approach to handle cross cutting concerns. In difference to the pattern based approaches above, AOP
-is a programming paradigm, that (usually) addresses this kind of issues on a language base. 
+As discussed in [the Shopware hook system](http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/),
+AOP is another approach to handle cross cutting concerns. Unlike the pattern based approaches above, AOP
+is a programming paradigm that (usually) addresses this kind of issues on a language base. 
 Due to the complexity of the topic, we will discuss AOP in a separate blog post and try to implement [Go AOP PHP](https://github.com/lisachenko/go-aop-php)
 using the example of Shopware. 
 

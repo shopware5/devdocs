@@ -1,0 +1,28 @@
+{
+    "label": {
+        "de": "SwagController",
+        "en": "SwagController"
+    },
+    "copyright": "(c) by Shopware AG",
+    "license": "proprietary",
+    "link": "http://store.shopware.com",
+    "author": "Shopware AG",
+
+    "currentVersion": "1.0.0",
+
+    "changelog": {
+        "de": {
+            "1.0.0": "Erstveröffentlichung"
+        },
+        "en": {
+            "1.0.0": "First release"
+        }
+    },
+
+    "compatibility": {
+        "minimumVersion": "4.3.0",
+        "maximumVersion": null,
+        "blacklist": [
+        ]
+    }
+}

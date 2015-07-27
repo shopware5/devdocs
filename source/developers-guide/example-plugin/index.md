@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Example Plugin
+title: In depth example: Storefront extension
 github_link: developers-guide/example-plugin/index.md
 indexed: true
 ---

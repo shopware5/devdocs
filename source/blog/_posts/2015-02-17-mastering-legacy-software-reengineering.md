@@ -15,6 +15,7 @@ categories:
 - dev
 
 authors: [hd]
+github_link: blog/_posts/2015-02-17-mastering-legacy-software-reengineering.md
 ---
 
 [before]: /blog/img/sbp_before.png "The patient"

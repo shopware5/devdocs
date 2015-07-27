@@ -5,6 +5,7 @@ tags:
 
 authors: [bc]
 indexed: true
+github_link: blog/_posts/2015-07-16-create-delta-updates-using-rsync.md
 ---
 
 To create shopware update packages we use the well-known unix utility [rsync](https://rsync.samba.org/).

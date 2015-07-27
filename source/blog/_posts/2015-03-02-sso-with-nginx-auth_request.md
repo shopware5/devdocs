@@ -11,6 +11,7 @@ categories:
 
 authors: [bc]
 indexed: true
+github_link: blog/_posts/2015-03-02-sso-with-nginx-auth_request.md
 ---
 
 Recently we had the challenge to connect a static website with our existing Single Sign-on (SSO) infrastructure.

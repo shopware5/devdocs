@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [psc]
+github_link: blog/_posts/2015-05-04-unboxing-meta.md
 ---
 
 <img src="https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/meta_1.jpg" width="480" style="float: right; margin-left: 30px; margin-bottom: 40px;" />

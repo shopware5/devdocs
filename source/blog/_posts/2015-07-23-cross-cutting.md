@@ -6,7 +6,7 @@ tags:
     - events
     - observer pattern
     - AOP
-
+github_link: blog/_posts/2015-07-23-cross-cutting.md
 categories:
 - dev
 

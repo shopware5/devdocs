@@ -4,6 +4,7 @@ tags:
     - rsync
 
 authors: [bc]
+indexed: true
 ---
 
 To create shopware update packages we use the well-known unix utility [rsync](https://rsync.samba.org/).

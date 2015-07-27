@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [dn]
+indexed: true
 ---
 
 The Shopware CLI Tools are extensible and powerful console tools based on the symfony console tools.

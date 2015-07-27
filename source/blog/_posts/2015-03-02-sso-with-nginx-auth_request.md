@@ -10,6 +10,7 @@ categories:
 - dev
 
 authors: [bc]
+indexed: true
 ---
 
 Recently we had the challenge to connect a static website with our existing Single Sign-on (SSO) infrastructure.

@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [viison]
+indexed: true
 ---
 
 Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shoppers <a href="https://www.internetretailer.com/2015/03/09/nearly-half-digital-shoppers-top-retailers-are-mobile-only" target="_blank">preferring to use mobile devices</a> for online shopping, this is an important step to take. The core classes have also been revised and especially with the new <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle classes</a>, plugin authors and Shopware agencies now have a much easier time to customize article listings.

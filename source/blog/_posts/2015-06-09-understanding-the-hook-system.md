@@ -10,6 +10,7 @@ categories:
 - dev
 
 authors: [dn]
+indexed: true
 ---
 
 Shopware was built with plugin developers in mind, so there are powerful ways to modify the default behaviour of the system 

@@ -11,6 +11,8 @@ categories:
 
 authors: [dn]
 indexed: true
+github_link: blog/_posts/2015-06-09-understanding-the-hook-system.md
+
 ---
 
 Shopware was built with plugin developers in mind, so there are powerful ways to modify the default behaviour of the system 

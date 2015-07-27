@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [dr]
+github_link: blog/_posts/2015-05-05-never-stop-refactoring.md
 ---
 
 Hi, my name is Oliver Skroblin, developer at shopware AG.

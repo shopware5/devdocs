@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [psc]
+github_link: blog/_posts/2014-11-06-build-the-future.md
 ---
 
 Welcome nerds and geeks to the new awesome shopware labs. I want to use this first blog post to introduce myself to you. Most people call me Phil and I work as a frontend developer here at shopware. As a part of the web-development team I create all the fancy stuff you use in your browser. I have a passion for “wicked alien-technology” and I love to explore all the crazy upcoming web features. So it is my pleasure to take you on a journey into the future of online shopping. Together with you we want to discuss innovative ideas for building kick-ass technologies which will change the way we use the web. That is also one reason why we founded the shopware Open Device Lab.

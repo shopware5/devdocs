@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [bc]
+github_link: blog/_posts/2014-10-29-the-new-evangelist.md
 ---
 
 Hi, my name is Benjamin Cremer, web developer at the shopware AG.

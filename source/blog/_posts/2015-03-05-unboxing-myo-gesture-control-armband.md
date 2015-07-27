@@ -6,6 +6,7 @@ categories:
 - dev
 
 authors: [psc]
+github_link: blog/_posts/2015-03-05-unboxing-myo-gesture-control-armband.md
 ---
 
 <img src="/blog/img/blog_myo1.jpg" alt="Unboxing the Myo Gesture Control Armband" width="550" style="float: right; margin: 0 0 50px 20px" />

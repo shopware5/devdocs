@@ -24,7 +24,7 @@ class Shopware_Plugins_Frontend_SwagService_Bootstrap extends Shopware_Component
     public function afterInit()
     {
         $this->Application()->Loader()->registerNamespace(
-            'Shopware\SwagService',
+            'ShopwarePlugins\SwagService',
             $this->Path()
         );
     }
@@ -73,12 +73,12 @@ class Shopware_Plugins_Frontend_SwagService_Bootstrap extends Shopware_Component
     /**
      * Return an instance of our new service class
      *
-     * @return \Shopware\SwagService\Component\TaxCalculator
+     * @return \ShopwarePlugins\SwagService\Component\TaxCalculator
      */
     public function onInitTaxCalculator()
     {
-        return new \Shopware\SwagService\Component\TaxCalculator(
-            $this->get('corelogger')
+        return new \ShopwarePlugins\SwagService\Component\TaxCalculator(
+            $this->get('pluginlogger')
         );
     }
 
@@ -88,7 +88,7 @@ class Shopware_Plugins_Frontend_SwagService_Bootstrap extends Shopware_Component
      */
     public function onFrontendPreDispatch()
     {
-        /** @var  \Shopware\SwagService\Component\TaxCalculator $taxCalculator */
+        /** @var  \ShopwarePlugins\SwagService\Component\TaxCalculator $taxCalculator */
         $taxCalculator = $this->get('swag_service_plugin.tax_calculator');
         $taxCalculator->calculate(13.99, 1.19);
     }

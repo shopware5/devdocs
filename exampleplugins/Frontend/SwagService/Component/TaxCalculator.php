@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopware\SwagService\Component;
+namespace ShopwarePlugins\SwagService\Component;
 
 class TaxCalculator
 {

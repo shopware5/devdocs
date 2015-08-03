@@ -38,7 +38,7 @@ class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Com
     public function afterInit()
     {
         $this->get('Loader')->registerNamespace(
-            'Shopware\SwagService',
+            'ShopwarePlugins\SwagService',
             $this->Path()
         );
     }
@@ -72,7 +72,7 @@ The event callback now just needs to return an instance of the requested service
 ```
 public function onInitTaxCalculator()
 {
-    return new \Shopware\SwagService\Component\TaxCalculator();
+    return new \ShopwarePlugins\SwagService\Component\TaxCalculator();
 }
 ```
 
@@ -100,7 +100,7 @@ instances every time the service is requested, a [factory pattern](https://en.wi
 In many cases your services might depend on other services. Usually you will inject those using constructor injection:
 
 ```
-namespace Shopware\SwagService\Component;
+namespace ShopwarePlugins\SwagService\Component;
 
 class TaxCalculator
 {
@@ -125,7 +125,7 @@ In order to inject this dependency, a simple update of the event callback is nee
 public function onInitTaxCalculator()
 {
     return new \SwagServicePlugin\Components\TaxCalculator(
-        $this->get('corelogger')
+        $this->get('pluginlogger')
     );
 }
 ```

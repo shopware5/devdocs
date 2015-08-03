@@ -8,8 +8,8 @@ tags:
   - di
 indexed: true
 ---
-Writing object oriented code, you will usually need small, reusable services that encapsulate certain parts of your business logic.
-This tutorial will cover creation of services and using them together with Shopware's DI container.
+When writing object oriented code, you will usually need small, reusable services that encapsulate certain parts of your business logic.
+This tutorial will cover the creation of services and how to use them together with Shopware's DI container.
 
 # Services
 Ideally a service is just a simple PHP class with only one responsibility:
@@ -30,7 +30,7 @@ Instead of creating the `TaxCalculator` class everywhere you need it, you can ma
 This way the same instance of this class can be accessed everywhere in Shopware - even by other plugins.
 
 # Registering the service
-First of all you should register the namespace of your plugin in your plugin's bootstrap:
+First of all, you should register the namespace of your plugin in your plugin's bootstrap:
 
 ```
 class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
@@ -61,6 +61,7 @@ class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Com
     }
 }
 ```
+
 The event name `Enlight_Bootstrap_InitResource_swag_service_plugin.tax_calculator` consists of two parts:
 
 * `Enlight_Bootstrap_InitResource_`: The base event name, which is emitted by the DI container when a service is looked up
@@ -76,7 +77,7 @@ public function onInitTaxCalculator()
 }
 ```
 
-Be aware, that the event will only be emitted (and thus the callback will only be called), when the service is actually requested.
+Be aware that the event will only be emitted (and thus the callback will only be called) when the service is actually requested.
 
 # Calling the service
 The new `TaxCalculator` can now be requested using the Shopware DI container:
@@ -92,12 +93,12 @@ This will work e.g. from controllers or plugin bootstraps. You can also use the 
 Shopware()->Container()->get('swag_service_plugin.tax_calculator');
 ```
 
-Be aware, that any subsequent call will return the same instance of the object - the container will keep a reference to the
+Keep in mind that any subsequent calls will return the same instance of the object - the container will keep a reference to the
 object you returned the first time and **will not** call your event callback another time. If you need to return new
 instances every time the service is requested, a [factory pattern](https://en.wikipedia.org/wiki/Factory_method_pattern) might be helpful.
 
 # Injecting other services
-In many cases your services might depend on other services. Usually you will inject those using constructor injection:
+In many cases, your services might depend on other services. Usually you will inject those using constructor injection:
 
 ```
 namespace ShopwarePlugins\SwagService\Component;

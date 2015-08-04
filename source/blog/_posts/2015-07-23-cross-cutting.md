@@ -362,7 +362,7 @@ even though a CommandBus does not necessarily imply CQS. Anyway: Usually the [do
 As discussed in [the Shopware hook system](http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/),
 AOP is another approach to handle cross cutting concerns. Unlike the pattern based approaches above, AOP
 is a programming paradigm that (usually) addresses this kind of issues on a language base. 
-Due to the complexity of the topic, we will discuss AOP in a separate blog post and try to implement [Go AOP PHP](https://github.com/lisachenko/go-aop-php)
+Due to the complexity of the topic, we will discuss AOP in a [separate blog](https://developers.shopware.com/blog/2015/08/04/aop/) post and try to implement [Go AOP PHP](https://github.com/lisachenko/go-aop-php)
 using the example of Shopware. 
 
 # Further readings:

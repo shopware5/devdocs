@@ -36,8 +36,8 @@ You can retrieve a property group by using its id
 | position			  | integer				  |															|
 | comparable		  | boolean				  |															|
 | sortMode			  | integer				  |															|
-| options			  | array				  | **[Option](./models/#property-group-option)**			|
-| attribute			  | array				  | **[Attribute](./models/#property-group-attribute)**		|
+| options			  | array				  | **[Option](../models/#property-group-option)**			|
+| attribute			  | array				  | **[Attribute](../models/#property-group-attribute)**		|
 
 ## GET (List)
 

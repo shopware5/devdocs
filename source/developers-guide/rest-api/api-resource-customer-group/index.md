@@ -46,7 +46,7 @@ Single customer group details can be retrieved via the customer group id:
 | discount   		    | integer				| 														                      |
 | minimumOrder 		    | integer				| 														                      |
 | minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](./models/#group-surcharge)**		  						  |
+| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**		  						  |
 
 ## GET (List)
 
@@ -75,7 +75,7 @@ This API call returns an array of elements, one for each customer group. Each of
 | discount   		    | integer				| 														                      |
 | minimumOrder 		    | integer				| 														                      |
 | minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](./models/#group-surcharge)**	  							  |
+| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**	  							  |
 
 Appended to the above mentioned list, you will also find the following data:
 
@@ -102,7 +102,7 @@ Appended to the above mentioned list, you will also find the following data:
 | discount   		    | integer				| 														                      |
 | minimumOrder 		    | integer				| 														                      |
 | minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](./models/#group-surcharge)**		  						  |
+| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**		  						  |
 
 ## DELETE
 To delete a customer group, simply call the specified resource with the `DELETE` operation, as the following example shows:

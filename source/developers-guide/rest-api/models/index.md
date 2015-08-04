@@ -81,7 +81,7 @@ indexed: false
 | attr18          	  | string                |                                                 |
 | attr19          	  | string                |                                                 |
 | attr20          	  | string                |                                                 |
-| articleId			  | integer (foreign key) | **[Article](../api-resource-article)**			|
+| articleId			  | integer (foreign key) | **[Article](../api-resource-article/)**			|
 | articleDetailId     |	integer (foreign key) | **[Detail](#article-detail)**                   |
 
 ## Article Detail
@@ -110,7 +110,7 @@ indexed: false
 | configuratorOptions | object array          | **[ConfiguratorOption](#configurator-option)**  |
 | attribute           | object                | **[Attribute](#article-attribute)** 			|
 | id                  | integer (primary key) |                                                 |
-| articleId           | integer (foreign key) | **[Article](../api-resource-article)**          |
+| articleId           | integer (foreign key) | **[Article](../api-resource-article/)**          |
 | unitId              | integer (foreign key) |                                                 |
 | kind                | integer               |                                                 |
 | inStock             | integer               |                                                 |
@@ -277,7 +277,7 @@ indexed: false
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 |
-| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer)**        |
+| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer/)**        |
 
 ## Customer Group
 
@@ -423,7 +423,7 @@ indexed: false
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id            	    | integer (primary key) |                                                       |
-| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| articleId             | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | name                  | string                |                                                       |
 | file                  | string                |                                                       |
 | size                  | int                   |                                                       |
@@ -438,7 +438,7 @@ indexed: false
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id            	    | integer (primary key  |                                                       |
-| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| articleId             | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | articleDetailId       | integer (foreign key) | **[Detail](#article-detail)** 						|
 | description           | string                |                                                       |
 | path                  | string                |                                                       |
@@ -449,7 +449,7 @@ indexed: false
 | relations             | string                |                                                       |
 | extension             | string                |                                                       |
 | parentId              | integer               | 			                                            |
-| mediaId               | integer               | **[Media](../api-resource-media)**                    |
+| mediaId               | integer               | **[Media](../api-resource-media/)**                    |
 
 ## Link
 
@@ -461,7 +461,7 @@ indexed: false
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id            	    | integer (primary key) |                                                       |
-| articleId             | integer (foreign key) | **[Article](../api-resources-article)**               |
+| articleId             | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | name                  | string                |                                                       |
 | link                  | string                |                                                       |
 | target                | string                |                                                       |
@@ -508,12 +508,12 @@ indexed: false
 | Field               | Type                  | Original object                                 		|
 |---------------------|-----------------------|---------------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 		|
-| orderId       	  | string				  | **[Order](../api-resource-order)**              		|
-| articleId			  | integer (foreign key) | **[Article](../api-resource-article)**   				|
+| orderId       	  | string				  | **[Order](../api-resource-order/)**              		|
+| articleId			  | integer (foreign key) | **[Article](../api-resource-article/)**   				|
 | taxId				  | integer (foreign key) | **[Tax](#tax)**    										|
 | taxRate			  |	double				  | 														|
 | statusId			  | integer (foreign key) | **[Status](#order-status)**								|
-| number			  | string (foreign key)  | **[Order](../api-resource-order)**						|
+| number			  | string (foreign key)  | **[Order](../api-resource-order/)**						|
 | articleNumber		  | string (foreign key)  | **[ArticleDetail](#article-detail)**					|
 | price				  | double				  |															|
 | quantity			  | integer 			  |															|
@@ -615,7 +615,7 @@ indexed: false
 | customerGroupKey	  | string (foreign key)  | **[CustomerGroup](#customer-group)** 				  |
 | customerGroup       | object                | **[CustomerGroup](#customer-group)** 				  |
 | articleDetailsId    | integer (foreign key) | **[Detail](#article-detail)**                         |
-| articleId           | integer (foreign key) | **[Article](../api-resources-article)**               |
+| articleId           | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | id                  | integer (primary key) |                                                       |
 | from                | integer/string        |                                                       |
 | to                  | string                |                                                       |
@@ -695,7 +695,7 @@ indexed: false
 
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
-| id            	    | integer (foreign key) | **[Article](../api-resources-article)**               |
+| id            	    | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | name                  | string                |                                                       |
 
 ## Shipping
@@ -708,7 +708,7 @@ indexed: false
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 |
-| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer)**        |
+| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer/)**        |
 | countryId       	  | integer (foreign key) | **[Country](#country)**                         |
 | stateId       	  | integer (foreign key) | 		                                        |
 | company			  | string				  |													|
@@ -779,7 +779,7 @@ indexed: false
 
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
-| id            	    | integer (foreign key) | **[Article](../api-resources-article)**               |
+| id            	    | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | name                  | string                |                                                       |
 
 ## Supplier

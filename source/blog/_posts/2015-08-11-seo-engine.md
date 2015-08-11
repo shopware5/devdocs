@@ -12,8 +12,8 @@ github_link: blog/_posts/2015-08-11-seo-engine.md
 
 authors: [dn]
 ---
-The term "SEO" summarizes various features and functionalities which target to increase the ranking of a given website
-within search engines. This will usually include "speaking URLs", rich snippets, meta tags and search engine optimized
+The term "SEO" summarizes various features and functionalities which targeted at increasing the ranking of a given website
+within search engines. This will usually include semantic URLs, rich snippets, meta tags and search engine optimized
 HTML structures and texts.
 While most of these techniques are not that interesting from a technical perspective, the handling of "speaking URLs"
 ("SEO URLs", "fanzy URLs") usually involves the routing of requests as well as the generation of the resulting HTML
@@ -32,7 +32,7 @@ then again should contain SEO URLs for the next requests.
 
 # Requirements
 While the mapping of the SEO representation and the internal representation could theoretically be generated on the fly
-(e.g. the SEO name always derives from the name of the category), in practice there are some requirements which makes the
+(e.g. the SEO name always derives from the name of the category), in practice there are some requirements which make the
 topic a little more complex:
 
 * History: Once a SEO URL changes, the old one should redirect with the correct status code to the new URL.
@@ -91,7 +91,7 @@ specific SEO URLs.
 
 ## Building the SEO URLs
 In the sections above we handled how Shopware triggers the generation of SEO URLs and how those SEO URL templates can be configured.
-But how / wheres does Shopware actually generate those URLs?
+But how / where does Shopware actually generate those URLs?
 
 The relevant class here is `\sRewriteTable` which can be found in `engine/Shopware/Core/sRewriteTable.php` of your Shopware installation.
 Let's have a quick look at the relevant logic of that class:
@@ -105,7 +105,7 @@ sRewriteTable::$replaceRules property
 engine with e.g. the Shopware config object, register some additional smarty plugins and also try to set the memory_limit / max_execution_time
 config vars
 * `\sRewriteTable::sCreateRewriteTableCleanup`: This method will remove SEO URLs of products / categories / blogs / static pages etc
-where the referenced entity (e.g. product) is not existing anymore. Shopware will never delete SEO URLs of items, that are still existing.
+where the referenced entity (e.g. product) does not exist anymore. Shopware will never delete SEO URLs of items, that still exist.
 * `\sRewriteTable::sCreateRewriteTableStatic`: Will generate the static URLs that can be created in the SEO config. Static
 URLs will allow you to add SEO URLs for custom controllers and landing pages
 * `\sRewriteTable::sCreateRewriteTableCategories`: Will iterate all Shopware categories, apply the category template to them and
@@ -139,14 +139,14 @@ $url = Shopware()->Router()->assemble($query);
 ```
 
 This will internally look up the SEO url for the route `http://my-shop.com/frontend/my-controller/my-action?some-param=123456`
-and print that out, if it is available. When using smarty, you can also use the `url` plugin - it will also take care of proper
+and print it out, if it is available. When using smarty, you can also use the `url` plugin - it will also take care of proper
 rewriting the URLs:
 
 ```
 {url module=frontend controller=my-controller action=my-action some-param=123456}
 ```
 
-As it is critical in regards of SEO to make sure, that always SEO routes are shown, Shopware will also find all URLs in the
+As it is critical in terms of SEO to make sure that SEO routes are always shown, Shopware will also find all URLs in the
 generated HTML code and rewrite those before returning the page to the user. For that reason, it is not necessary to rewrite
 the URLs in your code - Shopware will take care of that automatically in the method `\Shopware_Plugins_Core_PostFilter_Bootstrap::filterUrls`
 which will trigger `\Shopware\Components\Routing\Router::generateList`. The whole process of building SEO URLs from within
@@ -199,13 +199,13 @@ are four ways to handle this:
 * Using the event `Enlight_Controller_Router_Route`: As described above, the `\Shopware\Components\Routing\Matchers\EventMatcher` will
 be used, if Shopware cannot handle the URL on its own, so a plugin could handle those URLs.
 * \Shopware\Components\Routing\Router::setMatchers: If you prefer a more OOP oriented approach over the event, you can also
-add an own matcher to the internal matcher collection of the router and let your matcher handle the old SEO URLs.
+add your own matcher to the internal matcher collection of the router and let your matcher handle the old SEO URLs.
 * PreDispatch / Dispatch loop startup: If your old URLs contain a unique identifier - e.g. the product Id or the order number - you could also
 write a plugin which detects such URLs in a early event, does a dynamic lookup of the new URL and redirects to that URL using the corresponding
  status code. The solutions described are more obvious, however, and should be preferred.
 
 ## Customize replace rules
-The `replaceRules` if the `sRewriteTable` class cannot be modified directly, you can create a `before` or `after` hook
+The `replaceRules` in the `sRewriteTable` class cannot be modified directly, you can create a `before` or `after` hook
 for the `\sRewriteTable::sCleanupPath` method, to modify the resulting URL to your needs.
 
 ## Additional variables for the smarty SEO template

@@ -45,7 +45,7 @@ This API call requires one of the following parameters to be defined:
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
 | id				    | integer (primary key) | 							                                                    |
 | number				| string				|																				|
-| customerId			| integer (foreign key) | **[Customer](./api-resource-customer)**										|
+| customerId			| integer (foreign key) | **[Customer](../api-resource-customer)**										|
 | paymentId				| integer (foreign key)	| **[PaymentData](../models/#payment-data)**										|
 | dispatchId			| integer (foreign key)	| **[Dispatch](../models/#dispatch)**											|
 | partnerId				| integer (foreign key)	|    																			|

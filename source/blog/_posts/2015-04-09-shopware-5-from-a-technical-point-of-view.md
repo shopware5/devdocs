@@ -12,11 +12,11 @@ github_link: blog/_posts/2015-04-09-shopware-5-from-a-technical-point-of-view.md
 
 Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shoppers <a href="https://www.internetretailer.com/2015/03/09/nearly-half-digital-shoppers-top-retailers-are-mobile-only" target="_blank">preferring to use mobile devices</a> for online shopping, this is an important step to take. The core classes have also been revised and especially with the new <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle classes</a>, plugin authors and Shopware agencies now have a much easier time to customize article listings.
 
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_1.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_1.png)
 
 Another area where Shopware 5 provides improvements is internationalization. Since not all countries have the same address format as Germany, Shopware has been made more flexible at this point. The street name and street number fields have been merged into one address line field, furthermore it is now possible to enable up to two additional address line fields for customer addresses.
 
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_2.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_2.png)
 
 ## SearchBundle in Action
 
@@ -26,7 +26,7 @@ The following is the whole code needed for a frontend controller that shows an a
 
 ```php
 class Shopware_Controllers_Frontend_ViisonLatestArticles extends Enlight_Controller_Action
-{   
+{
     public function indexAction()
     {
         $context = $this->get('shopware_storefront.context_service')->getProductContext();
@@ -131,11 +131,11 @@ class LatestArticlesSubcriber implements SubscriberInterface
 
 By defining a `Views/frontend/viison_latest_articles_new/index.tpl` template that extends `parent:frontend/listing/index.tpl`, we come up with a result like the following when visiting `http://<SHOP_URL>/ViisonLatestArticles`:
 
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_3.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_3.png)
 
 Both the filter and sorting features are working as expected, without us having to write additional code:
 
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_4.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_4.png)
 
 So we are done already – not too much work involved indeed. At the same time, the new implementation of our plugin has only 169 lines of code in total – 80% less than the original plugin. To make it even better, it now has the new filtering feature and its code is much cleaner, eliminating all code duplication.
 
@@ -275,13 +275,13 @@ In our concrete use case with the <a href="http://store.shopware.com/viison00656
 In practice, the shipping process with Shopware 5 works as follows:
 
 1\. During checkout, the user can enter an arbitrary address line, e.g. “Wiesentcenter, Bayreuther Str. 108, 2. Stock” as part of his shipping address.
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_5.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_5.png)
 
 2\. The address gets split up automatically when creating a shipping label with the <a href="http://store.shopware.com/viison00656/dhl-adapter.html" target="_blank">DHL Adapter</a>.
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_6.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_6.png)
 
 3\. The shipping label that is created for this order contains all information that was given during checkout:
-![image](https://s3.eu-central-1.amazonaws.com/shopware-techblog-assets/shopware-5-from-a-technical-point-of-view_7.png)
+![image](/blog/img/shopware-5-from-a-technical-point-of-view_7.png)
 
 ## Conclusion
 

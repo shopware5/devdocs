@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Developer's Guide
-github_link: developers-guide/shopware-5-plugin-license/index.html
+github_link: developers-guide/shopware-5-plugin-license/index.md
 ---
 
 ## Overview

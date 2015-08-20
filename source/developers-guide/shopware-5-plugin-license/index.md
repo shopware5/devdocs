@@ -15,7 +15,7 @@ This document describes the basic procedure.
 
 The generated code-snippet usually looks like this:
 
-```php
+```
     public function checkLicense($throwException = true)
     {
         static $r, $m = 'SwagMyPlugin';
@@ -44,7 +44,7 @@ cripple your shop.
 
 ## Example
 
-```php
+```
 <?php
 
 final class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
@@ -126,7 +126,7 @@ and when executing the backend controller, the user would be confronted with the
 will be used:
 
 
-```php
+```
 if (!$this->checkLicense(false)) {
     return;
 }

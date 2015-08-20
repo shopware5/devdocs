@@ -1,13 +1,15 @@
 ---
 layout: default
 title: Developer's Guide
-github_link: developers-guide/shopware-5-plugin-license/index.md
+github_link: developers-guide/shopware-5-plugin-license/index.html
 ---
 
 ## Overview
 
 If you have ordered the Shopware license check for your plugin, you will find the automatically generated code snippet in your account, that you need to include in your plugin's Bootstrap.php.
 This document describes the basic procedure.
+
+
 
 ## The Snippet
 

@@ -222,7 +222,7 @@ public function createConfig(Form\Container\TabContainer $container)
         'responsive_colors_tab',
         'Responsive colors'
     );
-    $tab->addElement($fieldset)
+    $tab->addElement($fieldset);
 
     $container->addTab($tab);
 }
@@ -282,7 +282,7 @@ public function createConfig(Form\Container\TabContainer $container)
     );
 
     // ...add the fieldset to the tab
-    $tab->addElement($fieldset)
+    $tab->addElement($fieldset);
 
     // ...last but not least add the tab to the container, which is a tab panel.
     $container->addTab($tab);

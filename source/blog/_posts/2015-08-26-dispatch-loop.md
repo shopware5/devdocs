@@ -29,7 +29,7 @@ Whenever a request hits your server, your web server will redirect it to the `sh
 instantiate the `\Shopware\Kernel`, which implements `\Symfony\Component\HttpKernel\HttpKernelInterface`. The `handle`
 method of the kernel will then bootstrap the rest of Shopware (e.g. plugins) and start the dispatch loop.
 The actual dispatch loop is handled by `\Enlight_Controller_Front::dispatch`.
-The front controller will take care of the following tasks:
+This front controller will take care of the following tasks:
 
 * run the router on the request object, so the router can figure out, which `Module`, `Controller` and `Action` needs to be requested
 * run the dispatch loop, until there is nothing more to process
@@ -115,7 +115,7 @@ object(Enlight_Controller_Request_RequestHttp)[379]
 ```
 
 This time, the relevant information is set, the router resolved the SEO URL `/media/living/` to the correct `module`, `controller`
-and `aciton`. Now everything is prepared, to handle the `request` object by the dispatcher.
+and `aciton`. Now everything is prepared to handle the `request` object by the dispatcher.
 
 ## Dispatcher
 The Shopware dispatcher will handle a request in `\Enlight_Controller_Dispatcher_Default::dispatch`. First of all, it will build
@@ -179,7 +179,7 @@ Next the event `Enlight_Controller_Action_Frontend_Listing_Index` is emitted. Th
 subscribed to it, it can handle the controller action instead of the default action implementation. So instead of executing
 `Shopware_Controllers_Frontend_Listing::indexAction` only the plugin subscriber will be executed.
 If no plugin registered to that event, the controller dispatcher will execute the actual controller action, in our case
-`Shopware_Controllers_Frontend_Listing::indexAction`.
+`Shopware_Controllers_Frontend_Listing::indexAction`. 
 
 Now the `postDispatch` method of the controller is executed - just like the `preDispatch` method before. Finally the post dispatch events
 are emitted, that you will know from most plugins:

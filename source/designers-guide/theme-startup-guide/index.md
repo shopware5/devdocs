@@ -33,7 +33,7 @@ This guide will introduce you to the new features and additions to the new Shopw
 - Fully restructured HTML5 structure with backward compatibility in mind
 	- Mobile first approach
 	- HTML5 form validation
-	- Rich snippets based on [schema.org](http://http://schema.org)
+	- Rich snippets based on [schema.org](http://schema.org)
 	- Massive increase of Smarty blocks in the theme
 - Retina ready adaptive images
 	- State of the art implementation using the HTML5 ```picture``` element

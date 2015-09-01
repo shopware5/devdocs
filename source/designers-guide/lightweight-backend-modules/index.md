@@ -7,22 +7,22 @@ indexed: true
 ---
 
 ## Introducing
-Shopware 5.1 comes with a pretty cool feature which is especially interesting for developers which would love to create a backend module for their plugin but don't want to deal with the steep learning curve of ExtJS. In the following article you'll learn anything about the new technology.
+Shopware 5.1 comes with an useful feature which is specially interesting for developers who would love to create a backend module for their plugin, but don't want to deal with the steep learning curve of ExtJS. In the following article you'll get to know this new technology.
 
 ## Concept
-The basic idea behind the lightweight backend modules is quite simple. We want to allow third party developers to create simple backend modules in a breeze, therefore we want to come up with a solution which allows to create the modules using vanilla HTML, CSS and JavaScript without the headache to learn ExtJS.
+The basic idea behind the lightweight backend modules is quite simple: we want to allow third party developers to create simple backend modules in a breeze. Therefore, we want to come up with a solution which allows creating the modules using vanilla HTML, CSS and JavaScript, without the headache of learning ExtJS.
 
-This means we have to encapsulate the module from the rest of the Shopware backend using an `iframe` element which includes the module content.
+This means we have to encapsulate the module from the rest of the Shopware backend, using an `iframe` element, which includes the module content.
 
-Due to the fact that the `iframe` element is basically a website in another website, we had to find a way to communicate with the `iframe` and on the other hand the `iframe` needs a way to communicate with the backend as well.
+Due to the fact that the `iframe` element is basically a website in another website, we had to find a way to communicate with the `iframe` and, on the other hand, the `iframe` needs a way to communicate with the backend as well.
 
 ### HTML5's cross document messaging
 
-In the [HTML5 Web Messaging Draft](https://w3c.github.io/webmessaging/#web-messaging) a new API called `Window.postMessage()` was introduced which safely enables cross-origin communication using an defined message bus. It gives the recipient of a message a reliable way to know its real origin. The current HTML5 specification allows the payload to be either a string or a JavaScript object. In either case, there's no message structure semantics built into the specification which means there's no standard way to handle the message payload and process the message.
+In the [HTML5 Web Messaging Draft](https://w3c.github.io/webmessaging/#web-messaging) a new API called `Window.postMessage()` was introduced, which safely enables cross-origin communication using a defined message bus. It gives the recipient of a message a reliable way to know its real origin. The current HTML5 specification allows the payload to be either a string or a JavaScript object. In either case, there's no message structure semantics built into the specification, which means there's no standard way to handle the message's payload and process the message.
 
 ### Message structure
 
-We're using the `Window.postMessage` API for the inter-process communication between module content and the rest of the backend. We overcome the missing message structure with another established standard protocol named [JSON-RPC 2.0](http://www.jsonrpc.org). It is a stateless, light-weight remote procedure call protocol encoded in `JSON`. The general mechanism consists of two peers establishing a data connection. During the lifetime of a connection, peers may invoke methods provided by the other peer.
+We're using the `Window.postMessage` API for the inter-process communication between module content and the rest of the backend. We overcome the missing message structure with another established standard protocol named [JSON-RPC 2.0](http://www.jsonrpc.org). It is a stateless, lightweight remote procedure call protocol encoded in `JSON`. The general mechanism consists of two peers establishing a data connection. During the lifetime of a connection, peers may invoke methods provided by the other peer.
 
 ![JSON RPC](json-rpc-scheme.png)
 
@@ -30,7 +30,7 @@ We're using the `Window.postMessage` API for the inter-process communication bet
 
 
 ## The communication layer
-As mentioned above, we're using [JSON-RPC 2.0](http://www.jsonrpc.org/specification) for the communication. We extended the specification with several modifications to support our use case. A RPC call is represented by sending a Request object to a Server, the object has the following members by default.
+As mentioned above, we're using [JSON-RPC 2.0](http://www.jsonrpc.org/specification) for the communication. We extended the specification with several modifications to support our use case. A RPC call is represented by sending a Request object to a Server, with the following content by default.
 
 ```js
 {
@@ -41,7 +41,7 @@ As mentioned above, we're using [JSON-RPC 2.0](http://www.jsonrpc.org/specificat
 }
 ```
 
-Our modification of the Request objects contains additional information about the module instance (`instance`), window instance (`component`) which has sent the Request to Server. The `target` member defines the Shopware modules containing the method which should be called. Due to the asynchronous nature of JavaScript the Request object contains an `async` member. The member defines that the result isn't available immediately after the method call but rather once the callback of the called method was invoked.
+Our modification of the Request objects contains additional information about the module (`instance`) and window (`component`) which sent the Request to Server. The `target` member defines the Shopware modules containing the method which should be called. Due to the asynchronous nature of JavaScript, the Request object contains an `async` member. The member defines that the result isn't available immediately after the method is called, but rather once the callback of the called method is invoked.
 
 ```js
 {
@@ -56,7 +56,7 @@ Our modification of the Request objects contains additional information about th
 }
 ```
 
-The Response object contains the result of the called method and contains the following members:
+The Response object contains the result of the called method and has the following members:
 
 ```js
 {
@@ -69,10 +69,10 @@ The Response object contains the result of the called method and contains the fo
 }
 ```
 
-A response will always be sent from the Server to the Client which has sent the Request object. The `result` member can be `null` if an error occused on the Server and the value of this member is determined by the method invoked on the Server. Please keep in mind that the entire inter-process communication is asynchronous, therefore the processing of the Response object has to be handled in a callback method.
+A response will always be sent from the Server to the Client which sent the Request object. The `result` member can be `null` if an error occurred on the Server and the value of this member should have been determined by the method invoked on the Server. Please keep in mind that the entire inter-process communication is asynchronous, therefore the processing of the Response object has to be handled in a callback method.
 
 ## How to create a simple backend module?
-Creating a new backend module using the lightweight backend module is super easy. Basically you just have to create a new menu entry in the Shopware administration and register a backend controller to get it working. Let's start with the menu entry. In our plugin install method we call the method `$this->createMenuItem()` to the new entry:
+Creating a new backend module using the lightweight backend module is super easy. Basically you just have to create a new menu entry in the Shopware administration and register a backend controller to get it working. Let's start with the menu entry. In our plugin install method we call the method `$this->createMenuItem()` to add the new entry:
 
 ```php
 public function install()
@@ -103,11 +103,11 @@ $this->createMenuItem(array(
 ));
 ```
 
-Please note that we call JavaScript method `createSimpleModule()` in the `onclick` property of the menu entry which means when the user clicks on the menu entry the `onclick` method will be called and the backend module will be create. The first argument of the `createSimpleModule()` is the name of the backend controller and the second argument is a object to customize the appearance of the window. You can set the title, width or / and the height of the window.
+Please note that we call the `createSimpleModule()` JavaScript method in the `onclick` property of the menu entry, which means that, when the user clicks on the menu entry, the `onclick` method will be called and the backend module will be create. The first argument of the `createSimpleModule()` is the name of the backend controller and the second argument is an object to customize the appearance of the window. You can set the title, width and / or height of the window.
 
 ### Registering a custom backend controller
 
-The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example above we registering the controller path dispatch event in the method `$this->registerController()`:
+The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example bellow, we subscribe the controller path dispatch event and handle it with the `$this->registerController()` method:
 
 ```php
 function registerController()
@@ -127,7 +127,7 @@ public function onGetBackendController()
 
 Okay, our custom backend controller is registered in the application, now we can implement the controller. Please note we already registered our template directory in the `onGetBackendController()` event handler method.
 
-The minimum requirement for the controller is that it extends from `Enlight_Controller_Action` and have the method `indexAction` implemented. The actual function body of the method can be leave empty.
+The minimum requirement for the controller is that it extends from `Enlight_Controller_Action` and has the `indexAction` method implemented. The actual function body of the method can be left empty.
 
 ```php
 class Shopware_Controllers_Backend_ExampleModulePlainHtml extends Enlight_Controller_Action {
@@ -139,7 +139,7 @@ class Shopware_Controllers_Backend_ExampleModulePlainHtml extends Enlight_Contro
 
 ### Layout your module
 
-Now let's start templating our backend module our backend module. We recommend [Bootstrap](http://getbootstrap.com/) as the frontend framework what you should use. First let's take a look on the directory structure in the `Views/backend` folder of our plugin:
+Now let's start templating our backend module. We recommend using [Bootstrap](http://getbootstrap.com/) as the frontend framework. First let's take a look on the directory structure in the `Views/backend` folder of our plugin:
 
 ```bash
 |-- _base
@@ -156,7 +156,7 @@ Now let's start templating our backend module our backend module. We recommend [
     `-- index.tpl
 ```
 
-As you can see there's a file called `_base/layout.tpl`. It's best practice to create a basic layout file which contains the HTML head and the necessary structure for you module. The block system of [Smarty](http://www.smarty.net/) from the storefront is also available in your backend module, therefore it's recommend to create your own Smarty blocks in the `_base/layout.tpl`, there's an example:
+As you can see there's a file called `_base/layout.tpl`. It's best practice to create a basic layout file which contains the HTML head and the necessary structure for you module. The block system of [Smarty](http://www.smarty.net/) from the storefront is also available in your backend module, therefore it's recommend to create your own Smarty blocks in the `_base/layout.tpl`. Here's an example:
 
 ```html
 <!DOCTYPE html>
@@ -187,11 +187,11 @@ As you can see there's a file called `_base/layout.tpl`. It's best practice to c
 </html>
 ```
 
-The only requirement is to import the file `backend/base/frame/postmessage-api.js`. The file provides the post message api which initialized itself and connects to the Shopware backend. 
+The only requirement is to import `backend/base/frame/postmessage-api.js`. This file provides the postMessage API, which initializes itself and connects to the Shopware backend. 
 
 
 ## postMessage API
-Our postMessage API is event-driven and uses an [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) to provide an easy extend the functionality of the API. Every method fires an event which can be used to hook your own logic into the API. One of the most important events is the `initialized-api` which let's you know that the API is ready for further usage. Here's an example how to use events:
+Our postMessage API is event-driven and uses an [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) to provide an easy way to extend its native functionality. Every method fires an event, which can be used to hook your own logic into the API. One of the most important events is the `initialized-api`, which lets you know that the API is ready for further usage. Here's an example of how to use events:
 
 ```
 var subscription = windows.events.subscribe('initialized-api', function(obj) {
@@ -249,7 +249,7 @@ Returns the version string of the API
 
 `getName()` 
 
-Returns the name of the api
+Returns the name of the API
 
 **Returns**: `string`
 
@@ -257,7 +257,7 @@ Returns the name of the api
 
 `getInstance()` 
 
-Returns the instance uuid which is used for the communication of an app
+Returns the instance UUID which is used for the communication of an app
 
 **Returns**: `string | null`
 
@@ -273,7 +273,7 @@ Returns the techName of the module window.
 
 `isInitialized()` 
 
-Returns if the api is initialized.
+Returns if the API is initialized.
 
 **Returns**: `boolean`
 
@@ -281,11 +281,11 @@ Returns if the api is initialized.
 
 `openModule(payload)`
 
-Opens a module in the shopware backend.
+Opens a module in the Shopware backend.
 
 **Parameters**
 
-**payload**: `Object`, Opens a module in the shopware backend.
+**payload**: `Object`, Opens a module in the Shopware backend.
 
 **Example**:
 ```js

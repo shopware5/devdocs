@@ -15,8 +15,7 @@ authors: [dn]
 Creating plugins can be quite repetitive - if there just was a way to generate the base structure automatically! Well - there is a tool for that…
 
 # The CLI tools
-A year ago we [announced](https://developers.shopware.com/blog/2014/11/27/shopware-cli-tools/) the [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools)
- - a console application to help you with your daily Shopware work, e.g. install Shopware from GitHub or a release package.
+A year ago we [announced](https://developers.shopware.com/blog/2014/11/27/shopware-cli-tools/) the [Shopware CLI tools](https://github.com/shopwareLabs/sw-cli-tools) - a console application to help you with your daily Shopware work, e.g. install Shopware from GitHub or a release package.
 It also supports installing plugins on the fly, which makes the daily development work a lot easier and fluent. With the
 plugin code generator, there is also a (little known) tool, to generate whole plugins.
 

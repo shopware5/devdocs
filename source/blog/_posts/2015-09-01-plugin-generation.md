@@ -312,7 +312,7 @@ much easier and faster and takes care of the correct naming convention. So even 
 how e.g. store front filters are created.
 Furthermore its also frequently updated to reflect best practice approaches, so that it might also provide nice insights,
 how plugins are currently written at Shopware itself. Of course you still have to make sure, that everything works as you
-intended it too - so please be aware, that there is no official support for this tool.
+intended it to - so please be aware, that there is no official support for this tool.
 
 In future there could be even more helpful flags, as "create shopping world", "register attributes" or "create newsletter element".
 If you have any idea for additional generation templates - pull request on github are appreciated.

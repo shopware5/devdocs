@@ -48,7 +48,7 @@ on your own - the rest works out of the box.
 
 ## Creating a backend plugin
 
-If you want to write a plugin with a backend module, you can just run `sw plugin:create SwagBackendTest`. It will ask you for
+If you want to write a plugin with a backend module, you can just run `sw plugin:create --haveBackend SwagBackendTest`. It will ask you for
 the model you want to build the backend module for - and then generate this structure:
 
 ```
@@ -302,7 +302,7 @@ SwagAllTest/
 # Additional options
 In addition to the options mentioned above, there are also these two flags:
 
-* `--namespace`: Namespace of the plugin (Default: `frontend`, possible: `frontend`, core``, `backend`)
+* `--namespace`: Namespace of the plugin (Default: `frontend`, possible: `frontend`, `core`, `backend`)
 * `--licenseHeader`: File you want to include in each file as license header
 
 # Why should I use it?

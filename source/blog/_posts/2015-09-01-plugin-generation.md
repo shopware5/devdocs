@@ -90,6 +90,8 @@ As you can see, we now additionally have backend templates, a backend controller
 Of course you will need to modify `Views/backend/swag_backend_test/model/main.js` and the view templates to your need - as
 the code generator can only choose some defaults here. But the general plugin will - again - work out of the box.
 
+![Backend example](/blog/img/backend_create.png)
+
 ## Create filters for the new store front bundle
 With Showpare 5 the new StoreFrontBundle was introduced. It will allow you to modify the whole product data aggregation easily.
 This way adding additional filters, sorters and conditions is very easy - even though, the changed mindset behind this

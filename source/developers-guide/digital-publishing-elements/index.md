@@ -28,7 +28,7 @@ Digital Publishing is introduced in Shopware 5.1.0 as a new advanced feature. Th
 
 <img src="img/file_structure.jpg" style="float:right; margin: 10px 0 20px 40px;" />
 
-We will not describe the hole plugin development in this article, but only the important parts to get started with the custom element. To get more details about developing plugins for Shopware, see the <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">quick start guide</a>. In our example we create a plugin called `DigitalPublishingSample`. This is just an example name for our plugin and will be used for some directory and file names. When you create your own plugin, just replace the corresponding parts with the name of your own plugin. 
+We will not describe the hole plugin development in this article, but only the important parts to get started with the custom element. To get more details about developing plugins for Shopware, see the <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">quick start guide</a>. In our example we create a plugin called `SwagDigitalPublishingSample`. This is just an example name for our plugin and will be used for some directory and file names. When you create your own plugin, just replace the corresponding parts with the name of your own plugin. 
 
 <br />
 <br />
@@ -53,7 +53,7 @@ public function install()
 public function registerPluginNamespace()
 {
     $this->Application()->Loader()->registerNamespace(
-        'Shopware\DigitalPublishingSample',
+        'Shopware\SwagDigitalPublishingSample',
         $this->Path()
     );
 }
@@ -77,7 +77,7 @@ To complete this step we have to create the corresponding file in the `Subscribe
 ```
 <?php
 
-namespace Shopware\DigitalPublishingSample\Subscriber;
+namespace Shopware\SwagDigitalPublishingSample\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Shopware\Components\Theme\LessDefinition;
@@ -87,7 +87,7 @@ class Resources implements SubscriberInterface
 {
     protected $bootstrap;
 
-    public function __construct(\Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap $bootstrap)
+    public function __construct(\Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap $bootstrap)
     {
         $this->bootstrap = $bootstrap;
     }
@@ -366,4 +366,4 @@ In this article we learned how to create custom elements for the Digital Publish
 
 ## Download ##
 
-**Sample Plugin**: Download
+**Sample Plugin**: <a href="{{ site.url }}/exampleplugins/SwagDigitalPublishingSample.zip">Download</a>.

@@ -1,8 +1,8 @@
 <?php
 
-use Shopware\DigitalPublishingSample\Subscriber\Resources;
+use Shopware\SwagDigitalPublishingSample\Subscriber\Resources;
 
-class Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function getVersion()
     {
@@ -11,7 +11,7 @@ class Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap extends Shopwar
 
     public function getLabel()
     {
-        return 'Digital Publishing Sample';
+        return 'Swag Digital Publishing Sample';
     }
 
     public function install()
@@ -41,7 +41,7 @@ class Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap extends Shopwar
     public function registerPluginNamespace()
     {
         $this->Application()->Loader()->registerNamespace(
-            'Shopware\DigitalPublishingSample',
+            'Shopware\SwagDigitalPublishingSample',
             $this->Path()
         );
     }

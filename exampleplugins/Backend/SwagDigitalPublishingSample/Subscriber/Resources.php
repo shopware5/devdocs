@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopware\DigitalPublishingSample\Subscriber;
+namespace Shopware\SwagDigitalPublishingSample\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Shopware\Components\Theme\LessDefinition;
@@ -20,9 +20,9 @@ class Resources implements SubscriberInterface
     /**
      * Subscriber class constructor.
      *
-     * @param \Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap $bootstrap
+     * @param \Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap $bootstrap
      */
-    public function __construct(\Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap $bootstrap)
+    public function __construct(\Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap $bootstrap)
     {
         /**
          * Set the bootstrap class for later use.
@@ -58,8 +58,8 @@ class Resources implements SubscriberInterface
         $view = $subject->View();
 
         $view->addTemplateDir($this->bootstrap->Path() . 'Views/');
-        $view->extendsTemplate('backend/digital_publishing_sample/view/editor/extension.js');
-        $view->extendsTemplate('backend/digital_publishing_sample/view/editor/elements/youtube_element_handler.js');
+        $view->extendsTemplate('backend/swag_digital_publishing_sample/view/editor/extension.js');
+        $view->extendsTemplate('backend/swag_digital_publishing_sample/view/editor/elements/youtube_element_handler.js');
     }
 
     /**

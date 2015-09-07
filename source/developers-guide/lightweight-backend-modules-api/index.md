@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lightweight backend modules api
-github_link: designers-guide/lightweight-backend-modules-api/index.md
+github_link: developers-guide/lightweight-backend-modules-api/index.md
 shopware_version: 5.1.0
 indexed: true
 ---

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lightweight backend modules
-github_link: designers-guide/lightweight-backend-modules/index.md
+github_link: developers-guide/lightweight-backend-modules/index.md
 shopware_version: 5.1.0
 indexed: true
 ---
@@ -235,4 +235,4 @@ Here's a entire list of all available events:
 * component/set-body-style
 
 ## API documentation
-You can find the API documentation of the our <a href="{{ site.url }}/designers-guide/lightweight-backend-modules-api/" target="_blank">postMessage API here</a>.
+You can find the API documentation of the our <a href="{{ site.url }}/developers-guide/lightweight-backend-modules-api/" target="_blank">postMessage API here</a>.

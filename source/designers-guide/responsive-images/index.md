@@ -15,7 +15,7 @@ The Shopware 5 default Responsive theme is a fully responsive cross-browser comp
 
 The Shopware 5 media manager allows you to upload pictures with large file sizes without having to worry about downsizing them manually. The media manager has a thumbnail generator service that creates thumbnails of your original pictures in sizes you are able to configure beforehand. This ensures a good performance and usability on the different device types. There is also the possibility to create thumbnails that have doubled pixel density to improve the experience for retina-display device users. Alternatively you can generate the thumbnails by using the `php bin/console sw:thumbnail:generate` Shopware CLI command. Make sure to always upload the biggest possible version of your original image, the thumbnail generator is only able to downscale from the original images' size.
 
-### Product default thumbnail sizes:
+### Default product thumbnail sizes:
 + `800 x 800 px`
 + `1280 x 1280px`
 + `1920 x 1920px`

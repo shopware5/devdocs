@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Resources implements SubscriberInterface
 {
     /**
-     * @var \Shopware_Plugins_Backend_DigitalPublishingSample_Bootstrap
+     * @var \Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap
      */
     protected $bootstrap;
 

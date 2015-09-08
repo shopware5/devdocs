@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Digital Publishing Elements
-github_link: developers-guide/digital-publishing-components/index.md
+github_link: developers-guide/digital-publishing-elements/index.md
 shopware_version: 5.1.0
 indexed: true
 tags:
@@ -108,8 +108,8 @@ class Resources implements SubscriberInterface
         $view = $subject->View();
 
         $view->addTemplateDir($this->bootstrap->Path() . 'Views/');
-        $view->extendsTemplate('backend/digital_publishing_sample/view/editor/extension.js');
-        $view->extendsTemplate('backend/digital_publishing_sample/view/editor/elements/youtube_element_handler.js');
+        $view->extendsTemplate('backend/swag_digital_publishing_sample/view/editor/extension.js');
+        $view->extendsTemplate('backend/swag_digital_publishing_sample/view/editor/elements/youtube_element_handler.js');
     }
 
     public function onPostDispatchFrontend(\Enlight_Event_EventArgs $args)
@@ -137,11 +137,11 @@ In the `getSubscribedEvents()` method we return all necessary events we want to 
 
 <img src="img/file_structure_backend.jpg" style="float:right; margin: 10px 0 20px 40px;" />
 
-In the next step, we will look at the first event, which subscribes to the post dispatch of the backend. With it, we can extend the backend with our ExtJS template files in the `onPostDispatchBackend` callback. To add a new element to the Digital Publishing module, we have to extend the original `container.js` of the editor with our own `extension.js` file. All files should go in the `Views` directory of our plugin, in `backend/digital_publishing_sample/view/editor`. We also create the custom handler for our element in the `elements` subdirectory called `youtube\_element\_handler.js`. These files are added to the backend template by the `extendsTemplate()` method.
+In the next step, we will look at the first event, which subscribes to the post dispatch of the backend. With it, we can extend the backend with our ExtJS template files in the `onPostDispatchBackend` callback. To add a new element to the Digital Publishing module, we have to extend the original `container.js` of the editor with our own `extension.js` file. All files should go in the `Views` directory of our plugin, in `backend/swag_digital_publishing_sample/view/editor`. We also create the custom handler for our element in the `elements` subdirectory called `youtube_element_handler.js`. These files are added to the backend template by the `extendsTemplate()` method.
 
 ## Creating the backend handler
 
-Now that we extended the backend template and created the necessary ExtJS files, we can write some code. Let's start with the custom handler for our element: `Views/backend/digital_publishing_sample/view/editor/elements/youtube_element_handler.js`
+Now that we extended the backend template and created the necessary ExtJS files, we can write some code. Let's start with the custom handler for our element: `Views/backend/swag_digital_publishing_sample/view/editor/elements/youtube_element_handler.js`
 
 ```
 //{block name="backend/swag_digital_publishing/view/editor/abstract_element_handler" append}
@@ -167,7 +167,7 @@ To extend the backend template, we're editing the Smarty `{block}` of the abstra
 - `iconCls`: the CSS class for the element icon
 - `createFormItems()`: the method which returns the configuration fields for this element
 
-Now that we have created the handler, we have to add it to the list of available element handlers. Therefore, we created the `extension.js` to extend the original editor: `Views/backend/digital_publishing_sample/view/editor/extension.js`
+Now that we have created the handler, we have to add it to the list of available element handlers. Therefore, we created the `extension.js` to extend the original editor: `Views/backend/swag_digital_publishing_sample/view/editor/extension.js`
 
 ```
 //{block name="backend/swag_digital_publishing/view/editor/container" append}

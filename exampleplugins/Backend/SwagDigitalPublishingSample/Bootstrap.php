@@ -11,7 +11,7 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
 
     public function getLabel()
     {
-        return 'Swag Digital Publishing Sample';
+        return 'Digital Publishing Sample';
     }
 
     public function install()
@@ -23,6 +23,11 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
 
     public function uninstall() {
         return true;
+    }
+
+    public function enable()
+    {
+        return array('success' => true, 'invalidateCache' => array('frontend', 'backend', 'theme'));
     }
 
     public function registerSubscriber()

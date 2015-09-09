@@ -11,8 +11,19 @@ In this document, developers will find details about changes made in the differe
 This document only covers the main changes done in each version. For a comprehensive change list of all Shopware versions,
 including minor and bugfix releases, refer to the `upgrade.md` file found in your Shopware installation.
 
+# Shopware 5.1 RC2
 
-# Shopware 5.1
+## Media Service
+
+A path normalizer is now part of the new media management API and can be used, for example, when handling media file upload to the server. In this scenario, you need to get a virtual and normalized path to the file you just uploaded. You can do so like this:
+
+```
+$fullMediaPath = 'http//www.shop.com/media/image/my-fancy-image.png'
+$mediaService = $container->get('shopware_media.media_service');
+$normalizedPath = $mediaService->normalize($fullMediaPath); // media/image/my-fancy-image.png
+```
+
+# Shopware 5.1 RC1
 
 ## System requirements changes
 
@@ -131,14 +142,6 @@ $this->View()->assign(array(
 ```
 
 As you can see, the previous media file path is still useful. However, instead of directly, it is used internally by the `shopware_media.media_service` to retrieve the actual file path. You should adapt your custom code to fit this new logic.
-
-The `shopware_media.path_normalizer` service is also part of the new media management API, and can be used, for example, when handling media file upload to the server. In this scenario, you need to get a virtual, normalized path to the file you just uploaded, so that it can be later used in conjunction with the `shopware_media.media_service`. You can do so like this:
-
-```
-$fullMediaPath = 'http//www.shop.com/media/image/my-fancy-image.png'
-$pathNormalizer = $this->get('shopware_media.path_normalizer');
-$normalizedFilePath = $pathNormalizer->get($fullMediaPath); // /media/image/my-fancy-image.png
-```
 
 ### For frontend developers
 

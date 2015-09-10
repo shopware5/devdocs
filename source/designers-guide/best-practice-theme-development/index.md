@@ -23,8 +23,7 @@ LESS and Grunt are based on Node.js, which makes it necessary to have [Node.js](
 
 ```
 sudo apt-get update
-sudo apt-get install nodejs npm
-sudo ln -s /usr/bin/nodejs /usr/bin/node
+sudo apt-get install nodejs-legacy npm
 ```
 
 ### Install Node.js/npm on Mac OS X

@@ -114,6 +114,10 @@ bin/console sw:media:migrate
 
 If you are upgrading to Shopware 5.1 or later from 5.0 or previous version, you might also use this command to migrate your files from the legacy location to their new folder. If you can't or decide not to run this command, your media files will still be migrated. The live migration mechanism moves the files to the right place as they get requested. However, we recommend that you use the CLI command to migrate your files, as the live migration might impact your shop's performance.
 
+<div class="alert alert-info">
+If you are still facing problems with media files, you can <a href="MediaHtaccessFallback.zip">download this</a> fallback solution. You need to extract the zip file into your root Shopware folder. It adds a <code>.htaccess</code> file to your media folder and redirects a failed image lookup to a new frontend controller which then tries to find the requested image. Keep in mind, that you do changes to the core and they might get overwritten on the next update. This solution should only be used as an temporarily fix.
+</div>
+
 #### Example: Migrating all media files to Amazon S3
 
 Assuming you already installed the [Amazon S3 adapter](https://github.com/ShopwareLabs/SwagMediaS3) plugin, you now need to configure it. To do so, you have to edit your Shopware `config.php` and add a new adapter called `s3` and a configuration to access Amazon S3 account like described in the [plugin description on GitHub](https://github.com/ShopwareLabs/SwagMediaS3).

@@ -23,6 +23,10 @@ $mediaService = $container->get('shopware_media.media_service');
 $normalizedPath = $mediaService->normalize($fullMediaPath); // media/image/my-fancy-image.png
 ```
 
+#### Media loading fallback
+
+If you are still facing problems with media files, please refer to the **Migrating your files** section in the [Media Service Guide](/developers-guide/shopware-5-media-service/#migrating-your-files).
+
 # Shopware 5.1 RC1
 
 ## System requirements changes

@@ -69,6 +69,7 @@ This API call requires one of the following parameters to be defined:
 | currency				| string				|																				|
 | currencyFactor		| double				|																				|
 | remoteAddress			| string				|																				|
+| deviceType			| string				|																				|
 | details				| array					| **[Detail](../models/#order-detail)**										|
 | documents				| array					| **[Document](../models/#document)**											|
 | payment				| object				| **[Payment](../models/#payment-instance)**										|

@@ -524,6 +524,9 @@ indexed: false
 | mode				  | integer 			  |															|
 | esdArticle		  | integer 			  |															|
 | config			  | string	 			  |															|
+| ean			  | string	 			  |															|
+| unit			  | string	 			  |															|
+| packUnit			  | string	 			  |															|
 | attribute			  | object	 			  |	**[OrderDetailAttribute](#order-detail-attribute)**		|
 
 ## Order Detail Attribute

@@ -11,6 +11,46 @@ In this document, developers will find details about changes made in the differe
 This document only covers the main changes done in each version. For a comprehensive change list of all Shopware versions,
 including minor and bugfix releases, refer to the `upgrade.md` file found in your Shopware installation.
 
+# Shopware 5.1 RC3
+
+## Media Service
+
+To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files. 
+
+As a plugin developer, you may have created new tables and established a relation to a media file. In case of that, you have to register your tables to the `GarbageCollector`. First, subscribe to the `Shopware_Collect_MediaPositions` event and add your tables to an `ArrayCollection`.
+
+```php
+public function install()
+{
+	[...]
+	$this->subscribeEvent('Shopware_Collect_MediaPositions', 'onCollect');
+	[...]
+}
+
+public function onCollect() {
+    return new ArrayCollection([
+        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_plugin_table', 'mediaID'),
+		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
+		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
+    ]);
+}
+
+```
+
+The `MediaPosition` requires 2 parameters - a database table and the column which holds the relation to the `s_media` table. The third and fourth parameters are optional.
+
+The **third** parameter selects the `s_media` column you are referencing to. The default value is `id` and can be replaced to any column in the `s_media` table like seen above. The **fourth** parameter sets the type of the value. e.g. json string. Available types are:
+
+
+| Constant | Description |
+|----------|----------|
+| TYPE_PLAIN  |  *(Default)* Uses the plain value |
+| TYPE_JSON | Decodes the value, parses json and iterates through an object or an array of objects |
+| TYPE_HTML | Searches for `<img />` tags then parses and normalizes the `src` attribute |
+| TYPE_SERIALIZE | Unserializes the value |
+
+
+
 # Shopware 5.1 RC2
 
 ## Media Service

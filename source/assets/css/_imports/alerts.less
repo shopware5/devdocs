@@ -1,0 +1,36 @@
+.alert {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    .border-radius(5px);
+    line-height: 26px;
+
+    h3, h4 {
+        margin-top: 10px;
+    }
+}
+
+.alert-success {
+    color: darken(@success, 30%);
+    border-color: fade(@success, 40%);
+    background: fade(@success, 20%);
+}
+
+.alert-info {
+    color: darken(@blue01, 30%);
+    border-color: fade(@blue01, 40%);
+    background: fade(@blue01, 20%);
+}
+
+.alert-warning,
+.alert-error {
+    color: darken(@warning, 30%);
+    border-color: fade(@warning, 40%);
+    background: fade(@warning, 20%);
+}
+
+.alert-danger {
+    color: darken(@danger, 30%);
+    border-color: fade(@danger, 40%);
+    background: fade(@danger, 20%);
+}

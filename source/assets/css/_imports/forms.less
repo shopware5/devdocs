@@ -1,0 +1,122 @@
+input {
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    padding: 10px 20px 0 0;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: @main-font;
+    font-weight: 600;
+    width: 100%;
+    display: block;
+}
+
+textarea {
+    min-height: 240px;
+}
+
+.form-group,
+.input-group {
+    width: 60%;
+    padding: 10px 0;
+    display: block;
+    margin: 0;
+}
+
+.has-success {
+    .main-form {
+        color: darken(@success, 30%);
+        border-color: @success;
+
+        &:focus {
+            border-color: @success;
+        }
+    }
+}
+
+.has-warning {
+    .main-form {
+        color: darken(@warning, 30%);
+        border-color: @warning;
+
+        &:focus {
+            border-color: @warning;
+        }
+    }
+}
+
+.has-error {
+    .main-form {
+        color: darken(@danger, 30%);
+        border-color: @danger;
+        .box-shadow(none);
+
+        &:focus {
+            border-color: @danger;
+        }
+
+    }
+}
+
+::-webkit-input-placeholder {
+    color: @gray04;
+    font-weight: 400;
+}
+
+:-moz-placeholder {
+    color: @gray04;
+    font-weight: 400;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: @gray04;
+    font-weight: 400;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    font-weight: 400;
+    color: @gray04;
+}
+
+.has-error .main-form:focus {
+    .box-shadow(0);
+}
+
+.checkbox {
+    position: relative;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    label {
+        padding-left: 20px;
+        padding-top: 0;
+        margin-bottom: 0;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    input[type=checkbox] {
+        position: absolute;
+        left: 0;
+        top: 5px;
+    }
+
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    padding: 10px 0;
+    width: 60%;
+}

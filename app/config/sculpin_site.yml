@@ -20,7 +20,12 @@ authors:
   dr:
     name: Oliver Skroblin
     title: Developer
-    github: https://github.com/oliverdenter
+    github: https://github.com/oliverskroblin
+
+  aa:
+      name: Arnold Stoba
+      title: Developer
+      github: https://github.com/arnoldstoba
 
   psc:
       name: Philipp Schuch

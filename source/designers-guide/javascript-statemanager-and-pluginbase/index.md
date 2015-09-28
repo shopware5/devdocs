@@ -20,7 +20,6 @@ indexed: true
 * [Working with stateful jQuery plugins](#working-with-stateful-jquery-plugins)
 	* [Passing a user configuration to the jQuery plugin](#passing-a-user-configuration-to-the-jquery-plugin)
 * [Adding javascript files to your theme](#adding-javascript-files-to-your-theme)
-* [Installing third-party components using bower](#installing-third-party-components-using-bower)
 
 ## Introducing
 The javascript development can be painful especially when you have to deal on responsive websites where you have to adjust the behavior of the code based on the available screen real estate. Therefore we came up with a component called *StateManager*, which provides you with the ability to define states and triggers *callback* function, if a state was entered or left.
@@ -430,18 +429,3 @@ protected $javascript = array(
 	'src/js/jquery.my-plugin.js'
 );
 ```
-
-## Installing third-party components using bower
-Open the ```bower.json``` file, which can be found in the root directory of the theme, and add your third-party component in the ```dependencies``` object:
-
-```json
-...
-"dependencies": {
-    "jquery": "2.1.1"
-}
-...
-```
-
-Now install the development dependencies using ```npm install``` in the root directory of the theme.
-
-After installing the development dependencies, you just have to run ```grunt``` and your newly added third-party component will be installed in the directory ```frontend/_public/vendors```.

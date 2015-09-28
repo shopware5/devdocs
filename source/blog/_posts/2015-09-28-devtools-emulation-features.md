@@ -13,7 +13,7 @@ tags:
 categories:
 - dev
 indexed: true
-github_link: blog/_posts/2015-09-25-devtools-emulation-features.md
+github_link: blog/_posts/2015-09-28-devtools-emulation-features.md
 
 authors: [aa]
 ---

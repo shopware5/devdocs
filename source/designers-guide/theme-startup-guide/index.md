@@ -24,7 +24,6 @@ This guide will introduce you to the new features and additions to the new Shopw
 +   [Customizing your theme](#customizing-your-theme)
 +   [The bare theme](#the-bare-theme)
 +   [The responsive theme](#the-responsive-theme)
-+   [Third-party components using bower](#installing-third-party-components-using-bower)
 
 ## Feature overview
 - Theme inheritance system is now totally transparent and can easily be modified
@@ -428,23 +427,9 @@ As it's based on the "Bare" theme, the "Responsive" theme only contains the LESS
 
 Please notice that the ```_resources``` folder was renamed to ```_public```. This folder now contains separated third-party and Shopware specific source files in its subfolders.
 
-The third-party libraries can now be found under ```_public/vendors``` and the Shopware specific code under ```_public/src```.
+The third-party libraries can now be found under ```_public/vendors``` and the Shopware specific code under ```_public/src```. 
 
-
-## Installing third-party components using bower
-Open the ```bower.json``` file, which can be found in the root directory of the theme, and add your third-party component in the ```dependencies``` object:
-
-```
-...
-"dependencies": {
-    "jquery": "2.1.1"
-}
-...
-```
-
-Now install the development dependencies using ```npm install``` in the root directory of the theme.
-
-After installing the development dependencies, you just have to run ```grunt``` and your newly added third-party component will be installed in the directory ```frontend/_public/vendors```.
+When developing with Grunt, the third-party assets can be installed via the frontend package manager Bower, which is explained [here](/designers-guide/managing-third-party-dependencies-with-bower).
 
 ## License
 The themes are licensed under the MIT License.

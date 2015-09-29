@@ -7,7 +7,7 @@ indexed: true
 
 ## Introduction
 
-This is a small introduction of how to use the frontend package manager [Bower](https://www.bower.io) to manage the library and framework dependencies of custom themes in Shopware 5. A package manager, like Bower or npm, is a tool that automates the installing, upgrading, configuring, and removing of software dependencies and prevents that all third-party requirements have to be shipped with the software itself. Bower is focused on frontend solutions like jQuery or Bootstrap and contains over 40.000 packages to choose from. The default Shopware 5 Responsive theme in combination with Grunt also makes use of Bower to install its third-party libraries.
+This is a small introduction on how to use the frontend package manager [Bower](https://www.bower.io) to manage the library and framework dependencies of custom themes in Shopware 5. A package manager, like Bower or npm, is a tool that automates the installation, upgrade, configuration and removal of software dependencies and prevents all third-party requirements from having to be shipped with the software itself. Bower is focused on frontend solutions like jQuery or Bootstrap and contains over 40.000 packages from which to choose. The default Shopware 5 Responsive theme in combination with Grunt also use Bower to install its third-party libraries.
 
 ## Table of contents
 +   [Setup Bower](#setup-bower)
@@ -16,7 +16,7 @@ This is a small introduction of how to use the frontend package manager [Bower](
 
 ## Setup Bower
 
-In order to be able to use Bower inside your theme, you need to install it locally by using npm. It requires a `package.json` file in the root of your theme which provides information about the packages and possible additional options. You have the option to either manually create the `package.json` file with the required information (as you can see in the example below) or to use the `npm init` CLI command that launches an initialization assistant. This is an example of how a `package.json` file should look like:
+In order to be able to use Bower inside your theme, you need to install it locally by using `npm`. It requires a `package.json` file in the root of your theme, which provides information about the packages and possible additional options. You have the option to either manually create the `package.json` file with the required information (as you can see in the example below) or to use the `npm init` CLI command that launches an initialization assistant. This is an example of how a `package.json` file should look like:
 
 ```json
 {
@@ -49,7 +49,7 @@ MyAwesomeTheme
 
 The main configuration of Bower is handled inside a `.bowerrc` file that has to be located in the root of the theme, the same level as the `node_modules` folder. The `.bowerrc` file can contain settings for timeouts, proxies and custom shorthand resolvers, but the most popular settings is the `directory` option which specifies the output path of the installed packages. The default directory is `bower_components`.
 
-**Important:** We recommend to use the `frontend/_public/vendor/` folder as the default installation directory for Bower components, as the `_public` folder is the intended directory for theme assets.
+**Important:** We recommend using the `frontend/_public/vendor/` folder as the default installation directory for Bower components, as the `_public` folder is the intended directory for theme assets.
 
 ```json
 {

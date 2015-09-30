@@ -7,10 +7,10 @@ indexed: true
 
 ## Introduction
 
-In this tutorial you will learn how to create your own custom template for detail pages. In this example we want to get rid of the default detail page layout and create a more minimalistic layout for marketing purposes. This custom template could be used for products which are not yet in stock, but should be mentioned or announced to the customer.
+In this tutorial you will learn how to create a custom template for detail pages. In this example, we want to replace the default detail page layout and create a more minimalistic layout for marketing purposes. This custom template could be used for products which are not yet in stock, but should be mentioned or announced to the customer.
 
 <div class="alert alert-warning" role="alert">
-    <strong>Warning:</strong> Before you start modifying any template file, please make sure that you use a custom theme. If you'd like to have a more general introduction in working with themes please read our <a href="https://developers.shopware.com/designers-guide/">getting started tutorials</a>.
+    <strong>Warning:</strong> Before you start modifying any template file, please make sure that you use a custom theme. If you'd like to have a more general introduction to working with themes, please read our <a href="/designers-guide/theme-startup-guide/">theme startup guide</a>.
 </div>
 
 ![Custom detail page](custom-detail.png)
@@ -34,7 +34,7 @@ In this tutorial you will learn how to create your own custom template for detai
 
 ## Preparation
 
-First of all we have to create a new template file within the `frontend/detail` directory of our own theme. In this tutorial we'll name the file `custom_detail.tpl`:
+First of all we have to create a new template file in the `frontend/detail` directory of our theme. In this tutorial we'll name the file `custom_detail.tpl`:
 
 ```
 CustomDetailTheme
@@ -49,7 +49,7 @@ Then we extend our new template from `frontend/detail/index.tpl`:
 {extends file='frontend/detail/index.tpl'}
 ```
 
-We will add some custom LESS/CSS modifications later. Therefore, we add a wrapping div container with an individual class `custom-detail`:
+We will add some custom LESS/CSS modifications later. Therefore, we add a wrapping `div` container with an individual class `custom-detail`:
 
 ```
 {block name='frontend_index_content'}
@@ -60,14 +60,14 @@ We will add some custom LESS/CSS modifications later. Therefore, we add a wrappi
 ```
 
 <div class="alert alert-info">
-    If you want to know how to use your custom template for a specific detail page <a href="https://developers.shopware.com/designers-guide/custom-templates/">please take a look at out tutorial</a>.
+    If you want to know how to use your custom template for a specific detail page, please take a look at <a href="/designers-guide/custom-templates/">our tutorial</a>.
 </div>
 
 ## Structure
 
-In order to get a more minimalistic design we want to remove the default product buybox from the detail page. Don't worry: We will insert the most necessary product information like e.g. the product description back to the template later.
+In order to get a more minimalistic design, we want to remove the default product purchase box from the detail page. Don't worry, we will later add the most relevant product information, like the product description, to the template.
 
-This override makes the whole container with the primary buy options disappear:
+This override makes the whole container of the primary buy options disappear:
 
 ```
 {block name='frontend_detail_index_buy_container'}
@@ -76,7 +76,7 @@ This override makes the whole container with the primary buy options disappear:
 
 ### Product header
 
-The product header contains the product title as well es the rating stars and the supplier logo. In our example we only want to show the product title and the short description. To achieve that we override the product header block. Inside this block we only want to output `$sArticle.articleName` and `$sArticle.description`. The `custom-detail--claim` container is defined inside a condition and will only be shown, when the `$sArticle.description` exists. We also add individual classes for styling purposes:
+The product header contains the product title as well as the rating stars and the supplier logo. In our example, we only want to show the product title and the short description. To achieve that, we override the product header block. Inside this block, we only want to output `$sArticle.articleName` and `$sArticle.description`. The `custom-detail--claim` container is defined inside a condition and will only be shown when the `$sArticle.description` exists. We also add individual classes for styling purposes:
 
 ```
 {block name='frontend_detail_index_header_inner'}
@@ -93,7 +93,8 @@ The product header contains the product title as well es the rating stars and th
 ```
 
 ### Product description
-In the next step we will replace the default product description and rating tabs by overriding the `frontend_detail_index_detail` block. Due to our minimalistic design we only want to output the product description with 450 characters:
+
+In the next step, we will replace the default product description and rating tabs by overriding the `frontend_detail_index_detail` block. Due to our minimalistic design, we want to output the product description with 450 characters at most:
 
 ```
 {block name='frontend_detail_index_detail'}
@@ -105,9 +106,9 @@ In the next step we will replace the default product description and rating tabs
 
 ### Product actions
 
-The last thing we need to do in terms of the structure is adding the necessary product actions. In our example we want to show two buttons: A link to other products of the supplier and a "Remember" button to save the product to the wishlist. The code for this two buttons will also be inside the `frontend_detail_index_detail` block.
+The last thing we need to do in terms of the structure is add the necessary product actions. In our example, we want to show two buttons: a link to other products of the same supplier and a "Remember" button to save the product to the wishlist. The code for these two buttons will also be inside the `frontend_detail_index_detail` block.
 
-To add the "Remember" button we create an `<a>` tag with the class `btn`. This will apply the general button appearance. The button will be a large and primary button with an icon. Therefore, we have to add further helper classes: `is--primary`, `is--large` and `is--icon-left`. It is also **very important** to add the `link--notepad` class. This class is required by the `swAjaxWishlist` jQuery plugin which adds the current product to the wishlist without a page reload. To make the button work properly we need to add the following action to the `href` attribute:
+To add the "Remember" button, we create an `<a>` tag with the `btn` class, which will apply the general button appearance to it. As we want it to be a large and primary button with an icon on its side, we have to use additional helper classes: `is--primary`, `is--large` and `is--icon-left`. It is also **very important** to add the `link--notepad` class. This class is required by the `swAjaxWishlist` jQuery plugin which adds the current product to the wishlist without a page reload. To make the button work properly, we need to add the following action to the `href` attribute:
 
 ```
 {url controller='note' action='add' ordernumber=$sArticle.ordernumber}
@@ -115,13 +116,13 @@ To add the "Remember" button we create an `<a>` tag with the class `btn`. This w
 
 *Explanation: We call the add action of the note controller and use the current order number as a parameter.*
 
-To keep all ajax functionality we have to add a data-attribute `data-ajaxUrl` and do basically the same thing, except that we use the `ajaxAdd` action:
+To keep all ajax functionality, we have to add a `data-ajaxUrl` data-attribute and do basically the same thing, except that we use the `ajaxAdd` action:
 
 ```
 {url controller='note' action='ajaxAdd' ordernumber=$sArticle.ordernumber}
 ```
 
-For the button texts we use the existing snippets `DetailLinkNotepadShort` and `DetailLinkNotepad` and set the namespace manually to `frontend/detail/actions`. To make sure that the button text changes to "Remembered" when clicking on it, we wrap the actual button text inside the `action--text` class. This class is also used by the `swAjaxWishlist` plugin:
+For the button texts we use the existing `DetailLinkNotepadShort` and `DetailLinkNotepad` snippets and set the namespace manually to `frontend/detail/actions`. To make sure that the button text changes to "Remembered" when clicking on it, we wrap the actual button text inside the `action--text` class. This class is also used by the `swAjaxWishlist` plugin:
 
 ```
 <div class="custom-detail--actions">
@@ -143,7 +144,7 @@ Adding the "More from supplier" button is a little easier. For the value of the 
 {url controller='listing' action='manufacturer' sSupplier=$sArticle.supplierID}
 ```
 
-The button styling is almost the same and we also use an existing snippet `DetailDescriptionLinkInformation` for both `title` attribute and button text:
+The button styling is almost the same and we also use an existing `DetailDescriptionLinkInformation` snippet for both `title` attribute and button text:
 
 ```
 <a class="btn is--large"
@@ -153,12 +154,12 @@ The button styling is almost the same and we also use an existing snippet `Detai
 </a>
 ```
 
-When using the shopware default components you should already get a proper button appearance:
+Using the Shopware default components, you should get the following button appearance:
 
 ![Action buttons](buttons.png)
 
 <div class="alert alert-info">
-    Do you need more information about the default components? <a href="https://developers.shopware.com/designers-guide/responsive-theme-default-components/">Using the Responsive theme default components</a>
+    If you need more information about the default components, refer to the <a href="/designers-guide/responsive-theme-default-components/">Responsive theme default components</a> article
 </div>
 
 ### Smarty code overview `custom_detail.tpl`
@@ -217,7 +218,7 @@ When using the shopware default components you should already get a proper butto
 Need help with LESS? Have a look at our <a href="https://developers.shopware.com/designers-guide/less/">Getting started with LESS</a> guide.
 </div>
 
-Because of the changes we have made to the structure we need to adjust the styling. To stay organized we create a new file named `custom-detail.less`:
+Because of the changes we made to the structure, we need to adjust the styling. To keep things organized, we will create a new file named `custom-detail.less`:
 
 ```
 CustomDetailTheme
@@ -235,7 +236,7 @@ Don't forget to import the file inside the `all.less`:
 @import "custom-detail";
 ```
 
-To ensure, that our styling adjustments only work on the custom detail page, we wrap our code inside the class we have created before:
+To ensure that our styling adjustments are only applied on the custom detail page, we wrap our code inside the class we have created before:
 
 ```
 .custom-detail {
@@ -243,7 +244,7 @@ To ensure, that our styling adjustments only work on the custom detail page, we 
 }
 ```
 
-First of all we want to center the product title, description and action buttons:
+First of all, we want to center the product title, description and action buttons:
 
 ```
 .product--header,
@@ -254,7 +255,7 @@ First of all we want to center the product title, description and action buttons
 ```
 
 ### Styling the product header
-To get a modern and minimalistic design we increase the `font-size` of the product title to `50px` and set the `font-weight` to `300`. The product's short description inside the `custom-detail--claim` gets a smaller `font-size` and a gray color:
+To get a modern and minimalistic design, we increase the `font-size` of the product title to `50px` and set the `font-weight` to `300`. The product's short description inside the `custom-detail--claim` gets a smaller `font-size` and a gray color:
 
 ![Product title](product-title.png)
 
@@ -279,7 +280,7 @@ To get a modern and minimalistic design we increase the `font-size` of the produ
 
 ### Styling the product image
 
-Due to the fact that we have removed the default buybox, we can center the product image in the middle of the main content area. To achieve that, we give the the default `product--image-container` a `width: 100%` and remove the floating with `float: none;`:
+Due to the fact that we have removed the default purchase box, we can center the product image in the middle of the main content area. To achieve that, we give the the default `product--image-container` a `width: 100%` and remove the floating with `float: none;`:
 
 ```
 .product--image-container {
@@ -306,7 +307,7 @@ We also don't want the thumbnails of the image slider to be shown on the page:
 }
 ```
 
-The image slider container has a bottom margin for those thumbnails by default. Because we have removed it, we can also get rid of the bottom margin:
+The image slider container has a bottom margin for those thumbnails by default. Because we have removed it, we can also remove the bottom margin:
 
 ```
 .image-slider--container {
@@ -316,7 +317,7 @@ The image slider container has a bottom margin for those thumbnails by default. 
 
 ### Styling the product description
 
-On tablet landscape and desktop viewports we want the product description to be centered and 75% wide:
+On tablet landscape and desktop viewports, we want the product description to be centered and with 75% width:
 
 ```
 @media screen and (min-width: @tabletLandscapeViewportWidth) {
@@ -352,7 +353,7 @@ We also want the buttons to be block elements on the phone viewport:
 }
 ```
 
-As mentioned before the text of the "Remember" button should change to "Remembered" when you add an item to the wishlist. We want to give this behavior a nice touch and change the background to a success color:
+As mentioned before, the text of the "Remember" button should change to "Remembered" when you add an item to the wishlist. We want to give this behavior a nice touch and change the background to a success color:
 
 ![Action buttons wishlist](buttons-saved.png)
 
@@ -460,9 +461,9 @@ Now we can set the buttons back to `inline-block` when the phone landscape viewp
 
 ## JavaScript
 
-Because of the new layout we don't have enough space to show the mouseover image zoom which is displayed on the desktop viewport. We will remove the specific jQuery plugin on our custom detail page.
+Because of the new layout, we don't have enough space to show the `mouseover` image zoom which is displayed on the desktop viewport. We will remove the specific jQuery plugin on our custom detail page.
 
-To add JavaScript functionality we create a new JavaScrip file named `jquery.custom-detail.js`:
+To add JavaScript functionality, we create a new file named `jquery.custom-detail.js`:
 
 ```
 CustomDetailTheme
@@ -473,7 +474,7 @@ CustomDetailTheme
                  └── jquery.custom-detail.js
 ```
 
-We also need to mention the new file inside the `Theme.php` of our custom theme:
+We also need to include the new file inside the `Theme.php` of our custom theme:
 
 ```
 protected $javascript = array(
@@ -481,7 +482,7 @@ protected $javascript = array(
 );
 ```
 
-The code to remove the image zoom is pretty simple. At first we check if the main `content-wrapper` has a child `div` with the class `custom-detail`. If this is the case, we can remove the plugin for the `xl` viewport using the `removePlugin` method of the `StateManager`.
+The code to remove the image zoom is pretty simple. We check if the main `content-wrapper` has a child `div` with the `custom-detail` class. If this is the case, we can remove the plugin for the `xl` viewport using the `removePlugin` method of the `StateManager`.
 
 ```
 (function($, window) {

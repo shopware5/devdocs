@@ -13,62 +13,6 @@ including minor and bugfix releases, refer to the `upgrade.md` file found in you
 
 # Shopware 5.1 RC3
 
-## Media Service
-
-To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files. 
-
-As a plugin developer, you may have created new tables and established a relation to a media file. In case of that, you have to register your tables to the `GarbageCollector`. First, subscribe to the `Shopware_Collect_MediaPositions` event and add your tables to an `ArrayCollection`.
-
-```php
-public function install()
-{
-	[...]
-	$this->subscribeEvent('Shopware_Collect_MediaPositions', 'onCollect');
-	[...]
-}
-
-public function onCollect() {
-    return new ArrayCollection([
-        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_plugin_table', 'mediaID'),
-		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
-		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
-    ]);
-}
-
-```
-
-The `MediaPosition` requires 2 parameters - a database table and the column which holds the relation to the `s_media` table. The third and fourth parameters are optional.
-
-The **third** parameter selects the `s_media` column you are referencing to. The default value is `id` and can be replaced to any column in the `s_media` table like seen above. The **fourth** parameter sets the type of the value. e.g. json string. Available types are:
-
-
-| Constant | Description |
-|----------|----------|
-| TYPE_PLAIN  |  *(Default)* Uses the plain value |
-| TYPE_JSON | Decodes the value, parses json and iterates through an object or an array of objects |
-| TYPE_HTML | Searches for `<img />` tags then parses and normalizes the `src` attribute |
-| TYPE_SERIALIZE | Unserializes the value |
-
-
-
-# Shopware 5.1 RC2
-
-## Media Service
-
-A path normalizer is now part of the new media management API and can be used, for example, when handling media file upload to the server. In this scenario, you need to get a virtual and normalized path to the file you just uploaded. You can do so like this:
-
-```
-$fullMediaPath = 'http//www.shop.com/media/image/my-fancy-image.png'
-$mediaService = $container->get('shopware_media.media_service');
-$normalizedPath = $mediaService->normalize($fullMediaPath); // media/image/my-fancy-image.png
-```
-
-#### Media loading fallback
-
-If you are still facing problems with media files or using nginx, please refer to the **Migrating your files** section in the [Media Service Guide](/developers-guide/shopware-5-media-service/#migrating-your-files).
-
-# Shopware 5.1 RC1
-
 ## System requirements changes
 
 Shopware 5.1 is the last Shopware minor release to support PHP 5.4. The following minor release of Shopware will require PHP 5.5+. Furthermore, as of 15/09/2015, PHP 5.4 will no longer receive security updates. For these reasons, we highly recommend that you update your PHP version to the latest stable version.
@@ -187,9 +131,62 @@ $this->View()->assign(array(
 
 As you can see, the previous media file path is still useful. However, instead of directly, it is used internally by the `shopware_media.media_service` to retrieve the actual file path. You should adapt your custom code to fit this new logic.
 
+The media management API also includes a path normalizer that can be used, for example, when handling media file upload to the server. In this scenario, you need to get a virtual and normalized path to the file you just uploaded. You can do so like this:
+
+```
+$fullMediaPath = 'http//www.shop.com/media/image/my-fancy-image.png'
+$mediaService = $container->get('shopware_media.media_service');
+$normalizedPath = $mediaService->normalize($fullMediaPath); // media/image/my-fancy-image.png
+```
+
 ### For frontend developers
 
 Should your template or JavaScript files somehow manipulate the file path of a media entity, you should refactor your code so that this kind of logic is handled by the `shopware_media.media_service`, during server logic execution. The media service should be the exclusive responsible for determining the real path to a media file, and any external change to it might result in broken paths to files. Ensure that your code meets this standard to prevent issues when handling media files, now and in the future.
+
+#### New Smarty Tag
+
+In addition to the PHP functionality, we have created a new Smarty tag for generating the real path to the media file. For example, you can use it as a value for the `src` attribute of an `<img />` like seen below:
+
+```php
+<img src="{media path='media/image/my-fancy-image.png'}" />
+```
+
+### Garbage Collector
+
+To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files. 
+
+As a plugin developer, you may have created new tables and established a relation to a media file. In case of that, you have to register your tables to the `GarbageCollector`. First, subscribe to the `Shopware_Collect_MediaPositions` event and add your tables to an `ArrayCollection`.
+
+```php
+public function install()
+{
+	[...]
+	$this->subscribeEvent('Shopware_Collect_MediaPositions', 'onCollect');
+	[...]
+}
+
+public function onCollect() {
+    return new ArrayCollection([
+        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_plugin_table', 'mediaID'),
+		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
+		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
+    ]);
+}
+
+```
+
+The `MediaPosition` requires 2 parameters - a database table and the column which holds the relation to the `s_media` table. The third and fourth parameters are optional.
+
+The **third** parameter selects the `s_media` column you are referencing to. The default value is `id` and can be replaced to any column in the `s_media` table like seen above. The **fourth** parameter sets the type of the value. e.g. json string. Available types are:
+
+
+| Constant | Description |
+|----------|----------|
+| TYPE_PLAIN  |  *(Default)* Uses the plain value |
+| TYPE_JSON | Decodes the value, parses json and iterates through an object or an array of objects |
+| TYPE_HTML | Searches for `<img />` tags then parses and normalizes the `src` attribute |
+| TYPE_SERIALIZE | Unserializes the value |
+
 
 ## Library updates
 * Symfony components: 2.6.9 to 2.7.1

@@ -145,7 +145,7 @@ Should your template or JavaScript files somehow manipulate the file path of a m
 
 #### New Smarty Tag
 
-In addition to the PHP functionality, we have created a new smarty tag for generating the real path to the media file. For example, you can use it as a value for the **src** attribute of an `<img />` like seen below:
+In addition to the PHP functionality, we have created a new Smarty tag for generating the real path to the media file. For example, you can use it as a value for the `src` attribute of an `<img />` like seen below:
 
 ```php
 <img src="{media path='media/image/my-fancy-image.png'}" />

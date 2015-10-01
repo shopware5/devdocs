@@ -30,6 +30,7 @@ In this tutorial you will learn how to create your own custom template for detai
    - [Styling the Product actions](#styling-the-product-actions)
    - [LESS code overview](#less-code-overview-custom-detail)
 - [JavaScript](#javascript)
+- [Download theme plugin](#download-theme-plugin)
 
 ## Preparation
 
@@ -489,3 +490,15 @@ The code to remove the image zoom is pretty simple. At first we check if the mai
     }
 }(jQuery, window));
 ```
+
+## Download theme plugin
+
+If you want to take a closer look at all the code we have written in this tutorial you can download this plugin:
+
+**[SwagCustomDetailTheme.zip](SwagCustomDetailTheme.zip)**
+
+### Installation
+
+Put the extracted plugin folder into your `Plugins` directory and install the plugin with the Plugin Manager. When you have activated the plugin you should see the new theme inside your Theme Manager:
+
+![Theme plugin](theme-plugin.png)

@@ -495,10 +495,4 @@ The code to remove the image zoom is pretty simple. At first we check if the mai
 
 If you want to take a closer look at all the code we have written in this tutorial you can download this plugin:
 
-**[SwagCustomDetailTheme.zip](SwagCustomDetailTheme.zip)**
-
-### Installation
-
-Put the extracted plugin folder into your `Plugins` directory and install the plugin with the Plugin Manager. When you have activated the plugin you should see the new theme inside your Theme Manager:
-
-![Theme plugin](theme-plugin.png)
+<strong><a href="{{ site.url }}/exampleplugins/SwagCustomDetailTheme.zip">Plugin download</a></strong>

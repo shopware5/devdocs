@@ -39,7 +39,7 @@ If you use this feature, your snippets will no longer require an explicit declar
 
 You can optionally still declare the namespace in that snippet. The namespace declared in the snippets takes precedence over the file's global namespace. Use this if you need to reuse, in your current namespace, a snippet from another namespace. Keep in mind that this is not recommended, as later changes to that snippet will impact multiple points of your plugin, potentially causing undesired consequences.
 
-Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` folder require the `theme/ThemeName` prefix in order to work correctly.
+Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` folder will have the `theme/<theme name>` prefix automatically added to them.
 
 ### Using snippets
 
@@ -88,8 +88,8 @@ The above example configuration values represent the default values that are use
 While developing with snippets, you need to declare them in your template files and, later on, assign them values besides the default ones. These values can be set inside .ini files:
 
 <div class="alert alert-warning">
-<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme, the namespace doesn't match with the template files to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will need to be prefixed with <code>themes/YourThemeName/...</code>.<br>
-<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/YourThemeName/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme. The namespace can either be set for the whole file (That would change the namespaces for all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
+<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme, the namespace will not match the default namespace of your template files, to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will be prefixed with <code>themes/<theme name>/</code>.<br>
+<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/<theme name>/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme. The namespace can either be set for the whole file (affecting the namespaces of all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
 </div>
 
 ```
@@ -102,7 +102,7 @@ frontend/checkout/cart/separate_dispatch = "Beispieltext"
 
 .ini files are divided internally in groups, names after the locales to which those snippets belong. The example above translated the snippets from the example above into UK English and German. You can add as many sections to your .ini files as you want, as long as they match the locale definitions of Shopware's core (see the `s_core_locales` database table).
 
-Like mentioned before, snippets require a `name` and a `namespace`. The above .ini file contains only one snippet, but more can be added, as long as they all have a common namespace. The file's location in the filesystem *must* match the snippet's namespace and have the `themes/YourThemeName/` prefix. So, to match the snippet declaration in our template file, this .ini file must be in the following location:
+Like mentioned before, snippets require a `name` and a `namespace`. The above .ini file contains only one snippet, but more can be added, as long as they all have a common namespace. The file's location in the filesystem *must* match the snippet's namespace. So, to match the snippet declaration in our template file, this .ini file must be in the following location:
 
 ```
 ThemeFolder
@@ -113,7 +113,9 @@ ThemeFolder
                     box_article.ini
 ```
 
-The `ThemeFolder` will depend on where you are developing. You might have to create the `_private` folder manually.
+Keep in mind that snippets defined inside a theme's `_private` folder will have their namespace automatically prefixed with `themes/<theme name>/`.
+
+The `ThemeFolder` location will depend on where you are developing. You might have to create the `_private` folder manually.
 
 ### Developing with snippets
 

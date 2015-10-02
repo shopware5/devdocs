@@ -17,18 +17,28 @@ pre code {
     height: 30px;
     padding-top: 5px;
     position: absolute;
-    right: 3px;
+    right: 0;
     text-align: center;
     width: 15%;
     z-index: 100;
 }
+.code-expandButton:hover {
+    background-color: #d8d8d8;
+    border-color: #c8c8c8;
+    color: #555;
+}
 
 .code-wrapper {
     position: relative;
+
+    pre {
+        -webkit-transition: height .3s ease-out;
+        transition: height .3s ease-out;
+    }
 }
 
 .code-expanded {
-    //padding-bottom: 39px;
+    height: auto;
 }
 
 .code-collapsed {

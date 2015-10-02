@@ -35,7 +35,7 @@ So usually a *product* is a broader term, which might apply e.g. for an insuranc
 software. For the company shopware, for example, the software Shopware could be considered a product -
 but not necessarily any single plugin in the shopware community store is a product in this sense.
 *Articles*, however, are often associated with blog posts and other reading material, even though the
-term perfectly applies for "items" from a general perspective. *Items* on the other hand is a term
+term perfectly applies for "items" from a general perspective. *Items* finally is a term
 that will perfectly match "the thing you have in your cart" - but it might be considered very generic.
 
 In this blog post I will stick to the name *item* for any entity that can be purchased in a Shopware shop.
@@ -49,8 +49,8 @@ In this blog post I will stick to the name *item* for any entity that can be pur
     <img alt="s_articles_details db schema" style="margin:10px;float: right;width:20%;" src="/blog/img/db_detail.png">
 </a>
 In Shopware there are basically four database tables that will describe a concrete item:
-`s_articles` and `s_articles_details`. These define the basic information and relations of
-the item.
+The most relevant are `s_articles` and `s_articles_details`. These define the basic information
+and relations of the item.
 The `s_articles` table will contain all the general information of the item, e.g. the
 description, the long description, SEO keywords, tax rate and supplier.
 The `s_articles_details` contains all the information that might differ per variant. Even
@@ -91,15 +91,16 @@ The UML diagram of the frontend items does look like this:
 
 ![UML diagram of frontend items](/blog/img/uml_products.png)
 
-All protected properties (indicated by `#`) are accessible by getters. The additional public
+All protected properties (indicated by `#`) are accessible by getters. The public
 methods (indicated by `+` in the last section of every class) do provide additional logic.
 
 ## …in the cart
 <a href="/blog/img/db_basket.png">
     <img alt="s_order_basket db schema" style="margin:10px;float: left;width:20%;" src="/blog/img/db_basket.png">
 </a>
-Items, as discussed above, are used everywhere in the backoffice as well as the frontend or even the API.
-It always boils down to entries in `s_articles` or `s_articles_details`.
+Items, as discussed above, are used everywhere in the back office as well as the frontend or even the API.
+In many cases it boils down to entries in `s_articles`, `s_articles_details`, `s_articles_prices` and
+`s_articles_attributes`.
 
 Things change, when a customer adds an item to the cart. Then the `s_order_basket` comes into play:
 In the Shopware cart, every cart item will be represented as a row in the `s_order_basket`. Items
@@ -136,10 +137,11 @@ main reason for this is the fact, as the variants are grouped together to an ite
 `articleID` in the `s_articles_details`. So actually there is no need for us, to group items
 by an abstract order number. If you should need such a "common" order number for all variants,
 anyway, I also recommend using attributes for this.
-
+differentation
 # Telling apart variants, properties and attributes
-In order not to get confused by terms like *variant*, *property*, *filter* and *attribute*,
-the following list tries to tell apart the concept behind the terms.
+A common issue for new Shopware users is the differentiation of
+*variant*, *property*, *filter* and *attribute*.
+The following list tries to tell apart the concept behind the terms.
 ## Variant
 A variant (sometimes also called "item detail") is a concrete forming of an item. Thinking
 of a t-shirt, there might be variants like "Color: red, size: XL" or "Color: green, size: L".
@@ -152,6 +154,7 @@ have it physically in stock. If you haven't, you cannot sell it.
 Of course, you can also use variants to present other aspects of an item - that might be
 useful, as in Shopware the prices are per variant. So for example an extended warranty
 might be a variant, even though the warranty has nothing to do with your stock of that item.
+So long story short: A variant is something the user can purchase.
 
 Relevant tables:
 
@@ -198,7 +201,7 @@ be able to maintain those fields easily from the Shopware backend (using the ite
 perhaps show them in the Shopware frontend with an easy template modification.
 
 Attributes can also be additional fields for developers, that (perhaps) will not be shown
-in the backend / frontend at all. In those cases developers will store technical information
+in the back office / frontend at all. In those cases developers will store technical information
 like "abo commerce ID" or "bundle ID", that are not directly relevant for the shop owner - but
 relevant for a plugin.
 

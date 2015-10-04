@@ -15,7 +15,7 @@ tags:
 categories:
 - dev
 indexed: false
-github_link: blog/_posts/2015-10-02-what-is-an-item.md
+github_link: blog/_posts/2015-10-07-what-is-an-item.md
 
 authors: [dn]
 ---

@@ -6,7 +6,8 @@ indexed: true
 ---
 This document will give you a brief overview of Shopware and everything you need to start developing your first plugin.
 
-# Big picture
+<div class="toc-list"></div>
+
 ## Directory structure
 
 <img align="left" style="margin-right:10px" src="img/tree.png" />

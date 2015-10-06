@@ -46,7 +46,7 @@ Option parameters can be provided:
 | Field               | Type                  | Original object                                 		|
 |---------------------|-----------------------|---------------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 		|
-| articleId	      	  | integer (foreign key) | **[Article](./api-resource-article)**           		|
+| articleId	      	  | integer (foreign key) | **[Article](../api-resource-article/)**           		|
 | unitId			  | integer (foreign key) | 														|
 | number	      	  | string				  | 							                    		|
 | supplierNumber	  | string				  | 														|
@@ -85,7 +85,7 @@ You can use this data to add a new variant to the shop
 | Field               | Type                  | Original object                                 		|
 |---------------------|-----------------------|---------------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 		|
-| articleId	      	  | integer (foreign key) | **[Article](./api-resource-article)**           		|
+| articleId	      	  | integer (foreign key) | **[Article](../api-resource-article/)**           		|
 | unitId			  | integer (foreign key) | 														|
 | number	      	  | string				  | 							                    		|
 | supplierNumber	  | string				  | 														|
@@ -133,7 +133,7 @@ You can use this data to update a variant.
 | Field               | Type                  | Original object                                 		|
 |---------------------|-----------------------|---------------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 		|
-| articleId	      	  | integer (foreign key) | **[Article](./api-resource-article)**           		|
+| articleId	      	  | integer (foreign key) | **[Article](../api-resource-article/)**           		|
 | unitId			  | integer (foreign key) | 														|
 | number	      	  | string				  | 							                    		|
 | supplierNumber	  | string				  | 														|

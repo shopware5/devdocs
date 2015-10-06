@@ -66,7 +66,7 @@ The following table shows the fields, types and original objects of this array.
 | id				  | integer (primary key) |                                                  |
 | mainDetailId        | integer (foreign key) | **[Detail](../models/#article-detail)**           |
 | supplierId          | integer (foreign key) | **[Supplier](../models/#supplier)**               |
-| taxId               | integer (foreign key) | **[Tax](./models/tax)**                          |
+| taxId               | integer (foreign key) | **[Tax](../models/#tax)**                          |
 | priceGroupId        | integer (foreign key) | **[PriceGroup](../models/#price-group)**          |
 | filterGroupId       | integer (foreign key) | **[ConfiguratorSet](../models/#property-group)**  |
 | configuratorSetId   | integer (foreign key) | **[ConfiguratorSet](../models/#configurator-set)**|

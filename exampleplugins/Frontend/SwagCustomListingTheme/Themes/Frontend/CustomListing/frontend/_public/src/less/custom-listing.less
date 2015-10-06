@@ -1,0 +1,95 @@
+.custom-listing {
+
+    .custom-listing--cms {
+        .unitize(margin-bottom, 100);
+
+        .cms--headline {
+            .unitize(font-size, 40);
+            .unitize(line-height, 45);
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .cms--text h2 {
+            .unitize(font-size, 20);
+            font-weight: 300;
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .box--custom {
+
+        .box--content {
+            .unitize(height, 300);
+            background-color: #F6F6F6;
+        }
+
+        .box-custom--info {
+            background-color: rgba(218, 218, 218, 0.74);
+            display: none;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 2;
+        }
+
+        &:hover .box-custom--info {
+            display: block;
+        }
+
+        .info--wrapper {
+            .unitize(padding, 35);
+            bottom: 0;
+            display: block;
+            height: 45%;
+            position: absolute;
+            width: 100%;
+
+            .info--name {
+                .unitize(font-size, 30px);
+                color: #000;
+                display: block;
+                font-weight: 300;
+                text-align: center;
+            }
+
+            .info--price {
+                .unitize(font-size, 22px);
+                display: block;
+                text-align: center;
+            }
+        }
+
+        .image--element {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+
+            .image--media img {
+                .unitize(padding, 30px);
+                height: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+    .box--custom {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+    .box--custom {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+    .box--custom {
+        width: 33.33333%;
+    }
+}

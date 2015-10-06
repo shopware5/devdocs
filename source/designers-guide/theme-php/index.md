@@ -15,7 +15,7 @@ indexed: true
 
 ## Introduction
 
-The `Theme.php` is the base file of each shopware theme. It contains the basic information like the name, author, description and the license which are displayed in the Theme Manager:
+The `Theme.php` is the base file of each Shopware theme. It contains the basic information like the name, author, description and the license which are displayed in the Theme Manager:
 
 ```
 <?php
@@ -48,11 +48,11 @@ The `Theme.php` can also contain the theme's custom configuration and included f
 
 ## Adding JavaScript and CSS
 
-Working with compressors isn't always as easy as adding the files to your HTML structure using `script` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
+Working with compressors isn't always as easy as adding the files to your HTML structure using `script` tags. The built-in JavaScript compressor is as easy as this and perfectly suited your workflow as a web developer.
 
 ### Adding JavaScript
 
-Simply place your javascript files in the `frontend/_public` folder and add their paths to the `$javascript` array in your `Theme.php`, and you're good to go:
+Simply place your JavaScript files in the `frontend/_public` folder and add their paths to the `$javascript` array in your `Theme.php`, and you're good to go:
 
 ```
 /** @var array Defines the files which should be compiled by the javascript compressor */
@@ -275,12 +275,3 @@ public function createConfigSets(ArrayCollection $collection)
 After saving the `Theme.php` you should see your configuration set inside the configuration sets window:
 
 ![Configuration set](config-set.png)
-
-<div class="alert alert-warning">
-Before you start using configuration sets please make sure that you use both <code>ArrayCollection</code> and <code>ConfigSet</code> components in your <code>Theme.php</code>:
-</div>
-
-```
-use Doctrine\Common\Collections\ArrayCollection;
-use Shopware\Components\Theme\ConfigSet;
-```

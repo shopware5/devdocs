@@ -39,7 +39,8 @@
     $.TableOfContents = function(el, scope, options){
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
-        var base = this;
+        var base = this,
+        	foundElement = false;
         
         // Access to jQuery and DOM versions of element
         base.$el = $(el);
@@ -49,9 +50,14 @@
 		base.listStyle = null;                       // This will store the type of list
 		base.tags = ["h1","h2","h3","h4","h5","h6"]; // The six header tags
         
-        base.init = function(){
+        base.init = function() {
 			// Merge the defaultOptions with any options passed in
             base.options = $.extend({},$.TableOfContents.defaultOptions, options);
+            
+            base.headline = $('<h2>', {
+	            'class': 'toc-list--headline',
+	            'html': base.options.headlineTitle
+            }).appendTo(base.$el);
 
 			// Gets the scope. Defaults to the entire document if not specified
             if(typeof(scope) == "undefined" || scope == null) scope = document.body;
@@ -62,8 +68,6 @@
 			
 			// If no headings were found, stop building the TOC
 			if($first.length != 1) return; 
-			
-			console.log('yay');
 			
 			// Set the starting depth
 			base.starting_depth = base.options.startLevel;
@@ -76,8 +80,15 @@
 			
 			// Cache all the headings that match our new filter
 			base.$headings = base.$scope.find(filtered_tags.join(', '));
-
-			base.$headings.splice(0, 1);
+			
+			// Filter headline cause we just want to display all headlines which are below the element for the toc list.
+			base.$headings = base.$headings.filter(function(index, item) {
+				if(!foundElement) {
+					foundElement = $(item).hasClass('toc-list--headline');
+					return false;
+				}
+				return true;
+			});
 			
 			// If topLinks is enabled, set/get an id for the body element
 			if(base.options.topLinks !== false){
@@ -93,12 +104,7 @@
 
 
 			// Find out which list style to use
-			if(base.$el.is('ul')){
-				base.listStyle = 'ul';
-			} else if (base.$el.is('ol')){
-				base.listStyle = 'ol';
-			};
-
+			base.listStyle = 'ul';
 
 			base.buildTOC();
 			
@@ -141,7 +147,10 @@
 			if(base.tieredList()) base.toc = "<li>\n" + base.toc + "</li>\n";
 			
 			// Update the TOC element with the completed TOC
-			base.$el.html(base.toc);
+			$('<ul>', {
+				'html': base.toc,
+				'class': 'toc-list--element'
+			}).appendTo(base.$el);
 		};
 		
 		base.addTopLink = function(element){
@@ -155,7 +164,8 @@
 		
 		base.formatLink = function(element, depth, index){	
 			// Get the current id of the header element
-			var id = element.id;
+			var id = element.id,
+				clone;
 			
 			// If no id exisits, create a unique one
 			if(id == ""){
@@ -170,7 +180,9 @@
 			if(!base.tieredList()) a += " class='" + base.depthClass(depth) + "'";
 			
 			// Finish building the link
-			a += ">" + base.options.levelText.replace('%', $(element).text()) + '</a>';
+			clone = $(element).clone();
+			clone.find('.anchorjs-link').remove();
+			a += ">" + base.options.levelText.replace('%', clone.text()) + '</a>';
 			return a;
 		};
 		
@@ -262,12 +274,15 @@
 		// use any other element.
 	
 		// Which H tags should be the root items. h1 = 1, h2 = 2, etc.
-		startLevel: 1,
+		startLevel: 2,
+		
+		// Defines the title of the headline for the toc
+		headlineTitle: 'Table of contents',
 		
 		// How many levels of H tags should be shown, including the startLevel
 		// startLevel: 1, depth: 3 = h1, h2, h3
 		// startLevel: 2, depth: 3 = h2, h3, h4
-        depth: 3,
+        depth: 2,
 
 		// Each link in a straight set is give a class designating how deep it is. 
 		// You can change the class by changing this option,
@@ -304,8 +319,21 @@
 	
 
     $.fn.tableOfContents = function(scope, options){
-        return this.each(function(){
-            var toc = new $.TableOfContents(this, scope, options);
+        return this.each(function() {
+			var $el = $(this),
+				toc;
+				
+			options = options || {};
+				
+			if($el.attr('data-depth')) {
+				options.depth = ~~(1 * $el.attr('data-depth'));
+			}
+			
+			if($el.attr('data-headline')) {
+				options.headlineTitle = $el.attr('data-headline');
+			}
+			
+            toc = new $.TableOfContents(this, scope, options);
 			delete toc; // Free memory
         });
     };

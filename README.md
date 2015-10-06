@@ -31,3 +31,16 @@ It is important to put the plugin into the proper Frontend/Backend/Core subdirec
 
 [2]: https://sculpin.io/
 [3]: https://sculpin.io/download
+
+### Table of contents in your markdown documents
+You have the ability to generate a table of content list for your document. Simply place the following code into your document and a table of contents will appear there magically:
+
+```
+<div class="toc-list"></div>
+```
+
+If you want, you can customize the behavior of the toc list as well. You can define the text of the headline using the attribute `data-headline` and you can define the max depth of headlines you wanna include into the list with the attribute `data-depth`:
+
+```
+<div class="toc-list" data-depth="1" data-headline="Awesome table of contents"></div>
+```

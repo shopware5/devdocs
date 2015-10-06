@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Theme.php
-github_link: designers-guide/theme-php/index.md
+github_link: designers-guide/configuration-using-theme-php/index.md
 indexed: true
 ---
 
@@ -15,7 +15,7 @@ indexed: true
 
 ## Introduction
 
-The `Theme.php` is the base file of each Shopware theme. It contains the basic information like the name, author, description and the license which are displayed in the Theme Manager:
+The `Theme.php` is the base file of each Shopware theme. It contains the basic information like the name, author, description and the license, which are displayed in the Theme Manager:
 
 ```
 <?php
@@ -48,11 +48,11 @@ The `Theme.php` can also contain the theme's custom configuration and included f
 
 ## Adding JavaScript and CSS
 
-Working with compressors isn't always as easy as adding the files to your HTML structure using `script` tags. The built-in JavaScript compressor is as easy as this and perfectly suited your workflow as a web developer.
+Working with compressors isn't always as easy as adding the files to your HTML structure using `script` tags. The built-in JavaScript compressor is as easy as this, and perfectly suited your workflow as a web developer.
 
 ### Adding JavaScript
 
-Simply place your JavaScript files in the `frontend/_public` folder and add their paths to the `$javascript` array in your `Theme.php`, and you're good to go:
+Simply place your JavaScript files in the `frontend/_public` folder and add their paths to the `$javascript` array in your `Theme.php`:
 
 ```
 /** @var array Defines the files which should be compiled by the javascript compressor */
@@ -74,7 +74,7 @@ protected $css = array(
 
 ## Customizing the theme configuration
 
-It is possible to add custom configuration options to your theme. Using this method, the user can fully customize the theme without having to edit any CSS files.
+It's possible to add custom configuration options to your theme. Using this method, the user can fully customize the theme without having to edit any CSS files.
 
 To create configuration elements it's necessary to add a `createConfig()` method to your `Theme.php`. This method specifies the elements you need for the configuration form. The first parameter is the container element of type `Shopware\Components\Form\Container\TabContainer` where you can add additional fields as well as other container elements:
 
@@ -142,7 +142,7 @@ All elements have a similar syntax:
 $this->createTextField([unique name], [label], [default value]);
 ```
 
-In the following example we create a textfield as well as a color picker field. The name of any field is mandatory and has to be unique. It will be used to assign the value of the field to the storefront:
+In the following example, we create a text and a color picker fields. The name of any field is mandatory and has to be unique. It will be used to assign the value of the field to the storefront:
 
 ```
 /**
@@ -207,9 +207,9 @@ The field values are also automatically available inside your LESS files. You ca
 
 ### Further customization
 
-Helper methods like `createTab()` or `createFieldSet()` are creating ExtJs components for you so that you don't have to write any JavaScript code while creating your theme configuration. The method `createFieldSet()` accepts a third optional parameter which is an attributes array. This array can contain several ExtJs properties which can customize a fieldset. 
+Helper methods like `createTab()` or `createFieldSet()` automatically create ExtJs components for you, so that you don't have to write any JavaScript code when creating your theme configuration. The `createFieldSet()` method accepts a third optional parameter which is an attributes array. This array can contain several ExtJs properties which can customize a field set. 
 
-This attributes array creates a two-column layout for the fieldset from the previous example:
+This attributes array creates a two-column layout for the field set from the previous example:
 
 ```
 $fieldset = $this->createFieldSet(
@@ -232,7 +232,7 @@ $fieldset = $this->createFieldSet(
 ![Custom fieldset layout](custom-fieldset-layout.png)
 
 <div class="alert alert-info">
-If you'd like to learn more about the layout options which can be used in the attributes array you can take a look at the <a href="https://docs.sencha.com/extjs/4.1.1/#!/api">ExtJs documentation</a>.
+If you'd like to learn more about the layout options which can be used in the attributes array, you can take a look at the <a href="https://docs.sencha.com/extjs/4.1.1/#!/api">ExtJs documentation</a>.
 </div>
 
 ## Creating a blank theme configuration
@@ -243,11 +243,11 @@ It is also possible to create a completely blank theme configuration. To prevent
 protected $inheritanceConfig = false;
 ```
 
-As you can see the "My custom tab" is the only one which is displayed inside the theme configuration:
+As you can see, the "My custom tab" is the only one which is displayed inside the theme configuration:
 
 ![Config blank tab](config-tab-blank.png)
 
-Now you can either override the default unique names like e.g. `brand-primary` or create your own ones.
+Now you can either override the default unique names like e.g. `brand-primary` or create your own.
 
 <div class="alert alert-warning">
 Every existing field which is not overwritten in your <code>Theme.php</code> will use the default value of your parent theme.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware Backend Components
+title: Backend Components Basics
 github_link: developers-guide/backend-components/index.md
 tags:
   - backend
@@ -9,35 +9,36 @@ tags:
 indexed: true
 ---
 
-Die nachfolgenden Tutorials befassen sich mit den Standard Backend Komponenten von Shopware. Diese Komponenten wurden entworfen, um die Entwicklung von Backend Modulen einfacher und schneller zu gestalten.
+The following tutorials will cover the Shopware Standard Backend Components. They have been built to simplify and speed up the whole development of Backend modules.
 
 <div class="alert alert-info">
-	<strong>Hinweis</strong><br/>
-	Sollten Sie sich bisher noch nicht mit Ext JS und der Plugin Entwicklung von Shopware ausseinander gesetzt haben, empfehlen wir Ihnen sich vorher die Grundlagen der Plugin Entwicklung anzueignen. Zudem sollte Sie sich bereits mit dem Ext JS Framework von Sencha ausseinander gesetzt haben, da in diesen Tutorials nicht auf die Konfigurationsmöglichkeiten der Ext JS Komponenten eingegangen wird sondern auf die Konfiguration die Shopware zur Verfügung stellt.
+<strong>Heads Up</strong><br/>
+In case you haven't already worked with Ext JS or the Shopware plugin development, we recommend you to get in touch with basics of the Shopware plugin development. In addition, you should have worked with the Ext JS framework by Sencha because we do not handle every configuration of Ext JS but configuration for Shopware.
 </div>
 
-Wir empfehlen Ihnen hierzu die folgenden Artikel:
+We also recommend the following articles:
 
-**Ext JS Dokumentationen**
+**Ext JS Documentation**
 
-* [Ext JS API](http://docs.sencha.com/extjs/4.1.2/#!/api)
-* [Ext JS Guides](http://docs.sencha.com/extjs/4.1.2/#!/guide)
-* [Ext JS Examples](http://docs.sencha.com/extjs/4.1.2/#!/example)
+* [Ext JS API](http://docs.sencha.com/extjs/4.1.3/#!/api)
+* [Ext JS Guides](http://docs.sencha.com/extjs/4.1.3/#!/guide)
+* [Ext JS Examples](http://docs.sencha.com/extjs/4.1.3/#!/example)
 
-**Shopware Plugin Grundkonzept**
+**Shopware Plugin Concept**
 
 * [Shopware Developer Guide](/developers-guide/shopware-5-upgrade-guide-for-developers)
-* [Plugin Grundlagen](http://community.shopware.com/Grundlagen_cat_866.html)
-* [Plugin Beispiele](http://community.shopware.com/Beispiele_cat_868.html)
+* [Plugin Quick Start Guide](https://developers.shopware.com/developers-guide/plugin-quick-start/)
 
 <div class="alert alert-info">
-	<strong>Allgemeiner Hinweis zu den Tutorials</strong><br/>
-<p>Da die Komponenten untereinander Auswirkungen haben können, werden bestimmte Konfigurationsmöglichkeiten erst in späteren Tutorials erklärt und angewendet. Dazu finden Sie an den entsprechenden Stellen Links zu den weiterführenden Tutorials.
-Die Tutorials sind aufeinander aufbauend, am Anfang jedes Tutorials finden Sie einen Download Link zur Zip Datei des letzten Tutorial Ergebnisses. Sollten Sie sich dafür entscheiden Tutorials zu überspringen, stellen Sie bitte sicher, dass Sie immer mit der Vorgänger Version des Plugins arbeiten.</p>
-	<strong>Hinweis zur Konfiguration der Entwicklungsumgebung</strong><br/>
-<p>Wir empfehlen Ihnen in Ihrer Entwicklungsumgebung zu Debugzwecken die Shopware Caches zu deaktivieren, da Sie sonst bei jeder Änderung in Backend Modulen die Caches vorher löschen müssten, damit Ihre Änderungen greifen.</p>
-	
-Hierfür können Sie folgende Konfiguration in der config.php hinzufügen:
+<strong>General notice for the tutorial</strong><br/>
+<p>Since components may affect each other, some specific configuration options will be declared and applied in later tutorials. You'll find those links at the appropriate places.
+
+The tutorials are built upon each other and you will find a zip file with the results of the last tutorial at the top of each tutorial. In case you may skip a tutorial, make sure to use the latest code inside the zip files.</p>
+
+<strong>Information for your development environment configuration</strong><br/>
+<p>We suggest you to disable the Shopware caches for debugging purposes, since you have to clean the caches after every change to the backend modules.</p>
+
+For that you can add the following configuration to your `config.php`:
 
 ```php
 'front' => array( 'noErrorHandler' => true, 'throwExceptions' => true ),
@@ -52,27 +53,26 @@ Hierfür können Sie folgende Konfiguration in der config.php hinzufügen:
 ),
 ```
 
-**Wichtig: Die hier empfohlene Konfiguration ist nicht für Produktivsysteme geeignet!**
+**Important: This configuration should *not* be used in production.**
 
 </div>
 
-## PHP Implementierung
-Weiter im Text. Die Backend Komponenten beinhalten bestimmte Shopware Standards, die aus einer Schnittmenge der verschiedenen bestehenden Backend Module zusammen gestellt wurden. Die Auslagerung dieser Standards in eigene Komponenten reduziert die Anzahl an benötigten Source Code Zeilen für einzelne Komponenten um ein vielfaches. Vor allem im Bereich <a href="http://de.wikipedia.org/wiki/Prototyping_(Softwareentwicklung)" target="_blank">Prototyping</a> lässt sich ein extremer Zeitgewinn nachweisen.
+## PHP Implementation
+The backend contains some Shopware specific components, which are based on different ExtJs modules. By using these components, you can reduce the amount of time and code needed to develop your own modules, especially when [prototyping](https://en.wikipedia.org/wiki/Software_prototyping).
 
-Soweit, so gut, fangen wir an eine kleine eigene Backend Applikation mit den Standard Komponenten zu schreiben. 
-Zunächst einmal müssen wir uns ein Plugin erstellen, welches uns bestimmte Grundvorraussetzungen bereit stellt um eine Backend Applikation zu schreiben. Dies wären:
+Alright, let's beginn to write our own small backend application with standard components. At first we have to create a plugin which will provide us with some certain basic requirements. There are:
 
-* Menü Punkt im Backend
-* Eigenen Backend Controller
-* Eigenes Doctrine Model
+* Menu item in the backend
+* Your own backend controller
+* Your own doctrine model
 
-Damit wir sämtliche Bereiche der Standard Komponenten abdecken können, ohne uns wilde Datenkonstrukte ausdenken zu müssen, erstellen wir in unserem Plugin eine neue Produkt Liste für das Backend. Da die Doctrine Models ein essentieller Bestandadteil der Backend Entwicklung und auch der Standard Komponenten sind, werden in diesem Tutorial bestimmte Doctrine Models des <code>Shopware\Models\Article</code> Namepaces nachgebaut und erläutert.
+To speed things up, our plugin is supposed to create a new product list to cover all sections of our backend components. Since the doctrine models are an esscential part of the backend development and modules, this tutorial will rebuild and explain some parts of the `Shopware\Models\Article` namespace.
 
-### Die Plugin Bootstrap `SwagProduct/Bootstrap.php`
-Zunächst wird der Plugin Ordner `SwagProduct` mit einer Bootstrap.php Datei darin erstellt. Innerhalb der Bootstrap Klasse implementieren wir folgende Funktionalitäten:
+### The Plugin Bootstrap `SwagProduct/Bootstrap.php`
+First you have to create a folder called `SwagProduct` with a new file called `Bootstrap.php` in it. The following features will be implemented in the bootstrap class:
 
-* Eigenen Backend Controller Registrieren
-* Backend Menü Eintrag erstellen welcher den Controller aufruft
+* Register your own backend controller
+* Create a backend menu item which calls the controller
 
 ```php
 <?php
@@ -82,7 +82,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
     public function getInfo() 
     {
         return array(
-            'label' => 'Shopware Produktübersicht'
+            'label' => 'Shopware Product Overview'
         );
     }
 
@@ -94,7 +94,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
         );
 
         $this->createMenuItem(array(
-            'label' => 'Shopware Produktübersicht',
+            'label' => 'Shopware Product overview',
             'controller' => 'SwagProduct',
             'class' => 'sprite-application-block',
             'action' => 'Index',
@@ -106,22 +106,23 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
 
     public function getBackendController(Enlight_Event_EventArgs $args)
     {
-        //Registrierung des Template Verzeichnisses, 
-        //damit dieses im Controller nicht immer angegeben werden muss.
+        // Register the template folder to not have to provide it
+        // in the controller every time
         $this->Application()->Template()->addTemplateDir(
             $this->Path() . 'Views/'
         );
 
-        //Registrierung der Plugin Models damit diese immer im Controller zur Verfügung stehen
+        // Register the models to have access to them in the controller
         $this->registerCustomModels();
 
         return $this->Path() . '/Controllers/Backend/SwagProduct.php';
     }
 ```
 
-### Das Doctrine Model `SwagProduct/Models/Product/Product.php`
+### The Doctrine Model `SwagProduct/Models/Product/Product.php`
 
-Anschließend erstellen wir uns ein neues Product Model in der Datei `SwagProduct/Models/Product/Product.php`.
+Afterwards we create a new product model in `SwagProduct/Models/Product/Product.php`.
+
 ```php
 <?php
 
@@ -196,7 +197,6 @@ class Product extends ModelEntity
     {
         return $this->id;
     }
-
 
     /**
      * @param int $active
@@ -296,11 +296,11 @@ class Product extends ModelEntity
 }
 ```
 
-Das hier angelegt Product Model beinhaltet nur einen Bruchteil des eigentlichen Shopware Artikel Models, jedoch ist der Bestandteil ausreichend für unsere Zwecke. Hier zu beachten ist der Model Namespace der auf `Shopware\CustomModels` verweist. Dieser Namespace ist ausschließlich für Plugin Models reserviert. Um die zugehörigen Datenbanktabellen zu erstellen, kann das Schema Tool von Doctrine verwendet werden. Dieser steht unter `\Doctrine\ORM\Tools\SchemaTool` zur Verfügung. In der Plugin Bootstrap werden nun die folgenden Funktionalitäten implementiert:
+The product model shown above contains just a fraction of the original Shopware article model but is sufficient for our purpose. Please notice the namespace at the top. The `Shopware\CustomModels` namespace is used exclusively for plugin models. To create the associated database table, you should use the schema tool by doctrine which can be found in `\Doctrine\ORM\Tools\SchemaTool`. The following features will now be implemented in the plugin bootstrap:
 
-* Anlegen der Datenbanktabellen in der `install()` Funktion
-* Löschen der Datenbanktabellen in der `uninstall()` Funktion
-* Hinzufügen von Demodaten in die neue Datenbanktabelle
+* Create the database tables in the `install()` method
+* Adding demo data to the new database table
+* Delete the database tables in the `uninstall()` method
 
 ```php
 <?php
@@ -377,11 +377,11 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
 }
 ```
 
-Die Helfer Funktion `addDemoData()` importiert die Shopware Artikel aus der `s_articles` in die neue Tabelle `s_products`. So brauchen wir uns um Testdaten keine Gedanken machen. 
+The helper method `addDemoData()` imports all articles from the `s_articles` table into the new table `s_products`. So we don't need to create new demo data.
 
-### Der Backend Controller `SwagProduct/Controllers/Backend/SwagProduct.php`
+### The Backend Controller `SwagProduct/Controllers/Backend/SwagProduct.php`
 
-Zuletzt implementieren wir nun noch einen PHP Controller in der Datei `SwagProduct/Controllers/Backend/SwagProduct.php`:
+Finally, we implement our own PHP controller in `SwagProduct/Controllers/Backend/SwagProduct.php`:
 
 ```php
 <?php
@@ -394,15 +394,14 @@ class Shopware_Controllers_Backend_SwagProduct
 }
 ```
 
-Anders als in bisherigen Backend Controllern leitet sich der SwagProduct Controller nicht vom `Shopware_Controllers_Backend_ExtJs` ab, sondern von einem neuen Backend Controller namens `Shopware_Controllers_Backend_Application`. Dieser Controller wurde speziell für die Shopware Backend Komponenten entwickelt um bestimmte CRUD Operationen bereits vorgefertigt mit zu liefern.
-Die einzigen Requirements die dieser neue Controller hat, sind die Properties `$model` und `$alias`. Das `$model` Property muss den vollständigen Namen des Models beinhalten. Über diesen Namen werden später die Doctrine Queries und CRUD Operationen ausgeführt. Sollte das `$model` Property nicht konfiguriert sein, erhalten Sie eine Fehlermeldung:
+Different to previos backend controllers, the `SwagProduct` controller derives from `Shopware_Controllers_Backend_Application` instead of `Shopware_Controllers_Backend_ExtJs`. This controller has been exclusively designed to include different CRUD operations in every controller. The only requirements are the properties `$model` and `$alias`. The property `$model` must be the complete name of the model, including the namespace since it will be used for the doctrine queries and CRUD operations later on. If the property `$model` is not configured properly, you will get the following error message:
 
 <div class="alert alert-danger">The `model` property of your PHP controller is not configured!</div>
 
-Das `$alias` Property wird als Query Alias für das Root Model (`$model` Property) in jedem Query Builder verwendet. Dieser kann nach belieben frei gewählt werden.
+The property `$alias` will be the query alias used in every query with the root model (`$model` property).
 
-<h2>Ext JS Implementierung</h2>
-Nun kommen wir zu der Implementierung der eigentlichen Shopware Backend Komponenten. Für das Backend Module implementieren wir zunächst die folgenden Komponenten im Ordner `SwagProduct/Views/backend`.
+## Ext JS Implementation
+Now, we go on to the proper usage of the backend components. At first, we implement the following components in our folder `SwagProduct/Views/backend`:
 
 * `swag_product/app.js`
 * `swag_product/controller/main.js`
@@ -412,8 +411,8 @@ Nun kommen wir zu der Implementierung der eigentlichen Shopware Backend Komponen
 * `swag_product/view/list/product.js`
 
 
-### Die Subapplikation - `swag_product/app.js`
-Als erstes definieren wir die `swag_product/app.js` denn hier wird unsere Backend Applikation definiert und gestartet.
+### The Subapplication `swag_product/app.js`
+To start, we define our starting point of our backend application in `swag_product/app.js`.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct', {
@@ -440,14 +439,14 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-An der SubApplication hat sich nichts geändert. Hier werden wie immer die verschiedenen Komponenten der Subapplikation definiert und über die `loadPath` Url geladen. 
+The SubApplication itself hasn't been changed. There will still be the definition of the different components which will be loaded by the url in `loadPath`.
 
-In der `launch` Methode der Applikation wird dann der Main Controller instanziert und das Property `mainWindow` des Controllers wird als Rückgabewert gesetzt.
+The `launch()` method will instanciate the main controller and return it's `mainWindow`.
 
-<div class="alert alert-info">Wichtig bei Subapplikation ist vor allem das Naming der Klasse. Der Klassenname sollte dem PHP Controller Namen entsprechen.</div>
+<div class="alert alert-info">Keep in mind that the naming of the classes in subapplications is important. It should always match to the php controller name.</div>
 
-### Der Main Controller `swag_product/controller/main.js`
-Der Main Controller ist für den Applikationsstart verantwortlich und soll die Aufgabe übernehmen das Listing Window zu instanzieren und anzuzeigen:
+### The Main Controller `swag_product/controller/main.js`
+The main controller is responsible for the start of the application by creating and displaying the listing window:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -460,10 +459,10 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Zu dem Main Controller gibt es nicht viel zu sagen. Hier ist nur wichtig, dass das Property `mainWindow` gesetzt wird, damit die Applikation auch sauber über den Footer Button beendet werden kann.
+There is not much to say about the main controller. The only important thing is the set the property `mainWindow` to make sure that you application can be closed by click the footer button.
 
-### Das Listing Window `swag_product/view/list/window.js`
-Das Listing Window ist die erste Shopware Standard Komponete die in unserer Applikation zum Einsatz kommt. Diese leitet sich von der Komponente `Shopware.window.Listing` ab. 
+### The Listing Window `swag_product/view/list/window.js`
+The listing window derives from the `Shopware.window.Listing` component and will be the first backend component that will be used in our application.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
@@ -481,20 +480,19 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 });
 ```
 
-Die `Shopware.window.Listing` Komponenten besitzt zwei Requirements, welche in der `configure()` Funktion gesetzt werden müssen. Die `configure()` Funktion dient als Einstiegspunkt um die Shopware Konfigurationen einer Komponente zu setzen. Diese Funktion steht Ihnen in allen Shopware Backend Komponenten zur Verfügung.
+The `Shopware.window.Listing` component has 2 requirements, which have to be met in the `configure()` method. The `configure()` method is meant to be your starting point to set Shopware related configurations. This method is available in every Shopware backend component.
 
-* `listingGrid` - Klassenname des `Shopware.grid.Panel` welches im Fenster angezeigt werden soll > In unserem Fall wird diese Klasse gleich unter `swag_product/view/list/product.js` definiert
-* `listingStore` - Klassenname des `Shopware.store.Listing` Stores, welcher bei Applikationsstart geladen werden soll und als Store für das `Shopware.grid.Panel` dient.
+* `listingGrid` - Should be the class name for the `Shopware.grid.Panel` which will be displayed inside the window. We'll define that class in `swag_product/view/list/product.js` in the next step.
+* `listingStore` - Should be the Class name for the `Shopware.store.Listing` which will be loaded on start of the application. This store will be the store used in the `Shopware.grid.Panel`.
 
-
-Wichtig bei der Komponente ist, dass ein `alias` vergeben wird, da die Komponentenevents sonst nicht über die Ext JS Component Query ermittelt werden können.
+It is important to set property `alias`, otherwise all component events will can not be determined by the Ext JS Component Query.
 
 <div class="alert alert-info">
-In diesem Tutorial werden bereits bestimmte Shopware Konfiguration angesprochen, eine Auflistung aller Verfügbaren Shopware Konfigurationen einer Komponente finden Sie in weiterführenden Tutorials.
+This tutorial already contains some of the Shopware configuration options. You'll find an extended list of the configuration options in the upcoming tutorials.
 </div>
 
-### Das Grid Panel `swag_product/view/list/product.js`
-Als nächstes wird das `Shopware.grid.Panel` in der Datei `swag_product/view/list/product.js` implementiert. 
+### The Grid Panel `swag_product/view/list/product.js`
+Next, we implement the `Shopware.grid.Panel` in `swag_product/view/list/product.js`.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -504,16 +502,16 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-Diese Komponente besitzt als einziges Requirement, dass beim erstellen der Komponenten ein Store übergeben wird. Dieser muss zum Erstellungszeitpunkt des Grids nicht einmal mit Daten befüllt sein, sondern nur eine Model Klasse konfiguriert haben.
+The only requirement of this component is that you provide a store while its creation. The store doesn't have to be filled with data right now, but must have defined the model class.
 
-Auch hier ist es wichtig, einen Komponenten Alias zu vergeben, da sonst die Komponentenevents nicht von den entsprechenden Controllern abgefangen werden können.
+Keep in mind that you still have to provide an alias for the component anyway.
 
-Da das `Shopware.grid.Panel` überall verwendet werden kann, muss in diesem Fall die `region: 'center'` hinterlegt werden, da das `Shopware.window.Listing` ein Border Layout zugewiesen bekommen hat.
+Since the `Shopware.grid.Panel` can be used everywhere, you have to define `region: 'center'` in the `Shopware.window.Listing` because a border layout has been applied to the panel.
 
-### Das Data Model `swag_product/model/product.js`
-Als nächstes implementieren wir das `Shopware.data.Model` welches die Datenstruktur des `Shopware\CustomModels\Product\Product` wieder spiegelt.
+### The Data Model `swag_product/model/product.js`
+Next up, we implement the `Shopware.data.Model` which reflects the data structure of `Shopware\CustonModels\Product\Product`.
 
-Hierfür implementieren wir folgenden Source Code in der `swag_product/model/product.js` Datei:
+For this, we implement the following code in `swag_product/model/product.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -537,15 +535,14 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-Das `Shopware.data.Model` besitzt als einziges Requirement das `controller` Property. Dies jedoch auch nur, wenn es sich um das `Hauptmodel` der Applikation handelt. Als `Hauptmodel` bezeichnet man das Model, welches als Grundlage für die Applikation dient und auch im `Shopware_Controller_Backend_Applikation` Controller im `$model` Property konfiguriert wurde.
+The only required property here is the `controller` property, but only, if this is the *main model* of the application. The main model is known as the model, which is used as basis for the application and should be the `$model` property of your backend PHP controller.
 
-Sollte es sich nicht um das `Hauptmodel` handeln, muss das `controller` Property nicht gesetzt werden. 
-Sollte das `controller` Property gesetzt sein, so stehen auf dem Model die CRUD Operationen `create`, `update`, `delete` zur Verfügung.
+In case you want to do CRUD operations on your others models, you may set the `controller` property. Then you can do operations like `create`, `update` and `delete`.
 
-Das controller Property erwartet als Wert den Namen des `Shopware_Controllers_Backend_Application` Controllers. Hier ist wichtig, dass nur der individuelle Namensteil des Controllers angeben wird. Der Plugin Controller heißt vollständig: `Shopware_Controllers_Backend_SwagProduct`, daher muss als Wert `SwagProduct` gesetzt werden. 
+The property `controller` expects the individual name of you `Shopware_Controllers_Backend_Application` controller. Given your controller is called `Shopware_Controllers_Backend_SwagProduct`, the individual name would be `SwagProduct`.
 
-### Der Data Store - `swag_product/store/product.js`
-Zuletzt müssen wir noch den `Shopware.store.Listing` Store definieren, welches als Grid Store für das `Shopware.grid.Panel` verwendet wird. Hierfür implementieren wir folgenden Source Code in der `swag_product/store/product.js` Datei:
+### The Data Store - `swag_product/store/product.js`
+Finally, we have to define the `Shopware.store.Listing` store, which will be used for the `Shopware.grid.Panel`. For this, we implement the following code in `swag_product/store/product.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.store.Product', {
@@ -560,34 +557,32 @@ Ext.define('Shopware.apps.SwagProduct.store.Product', {
 });
 ```
 
-Die `Shopware.store.Listing` Komponente besitzt als einziges Requirement den PHP Controller Klassennamen. Als Wert wird der letzte Teil des Controllernamens angegeben. 
+The `Shopware.store.Listing` component only requires the individual PHP controller class name. This should be `SwagProduct` like seen above.
 
-Ab diesem Zeitpunkt ist die Applikation lauffähig und wir können uns das Listing bereits ansehen:
-![](img/backend_1.jpg)
+At this point, the application should be usable and we can take a look at our listing:
+![](img/backend_1.png)
 
-Die Applikation unterstützt nun die folgenden Operationen:
+The application now supports the following operations:
 
-* Laden der Listing Daten + Paginierung
-* Sortierung des Listings über die Spaltenheader
-* Filter des Listings über die Freitextsuche in der Toolbar
-* Löschen von einzelnen Datensätzen über die Delete Action Column
-* Löschen von mehreren Datensätzen über den Markierte Einträge löschen Button in der Toolbar
+* Listing data including pagination
+* Sorting data by using the column names
+* Filtering data by using the free text search in the toolbar
+* Deleting single items using the delete action column
+* Deleting multiple items using the checkboxes and the button *Delete all selected* in the toolbar
 
-
-## Die letzten 25% zur vollständigen Applikation
-Damit haben wir unsere Backend Applikation zu 75% implementiert. Was noch fehlt ist die Detailseite. Dies wird erkenntlich beim Klick auf das Stift Icon am Ende jeder Zeile. Hier erscheint die folgende Fehlermeldung in der Debugkonsole:
+## The last 25% to complete our application
+Until now, we have implemented 75% of the whole application. What's still missing, is the detail window. This should be opened by clicking the pencil icon at the end of a line. Right now you'll get the following error message in the debug console:
 
 <div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProduct.view.list.Product: Component requires the `detailWindow` property in the `configure()` function </div>
 
-
-Damit die Applikation vollständig ist müssen wir die folgenden Komponenten implementieren:
+To make the application complete, we have to implement the following components:
 
 * `swag_product/view/detail/window.js`
 * `swag_product/view/detail/product.js`
 
 
-### Das Detail Window `swag_product/view/detail/window.js`
-Als nächstes implementieren wir nun das `Shopware.window.Detail` dies muss nicht nur als Komponente registriert werden sondern auch noch im `Shopware.grid.Panel` hinterlegt werden. Zunächst implementieren wir das Detail Window in dem wir folgenden Source Code in die `swag_product/view/detail/window.js` einfügen:
+### The Detail Window `swag_product/view/detail/window.js`
+Here, you have two tasks to do. First, implement a new `Shopware.window.Detail` component and second, declare it in our `Shopware.grid.Panel`. But first things first, implement the detail window by putting the following code in `swag_product/view/detail/window.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -599,11 +594,11 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-Das `Shopware.window.Detail` besitzt als einziges Requirement dass bei der Instanzierung des Windows ein `Shopware.data.Model` als `record` Property übergeben wird. Anhand dieses Records baut sich das Detail Window vollständig automatisch zusammen.
+The only requirement for this component is that you have to provide a property named `record` which contains a `Shopware.data.Model` while instancing the component. The detail window will be assambled automatically, based on the record.
 
-Das gerade erstellt Detail Window müssen wir nun noch an zwei Stellen hinterlegen.
+We now have to define the detail window at two places.
 
-1. **Wir müssen in der `swag_product/app.js` die neue Komponente registrieren:**
+1. **Define the component in our app in `swag_product/app.js`:**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct', {
     extend: 'Enlight.app.SubApplication',
@@ -620,7 +615,7 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-2. **Wir müssen im `Shopware.grid.Panel` (`swag_product/view/list/product.js`) den vollen Klassennamen hinterlegen, damit das `Shopware.grid.Panel` weiß, welche Detailansicht beim klick auf den Stift geöffnet werden soll:**
+2. **Define the `detailWindow` in our `Shopware.grid.Panel` (`swag_product/view/list/product.js`) to let the application know, which component should be called by clicking on the pencil:**
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -634,8 +629,8 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-### Die Produkt Detailansicht `swag_product/view/detail/product.js`
-Als letztes implementieren wir nun noch den `Shopware.model.Container` welcher für die Darstellung eines Models verwendet werden kann. Hierfür fügen wir in der Datei `swag_product/view/detail/product.js` den folgenden Source Code ein:
+### The Product Detail Window `swag_product/view/detail/product.js`
+The last thing to do is to implement the `Shopware.model.Container` which can be used for the representation of a model. The following code needs to be implemented in `swag_product/view/detail/product.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -650,9 +645,9 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-Der `Shopware.model.Container` besitzt zwei Requirements, das konfigurierte `controller` Property und bei Instanzierung der Komponenten muss das entsprechende `Shopware.data.Model` übergeben werden. Der `Shopware.model.Container` dient als Container Klasse für ein oder mehrere Models, doch die genauen Konfigurationsmöglichkeiten folgenden in weiteren Tutorials. Zunächst reicht es das `controller` Property zu konfigurieren.
+The `Shopware.model.Container` has two requirements. A proper configured property `controller` and the appropriate `Shopware.data.Model` record handed over. The `Shopware.model.Container` serves as container class for one or more models. A detailed configuration can be found in the upcoming tutorials. For our purpose it is enough to provide the `controller` property.
 
-Diese gerade erstellt Komponente müssen wir nun auch wieder in der `app.js` registrieren:
+Like above, you have to register your component in your `app.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct', {
@@ -669,7 +664,7 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-Zudem müssen wir diese Detailansicht noch für unser `Shopware.data.Model `konfigurieren. Hierfür fügen wir folgenden Source Code in der `swag_product/model/product.js` Datei ein:
+In addition, you have to update your `Shopware.data.Model` to make it know about your detail window. For that, add the follwing code to `swag_product/model/product.js`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -687,20 +682,20 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
     ]
 });
 ```
+The Shopware configuration property `detail` defines which component should be created when the detail window for `Shopware.apps.SwagProduct.model.Product` is requested. Now, the detail window will always look the same in the whole backend.
 
-Der Shopware Konfigurationsparemeter `detail` definiert, welche Komponenten erstellt werden soll, wenn das `Shopware.apps.SwagProduct.model.Product` detailiert dargestellt werden soll. So wird nun in der Backend Applikation, welche die Standard Komponenten verwendet, das Produkt Model immer auf die selbe Art und Weise dargestellt.
+### Plugin Download - [SwagProduct.zip](/developers-guide/backend-components/basics/swagproduct-201510081333.zip)
 
-### Plugin Download - [SwagProduct.zip](http://community.shopware.com/files/downloads/swagproduct-14024152.zip)
+Congratulations! You have just created your first backend application used the Shopware backend components. The application is completely usable and provides you with all features you can see in other backend applications. You now able to create and edit records, too.
 
-Herzlichen Glückwunsch zu Ihrer ersten Backend Applikation mit den Shopware Backend Komponenten. Die Applikation ist vollständig lauffähig und bietet alle Funktionalitäten die Sie in anderen Backend Applikationen wieder finden. Ab diesem Stand können nun auch Datensätze editiert und angelegt werden.
-
-![](img/backend_2.jpg)
+![](img/backend_2.png)
 
 ### FAQ
 
-**Warum muss ich soviele fast leere Klassen definieren?**  
-Wir bei Shopware haben uns lange Gedanken zur automatisierten Generierung von Backend Applikationen gemacht und sind zu dem Schluss gekommen, dass aufgrund von Übersetzung und Individualisierung der Applikationen in 99% der Fälle die View Komponenten angepasst werden sollen. Daher müssen die View Komponenten immer definiert werden. Das Controlling der Komponenten übernimmt Shopware jedoch vollständig, oder haben Sie bis jetzt ein Event abfangen müssen um zum Beispiel den "Markierte Einträge löschen" Button zu aktivieren oder zu deaktivieren? ;)
+**Why do I have to create so much classes without logic?**  
+We at Shopware took a long time to think about automatic generation of backend applications and have come to the conclusion, that, because of translations and customization of application, in 99% of the cases, you should customize your view components. Because of that, you have to always define your view components. The controlling of the components is still completely managed by Shopware or did you have to catch an event for example activate or deactivate the "Delete all selected" button? ;)
 
-### Weitere Tutorials
-In dem nächsten Tutorial wird genauer auf die Implementierungs- und Individualisierungsmöglichkeiten der Listingansicht der Shopware Backend Komponenten eingeangenen.
-Weiter mit <a href="http://community.shopware.com/Shopware-Backend-Komponenten-Listingansicht_detail_1406_871.html">Shopware Backend Komponenten - Listingansicht</a>.
+### Further Tutorials
+In our next tutorial we will cover more implementation and customization options of the Shopware listing backend component.
+
+Proceed to [Shopware Backend Components - Listing](/developers-guide/backend-components/listing/).

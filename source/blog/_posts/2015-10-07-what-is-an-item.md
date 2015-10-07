@@ -137,7 +137,7 @@ main reason for this is the fact, as the variants are grouped together to an ite
 `articleID` in the `s_articles_details`. So actually there is no need for us, to group items
 by an abstract order number. If you should need such a "common" order number for all variants,
 anyway, I also recommend using attributes for this.
-differentation
+
 # Telling apart variants, properties and attributes
 A common issue for new Shopware users is the differentiation of
 *variant*, *property*, *filter* and *attribute*.

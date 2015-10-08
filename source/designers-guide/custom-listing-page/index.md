@@ -15,18 +15,7 @@ In this tutorial you will learn how to create your own custom template for categ
 
 ![Custom listing template](example.png)
 
-## Table of contents
-+   [Preparation](#preparation)
-+   [Structure](#structure)
-    +   [Exclude elements](#exclude-elements)
-    +   [CMS content](#cms-content)
-    +   [Actual listing](#actual-listing)
-    +   [Custom product box](#custom-product-box)
-+   [Styling](#styling)
-    +   [Styling the CMS header](#styling-the-cms-header)
-    +   [Changing the default product box behavior](#changing-the-default-product-box-behavior)
-    +   [Styling the product box](#styling-the-product box)
-+   [Download theme plugin](#download-theme-plugin)
+<div class="toc-list"></div>
 
 ## Preparation
 

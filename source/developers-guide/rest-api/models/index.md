@@ -5,51 +5,7 @@ github_link: developers-guide/rest-api/models/index.md
 indexed: false
 ---
 
-# Table of contents
-* **[Article Attribute](#article-attribute)**
-* **[Article Detail](#article-detail)**
-* **[Billing](#billing)**
-* **[Billing Attribute](#billing-attribute)**
-* **[Category](#category)**
-* **[Configurator Group](#configurator-group)**
-* **[Configurator Option](#configurator-option)**
-* **[Configurator Set](#configurator-set)**
-* **[Country](#country)**
-* **[Currency](#currency)**
-* **[Customer Attribute](#customer-attribute)**
-* **[Customer Group](#customer-group)**
-* **[Customer Group Surcharge](#customer-group-surcharge)**
-* **[Debit](#debit)**
-* **[Dispatch](#dispatch)**
-* **[Document](#document)**
-* **[Document Attribute](#document-attribute)**
-* **[Document Type](#document-type)**
-* **[Download](#download)**
-* **[Image](#image)**
-* **[Link](#link)**
-* **[Locale](#locale)**
-* **[Order Attribute](#order-attribute)**
-* **[Order Detail](#order-detail)**
-* **[Order Detail Attribute](#order-detail-attribute)**
-* **[Order Status](#order-status)**
-* **[Payment Data](#payment-data)**
-* **[Payment Instance](#payment-instance)**
-* **[Price](#price)**
-* **[Price Group](#price-group)**
-* **[Price Group Attribute](#price-group-attribute)**
-* **[Price Group Option](#price-group-option)**
-* **[Property Value](#property-value)**
-* **[Related](#related)**
-* **[Shipping](#shipping)**
-* **[Shipping Attribute](#shipping-attribute)**
-* **[Shop](#shop)**
-* **[Similar](#similar)**
-* **[Supplier](#supplier)**
-* **[Tax](#tax)**
-* **[Translation](#translation)**
-
-
-
+<div class="toc-list" data-depth="1"></div>
 
 
 ## Article Attribute

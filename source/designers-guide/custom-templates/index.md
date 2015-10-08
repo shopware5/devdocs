@@ -5,9 +5,7 @@ github_link: designers-guide/custom-templates/index.md
 indexed: true
 ---
 
-## Table of contents
--   [Custom category templates](#custom-category-templates)
--   [Custom detail page templates](#custom-detail-page-templates)
+<div class="toc-list"></div>
 
 ## Custom category templates
 To be more flexible when building different product pages you are able to create your own custom category templates. Your template will be selectable in the backend category settings and can be configured for every single category.

@@ -5,21 +5,7 @@ github_link: designers-guide/javascript-statemanager-and-pluginbase/index.md
 indexed: true
 ---
 
-## Table of contents
-* [Introducing](#introducing)
-* [Plugin base class](#plugin-base-class)
-	* [Getting started](#getting-started)
-	* [Class properties](#class-properties)
-	* [Class methods](#class-methods)
-* [Global jQuery event observer](#global-jquery-event-observer)
-* [The state manager](#the-state-manager)
-* [Using the state manager](#using-the-state-manager)
-	* [Adding an event listener](#adding-an-event-listener)
-	* [Register additional breakpoints](#register-additional-breakpoints)
-	* [Class methods](#class-methods)
-* [Working with stateful jQuery plugins](#working-with-stateful-jquery-plugins)
-	* [Passing a user configuration to the jQuery plugin](#passing-a-user-configuration-to-the-jquery-plugin)
-* [Adding javascript files to your theme](#adding-javascript-files-to-your-theme)
+<div class="toc-list"></div>
 
 ## Introducing
 The javascript development can be painful especially when you have to deal on responsive websites where you have to adjust the behavior of the code based on the available screen real estate. Therefore we came up with a component called *StateManager*, which provides you with the ability to define states and triggers *callback* function, if a state was entered or left.

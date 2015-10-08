@@ -5,19 +5,7 @@ github_link: designers-guide/smarty/index.md
 indexed: true
 ---
 
-## Table of contents
--   [What is Smarty?](#what-is-smarty%3F)
--   [The basics](#the-basics)
-    -   [Variables](#variables)
-    -   [Modifiers](#modifiers)
-    -   [Conditions](#conditions)
-    -   [Loops](#loops)
--   [Template inheritance](#template-inheritance)
-    -   [Inherit a standard theme](#inherit-a-standard-theme)
-    -   [Overwriting template files](#overwriting-template-files)
-    -   [Extending template files](#extending-template-files)
-    -   [Blocks](#blocks)
--   [Register custom Smarty plugins](#register-custom-smarty-plugins)
+<div class="toc-list"></div>
 
 ## What is Smarty?
 

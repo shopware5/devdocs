@@ -5,13 +5,7 @@ github_link: designers-guide/configuration-using-theme-php/index.md
 indexed: true
 ---
 
-## Table of contents
-
--   [Introduction](#introduction)
--   [Adding JavaScript and CSS](#adding-javascript-and-css)
--   [Customizing the theme configuration](#customizing-the-theme-configurat)
--   [Creating a blank theme configuration](#creating-a-blank-theme-configura)
--   [Configuration sets](#configuration-sets)
+<div class="toc-list"></div>
 
 ## Introduction
 

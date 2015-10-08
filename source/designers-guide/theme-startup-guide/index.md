@@ -14,16 +14,7 @@ This guide will introduce you to the new features and additions to the new Shopw
 
 ![Responsive theme](screen-responsive.jpg)
 
-## Table of contents
-+   [Feature overview](#feature-overview)
-+   [Compatibility note](#compatibility-note)
-+   [Comparison with the shopware 4 template](#comparison-with-the-shopware-4-template)
-+   [Device examples](#device-examples)
-+   [Theme.php](#theme.php)
-+   [Less integration](#what-should-i-know-about-the-less-integration%3F)
-+   [Customizing your theme](#customizing-your-theme)
-+   [The bare theme](#the-bare-theme)
-+   [The responsive theme](#the-responsive-theme)
+<div class="toc-list"></div>
 
 ## Feature overview
 - Theme inheritance system is now totally transparent and can easily be modified

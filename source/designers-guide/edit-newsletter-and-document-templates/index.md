@@ -5,17 +5,7 @@ github_link: designers-guide/edit-newsletter-and-document-templates/index.md
 indexed: true
 ---
 
-## Table of contents
--   [Introduction](#introduction)
--   [Edit newsletter templates](#edit-newsletter-templates)
-    -   [Newsletter directory structure](#newsletter-directory-structure)
-    -   [Change the newsletter logo](#change-the-newsletter-logo)
-    -   [Change the newsletter headline](#change-the-newsletter-headline)
-    -   [Change the newsletters general appearance](#change-the-newsletters-general-appearance)
-    -   [Newsletter snippets](#newsletter-snippets)
--   [Edit document templates](#edit-document-templates)
-    -   [Documents directory structure](#documents-directory-structure)
-    -   [Adding an article description](#adding-an-article-description)
+<div class="toc-list"></div>
 
 ## Introduction
 

@@ -5,14 +5,7 @@ github_link: designers-guide/less/index.md
 indexed: true
 ---
 
-## Table of contents
--   [What is LESS?](#what-is-less%3F)
--   [Why LESS?](#why-less%3F)
--   [Using LESS in your theme](#using-less-in-your-theme)
--   [Responsiveness in Shopware](#responsiveness-in-shopware)
--   [Predefined mixins and components](#predefined-mixins-and-components)
--   [LESS variables in Shopware](#less-variables-in-shopware)
--   [Creating CSS source maps](#creating-css-source-maps)
+<div class="toc-list"></div>
 
 ## What is LESS?
 > Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.

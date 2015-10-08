@@ -8,16 +8,7 @@ indexed: true
 ## Introduction
 This guide will provide you a quick overview on basic templating in Shopware 5 by providing a step by step explanation based on an example project. The content is aimed at beginners and lays the groundwork for templating and styling of Shopware themes. It shows the creation of a new theme and the usage of the Smarty template blocks to customize and add elements to the custom theme.
 
-## Table of contents
--   [Preview of the guide](#preview-of-the-guide)
--   [Bare and responsive theme](#bare-and-responsive)
--   [Adding custom theme](#custom-themes)
--   [Selecting the new theme](#selecting-themes)
--   [Directory structure](#directory-structure)
--   [Template inheritance](#template-inheritance)
--   [Template blocks](#template-blocks)
--   [Adding LESS Files](#add-less-files)
--   [Result and summary](#result)
+<div class="toc-list"></div>
 
 ## Preview of the guide
 ![Guide preview](img-guide.jpg)

@@ -15,22 +15,7 @@ In this tutorial you will learn how to create a custom template for detail pages
 
 ![Custom detail page](custom-detail.png)
 
-## Table of contents
-
-- [Preparation](#preparation)
-- [Structure](#structure)
-   - [Product header](#product-header)
-   - [Product description](#product-description)
-   - [Product actions](#product-actions)
-   - [Smarty code overview](#smarty-code-overview-custom_deta)
-- [Styling](#styling)
-   - [Styling the product header](#styling-the-product-header)
-   - [Styling the Product image](#styling-the-product-image)
-   - [Styling the Product description](#styling-the-product-description)
-   - [Styling the Product actions](#styling-the-product-actions)
-   - [LESS code overview](#less-code-overview-custom-detail)
-- [JavaScript](#javascript)
-- [Download theme plugin](#download-theme-plugin)
+<div class="toc-list"></div>
 
 ## Preparation
 

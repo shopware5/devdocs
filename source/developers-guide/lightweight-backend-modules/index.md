@@ -78,7 +78,7 @@ Creating a new backend module using the lightweight backend module is super easy
 public function install()
 {
     try {
-        $this->registerController();
+        $this->registerBackendController();
         $this->createMenu();
         return array(
             'success' => true,
@@ -107,21 +107,17 @@ Please note that we call the `createSimpleModule()` JavaScript method in the `on
 
 ### Registering a custom backend controller
 
-The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example bellow, we subscribe the controller path dispatch event and handle it with the `$this->registerController()` method:
+The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example 
+bellow, we subscribe the controller path dispatch event and handle it with the `$this->registerBackendController()` 
+method:
 
 ```php
-function registerController()
+function registerBackendController()
 {
-	$this->subscribeEvent(
-	    'Enlight_Controller_Dispatcher_ControllerPath_Backend_ExampleModulePlainHtml',
-	    'onGetBackendController'
+	$this->registerController(
+	    'Backend',
+	    'ExampleModulePlainHtml'
 	);
-}
-
-public function onGetBackendController()
-{
-    $this->Application()->Template()->addTemplateDir($this->Path() . 'Views/');
-    return $this->Path() . 'Controllers/ExampleModulePlainHtml.php';
 }
 ```
 

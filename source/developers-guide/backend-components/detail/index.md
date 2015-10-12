@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Shopware Backend Components Detail
-github_link: developers-guide/backend-components/detail.md
+github_link: developers-guide/backend-components/detail/index.md
 tags:
   - backend
   - extjs
@@ -9,17 +9,19 @@ tags:
 indexed: true
 ---
 
-Im letzten Tutorial <a href="http://community.shopware.com/Shopware-Backend-Komponenten-Listingansicht_detail_1406_871.html">Shopware Backend Komponenten - Listingansicht</a> wurden die Möglichkeiten des Shopware.grid.Panels erläutert. In diesem Tutorial werden die Grundlagen der Detailansicht erklärt und in Beispielen angewendet. Hierzu werden die Komponenten Shopware.model.Container und Shopware.window.Detail genauer erläutert.
+In the last tutorial [Shopware Backend Components - Listing](/developers-guide/backend-components/listing/) we've covered the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.
 
-Als Grundlage für dieses Tutorial dient das Plugin Ergebnis aus dem Tutorial <a href="http://community.shopware.com/Shopware-Backend-Komponenten-Listingansicht_detail_1406_871.html">Shopware Backend Komponenten - Listingansicht</a>. Dieses Plugin können Sie hier nochmal herunterladen:
-<a class="btn primary download" href="http://community.shopware.com/files/downloads/swagproduct-14067634.zip" target="_blank">Plugin herunterladen</a>
+We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [Download Plugin](/exampleplugins/SwagProductListing.zip)
 
-Das `Shopware.window.Detail` wurde in dem Plugin für die Produktdetailseite unter `SwagProduct/Views/backend/swag_product/view/detail/window.js` implementiert.
-Der `Shopware.model.Container` wurde im Plugin für die detailierte Ansicht des Produkt Models unter `SwagProduct/Views/backend/swag_product/view/detail/product.js` implementiert.
+The `Shopware.window.Detail` for the detail window was implemented in `SwagProduct/Views/backend/swag_product/view/detail/window.js`.
 
-<h2>Shopware.window.Detail Basics</h2>
-Die `Shopware.window.Detail` Komponente, nachfolgend auch Detail Window genannt, dient als Einstiegspunkt für die Detailansicht und wird im `Shopware.grid.Panel` als `detailWindow` Konfiguration hinterlegt.
-Das `Shopware.grid.Panel` übergibt dem Detail Window einen einzelnden Record, dies ist das einzige Requirement für das Detail Window. Das Detail Window erzeugt für den übergebenen Record die im `Shopware.data.Model` hinterlegte Detailansicht, welche im `detail` Property in der `configure()` Funktion des `Shopware.data.Model` hinterlegt wurde:
+The `Shopware.model.Container` for more detailed configuration of the detail window in `SwagProduct/Views/backend/swag_product/view/list/window.js`.
+
+<div class="toc-list"></div>
+
+## Shopware.window.Detail Basics
+The `Shopware.window.Detail` component, hereinafter referred to as detail window, is the entry to manage a record in detail and is defined as `detailWindow` in the `Shopware.grid.Panel`. The `Shopware.grid.Panel` calls the detail window with a single record. This is the only requirement for this component to work. The detail window will then create the view based on the `Shopware.data.Model`. That's why we create a relation in the `configure()` method right inside of the `Shopware.data.Model`.
+
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
     extend: 'Shopware.data.Model',
@@ -36,25 +38,25 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-<h3>Event Controlling</h3>
-Das Controlling der `Shopware.window.Detail` und `Shopware.model.Container` Events wird von dem `Shopware.detail.Controller` geregelt. Dieser Controller wird automatisch vom `Shopware.window.Detail` erzeugt und an das Detail Window gebunden. Die `Shopware.window.Detail` und `Shopware.model.Container` Events werden zur Sicherheit, wie beim `Shopware.grid.Panel`, mit einem Eventalias geprefix. Dieser Eventalias wird automatisch vom `Shopware.detail.Window` anhand des übergebenen Record Klassennamen ermittelt.
-<br><b>Beispiel</b>:
-<br>Der Name des übergebenen Models lautet: `Shopware.apps.SwagProduct.model.Product`.
-<br>Als Eventalias verwendet die Detailansicht nun den letzten Bestandteil des Modelnames: <code>eventAlias = 'product'</code>
-<br><br>Alle Events werden nun mit dem Prefix `product` versehen:
+### Event Handling
+The event handling of the `Shopware.window.Detail` and `Shopware.model.Container` components are managed by the `Shopware.detail.Controller`. This controller will be created and mapped by the `Shopware.window.Detail` automatically. To prevent twice named events, every event will be prefixed. The prefix will be determined by the class name of the given record.
+
+**Example**:  
+The class name of the given record is `Shopware.apps.SwagProduct.model.Product`. The event prefix will then be `eventAlias = 'product'`.
+
+All events are now prefixed like this:
 
 * product-save
 * product-tab-changed
 * ...
 
-Der `Shopware.detail.Controller` fängt diese Events ab und führt die Standard Aktionen für das entsprechende Event aus. 
-In dem Tutorial Eigenes Komponenten Controlling wird genauer erklärt wie es möglich ist die Shopware Standard Controller zu deaktivieren oder zu erweitern.
+The `Shopware.detail.Controller` catches these events and performs the default actions for the appropriate event. In the [bla foo tutorial]() you will learn how to deactivate or extend the Shopware default controller.
 
-<h2>Shopware.model.Container Basics</h2>
-In diesem Abschnitt des Tutorials wird auf die Basics des `Shopware.model.Container`, nachfolgend auch Model Container genannt, eingegangen und wie der Model Container im Hintergrund agiert. Dazu wird erklärt wie der Model Container die Fieldsets und Formular Felder erzeugt und wie diese konfiguriert werden können. Als Requirement besitzt der `Shopware.model.Container` lediglich ein übergebenes `Shopware.data.Model` welches als `record` Property übergeben werden muss und den `controller` Parameter, welcher den Namen des PHP Controllers beinhalten muss. 
+## Shopware.model.Container Basics
+In this section of the tutorial, we'll focus on the `Shopware.model.Container`, hereinafter referred to as *model container*, and how it works behind the scenes. In addition, you'll learn how the model container creates the fieldsets, the input fields and how to configure them properly. The requirements are the property `record` which should contain a `Shopware.data.Model` and the property `controller`, which should be the name of the PHP controller.
 
-<h3>Formular Generierung</h3>
-Als Grundlage für die Formular Generierung dient das übergebene `Shopware.data.Model`, welches als record Property übergeben wurde. Standardmäßig wird für das erzielen schneller Resultate in der Backend Entwicklung für jedes Feld des Models, abgesehen vom `id` Feld, ein einges Formular Feld erzeugt. Zudem wird für die gesamten Model Felder nur ein Field Set erstellt.
+### Generating forms
+The foundation of the form generation is the provided `Shopware.data.Model` as `record` property. By default, you should create every field manually except for the `id` property. This should result in a faster application. Further, there will only be one fieldset created.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -71,10 +73,14 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
     ]
 });
 ```
-2008741f275c1e48c0e046c5af53d7e6.jpg
 
+<div style="text-align:center;">
 
-Anhand des Datentypen des Model Feldes werden die verschiedenen Shopware Defaults für die Formular Felder erzeugt. Da ein Model jedoch sehr viel mehr Felder beinhalten kann, sollen nicht immer alle Felder angezeigt werden oder sollen in mehreren Fieldsets dargestellt werden. Um dies zu konfigurieren kann der `fieldSets` Konfigurationsparameter verwendet werden. Der `fieldSets` Parameter definiert wie viele `fieldSets` in dem Container erstellt werden sollen und welche Felder in den Fieldsets dargestellt werden sollen:
+![](img/detail_1.png)
+
+</div>
+
+Based on the field types, different default Shopware form fields will be created. Because a model can contain much more fields than seen above, you can decide whether a field should be displayed alone or inside a fieldset. You can use the `fieldSets` configuration option to group them for your needs. The `fieldSets` parameter is an array of objects, each containing a `title` and `fields`. The `title` is the title of the field set whereas the property `fields` is an object of the desired fields defined as its keys.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -100,12 +106,16 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     }
 });
 ```
-9c4e21055311f470a0b043447863fd95.jpg
 
-Die im `fields` Property definierten Spalten werden in der angegebenen Reihenfolge angelegt. Zusätzlich werden die Spalten eines Fieldsets in zwei Container, mit einem Column Layout, aufgeteilt um den Platz in der Detailansicht optimal auszunutzen.
+<div style="text-align:center;">
 
-Das `fields` Property dient nicht nur zur Limitierung und Sortierung der Felder, sondern bietet auch noch weitere Möglichkeiten die, zur Finalisierung der Applikation, sehr hilfreich sein können. 
-Wie bereits im <a href="http://community.shopware.com/Shopware-Backend-Komponenten-Listingansicht_detail_1406_871.html#Generierung_der_Spalten">Shopware.grid.Panel columns</a> Parameter gibt es  verschiedene Möglichkeiten die Formular Felder und auch das Fieldset mit weiteren Konfigurationen zu versehen:
+![](img/detail_2.png)
+
+</div>
+
+Similar to the listing in the previous tutorial, the order of the field sets and fields are important for the creation order. Furthermore, if you specify a column layout, the field sets will be splittet into two container to utilize the blank space in the detail window.
+
+The `fields` property may not only be used for limitation - it can also be used to configure the field even more precisely. In addition to the previous tutorial, you can also configure the field sets in more detail too:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -136,12 +146,16 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     }
 });
 ```
-e33bffbf1502c7ea26ea7ab2e935fe5e.jpg
 
-In dem obigen Beispiel werden für die Felder `description` und `name` die Shorthand Funktionalität der `fields` verwendet. Diese ermöglicht, die Definition eines Objektes für jedes Feld zu umgehen, wenn es sich lediglich um eine Übersetzung des `fieldLabel` handeln sollte.
-Zudem wird für das zweite Fieldset das `column` Layout deaktiviert. Dadurch werden die Felder direkt untereinander dargestellt.
+<div style="text-align:center;">
 
-Sollte es mal nicht aussreichen, ein reines Objekt hinterlegen zu können, so kann für jedes Feld auch eine eigene Funktion hinterlegt werden, die aufgerufen werden soll um das Feld zu erstellen. Der hinterlegten Funktion wird dabei ein bereits generiertes Feld übergeben. Dieses kann entweder erweitert oder komplett überschrieben werden.
+![](img/detail_3.png)
+
+</div>
+
+The example above shows that the fields `description` and `name` make use of the field's shorthand method. If you want to hide a label entirely, just set the `fieldLabel` of a field to `null`. A good practise is to use the `fieldLabel` for translations. If you have noticed, there is a `layout` option inside a field set - it simply disables the column layout so that every field is displayed on it's own row.
+
+Sometimes you need more than just a simple object to configure your field properly. Because of that, you can define your own methods to be used for creation. The method will get the `record` and an already generated field which can be then modified or overwritten entirely.
 
 ```javascript
 Ext.define('...view.detail.Product', {
@@ -179,10 +193,14 @@ Ext.define('...view.detail.Product', {
    }
 });
 ```
-65b5493dc58d046ff567ab1acb356e62.jpg
 
-Da es auch informative Elemente in einer Detailansicht geben kann, welche nicht die Daten aus einem Model Feld darstellen sollen, kann auch für das gesamte "FieldSet" eine Funktion hinterlegt werden, welche aufgerufen werden soll um das "FieldSet" (Die Funktion muss kein Fieldset zurückgeben) zu erstellen.
-So kann zum Beispiel ganz einfach eine Shopware Block Message eingebunden werden:
+<div style="text-align:center;">
+
+![](img/detail_4.png)
+
+</div>
+
+In other scenarios, you may not even need data from the model and just want to display some informative messages. In that cases, you create a simple container, which then may contain other components like a Shopware Block Message, a `Shopware.grid.Panel` or any other kind of container. You can define them to replace a fieldset using functions. Have a look at the example below:
 
 ```javascript
 Ext.define('...view.detail.Product', {
@@ -216,26 +234,29 @@ Ext.define('...view.detail.Product', {
 
    createCustomContainer: function() {
       return Shopware.Notification.createBlockMessage(
-         'Hier könnte auch ein Shopware.grid.Panel eingebunden werden',
+         'A Shopware.grid.Panel could also be implemented here.',
          'notice'
       );
    }
 });
 ```
-34149a3991bc993eebb545d668e09b4e.jpg
+<div style="text-align:center;">
 
-<h2>How to extend</h2>
-In diesem Abschnitt des Tutorials wird erklärt wie das Shopware.detail.Window und der Shopware.model.Container einfach um  Applikation spezifische Funktionalitäten erweitert werden kann.
-Wie beim Shopware.grid.Panel gibt es zwei Wege für die Erweiterbarkeit:
+![](img/detail_5.png)
 
-* Mittels Override der entsprechenden Funktion
-* Mittels des Ext JS Events Systems.
+</div>
 
-In den nachfolgenden Beispielen werden beide Wege erläutert. Die verschiedenen Lösungswege sind über die Tabfunktionalität einsehbar.
-Für die Erweiterung der Komponenten über das Ext JS Event System benötigen wir einen Ext JS Controller. In den nachfolgenden Beispielen wird dafür der Main Controller verwendet (`swag_product/controller/main.js`)
+## How to extend
+In this section of this tutorial you will learn how to easily extend the `Shopware.detail.Window` and `Shopware.model.Container`. Like extending the `Shopware.grid.Panel`, there are two ways to accomplish this task:
 
-<h3>Neuen Toolbar Button</h3>
-Um einen neuen Button in die Toolbar hinzuzufügen, müssen die Toolbarelemente des `Shopware.window.Detail` erweitert werden. Die Toolbar des `Shopware.detail.Window` wird in der Funktion `createToolbar()` erzeugt. Die eigentlichen Elemente der Toolbar werden jedoch in der `createToolbarItems()` Funktion des Detail Windows erzeugt:
+* through override of the methods
+* through the Ext JS event system
+
+The following examples will show you both ways. To use the Ext JS event system, you need your own Ext JS Controller. Here, we use our main controller in swag_product/controller/main.js.
+
+### Create a Toolbar Button
+To add a new button to the toolbar, you have to extend the toolbar elements of the `Shopware.window.Detail`. The toolbar will be created by the `createToolbar()` method. The actual elements will be created by the `createToolbarItems()` method.
+
 ```javascript
 createToolbarItems: function() {
     var me = this, items = [];
@@ -243,9 +264,7 @@ createToolbarItems: function() {
     me.fireEvent(this.getEventName('before-create-toolbar-items'), me, items);
 
     items.push({ xtype: 'tbfill' });
-
     items.push(me.createCancelButton());
-
     items.push(me.createSaveButton());
 
     me.fireEvent(this.getEventName('after-create-toolbar-items'), me, items);
@@ -254,9 +273,9 @@ createToolbarItems: function() {
 },
 ```
 
-Um nun einen neuen Button hinzuzufügen kann die Funktion direkt in der `Shopware.apps.SwagProduct.view.detail.Window` Komponente überschrieben werden oder über das Event <code>product-after-create-toolbar-items</code> im Main Controller abgefangen werden.
+You can now choose to extend them by either overriding the method or using the event `product-after-create-toolbar-items` in the main controller.
 
-**Mittels Override**
+**Through method overriding**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
     extend: 'Shopware.window.Detail',
@@ -282,7 +301,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-**Mittels Event System**
+**Through the event system**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
     extend: 'Enlight.app.Controller',
@@ -310,8 +329,9 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-<h3>Sidebar implementieren</h3>
-Um eine Sidebar zu implementieren, muss der `Shopware.model.Container` des Products erweitert werden (`swag_product/view/detail/product.js`). Die Elemente des `Shopware.model.Containers` werden in der `createItems()` Funktion erzeugt:
+### Implement a sidebar
+
+To implement a sidebar, you have to extend the product's `Shopware.model.Container` component in `swag_product/view/detail/product.js`. The elements of the `Shopware.model.Container` will be created by the `createItems()` method:
 
 ```javascript
 createItems: function() {
@@ -337,8 +357,7 @@ createItems: function() {
 },
 ```
 
-Um nun eine Sidebar zu implementieren haben wir per Override die Möglichkeit die Funktion createItems in `SwagProduct/Views/backend/swag_product/view/detail/product.js`zu überschreiben und per Event System das Event <code>product-after-create-items</code> zu verwenden.
-Wichtig bei den folgenden Anpassung ist es das Layout des Produkt Containers auf hbox zu ändern:
+Now, to implement the actual sidebar, you have either to override the `createItems()` method in `SwagProduct/Views/backend/swag_product/view/detail/product.js` or subscribe to the event `product-after-create-items` in the main controller. Additionally, you should change the layout of the product container to `hbox`:
 
 ```javascript
 Ext.define('...view.detail.Product', {
@@ -352,10 +371,9 @@ Ext.define('...view.detail.Product', {
 });
 ```
 
-Die `configure()` Funktion des Produkt Containers muss hierzu nicht angepasst werden, weswegen Sie im nächsten Beispiel entfernt wurde.
+In the following example, we've removed the configure() method, since you don't have to modify your it to make it work.
 
-**Mittels Override**
-
+**Through method overriding**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     extend: 'Shopware.model.Container',
@@ -396,8 +414,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-**Mittels Event System**
-
+**Through the event system**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
     extend: 'Enlight.app.Controller',
@@ -417,17 +434,17 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
     afterCreateItems: function(container, items) {
         var me = this;
 
-        //create left container to wrap the already generated items
+        // create left container to wrap the already generated items
         var leftContainer = Ext.create('Ext.container.Container', {
             flex: 1,
             margin: 20,
             items: Ext.clone(items)
         });
 
-        //reset reference array
+        // reset reference array
         items.length = 0;
 
-        //create new items array structure
+        // create new items array structure
         items.push(leftContainer, me.createSidebar());
     },
 
@@ -437,7 +454,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
             layout: {
                 type: 'accordion',
                 titleCollapse: false,
-                animate: true,
+                animate: true,ö
                 activeOnTop: true
             },
             items: [{
@@ -452,15 +469,12 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Bei der Event System Lösung musste ein wenig getrickst werden. Da das Referenz Array nicht neu instanziert werden darf, wird diese über <code>items.lenght = 0</code> resetet. Zudem werden die bereits erstellten Elemente über ein `Ext.clone()` dem Wrapper Container zugewiesen. 
+If you are using the event system solution, you have to fiddle a little bit, becuase you must not reset the array by just creating a new one - you have to reset it like this: `items.length = 0`. In addition, the already created elements are assigned to the wrapper container by `Ext.clone()`.
 
-<h3>Tab Panel implementieren</h3>
-Um ein Tab Panel in der Detailansicht zu implementieren ist nicht viel Source nötig. Denn die Detailansicht der Backend Komponenten supportet dieses bereits.
-Hierfür ist das `Shopware.detail.Window` zuständig.
-Damit immer alle Daten der Detailansicht gesendet werden, wird hier nicht wie in anderen Komponenten die Funktion createItems() aufgerufen um die Elemente zu erstellen, sondern die Elemente werden wie folgt erzeugt:
-<code>detailWindow.items = [ me.createFormPanel() ];</code>
-Dadurch ist sicher gestellt, dass auf oberster Ebene immer das Form Panel zum Speichern der Daten erzeugt wird.
-In der Funktion `createFormPanel()` wird dann zum einen das Form Panel erzeugt und zum anderen werden die Elemente über `createTabItems()` generiert. Sollte die Funktion `createTabItems()` ein Array mit mehr als einem Element zurück geben, so werden die erzeugten Elemente in einem Tabpanel dargestellt:
+### Implement the Tab Panel
+There is not much code needed to implement a tab panel inside of the detail window, because the `Shopware.detail.Window` already supports that.
+
+Here is a little difference for creating elements to the conventional method by calling `createItems()`. You now have to modify the detail window's items like `detailWindow.items = [ me.createFormpanel() ];`. That makes sure, that the toolbar is always on top. The method `createFormPanel()` can then be used to create the form panels and lastly `createTabItems()` to create its children elements. If the `createTabItems()` returns an array with more than one element, the elements will be displayed as tab panel:
 
 ```javascript
 createFormPanel: function () {
@@ -496,11 +510,9 @@ createTabItems: function () {
 }
 ```
 
-Damit nun ein Tab Panel in der Detailansicht dargestellt wird, kann für das Override Beispiel die Funktion `createTabItems()` überschrieben werden und hier einfach das neue Elemente hinzu gefügt werden.
-Für das Event System Beispiel kann das Event <code>product-after-create-tab-items</code> verwendet werden:
+To complete the implementation, you can override the method `createTabItems()` and add the new element to the parent's list. In case you want to use the event system, you can subscribe to the event `product-after-create-tab-items`:
 
-**Mittels Override**
-
+**Through method overriding**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
     extend: 'Shopware.window.Detail',
@@ -527,8 +539,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-**Mittels Event System**
-
+**Through the event system**
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
     extend: 'Enlight.app.Controller',
@@ -562,14 +573,18 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-### Plugin Download - [SwagProduct.zip](http://community.shopware.com/files/downloads/swagproduct-14087253.zip)
+## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductDetail.zip)
 
-Herzlichen Glückwunsch zu Ihrer ersten individualisierten Detailansicht mit den Shopware Backend Komponenten. Sie haben nun gelernt die Detailansicht vollständig für Ihr Plugin zu individualisieren und zu erweitern.
+Congratulations! You've just created your first customized detail window component using Shopware backend components. You now have learnt to completely customize and extend the detail window in your plugin.
 
-a913caf87f72e1d419edde15dc96a7e2.jpg
+<a href="img/detail_6.png" target="_blank" style="text-align:center;">
 
+![](img/detail_6.png)
 
-### Weitere Tutorials
+</a>
 
-Das waren die drei Tutorials zu den Basics der Shopware Backend Komponenten. In den nächsten Tutorials werden die hier erlernten Basics vertieft und es werden Assozierte Daten implementiert.
-<a href="http://community.shopware.com/Shopware-Backend-Komponenten-Assoziationen_detail_1417_871.html">Shopware Backend Komponenten - Assoziationen</a>.
+## Further Tutorials
+
+The next tutorial will cover the already learned basics in more depth and the implementation of associations.
+
+Proceed to [Shopware Backend Components - Associations](/developers-guide/backend-components/associations/).

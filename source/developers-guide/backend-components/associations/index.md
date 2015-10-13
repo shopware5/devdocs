@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Shopware Backend Components Associations
-github_link: developers-guide/backend-components/associations.md
+title: Backend Components: Associations
+github_link: developers-guide/backend-components/associations/index.md
 tags:
   - backend
   - extjs
@@ -9,32 +9,33 @@ tags:
 indexed: true
 ---
 
-Im letzten Tutorial [Shopware Backend Komponenten - Detailansicht](/developers-guide/backend-components/detail) wurden die Möglichkeiten der Detailansicht erläutert. Dieses Tutorial enthält die Grundlegenden Informationen über die Implementierung von Assoziationen in den Shopware Backend Komponenten.
+In the last tutorial [Shopware Backend Components - Detail](/developers-guide/backend-components/detail/) we've covered the different configuration options of the detail window. In this tutorial, you'll learn the basics of the implementation of associations.
 
-Als Grundlage für dieses Tutorial dient das folgende Plugin: [Plugin herunterladen](http://community.shopware.com/files/downloads/swagproduct-14172882.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [Download Plugin](/exampleplugins/SwagProductDetail.zip)
 
-Dieses Plugin ist das Ergebnis aus dem [Shopware Backend Komponenten - Basics](/developers-guide/backend-components/) Tutorial.
+The detail and listing windows are already defined, but not customized yet. Therefore all fields are displayed:
 
-Die Detail- und Listingansicht ist in dem Plugin bereits definiert, jedoch noch nicht individualisiert, so dass standardmäßig alle Felder angezeigt werden:
+<a href="img/assoc_1.png" style="text-align:center;">
 
-<div class="img-container">
-[IMG|0|original]
-</div>
+![](img/assoc_1.png)
 
-## PHP Implementierung
+</a>
 
-In den bisherigen Tutorials wurde die Darstellung von einfachen Datenstrukturen mit den Shopware Backend Komponenten erklärt. In diesem Tutorial soll die Datenstruktur des Produkt Beispiel Models um folgende Bestandteile erweitert werden:
+<div class="toc-list"></div>
 
-* Verknüpfung von Produkten und Steuersätzen (`ManyToOne`)
-* Verknüpfung von Produkten und Kategorien (`ManyToMany`)
-* Verknüpfung von Produkten und Attributen (`OneToOne`)
-* Verknüpfung von Produkten und Varianten (`OneToMany`)
+## PHP Implementation
 
-Bevor wir die Verknüpfungen jedoch im Ext JS Teil implementieren können benötigen wir die PHP Seitige Implementierung da sonst keine Daten im Ext JS Backend ankommen. 
-Daher werden zunächst sämtliche PHP Implementierung für diese Verknüpfungen vorgenommen bevor es an die Ext JS Seitige Implementierung geht.
+The previous tutorials described how to display simple data structures. This tutorial will extend the product model with the following elements:
 
-### Verknüpfung von Produkten und Steuersätzen (<b>ManyToOne</b>)
-Um jedem Produkt einen Steuersatz zuweisen zu können, wird eine `@ORM\ManyToOne` Assoziation auf dem `Shopware\CustomModels\Product\Product Model` benötigt. Warum eine `@ORM\ManyToOne`? Da mehrere Produkte dem gleichen Steuersatz zugewiesen sein können, jedoch ein Produkt nur einem Steuersatz zugewiesen werden kann. Die Implementierung dieser Assoziation sieht wie folgt aus:
+* Link products to tax rates (`ManyToOne`)
+* Link products to categories (`ManyToMany`)
+* Link products to attributes (`OneToOne`)
+* Link products to variants (`OneToMany`)
+
+Before you start to implement the Ext JS part, you have to modify the php implementation because you will not have enough data transfered to the backend. Because of that, you will now implement the relations seen above before implementing the Ext JS part.
+
+### Link Products to Tax Rates (**ManyToOne**)
+To link every product to a tax rate, you need to add a `@ORM\ManyToOne` association on the `Shopware\CustomModels\Product\Product` model. Why `@ORM\ManyToOne`? Since many product can have the same tax rate, but only one tax rate per product, the implementation needs to look as follows:
 
 ```php
 /**
@@ -79,20 +80,18 @@ class Product extends ModelEntity
     ...
 }
 ```
-Was wurde hier implementiert? Zum einen wurde durch die Definition des `$taxId` Properties eine neue Spalte `tax_id` hinzugefügt. 
+
+First, the property `$taxId` with their column `tax_id` has been added to the model.
 
 <div class="alert alert-info">
-<strong>Wichtig</strong>
-<p>Dieses Property darf keine Getter und Setter Funktionen besitzen, da sonst inkonsistente Daten entstehen können wenn das `$taxId` Property eine andere Id besitzt als das `Shopware\Models\Tax\Tax` Objekt das in dem Property `$tax` hinterlegt ist)</p>
+<strong>Important</strong>
+<p>This property must not own a getter or setter method because it can cause inconsistent data if the <code>$taxId</code> property contains another id than the <code>Shopware\Models\Tax\Tax</code> object that bound to the <code>$tax</code> property.</p>
 </div>
 
-Zudem wurde über das Property `$tax` definiert, dass das Produkt einem Tax Objekt zugewiesen sein kann.
-Die Annotation <code>@ORM\ManyToOne(targetEntity="Shopware\Models\Tax\Tax")</code> definiert mit welchem Doctrine Model das Produkt Model verknüpft wird.
-Die Annotation <code>@ORM\JoinColumn(name="tax_id", referencedColumnName="id")</code> definiert, über welche Spalten die beiden Models Verknüpft werden.
+Second, the property `$tax` has been defined, which can be used to associate a tax object to the product. The `@ORM\ManyToOne(targetEntity="Shopware\Models\Tax\Tax")` annotation defines to which doctrine model the product will be associcated with. `@ORM\JoinColumn(name="tax_id", referencedColumnName="id")` defines the columns should be joined for the assocication.
 
-### Verknüpfung von Produkten und Kategorien (**ManyToMany**)
-Damit ein Produkt mehreren Kategorien zugeordnet werden kann und eine Kategorie auch mehrere Produkte beinhalten kann, muss eine `@ORM\ManyToMany` Assoziation im Produkt Model implementiert werden.
-Die Implementierung dieser Assoziation sieht wie folgt aus:
+### Link Products to Categories (**ManyToMany**)
+To associate a product with multiple categories, you need to implement a `@ORM\ManyToMany` association. This will look as follows:
 
 ```php
 /**
@@ -150,16 +149,16 @@ class Product extends ModelEntity
     ...
 }
 ```
-Durch die Annotation `@ORM\ManyToMany` wird definiert mit welchem anderen Doctrine Model das Produkt verknüpft werden soll. Zusätzlich muss definiert werden, über welche Tabelle die Daten verknüpft werden, da bei einer `@ORM\ManyToMany` Assoziation immer eine sogenannte Mapping Tabelle verwendet werden muss. In dieser Mapping Tabelle werden nur die Primary Keys der Doctrine Models gespeichert. Diese Mapping Tabelle wird über die Annotation `@ORM\JoinTable` definiert. In dieser Annotation wird zunächst definiert, wie der Tabellenname lautet: <code>@ORM\JoinTable(name="s_product_categories", </code>. Anschließend wird über `joinColumns` und `inverseJoinColumns` definiert, wie die Spalten in der in der Mapping Tabelle und in den anderen Tabellen heißen. In beiden Properties wird eine `@ORM\JoinColumn` gesetzt, bei der das Property `name` immer den Spaltennamen beinhaltet, wie er in der Mapping Tabelle angelegt werden soll. Das Property `referencedColumnName` beinhaltet immer den Spaltennamen, wie er in der verknüpften Tabelle bereits definiert ist (`s_product.id` / `s_categories.id`).
+
+The `@ORM\ManyToMany` annotation defines the doctrine model which will be used to link it with the product. Additionally, you have to provide the table which will be used to join the data because you have to use a mapping table. The table only contains the primary keys of the doctrine models. The mapping table itself will be defined by the `@ORM\JoinTable(name="s_product_categories")` annotation. After that, you have to define `joinColumns` which stores the relation to the product itself and `inverseJoinColumns` which stores the relation to the category inside the mapping table. Both properties contain `@ORM\JoinColumn` whereas `name` always is the column name of the mapping table and `referencedColumnName` always contains the primary key column of the relation table, e.g. `s_product.id` or `s_categories.id`.
 
 <div class="alert alert-info">
-<strong>Wichtig</strong><br/>
-Im Klassenkonstruktor müssen `@ORM\ManyToMany` Properties immer mit einer Array Collection initialisiert werden. Dies wird gemacht um sicher zu stellen, dass die hinterlegten Daten immer in einem Array Format vorliegen.
+<strong>Important</strong>
+<p><code>@ORM\ManyToMany</code> relations need to be initialized with an empty array collection within the <code>__construct()</code> method. This needs to be done to prevent unexpected values.
 </div>
 
-### Verknüpfung von Produkten und Attributen (**OneToOne**)
-
-Um jedem Produkt einen Attribute Datensatz zuzuweisen und diesen auch in der Backend Applikation editierbar zu gestalten, wird für die Verknüpfung zwischen Produkten und Attributen eine `@ORM\OneToOne` Assoziation benötigt. Diese Assoziation wird wie folgt definiert:
+### Link Products to Attributes (**OneToOne**)
+To add an attribute entry to a product and make it editable for the backend applications, you have to define a `@ORM\OneToOne` association which is defined as follows:
 
 ```php
 /**
@@ -208,32 +207,35 @@ class Product extends ModelEntity
 }
 ```
 
-Die Annotation `@ORM\OneToOne` des Properties `$attribute` definiert dass es sich bei dieser Assoziation um eine 1 zu 1 Verknüpfung zwischen den beiden Models handelt. Dies bedeutet dass jedes Attribute nur einem Produkt zugeordnet sein kann und ein Produkt wiederum auch nur ein Attribute besitzen kann.
-Zusätzlich zur Definition des Verknüpften Models über die Eigenschaft `targetEntity`, wurde bei dieser Assoziation die Eigenschaft `mappedBy` und `cascade` gesetzt.
+The `@ORM\OneToOne` of the `$attribute` property defines that every attribute can only be associated with the product once and inverse. Additionally, the attributes `targetEntity`, `mappedBy` and `cascade` have been set too.
 
-Die `mappedBy` Eigenschaft definiert, dass es sich bei dieser Assoziation um eine Bi-Directionale Assoziation handelt. Dies bedeutet nichts anderes als "Die Models kennen Sich gegenseitig". Bei den Assoziationen der Kategorien und der Steuersätze handelte es sich um eine Uni-Directionale Assoziation, wodurch zwar das Produkt Model das Kategorie und Tax Model kennt, jedoch anders herum nicht.
+* **targetEntity**  
+The doctrine model of the association.
 
-Die `cascade` Eigenschaft definiert, welche Aktionen die auf dem Produkt Model ausgeführt werden, an das Attribute Model ebenfalls weiter gereicht werden sollen. Durch das setzen von <code>cascade={"persist", "remove"}</code> wird definiert, dass das Speichern und Löschen eines Produkt Models ebenfalls an das Attribute Model weiter gereicht werden soll.
+* **mappedBy**  
+Defines that the assocication is a bi directional assocication and is nothing more than an information that the models known each other. The previous assocications with categories or tax rates were uni directional association whereas the product knows the categories and tax rate but not inverse.
 
-#### Shopware\Components\Model\ModelEntity setOneToOne
-Als letzte Besonderheit dieser Assoziation ist der Funktionsaufruf <code>$this->setOneToOne(...)</code> in der Setter Funktion des `$attribute` Properties. Dies ist eine Shopware Helfer Funktion, welche es ermöglicht, übergebene Array Daten automatisiert auf das Verknüpfte Attribute Model zu mappen. Übergeben werden die folgenden Parameter:
+* **cascade**  
+Defines which actions should be executed in case the model gets saved or deleted. If you set `cascade={"persist", "remove"}`, these action will also be forwarded to the assocication. That means, if you delete the product, the attribute will also be deleted.
 
-* Array Daten die gesetzt werden sollen
-* Voller Namespace + Klassenname des Verknüpften Models
-* Name des Properties das befüllt werden soll 
-* Name des `mappedBy` Feldes im Verknüpften Models 
+#### One more thing
+Lastly, there is a helper function `$this->setOneToOne()` which can be used in the setter of the `$attribute` property. This helper function part of the Shopware helper functions of an model. It allows you to provide the object to map or an array with the data of the related model which will then be mapped to the related model and finally associated with the model. The following parameters are required:
 
-Die `setOneToOne` Funktion wurde implementiert um letztigen Boilerplate Source Code aus den Backend Controllern zu entfernen. Ohne diese Funktion müsste für jede `@ORM\OneToOne` Assoziation folgendes im Backend Controller implementiert werden:
+* Array containing the related model's data
+* Full namespace and class name of the related model
+* Own property to be set
+* Name of the `mappedBy` parameter of the related model
 
-* Wurden Daten für die Assoziation gesendet?
-* Existiert bereits ein Model? Dann dies mit Daten befüllen
-* Sollte kein Verknüpftes Model bereits existieren, muss ein neues Model angelegt werden.
+The `setOneToOne()` method was implemented to remove the last boilerplate source code from the backend controllers. Without this functionality, every `@ORM\OneToOne` association must had implemented the following tasks:
 
-Das sieht auf den ersten Blick nach wenig aus, wenn jedoch das ganze noch Rekursiv gemacht werden soll (Das Attribute Model besitzt wieder eine `@ORM\OneToOne` Assoziation), so befinden sich in kürzester Zeit riesige Mengen an Boilerplate Code im Backend Controller. 
+* Has data for the asssociation been sent?
+* If there is an existing model associated, update it with the data
+* If there is **no** existing model associated, create a new one and associate it
 
-#### Implementierung SwagProduct\CustomModels\Product\Attribute
-Zusätzlich zur Definition der Assoziation im Produkt Model, muss das neue Attribute Model der Produkte implementiert werden.
-Hierfür wird folgender Source Code in die neue Datei `SwagProduct/Models/Product/Attribute.php` eingefügt:
+At first sight, this doesn't look that complicated, but if you have to implement this with recursion (e.g. the attribute model also has a `@ORM\OneToOne` association), there will be many places where you have boilerplate code in the controllers.
+
+#### Implement SwagProduct\CustomModels\Product\Attribute
+In addition to the association in the product model, you have to implement the new attribute model. For this you have to put the following source code into `SwagProduct/Models/Product/Attribute.php`:
 
 ```php
 <?php
@@ -410,15 +412,13 @@ class Attribute extends ModelEntity
         return $this->attr5;
     }
 }
-?>
 ```
 
-Im Attribute Model wird die Gegenseite der `@ORM\OneToOne` Assoziation, des Produkt Models, definiert.
-Anders als bei der Assoziation des Produkt Models wird hier statt der `mappedBy` Eigenschaft die Eigenschaft `inversedBy` gesetzt. Dadurch weiß Doctrine dass sich der Fremdschlüssel (ForeignKey > s_product_attribute.product_id) sich in dem Attribute Model befindet. Das `mappedBy` Property wird also immer auf die Seite gesetzt, die nicht den Fremdschlüssel besitzt.
+The opposite part of the `@ORM\OneToOne` association will be defined in the attribute model. Different to the prodct model association, you have to replace `mappedBy` with `inversedBy`. Because of that, doctrine knows that the foreign key `s_product_attribute.product_id` is contained by the attribute model. **Remember**: The `mappedBy` property will always be on the model which contains the foreign key.
 
-### Verknüpfung von Produkten und Varianten (**OneToMany**)
+### Link Products to Variants (**OneToMany**)
 
-Um dem Produkt mehere Varianten zuordnen zu können und diese auch über das Backend editierbar zu gestalten, ist eine `@ORM\OneToMany` Assoziation nötig. Diese wird wieder im `SwagProduct/Models/Product/Product.php` Model implementiert:
+To link a product to multiple variants and make them editable in the backend, you have to implement a `@ORM\OneToMany` assocication. This will be implemented in `SwagProduct/Models/Product/Product.php`:
 
 ```php
 /**
@@ -472,16 +472,16 @@ class Product extends ModelEntity
     ...
 }
 ```
-Die Definition der `@ORM\OneToMany` Assoziation unterscheidet sich nicht groß von den bereits angesprochenden Assoziationstypen. 
 
-#### Shopware\Components\Model\ModelEntity setOneToMany
+The definition of the `@ORM\OneToMany` association does not differ much from the already explained associations.
 
-Wie bei der `@ORM\OneToOne` Assoziation besitzt auch die `@ORM\OneToMany` Assoziation eine Helfer Funktion um den Boilerplate Code aus dem Backend Controller fern zu halten. Diese Funktion muss im Vergleich zur `setOneToOne()` Funktion noch weitere Bedingungen prüfen. Denn in dem internen Property `$variants` können sich bereits existierende Verknüpfungen befinden, welche wiederrum mit den übergebenen Daten aktualisiert werden müssen. Einträge, die jedoch schon hinterlegt sind aber nicht übergeben wurden, müssen wiederrum entfernt werden.
+#### Shopware\Components\Model\ModelEntity setOneToMany()
 
-#### Implementierung SwagProduct\CustomModels\Product\Variant
-Wie bei der Implementierung der Verknüpfung zwischen Produkten und Attributen, wird bei der Verknüpfung zu den Produkt Varianten, ein eigens Model benötigt.
+The `@ORM\OneToMany` association also has a helper function to get rid of the controller boilerplate code like the `@ORM\OneToOne` association. But in contrast to the `setOneToOne()` method, there are more condition to be checked first. It may be the case, that the `$variants` property already contains existing associations which might have to be updated with the provided data. Entries, which exists but are not provided have to be deleted.
 
-Hierfür wird folgender Source Code in die neue Datei `SwagProduct/Models/Product/Variant.php` eingefügt:
+#### SwagProduct\CustomModels\Product\Variant Implementation
+
+As well as products and attributes, you also have to create your own model for product variants. For this you need the following code in `SwagProduct/Models/Product/Variant.php`:
 
 ```php
 <?php
@@ -681,19 +681,17 @@ class Variant extends ModelEntity
         return $this->weight;
     }
 }
-?>
 ```
 
-Da im Produkt Model eine `@ORM\OneToMany` Assoziation definiert wurde, muss auf der Gegenseite der Assoziation eine `@ORM\ManyToOne` Assoziation definiert werden. 
+Because the product model contains a `@ORM\OneToMany` association, the counter part has to implement a `@ORM\ManyToOne` association.
 
-### PHP Controller Erweiterung
+### Extend the PHP Controller
 
-Damit die Daten auch an das Backend Module weiter gereicht werden, muss der PHP Controller des Plugins angepasst werden (`SwagProduct/Controllers/Backend/Product.php`).
-Um nun die Assozierten Daten sauber an die Backend Applikation zu reichen, müssen die Query für die Detailansicht und Listingansicht erweitert werden.
+You have to extend the `SwagProduct/Controllers/Backend/Product.php` controller in order to forward the data to the backend modules. To forward them, you have to extend the detail and listing query.
 
-Für beide Queries gibt es im Standard Controller eine eigene Funktion, welche für die Generierung des Query Builders zuständig ist. Dies ist die `getListQuery()` und `getDetailQuery()` Funktion. Diese Funktionen können einfach überschrieben und so erweitert werden.
+Both queries have their own method for generating a query builder. They are named `getListQuery()` and `getDetailQuery()`. You can just overwrite these methods.
 
-Damit die Standard Funktionen von Shopware nicht verloren gehen, sollte immer zuerst die entsprechende parent Funktion aufgerufen werden:
+To not loose the default data provided by Shopware, you should always call the parent method and then extend the query:
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
@@ -727,7 +725,7 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 }
 ```
 
-Da die Detail Query in manchen Szenarien schnell wachsen kann, ist es ratsam `@ORM\ManyToMany` und `@ORM\OneToMany` Assoziationen nicht in der selben Query zu selektieren. Da jedoch die `getDetailQuery()` Funktion immer einen Query Builder zurück geben muss, ist dies in dieser Funktion nicht möglich. Für solche Fälle kann jedoch die Funktion `getAdditionalDetailData()` verwendet werden. Diese Funktion bekommt das selektierte Daten Array der `getDetailQuery()` übergeben, in der zusätzliche Daten hinterlegt oder bearbeitet werden können:
+The detail query might grow fast in different scenarios, therefore it's not recommended to select `@ORM\ManyToMany` and `@ORM\OneToMany` associations in the same query. But since the `getDetailQuery()` method always have to return a query builder, this isn't possible. For those cases you can use the `getAdditionalDetailData()` which gets the result of the query builder as array. You can now modify the array to your needs and return it::
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
@@ -782,9 +780,8 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 }
 ```
 
-### Generierung der Tabellen
-
-Die Daten werden nun im Backend Controller selektiert und an die Backend Applikation weiter gegeben. Damit die Tabellen für das Variant und Attribute Model erzeugt werden, müssen diese noch in der `install()` und `uninstall()` Funktion in das Metadaten Array hinzugefügt werden:
+### Table Generation
+Now, the data is going to be selected and returned to the backend application. To create the database table for the variant and attribute model, you have to modify the `install()` and `uninstall()` methods to tell doctrine what to do. You have to add the class metadata of the models to an array and use `createSchema()` to create a table or `dropSchema()` to drop a table respectively:
 
 ```php
 class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
@@ -834,9 +831,9 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
 }
 ```
 
-### Demo Daten einspielen
+### Insert Demo Data
 
-Nun müssen nur noch entsprechende Demodaten für diese Tabellen erzeugt werden. Dafür wird die Funktion addDemoData um folgende Sourcen ergänzt:
+Lastly, you have to add some demo data for the tables. For this task, append the `addDemoData()` method with the following code:
 
 ```php
 class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
@@ -909,16 +906,15 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
 }
 ```
 
-Damit wäre die PHP-seitige Implementierung fertig gestellt. Als nächstes werden die Assoziationen im Ext JS Module implementiert. 
+With this change, you are done implementing associations in PHP. Next up is the implementation in Ext JS.
 
-## Ext JS Implementierung
+## Ext JS Implementation
 
-Da nun die Daten im Ext JS Module ankommen muss auch im Produkt Model definiert werden, dass diese Assoziationen existieren. Zudem muss definiert werden, um welchen Typen es sich bei den Assoziationen handelt und wo und wie die Assoziationen angezeigt werden sollen.
+Since we return the product including his associations, you now have to define them in Ext JS too. In addition, you have to define which type of association you are using and how you want it to be displayed.
 
-In den nachfolgenden Bereichen dieses Tutorials werden stets neue Views und Models angelegt. Diese müssen stets in der app.js zunächst registiert werden, damit diese in der Applikation zur Verfügung stehen.
-Um nicht für jedes Beispiel erneut die gesamte app.js zeigen zu müssen wird hier einmal die gesamte app.js dargestellt. Die nachfolgend angelegten Komponenten sind hier auskommentiert und können einfach am Ende jedes Beispiels einkommentiert werden:
+In the following sections of the tutorial, multiple models and views will be created. You always have to register them in the `app.js` file. Below you'll find the final `app.js` with some commented lines so we don't have to show you the whole file every time we create a component. To enable a component, just uncomment the appropiate line and reload the application:
 
-```php
+```javascript
 Ext.define('Shopware.apps.SwagProduct', {
     extend: 'Enlight.app.SubApplication',
 
@@ -958,13 +954,11 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-### Zusammenbau der Detailansicht
+### The Detail Window
 
-Um Assoziationen in der Detailseite implementieren zu können, muss man zunächst verstehen, wie die Detailansicht die verschiedenen Komponenten zusammenbaut.
+To implement associations in the detail window, you first have to understand, how the detail window assembles the different components. The definition of how a model is represented in a specific detail window is based on the association definition and the configured view component in the model.
 
-Die Definition wie eine Datenquelle (Model) in einer spezifischen Detailansicht dargestellt werden soll, setzt sich aus der Definition des Assoziation und der konfigurierten View Komponenten im verknüpften Model zusammen.
-
-Eine solche Definition wurde bereits in dem ersten Tutorial der Shopware Backend Komponenten getätigt. Dabei handelte es sich um die Detailansicht des Produkt-Models:
+Such a definition has already been implemented in the first tutorial of our Shopware Backend Components series. Yup, we are talking about the detail window of the product model:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -979,12 +973,9 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-Hier wurde definiert, dass für die detaillierte Ansicht des Produkt-Models immer die `Shopware.apps.SwagProduct.view.detail.Product` Komponente verwendet werden soll. 
+Here you had defined, that the detail window should always display the `Shopware.app.SwagProduct.view.detail.Product` component. If you provide a `Shopware.apps.SwagProduct.model.Product` entry to the `Shopware.window.Detail` component, the detail window will recognize the entry as a main entry and checks the `detail` parameter of the model.
 
-Wird nun an ein `Shopware.window.Detail`(Detailansicht) ein `Shopware.apps.SwagProduct.model.Product` Datensatz übergeben, erkennt die Detailansicht, dass es sich hierbei um den Haupt-Datensatz handelt und prüft welche View in dem `detail` Parameter konfiguriert ist.
-
-Genauso funktionieren auch die Assoziationen, mit dem kleinen Zusatz, dass zunächst geschaut werden muss, um was für eine Art der Verknüpfung es sich handelt.
-Es existieren vier mögliche Verknüpfungsarten (Nachfolgend bereits, für die Verständlichkeit, mit einem Model definiert):
+Associations are working similar, but with the addition, that you first have to look up which type of association is configured. To keep things simple, there is a simplified model with four possible associations below:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -1007,18 +998,18 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-Für jede diese Verknüpfungsarten existiert ein entsprechender Konfigurationsparameter / View Definition im `Shopware.data.Model`.
+Every association type exists with their appropiate configuration option / view definition in the `Shopware.data.Model`.
 
 * `field` <> ManyToOne
 * `related` <> ManyToMany
-* `detail` <> OneToOne  /  Ebenfalls für das an die Detailansicht übergebe Haupt-Model
+* `detail` <> OneToOne  /  Also used for the provided main model in the detail window
 * `listing` <> OneToMany
 
-Soll nun die `ManyToOne` Assoziation, aus dem obigen Beispiel, in einer Detailansicht dargestellt werden, so prüft die Detailansicht welche Komponenten in dem `field` Parameter des verknüpften `Shopware.apps.Base.model.Tax` konfiguriert wurde.
+If the `ManyToOne` association from the example above should now be displayed in a detail window, the detail window check, which component has been configured using the `field` property of the `Shopware.apps.Base.model.Tax` component.
 
-Soll die `ManyToMany` Assoziation in einer Detailansicht dargestellt werden, so prüft die Detailansicht welche Komponente in dem `related` Parameter des verknüpften `Shopware.apps.SwagProduct.model.Category` konfiguriert wurde. Usw.
+If the `ManyToMany` association should be display in a detail window, the detail window checks, which component has been configured using the `related` property of the `Shopware.apps.SwagProduct.model.Category` component.
 
-Da Assoziationen oftmals gleich dargestellt werden, bei einer `ManyToOne` Assoziation (Bsp.: Product & Tax) wird immer eine Auswahlbox angezeigt, sind in dem `Shopware.data.Model` (Wovon jedes Model extended) bereits die entsprechenden Views vorkonfiguriert:
+Because associations may be displayed in the same way, the `Shopware.data.Model` already has some views pre-configured. For example, `ManyToOne` associations (e.g. product & tax) always display a combobox:
 
 ```php
 Ext.define('Shopware.data.Model', {
@@ -1037,19 +1028,18 @@ Ext.define('Shopware.data.Model', {
 });
 ```
 
-Sollten diese jedoch nicht dem entsprechen was gefordert ist, können diese einfach überschrieben werden.
+In case that they don't fit your needs, you can overwrite them with your own components.
 
-### ManyToOne Assoziation - Produkte & Steuersätze
-Für die Implementierung einer `ManyToOne` Assoziation mit den Shopware Backend Komponenten müssen die folgenden Dinge in der Backend Applikation implementiert werden:
+### ManyToOne Associations - Products & Tax Rates
+To implement a `ManyToOne` association using the Shopware backend components, you have to do the following things first:
 
-* Implementierung der `taxId` Spalte.
-* Einbindung der Ext JS Assoziation im Produkt-Model
-* Konfiguration des Assoziationstypen & Foreign Keys
+* Implement the `taxId` field
+* Implement the association in the product model
+* Configure the association type & foreign keys
 
+The `ManyToOne` association is the easiest type of them. This association is commonly used to link data between applicaitons. In most of cases, the foreign model already exists and therefore does not need be implemented again.
 
-Die `ManyToOne` Assoziation ist die einfachste der vier Assoziationstypen. Diese Assoziation wird meistens verwendet, um Applikations übergreifend Daten miteinander zu verknüpfen. Daher existiert in den meisten Fällen das zu verknüpfende Model bereits und muss daher nicht selbst implementiert werden.
-
-Um nun die Produkte mit einem Steuersatz zu verknüpfen, wird das Produkt-Model wie folgt erweitert:
+To link a product to a tax rate, you have to extend the product model:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -1077,19 +1067,21 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-[IMG|1|5]
+<div style="text-align:center;">
 
-**Was wurde hier gemacht?**  
-Zunächst wurde durch die Zeile `{ name : 'taxId', type: 'int' },` ein neues Feld dem Produkt hinzugefügt. Diese Spalte beinhaltet die ID des hinterlegten Steuersatzes (Foreign Key). 
+![](img/assoc_2.png)
 
-Zudem wurde eine neue Assoziation definiert, welche eine Verknüpfung zum `Shopware.apps.Base.model.Tax` erzeugt. 
-Durch die Definition `relation: 'ManyToOne',` wurde der Assoziationstyp definiert, welcher für die Standard Backend Komponenten zwigend notwendig ist.
+</div>
 
-Damit die Daten nicht seperat zur `taxId` angezeigt werden, wurde durch die Konfiguration `field: 'taxId',` definiert, dass die Daten in dem Feld `taxId` angezeigt werden sollen. Dieser Konfigurationsparameter steht nur für `ManyToOne` Assoziationen zur Verfügung.
+First, you add the line `{ name: 'taxId', type: 'int' },` to add this field to the product model. This field contains the id of the stored tax rate - the foreign key.
+
+Additionally, a new association has been defined, which links the product model to the `Shopware.app.Base.model.Tax` model. The association type is defined by the required property `relation: 'ManyToOne',`.
+
+To combine these information into a single field, you provide the option `field: 'taxId',` which tells the application to replace the default input field with the appropiate component configured earlier.
 
 #### Shopware.form.field.Search
-Für `ManyToOne` Assoziationen wird in der Detailansicht ein Shopware.form.field.Search, nachfolgend auch Searchfield genannt, Element erzeugt. Dieses Element ist eine Erweiterung der Ext.form.field.ComboBox. 
-Dem Searchfield wird ein dynamisch erstellter Store zugewiesen, welcher wie folgt zusammen gebaut wird: (Beispiel Tax)
+
+`ManyToOne` associations usually displayed by a `Shopware.form.field.Search` component which is an extension to the `Ext.form.field.ComboBox`. A dynamic store will be assigned to the search field which looks as follow:
 
 ```php
 return Ext.create('Ext.data.Store', {
@@ -1102,23 +1094,26 @@ return Ext.create('Ext.data.Store', {
     }
 });
 ```
-[IMG|2|5]
 
-Die Tax Daten werden über einen Ajax Request auf die Plugin Controller Funktion `searchAssociationAction()` ermittelt.
+<div style="text-align:center;">
 
-Da alle assoziierten Daten über diese Funktion ermittelt werden, wird als Identifikator der Propertyname der Assoziation mit gesendet, in diesem Beispiel `tax`.
+![](img/assoc_3.png)
 
-Zusätzlich zur Abfrage eines Offsets an Daten, unterstützt das `Shopware.form.field.Search` eine Suchfunktionalität. Diese ermöglicht es, Suchbegriffe in das Suchfeld einzugeben, nach denen über alle Model Felder gesucht werden soll.
+</div>
 
-### ManyToMany Assoziation - Produkte & Kategorien
-Für die Implementierung einer ManyToMany Assoziation mit den Shopware Backend Komponenten müssen die folgenden Anpassungen an der Backend Applikation vorgenommen werden:
+The tax data will be determined using an ajax request to the plugin controller method `searchAssociationAction()`.
 
-* Definition der Assoziation im Produkt Model
-* Erstellung eines Kategorie Models
-* Definition der Kategorie-View
-* Definition wo die Kategorie-View angezeigt werden soll
+Since all association data will be determined using this method, you'll get the property name of the association, e.g. `tax`, as a parameter. The `Shopware.form.field.Search` also supports searching through all fields using the user's input.
 
-Zunächst wird das Produkt-Model um die Assoziation der Kategorien erweitert. Im gleichen Zuge wird ein neues Kategorie Model in der Datei `SwagProduct/Views/backend/swag_product/model/category.js` angelegt:
+### ManyToMany Associations - Products & Categories
+The following tasks are necessary to use the `ManyToMany` association using the Shopware backend components:
+
+* Defining the association in the product model
+* Creating the category model
+* Defining the category view
+* Defining where the category view should be displayed
+
+First, the product model will be extended with the category association. In the same move, you should create the category model in `SwagProduct/Views/backend/swag_product/model/category.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1152,10 +1147,11 @@ Ext.define('Shopware.apps.SwagProduct.model.Category', {
 });
 ```
 
-Da im Kategorie-Model nur die View neu konfiguriert werden soll, kann hier ganz einfach vom Standard Kategorie-Model abgeleitet werden, welches global zur Verfügung steht. Dies bietet den Vorteil, dass die Felder des Models nicht neu definiert werden müssen.
-Da es sich bei der Assoziation um eine `ManyToMany` Assoziation handelt, wird als View Definition die Eigenschaft `related` verwendet (siehe **Zusammenbau der Detailansicht**).
+Since only the related view in the category model should be modified, you can create your own category model and extend the standard category model `Shopware.apps.Base.model.Category`. The upside is, that you don't have to create all the fields again and just modify the things you need to change.
 
-Dieser Eigenschaft wurde eine neue View Komponente zugewiesen die in der Datei `SwagProduct/Views/backend/swag_product/view/detail/category.js` implementiert wird:
+Because you are using the `ManyToMany` association, we have to define the `related` option.
+
+This option has been a new view component assigned, which is implemented in `SwagProduct/Views/backend/swag_product/view/detail/category.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Category', {
@@ -1175,18 +1171,16 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Category', {
 });
 ```
 
-*Was wurde hier implementiert?*  
-`ManyToMany` Assoziationen benutzen standardmäßig die Shopware.grid.Association Komponente um die verknüpften Daten darzustellen. Damit die Standardfunktionalität nicht verloren geht, wird die eigene Kategorie-View von dieser Komponente abgeleitet und leicht modifiziert. Eine genauere Erklärung der `Shopware.grid.Association` Komponenten finden Sie [hier](#Shopware.grid.Association).
+`ManyToMany` associations use the `Shopware.grid.Association` component by default. To not modify the default funtionality, you should create a new component which extends the `Shopware.grid.Association`. A more in depth description of the `Shopware.grid.Association` can be found [here](#Shopware.grid.Association).
 
-Nun muss den Backend Komponenten noch mitgeteilt werden, wo diese Assoziation dargstellt werden soll.
-Hier gibt es zwei mögliche Stellen, welche die Standard Komponenten unterstützen:
+Now you have to tell the backend components, where to display these associations. There are two places, which are supported by the backend components:
 
-* `Shopware.window.Detail` - Als eigener Reiter auf der Detailseite
-* `Shopware.model.Container` - Innerhalb einer bestehenden Detailansicht eines Models
+* `Shopware.window.Detail` - As tab on in the detail window
+* `Shopware.model.Container` - Inside the detail window of an model
 
-Beide Stellen besitzen dieselbe API um Assoziationen innerhalb der Komponenten abzubilden. Dafür wird in der `configure()` Funktion die Eigenschaft `associations` verwendet. In dieser Eigenschaft kann sich ein Array mit den Namen der Assoziationen befinden. Diese entsprechend jeweils dem Namen des Doctrine Properties der Assoziation.
+Both places have the same API to assign associations. For this, the `associations` option in the `configure()` method needs to modified. This can be an array with the names of the associations. The names are the name of the properties in the doctrine models of the association.
 
-Um die Kategorie-View nun als eigener Reiter darzustellen, muss das Detail-Window um folgenden Source Code erweitert werden (`SwagProduct/Views/backend/swag_product/view/detail/window.js`):
+To display the category view as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1202,9 +1196,14 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
     }
 });
 ```
-[IMG|3|5]
 
-Die Kategorie-View kann auch direkt im Produkt-Container dargestellt werden. Dafür wird der Produkt-Container um die folgenden Sourcen ergänzt (`SwagProduct/Views/backend/swag_product/view/detail/product.js`):
+<div style="text-align:center;">
+
+![](img/assoc_4.png)
+
+</div>
+
+The category view can also be displayed right inside the product container. For this, you have to extend the product container (`SwagProduct/Views/backend/swag_product/view/detail/product.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1220,28 +1219,35 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     }
 });
 ```
-[IMG|4|5]
 
-<div class="alert alert-info">Damit die Änderungen sichtbar werden, müssen die neuen Elemente in der app.js einkommentiert werden</div>
+<div style="text-align:center;">
 
-#### Shopware.grid.Association
-Für die Darstellung von `ManyToMany` Assoziationen in der Detailansicht wird standardmäßig ein `Shopware.grid.Association`, nachfolgend auch Assoziation-Grid genannt, erstellt. Diese Komponente ist eine Ableitung `des Shopware.grid.Panel`, jedoch mit bereits deaktivierten Eigenschaften die für den speziellen Gebrauch nicht benötigt werden. So besitzt das Assoziation-Grid zum Beispiel keinen editieren oder hinzufügen Button. Wie beim `Shopware.grid.Panel` wird dem Assoziation-Grid ein `Ext.data.Store` übergeben, anhand dessen die Spalten des Grid erstellt werden.
+![](img/assoc_5.png)
 
-Das Assoziation-Grid beinhaltet zusätzlich in der Toolbar ein `Shopware.form.field.Search` Element um neue Datensätze suchen und hinzufügen zu können ([Shopware.form.field.Search Dokumentation](#Shopware.form.field.Search)).
-
-<div class="alert alert-info">
-Wichtig bei der Konfiguration des Assoziation-Grid ist die Konfiguration des `controller` Properties, da dieser für den Search-Request verwendet wird, wenn in dem `Shopware.form.field.Search` ein Begriff eingegeben wird oder die ComboBox über den Handler geöffnet wird.
 </div>
 
-### OneToOne Assoziation - Produkte & Attribute
-Für die Implementierung einer OneToOne Assoziationen mit den Shopware Backend Komponenten müssen die folgenden Anpassungen an den Sourcen der Backend Applikation vorgenommen werden:
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
 
-* Implementierung der Assoziation im Produkt-Model
-* Einbindung eines Attribute Models
-* Definition der Attribute-View
-* Definition wo die Attribute-View dargstellt werden soll
+#### Shopware.grid.Association
+By default, `ManyToMany` associations will be displayed as a `Shopware.grid.Association` component. This component derives from the `Shopware.grid.Panel` component, but disables all unnessesary features before. For example, the grid association does not contain an add or edit button. Like the `Shopware.grid.Panel`, the association grid requires an `Ext.data.Store` to generate the columns and display the data.
 
-Zunächst wird wieder das Produkt-Model um die Assoziation erweitert und das neue Attribute Model in der Datei `SwagProduct/Views/backend/swag_product/model/attribute.js` implementiert:
+In addition, the association grid contains a `Shopware.form.field.Search` in the toolbar to search and add new entries. Refer to [Shopware.form.field.Search Dokumentation](#Shopware.form.field.Search) to learn more.
+
+<div class="alert alert-info">
+<b>Important</b>: You have to provide the <code>controller</code> property, because search requests from the `Shopware.form.field.Search` or from the ComboBox will be send to this controller.
+</div>
+
+### OneToOne Association - Products & Attributes
+The following tasks are necessary to use the `OneToOne` association using the Shopware backend components:
+
+* Implement the association in the product model
+* Integration of the attribute model
+* Definition of the attribute view
+* Definition of where the attribute view should be displayed
+
+First, you have to extend the product model by adding the association and create a new file containing the attribute model in `SwagProduct/Views/backend/swag_product/model/attribute.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1261,7 +1267,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-**SwagProduct/Views/backend/swag_product/model/attribute.js<**
+**SwagProduct/Views/backend/swag_product/model/attribute.js**
 ```php
 Ext.define('Shopware.apps.SwagProduct.model.Attribute', {
     extend: 'Shopware.data.Model',
@@ -1285,11 +1291,9 @@ Ext.define('Shopware.apps.SwagProduct.model.Attribute', {
 });
 ```
 
-Da es sich bei dem Attribute-Model um ein Plugin-Model handelt, muss dieses vollständig implementiert werden, da dieses noch nicht im System existiert.
+Because the attribute model is not part of Shopware's base models, you cannot extend an exisiting model and you have to implement it manually.
 
-Das Attribute-Model wurde über eine `OneToOne` Assoziation verknüpft, daher wird die entsprechende Attribute-View in der Eigenschaft `detail` hinterlegt. 
-
-Die hier hinterlegte Attribute-View wird in der neuen Datei `SwagProduct/Views/backend/swag_product/view/detail/attribute.js` definiert:
+The attribute model has been linked with a `OneToOne` association and therefore the configuration option `detail` needs to be implemented. The attribute view will be a new file in `SwagProduct/Views/backend/swag_product/view/detail/attribute.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Attribute', {
@@ -1304,23 +1308,21 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Attribute', {
 });
 ```
 
-*Was wurde hier implementiert?*  
-Für die Darstellung von `OneToOne` Assoziationen wird standardmäßig ein `Shopware.model.Container` erzeugt. Shopware.model.Container welche für Assoziationen verwendet werden, benötigen immer einen `fieldAlias`. Dieser alias entspricht dem Propertynamen der Doctrine Assoziation (Also genauso wie bei der Definition wo Assoziationen dargestellt werden sollen). Dieser `fieldAlias` wird, benötigt um Felder von mehreren Models in demselben Form Panel darzustellen. Die Felder des Attribute Models werden dadurch wie folgt benannt:
+By default, a `Shopware.model.Container` will be created in order to display the `OneToOne` association. Every `Shopware.model.Container` need a `fieldAlias` and should be equal to the property name of the doctrine association. The `fieldAlias` is also required in order to display fields of multiple models inside of the same form panel. The fields of the attribute model will therefore be named like seen below:
 
 * attr1 > attribute[attr1]
 * attr2 > attribute[attr2]
 * attr3 > attribute[attr3]
 * ...
 
-So ist es möglich, die Felder verschiedenster Model in ein und demselben Form Panel darzustellen ohne Konflikte bei der Datenindexierung zu erhalten.
+That makes it possible to display attribute fields of different models inside of the same form panel without getting into conflict with the data indexing.
 
-Zuletzt muss noch definiert werden, wo die Attribute Daten in der Detailansicht dargestellt werden sollen. Wie bei der ManyToMany Assoziation gibt es auch hier zwei verschiedene Möglichkeiten:
+Lastly, you have to define, where the attribute data in the detail window should be displayed. As like the `ManyToMany` association, there are two different ways:
 
-* `Shopware.window.Detail` - Als eigener Reiter auf der Detailseite
-* `Shopware.model.Container` - Innerhalb einer bestehenden Detailansicht eines Models
+* `Shopware.window.Detail` - As tab on in the detail window
+* `Shopware.model.Container` - Inside the detail window of an model
 
-
-Für die Darstellung der Attribute Daten in einem eigenen Tab Reiter wird wieder das `associations` Property im Detail Window angepasst (`SwagProduct/Views/backend/swag_product/view/detail/window.js`):
+To display the attribute data as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1336,9 +1338,14 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
     }
 });
 ```
-3905777056ddf43fccffe28a62ec3e63_5.jpg
 
-Alternativ könnte die Attribute-View auch in einem `Shopware.model.Container` dargestellt werden. Daher könnte die Attribute-View auch direkt im Produkt-Container dargestellt werden. Hierfür wird die Assoziation einfach vom Detail-Window in den Produkt-Container geschoben (`SwagProduct/Views/backend/swag_product/view/detail/product.js`):
+<div style="text-align:center;">
+
+![](img/assoc_6.png)
+
+</div>
+
+Alternatively, you can display the attribute view in a `Shopware.model.Container` and you would be able to display the attribute view right inside of the product container. For this you just have to move the association from the detail window into the product container (`SwagProduct/Views/backend/swag_product/view/detail/product.js`):
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1354,21 +1361,26 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     }
 });
 ```
-10ec0d27544e3eba3875a53da5d020b6_5.jpg
 
-<div class="alert alert-info">
-Damit die Änderungen sichtbar werden, müssen die neuen Elemente in der app.js einkommentiert werden
+<div style="text-align:center;">
+
+![](img/assoc_7.png)
+
 </div>
 
-### OneToMany Assoziation - Produkte & Varianten
-Für die Implementierung einer `OneToMany` Assoziationen mit den Shopware Backend Komponenten müssen die folgenden Anpassungen an den Sourcen der Backend Applikation vorgenommen werden: 
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
 
-* Implementierung der Assoziation im Produkt-Model
-* Einbindung des Varianten-Model
-* Definition der Varianten-View
-* Definition wo die Varianten-View dargestellt werden soll
+### OneToMany Association - Products & Variants
+The following tasks are necessary to use the `OneToMany` association using the Shopware backend components:
 
-Wie zuvor auch, wird zunächst das Produkt-Model um die Varianten-Assoziation erweitert und das neue Varianten-Model wird in der Datei `SwagProduct/Views/backend/swag_product/model/variant.js` implementiert:
+* Implemention of the association in the product model
+* Integration of the variant model
+* Definition of the variant view
+* Definition of where the variant view should be displayed
+
+First, you have to extend the product model by adding the variant association and create a new file containing the varaint model in `SwagProduct/Views/backend/swag_product/model/variant.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1413,7 +1425,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Variant', {
 });
 ```
 
-Da die Varianten als `OneToMany` Assoziation implementiert wurden, wir für die Definition der Varianten-View die konfigurierte View aus dem Property `listing` verwendet. Die hier hinterlegte Varianten-View wird in der Datei `SwagProduct/Views/backend/swag_product/view/detail/variant.js` definiert:
+Since the variants have been implemented as an `OneToMany` association, you have to set `listing` property. The variant view component will be created in `SwagProduct/Views/backend/swag_product/view/detail/variant.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Variant', {
@@ -1423,12 +1435,12 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Variant', {
     height: 300
 });
 ```
-*Was wurde hier implementiert?*  
-Für die Darstellung von `OneToMany` Assoziationen wird standardmäßig ein `Shopware.grid.Panel` erzeugt. Diesem Grid Panel kann wieder rum eine eigene Detailansicht zugewiesen werden um die Varianten editieren zu können. Alternativ kann ein <a href="http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.grid.plugin.RowEditing" target="_blank">Ext.grid.plugin.RowEditing</a> implementiert werden um die Daten direkt im Grid editieren zu können.
 
-Wie bei der OneToMany und OneToOne Assoziation muss nun noch definiert werden, wo die Varianten-View dargestellt werden soll. Nicht anders als bei den bisherigen Darstellungsdefinition der Assoziationen kann auch diese Assoziation in einem eigenen Tab Reiter oder in einem Model Container dargestellt werden.
+By default, a `Shopware.grid.Panel` will be created in order to display `OneToMany` associations. The `Shopware.grid.Panel` component can then implement their own detail view in order to edit the variants.  Alternatively, you can implement a [Ext.grid.plugin.RowEditing](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.grid.plugin.RowEditing) component to edit the data directly inside of the grid.
 
-Für die Darstellung in einem eigenen Tab Reiter müssen die Sourcen des Detail Window wie folgt erweitert werden: (`SwagProduct/Views/backend/swag_product/view/detail/window.js`)
+Like the `OneToMany` and `OneToOne` associations, you have to define where the variant view should be displayed. Like seen in previous section, you can display the view in a new tab or inside of a model container.
+
+To display the variant view as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1444,9 +1456,14 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
     }
 });
 ```
-d5c8bff395f6bb9152eb6d88729224af_5.jpg
 
-Alternativ können die Varianten auch direkt bei den Produkt Stammdaten dargstellt werden. Hierfür wird die Assoziation einfach im Detail Window entfernt und in den Produkt-Container gesetzt: (`SwagProduct/Views/backend/swag_product/view/detail/product.js`)
+<div style="text-align:center;">
+
+![](img/assoc_8.png)
+
+</div>
+
+As an alternative, you can display the association right inside of the product container. For this, you have to move the association from the detail window to the product container in `SwagProduct/Views/backend/swag_product/view/detail/product.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1462,24 +1479,27 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
     }
 });
 ```
-811ff54631b7d1c0b671f75f7d18cf20_5.jpg
+
+<div style="text-align:center;">
+
+![](img/assoc_9.png)
+
+</div>
 
 <div class="alert alert-info">
-Damit die Änderungen sichtbar werden, müssen die neuen Elemente in der app.js einkommentiert werden.
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
 </div>
 
 #### Lazy Loading
-Bisher wurden die Daten der Detailansicht immer vollständig im getDetailQuery() selektiert. Dies kann jedoch zu Performance Bussen führen, was unnötig ist wenn die assoziierten Daten nur benötigt werden, wenn der entsprechende Reiter aktiv wird. Bestes Beispiel sind die Produkt-Varianten. Der Benutzer würde eigentlich nur die Stammdaten editieren, muss jedoch warten bis das gesammte Listing der Varianten Daten geladen wurde. 
-Für diese Problematik bieten die Shopware Backend Komponenten eine eigene Lösung: <i>Lazy-Loading-Assoziations</i>. 
+So far, the data for the detail window will always be completely selected by the `getDetailQuery()`. But this can lead to bad performance since we don't need all of the associated data right from the start. Therefore, the data should be loaded, if we activate a tab. A good example for that is the product's variant tab. If an user only wants to edit the basic data of a product, he has to wait until every association including all variants have been loaded. The might take some time on big variant configurations. But we've covered this scenario too and have a solution called **Lazy-Loading associations**.
 
-Damit das Varianten Grid erst geladen wird, sobald dieses aktiv geschaltet wird, sind folgende Anpassungen notwendig:
+To load the variant grid data as the tab gets active, you have to do the following tasks:
 
-* Erweiterung der Varianten-Assoziation
-* Implementierung eines Assoziation-Stores
-* Entfernen der Varianten Selektierung im PHP Controller
+* Extend the variant association
+* Implement an association store
+* Remove the variant selection in the PHP controller
 
-
-Zunächst wird die Varianten-Assoziation im Produkt-Model wie folgt erweitert:
+At first, you have to extend the variant association in the product model:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -1501,11 +1521,9 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-Das Flag `lazyLoading` definiert, dass die Assoziation erst geladen werden soll, sobald das Varianten-Grid in den Sichtbaren Bereich gelangt.
+The option `lazyLoading` defines, that the association should only be loaded, if the variant grid gets into visible range. 
 
-Die Eigenschaft `storeClass` definiert, welche Store Klasse für diese Assoziation erstellt werden soll. Standardmäßig erstellt Ext JS einen `Ext.data.Store` für jede Assoziation, jedoch ohne konfigurierten Proxy. Da zum Laden der Daten jedoch ein Proxy benötigt wird, muss hier eine eigene Store Klasse definiert werden.
-
-Die hier hinterlegte Store Klasse wird in der Datei `SwagProduct/Views/backend/swag_product/store/variant.js` implementiert:
+The option `storeClass` defines, which store component should be used. By default, Ext JS creates an `Ext.data.Store` for every association, but without an proxy configuration which is needed to load the data from the controller. The store will be implemented in `SwagProduct/Views/backend/swag_product/store/variant.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.store.Variant', {
@@ -1519,10 +1537,9 @@ Ext.define('Shopware.apps.SwagProduct.store.Variant', {
 });
 ```
 
-Bei OneToMany-Assoziation-Stores ist es wichtig, vom `Shopware.store.Association` abzuleiten, da sonst nicht alle Listing Funktionalitäten der Varianten-View supportet werden.
+For `OneToMany` association stores, it is important to derive from the `Shopware.store.Association` component, otherwise you will be missing some features of the variant view.
 
-Da die Daten nun per Lazy Loading geladen werden, muss die Selektierung der Varianten Daten in der `getDetailQuery()` Funktion des PHP Controllers entfernt werden.
-Damit Ext JS jedoch einen Store für die Assoziation anlegt, muss zumindest ein leeres Array für die Varianten zurück gegeben werden. Dies kann einfach in der `getAdditionalDetailData()` Funktion umgesetzt werden:
+Because the data is now lazy loaded, you have to remove the selection from the `getDetailQuery()` method in the PHP controller. However, the `variants` property needs still to be set to an empty array, because Ext JS needs it to create an empty store. We recommend you to extend the `getAdditionalDetailData()` method to implement this.
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
@@ -1561,13 +1578,12 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 }
 ```
 
-## Plugin Download - [SwagProduct.zip](http://community.shopware.com/files/downloads/swagproduct-14172593.zip)
+## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductAssoc.zip)
 
-Damit haben Sie die Grundlagen zu den Assoziationen in den Shopware Backend Komponenten erlernt.
-Die Grundlange der Backend Entwicklung mit den Shopware Backend Komponenten ist damit abgeschlossen. Sie haben somit alles Wissenswerte kennengelernt, was notwendig ist, um eigene Backend Applikationen mit den Standard Komponenten zu entwickeln.
+Congratulations! You've just learned how to use associations using Shopware backend components. The basic development of Shopware backend components is therefore done. You should now be able to write your own backend applications.
 
+## Further Tutorials
 
-### Weitere Tutorials
+The next tutorial will cover extensions for the listing component.
 
-In dem nächsten Tutorial werden die von Shopware zur Verfügung gestellten Listing Extensions erklärt und für das Produktlisting implementiert
-<a href="http://community.shopware.com/Shopware-Backend-Komponenten-Listing-Extensions_detail_1418_871.html">Shopware Backend Komponenten - Listing Extensions</a>.
+Proceed to [Shopware Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/).

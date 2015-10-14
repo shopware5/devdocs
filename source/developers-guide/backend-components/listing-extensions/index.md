@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware Backend Components Listing Extensions
+title: Backend Components: Listing Extensions
 github_link: developers-guide/backend-components/listing-extensions/index.md
 tags:
   - backend
@@ -9,23 +9,30 @@ tags:
 indexed: true
 ---
 
-Im letzten Tutorial [Shopware Backend Komponenten - Assoziationen](/developers-guide/backend-components/associations/) wurden die Möglichen Implementierungen von assoziierten Daten erklärt.
-In diesem Tutorial werden die von Shopware bereitgestellten Listing Extensions erklärt und in das Produkt-Listing der letzten Tutorials implementiert.
+In the last tutorial [Shopware Backend Components - Associations](/developers-guide/backend-components/associations/) we've covered the extension of the product model the the differences of the association types.
 
-Als Grundlage für dieses Tutorial dient das folgende Plugin: [Plugin herunterladen](http://community.shopware.com/files/downloads/swagproduct-14172882.zip)
+This tutorial will cover the listing extensions which you have implemented in the previous tutorials.
 
-Dieses Plugin ist das Ergebnis aus dem [Shopware Backend Komponenten - Assoziation](/developers-guide/backend-components/associations/) Tutorial.
+The following plugin will be the basis for this tutorial. You can download it here: [Download Plugin](/exampleplugins/SwagProductListingExtension.zip)
 
-1b10abf062b18da2bfe594b1e9cbbfb6.jpg
+<div style="text-align:center;">
 
-Shopware stellt als Extensions für die Listingansicht zwei Komponenten zur Verfügung:
+![](img/ext_1.png)
 
-* `Shopware.listing.InfoPanel` - Dient zur detaillierten Anzeige von Daten im Listing
-* `Shopware.listing.FilterPanel` - Dient zur Erweiterung Filterung der Listingdaten
+</div>
 
-In den nachfolgenden Beispiel werden verschiedene neue Komponenten erstellt, welche jedes mal in der app.js registriert werden müssen. 
+<div class="toc-list"></div>
 
-Damit das Tutorial übersichtlich bleibt, wird die app.js hier einmal dargestellt mit allen nachfolgend zu implementierenden Komponenten. Diese sind einfach nach jedem Abschnitt einzukommentieren:
+## About Listing Extensions
+
+Shopware provides you with the following components for listing extensions:
+
+* `Shopware.listing.InfoPanel` - Displays more detailed data of the selection
+* `Shopware.listing.FilterPanel` - Extends the filtering of the data
+
+In the following example you have to create new components which you have register in your `app.js`. 
+
+To keep this tutorial simple, you'll find the final `app.js` below. After each section, you can uncomment the appropriate component.
 
 ```php
 Ext.define('Shopware.apps.SwagProduct', {
@@ -71,17 +78,15 @@ Ext.define('Shopware.apps.SwagProduct', {
 
 ## Shopware.listing.InfoPanel
 
-Das Shopware.listing.InfoPanel, nachfolgend auch Info Panel genannt, kann verwendet werden um, bereits im Listing, detaillierte Daten des selektierten Datensatzes anzuzeigen.
-Im nachfolgenden Beispiel wird dieses Info Panel in das bestehende Produkt-Listing des vorherigen Tutorials implementiert.
+The `Shopware.listing.InfoPanel` can be used to display detailed data of the selected entry right inside of the listing window. The following example will implement the `Shopware.listing.InfoPanel` in the listing window of the previous tutorials.
 
-Dafür sind folgende Anpassungen an den Applikation Sourcen notwendig:
+You have to make the following changes to your application:
 
-* Definition des Info Panels in einer View Komponente
-* Konfiguration des Info Panels im Listing Window
-* Registrierung des Info Panels in der app.js
+* Definition of the info panel in the view component
+* Configuration of the info panel in the listing window
+* Registration of the info panel in the `app.js`
 
-
-Zunächst wird die neue View Komponente implementiert. Hierfür wird der folgende Source Code in die neue Datei `SwagProduct/Views/backend/swag_product/view/list/extensions/info.js` eingefügt:
+First, you have to implement the new view component. Put the following code into `SwagProduct/Views/backend/swag_product/view/list/extensions/info.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
@@ -97,11 +102,9 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
 });
 ```
 
-Die einzige Vorraussetzung zur Verwendung der `Shopware.listing.InfoPanel` Komponente ist die Konfiguration des `model` Parameters in der `configure()` Funktion.
+The only prerequisite for the `Shopware.listing.InfoPanel` component, is the configuration of the `model` option within the `configure()` method.
 
-Durch dies Konfiguration kann das Info Panel für jedes Model Feld ein entsprechendes Template erzeugen, welches dann in der Ext.view.View dargestellt wird.
-
-Anschließend wird die Info Panel Extension im Listing Window hinzugefügt. Dafür wird der extensions Parameter in der configure() Funktion implementiert und mit dem xtype der Komponente gesetzt:
+Though this configuration, the info panel is able to create the appropriate template for every field, which will then be displayed in a `Ext.view.View`. Afterwards, you have to add the info panel extension to the listing window. For this, you have to implement the `extensions` option, containing the alias of the info panel component as xtype, within the `configure()` method:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
@@ -121,17 +124,22 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
     }
 });
 ```
-bad95e23e62b4508bc319c9047cfaf49_5.jpg
 
-<div class="alert alert-info">
-Damit die Änderungen sichtbar werden, müssen die neuen Elemente in der app.js einkommentiert werden.
+<div style="text-align:center;">
+
+![](img/ext_2.png)
+
 </div>
 
-Die `Shopware.listing.InfoPanel` Extension erstellt für jedes des Feld, des konfigurierten Models, ein Anzeige Element was zunächst die Raw-Daten des Models anzeigt.
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
 
-### Konfigurations Möglichkeiten
+The `Shopware.listing.InfoPanel` extension creates a display element for each feld of the model which contains the raw data.
 
-Um zu steuern welche Felder in welcher Reihenfolge angezeigt werden sollen, ist das fields Property der `configure()` Funktion zuständig. Dies bietet die selben Funktionalitäten wie die Spalten des Shopware.grid.Panel und die Formular Felder des Shopware.model.Container:
+### Configuration Options
+
+Inside of the `configure()` method, you have the control of in which way and in which order a field is displayed. Use the `fields` option like in the `Shopware.grid.Panel` or the form fields in the `Shopware.model.Container`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
@@ -149,18 +157,20 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
     }
 });
 ```
-6ca567adca90944ec5a35e7cf8cf1453_5.jpg
 
-Jedes konfigurierte Feld kann auch ein Template hinterlegt haben in dem die Daten angezeigt werden sollen.
-Standardmäßig wird für jedes Feld das folgende Template erzeugt:
+<div style="text-align:center;">
+
+![](img/ext_3.png)
+
+</div>
+
+Every configured field can also have its own template. By default, the template looks like this:
 
 ```php
 <p style="padding: 2px"><b>Name:</b> {literal}{name}{/literal}</p>
 ```
 
-Als Platzhalter für den Wert des entsprechendes Feldes wird einfach der Name des Feldes in geschweiften Klammer angegeben. 
-
-Wichtig hierbei ist, dass dieser Platzhalter mit einem {literal} umschlossen ist, da dieser sonst durch Smarty geparst wird:
+The placeholder for the field value is the name of the field between curly braces. It is important, that you put these placeholders between the `{literal}` tag, otherwise it will get parsed by Smarty and may crash your whole application:
 
 ```php
 Ext.define('...view.list.extensions.Info', {
@@ -179,9 +189,13 @@ Ext.define('...view.list.extensions.Info', {
     }
 });
 ```
-40f45af2a82e20f453e0744ac5509165_5.jpg
+<div style="text-align:center;">
 
-Aternativ kann auch eine Funktion hinterlegt werden, die aufgerufen werden soll, um das Template für ein Feld zu erzeugen:
+![](img/ext_4.png)
+
+</div>
+
+Alternatively, you can call a method for creating the template.
 
 ```php
 Ext.define('...view.list.extensions.Info', {
@@ -206,11 +220,14 @@ Ext.define('...view.list.extensions.Info', {
     }
 });
 ```
-4437fc068d602f0b846e55cab7d69371_5.jpg
 
-Diese beiden Funktionen sollten jedoch nur eingesetzt werden, wenn die Anzeige einzelner Felder spezifiziert werden soll. 
+<div style="text-align:center;">
 
-Wenn das gesamte Template überschrieben werden soll, kann stattdessen einfach die `createTemplate()` Funktion überschrieben werden:
+![](img/ext_5.png)
+
+</div>
+
+Keep in mind that you should only use that solution if you want to change some fields. If you want to replace the whole template, you can use the `createTemplate()` method:
 
 ```php
 Ext.define('...view.list.extensions.Info', {
@@ -241,23 +258,26 @@ Ext.define('...view.list.extensions.Info', {
     }
 });
 ```
-4de3214807537c1c2d122f4a9be17d0c_5.jpg
 
-Eine genaue Auflistung aller zur Verfügung stehenden Funktionen des Ext.XTemplates finden Sie in der offiziellen Ext JS Dokumentation unter: [Ext JS API - Ext.XTemplate](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.XTemplate).
+<div style="text-align:center;">
 
+![](img/ext_6.png)
+
+</div>
+
+You can find a more detailed list of all available `Ext.XTemplates` features in the official [Ext JS documentation](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.XTemplate).
 
 ## Shopware.listing.FilterPanel
 
-Das `Shopware.listing.FilterPanel`, nachfolgend auch Filter Panel genannt, bietet die Möglichkeit zusätzlich zur Freitextsuche eine erweiterte Filterung im Listing bereit zu stellen.
+In addition to the free text search, the `Shopware.listing.FilterPanel` enables you to add your own filtering components to the listing window. 
 
-Die Implementierung des Filter Panels entspricht der des Info Panels. Hierfür werden folgende Source Anpassungen vorgenommen:
+The implementation of the filter panel is identical to the info panel. You have to make the following changes:
 
-* Definition des Filter Panels in einer View Komponente
-* Konfiguration des Filter Panels im Listing Window
-* Registrierung des Filter Panels in der `app.js`
+* Definition of the filter panel in the view component
+* Configuration of the filter panel in the listing window
+* Registration of the filter panel in the `app.js`
 
-
-Zunächst wird die neue View Komponenten implementiert. Hierfür wird der folgende Source Code in die neue Datei `SwagProduct/Views/backend/swag_product/view/list/extensions/filter.js` eingefügt:
+First, you have to implement the new view component. Put the following code into `SwagProduct/Views/backend/swag_product/view/list/extensions/filter.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
@@ -274,12 +294,13 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
 });
 ```
 
-Das `Shopware.listing.FilterPanel` benötigt zwei konfigurierte Parameter. 
-Zum einen muss das `controller` Property in der `configure()` Funktion gesetzt sein damit der Such Request an den Plugin Controller gesendet werden kann.
+The `Shopware.listing.FilterPanel` requires the following two parameters.
+ 
+The `controller` property needs to be set to make search requests to this controller.
 
-Für die Generierung der Filter Felder muss der `model` Parameter konfiguriert sein. Hier wird das selbe Model erwartet, das im Listing-Grid-Store verwendet hier. 
+The `model` property is responsible for the generation of the filter fields. You have to provide the same model like you've used in the listing grid store.
 
-Nachdem die Komponenten in der app.js registriert wurde (Hierfür kommentieren Sie die Zeile `//'list.extensions.Filter'` ein) kann diese als Extension im Listing Window hinterlegt werden:
+After you've registered the component in the `app.js`, you can enable the extension in the `extensions` option using the alias of the component as `xtype`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
@@ -301,18 +322,30 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
     }
 });
 ```
-8059551374e9423c774811754c001e6e_5.jpg
 
-Die hier generierten Felder ähnleln der generierten Feldern in der Detailansicht. Die generierten Felder werden in einen Zusätzlichen Container erstellt und mit einer Checkbox versehen. Mittels der Checkbox kann gesteuert werden nach welchen Feldern gefiltert werden soll. Sollte mehr als ein Felder aktiviert sein, werden die Felder mit einer `AND` Verknüpfung als Filterbedingung übergeben:
+<div style="text-align:center;">
 
+![](img/ext_7.png)
 
-fc4738ae5451f5fe847bea1673ed2fb2_5.jpg
+</div>
 
-ee9fba549934f86b778dc55a94819b90_5.jpg
+The generated fields are similar to the generated fields in the detail window. They will be created in an additional container including a checkbox, which decides whether a filter is active or not. If more than 1 filter is active, all fields be concatenated with an `AND` conjunction:
 
-### Konfigurations Möglichkeiten
+<div style="text-align:center;">
 
-In manchen Fällen kann es vorkommen dass nicht alle Felder gefiltert werden sollen. Daher bietet das `Shopware.listing.FilterPanel` eine Möglichkeit die Felder zu limitieren und zu konfigurieren:
+![](img/ext_8.png)
+
+</div>
+
+<div style="text-align:center;">
+
+![](img/ext_9.png)
+
+</div>
+
+### Configuration Options
+
+Sometimes you don't want to filter every field of the model. Because of that, the `Shopware.listing.FilterPanel` allows you to configure and limit the displayed fields.
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
@@ -338,18 +371,24 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
     }
 });
 ```
-bcdfda68ab08b18aee8998374e9df00d_5.jpg
+<div style="text-align:center;">
 
-Die Konfiguration der Filter Felder funktioniert genauso wie die Spalten des `Shopware.grid.Panel` und der Felder des `Shopware.model.Container`.
+![](img/ext_10.png)
 
-## Plugin Download - [SwagProduct.zip](http://community.shopware.com/files/downloads/swagproduct-14183888.zip)
+</div>
 
-Das waren die beiden Listing-Extensions die Shopware für die Listingansicht bereit stellt.
+The configuration of the filter fields is similar to the column of the `Shopware.grid.Panel` and form fields of the `Shopware.model.Container`.
 
-805a5a3388084e7627d43cde4f770308.jpg
+## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductListingExtension.zip)
 
-### Weitere Tutorials
+<div style="text-align:center;">
 
-In dem nächsten Tutorial werden die Möglichkeiten zur Batch Verarbeitung von Daten mit den Shopware Backend Komponenten erklärt.
+![](img/ext_11.png)
 
-[Shopware Backend Komponenten - Batch Prozesse](/developers-guide/backend-components/batch-processes/)
+</div>
+
+## Further Tutorials
+
+The next tutorial will cover the batch processing of large data sets.
+
+Proceed to [Shopware Backend Components - Batch Processing](/developers-guide/backend-components/batch-processes/)

@@ -9,28 +9,31 @@ tags:
 indexed: true
 ---
 
-Im letzten Tutorial [Shopware Backend Komponenten - Listing Extensions](/developers-guide/backend-components/listing-extensions/) wurden die verfügbaren Listings Extensions erklärt.
+In the last tutorial [Shopware Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we've covered the listing extensions.
 
-In diesem Tutorial werden die Möglichkeiten erklärt mit den Shopware Backend Komponenten schnell und einfach eine Verarbeitung von großen Datenmengen zu implementieren.
+This tutorial will teach you how to implement batch processing for large data sets.
 
-Als Grundlage für dieses Tutorial dient das folgende Plugin: [Plugin herunterladen](http://community.shopware.com/files/downloads/swagproduct-14212679.zip)
+The following plugin will be the basis for this tutorial. You can download it here: [Download Plugin](/exampleplugins/SwagProductAssociations.zip)
 
-Dieses Plugin ist das Ergebnis aus dem [Shopware Backend Komponenten - Basics](/developers-guide/backend-components/basics/) Tutorial:
+<div style="text-align:center;">
 
-38e2a8cd3d97274bb47b1ba2f4f8d859.jpg
+![](img/batch_1.png)
 
-## Verarbeitung von großen Datenmengen
+</div>
 
-Für die Verarbeitung von großen Datenmengen bieten die Shopware Backend Komponenten eine mitgelieferte Komponenten. Hierbei handelt es sich um die `Shopware.window.Progress` Komponente. 
-Mit dieser Komponente ist es möglich mehrere Prozesse hintereinander ausführen und iterieren zu lassen.
-Das `Shopware.grid.Panel` verwendet diese Komponente um alle selektierten Datensätze im Grid mit einem Klick löschen zu können:
+<div class="toc-list"></div>
 
-59a1947753a8e2bf22cdfb36e92bf4d3.jpg
+## Process large data sets
+To help you with processing large data sets, Shopware provides you with the `Shopware.window.Progress` component. This component allows you to iterate and run through a list of tasks. For example, the `Shopware.grid.Panel` uses this component to delete multiple items at once: 
 
-### Vorbereitung PHP Controller
-Diese Komponente soll nun in das bestehende Produkt-Listing implementiert werden. Doch bevor die Shopware.window.Progress Komponente eingebunden werden kann, schaffen wir für die Implementierung die entsprechende Grundlage.
+<div style="text-align:center;">
 
-Hierfür werden zunächst die folgenden Funktionen im PHP Controller implementiert, die in den nachfolgenden Beispielen verwendet werden:
+![](img/batch_2.png)
+
+</div>
+
+### Preparation: PHP Controller
+Out goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have implement the following methods in your PHP controller:
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
@@ -90,12 +93,13 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 }
 ```
 
-Die Funktion `deactivateProductsAction()` soll das Produkt mit der übergebenen `productId` deaktivieren.
-Die Funktion `changeCreateDateAction()` setzt das Erstelldatum des Produktes auf den aktuellen Tag.
-Beide Funktionen sind recht einfach gestrickt und sollen hier nur als Beispiel für die Implementierung der `Shopware.window.Progress` Komponente sein.
+* The method `deactivateProductsAction()` should deactivate the products identified by `productId`
+* The method `changeCreateDateAction()` should set the product's creation date to today. 
 
-### Vorbereitung Ext JS Listing
-Im Ext JS Teil wird für die Implementierung ein neuer Toolbar Button im Listing benötigt, über welchen diese Funktionen angesprochen werden können. Hierfür wird die Datei `SwagProduct/Views/backend/swag_product/view/list/product.js` wie folgt angepasst:
+Both methods are quite simple and should only show you a simple implementation of the `Shopware.window.Progress` component.
+
+### Preparation Ext JS Listing
+In Ext JS, you need to add a new toolbar button in the listing window. This button will trigger the appropriate batch process. Put the following code in `SwagProduct/Views/backend/swag_product/view/list/product.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -122,7 +126,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     createToolbarButton: function() {
         var me = this;
         return Ext.create('Ext.button.Button', {
-            text: 'Produkte ändern',
+            text: 'Change products',
             handler: function() {
                 me.fireEvent('change-products', me);
             }
@@ -130,20 +134,21 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     }
 });
 ```
-8ff74e75cfd1e515e3f81a94f6753ee6_5.jpg
 
-Sobald nun der Benutzer auf den Button klickt, wird das Event <code>change-products</code> auf dem Grid Panel gefeuert. Dieses Event kann dann gleich im Main Controller der Applikation verwendet werden um das Shopware.window.Progress zu öffnen.
+<div style="text-align:center;">
 
-## Implementierung Shopware.window.Progress
-Bevor das `Shopware.window.Progress`, nachfolgend auch Progress-Window genannt, verwendet werden kann muss verständlich sein wie dieses funktioniert.
+![](img/batch_3.png)
 
-Das Progress-Window ist im Grund nur eine Helfer Komponente die von der eigentlichen Applikations-Logik nichts weiß und auch nichts wissen will.
+</div>
 
-Daher muss die Komponente auch nicht als eigene Applikation View definiert werden. Dies ist zwar möglich, jedoch nicht erforderlich um die Komponente zu implementieren.
+As soon as the user clicks on the button, the event `change-products` will be fired on the grid panel. This event can be used in the main controller to open the `Shopware.window.Progress` component.
 
-Da die Komponente nicht wissen kann was bei den verschieden Tasks mit den Daten gemacht werden soll, muss sich die Applikation selbst darum kümmern. Dafür wird bei jedem Task ein Event definiert, welches auf der Komponente gefeuert werden soll.
+## Implementation Shopware.window.Progress
+First, you have to know how the `Shopware.window.Progress`  works at all. Basically, the progress window is a helper component, that doesn't and will never know anything about your application logic. Because of that, you don't have to implement an own application view. Of course, it is possible but not necessary. So in fact, the application has to decide what to with the data. An event on the component will be fired for every task.
 
-Um nun das Progress-Window im Produkt-Listing zu implementieren wird zunächst der Main Controller der Applikation wie folgt angepasst:
+### Create a Task
+
+Now, to implement the progress window into the product listing window, you have to modify your main controller like this:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -166,18 +171,18 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
         if (selection.length <= 0) return;
 
         Ext.create('Shopware.window.Progress', {
-            title: 
+            title: 'Batch processing',
             configure: function() {
                 return {
                     tasks: [{
                         event: 'deactivate-products-process',
                         data: selection,
-                        text: 'Produkt [0] von [1]'
+                        text: 'Product [0] von [1]'
                     }],
 
-                    infoText: '<h2>Produkte deaktivieren</h2>' +
-                        'Um den Prozess abzubrechen, können Sie den <b><i>`Cancel process`</i></b> Button verwenden. ' +
-                        'Abhänging von der Datenmenge kann dieser Prozess einige Minuten in Anspruch nehmen.'
+                    infoText: '<h2>Deactivate products</h2>' +
+                        'You can use the <b><i>`Cancel process`</i></b> button the cancel the process. ' +
+                        'Depending on the amount of the data set, this process might take a while.'
                 }
             }
         }).show();
@@ -185,18 +190,18 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Hier wird das vorhin implementierte Event <code>change-products</code> abgefangen und von der Funktion `displayProcessWindow` gehandelt.
+First you subscribe to the `change-products` event and map it to the `displayProcessWindow()` method. The method then retrieves the selected entries by calling `var selection = grid.getSelectionModel().getSelection();`.
 
-In der Funktion werden zunächst die selektierten Datensätze mittels
-`var selection = grid.getSelectionModel().getSelection();` ermittelt.
+After you made sure that the entries are selected, you can create the `Shopware.window.Progress` component by calling `Ext.create()`.
 
-Sobald sicher gestellt ist dass Datensätze selektiert sind, kann die Shopware.window.Progress Komponente über ein `Ext.create()` erzeugt werden.
+To add your tasks that should be run, you have to provide an array of tasks as `tasks` property in the `configure()` method. To give you an example of how it works, the code above shows you a task to deactivate the selected products. A task is consists of the following properties:
 
-Um die Tasks zu konfigurieren, wird bei der Instanzierung der Komponente die `configure()` Funktion übergeben.
-In dieser Funktion können dann die Tasks definiert werden. Da es mehrere Tasks geben kann, wird dem `tasks` Parameter ein Array zugewiesen `tasks: [ ... ]`.
-
-Als Beispiel wurde hier ein Task implementiert, welcher gleich alle selektierten Produkte deaktivieren soll.
-In dem Task wird zunächst definiert, welches Event gefeuert werden soll um die Daten zu verarbeiten:
+* **event**  
+The event gets fired every time as the batch process iterates through the data set. You'll get the current entry as parameter.
+* **data**  
+The data set which should be processed.
+* **text**  
+The text that should be shown in the toolbar while iterating through the data set. The values `[0]` and `[1]` are placeholders and map to the current index and the entry count.
 
 ```php
 tasks: [{
@@ -204,15 +209,16 @@ tasks: [{
     ...
 }]
 ```
-Anschließend werden dem `data` Property alle Datensätze übergeben, die bearbeitet werden sollen `data: selection`. Das Progress-Window wird dadurch für jeden der übergebenen Datensätze das konfigurierte Event feuern.
-Der hier konfigurierte Text wird in der Toolbar angezeigt. Die Werte <code>[0]</code> und <code>[1]</code> stehen hier für:
 
-* 0 => Aktueller Index
-* 1 => Anzahl Datensätze.
+<div style="text-align:center;">
 
-624e3698130ef9a6eea2e9647be141c1.jpg
+![](img/batch_4.png)
 
-Nun muss noch die Verarbeitung der Daten implementiert werden. Hierfür wird der Main Controller wie folgt angepasst:
+</div>
+
+### Implement the Application Logic
+
+Now you have to implement the actual task logic in the main controller:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -224,12 +230,11 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
         me.control({
             'product-listing-grid': {
                 'change-products': me.displayProcessWindow
-            },
-
-            'shopware-progress-window': {
-                'deactivate-products-process': me.onDeactivateProducts
             }
         });
+        
+        Shopware.app.Application.on('deactivate-products-process', me.onDeactivateProducts);
+        
         me.mainWindow = me.getView('list.Window').create({ }).show();
     },
 
@@ -250,31 +255,30 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Hier wurde ein weitere Event Listener angelegt, welcher das Event <code>deactivate-products-process</code> abfangen und bearbeiten soll. Dieses Event wurde im vorherigen Schritt bei dem Task des `Shopware.window.Progress` hinterlegt.
+Here, you subscribe to the `deactivate-products-process` event and and call the `onDeactivateProducts()` method when it gets fired. The event name is the same you've defined in the `Shopware.window.Progress` earlier.
 
-Dem Event Listener werden die folgenden Parameter übergeben:
+The event listener will have the following parameters:
 
-* `task` - Der aktuelle Task der ausgeführt wurde
-* `record` - Der aktuelle Datensatz der bearbeitet werden soll
-* `callback` - Callback Methode, welche für die Iteration aufgerufen werden muss.
+* **task**  
+The current task
+* **record**  
+The current record
+* **callback**  
+Callback method which should be iterated through
 
-Die `Shopware.window.Progress` Komponente erwartet nun, dass sich die Applikation um die Verarbeitung des Datensatzes kümmert. 
+The `Shopware.window.Progress` now expect that the application handles the data processing. Since most situations only send an ajax request, you have to call the `callback()` afterwards to let the process continue.
 
-Da in den meisten Fällen in dieser Situation ein Ajax Request abgesendet wird, muss für die Fortsetzung des Prozesses die übergebene Callback Funktion aufgerufen werden. Andernfalls werden die weiteren Datensätze nicht bearbeitet.
+In the example above, an ajax request will be send to the `deactivateProductsAction()` method in the plugin controller.
 
-In dem obigen Beispiel wird ein Ajax Request auf die Plugin Controller Funktion `deactivateProducts` gesendet, welche das übergebe Produkt deaktivieren soll.
+<div style="text-align:center;">
 
-Damit die anderen Datensätze auch bearbeitet werden, wird in der success Callback Methode des Ajax Request die übergebene `callback` Funktion aufgerufen.
+![](img/batch_2.png)
 
-65e062cad00c87b264ec3670694ac522.jpg
+</div>
 
-Anders als bei den bisherigen Komponenten, übernimmt die Shopware.window.Progress Komponente nicht die Datensteuerung für den Entwickler sondern die Generierung der View und iteration der Datensätze die sonst für jeden neuen Task neu implementiert werden müsste.
+Different to the previous components, the `Shopware.window.Progress` component does not handle the controlling of the process, in fact, you have to implement the view generation and and data iteration for every task. An upside of this workflow is, that you can easily add more tasks to the queue which will then be executed one after another.
 
-Besonders hevor sticht dieser Vorteil wenn ein weiterer Task definiert wird, der im gleichem Schritt mit ausgeführt werden soll.
-
-Als Beispiel soll nun ein zusätzlicher Request gesendet werden, welcher das Erstelldatum des Produktes auf den aktuellen Tag setzt.
-
-Hierfür wird der main Controller wie folgt angepasst:
+To illustrate this, the example below now sends an additional ajax request which should set the creation date of the product to the current day. Modify your main controller to match the following changes:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -286,13 +290,12 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
         me.control({
             'product-listing-grid': {
                 'change-products': me.displayProcessWindow
-            },
-
-            'shopware-progress-window': {
-                'deactivate-products-process': me.onDeactivateProducts,
-                'change-create-date-process': me.onChangeCreateDate
             }
         });
+        
+        Shopware.app.Application.on('deactivate-products-process', me.onDeactivateProducts);
+        Shopware.app.Application.on('change-create-date-process', me.onChangeCreateDate);
+        
         me.mainWindow = me.getView('list.Window').create({ }).show();
     },
 
@@ -319,7 +322,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
         if (selection.length <= 0) return;
 
         Ext.create('Shopware.window.Progress', {
-            title: 'Stapelverarbeitung',
+            title: 'Batch processing',
             configure: function() {
                 return {
                     tasks: [{
@@ -332,9 +335,9 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
                         text: 'Geändertes Erstelldatum [0] von [1]'
                     }],
 
-                    infoText: '<h2>Produkte deaktivieren</h2>' +
-                        'Um den Prozess abzubrechen, können Sie den <b><i>`Cancel process`</i></b> Button verwenden. ' +
-                        'Abhänging von der Datenmenge kann dieser Prozess einige Minuten in Anspruch nehmen.'
+                    infoText: '<h2>Deactivate products</h2>' +
+                        'You can use the <b><i>`Cancel process`</i></b> button the cancel the process. ' +
+                        'Depending on the amount of the data set, this process might take a while.'
                 }
             }
         }).show();
@@ -342,6 +345,12 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Wichtig bei dieser Änderung ist die Zuweisung der Datensätze bei der Definition der Tasks. Da hier das selbe Array an Daten übergeben wird, muss dieses per `Ext.clone(selection)` zugewiesen werden. Dies muss nur gemacht werden wenn das selbe Daten-Array für zwei verschiedene tasks verwendet werden soll, da das Window mit einer Referenz der Daten-Arrays arbeitet.
+### Pitfalls
 
-b7981ea9a63f955d4743ba4e6c434a4b.jpg
+Lastly, there is one pitfall to take care of. Since you use the same array for each task, you have to clone the array by calling `Ext.clone(selection)`, because data is referenced and may changes during the task. The upcoming task will then use the modified array from the previous task. To prevent this you simply clone the original array and pass it to the task. 
+
+<div style="text-align:center;">
+
+![](img/batch_6.png)
+
+</div>

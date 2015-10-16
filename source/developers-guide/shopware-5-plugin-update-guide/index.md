@@ -78,7 +78,7 @@ The goal is to make this plugin compatible with both the new Shopware 5 and the 
 First, the template structure is revised. The example1.tpl file is now divided into three new files:
 
 - SwagExample1/Views/emotion/detail/example1.tpl (Entry point to extends the emotion template)
-- SwagExample1/Views/responsive/detail/index.tpl (Entry point to extends the responsive template)
+- SwagExample1/Views/responsive/frontend/detail/index.tpl (Entry point to extends the responsive template)
 - SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl (Contains the source code for the extension)
 
 The new files contain the following source code:

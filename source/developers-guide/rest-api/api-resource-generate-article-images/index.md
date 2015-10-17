@@ -19,7 +19,7 @@ This resource supports the following operations:
 
 If you want to access this resource, simply query the following URL:
 
-* **http://my-shop-url/api/customerGroups**
+* **http://my-shop-url/api/generateArticleImages**
 
 ## PUT (update)
 
@@ -28,6 +28,6 @@ This operation allows you to regenerate the thumbnails of a specific article.
 | Identifier     | Parameter   | Column                            | Example call                                         |
 |----------------|-------------|-----------------------------------|------------------------------------------------------|
 | Article Id	 | id		   | s_articles.id  				   | /api/generateArticleImages/2		                  |
-| Article Number | number	   | s_articles_details.customernumber | /api/generateArticleImages/20003?useNumberAsId=true  |
+| Article Number | number	   | s_articles_details.ordernumber | /api/generateArticleImages/20003?useNumberAsId=true  |
 
 You can identify the product by either the ID or the detail number.

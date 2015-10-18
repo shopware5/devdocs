@@ -74,12 +74,3 @@ To delete a property group, simply query this URL with a `DELETE` request:
 * **http://my-shop-url/api/propertyGroups/id**
 
 Replace the `id` with the specific property group id.
-
-## DELETE (Stack)
-
-In order to delete more than one cache at once, it's possible to provide an array of ids to the REST API.
-Simply pass the array of cache ids to the following URL (example)
-
-* **[DELETE] http://my-shop-url/caches/**
-
-without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.

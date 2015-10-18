@@ -52,7 +52,7 @@ Single category details can be retrieved via the category ID:
 For this operation, no parameters are required.
 To get a list of all categories, simply query:
 
-* **http://my-shop-url/api/caches/**
+* **http://my-shop-url/api/categories**
 
 ### Return Value
 

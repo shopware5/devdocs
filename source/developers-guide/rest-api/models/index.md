@@ -464,12 +464,12 @@ indexed: false
 | Field               | Type                  | Original object                                 		|
 |---------------------|-----------------------|---------------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 		|
-| orderId       	  | string				  | **[Order](../api-resource-order/)**              		|
+| orderId       	  | string				  | **[Order](../api-resource-orders/)**              		|
 | articleId			  | integer (foreign key) | **[Article](../api-resource-article/)**   				|
 | taxId				  | integer (foreign key) | **[Tax](#tax)**    										|
 | taxRate			  |	double				  | 														|
 | statusId			  | integer (foreign key) | **[Status](#order-status)**								|
-| number			  | string (foreign key)  | **[Order](../api-resource-order/)**						|
+| number			  | string (foreign key)  | **[Order](../api-resource-orders/)**						|
 | articleNumber		  | string (foreign key)  | **[ArticleDetail](#article-detail)**					|
 | price				  | double				  |															|
 | quantity			  | integer 			  |															|

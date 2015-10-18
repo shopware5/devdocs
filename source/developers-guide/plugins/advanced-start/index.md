@@ -5,7 +5,6 @@ github_link: developers-guide/example-plugin/index.md
 indexed: true
 ---
 
-## Introduction
 This guide shows how the full plugin system of Shopware 5 works. As part of this guide, we will create a small example plugin, which can be downloaded <a href="{{ site.url }}/exampleplugins/SwagPluginSystem.zip">here</a>.
 
 The plugin modifies the following parts of Shopware:
@@ -21,6 +20,8 @@ This example gives answers to the following questions:
 * How to decorate existing Shopware services, to enrich products with additional data?
 * How to structure my plugin templates, so that they can be overwritten by local themes or other plugins?
 * Hot to override plugin templates inside my custom theme?
+
+<div class="toc-list"></div>
 
 ## Bootstrap
 

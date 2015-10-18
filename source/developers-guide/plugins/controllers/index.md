@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Shopware controller
-github_link: developers-guide/controller/index.md
+github_link: developers-guide/plugins/controller/index.md
 tags:
   - controller
   - mvc
@@ -11,6 +11,8 @@ indexed: true
 Whenever you want to create your own custom pages, AJAX or API endpoints, you will probably need a controller.
 Generally speaking, a controller links the model of your application (e.g. the database logic and business logic)
 with the representation / view of your application (e.g. template). The controller also handles user input - in web application this usually boils down to handle requests and GET or POST params.
+
+<div class="toc-list"></div>
 
 # Controller and URLs
 In Shopware, all requests will be dispatched to the corresponding controller. Internally, any request is mapped to an URL

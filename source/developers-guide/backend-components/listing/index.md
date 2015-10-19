@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Backend Components Listing
+title: Backend Components - Listing
 github_link: developers-guide/backend-components/listing/index.md
 tags:
   - backend
@@ -9,9 +9,9 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Shopware Backend Components - Basics](/developers-guide/backend-components/basics/) we've covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.
+In the last tutorial [Backend Components - Basics](/developers-guide/backend-components/basics/) we covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [Download Plugin](/exampleplugins/SwagProductBasics.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [SwagProductBasics.zip](/exampleplugins/SwagProductBasics.zip)
 
 The `Shopware.grid.Panel` for the listing was implemented in `SwagProduct/Views/backend/swag_product/view/list/product.js`.
 
@@ -39,7 +39,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 });
 ```
 
-The defined listing store will be created while instancing the listing window using the `createListingStore()` method. If you don't define any, you'll get the following error message:
+The defined listing store will be created while instantiating the listing window using the `createListingStore()` method. If you don't define any, you'll get the following error message:
 
 <div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProduct.view.list.Window: Component requires the configured `listingStore` property in the configure() function.</div>
 
@@ -50,10 +50,10 @@ The `Shopware.grid.Panel` will be created by the `createGridPanel()` method and 
 Further configuration options of the `Shopware.window.Listing` will be covered in the upcoming tutorials.
 
 ## Shopware.grid.Panel Basics
-In this part of the tutorial we'll cover the basics and how the `Shopware.grid.Panel` works behind the scenes. First we'll show you the column generation and configuration. Further, there will be examples of how to work with the events fired by the grid.
+In this part of the tutorial we'll cover the basics of how the `Shopware.grid.Panel` works behind the scenes. First we'll show you the column generation and configuration. Further down, there will be examples of how to work with the events fired by the grid.
 
 ### Column Generation
-The `Shopware.grid.Panel` expects a `Ext.data.Store` which contains an `Ext.data.Model`. The model will be the basis for the generation of the column. By default, you should create every field manually except for the `id` property. This should result in a faster application:
+The `Shopware.grid.Panel` expects a `Ext.data.Store` which contains `Ext.data.Model` instances. The model will be the basis for the generation of the column. By default, you should create every field manually except for the `id` property. This should result in a faster application:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -69,11 +69,11 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-![](img/listing_0.png)
+![Product listing](img/listing_0.png)
 
 #### Limit displayed fields
 
-Based on the field types, different default Shopware columns will be created. Because a model can contain much more fields than seen above, you can decide whether a should be displayed or not. To do so, you can set the property `columns` within the `configure()` method. As soon as the property `columns` is defined, only the provided fields will be created and displayed. The `columns` property is defined as an object based on a key/value schema where the key represents the field name like `name`:
+Based on the field types of your model, different default Shopware columns will be created. Because a model can contain many more fields than those seen above, you can decide whether a certain field should be displayed or not. To do so, you can set the property `columns` within the `configure()` method. As soon as the property `columns` is defined, only the provided fields will be created and displayed. The `columns` property is defined as an object based on a key/value schema where the key represents the field name like `name`:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -88,13 +88,13 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-![](img/listing_1.png)
+![Product listing with one column](img/listing_1.png)
 
 #### Extended field configuration
 
-The `columns` property may not only be used for limitation - it can also be used to configure the field even more precisely.
+The `columns` property may not only be used for limitation - it can also be used to configure the way in which the field is displayed.
 
-The first configuration option is the sorting of the shown columns. The `Shopware.grid.Panel` creates the column in order of their declaration. Second, you can define field specific configurations like a renderer method or translations by providing an object like seen below:
+The first configuration option is the sorting of the shown columns. The `Shopware.grid.Panel` creates the columns in the order of their declaration. Second, you can define field specific configurations, like a renderer method or translations, by providing an object like seen below:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -102,7 +102,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     configure: function() {
         return {
             columns: {
-                name: { header: 'Produkt name' },
+                name: { header: 'Product name' },
                 description: { flex: 3 },
                 active: { width: 60, flex: 0 }
             }
@@ -111,7 +111,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-![](img/listing_2.png)
+![Product listing with extended configuration](img/listing_2.png)
 
 #### Renderer Method
 
@@ -135,7 +135,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-![](img/listing_3.png)
+![Product listing with rendered column name](img/listing_3.png)
 
 #### Shorthand
 
@@ -147,31 +147,31 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     configure: function() {
         return {
             columns: {
-                name: 'Produkt name'
+                name: 'Product name'
             }
         };
     }
 });
 ```
 
-![](img/listing_3.png)
+![Product listing with shorthand column name](img/listing_3.png)
 
 ### Feature Configuration
-The `Shopware.grid.Panel` also owns features like a toolbar and their children elements. Those feature can be activated or deactivated. Every `Shopware.grid.Panel` feature has it's on activation parameter:
+The `Shopware.grid.Panel` also has features like a toolbar and their children elements. This feature can be activated or deactivated. Every `Shopware.grid.Panel` feature has its own activation parameter:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
-            columns: { name: 'Produkt name' },
+            columns: { name: 'Product name' },
             toolbar: false
         };
     }
 });
 ```
 
-![](img/listing_4.png)
+![Product listing without toolbar](img/listing_4.png)
 
 #### Example: Disable add button and hide search field
 
@@ -180,7 +180,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
-            columns: { name: 'Produkt name' },
+            columns: { name: 'Product name' },
             addButton: false,
             searchField: false
         };
@@ -188,7 +188,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-![](img/listing_5.png)
+![Product listing with delete button](img/listing_5.png)
 
 #### Example: Hide action column
 
@@ -197,14 +197,14 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
-            columns: { name: 'Produkt name' },
+            columns: { name: 'Product name' },
             actionColumn: false
         };
     }
 });
 ```
 
-![](img/listing_6.png)
+![Product listing with hidden action column](img/listing_6.png)
 
 #### Example: Hide delete column
 
@@ -213,22 +213,22 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
-            columns: { name: 'Produkt name' },
+            columns: { name: 'Product name' },
             deleteColumn: false
         };
     }
 });
 ```
 
-![](img/listing_7.png)
+![Product listing with hidden delete column](img/listing_7.png)
 
-<div class="alert alert-info">You can find a more detailed documentation of the available feature parameters in the source code. The additional parameters and their usage is documented there too.</div>
+<div class="alert alert-info">You can find a more detailed documentation of the available parameters and their usage in the source code.</div>
 
 ### Event Handling
-The event handling of the `Shopware.grid.Panel` is managed by the `Shopware.grid.Controller`. This controller will be created and mapped by the `Shopware.grid.Panel` automatically. To prevent twice named events, every event will be prefixed. The prefix will be determined by the `Shopware.grid.Panel`, based on the last part of the name of the store.
+The event handling of the `Shopware.grid.Panel` is managed by the `Shopware.grid.Controller`. This controller will be created and mapped by the `Shopware.grid.Panel` automatically. To prevent duplicated event names, every event will be prefixed. The prefix will be determined by the `Shopware.grid.Panel`, based on the last part of the name of the store.
 
 **Example**:  
-The given store contains the configured model `Shopware.app.SwagProduct.model.Product`. The event prefix will then be `eventAlias = 'product'`.
+The given store contains the configured model `Shopware.app.SwagProduct.model.Product`. The event prefix will then be `product`.
 
 All event are prefixed like this:
 
@@ -237,17 +237,17 @@ All event are prefixed like this:
 * product-search
 * ...
 
-The `Shopware.grid.Controller` catches these events and performs the default actions for the appropriate event. In the [bla foo tutorial]() you will learn how to deactivate or extend the Shopware default controller.
+The `Shopware.grid.Controller` catches these events and performs the default actions for the appropriate event. In the [Backend Component - Batch Processes](/developers-guide/backend-components/batch-processes/) you will learn how to deactivate or extend the Shopware default controller.
 
 ## How to extend
-In this section of this tutorial you will learn how to easily extend the `Shopware.grid.Panel`.
+In this section of the tutorial you will learn how to easily extend the `Shopware.grid.Panel`.
 
 You can extend the `Shopware.grid.Panel` with either one of the following ways:
 
 * through override of the methods
-* through the Ext JS event system
+* through the ExtJS event system
 
-The following examples will show you both ways. To use the Ext JS event system, you need your own Ext JS Controller. Here, we use our main controller in `swag_product/controller/main.js`.
+The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller, `swag_product/controller/main.js`.
 
 ### Add custom action column
 The action column of the `Shopware.grid.Panel` will be created by the `createActionColumn()` method. The actual elements of the action column will be created by the `createActionColumnItems()` method:
@@ -270,9 +270,11 @@ createActionColumnItems: function () {
     return items;
 },
 ```
+
 To add a new column, you can easily just override the method of the `Shopware.apps.SwagProduct.view.list.Product` component or subscribe to the `product-after-create-action-column-items` event in the main controller:
 
 **Through method overriding**
+
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
     extend: 'Shopware.grid.Panel',
@@ -287,7 +289,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
             action: 'notice',
             iconCls: 'sprite-balloon',
             handler: function (view, rowIndex, colIndex, item, opts, record) {
-                Shopware.Notification.createGrowlMessage(undefined, 'do some stuff in grid panel');
+                Shopware.Notification.createGrowlMessage(undefined, 'Grid panel custom logic performed');
             }
         });
         return items;
@@ -315,7 +317,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
             action: 'notice',
             iconCls: 'sprite-balloon',
             handler: function (view, rowIndex, colIndex, item, opts, record) {
-                Shopware.Notification.createGrowlMessage('', 'do some stuff in main controller');
+                Shopware.Notification.createGrowlMessage('', 'Main controller custom logic performed');
             }
         });
         return items;
@@ -324,7 +326,8 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 ```
 
 ### Implement your own toolbar button
-The toolbar in the `Shopware.grid.Panel` will be created by the `createToolbar()` method. Their child elements will be created by the `createToolbarItems()` method.
+
+The toolbar in the `Shopware.grid.Panel` will be created by the `createToolbar()` method. Its child elements will be created by the `createToolbarItems()` method.
 
 ```php
 createToolbarItems: function () {
@@ -352,7 +355,7 @@ createToolbarItems: function () {
 },
 ```
 
-To not oversimplify the example should the button be created after the `deleteButton`. To accomplish this task by using the override method way, you need to use the function `Ext.Array.insert()` which can add items to a specific position in an array.
+To accomplish this task by using the override method way, you need to use the function `Ext.Array.insert()` which can add items to a specific position in an array.
 
 The event system example will use the `product-before-create-right-toolbar-items` event:
 
@@ -413,9 +416,9 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 ```
 
 ### Create an additional column
-Lastly we want to create an additional column which is not defined in our model. Because of this, the `Shopware.grid.Panel` won't create a column automatically.
+Last, we want to create an additional column which is not defined in our model. Because of this, the `Shopware.grid.Panel` cannot create a column automatically.
 
-The additional column should display a check mark and indicate if an item of our shop has been created in the month July.
+The additional column should display a check mark and indicate if an item of our shop has been created in the month of July.
 
 The columns of the `Shopware.grid.Panel` will be created by the `createColumns()` method:
 
@@ -537,14 +540,14 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-This example contains a particular feature, the `booleanColumnRenderer` method. This method is used by both examples and is declared in neither the `Shopware.grid.Panel` or `Enlight.app.Controller`. That is because this method is a helper method, declared in the **helper class** `Shopware.model.Helper`. This class will be included in every component using mixins. Therefore you can access all of the helper method inside your model on the `this` scope. The `booleanColumnRenderer()` method is one of these methods.
+This example contains a particular feature, the `booleanColumnRenderer` method. This method is used by both examples and is declared in neither the `Shopware.grid.Panel` nor `Enlight.app.Controller`. That is because this method is a helper method, declared in the **helper class** `Shopware.model.Helper`. This class will be included in every component using mixins. Therefore you can access all of the helper method inside your model on the `this` scope. The `booleanColumnRenderer()` method is one of these methods.
 
-## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductListing.zip)
+## Plugin Download - [SwagProductListing.zip](/exampleplugins/SwagProductListing.zip)
 
-Congratulations! You've just created your first customized listing component using Shopware backend components. You now have learnt to completely customize and extend the listing window in your plugin.
+Congratulations! You've just created your first customized listing component using Shopware backend components. You now have learned how to completely customize and extend the listing window in your plugin.
 
 ## Further Tutorials
 
 The next tutorial will cover the implementation and customization of the detail window.
 
-Proceed to [Shopware Backend Components - Detail](/developers-guide/backend-components/detail/).
+Proceed to [Backend Components - Detail](/developers-guide/backend-components/detail/).

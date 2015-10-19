@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware Backend Components Batch Processes
+title: Backend Components - Batch Processes
 github_link: developers-guide/backend-components/batch-processes/index.md
 tags:
   - backend
@@ -9,11 +9,11 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Shopware Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we've covered the listing extensions.
+In the last tutorial [Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we covered the listing extensions.
 
 This tutorial will teach you how to implement batch processing for large data sets.
 
-The following plugin will be the basis for this tutorial. You can download it here: [Download Plugin](/exampleplugins/SwagProductAssociations.zip)
+The following plugin will be the basis for this tutorial. You can download it here: [SwagProductAssociations.zip](/exampleplugins/SwagProductAssociations.zip)
 
 <div style="text-align:center;">
 
@@ -24,7 +24,7 @@ The following plugin will be the basis for this tutorial. You can download it he
 <div class="toc-list"></div>
 
 ## Process large data sets
-To help you with processing large data sets, Shopware provides you with the `Shopware.window.Progress` component. This component allows you to iterate and run through a list of tasks. For example, the `Shopware.grid.Panel` uses this component to delete multiple items at once: 
+To help you process large data sets, Shopware provides you with the `Shopware.window.Progress` component. This component allows you to iterate and run through a list of tasks. For example, the `Shopware.grid.Panel` uses this component to delete multiple items at once: 
 
 <div style="text-align:center;">
 
@@ -33,7 +33,7 @@ To help you with processing large data sets, Shopware provides you with the `Sho
 </div>
 
 ### Preparation: PHP Controller
-Out goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have implement the following methods in your PHP controller:
+Out goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have to implement the following methods in your PHP controller:
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
@@ -94,12 +94,12 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 ```
 
 * The method `deactivateProductsAction()` should deactivate the products identified by `productId`
-* The method `changeCreateDateAction()` should set the product's creation date to today. 
+* The method `changeCreateDateAction()` should set the products creation date to today. 
 
 Both methods are quite simple and should only show you a simple implementation of the `Shopware.window.Progress` component.
 
-### Preparation Ext JS Listing
-In Ext JS, you need to add a new toolbar button in the listing window. This button will trigger the appropriate batch process. Put the following code in `SwagProduct/Views/backend/swag_product/view/list/product.js`:
+### Preparation ExtJS Listing
+In ExtJS, you need to add a new toolbar button to the listing window. This button will trigger the appropriate batch process. Put the following code in `SwagProduct/Views/backend/swag_product/view/list/product.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -144,11 +144,11 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 As soon as the user clicks on the button, the event `change-products` will be fired on the grid panel. This event can be used in the main controller to open the `Shopware.window.Progress` component.
 
 ## Implementation Shopware.window.Progress
-First, you have to know how the `Shopware.window.Progress`  works at all. Basically, the progress window is a helper component, that doesn't and will never know anything about your application logic. Because of that, you don't have to implement an own application view. Of course, it is possible but not necessary. So in fact, the application has to decide what to with the data. An event on the component will be fired for every task.
+First, you have to know how the `Shopware.window.Progress`  works. Basically, the progress window is a helper component, that doesn't and will never know anything about your application logic. Because of that, you don't have to implement an application view. Of course, it is possible but not necessary. So, in fact, the application has to decide what to do with the data. An event on the component will be fired for every task.
 
 ### Create a Task
 
-Now, to implement the progress window into the product listing window, you have to modify your main controller like this:
+Now, to implement the progress window in the product listing window, you have to modify your main controller like this:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -194,10 +194,10 @@ First you subscribe to the `change-products` event and map it to the `displayPro
 
 After you made sure that the entries are selected, you can create the `Shopware.window.Progress` component by calling `Ext.create()`.
 
-To add your tasks that should be run, you have to provide an array of tasks as `tasks` property in the `configure()` method. To give you an example of how it works, the code above shows you a task to deactivate the selected products. A task is consists of the following properties:
+To add your tasks that should run, you have to provide an array of tasks as `tasks` property in the `configure()` method. To give you an example of how this works, the code above shows you a task to deactivate the selected products. A task consists of the following properties:
 
 * **event**  
-The event gets fired every time as the batch process iterates through the data set. You'll get the current entry as parameter.
+The event gets fired on every iterator step through the data set. You'll get the current entry as parameter.
 * **data**  
 The data set which should be processed.
 * **text**  
@@ -255,7 +255,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-Here, you subscribe to the `deactivate-products-process` event and and call the `onDeactivateProducts()` method when it gets fired. The event name is the same you've defined in the `Shopware.window.Progress` earlier.
+Here, you subscribe to the `deactivate-products-process` event and call the `onDeactivateProducts()` method when it gets fired. The event name is the same you've defined in the `Shopware.window.Progress` earlier.
 
 The event listener will have the following parameters:
 
@@ -266,9 +266,9 @@ The current record
 * **callback**  
 Callback method which should be iterated through
 
-The `Shopware.window.Progress` now expect that the application handles the data processing. Since most situations only send an ajax request, you have to call the `callback()` afterwards to let the process continue.
+The `Shopware.window.Progress` now expects that the application handles the data processing. Since most situations only send an AJAX request, you have to call the `callback()` afterwards to let the process continue.
 
-In the example above, an ajax request will be send to the `deactivateProductsAction()` method in the plugin controller.
+In the example above, an AJAX request will be sent to the `deactivateProductsAction()` method in the plugin controller.
 
 <div style="text-align:center;">
 
@@ -276,9 +276,9 @@ In the example above, an ajax request will be send to the `deactivateProductsAct
 
 </div>
 
-Different to the previous components, the `Shopware.window.Progress` component does not handle the controlling of the process, in fact, you have to implement the view generation and and data iteration for every task. An upside of this workflow is, that you can easily add more tasks to the queue which will then be executed one after another.
+Different from the previous components, the `Shopware.window.Progress` component does not handle the controlling of the process, in fact, you have to implement the view generation and data iteration for every task. An advantage of this workflow is that you can easily add more tasks to the queue, which will then be executed one after another.
 
-To illustrate this, the example below now sends an additional ajax request which should set the creation date of the product to the current day. Modify your main controller to match the following changes:
+To illustrate this, the example below now sends an additional AJAX request, which should set the creation date of the product to the current day. Modify your main controller to match the following changes:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.controller.Main', {
@@ -328,11 +328,11 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
                     tasks: [{
                         event: 'deactivate-products-process',
                         data: Ext.clone(selection),
-                        text: 'Produkt [0] von [1]'
+                        text: 'Product [0] of [1]'
                     }, {
                         event: 'change-create-date-process',
                         data: Ext.clone(selection),
-                        text: 'Geändertes Erstelldatum [0] von [1]'
+                        text: 'Revised delivery date [0] of[1]'
                     }],
 
                     infoText: '<h2>Deactivate products</h2>' +
@@ -347,7 +347,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
 ### Pitfalls
 
-Lastly, there is one pitfall to take care of. Since you use the same array for each task, you have to clone the array by calling `Ext.clone(selection)`, because data is referenced and may changes during the task. The upcoming task will then use the modified array from the previous task. To prevent this you simply clone the original array and pass it to the task. 
+There is one pitfall you should be aware of. Since you use the same array for each task, you have to clone the array by calling `Ext.clone(selection)`, because data is referenced and may changes during the task. The upcoming task will then use the modified array from the previous task. To prevent this you simply clone the original array and pass it to the task. 
 
 <div style="text-align:center;">
 

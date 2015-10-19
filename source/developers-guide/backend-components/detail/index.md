@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware Backend Components Detail
+title: Backend Components - Detail
 github_link: developers-guide/backend-components/detail/index.md
 tags:
   - backend
@@ -9,9 +9,9 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Shopware Backend Components - Listing](/developers-guide/backend-components/listing/) we've covered the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.
+In the last tutorial we covered the [Backend Components - Listing](/developers-guide/backend-components/listing/) and the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [Download Plugin](/exampleplugins/SwagProductListing.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [SwagProductListing.zip](/exampleplugins/SwagProductListing.zip)
 
 The `Shopware.window.Detail` for the detail window was implemented in `SwagProduct/Views/backend/swag_product/view/detail/window.js`.
 
@@ -39,10 +39,10 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 ```
 
 ### Event Handling
-The event handling of the `Shopware.window.Detail` and `Shopware.model.Container` components are managed by the `Shopware.detail.Controller`. This controller will be created and mapped by the `Shopware.window.Detail` automatically. To prevent twice named events, every event will be prefixed. The prefix will be determined by the class name of the given record.
+The event handling of the `Shopware.window.Detail` and `Shopware.model.Container` components are managed by the `Shopware.detail.Controller`. This controller will be created and mapped by the `Shopware.window.Detail` automatically. To prevent duplicated event names, every event will be prefixed. The prefix will be determined by the class name of the given record.
 
 **Example**:  
-The class name of the given record is `Shopware.apps.SwagProduct.model.Product`. The event prefix will then be `eventAlias = 'product'`.
+The class name of the given record is `Shopware.apps.SwagProduct.model.Product`. The event prefix will then be `product`.
 
 All events are now prefixed like this:
 
@@ -50,13 +50,13 @@ All events are now prefixed like this:
 * product-tab-changed
 * ...
 
-The `Shopware.detail.Controller` catches these events and performs the default actions for the appropriate event. In the [bla foo tutorial]() you will learn how to deactivate or extend the Shopware default controller.
+The `Shopware.detail.Controller` catches these events and performs the default actions for the appropriate event. In the [Backend Component - Batch Processes](/developers-guide/backend-components/batch-processes/) you will learn how to deactivate or extend the Shopware default controller.
 
 ## Shopware.model.Container Basics
-In this section of the tutorial, we'll focus on the `Shopware.model.Container`, hereinafter referred to as *model container*, and how it works behind the scenes. In addition, you'll learn how the model container creates the fieldsets, the input fields and how to configure them properly. The requirements are the property `record` which should contain a `Shopware.data.Model` and the property `controller`, which should be the name of the PHP controller.
+In this section of the tutorial, we'll focus on the `Shopware.model.Container`, hereinafter referred to as *model container*, and how it works behind the scenes. In addition, you'll learn how the model container creates the field sets, the input fields and how to configure them properly. The requirements are that the property `record` should contain a `Shopware.data.Model` instance and that the `controller` property should be the name of the PHP controller.
 
 ### Generating forms
-The foundation of the form generation is the provided `Shopware.data.Model` as `record` property. By default, you should create every field manually except for the `id` property. This should result in a faster application. Further, there will only be one fieldset created.
+The base for the form generation is the `Shopware.data.Model` instance provided in the `record` property. By default, you have to create every field manually except for the `id` property. This should result in a faster application. Furthermore, only one field set will be created by default.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.model.Product', {
@@ -76,11 +76,11 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 
 <div style="text-align:center;">
 
-![](img/detail_1.png)
+![Basic detail page](img/detail_1.png)
 
 </div>
 
-Based on the field types, different default Shopware form fields will be created. Because a model can contain much more fields than seen above, you can decide whether a field should be displayed alone or inside a fieldset. You can use the `fieldSets` configuration option to group them for your needs. The `fieldSets` parameter is an array of objects, each containing a `title` and `fields`. The `title` is the title of the field set whereas the property `fields` is an object of the desired fields defined as its keys.
+Based on the field types, different default Shopware form fields will be created. Because a model can contain many more fields than those seen above, you can decide whether a field should be displayed alone or inside a field set. You can use the `fieldSets` configuration option to group them according to your needs. The `fieldSets` parameter is an array of objects, each containing a `title` and `fields`. The `title` is the title of the field set whereas the property `fields` is an object of the desired fields defined as its keys.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -109,13 +109,13 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/detail_2.png)
+![Detail window with two field sets](img/detail_2.png)
 
 </div>
 
-Similar to the listing in the previous tutorial, the order of the field sets and fields are important for the creation order. Furthermore, if you specify a column layout, the field sets will be splittet into two container to utilize the blank space in the detail window.
+Like in the previous tutorial, the order of the field sets and fields is important for the creation order. Furthermore, if you specify a column layout, the field sets will be splitted into two container to utilize the blank space in the detail window.
 
-The `fields` property may not only be used for limitation - it can also be used to configure the field even more precisely. In addition to the previous tutorial, you can also configure the field sets in more detail too:
+The `fields` property may not only be used for limitation - it can also be used to configure the field even more precisely. You can also specify additional configuration parameters for the filed:
 
 ```javascript
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -149,11 +149,11 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/detail_3.png)
+![Custom field sets](img/detail_3.png)
 
 </div>
 
-The example above shows that the fields `description` and `name` make use of the field's shorthand method. If you want to hide a label entirely, just set the `fieldLabel` of a field to `null`. A good practise is to use the `fieldLabel` for translations. If you have noticed, there is a `layout` option inside a field set - it simply disables the column layout so that every field is displayed on it's own row.
+The example above shows that the fields `description` and `name` make use of the field's shorthand method. If you want to hide a label entirely, just set the `fieldLabel` of a field to `null`. A good practise is to use the `fieldLabel` for translations. If you have noticed, there is a `layout` option inside a field set - it simply disables the column layout so that every field is displayed in its own row.
 
 Sometimes you need more than just a simple object to configure your field properly. Because of that, you can define your own methods to be used for creation. The method will get the `record` and an already generated field which can be then modified or overwritten entirely.
 
@@ -196,11 +196,11 @@ Ext.define('...view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/detail_4.png)
+![Expanded detail page](img/detail_4.png)
 
 </div>
 
-In other scenarios, you may not even need data from the model and just want to display some informative messages. In that cases, you create a simple container, which then may contain other components like a Shopware Block Message, a `Shopware.grid.Panel` or any other kind of container. You can define them to replace a fieldset using functions. Have a look at the example below:
+In other scenarios, you may not even need data from the model and just want to display some informative messages. In those cases, you can create a simple container, which may contain other components, like a Shopware Block Message, a `Shopware.grid.Panel` or any other kind of container. You can define them to replace a field set using functions. Have a look at the example below:
 
 ```javascript
 Ext.define('...view.detail.Product', {
@@ -242,7 +242,7 @@ Ext.define('...view.detail.Product', {
 ```
 <div style="text-align:center;">
 
-![](img/detail_5.png)
+![Warning message](img/detail_5.png)
 
 </div>
 
@@ -250,9 +250,9 @@ Ext.define('...view.detail.Product', {
 In this section of this tutorial you will learn how to easily extend the `Shopware.detail.Window` and `Shopware.model.Container`. Like extending the `Shopware.grid.Panel`, there are two ways to accomplish this task:
 
 * through override of the methods
-* through the Ext JS event system
+* through the ExtJS event system
 
-The following examples will show you both ways. To use the Ext JS event system, you need your own Ext JS Controller. Here, we use our main controller in swag_product/controller/main.js.
+The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller in `swag_product/controller/main.js`.
 
 ### Create a Toolbar Button
 To add a new button to the toolbar, you have to extend the toolbar elements of the `Shopware.window.Detail`. The toolbar will be created by the `createToolbar()` method. The actual elements will be created by the `createToolbarItems()` method.
@@ -295,7 +295,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
     createToolbarButton: function() {
         return Ext.create('Ext.button.Button', {
-            text: 'Eigener Toolbar Button'
+            text: 'Single Toolbar Button'
         });
     }
 });
@@ -323,7 +323,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
     createToolbarButton: function() {
         return Ext.create('Ext.button.Button', {
-            text: 'Eigener Toolbar Button'
+            text: 'Single Toolbar Button'
         });
     }
 });
@@ -371,7 +371,7 @@ Ext.define('...view.detail.Product', {
 });
 ```
 
-In the following example, we've removed the configure() method, since you don't have to modify your it to make it work.
+In the following example, we've removed the `configure()` method, since you don't have to modify it.
 
 **Through method overriding**
 ```javascript
@@ -454,7 +454,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
             layout: {
                 type: 'accordion',
                 titleCollapse: false,
-                animate: true,ö
+                animate: true,
                 activeOnTop: true
             },
             items: [{
@@ -469,12 +469,12 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-If you are using the event system solution, you have to fiddle a little bit, becuase you must not reset the array by just creating a new one - you have to reset it like this: `items.length = 0`. In addition, the already created elements are assigned to the wrapper container by `Ext.clone()`.
+If you are using the event system solution, you have to fiddle a little bit, because you must not reset the array by just creating a new one - you have to reset it like this: `items.length = 0`. In addition, the already created elements are assigned to the wrapper container by `Ext.clone()`.
 
 ### Implement the Tab Panel
 There is not much code needed to implement a tab panel inside of the detail window, because the `Shopware.detail.Window` already supports that.
 
-Here is a little difference for creating elements to the conventional method by calling `createItems()`. You now have to modify the detail window's items like `detailWindow.items = [ me.createFormpanel() ];`. That makes sure, that the toolbar is always on top. The method `createFormPanel()` can then be used to create the form panels and lastly `createTabItems()` to create its children elements. If the `createTabItems()` returns an array with more than one element, the elements will be displayed as tab panel:
+There is a little difference here when compared to creating elements in the conventional method by calling `createItems()`. You now have to modify the detail window's items like so: `detailWindow.items = [ me.createFormpanel() ];`. This ensures that the toolbar is always on top. The `createFormPanel()` method can then be used to create the form panels and `createTabItems()` to create its children elements. If the `createTabItems()` returns an array with more than one element, the elements will be displayed as tab panel:
 
 ```javascript
 createFormPanel: function () {
@@ -510,7 +510,7 @@ createTabItems: function () {
 }
 ```
 
-To complete the implementation, you can override the method `createTabItems()` and add the new element to the parent's list. In case you want to use the event system, you can subscribe to the event `product-after-create-tab-items`:
+To complete the implementation, you can override the `createTabItems()` method and add the new element to the parent's list. In case you want to use the event system, you can subscribe to the event `product-after-create-tab-items`:
 
 **Through method overriding**
 ```javascript
@@ -573,18 +573,16 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 });
 ```
 
-## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductDetail.zip)
+## Plugin Download - [SwagProductDetail.zip](/exampleplugins/SwagProductDetail.zip)
 
-Congratulations! You've just created your first customized detail window component using Shopware backend components. You now have learnt to completely customize and extend the detail window in your plugin.
+Congratulations! You've just created your first customized detail window component using Shopware backend components. You now have learned how to completely customize and extend the detail window in your plugin.
 
 <a href="img/detail_6.png" target="_blank" style="text-align:center;">
-
-![](img/detail_6.png)
-
+![Fully customized detail window](img/detail_6.png)
 </a>
 
 ## Further Tutorials
 
 The next tutorial will cover the already learned basics in more depth and the implementation of associations.
 
-Proceed to [Shopware Backend Components - Associations](/developers-guide/backend-components/associations/).
+Proceed to [Backend Components - Associations](/developers-guide/backend-components/associations/).

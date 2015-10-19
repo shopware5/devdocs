@@ -9,13 +9,13 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Backend Components - Basics](/developers-guide/backend-components/basics/) we covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.
+This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Basics](/developers-guide/backend-components/basics/) we covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [SwagProductBasics.zip](/exampleplugins/SwagProductBasics.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductBasics.zip](/exampleplugins/SwagProductBasics.zip)
 
-The `Shopware.grid.Panel` for the listing was implemented in `SwagProduct/Views/backend/swag_product/view/list/product.js`.
+The `Shopware.grid.Panel` for the listing was implemented in `Views/backend/swag_product/view/list/product.js`.
 
-The `Shopware.window.Listing` in `SwagProduct/Views/backend/swag_product/view/list/window.js`.
+The `Shopware.window.Listing` in `Views/backend/swag_product/view/list/window.js`.
 
 <div class="toc-list"></div>
 

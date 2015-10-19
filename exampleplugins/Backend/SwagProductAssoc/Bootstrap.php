@@ -1,11 +1,11 @@
 <?php
 
-class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Backend_SwagProductAssoc_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function getInfo()
     {
         return array(
-            'label' => 'Shopware Product List'
+            'label' => 'Shopware Product Overview - Association'
         );
     }
 
@@ -17,7 +17,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
         );
 
         $this->createMenuItem(array(
-            'label' => 'Shopware Product List',
+            'label' => 'Shopware Product Overview - Association',
             'controller' => 'SwagProduct',
             'class' => 'sprite-application-block',
             'action' => 'Index',

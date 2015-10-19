@@ -12,7 +12,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
             model: 'Shopware.apps.SwagProduct.model.Product',
 //            fields: {
 //                name: '<p style="padding: 2px">' +
-//                         'Der Produktname lautet: ' +
+//                         'The product name is: ' +
 //                         '{literal}{name}{/literal}' +
 //                      '</p>',
 //

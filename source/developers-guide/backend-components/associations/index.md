@@ -9,9 +9,9 @@ tags:
 indexed: true
 ---
 
-In the [Backend Components - Detail](/developers-guide/backend-components/detail/) tutorial we covered the different configuration options of the detail window. In this tutorial, you'll learn the basics about the implementation of associations.
+This tutorial is part of a series that covers the Shopware Backend Components. In the [Backend Components - Detail](/developers-guide/backend-components/detail/) tutorial we covered the different configuration options of the detail window. In this tutorial, you'll learn the basics about the implementation of associations.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [SwagProductDetail.zip](/exampleplugins/SwagProductDetail.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductDetail.zip](/exampleplugins/SwagProductDetail.zip)
 
 The detail and listing windows are already defined, but not customized yet. Therefore all fields are displayed:
 
@@ -34,17 +34,98 @@ The previous tutorials described how to display simple data structures. This tut
 
 Before you start to implement the ExtJS part, you have to modify the PHP implementation because you will not have enough data transferred to the backend. Because of that, you will now implement the relations seen above before implementing the ExtJS part.
 
-### Link Products to Tax Rates (**ManyToOne**)
-To link every product to a tax rate, you need to add a `@ORM\ManyToOne` association on the `Shopware\CustomModels\Product\Product` model. Why `@ORM\ManyToOne`? Since many product can have the same tax rate, but only one tax rate per product, the implementation needs to look as follows:
+Shopware uses Doctrine 2 to manage models and their corresponding associations. The way in which you can define these associations is not part of the scope of this document, but you can read more about them in the [Official Doctrine 2 documentation page](http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/association-mapping.html).
+
+However, as these associations are required before we can continue our Backend module development, you should copy the following model code into your plugin (or, as an alternative, replace your `Models` folder with the corresponding content from [SwagProductAssoc.zip](/exampleplugins/SwagProductAssoc.zip))
+
+### The Product model (`Models\Product\Product.php`)
 
 ```php
+<?php
+
+namespace Shopware\CustomModels\Product;
+
+use Shopware\Components\Model\ModelEntity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="s_product")
  */
 class Product extends ModelEntity
 {
-    ...
+    /**
+     * @var integer $id
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column()
+     */
+    private $name;
+
+    /**
+     * @var integer $active
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $active = false;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description = null;
+
+    /**
+     * @var string $descriptionLong
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descriptionLong = null;
+
+    /**
+     * @var integer $lastStock
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $lastStock = false;
+
+    /**
+     * @var \DateTime $added
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $createDate = null;
+
+    /**
+     * @var Variant[]
+     * @ORM\OneToMany(
+     *      targetEntity="Variant",
+     *      mappedBy="product",
+     *      cascade={"persist", "remove"}
+     * )
+     */
+    protected $variants;
+
+    /**
+     * @var Attribute
+     * @ORM\OneToOne(
+     *      targetEntity="Attribute",
+     *      mappedBy="product",
+     *      cascade={"persist", "remove"}
+     * )
+     */
+    protected $attribute;
 
     /**
      * @var
@@ -58,49 +139,6 @@ class Product extends ModelEntity
      * @ORM\JoinColumn(name="tax_id", referencedColumnName="id")
      */
     protected $tax;
-
-    ...
-
-    /**
-     * @return mixed
-     */
-    public function getTax()
-    {
-        return $this->tax;
-    }
-
-    /**
-     * @param mixed $tax
-     */
-    public function setTax($tax)
-    {
-        $this->tax = $tax;
-    }
-
-    ...
-}
-```
-
-First, the property `$taxId` with their column `tax_id` has been added to the model.
-
-<div class="alert alert-info">
-<strong>Important</strong>
-<p>This property must not own a getter or setter method because it can cause inconsistent data if the <code>$taxId</code> property contains another id than the <code>Shopware\Models\Tax\Tax</code> object that bound to the <code>$tax</code> property.</p>
-</div>
-
-Second, the property `$tax` has been defined, which can be used to associate a tax object to the product. The `@ORM\ManyToOne(targetEntity="Shopware\Models\Tax\Tax")` annotation defines to which doctrine model the product will be associated with. `@ORM\JoinColumn(name="tax_id", referencedColumnName="id")` defines the columns which should be joined for the association.
-
-### Link Products to Categories (**ManyToMany**)
-To associate a product with multiple categories, you need to implement a `@ORM\ManyToMany` association. This will look as follows:
-
-```php
-/**
- * @ORM\Entity
- * @ORM\Table(name="s_product")
- */
-class Product extends ModelEntity
-{
-    ...
 
     /**
      * @var ArrayCollection
@@ -123,11 +161,116 @@ class Product extends ModelEntity
      */
     protected $categories;
 
-    ...
-
     public function __construct()
     {
+        $this->variants = new ArrayCollection();
         $this->categories = new ArrayCollection();
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @param int $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param \DateTime $createDate
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $descriptionLong
+     */
+    public function setDescriptionLong($descriptionLong)
+    {
+        $this->descriptionLong = $descriptionLong;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionLong()
+    {
+        return $this->descriptionLong;
+    }
+
+    /**
+     * @param int $lastStock
+     */
+    public function setLastStock($lastStock)
+    {
+        $this->lastStock = $lastStock;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastStock()
+    {
+        return $this->lastStock;
     }
 
     /**
@@ -145,41 +288,6 @@ class Product extends ModelEntity
     {
         $this->categories = $categories;
     }
-    
-    ...
-}
-```
-
-The `@ORM\ManyToMany` annotation defines the doctrine model which will be used to link to the product. Additionally, you have to provide the table which will be used to join the data because you have to use a mapping table. The table only contains the primary keys of both doctrine models. The mapping table itself will be defined by the `@ORM\JoinTable(name="s_product_categories")` annotation. After that, you have to define `joinColumns` which stores the relation to the product itself and `inverseJoinColumns` which stores the relation to the category inside the mapping table. Both properties contain `@ORM\JoinColumn` whereas `name` always is the column name of the mapping table and `referencedColumnName` always contains the primary key column of the relation table, e.g. `s_product.id` or `s_categories.id`.
-
-<div class="alert alert-info">
-<strong>Important</strong>
-<p><code>@ORM\ManyToMany</code> relations need to be initialized with an empty array collection within the <code>__construct()</code> method. This needs to be done to prevent unexpected behaviour.
-</div>
-
-### Link Products to Attributes (**OneToOne**)
-To add an attribute entry to a product and make it editable for the backend applications, you have to define a `@ORM\OneToOne` association which is defined as follows:
-
-```php
-/**
- * @ORM\Entity
- * @ORM\Table(name="s_product")
- */
-class Product extends ModelEntity
-{
-    ...
-
-    /**
-     * @var Attribute
-     * @ORM\OneToOne(
-     *      targetEntity="Attribute",
-     *      mappedBy="product",
-     *      cascade={"persist", "remove"}
-     * )
-     */
-    protected $attribute;
-
-    ...
 
     /**
      * @return \Shopware\CustomModels\Product\Attribute
@@ -202,43 +310,52 @@ class Product extends ModelEntity
             'product'
         );
     }
-    
-    ...
+
+    /**
+     * @return \Shopware\CustomModels\Product\Variant[]
+     */
+    public function getVariants()
+    {
+        return $this->variants;
+    }
+
+    /**
+     * @param \Shopware\CustomModels\Product\Variant[] $variants
+     * @return \Shopware\Components\Model\ModelEntity
+     */
+    public function setVariants($variants)
+    {
+        return $this->setOneToMany(
+            $variants,
+            '\Shopware\CustomModels\Product\Variant',
+            'variants',
+            'product'
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * @param mixed $tax
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+    }
 }
 ```
 
-The `@ORM\OneToOne` tag of the `$attribute` property defines that every attribute can only be associated with the product once and vice-versa. Additionally, the attributes `targetEntity`, `mappedBy` and `cascade` have to be set too.
-
-* **targetEntity**  
-The doctrine model of the association.
-
-* **mappedBy**  
-Defines that the association is a bi directional association and is nothing more than an information that the models known each other. The previous associations with categories or tax rates were uni directional association whereas the product knows the categories and tax rate but not inverse.
-
-* **cascade**  
-Defines which actions should be executed in case the model gets saved or deleted. If you set `cascade={"persist", "remove"}`, these action will also be forwarded to the association. That means, if you delete the product, the attribute will also be deleted.
-
-#### One more thing
-Lastly, there is a helper function `$this->setOneToOne()` which can be used in the setter of the `$attribute` property. This helper function part of the Shopware helper functions of an model. It allows you to provide the object to map or an array with the data of the related model which will then be mapped to the related model and finally associated with the model. The following parameters are required:
-
-* Array containing the related model's data
-* Full namespace and class name of the related model
-* Own property to be set
-* Name of the `mappedBy` parameter of the related model
-
-The `setOneToOne()` method was implemented to remove the last boilerplate source code from the backend controllers. Without this functionality, every `@ORM\OneToOne` association must had implemented the following tasks:
-
-* Has data for the association been sent?
-* If there is an existing model associated, update it with the data
-* If there is **no** existing model associated, create a new one and associate it
-
-At first sight, this doesn't look that complicated, but if you have to implement this with recursion (e.g. the attribute model also has a `@ORM\OneToOne` association), there will be many places where you have boilerplate code in the controllers.
-
-#### Implement SwagProduct\CustomModels\Product\Attribute
-In addition to the association in the product model, you have to implement the new attribute model. For this you have to put the following source code into `SwagProduct/Models/Product/Attribute.php`:
+### The Product Attribute model (`Models\Product\Attribute.php`)
 
 ```php
 <?php
+
 namespace Shopware\CustomModels\Product;
 
 use Shopware\Components\Model\ModelEntity;
@@ -411,77 +528,13 @@ class Attribute extends ModelEntity
     {
         return $this->attr5;
     }
+
+
+
 }
 ```
 
-The opposite part of the `@ORM\OneToOne` association will be defined in the attribute model. Different to the prodct model association, you have to replace `mappedBy` with `inversedBy`. Because of that, doctrine knows that the foreign key `s_product_attribute.product_id` is contained by the attribute model. **Remember**: The `mappedBy` property will always be on the model which contains the foreign key.
-
-### Link Products to Variants (**OneToMany**)
-
-To link a product to multiple variants and make them editable in the backend, you have to implement a `@ORM\OneToMany` assocication. This will be implemented in `SwagProduct/Models/Product/Product.php`:
-
-```php
-/**
- * @ORM\Entity
- * @ORM\Table(name="s_product")
- */
-class Product extends ModelEntity
-{
-    ...
-
-    /**
-     * @var Variant[]
-     * @ORM\OneToMany(
-     *      targetEntity="Variant",
-     *      mappedBy="product",
-     *      cascade={"persist", "remove"}
-     * )
-     */
-    protected $variants;
-
-    ...
-
-    public function __construct()
-    {
-        $this->variants = new ArrayCollection();
-        $this->categories = new ArrayCollection();
-    }
-
-    /**
-     * @return \Shopware\CustomModels\Product\Variant[]
-     */
-    public function getVariants()
-    {
-        return $this->variants;
-    }
-
-    /**
-     * @param \Shopware\CustomModels\Product\Variant[] $variants
-     * @return \Shopware\Components\Model\ModelEntity
-     */
-    public function setVariants($variants)
-    {
-        return $this->setOneToMany(
-            $variants,
-            '\Shopware\CustomModels\Product\Variant',
-            'variants',
-            'product'
-        );
-    }
-
-    ...
-}
-```
-
-The definition of the `@ORM\OneToMany` association does not differ much from the already explained associations.
-
-#### Shopware\Components\Model\ModelEntity setOneToMany()
-
-The `@ORM\OneToMany` association also has a helper function to get rid of the controller boilerplate code like the `@ORM\OneToOne` association. But in contrast to the `setOneToOne()` method, there are more condition to be checked first. It may be the case, that the `$variants` property already contains existing associations which might have to be updated with the provided data. Entries, which exists but are not provided have to be deleted.
-
-#### SwagProduct\CustomModels\Product\Variant Implementation
-
-As well as products and attributes, you also have to create your own model for product variants. For this you need the following code in `SwagProduct/Models/Product/Variant.php`:
+### The Product Variant model (`Models\Product\Variant.php`)
 
 ```php
 <?php
@@ -680,14 +733,15 @@ class Variant extends ModelEntity
     {
         return $this->weight;
     }
+
+
+
 }
 ```
 
-Because the product model contains a `@ORM\OneToMany` association, the counter part has to implement a `@ORM\ManyToOne` association.
-
 ### Extend the PHP Controller
 
-You have to extend the `SwagProduct/Controllers/Backend/Product.php` controller in order to load associated models data and serve it to the backend modules. To do this, you have to extend the detail and listing queries.
+You have to extend the `Controllers/Backend/Product.php` controller in order to load associated models data and serve it to the backend modules. To do this, you have to extend the detail and listing queries.
 
 Both queries have their own method for generating a query builder. They are named `getListQuery()` and `getDetailQuery()`. You can just overwrite these methods.
 
@@ -1069,7 +1123,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 
 <div style="text-align:center;">
 
-![](img/assoc_2.png)
+![Product listing and detail](img/assoc_2.png)
 
 </div>
 
@@ -1097,7 +1151,7 @@ return Ext.create('Ext.data.Store', {
 
 <div style="text-align:center;">
 
-![](img/assoc_3.png)
+![Tax selection detail](img/assoc_3.png)
 
 </div>
 
@@ -1113,7 +1167,7 @@ The following tasks are necessary to use the `ManyToMany` association using the 
 * Defining the category view
 * Defining where the category view should be displayed
 
-First, the product model will be extended with the category association. At the same time, you should create the category model in `SwagProduct/Views/backend/swag_product/model/category.js`:
+First, the product model will be extended with the category association. At the same time, you should create the category model in `Views/backend/swag_product/model/category.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1151,7 +1205,7 @@ Since only the related view in the category model should be modified, you can cr
 
 Because you are using the `ManyToMany` association, we have to define the `related` option.
 
-This option has a new view component assigned to it, which is implemented in `SwagProduct/Views/backend/swag_product/view/detail/category.js`:
+This option has a new view component assigned to it, which is implemented in `Views/backend/swag_product/view/detail/category.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Category', {
@@ -1171,7 +1225,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Category', {
 });
 ```
 
-`ManyToMany` associations use the `Shopware.grid.Association` component by default. To not modify the default functionality, you should create a new component which extends the `Shopware.grid.Association`. A more in depth description of the `Shopware.grid.Association` can be found [here](#Shopware.grid.Association).
+`ManyToMany` associations use the `Shopware.grid.Association` component by default. To not modify the default functionality, you should create a new component which extends the `Shopware.grid.Association`. A more in depth description of the `Shopware.grid.Association` can be found [here](#shopwaregridassociation).
 
 Now you have to tell the backend components where to display these associations. There are two places which are supported by the backend components:
 
@@ -1180,7 +1234,7 @@ Now you have to tell the backend components where to display these associations.
 
 Both places have the same API to assign associations. For this, the `associations` option in the `configure()` method needs to modified. This can be an array with the names of the associations. The names are the name of the properties in the doctrine models of the association.
 
-To display the category view as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
+To display the category view as a new tab, you have to modify the detail window (`Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1199,11 +1253,11 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
 <div style="text-align:center;">
 
-![](img/assoc_4.png)
+![Search field detail](img/assoc_4.png)
 
 </div>
 
-The category view can also be displayed right inside the product container. For this, you have to extend the product container (`SwagProduct/Views/backend/swag_product/view/detail/product.js`) with the following code:
+The category view can also be displayed right inside the product container. For this, you have to extend the product container (`Views/backend/swag_product/view/detail/product.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1222,7 +1276,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/assoc_5.png)
+![Search field detail](img/assoc_5.png)
 
 </div>
 
@@ -1233,7 +1287,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 #### Shopware.grid.Association
 By default, `ManyToMany` associations will be displayed as a `Shopware.grid.Association` component. This component derives from the `Shopware.grid.Panel` component, but disables all its unnecessary features. For example, the grid association does not contain an add or edit button. Like the `Shopware.grid.Panel`, the association grid requires an `Ext.data.Store` to generate the columns and display the data.
 
-In addition, the association grid contains a `Shopware.form.field.Search` in the toolbar to search and add new entries. Refer to [Shopware.form.field.Search Documentation](#Shopware.form.field.Search) to learn more.
+In addition, the association grid contains a `Shopware.form.field.Search` in the toolbar to search and add new entries. Refer to [Shopware.form.field.Search Documentation](#shopwareformfieldsearch) to learn more.
 
 <div class="alert alert-info">
 <b>Important</b>: You have to provide the <code>controller</code> property, because search requests from the `Shopware.form.field.Search` or from the ComboBox will be send to this controller.
@@ -1247,7 +1301,7 @@ The following tasks are necessary to use the `OneToOne` association using the Sh
 * Define the attribute view
 * Define where the attribute view should be displayed
 
-First, you have to extend the product model by adding the association and create a new file containing the attribute model in `SwagProduct/Views/backend/swag_product/model/attribute.js`:
+First, you have to extend the product model by adding the association and create a new file containing the attribute model in `Views/backend/swag_product/model/attribute.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1293,7 +1347,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Attribute', {
 
 Because the attribute model is not part of Shopware's base models, you cannot extend an existing model and you have to implement it manually.
 
-The attribute model has been linked with a `OneToOne` association and therefore the configuration option `detail` needs to be implemented. The attribute view will be a new file in `SwagProduct/Views/backend/swag_product/view/detail/attribute.js`:
+The attribute model has been linked with a `OneToOne` association and therefore the configuration option `detail` needs to be implemented. The attribute view will be a new file in `Views/backend/swag_product/view/detail/attribute.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Attribute', {
@@ -1322,7 +1376,7 @@ Lastly, you have to define, where the attribute data in the detail window should
 * `Shopware.window.Detail` - As tab on in the detail window
 * `Shopware.model.Container` - Inside the detail window of an model
 
-To display the attribute data as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
+To display the attribute data as a new tab, you have to modify the detail window (`Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1341,11 +1395,11 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
 <div style="text-align:center;">
 
-![](img/assoc_6.png)
+![Product attributes form](img/assoc_6.png)
 
 </div>
 
-Alternatively, you can display the attribute view in a `Shopware.model.Container` and you would be able to display the attribute view right inside of the product container. For this you just have to move the association from the detail window into the product container (`SwagProduct/Views/backend/swag_product/view/detail/product.js`):
+Alternatively, you can display the attribute view in a `Shopware.model.Container` and you would be able to display the attribute view right inside of the product container. For this you just have to move the association from the detail window into the product container (`Views/backend/swag_product/view/detail/product.js`):
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1364,7 +1418,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/assoc_7.png)
+![Product detail with attributes](img/assoc_7.png)
 
 </div>
 
@@ -1380,7 +1434,7 @@ The following tasks are necessary to use the `OneToMany` association using the S
 * Definition of the variant view
 * Definition of where the variant view should be displayed
 
-First, you have to extend the product model by adding the variant association and create a new file containing the varaint model in `SwagProduct/Views/backend/swag_product/model/variant.js`:
+First, you have to extend the product model by adding the variant association and create a new file containing the varaint model in `Views/backend/swag_product/model/variant.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php
@@ -1425,7 +1479,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Variant', {
 });
 ```
 
-Since the variants have been implemented as an `OneToMany` association, you have to set `listing` property. The variant view component will be created in `SwagProduct/Views/backend/swag_product/view/detail/variant.js`:
+Since the variants have been implemented as an `OneToMany` association, you have to set `listing` property. The variant view component will be created in `Views/backend/swag_product/view/detail/variant.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Variant', {
@@ -1440,7 +1494,7 @@ By default, a `Shopware.grid.Panel` will be created in order to display `OneToMa
 
 Like the `OneToMany` and `OneToOne` associations, you have to define where the variant view should be displayed. Like seen in previous section, you can display the view in a new tab or inside of a model container.
 
-To display the variant view as a new tab, you have to modify the detail window (`SwagProduct/Views/backend/swag_product/view/detail/window.js`) with the following code:
+To display the variant view as a new tab, you have to modify the detail window (`Views/backend/swag_product/view/detail/window.js`) with the following code:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
@@ -1459,11 +1513,11 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
 <div style="text-align:center;">
 
-![](img/assoc_8.png)
+![Variants tab](img/assoc_8.png)
 
 </div>
 
-As an alternative, you can display the association right inside of the product container. For this, you have to move the association from the detail window to the product container in `SwagProduct/Views/backend/swag_product/view/detail/product.js`:
+As an alternative, you can display the association right inside of the product container. For this, you have to move the association from the detail window to the product container in `Views/backend/swag_product/view/detail/product.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
@@ -1482,7 +1536,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 <div style="text-align:center;">
 
-![](img/assoc_9.png)
+![Product detail with variant](img/assoc_9.png)
 
 </div>
 
@@ -1523,7 +1577,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 
 The option `lazyLoading` defines, that the association should only be loaded, if the variant grid gets into visible range. 
 
-The option `storeClass` defines, which store component should be used. By default, ExtJS creates an `Ext.data.Store` for every association, but without an proxy configuration which is needed to load the data from the controller. The store will be implemented in `SwagProduct/Views/backend/swag_product/store/variant.js`:
+The option `storeClass` defines, which store component should be used. By default, ExtJS creates an `Ext.data.Store` for every association, but without an proxy configuration which is needed to load the data from the controller. The store will be implemented in `Views/backend/swag_product/store/variant.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.store.Variant', {
@@ -1578,7 +1632,7 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 }
 ```
 
-## Plugin Download - [SwagProduct.zip](/exampleplugins/SwagProductAssoc.zip)
+## Plugin Download - [SwagProductAssoc.zip](/exampleplugins/SwagProductAssoc.zip)
 
 Congratulations! You've just learned how to use associations using Shopware backend components. The basic development of Shopware backend components is therefore done. You should now be able to write your own backend applications.
 
@@ -1586,4 +1640,4 @@ Congratulations! You've just learned how to use associations using Shopware back
 
 The next tutorial will cover extensions for the listing component.
 
-Proceed to [Shopware Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/).
+Proceed to [Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/).

@@ -40,7 +40,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 //    createCustomContainer: function() {
 //        return Shopware.Notification.createBlockMessage(
-//            'Hier könnte auch ein Shopware.grid.Panel eingebunden werden',
+//            'Here you can also use a Shopware.grid.Panel',
 //            'notice'
 //        );
 //    }

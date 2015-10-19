@@ -9,15 +9,15 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Backend Components - Associations](/developers-guide/backend-components/associations/) we covered the extension of the product model the the differences of the association types.
+This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Associations](/developers-guide/backend-components/associations/) we covered the extension of the product model the the differences of the association types.
 
 This tutorial will cover the listing extensions which you have implemented in the previous tutorials.
 
-The following plugin will be the basis for this tutorial. You can download it here: [SwagProductListingExtension.zip](/exampleplugins/SwagProductListingExtension.zip)
+The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductListingExtension.zip](/exampleplugins/SwagProductListingExtension.zip)
 
 <div style="text-align:center;">
 
-![](img/ext_1.png)
+![Listing and detail windows](img/ext_1.png)
 
 </div>
 
@@ -86,7 +86,7 @@ You have to make the following changes to your application:
 * Configuration of the info panel in the listing window
 * Registration of the info panel in the `app.js`
 
-First, you have to implement the new view component. Put the following code into `SwagProduct/Views/backend/swag_product/view/list/extensions/info.js`:
+First, you have to implement the new view component. Put the following code into `Views/backend/swag_product/view/list/extensions/info.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
@@ -127,7 +127,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
 <div style="text-align:center;">
 
-![](img/ext_2.png)
+![Product listing with side details](img/ext_2.png)
 
 </div>
 
@@ -160,7 +160,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
 
 <div style="text-align:center;">
 
-![](img/ext_3.png)
+![Product listing with side simple description](img/ext_3.png)
 
 </div>
 
@@ -191,7 +191,7 @@ Ext.define('...view.list.extensions.Info', {
 ```
 <div style="text-align:center;">
 
-![](img/ext_4.png)
+![Product listing with side name](img/ext_4.png)
 
 </div>
 
@@ -223,7 +223,7 @@ Ext.define('...view.list.extensions.Info', {
 
 <div style="text-align:center;">
 
-![](img/ext_5.png)
+![Product listing with side name and description](img/ext_5.png)
 
 </div>
 
@@ -261,7 +261,7 @@ Ext.define('...view.list.extensions.Info', {
 
 <div style="text-align:center;">
 
-![](img/ext_6.png)
+![Product listing with customized side panel](img/ext_6.png)
 
 </div>
 
@@ -277,7 +277,7 @@ The implementation of the filter panel is identical to the info panel. You have 
 * Configuration of the filter panel in the listing window
 * Registration of the filter panel in the `app.js`
 
-First, you have to implement the new view component. Put the following code into `SwagProduct/Views/backend/swag_product/view/list/extensions/filter.js`:
+First, you have to implement the new view component. Put the following code into `Views/backend/swag_product/view/list/extensions/filter.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
@@ -324,7 +324,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
 <div style="text-align:center;">
 
-![](img/ext_7.png)
+![Product listing with search pane](img/ext_7.png)
 
 </div>
 
@@ -332,13 +332,13 @@ The generated fields are similar to the generated fields in the detail window. T
 
 <div style="text-align:center;">
 
-![](img/ext_8.png)
+![Product listing with date filter](img/ext_8.png)
 
 </div>
 
 <div style="text-align:center;">
 
-![](img/ext_9.png)
+![Product listing with name and date filter](img/ext_9.png)
 
 </div>
 
@@ -372,7 +372,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
 ```
 <div style="text-align:center;">
 
-![](img/ext_10.png)
+![Product listing with custom filters](img/ext_10.png)
 
 </div>
 
@@ -382,7 +382,7 @@ The configuration of the filter fields is similar to the column of the `Shopware
 
 <div style="text-align:center;">
 
-![](img/ext_11.png)
+![Product listing with custom filters and info pane](img/ext_11.png)
 
 </div>
 

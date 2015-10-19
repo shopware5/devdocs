@@ -9,7 +9,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
         return {
             detailWindow: 'Shopware.apps.SwagProduct.view.detail.Window',
             columns: {
-                name: { header: 'Produkt name' },
+                name: { header: 'Product name' },
                 description: { flex: 3 },
                 active: { width: 60, flex: 0 }
             }
@@ -55,7 +55,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 
         var column = {
             xtype: 'gridcolumn',
-            header: 'Created in july',
+            header: 'Created in July',
             renderer: me.columnRenderer,
             sortable: false,
             dataIndex: 'inJuly'

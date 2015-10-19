@@ -9,15 +9,15 @@ tags:
 indexed: true
 ---
 
-In the last tutorial [Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we covered the listing extensions.
+This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we covered the listing extensions.
 
 This tutorial will teach you how to implement batch processing for large data sets.
 
-The following plugin will be the basis for this tutorial. You can download it here: [SwagProductAssociations.zip](/exampleplugins/SwagProductAssociations.zip)
+The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductAssociations.zip](/exampleplugins/SwagProductAssociations.zip)
 
 <div style="text-align:center;">
 
-![](img/batch_1.png)
+![Listing and detail windows](img/batch_1.png)
 
 </div>
 
@@ -28,7 +28,7 @@ To help you process large data sets, Shopware provides you with the `Shopware.wi
 
 <div style="text-align:center;">
 
-![](img/batch_2.png)
+![Batch process window](img/batch_2.png)
 
 </div>
 
@@ -99,7 +99,7 @@ class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Back
 Both methods are quite simple and should only show you a simple implementation of the `Shopware.window.Progress` component.
 
 ### Preparation ExtJS Listing
-In ExtJS, you need to add a new toolbar button to the listing window. This button will trigger the appropriate batch process. Put the following code in `SwagProduct/Views/backend/swag_product/view/list/product.js`:
+In ExtJS, you need to add a new toolbar button to the listing window. This button will trigger the appropriate batch process. Put the following code in `Views/backend/swag_product/view/list/product.js`:
 
 ```php
 Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
@@ -137,7 +137,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 
 <div style="text-align:center;">
 
-![](img/batch_3.png)
+![Product listing window](img/batch_3.png)
 
 </div>
 
@@ -212,7 +212,7 @@ tasks: [{
 
 <div style="text-align:center;">
 
-![](img/batch_4.png)
+![Product batch processing detail](img/batch_4.png)
 
 </div>
 
@@ -272,7 +272,7 @@ In the example above, an AJAX request will be sent to the `deactivateProductsAct
 
 <div style="text-align:center;">
 
-![](img/batch_2.png)
+![Batch process window](img/batch_2.png)
 
 </div>
 
@@ -351,6 +351,6 @@ There is one pitfall you should be aware of. Since you use the same array for ea
 
 <div style="text-align:center;">
 
-![](img/batch_6.png)
+![Product batch processing detail](img/batch_6.png)
 
 </div>

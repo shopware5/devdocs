@@ -35,7 +35,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 //
 //    createToolbarButton: function() {
 //        return Ext.create('Ext.button.Button', {
-//            text: 'Eigener Toolbar Button'
+//            text: 'Single Toolbar Button'
 //        });
 //    }
 });

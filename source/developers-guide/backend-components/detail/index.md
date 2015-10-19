@@ -9,13 +9,13 @@ tags:
 indexed: true
 ---
 
-In the last tutorial we covered the [Backend Components - Listing](/developers-guide/backend-components/listing/) and the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.
+This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial we covered the [Backend Components - Listing](/developers-guide/backend-components/listing/) and the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. You can download this plugin here: [SwagProductListing.zip](/exampleplugins/SwagProductListing.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductListing.zip](/exampleplugins/SwagProductListing.zip)
 
-The `Shopware.window.Detail` for the detail window was implemented in `SwagProduct/Views/backend/swag_product/view/detail/window.js`.
+The `Shopware.window.Detail` for the detail window was implemented in `Views/backend/swag_product/view/detail/window.js`.
 
-The `Shopware.model.Container` for more detailed configuration of the detail window in `SwagProduct/Views/backend/swag_product/view/list/window.js`.
+The `Shopware.model.Container` for more detailed configuration of the detail window in `Views/backend/swag_product/view/list/window.js`.
 
 <div class="toc-list"></div>
 
@@ -357,7 +357,7 @@ createItems: function() {
 },
 ```
 
-Now, to implement the actual sidebar, you have either to override the `createItems()` method in `SwagProduct/Views/backend/swag_product/view/detail/product.js` or subscribe to the event `product-after-create-items` in the main controller. Additionally, you should change the layout of the product container to `hbox`:
+Now, to implement the actual sidebar, you have either to override the `createItems()` method in `Views/backend/swag_product/view/detail/product.js` or subscribe to the event `product-after-create-items` in the main controller. Additionally, you should change the layout of the product container to `hbox`:
 
 ```javascript
 Ext.define('...view.detail.Product', {

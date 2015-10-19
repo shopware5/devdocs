@@ -9,7 +9,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
         return {
             detailWindow: 'Shopware.apps.SwagProduct.view.detail.Window',
             columns: {
-                name: { header: 'Produkt name' },
+                name: { header: 'Product name' },
                 description: { flex: 3 },
                 active: { width: 60, flex: 0 }
             }
@@ -43,7 +43,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 //            action: 'notice',
 //            iconCls: 'sprite-balloon',
 //            handler: function (view, rowIndex, colIndex, item, opts, record) {
-//                Shopware.Notification.createGrowlMessage(undefined, 'do some stuff in grid panel');
+//                Shopware.Notification.createGrowlMessage(undefined, 'do something in the grid panel');
 //            }
 //        });
 //        return items;

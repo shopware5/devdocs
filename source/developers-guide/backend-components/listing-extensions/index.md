@@ -390,4 +390,4 @@ The configuration of the filter fields is similar to the column of the `Shopware
 
 The next tutorial will cover the batch processing of large data sets.
 
-Proceed to [Backend Components - Batch Processing](/developers-guide/backend-components/batch-processes/)
+Proceed to [Backend Components - Batch Processes](/developers-guide/backend-components/batch-processes/)

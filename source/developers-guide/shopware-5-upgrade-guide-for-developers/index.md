@@ -11,15 +11,17 @@ In this document, developers will find details about changes made in the differe
 This document only covers the main changes done in each version. For a comprehensive change list of all Shopware versions,
 including minor and bugfix releases, refer to the `upgrade.md` file found in your Shopware installation.
 
-# Shopware 5.1 RC3
+<div class="toc-list"></div>
 
-## System requirements changes
+## Shopware 5.1
+
+### System requirements changes
 
 Shopware 5.1 is the last Shopware minor release to support PHP 5.4. The following minor release of Shopware will require PHP 5.5+. Furthermore, as of 15/09/2015, PHP 5.4 will no longer receive security updates. For these reasons, we highly recommend that you update your PHP version to the latest stable version.
 
 The full system requirement list for Shopware 5.1 is the same as in Shopware 5.0, and can be found [here](/sysadmins-guide/system-requirements/ "Shopware system requirements").
 
-## PHP 7 compatibility
+### PHP 7 compatibility
 
 Shopware 5.1 also introduces PHP 7.0 compatibility. This new PHP version introduces several internal changes to PHP itself, which result in greatly improved performance when compared to PHP 5.x. However, at the time of Shopware 5.1 release, PHP 7.0 was still in Release Candidate phase. As with all software major version release, we highly recommend that you do not upgrade your production environment until a final, stable version is released.
 
@@ -40,7 +42,7 @@ Please keep in mind that changing this setting might cause PHP to throw exceptio
 Also, using this setting in PHP 5.x only emulates one of the many changes done in PHP 7. Be sure to fully test your plugins in a native PHP 7 environment to ensure their full compatibility. 
 
 
-## JavaScript events
+### JavaScript events
 
 * All JavaScript plugins now have `sw` prepended to their name. 
 * All event names have `on` prepended to them
@@ -69,7 +71,7 @@ can now be extended to use more arguments:
 $.publish('plugin/swPluginname/onEventname', [ me, example, test ]);
 ```
 
-## AJAX Variants
+### AJAX Variants
 
 Detail pages for variant articles now load new variant data via AJAX, instead of the previous full page reload. This feature is optional and enabled by default. You can disable it in your theme settings, in which case existing plugins should work as before.
 
@@ -93,13 +95,13 @@ $.subscribe('plugin/swAjaxVariant/onRequestData', function() {
 });
 ```
 
-## Media Service
+### Media Service
 
 Shopware 5.1 includes a new media management layer, which abstracts the location of your media files. Existing file paths like `media/image/my-item.png` should now be considered virtual paths. This applies to both new and existing installations, and there is no possibility to revert to the old behaviour.
 
 If you are upgrading from Shopware 5.0 or previous, the actual media files will be automatically moved by Shopware from the old to the new path when they are first handled by the media service (i.e. displayed in the frontend, after the upgrade). This process will move the files from their current location (i.e. `media/image/my-item.png`) to a new, semi-random location (i.e. `/media/image/5c/d1/af/my-item.png`). Reverting this process is not supported, as Shopware will always move files to the new locations when needed (even if you manually move them back). If you wish, you can also use the `sw:media:migrate` CLI command to migrate all files at once, in order to avoid the migration performance penalty in the frontend.
 
-### For backend developers
+#### For backend developers
 
 Like mentioned before, if your server-side code manipulates media files, you will probably need to do a few changes to it. The `shopware_media.media_service` is responsible for retrieving the real path of a file based on its virtual path. You should also use it if you need to perform any other CRUD operation on media files in your custom code. The service implements methods that will allow you to perform these operations.
  
@@ -139,11 +141,11 @@ $mediaService = $container->get('shopware_media.media_service');
 $normalizedPath = $mediaService->normalize($fullMediaPath); // media/image/my-fancy-image.png
 ```
 
-### For frontend developers
+#### For frontend developers
 
 Should your template or JavaScript files somehow manipulate the file path of a media entity, you should refactor your code so that this kind of logic is handled by the `shopware_media.media_service`, during server logic execution. The media service should be the exclusive responsible for determining the real path to a media file, and any external change to it might result in broken paths to files. Ensure that your code meets this standard to prevent issues when handling media files, now and in the future.
 
-#### New Smarty Tag
+##### New Smarty Tag
 
 In addition to the PHP functionality, we have created a new Smarty tag for generating the real path to the media file. For example, you can use it as a value for the `src` attribute of an `<img />` like seen below:
 
@@ -151,7 +153,7 @@ In addition to the PHP functionality, we have created a new Smarty tag for gener
 <img src="{media path='media/image/my-fancy-image.png'}" />
 ```
 
-### Garbage Collector
+#### Garbage Collector
 
 To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files. 
 
@@ -188,7 +190,7 @@ The **third** parameter selects the `s_media` column you are referencing to. The
 | TYPE_SERIALIZE | Unserializes the value |
 
 
-## Library updates
+### Library updates
 * Symfony components: 2.6.9 to 2.7.1
 * Doctrine: 2.4.2 to 2.5.0
 * Added:
@@ -196,13 +198,13 @@ The **third** parameter selects the `s_media` column you are referencing to. The
     * `zendframework/zend-escaper`
     * `elasticsearch/elasticsearch`
     
-## New CLI commands
+### New CLI commands
 * `sw:clone:category:tree`
 * `sw:plugin:reinstall`
 * `sw:media:cleanup`
 * `sw:media:migrate` 
 
-## Removals
+### Removals
 
 <div class="alert alert-info" role="alert">
     <strong>Note:</strong> This section covers only the most relevant removals. Please refer to the UPGRADE.MD file in your Shopware installation for a complete, detailed list of removed elements
@@ -212,7 +214,7 @@ The **third** parameter selects the `s_media` column you are referencing to. The
 * `Shopware()->Adodb()` and `sSystem::$sDB_CONNECTION`
 * `s_core_multilanguage` database table
 
-## Other changes
+### Other changes
 * Added library [beberlei/assert](https://github.com/beberlei/assert) for low-level validation.
 * Added Escaper component to escape output data, dependent on the context in which the data will be used
     * Added library [zendframework/zend-escaper](https://github.com/zendframework/zend-escaper)
@@ -228,9 +230,9 @@ The **third** parameter selects the `s_media` column you are referencing to. The
 * Deprecated pre-installed import / export module in favor of the new import / export plugin, which is for free now
 * Move directory `logs/` to `var/log/` and `cache/` to `var/cache`
 
-# Shopware 5.0
+## Shopware 5.0
 
-## Checking the Shopware version
+### Checking the Shopware version
 Important: Please try to modify your plugin so that it is compatible with both 4.3 and 5
 You can use the following code in your plugin:
 ```
@@ -241,23 +243,23 @@ if ($this->assertMinimumVersion('5')) {
 }
 ```
 
-## End of support and system requirements
+### End of support and system requirements
 We changed some of the system requirements for the new version.
 Beside the known requirements which you can find [here](http://www.shopware.com/software/overview/system-requirements "Shopware system requirements") there are the following new ones:
 
-### PHP 5.3
+#### PHP 5.3
 PHP 5.3 is no longer supported in Shopware 5. It's recommend to use the latest stable version of PHP. Please keep in mind that PHP 5.4 will soon reach end of life, and support for it may end before the release of the next major version. For performance and compatibility reasons, we recommend using PHP 5.6.
 
-### Internet Explorer 8
+#### Internet Explorer 8
 The new responsive template is not supported in Internet Explorer 8 and below. The old emotion template still supports Internet Explorer 7 and above.
 
-### MySQL 5.1
+#### MySQL 5.1
 MySQL 5.1 is no longer supported in Shopware 5. The required Version of MySQL for Shopware 5 is 5.5 or above.
 
-### IonCube Loader
+#### IonCube Loader
 IonCube Loader requirement has been upped to version 4.6.0. Notice that you only need the IonCube Loader if you are using plugins from the Shopware Store.
 
-## Major Breaks
+### Major Breaks
 * `Street number` data was moved into the `Street`field
     * The existing `Street` fields were enlarged and the existing information of the `Street number` fields was appended to them.
     * The `Street number` field was removed from all template files
@@ -290,7 +292,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * All downloaded dummy plugins are now installed in the engine/Shopware/Plugins/Community directory.
 * Replaced `orderbydefault` configuration by `defaultListingSorting`. The `orderbydefault` configuration worked with a plain sql input which is no longer possible. The `defaultListingSorting` contains now one of the default `sSort` parameters of a listing. If you want to reintegrate your old statement you can simple create a small plugin. You can find more information [here.](/developers-guide/shopware-5-search-bundle/)
 
-## Deprecations
+### Deprecations
 * The `sBasket::sGetNotes` function is refactored with the new Shopware service classes and calls no more the sGetPromotionById function.
 * `Shopware_Controllers_Frontend_Account::ajaxLoginAction` is deprecated
 * `Shopware_Controllers_Frontend_Account::loginAction` usage to load a login page is deprecated. Use `Shopware_Controllers_Frontend_Register::indexAction` instead for both registration and login
@@ -333,7 +335,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `s_core_multilanguage`. Table will be removed in SW 5.1. Previously unused fields `mainID`, `flagstorefront`, `flagbackend`, `separate_numbers`, `scoped_registration` and `navigation` are no longer loaded from the database
 
 
-## Removals
+### Removals
 * Removed the template directory `_default` and all it's dependencies
 * Removed unused `/backend/document` templates and several unused `Shopware_Controllers_Backend_Document` actions, methods and variables
 * Removed `table` and `table_factory` from container.
@@ -466,7 +468,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `s_core_plugins.capability_dummy`
     * `s_articles_details.impressions`
 
-## Additions
+### Additions
 * New theme system
     * Added a new Theme Manager 2.0 to replace the existing theme manager, which was removed.
     * It's now possible to create and configure custom themes directly from the backend
@@ -502,9 +504,9 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Email validation is now done using the `egulias/email-validator` library.
 * Added configuration `showEsd` to show/hide the ESD-Downloads in the customer accounts menu. (default = true)
 * Article image album sizes have been changed to match the requirements of the new template (only new installations)
-# \sArticles::sGetProductByOrdernumber result is equal with the \sArticles::sGetPromotionById result.
+* \sArticles::sGetProductByOrdernumber result is equal with the \sArticles::sGetPromotionById result.
 
-## 5.0.0 Beta 2 Changes
+### 5.0.0 Beta 2 Changes
 * Renamed the shopware_searchdbal.product_number_search to shopware_search.product_number_search. Use shopware_search.product_number_search service for number searches.
 * Removed aliases from bundle services. Example: list_product_service is now directly set to the old list_product_service_core
 * Extend ProductAttributeFacet with different FacetResult properties, to allow full FacetResult configuration over the facet.
@@ -512,7 +514,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * Added a new config to improve the quality of the thumbnail generation
 * implement a new seo router to increase the performance of the seo url rendering
 
-## 5.0.0 RC1
+### 5.0.0 RC1
 * New orders will no longer set `s_order.transactionID` automatically from POST data. 3rd party plugins can still use this value as before.
 * Fix translation API, rename all `localeId` references to `shopId`. Create / update / delete with `localeId` are still supported as legacy.
 * `\Shopware\Models\Translation\Translation` now correctly relates to `Shop` model instead of `Locale`.
@@ -538,7 +540,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * `\Shopware\Models\Emotion\Repository::getListQuery` function replaced by `getListingQuery`.
 
 
-## 5.0.0 RC2
+### 5.0.0 RC2
 * SEO URL generation variable "statistic" has been translated and corrected to "static"
 * Theme config elements can now define, over the attributes array, if they are less compatible. Example: `attributes => ['lessCompatible' => false]`, default is set to true.
 * Implement plugin bootstrap helper functions: addHttpCacheRoute and removeHttpCacheRoute, to add and remove http cache routes.
@@ -586,7 +588,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * fixed a bug for the SEO URLs generating statistics bar
 * improved the password description
 
-## 5.0.0 RC3
+### 5.0.0 RC3
 * \Shopware\Bundle\SearchBundleDBAL\ConditionHandler\HasPriceConditionHandler now joins the prices as a 1:1 association for a performance improvement.
 * sCategories::sGetCategoryContent function returns no more the category articleCount. Variable is unused.
 * sCategories::sGetCategoryIdByArticleId function use now the s_articles_categories table.
@@ -602,5 +604,5 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * fixed price group discount
 * added \__redirect parameter in frontend language switcher. Each language switcher requires now an additionally post parameter to redirect to the new shop <input type="hidden" name="__redirect" value="1">
 
-## Further changes
+### Further changes
 You can find a complete list of all changes in the release package in the file `upgrade.md`

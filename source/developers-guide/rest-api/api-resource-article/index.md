@@ -1,7 +1,7 @@
 ---
 layout: default
 title: REST API - Article Resource
-github_link: developers-guide/rest-api/api resource-article/index.md
+github_link: developers-guide/rest-api/api-resource-article/index.md
 indexed: false
 ---
 

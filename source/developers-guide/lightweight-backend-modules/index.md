@@ -108,7 +108,7 @@ Please note that we call the `createSimpleModule()` JavaScript method in the `on
 ### Registering a custom backend controller
 
 The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example 
-bellow, we subscribe the controller path dispatch event and handle it with the `$this->registerBackendController()` 
+below, we subscribe the controller path dispatch event and handle it with the `$this->registerBackendController()` 
 method:
 
 ```php

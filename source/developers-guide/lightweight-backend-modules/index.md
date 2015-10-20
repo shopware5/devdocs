@@ -99,7 +99,7 @@ $this->createMenuItem(array(
     'onclick' => 'createSimpleModule("ExampleModulePlainHtml", { "title": "Plain HTML Module" })',
     'class' => 'sprite-star',
     'active' => 1,
-    'parent' => $this->Menu()->findOneBy('label', 'Einstellungen')
+    'parent' => $this->Menu()->findOneBy(['label' => 'Einstellungen'])
 ));
 ```
 

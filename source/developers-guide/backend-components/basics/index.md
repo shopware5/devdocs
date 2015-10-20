@@ -101,7 +101,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
             'class' => 'sprite-application-block',
             'action' => 'Index',
             'active' => 1,
-            'parent' => $this->Menu()->findOneBy('label', 'Marketing')
+            'parent' => $this->Menu()->findOneBy(['label' => 'Marketing'])
         ));
         return true;
     }

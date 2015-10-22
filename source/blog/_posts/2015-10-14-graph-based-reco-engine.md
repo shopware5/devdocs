@@ -8,13 +8,13 @@ tags:
 categories:
 - dev
 indexed: true
-github_link: blog/_posts/2015-10-14-graph-based-reco-engine.md.md
+github_link: blog/_posts/2015-10-14-graph-based-reco-engine.md
 
 authors: [dn]
 ---
 At the end of September, [Benjamin](https://developers.shopware.com/blog/authors/bc/) and I visited the
 [Bulgaria PHP conference](http://www.bgphp.org/).
-We saw a very interesting talk by Mariuz Gil called
+We saw a very interesting talk by [Mariusz Gil](https://twitter.com/mariuszgil/) called
 [Discovering graph structures](https://joind.in/talk/view/14886), which gave a quick
 introduction to graph databases and especially [Neo4j](neo4j.com).
 

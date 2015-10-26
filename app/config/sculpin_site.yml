@@ -17,9 +17,9 @@ authors:
       github: https://github.com/dnoegel/
       url: https://github.com/dnoegel/
   dr:
-    name: Oliver Skroblin
-    title: Developer
-    github: https://github.com/oliverskroblin
+      name: Oliver Skroblin
+      title: Developer
+      github: https://github.com/oliverskroblin
 
   aa:
       name: Arnold Stoba
@@ -45,3 +45,9 @@ authors:
       url: http://viison.com
       twitter: https://twitter.com/viison
       bio: We are a talented team of web, mobile and application developers. With backgrounds in the tourism and financial            				industry we are able to think out of the box and bring new ideas           				to the table. Concept phase, visual design and usability           				considerations, implementation, ongoing enhancements           				and maintenance, we are up for the task.
+
+  tg:
+      name: Tiago Garcia
+      title: Developer
+      twitter: http://twitter.com/tiagojsag
+      github: https://github.com/tiagojsag

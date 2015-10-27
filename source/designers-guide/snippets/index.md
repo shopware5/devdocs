@@ -127,7 +127,7 @@ array(
         // your database configuration
     ),
     'snippet' => array(
-        'readFromDb' => true,
+        'readFromDb' => false,
         'writeToDb' => false,
         'readFromIni' => true,
         'writeToIni' => true,

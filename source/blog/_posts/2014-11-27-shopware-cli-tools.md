@@ -21,7 +21,7 @@ By default the CLI tools will allow you to
 
 - setup shopware from VCS (e.g. GitHub)
 - setup shopware from a release package (e.g 4.3.0)
-- checkout a plugin from stash/github/bitbucked and install / activate it
+- checkout a plugin from stash/github/bitbucket and install / activate it
 - zip plugins from a local directory or VCS in a way, that is supported by shopware's plugin manager and community store
 - self-update of the tools
 

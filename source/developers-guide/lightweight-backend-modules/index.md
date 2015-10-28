@@ -195,7 +195,7 @@ The only requirement is to import `backend/base/frame/postmessage-api.js`. This 
 Our postMessage API is event-driven and uses an [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern) to provide an easy way to extend its native functionality. Every method fires an event, which can be used to hook your own logic into the API. One of the most important events is the `initialized-api`, which lets you know that the API is ready for further usage. Here's an example of how to use events:
 
 ```
-var subscription = windows.events.subscribe('initialized-api', function(obj) {
+var subscription = window.events.subscribe('initialized-api', function(obj) {
     // Do something now that the event has occurred
 });
 

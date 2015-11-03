@@ -33,6 +33,7 @@ $ cd shopware-vagrant
 ```
 
 ### 2. Boot up your Vagrant virtual machine
+
 ```bash
 $ cd vagrant
 $ vagrant up
@@ -46,7 +47,7 @@ The first boot may take a while. After that, your machine will be available at [
 
 ### 3. SSH access
 
-The SSH username is `vagrant`, the password: `vagrant`. To automatically SSH into the created VM run `vagrant ssh`. If you use Putty, the ssh configuration can be obtained via:
+The SSH username is `vagrant`, the password: `vagrant`. To automatically SSH into the created VM run `vagrant ssh`. If you use Putty, the SSH configuration can be obtained via:
 
 ```bash
 $ vagrant ssh-config
@@ -60,7 +61,7 @@ $ vagrant ssh-config
 
 ## PhpStorm
 
-### Good Reasons for PhpStorm
+### Benefits of using PhpStorm
 - Intelligent PHP editor
   - PHP code completion
   - Integrated refactoring
@@ -100,18 +101,18 @@ These directories will be marked red in your project and might not be visible an
 
 ### Coding Style
 
-As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.1/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in Editor > PHP > CodeStyling. 
+As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.1/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
 
 
 ### Deploy with PhpStorm
 
-To deploy a locally installed project to the Vagrant server, you may created an auto deployment in PhpStorm. Make sure you are using the developer version of Shopware which can be downloaded from [GitHub](https://github.com/shopware/shopware).
+To deploy a locally installed project to the Vagrant server, you need to configure auto deployment in PhpStorm. Make sure you are using the developer version of Shopware which can be downloaded from [GitHub](https://github.com/shopware/shopware).
 
 `git clone https://github.com/shopware/shopware.git`
 
 #### Step 1
 Open your Shopware project in PhpStorm.
-Choose in your toolbar Tools -> Deployment -> Configuration
+Choose in your toolbar `Tools` -> `Deployment` -> `Configuration`
 
 <div style="text-align:center;">
 
@@ -153,13 +154,13 @@ Fill in all required fields.
 </div>
 
 Now press OK to save your settings.
-If you configured your deployment machine successfully, you will be now asked to add the RSA key to your known hosts. Press *Yes*. After that, you'll get a success message.
+If you configured your deployment machine successfully, you will now be asked to add the RSA key to your known hosts. Press *Yes*. After that, you should get a success message.
 
 #### Step 3
 
 After adding your deploy machine, you have to create a mapping between the local and remote files. 
 
-Switch to the Mappings folder and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with right click.
+Switch to the Mappings folder and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with a right click.
 
 <div style="text-align:center;">
 
@@ -179,14 +180,14 @@ Right click on your document root folder and click on `Upload to Vagrant Deploym
 
 ### Automatic Upload
 
-You should enable the automatic upload function so you don't have to hit the upload button every time you change a file: `Tools > Deployment > Automatic Upload`.
+You can enable the automatic upload function so you don't have manually upload your files every time you change them: `Tools > Deployment > Automatic Upload`.
 
 ## Build Shopware
 
 Now that we uploaded Shopware onto the Vagrant box, we have to configure and install the development edition of Shopware.
 
 ### 1. Connect to your Vagrant Machine
-Connect to your vagrant machine via ssh using the `vagrant ssh` command
+Connect to your Vagrant machine via ssh using the `vagrant ssh` command
 
 ```bash
 $ vagrant ssh
@@ -208,7 +209,7 @@ Input fields:
 - app host: `33.33.33.10`
 - app path: `/shopware`
 
-After you get the `"BUILD SUCCESSFUL"` message you can run the full build command.
+After you get the `BUILD SUCCESSFUL` message you can run the full build command.
 
 ```bash
 $ ant build-unit
@@ -226,4 +227,4 @@ $ unzip test_images.zip
 
 Your Shopware installation is now complete and can be accessed at [http://33.33.33.10/shopware](http://33.33.33.10/shopware).
 
-To open the backend, add `/backend` to your url so it becomes [http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend). You can then login using the default user credentials **demo**/**demo**.
+To open the backend, add `/backend` to your URL so it becomes [http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend). You can then login using the default user credentials **demo**/**demo**.

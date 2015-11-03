@@ -8,79 +8,134 @@ tags:
   - tools
 indexed: true
 ---
-## Vagrant Shopware Box
 
-We published a [Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) that provides you with a basic Ubuntu 14.04 that contains all the bits and pieces needed to develop with Shopware.
-It contains the Apache Web server, MySQL Server as well as all required tools, like `ant`, `curl` and `git`.
+We published a [Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) that provides you with a basic Ubuntu 14.04 that contains everything that you needed to develop with Shopware.
+It contains the Apache2 Web Server, MySQL Server as well as all required tools, like `ant`, `curl` and `git`.
 
 Please note that Vagrant setup does not contain a Shopware installation. The installation has to be done manually.
 
-### Installation
+<div class="toc-list"></div>
+
+## Provisioning
 
 Download the required software:
 
- - [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+ - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
  - [Vagrant](https://www.vagrantup.com/downloads)
 
-The provision is done by [Ansible](http://www.ansibleworks.com/docs/) directly on the created vm.
+The provisioning is done directly on your new virtual machine by [Ansible](http://www.ansibleworks.com/docs/).
 
-Clone the repository to your local machine.
+### 1. Clone the repository to your local machine
 
-	$ git clone https://github.com/shopwareLabs/shopware-vagrant
-    $ cd shopware-vagrant
+```bash
+$ git clone https://github.com/shopwareLabs/shopware-vagrant
+$ cd shopware-vagrant
+```
 
-Boot up your Vagrant virtual machine:
+### 2. Boot up your Vagrant virtual machine
 
-    $ cd vagrant
-    $ vagrant up
+```bash
+$ cd vagrant
+$ vagrant up
+```
 
-The first boot may take a while, so feel free to get a cup of coffee.
-
-Your machine will be available at [http://33.33.33.10/](http://33.33.33.10/).
-All required tools like the LAMP stack are already installed.
+The first boot may take a while. After that, your machine will be available at [http://33.33.33.10/](http://33.33.33.10/). All required tools like the LAMP stack are already installed.
 
 - PHPMyAdmin: [http://33.33.33.10/phpmyadmin](http://33.33.33.10/phpmyadmin)
 - MySQL user: `root`, password: `shopware`
 
 
-### SSH Commands
+### 3. SSH access
 
-The SSH username is `vagrant`, the password: `vagrant`.
+The SSH username is `vagrant`, the password: `vagrant`. To automatically SSH into the created VM run `vagrant ssh`. If you use Putty, the SSH configuration can be obtained via:
 
-To SSH into the created VM:
+```bash
+$ vagrant ssh-config
+```
 
-    $ vagrant ssh
+<div style="text-align:center">
 
+![vagrant-ssh-config](img/ssh-config.png)
 
-If you use Putty, the ssh configuration can be obtained via:
+</div>
 
-    $ vagrant ssh-config
+## PhpStorm
 
+### Benefits of using PhpStorm
+- Intelligent PHP editor
+  - PHP code completion
+  - Integrated refactoring
+  - Smarty and PHPDoc support
+- Easy installation
+  - Cross platform
+  - Individual project settings
+- Visual PHPUnit test runner
+- VCS support
+  - SVN
+  - Git
+  - Mercurial
+  - Local history
+- FTP and remote synchronization
+- Visual debugging inside the IDE
+- HTML5 and CSS editor including zen coding
 
-![vagrant ssh-config](img/ssh-config.png)
+### Install the Shopware Plugin
+
+The official [Shopware plugin](https://plugins.jetbrains.com/plugin/7410) is available in the global jetbrains repository and can therefore be installed right inside your editor. It depends on the Symfony2 plugin which will automatically be installed during the installation of the Shopware plugin. You can read more about its features on the official [plugin page](https://plugins.jetbrains.com/plugin/7410). 
+
+### Exclude Directories from Indexing
+
+PhpStorm provides you with a variant of automatic code completions. First, PhpStorm needs to index all files inside your Project. This might take a while, depending on the number and size of files in your project.
+
+To exclude directories from indexing, open the Settings and select **Directories** in the left sidebar. You can now select directories on the right side and mark them as excluded by clicking on **Excluded** above.
+
+The following directories (if existing) should be excluded:
+- files
+- media
+- recovery
+- snippets
+- var
+- web
+
+These directories will be marked red in your project and might not be visible anymore, but they will still remain on your hard drive.
+
+### Coding Style
+
+As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.1/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
+
 
 ### Deploy with PhpStorm
 
-To deploy a locally installed project to the Vagrant server, we created an auto deployment in our favorite IDE, PhpStorm
-
-Please clone the shopware github verison onto your local machine.
+To deploy a locally installed project to the Vagrant server, you need to configure auto deployment in PhpStorm. Make sure you are using the developer version of Shopware which can be downloaded from [GitHub](https://github.com/shopware/shopware).
 
 `git clone https://github.com/shopware/shopware.git`
 
 #### Step 1
 Open your Shopware project in PhpStorm.
-Choose in your toolbar Tools -> Deployment -> Configuration
+Choose in your toolbar `Tools` -> `Deployment` -> `Configuration`
+
+<div style="text-align:center;">
 
 ![image](img/toolbar-deploy.png)
 
-### Step 2
+</div>
+
+#### Step 2
 Now we add our new Vagrant machine as deployment target.
+
+<div style="text-align:center;">
 
 ![image](img/deployment-root.png)
 
+</div>
+
 Choose a unique name and the "SFTP" type.
 
+<div style="text-align:center;">
+
 ![image](img/deployment-add.png)
+
+</div>
 
 Fill in all required fields.
 
@@ -92,48 +147,58 @@ Fill in all required fields.
 * Save Password: `yes`
 * Web server root URL: `http://33.33.33.10/`
 
+<div style="text-align:center;">
+
 ![image](img/deployment-conf.png)
 
+</div>
+
 Now press OK to save your settings.
-If you configured your deployment machine successfully, you will be now asked to add the RSA key to your known hosts. Press *Yes*
+If you configured your deployment machine successfully, you will now be asked to add the RSA key to your known hosts. Press *Yes*. After that, you should get a success message.
 
-After pressing yes you get the success message.
+#### Step 3
 
-### Step 3
-After adding our deploy machine we create a mapping between local files and remote files.
-Switch to the Mappings folder and press the "..." near `Deployment path`.
-Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with right click.
+After adding your deploy machine, you have to create a mapping between the local and remote files. 
+
+Switch to the Mappings folder and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with a right click.
+
+<div style="text-align:center;">
 
 ![image](img/deployment-map.png)
 
-Now press OK and close all deployment windows, so you are back in your default IDE view.
+</div>
+
+Now press *OK* and close all deployment windows, so that you are back in your default IDE view.
 
 Right click on your document root folder and click on `Upload to Vagrant Deployment`
 
+<div style="text-align:center;">
+
 ![image](img/deployment-upload.png)
+
+</div>
 
 ### Automatic Upload
 
-You should enable the automatic upload function so you don't have to hit the upload button every time you change a file: `Tools > Deployment > Automatic Upload`.
-
-### PhpStorm Shopware Plugin
-
-For a full integration of Shopware in PhpStorm please follow this [Guide](https://confluence.jetbrains.com/display/PhpStorm/Shopware+development+with+PhpStorm).
+You can enable the automatic upload function so you don't have manually upload your files every time you change them: `Tools > Deployment > Automatic Upload`.
 
 ## Build Shopware
 
 Now that we uploaded Shopware onto the Vagrant box, we have to configure and install the development edition of Shopware.
 
-### Step 1
-Join your vagrant machine via ssh using the `vagrant ssh` command
+### 1. Connect to your Vagrant Machine
+Connect to your Vagrant machine via ssh using the `vagrant ssh` command
 
-    $ vagrant ssh
-    $ cd /home/vagrant/www/shopware/build
+```bash
+$ vagrant ssh
+$ cd /home/vagrant/www/shopware/build
+```
   
-### Step 2
-Configure your build properties using
+### 2. Configure your build properties
 
-    $ ant configure
+```bash
+$ ant configure
+```
   
 Input fields:
 
@@ -144,27 +209,22 @@ Input fields:
 - app host: `33.33.33.10`
 - app path: `/shopware`
 
-After you get the `"BUILD SUCCESSFUL"` message you can run the full build command.
+After you get the `BUILD SUCCESSFUL` message you can run the full build command.
 
-    $ ant build-unit
+```bash
+$ ant build-unit
+```
 
-### Step 3
+### 3. Test images
 
-Download the test images and extract them:
+Download the test images and extract them into your Shopware's root directory.
 
-    $ cd ..
-    $ wget -O test_images.zip http://releases.s3.shopware.com/test_images.zip
-    $ unzip test_images.zip
+```bash
+$ cd ..
+$ wget -O test_images.zip http://releases.s3.shopware.com/test_images.zip
+$ unzip test_images.zip
+```
 
-  
-After the build is complete you can view your full installed Shopware under:
+Your Shopware installation is now complete and can be accessed at [http://33.33.33.10/shopware](http://33.33.33.10/shopware).
 
-[http://33.33.33.10/shopware](http://33.33.33.10/shopware)
-
-### Step 4
-Open the backend by adding a `/backend` to your default Shopware installation.
-
-[http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend)
-
-* Default user: `demo`
-* Default pass: `demo`
+To open the backend, add `/backend` to your URL so it becomes [http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend). You can then login using the default user credentials **demo**/**demo**.

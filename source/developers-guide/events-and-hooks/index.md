@@ -32,12 +32,12 @@ when the corresponding event is triggered.
 
 ## Controller events
 The controller events are, as the name implies, linked to the controllers. Each Shopware controller has certain basic 
-functions which were already discussed in the <a href="{{ site.url }}/developers-guide/controller/">Shopware controllers guide</a>. 
+functions which were already discussed in the [Shopware controllers guide](https://developers.shopware.com/developers-guide/controller/). 
 This also means that each controller has been implemented with one of three default events:
 
-* PreDispatch
-* PostDispatch
-* methodAction
+* `PreDispatch`
+* `PostDispatch`
+* `methodAction`
 
 ### PreDispatch
 The `PreDispatch` event is executed before the dispatch process of the controller starts executing.
@@ -80,7 +80,7 @@ $this->subscribeEvent(
 
 
 ### methodActions
-The controller methods, for example indexAction, can be caught by an event too. These events are constructed using
+The controller methods, for example `indexAction`, can be caught by an event too. These events are constructed using
 the following syntax:
 
 ```php
@@ -93,7 +93,7 @@ With this event type you can extend every controller action in Shopware.
 
 **Registration example:**
   
-The Shopware checkout page is loaded via confirmAction in the frontend checkout controller. If you wish
+The Shopware checkout page is loaded via `confirmAction` in the frontend checkout controller. If you wish
 to load your individual customizations, the following event is registered.
 
 ```php
@@ -174,7 +174,7 @@ these values.
 `Enlight_Event_EventsArgs::setReturn()` makes it possible to modify the return value of the event.
 
 ### Example
-In this <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">guide</a> will be explained how to 
+In this [guide](http://devdocs.shopware.com/developers-guide/plugin-quick-start/#hooking-into-the-system) will be explained how to 
 use and register an event correctly in a Shopware plugin.
 
 ## Hooks
@@ -294,5 +294,5 @@ that is generated automatically by Shopware when a hook is registered for the cl
 original function. This is very helpful when a scenario arises in a replace hook which we don't want to deal with.
 
 ### Blog - Understanding the Shopware hook system
-<a href="{{ site.url }}/blog/2015/06/09/understanding-the-shopware-hook-system/">Here</a> you can read a blog post by 
+[Here](https://developers.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/) you can read a blog post by 
 Daniel Nögel who explains the Shopware hook system.

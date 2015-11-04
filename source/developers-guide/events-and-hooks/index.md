@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Shopware 5 events & hooks
-github_link: developers-guide/shopware-5-events-and-hooks/index.md
+title: Events & Hooks
+github_link: developers-guide/events-and-hooks/index.md
 indexed: true
 ---
 
@@ -40,7 +40,7 @@ This also means that each controller has been implemented with one of three defa
 * methodAction
 
 ### PreDispatch
-The ``PreDispatch`` event is executed before the dispatch process of the controller starts executing.
+The `PreDispatch` event is executed before the dispatch process of the controller starts executing.
 
 **Registration example:**
 ```php
@@ -54,7 +54,7 @@ The first parameter is the event we want to attach and the second parameter in t
 name with the code you want to add. 
 
 ### PostDispatch
-The ``PostDispatch`` on the other hand will be executed after the dispatch process of the controller is finished.
+The `PostDispatch` on the other hand will be executed after the dispatch process of the controller is finished.
 
 **Registration example:**
 ```php
@@ -65,9 +65,9 @@ $this->subscribeEvent(
 ```
 
 ### PostDispatchSecure
-We recommend to use always the ``PostDispatchSecure`` event if you want to use the ``PostDispatch`` event. The only
+We recommend to use always the `PostDispatchSecure` event if you want to use the `PostDispatch` event. The only
 difference is that this event is a secure event. This means not that it is safe in meaning of security, it means that
-your ``PostDispatch`` event is reliable. If you use this event you can be sure that this is not an exception or a
+your `PostDispatch` event is reliable. If you use this event you can be sure that this is not an exception or a
 download etc.
 
 **Registration example:**
@@ -117,7 +117,7 @@ $this->subscribeEvent(
 
 ### Notifyuntil events
 The notifyuntil event is an event which can be used to prevent certain processes. The event is always triggered in 
-an ``if`` condition. Whenever the plugin registers an event and returns ``true`` the following process is no longer executed.
+an `if` condition. Whenever the plugin registers an event and returns `true` the following process is no longer executed.
 
 ### Notify filter events
 Shopware's notify filter events allow you to filter determined data or modify SQL statements prior to execution.  
@@ -127,7 +127,7 @@ Event which is fired to collect plugin parameters to register additionally appli
 this event you can add own elements to an existing array.
 
 ### Enlight_Event_EventsArgs
-The class ``Enlight_Event_EventsArgs`` serves as a helper class which serves as transfer parameters with every event. 
+The class `Enlight_Event_EventsArgs` serves as a helper class which serves as transfer parameters with every event. 
 With this class, the event parameters are requested dynamically. An event is defined as follows:
 ```php
 Enlight()->Events()->notify(
@@ -158,20 +158,20 @@ the name of the event.
 
 ##### stop
 As already described, it is possible to prevent the execution of the original function with the function 
-``Enlight_Event_EventsArgs::stop()`` zu verhindern. Following the event listener this event will no longer be executed.
+`Enlight_Event_EventsArgs::stop()` zu verhindern. Following the event listener this event will no longer be executed.
 
 ##### remove
-``Enlight_Event_EventsArgs::remove()`` makes it possible to remove the transfer parameters of the event. 
-``Enlight_Event_EventsArgs::remove('subject')`` removes, for example, the subject and subsequent events which no longer have 
+`Enlight_Event_EventsArgs::remove()` makes it possible to remove the transfer parameters of the event. 
+`Enlight_Event_EventsArgs::remove('subject')` removes, for example, the subject and subsequent events which no longer have 
 access to these parameters.
 
 ##### getReturn
-``Enlight_Event_EventsArgs::getReturn()`` provides access to the return value of the event. If other plugin event listeners, 
+`Enlight_Event_EventsArgs::getReturn()` provides access to the return value of the event. If other plugin event listeners, 
 which set a return value, have already been executed prior to your own event listener, your event listener can access 
 these values.
 
 ##### setReturn
-``Enlight_Event_EventsArgs::setReturn()`` makes it possible to modify the return value of the event.
+`Enlight_Event_EventsArgs::setReturn()` makes it possible to modify the return value of the event.
 
 ### Example
 In this <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">guide</a> will be explained how to 
@@ -263,33 +263,33 @@ $sessionId = $arguments->get('sessionId');
 ```
 
 #### getArgs
-``Enlight_Hook_HookArgs::getArgs()`` returns all transfer parameters in an array.
+`Enlight_Hook_HookArgs::getArgs()` returns all transfer parameters in an array.
 
 #### getMethod
-``Enlight_Hook_HookArgs::getMethod()`` returns the name of the original function. 
+`Enlight_Hook_HookArgs::getMethod()` returns the name of the original function. 
 
 #### getName
-``Enlight_Hook_HookArgs::getName()`` function returns the full hook names back which are specified in the 
-``$this->subscribeEvent()``. 
+`Enlight_Hook_HookArgs::getName()` function returns the full hook names back which are specified in the 
+`$this->subscribeEvent()`. 
 
 #### getReturn
-In an after hook type the return value of the original function is available via ``Enlight_Hook_HookArgs::getReturn()``.
+In an after hook type the return value of the original function is available via `Enlight_Hook_HookArgs::getReturn()`.
 
 #### remove 
-``Enlight_Hook_HookArgs::remove()`` function provides, as with the Enlight_Event_EventArgs the possibility of removing 
+`Enlight_Hook_HookArgs::remove()` function provides, as with the Enlight_Event_EventArgs the possibility of removing 
 transfer parameters.
 
 #### set
-Via the ``Enlight_Hook_HookArgs::set($variable, $value)`` function, it is possible to modify the transfer parameters 
+Via the `Enlight_Hook_HookArgs::set($variable, $value)` function, it is possible to modify the transfer parameters 
 of the hook.
  
 #### setReturn
-As with the ``Enlight_Event_EventArgs`` function, the ``Enlight_Hook_HookArgs::setReturn()`` function allows you to 
+As with the `Enlight_Event_EventArgs` function, the `Enlight_Hook_HookArgs::setReturn()` function allows you to 
 manipulate the return value.
 
 #### executeParent
-In the various argument dumps, the hook listener functions make sure that with ``$arguments->getSubject()``, the actual 
-original class ``sArticles`` is not returned, but rather the ``sArticlesProxy`` class. This is the proxy class ``sArticles`` 
+In the various argument dumps, the hook listener functions make sure that with `$arguments->getSubject()`, the actual 
+original class `sArticles` is not returned, but rather the `sArticlesProxy` class. This is the proxy class `sArticles` 
 that is generated automatically by Shopware when a hook is registered for the class. This class allows us to call the 
 original function. This is very helpful when a scenario arises in a replace hook which we don't want to deal with.
 

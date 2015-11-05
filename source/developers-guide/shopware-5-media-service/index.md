@@ -40,6 +40,12 @@ $url = $mediaService->getUrl($path);
 
 Simply get the `shopware_media.media_service` from the DI container and call `getUrl()` with your virtual path. As a result you'll get a full qualified URL and you are able to bind it to a view. There is no need to use the `{link ...}` Smarty expression.
 
+In your Smarty templates you may use the `{media path=...}` expression to get the full qualified URL.
+
+```smarty
+<img href="{media path="media/image/my-fancy-image.png"}">
+```
+
 #### Check if a files exists
 
 This should be used as replacement for `file_exists()`

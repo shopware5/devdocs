@@ -40,7 +40,7 @@ $url = $mediaService->getUrl($path);
 
 Simply get the `shopware_media.media_service` from the DI container and call `getUrl()` with your virtual path. As a result you'll get a full qualified URL and you are able to bind it to a view. There is no need to use the `{link ...}` Smarty expression.
 
-In your Smarty templates you may use the `{media path=...}` expression to get the full qualified URL.
+In your Smarty templates you may use the `{media path=...}` expression to get the fully qualified URL.
 
 ```smarty
 <img href="{media path="media/image/my-fancy-image.png"}">
@@ -149,4 +149,4 @@ Again, keep in mind that the live migration mechanism will still be in place, me
 
 #### Build your own adapter
 
-Since our MediaService is built on top of [Flysystem](http://flysystem.thephpleague.com), feel free to create your own adapter and share it with the community. You can also the provided [Amazon S3 adapter](https://github.com/ShopwareLabs/SwagMediaS3) plugin as an example.
+Since our MediaService is built on top of [Flysystem](http://flysystem.thephpleague.com), feel free to create your own adapter and share it with the community. You can also take the provided [Amazon S3 adapter](https://github.com/ShopwareLabs/SwagMediaS3) plugin as an example.

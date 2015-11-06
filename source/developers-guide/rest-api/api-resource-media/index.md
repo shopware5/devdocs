@@ -91,7 +91,7 @@ The following keys can be provided in the array:
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| albumId (required)    | integer (foreign key) | 	                                								            |
+| album (required)    | integer (foreign key) | 	                                								            |
 | name   			    | string                | Auto generated if not provided    											|
 | file (required)		| string				| Path to the file that should be uploaded										|
 | description (required)| string                |  										   										|

@@ -46,6 +46,9 @@ In your Smarty templates you may use the `{media path=...}` expression to get th
 <img href="{media path="media/image/my-fancy-image.png"}">
 ```
 
+`{media}` evaluates the given path at template's compile time, so you cannot use runtime variables for it's path-argument (generally you will use a constant path as in the example above).
+
+
 #### Check if a files exists
 
 This should be used as replacement for `file_exists()`

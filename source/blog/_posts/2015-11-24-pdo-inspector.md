@@ -8,7 +8,7 @@ tags:
 categories:
 - dev
 indexed: false
-github_link: blog/_posts/2015-11-17-pdo-interceptor.md
+github_link: blog/_posts/2015-11-24-pdo-inspector.md
 
 authors: [dn]
 ---
@@ -58,13 +58,13 @@ But even though there are techniques to prevent SQL injections, attack vectors m
  of developers or the high degree of abstraction, that many applications use when working with databases.
 
 
-# Is my application safe?
+## Is my application safe?
 All this considerations bring up the question, how to make sure, that an existing peace of software does not contain any SQL injections. By the
 very nature of SQL queries, statically finding and analyzing those queries in an application is quite hard and error-prone,
 as the queries might be composed during runtime and database connection objects might be hidden by variable names
 or implementation details of the application.
 
-## Pentests
+### Pentests
 A common approach are so called [penetration test](https://en.wikipedia.org/wiki/Penetration_test) which (in some cases)
 might use automated tools, to black-box scan a given application for errors and SQL injections. Such a test might try
 to crawl all pages of a web application, change input parameters and look for conspicuous responses from the server.
@@ -72,14 +72,14 @@ Such a "conspicuous response" might be an error message, a differing HTTP respon
 or changed response times. As you might imagine, this is a time-consuming task, as the crawler will need to retry any single
 possible call with multiple values and check for all the possible criteria mentioned above.
 
-## Analyzing queries
+### Analyzing queries
 Discussing ways to detect security issues automatically with Florian Ressel, a student from munich currently writing
-his bachelor thesis about web application security, I wondered if it was possible to intercept queries on the database connection level
+his bachelor thesis about web application security, I wondered if it was possible to inspect queries on the database connection level
 and find possible SQL injections by actually parsing and analyzing the queries. As I didn't find existing libraries
  doing so, I implemented a prototype and after a few evenings, I think the answer is "yes".
 
-# SQL Query interceptor
-The SQL Query interceptor is a simple library, which decorates the PDO object and parses all SQL queries, that are about
+## SQL Query inspector
+The SQL Query inspector is a simple library, which decorates the PDO object and parses all SQL queries, that are about
 to hit the SQL server. At this point, the SQL queries are fully assembled and either plain text SQL queries or prepared statements.
 
 Using the [PHP SQL parser from Justin Swanhart](https://github.com/greenlion/PHP-SQL-Parser), the library is able to find
@@ -97,7 +97,7 @@ Using `debug_backtrace` of PHP and routing information of either the `$_SERVER` 
 the tool will also be able to provide you the concrete route / path of any possible SQL injection as well as the concrete stack trace and even
  the source code of the method / function that triggered that query.
 
-For example the unit tests of the SQL query interceptor library produces this log:
+For example the unit tests of the SQL query inspector library produces this log:
 
 ```
 (
@@ -249,9 +249,9 @@ be registered as a new incident
 This way reviewing the generated result is quite easy, as the generated logs provide all information you need, without
 having to re-check the original source code.
 
-# In-detail: How does it work?
+## In-detail: How does it work?
 
-## Half the battle: Intercepting results:
+### Half the battle: Decorating the PDO connection:
 As mentioned before, statically analyzing all SQL queries from an application is hard, as the queries might be assembled
 dynamically during runtime. But there is another point to address: The database connection itself: As every SQL query
 is going to hit the database server sooner or later, one could try to catch the queries there - after they have been assembled
@@ -280,7 +280,7 @@ class Pdo
 ```
 
 These three methods will either directly execute a query (e.g. `DELETE * FROM test`), query a result (e.g. `SELECT * FROM test`)
-or prepare a SQL query for later execution (e.g `SELECT * FROM test WHERE id=?`). Now we can write a simple interceptor,
+or prepare a SQL query for later execution (e.g `SELECT * FROM test WHERE id=?`). Now we can write a simple inspector,
 that will behave just like the PDO object but analyze any query before it passes it to the database server:
 
 ```
@@ -320,7 +320,7 @@ As you can see, all overridden functions will pass the SQL query to the "sql que
 decorated PDO object ("innerPDO"). This way the application will still run as always - but behind the scenes, every single query
 is analyzed for a possible SQL injection:
 
-## The second half: Inspecting the result
+### The second half: Inspecting the result
 The `\Dnoegel\DatabaseInspection\SqlProblemInspector` will inspect every SQL by parsing it and checking for constant
 values in the query. If the normalized and hashed query was whitelisted, no further logic will be executed.
 If possible injections where detected, the script will get the routing information (`\Dnoegel\DatabaseInspection\RouteProvider\RouteProvider`)
@@ -329,7 +329,7 @@ information will then be stored using a simple storage interface (`\Dnoegel\Data
 defaults to a json storage. Theoretically this can easy be changed to store the information e.g. in a database or somewhere
 else.
 
-## Possible improvements
+### Possible improvements
 There are several things to consider for this library:
 
 First of all, parsing every SQL query, getting debug information and writing this info to hard disc has a negative effect
@@ -343,7 +343,7 @@ in SQL queries are necessary at all - why not using prepared statements for thos
 false positives might be still reasonable, as the debug format makes it easy to tell those queries apart from problematic
 queries. After whitelisting those queries once, they shouldn't appear again, so I think its worth the effort.
 
-## Can this tool be used to actually prevent SQL injection attacks?
+### Can this tool be used to actually prevent SQL injection attacks?
 This tool shouldn't be used in an "input filter" like manner: It is a QA / developer tool, not a security layer. Limitations
 are:
 
@@ -354,7 +354,7 @@ attack does not necessarily have a constant query part.
 For these reasons, this tool should ony be considered a developer analytics tool and is by no mean a "security layer" of
 whatsoever kind.
 
-# Other approaches
+## Other approaches
 As mentioned before, there are other approaches to detect SQL injections. Since 2014 there is a [PHP RFC by Wietse Venema](https://wiki.php.net/rfc/taint)
 who suggests "tainting" of PHP variables. This way PHP would internally store, how a string was composed.
 A string created completely from within the application might be safe, a string created using user input from HTTP query variables,
@@ -372,3 +372,6 @@ also help you to understand injections attacks better.
 Another interesting library is [php-reaper](https://github.com/emanuil/php-reaper) which will parse your PHP source code
 for tainted SQL queries. Currently its bound to AdoDB and also produces a lot of false positives - but I think its also
 a nice approach to find possible SQL injections statically.
+
+## Download
+You can find the query inspector on my [github repo](https://github.com/dnoegel/pdo-inspector)

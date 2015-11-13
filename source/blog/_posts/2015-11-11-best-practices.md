@@ -6,7 +6,7 @@ tags:
 
 categories:
 - dev
-
+indexed: true
 authors: [dn]
 ---
 Developing a Shopware plugin is quite easy: Create some directories and a `Bootstrap.php` file, register some events, add some

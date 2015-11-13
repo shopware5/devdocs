@@ -214,6 +214,9 @@ $myService = new Shopware\Plugins\MyPlugin\MyService();
 $myService->say('hi');
 ```
 
+Please notice, that `Shopware()->Db()` isn't recommended for services. Either inject it into your service - or inject
+the DBAL connection into your service - this is a handy PDO wrapper from the doctrine project (see [DBAL connection](#dbal-connection)).
+
 ## Dependency Injection
 
 If your plugin has more complex services with many dependencies, you should to put them in the dependency injection container (DIC).
@@ -550,6 +553,33 @@ a whole lot easier - and usually the backend does not require high performance i
 In the frontend, however, my recommendation is to not use Doctrine ORM too extensively, especially on performance
 critical pages such as listing, detail page and checkout / basket. If you don't want to end up writing plain SQL queries
 again, Doctrine DBAL query builder is a nice tool, which provides a fluent interface for building SQL queries.
+
+## DBAL connection
+The DBAL query builder is a part of the DBAL library from doctrine. We found it very useful, as it provides a nice
+API to build queries and can be used e.g. to allow plugins to modify a query easily. Also you can still use
+plain SQL, if you need to.
+
+The DBAL connection is available in the Shopware DI container as `dbal_connection`:
+
+```
+$queryBuilder = $container->get('dbal_connection')->createQueryBuilder();
+```
+
+So you can easily inject the query builder into your services. In those you could create queries like this:
+
+```
+$this->queryBuilder->select('category.path')
+    ->from('s_categories', 'category')
+    ->where('category.id = :id')
+    ->setParameter(':id', $categoryId);
+
+$path = $this->queryBuilder->execute()->fetch(PDO::FETCH_COLUMN);
+```
+
+As you can see, the plain table names and columns are used here - not the doctrine models. So it can also be used
+for entities, which do not have doctrine models at all. So whenever you want to avoid Doctrine ORM, the DBAL connection
+is worth a look. We also use it e.g. for the new store front bundles a lot.
+
 
 ## Structs
 PHP arrays are quite powerful, as they can be used as lists as well as hash maps / dictionaries. This, however, is also

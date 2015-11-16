@@ -11,8 +11,8 @@ categories:
 authors: [dn]
 github_link: blog/_posts/2015-11-18-dynamic-shopping-worlds.md
 ---
-The shopping worlds (also called emotions) are one of the central content pages in Shopware. With them even non-technical
-persons can create landing pages, product-, category- or blog-teasers and many other content types. In addition to that
+The shopping worlds (also called emotions) are one of the central content pages in Shopware. With them, even non-technical
+persons can create landing pages, product, category or blog teasers and many other content types. In addition to that
 there is the easy to use editor, powerful components and extensibility, of course.
 
 There are cases, however, where you might want to use the shopping worlds for other kind of content pages - or where you
@@ -29,7 +29,7 @@ address, opening times). In addition to that, the "store manager" will allow the
 which is used for all stores. So the user can arrange name, description, google map and opening times.
 
 In order not to bloat the shopping world module, the "store template" shopping world should not be visible there. Same
- applies for our store shopping world components: They should only be visible in the store manager - not in the default
+ applies to our store shopping world components: they should only be visible in the store manager - not in the default
  shopping world module.
 
 <img src="/blog/img/dynamic_frontend.png" alt="" width="350" style="float: left; margin: 0 20px 30px 0" />
@@ -41,10 +41,10 @@ move those boxes around.
 
 <img src="/blog/img/dynamic_template.png" alt="" width="350" style="float: right; margin: 0 20px 30px 0" />
 The backend module is a simple CRUD module, that allows the user to create / edit stores. In our case stores in Berlin,
-Schöppingen and Münster have been defined.  As the Shopware backend components where used, this module is quite simple to
+Schöppingen and Münster have been defined.  As the Shopware backend components were used, this module is quite simple to
 create - the only special thing is the "edit store template" button in the list window. This will open up the **template
 shopping world** that defines the layout for all stores. As mentioned before, this specific shopping world can only
-be opened from the "store manager" module, the highlightes components will also only be visible there.
+be opened from the "store manager" module, the highlights components will also only be visible there.
 
 
 ## Tasks
@@ -61,15 +61,15 @@ Looking at the goal, the plugin can roughly be split into the following tasks:
     * wiring up the custom shopping world component
 * Store manager backend module
     * CRUD for store infos
-    * add "open store template" button, which openes the store template shopping world
+    * add "open store template" button, which opens the store template shopping world
 
 I will quickly show the more interesting parts of this plugin - if you want to have the full example, please see the
 download section below.
 
 ## Shopping world
 ### Create a "store template" shopping world during plugin install
-The store template shopping world can easily be created using the `Emotion` Doctirne model. The only special thing is the
-attribute `swagShopTemplate` that I use to tell my "store template" and all the other shopping worlds apart.
+The store template shopping world can easily be created using the `Emotion` Doctrine model. The only special thing is the
+attribute `swagShopTemplate` that I use to tell my "store template" apart from all the other shopping worlds.
 
 ```
 Shopware()->Models()->addAttribute(
@@ -86,7 +86,7 @@ Shopware()->Models()->generateAttributeModels(
 ```
 
 ### Shopping world components
-As the shopping world components are intended to be dynamic, there is not much of configuration needed:
+As the shopping world components are intended to be dynamic, there is not much configuration needed:
 
 ```
 private function createMyEmotionComponent()
@@ -149,12 +149,12 @@ To do so, a simple subscriber is implemented:
     {
         return array(
             'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion' => 'modifyEmotionModule',
-            'Shopware\Models\Emotion\Repository::getListingQuery::after' => 'removeStoreTemplatEmotionFromListing'
+            'Shopware\Models\Emotion\Repository::getListingQuery::after' => 'removeStoreTemplateEmotionFromListing'
         );
     }
 
     // do not show the store template shopping world in the emotion module
-    public function removeStoreTemplatEmotionFromListing(\Enlight_Hook_HookArgs $args)
+    public function removeStoreTemplateEmotionFromListing(\Enlight_Hook_HookArgs $args)
     {
         $builder = $args->getReturn();
 
@@ -173,7 +173,7 @@ To do so, a simple subscriber is implemented:
         $view = $controller->View();
 
         // remove our components from the default emotion library
-        // our compoments should just be visible when editing our store emotion template
+        // our components should just be visible when editing our store emotion template
         if ($request->getActionName() == 'library' && !$request->has('showStoreComponents')) {
             /** @var CustomComponents $customComponents */
             $customComponents = $controller->get('swag_dynamic_emotion.custom_components');
@@ -192,7 +192,7 @@ To do so, a simple subscriber is implemented:
 }
 ```
 
-The method `removeStoreTemplatEmotionFromListing` will check for a custom attribute the plugin created. This attribute
+The method `removeStoreTemplateEmotionFromListing` will check for a custom attribute the plugin created. This attribute
 is `1` for the store template shopping world, so only shopping worlds without this flag are shown.
 The method `modifyEmotionModule` modifies the `libraryAction` of the backend emotion controller - this method will
 return all available components for the toolbar on the right of the emotion designer. As our dynamic components
@@ -232,7 +232,7 @@ class Shopware_Controllers_Frontend_Store extends Enlight_Controller_Action
 The controller will basically read all stores from the database and assign them to the template. Additionally it
 checks for the parameter `store` (which is the currently selected store) and assigns it to the variable `currentStore`.
 Last of all, it assigns the id of the store template shopping world to the template, so it can be included there.
-In this example Doctrine ORM is used and all store entities are fetched. Depending on the number of entities and
+In this example, Doctrine ORM is used and all store entities are fetched. Depending on the number of entities and
 the server load, pagination and perhaps custom SQL queries might be more suitable for your.
 
 ### The template
@@ -292,7 +292,7 @@ class Emotion implements \Enlight\Event\SubscriberInterface
         );
     }
 
-    public function removeShopTemplatEmotionFromListing(\Enlight_Hook_HookArgs $args) { }
+    public function removeShopTemplateEmotionFromListing(\Enlight_Hook_HookArgs $args) { }
 
     public function modifyEmotionModule(\Enlight_Event_EventArgs $args) { }
 
@@ -351,11 +351,11 @@ return array_merge($data, ['store' => $storeRepo->find($storeId)]);
 ```
 
 Merging the result array is necessary, as `$data` might contain the components data, e.g. `zoom` for the map component.
-We add the current store's data to it, so both is available in the emotion template.
+We add the current store's data to it, so both are available in the emotion template.
 
 ## Store manager backend module
-The store manager backend module was created using Shopware's [backend components](https://developers.shopware.com/developers-guide/backend-components/basics/)
-and generated using the [code generator](https://developers.shopware.com/blog/2015/09/01/generating-plugins-with-the-cli-tools/).
+The store manager backend module was created using Shopware's [backend components](/developers-guide/backend-components/basics/)
+and generated using the [code generator](/blog/2015/09/01/generating-plugins-with-the-cli-tools/).
 So there is nothing special here - except the "edit store template" button, which is supposed to open the template
 shopping world directly.
 
@@ -402,8 +402,8 @@ Ext.define('Shopware.apps.SwagStore.view.list.List', {
 ```
 
 As you can see above, the function `createToolbarItems` is an override of the base class `Shopware.grid.Panel`.
-The override is used, to add the new button. The `handler` callback of the button will just open the emotion detail
-view for the provided `emotionId`. The ID `{$storeTemplateEmotionId}` will be filled by smarty. In order to do so, I
+The override is used to add the new button. The `handler` callback of the button will just open the emotion detail
+view for the provided `emotionId`. The ID `{$storeTemplateEmotionId}` will be filled by Smarty. In order to do so, I
 extended the backend controller like this:
 
 ```
@@ -417,13 +417,13 @@ public function loadAction()
 }
 ```
 
-This pattern is usually discouraged in Shopware, as the templates are cached and side effects might occure. In this case,
-however, the emotionId will be constant, so we can use it in this case. In order to query more dynamic information models
-or Ext.Ajax queries will be required.
+This pattern is usually discouraged in Shopware, as the templates are cached and side effects might occur. In this case,
+however, the emotionId will be constant, so we can use it in this case. In order to query more dynamic information, models
+or `Ext.Ajax` queries would be required.
 
 ### Modifications to the shopping world module
-The shopping world module is not able to open shopping world detail pages by default. So that module needs to be extended
-as well. In order to do so I created the template file `backend/swag_emotion/controller/main.js` which will extend the
+The shopping world module is not able to open shopping world detail pages by default. As such, it needs to be extended
+as well. In order to do so, I created the template file `backend/swag_emotion/controller/main.js`, which will extend the
 main controller of the shopping world module:
 
 ```
@@ -448,9 +448,9 @@ Ext.define('Shopware.apps.SwagEmotion.controller.Main', {
 //{/block}
 ```
 
-This is an Ext override, that will modify the constructor of the controller. After calling the original method,
+This is an `Ext` override, that will modify the constructor of the controller. After calling the original method,
 we add a check for a passed `emotionId`. If it was passed, the main shopping world listing window is hidden using
-`me.mainWindow.hide();`. Also we add the flag `showStoreComponents` to the library store, so that our custom components
+`me.mainWindow.hide();`. We also add the flag `showStoreComponents` to the library store, so that our custom components
 will be shown in the designer ([see our modification to the libraryAction](#hide-all-this-from-the-shopping-)).
 Then finally we will open the detail page for the given `emotionId` using the call
 
@@ -461,8 +461,8 @@ me.getController('Detail').loadEmotionRecord(me.subApplication.params.emotionId,
 ```
 
 ## Round up
-With the modifications described above, we created an own content designer, that makes use of the shopping world module
-without bloating the original module. This will allow the users to use the powerful shopping world designer for own
+With the modifications described above, we created a custom content designer that makes use of the shopping world module
+without bloating the original module. This will allow the users to use the powerful shopping world designer for custom
 content pages in a very convenient way.
 In addition to that, we wrote "dynamic" shopping world components, that will be filled depending on the currently selected
 store. This way of using the shopping worlds makes them even more powerful.

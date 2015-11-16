@@ -12,7 +12,7 @@ class Emotion implements \Enlight\Event\SubscriberInterface
         return array(
             'Shopware_Controllers_Widgets_Emotion_AddElement' => 'handleElement',
             'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion' => 'modifyEmotionModule',
-            'Shopware\Models\Emotion\Repository::getListingQuery::after' => 'removeShopTemplatEmotionFromListing'
+            'Shopware\Models\Emotion\Repository::getListingQuery::after' => 'removeShopTemplateEmotionFromListing'
         );
     }
 
@@ -22,7 +22,7 @@ class Emotion implements \Enlight\Event\SubscriberInterface
      * @param \Enlight_Hook_HookArgs $args
      * @return mixed
      */
-    public function removeShopTemplatEmotionFromListing(\Enlight_Hook_HookArgs $args)
+    public function removeShopTemplateEmotionFromListing(\Enlight_Hook_HookArgs $args)
     {
         $builder = $args->getReturn();
 
@@ -52,7 +52,7 @@ class Emotion implements \Enlight\Event\SubscriberInterface
         }
 
         // remove our components from the default emotion library
-        // our compoments should just be visible when editing our store emotion template
+        // our components should just be visible when editing our store emotion template
         if ($request->getActionName() == 'library' && !$request->has('showStoreComponents')) {
             /** @var CustomComponents $customComponents */
             $customComponents = $controller->get('swag_dynamic_emotion.custom_components');

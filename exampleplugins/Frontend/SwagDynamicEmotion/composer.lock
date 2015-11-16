@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "6a5f562e6fe1a6732e67fe3b49583edf",
+    "content-hash": "857b58f3ef6ace831720cb0bc0158bde",
+    "packages": [
+        {
+            "name": "dnoegel/lazy-subscriber",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dnoegel/lazy-subscriber.git",
+                "reference": "d92efd7648a093f5e5dd701f046f39d1eb284f11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dnoegel/lazy-subscriber/zipball/d92efd7648a093f5e5dd701f046f39d1eb284f11",
+                "reference": "d92efd7648a093f5e5dd701f046f39d1eb284f11",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dnoegel\\LazySubscriber\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Nögel"
+                }
+            ],
+            "description": "Will allow you to define anonymous function as event listener callbacks for Shopware (4.2.0+)",
+            "time": "2015-10-10 19:45:25"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "dnoegel/lazy-subscriber": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

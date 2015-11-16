@@ -44,3 +44,21 @@ If you want, you can customize the behavior of the toc list as well. You can def
 ```
 <div class="toc-list" data-depth="1" data-headline="Awesome table of contents"></div>
 ```
+
+## Version History
+To create a version history table, you simply have to add a `history` array to your metadata.
+
+Example:
+```
+
+---
+layout: default
+indexed: true
+...
+history:
+  2015-11-16: creation
+  2015-11-23: added frontend documentation
+  2016-01-01: documented millenium bug
+---
+
+```

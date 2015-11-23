@@ -1,26 +1,26 @@
 ---
 layout: default
-title: Developer's Guide
+title: Plugin License
 github_link: developers-guide/plugin-license/index.md
 ---
 
 ## Overview
 
-Should you wish to, you can have your plugin run a license check when used in a Shopware shop. This will ensure that the target shop has permission to use your plugin. This document covers the steps necessary to implement this check. 
+Should you wish to, you can have your plugin run a license check when used in a Shopware shop. This will ensure that the target shop has permission to use your plugin. This document covers the steps necessary to implement this check.
 
 ## Requesting the license check
 
-To request a license check, you must first login into your [Shopware account](http://account.shopware.com) and request a license validation in the detail page of your plugin. Once you have done so, you will be given a code snippet similar to this: 
+To request a license check, you must first login into your [Shopware account](http://account.shopware.com) and request a license validation in the detail page of your plugin. Once you have done so, you will be given a code snippet similar to this:
 
 ```
 public function checkLicense($throwException = true)
 {
     static $r, $m = 'SwagMyPlugin';
-    
+
     // ...
     // Validation logic
     // ...
-    
+
     if ($throwException) {
         throw new \Exception('License check for module "' . $m . '" has failed.');
     }
@@ -29,7 +29,7 @@ public function checkLicense($throwException = true)
 }
 ```
 
-This method validates if the current shop has a valid license for your plugin. It should be placed inside your plugin's Bootstrap class, and used whenever you want to ensure that the current shop has a valid license for your plugin (for example, during plugin installation). 
+This method validates if the current shop has a valid license for your plugin. It should be placed inside your plugin's Bootstrap class, and used whenever you want to ensure that the current shop has a valid license for your plugin (for example, during plugin installation).
 
 ## Executing the license check
 
@@ -117,7 +117,7 @@ In this example, you can see that the `checkLicense` method is called during ins
 
 In the `onPostDispatchFrontendListing` method, the validation will not throw an exception, but instead make the method prematurely return, causing the plugin to not perform its expected action, but also not informing the frontend user of this validation issue.
 
-## Custom validation 
+## Custom validation
 
 While you are free to customize the `checkLicense` method, we highly recommend that you don't. Should you require any additional checks besides the license check provided by us, you should create a wrapper method to implement your own logic
 

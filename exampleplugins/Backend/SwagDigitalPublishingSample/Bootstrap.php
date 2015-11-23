@@ -21,7 +21,8 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
         return true;
     }
 
-    public function uninstall() {
+    public function uninstall()
+    {
         return true;
     }
 
@@ -50,5 +51,4 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
             $this->Path()
         );
     }
-
 }

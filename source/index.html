@@ -1,6 +1,11 @@
 ---
 layout: default
 title: Shopware Developers
+generator: pagination
+pagination:
+    max_per_page: 3
+use:
+- posts
 ---
 
 <h2>Community</h2>
@@ -23,11 +28,36 @@ title: Shopware Developers
 	</li>
 </ul>
 
-<h2><a href="{{ site.url }}/sysadmins-guide/">Sysadmin's Guide</a></h2>
-<a href="{{ site.url }}/sysadmins-guide/"><img src="sysadmins-guide/header.jpg" style="width: 100%"/></a>
+<h2>Sections</h2>
+<ul>
 
-<h2><a href="{{ site.url }}/developers-guide/">Developer's Guide</a></h2>
-<a href="{{ site.url }}/developers-guide/"><img src="developers-guide/header.jpg" style="width: 100%"/></a>
+    <li><a href="{{ site.url }}/sysadmins-guide/">Sysadmin's Guide</a></li>
+    <li><a href="{{ site.url }}/developers-guide/">Developer's Guide</a></li>
+    <li><a href="{{ site.url }}/designers-guide/">Designer's Guide</a></li>
+    <li><a href="{{ site.url }}/blog/">Developer Blog</a></li>
+</ul>
 
-<h2><a href="{{ site.url }}/designers-guide/">Designer's Guide</a></h2>
-<a href="{{ site.url }}/designers-guide/"><img src="designers-guide/header.jpg" style="width: 100%"/></a>
+
+<h2><a href="{{ site.url }}/blog/">Recently in the developer blog</a></h2>
+
+{% for post in page.pagination.items %}
+<article class="blog-post">
+    <header class="post-header">
+        <h3 class="header-title">
+            <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                <span class="small">
+                    <span class="icon icon-clock"></span> {{ post.date | date(site.default_date_format) }}
+                </span>
+        </h3>
+    </header>
+
+    <div class="post-desc">
+        {% if post.meta.excerpt %}
+        {{ post.meta.excerpt }}
+        {% else %}
+        {% set summary_array = post.blocks.content|raw|striptags|split(' ')%}
+        {{ summary_array|slice(0,70)|join(' ') }}...
+        {% endif %}
+    </div>
+</article>
+{% endfor %}

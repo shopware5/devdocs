@@ -11,7 +11,7 @@ redirect:
   - /developers-guide/shopware-5-performance/
 ---
 
-In this document we cover the performance related features of Shopware 5, that you should both use as a plugin developer and configure as a shop administrator. This document presents some of techniques Shopware 5 uses to speed up internal processes, and that, most of the time, are available to you as a developer to take advantage of while developing your plugins. We also discuss core implementation details that are relevant for performance reasons, and that you should know of, even if they are not used directly by your plugins.
+In this document we cover the performance-related features of Shopware 5, that you should both use as a plugin developer and configure as a shop administrator. This document presents some of the techniques Shopware 5 uses to speed up internal processes, and that, most of the time, are available to you as a developer to take advantage of while developing your plugins. We also discuss core implementation details that are relevant for performance reasons, and that you should know of, even if they are not used directly by your plugins.
 
 <div class="alert alert-warning">
 <strong>Note:</strong> This guide only covers the details of Shopware 5 itself, and does not cover system configuration details. Please refer to the <a href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">Shopware 5 performance guide system administrators</a> for more details on how you can fine tune your server for improved performance. 

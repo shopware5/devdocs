@@ -64,6 +64,7 @@ class ApiClient {
         $this->cURL = curl_init();
         curl_setopt($this->cURL, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->cURL, CURLOPT_FOLLOWLOCATION, false);
+        curl_setopt($this->cURL, CURLOPT_USERAGENT, 'Shopware ApiClient');
         curl_setopt($this->cURL, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
         curl_setopt($this->cURL, CURLOPT_USERPWD, $username . ':' . $apiKey);
         curl_setopt($this->cURL, CURLOPT_HTTPHEADER, array(

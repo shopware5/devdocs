@@ -9,12 +9,12 @@ tags:
 categories:
 - dev
 indexed: true
-github_link: blog/_posts/2015-12-02-http-cache-advanced.md
+github_link: blog/_posts/2015-12-04-working-with-the-http-cache.md
 
 authors: [dn]
 ---
 In an earlier blog post I discussed the [basics of Shopware's HTTP cache](/blog/2015/02/11/understanding-the-shopware-http-cache/).
-It think it is a good read to get a picture of *how* Shopware's HTTP cache works. In this post, I will go more into detail
+I think it is a good read to get a picture of *how* Shopware's HTTP cache works. In this post, I will go more into detail
 about how to actually *work* with the cache. In order to do so, I will also recap some configuration options, you might
 already know from our wiki.
 
@@ -72,7 +72,7 @@ Some of the fields are Shopware specific:
 * `enabled`: If you want to use Shopware's builtin cache (a.k.a `reverse proxy`), this needs
 to be set to `true`. If you are using a varnish cache, you need to set this config to `false`.
 * `cache_dir`: In this directory the cache files are stored.
-* `cache_cookies`: For the content of these cookies is taken into account in the cacheID - so
+* `cache_cookies`: The content of these cookies is taken into account in the cacheID - so
 e.g. there will be a different cache for "shop=1" and "shop=2". We will discuss this in depth later.
 
 The other fields will influence the underlying Symfony HTTP cache component, so these config
@@ -82,7 +82,7 @@ Just for your overview:
 * `debug`: Will set some additional debugging info in the cache's responses. We'll have a
 look at this config option later
 * `default_ttl`: How long is a page considered to be fresh before the cache will try to get
-a fresh result?
+a fresh result? Usually this config is overridden by the TTL definition you made in the backend module.
 * `private_headers`: A list of headers, that will make the cache *not* cache the result. By default
 pages with Authorisation headers and "set cookie" responses will not be cached
 * `allow_reload`: Will allow a client to bypass the cache by providing specific headers.
@@ -119,7 +119,7 @@ X-Symfony-Cache: GET /: miss, store;
 
 The `X-Content-Digest` header gives you information of the cached file - you could actually inspect the file by opening
 `/your/doc/root/var/cache/production____REVISION___/html/en/1d/ac/22cb10b9a66cb6590a7819384d54fcb637e838f65c40b655b07c85cd5f7d`.
-So the first 6 chars reflect in the directory, the rest of the content digest is the file name.
+So the first 6 chars describe the directory, the rest of the content digest is the file name.
 
 `X-Shopware-Allow-Nocache` will tell, which nocache tags the current page reacts to. In the given case, I was calling
 the `index` controller, which will not be cached, if the `price` tag is active. The suffixed `-1` indicates that the current's

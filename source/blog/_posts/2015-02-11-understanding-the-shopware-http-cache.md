@@ -151,7 +151,7 @@ Invalidate the cache for a certain category or article as described above. In or
 This cache resource of API not only handles the HTTP cache but many other caches in shopware, too. So if you need to clear the HTTP, proxy, template or object cache, you can use this resource - even with a REST client
 
 ## More about the HTTP cache
-There is a more recent blog post regarding the HTTP cache, that provides more info regarding [cache configuration and debugging](/blog/2015/12/03/working-with-the-http-cache/).
+There is a more recent blog post regarding the HTTP cache, that provides more info regarding [cache configuration and debugging](/blog/2015/12/04/working-with-the-http-cache/).
 
 ## Summary
 

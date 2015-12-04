@@ -12,7 +12,7 @@ indexed: true
 github_link: blog/_posts/2015-02-11-understanding-the-shopware-http-cache.md
 ---
 
-The shopware HTTP cache is available for production since shopware 4.1.0. It allows you to cache responses of the shop system,
+The Shopware HTTP cache is available for production since shopware 4.1.0. It allows you to cache responses of the shop system,
 so that the next time the same page is requested, the answer can be returned much faster.
 While the general concept of a cache is quite simple, there are many details to think of in a complex system like a shopping cart.
 For that reason, the following overview might come in handy for you.

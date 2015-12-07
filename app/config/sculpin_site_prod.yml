@@ -1,3 +1,4 @@
 imports:
 - sculpin_site.yml
-google_analytics_tracking_id: UA-61070992-1
+
+google_tag_manager_id: GTM-5ZGXBG

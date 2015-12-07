@@ -229,5 +229,9 @@ Here's a entire list of all available events:
 * component/toggle-maximize
 * component/set-body-style
 
+## Demo plugin
+A demo plugin which highlights the new functionality can be found on Github in our ["shopwareLabs" repository](https://github.com/shopwareLabs/SwagLightweightModule).
+
+
 ## API documentation
 You can find the API documentation of the our <a href="{{ site.url }}/developers-guide/lightweight-backend-modules-api/" target="_blank">postMessage API here</a>.

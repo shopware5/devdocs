@@ -78,7 +78,7 @@ Appended to the above mentioned list, you will also find the following data:
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of category resources          |
+| total				  | integer				  | The total number of media resources          |
 | success		      | boolean				  | Indicates if the call was successful or not.	|
 
 ## POST (create)

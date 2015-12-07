@@ -38,10 +38,31 @@ Single category details can be retrieved via the category ID:
 | Field               | Type                  | Original Object                                                               |
 |---------------------|-----------------------|-------------------------------------------------------------------------------|
 | id				  | integer (primary key) | 							                                                  |
-| active	          | boolean				  |                     							                              |
+| parentId            | integer (foreign key) | **[Category](../models/#category)** 											  |
+| streamId            | integer |  											  |
 | name                | string                |       											                              |
 | position            | integer               |             									                              |
-| parentId            | integer (foreign key) | **[Category](../models/#category)** 											  |
+| metaTitle                | string                |       											                              |
+| metaKeywords                | string                |       											                              |
+| metaDescription                | string                |       											                              |
+| cmsHeadline                | string                |       											                              |
+| cmsText                | string                |       											                              |
+| active	          | boolean				  |                     							                              |
+| template	          | string				  |                     							                              |
+| productBoxLayout	          | string				  |                     							                              |
+| blog	          | boolean				  |                     							                              |
+| path	          | string				  |                     							                              |
+| showFilterGroups	          | boolean				  |                     							                              |
+| external	          | boolean				  |                     							                              |
+| hideFilter	          | boolean				  |                     							                              |
+| hideTop	          | boolean				  |                     							                              |
+| changed	          | DateTime				  |                     							                              |
+| added	          | DateTime				  |                     							                              |
+| mediaId	          | integer (foreign key)				  |  **[Media](../models/#media)**                   							                              |
+| attribute       | array               | 														                      |
+| emotions       | array               | 	**[Media](../models/#media)**													                      |
+| media       | Media               | 														                      |
+| customerGroups       | array               | 														                      |
 | childrenCount       | integer               | 														                      |
 | articleCount		  | integer				  | 														                      |
 
@@ -112,6 +133,7 @@ Appended to the above mentioned list, you will also find the following data:
 | changed       	  | date/time    		  |                                                      | 														                         |
 | added         	  | date/time    		  |                                                      | 														                         |
 | attribute     	  | array				  | Array with optional indexes from 1-6 and its values | 														                         |
+| media          	  | array				  | Array with either `mediaId` or `link` property | 														                         |
 
 
 ## DELETE

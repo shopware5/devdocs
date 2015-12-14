@@ -562,7 +562,7 @@ Ext.define('Shopware.apps.SwagProduct.store.Product', {
 The `Shopware.store.Listing` component only requires the individual PHP controller class name. This should be `SwagProduct` like seen above.
 
 At this point, the application should be usable and we can take a look at our listing:
-![Product listing](img/backend_1.png)
+![Product listing](img/backend_2.png)
 
 The application now supports the following operations:
 
@@ -691,7 +691,7 @@ The Shopware configuration property `detail` defines which component should be c
 
 Congratulations! You have just created your first backend application used the Shopware backend components. The application is completely usable and provides you with all features you can see in other backend applications. You are now able to create and edit records, too.
 
-![Product detail](img/backend_2.png)
+![Product detail](img/backend_1.png)
 
 ## Further Tutorials
 In our next tutorial, we will cover more implementation and customization options of the Shopware listing backend component.

@@ -4,9 +4,14 @@ title: MediaService
 github_link: developers-guide/shopware-5-media-service/index.md
 shopware_version: 5.1.0
 indexed: true
+history:
+    2015-09-08: creation
+    2015-12-15: added strategy documentation
 ---
 
 The `Shopware\Bundle\MediaBundle` defines how Shopware manages its media files. Shopware 5.1 includes a new media management layer, which abstracts the location of your media files. This applies to both new and existing installations, and there is no possibility to revert to the old behaviour.
+
+<div class="toc-list" data-depth="3"></div>
 
 ## The problem
 
@@ -16,7 +21,7 @@ For that reason, we decided to apply commonly used techniques to our media manag
 
 ## The solution
 
-The main goal of the MediaService is to abstract and handle all file operations, so that you don't have to worry about solving common problems associated with it. The key idea to keep in mind is that you shouldn't directly perform any file system operation on your files. Should you need to read, move or delete your files, you should always use the MediaService. 
+The main goal of the MediaService is to abstract and handle all file operations, so that you don't have to worry about solving common problems associated with it. The key idea to keep in mind is that you shouldn't directly perform any file system operation on your files. Should you need to read, move or delete your files, you should always use the MediaService.
 
 In the past, the most common use-case was to load a path like `media/image/my-fancy-image.png` from the database and, during the template render process, prepend the base url to it. These paths are still used, but now as **virtual paths**. These paths identify your files, and are used by the MediaService to access them. Note that the actual file will **not** be in this exact location in your file system. It's up to the MediaService to retrieve the real path from this virtual path.
 
@@ -115,7 +120,7 @@ By default, adapters for local and FTP based file systems are included in Shopwa
 
 ### Migrating your files
 
-To make migrations easy, we've added a new CLI command to migrate all of your media files at once to the location specified by the currently configured adapter. 
+To make migrations easy, we've added a new CLI command to migrate all of your media files at once to the location specified by the currently configured adapter.
 
 ```bash
 bin/console sw:media:migrate
@@ -149,6 +154,42 @@ bin/console sw:media:migrate --from=s3 --to=local
 ```
 
 Again, keep in mind that the live migration mechanism will still be in place, meaning that, if your Amazon S3 adapter is still configured, files will be migrated back to Amazon's servers when loaded by any incoming frontend request.
+
+#### Example: Migrating back to the simple folder structure
+
+Shopware provides you with two strategies: `md5` (default) and `plain`. A strategy describes how your media files are stored. By default, you'll use the `md5` based folder structure, which splits the files into three sub folders. This is intended to gain performance for a large set of media files. In case you want the old folder structure back, you have to do the following steps.
+
+##### 1. Create a new CDN adapter in your config.php
+
+You should add the following options to your `config.php`. Please notice the `strategy` property in the `local` adapter. You can easily switch between strategies using this parameter.
+
+```php
+'cdn' => [
+    'adapters' => [
+        'local' => [
+            'type' => 'local',
+            'mediaUrl' => '',
+            'strategy' => 'plain',
+            'path' => realpath(__DIR__ . '/')
+        ],
+        'old_local' => [
+            'type' => 'local',
+            'mediaUrl' => '',
+            'path' => realpath(__DIR__ . '/')
+        ]
+    ]
+]
+```
+
+##### 2. Migrating to the plain strategy
+
+```bash
+bin/console sw:media:migrate --from=old_local --to=local
+```
+
+After you've ran the command, your media files should be in the place they were at before the media service ways introduced.
+
+Feel free to create your strategy and share it with the community.
 
 #### Build your own adapter
 

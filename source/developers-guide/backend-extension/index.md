@@ -176,7 +176,6 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Billing', {
 
         return result;
     }
-
 });
 //{/block}
 ```
@@ -271,7 +270,6 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.MyOwnTab', {
 
         me.callParent(arguments);
     }
-
 });
 ```
 
@@ -311,8 +309,6 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
 
       return result;
    }
- <a href="{{ site.url }}/exampleplugins/SwagSearchBundle.zip">downloaded here</a>.
-
 });
 //{/block}
 ```

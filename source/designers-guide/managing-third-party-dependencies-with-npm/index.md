@@ -11,11 +11,10 @@ indexed: true
 </div>
 
 ## Introduction
-Modern web applications like a Shopware web shop has to deal with a bunch of frontend dependencies. There are several tools
-out there which helps to manage these dependencies. In the following guide we'll provide you with the information you'll
+Modern web applications like a Shopware web shop have to deal with many frontend dependencies. There are several tools
+available which help manage these dependencies. In the following guide we'll provide you with the information you
 need to install additional third-party dependencies with `npm`, the default package manager for the javascript runtime
-environment `node.js` in combination with `grunt`, a javascript task runner. We're using this setup starting with Shopware
-version 5.2 to manage our frontend dependencies.
+environment `node.js`, in combination with `grunt`, a javascript task runner. This setup will be used in Shopware starting with version 5.2 to manage frontend dependencies.
 
 ## Requirements
 The guide assumes that you have the following applications / tools installed on your local machine:
@@ -26,18 +25,15 @@ The guide assumes that you have the following applications / tools installed on 
 * `grunt-cli` version 0.1.x or newer
 
 ## Installation
-In order to get started, you'll want to install the frontend dependencies of Shopware. Head over to your Shopware
-installation and go to the directory `themes/Frontend/Responsive/`.
+In order to get started, you need to install the frontend dependencies of Shopware. In the `themes/Frontend/Responsive/` directory of your Shopware, run the following command:
 
-Now run the following command:
-
-```bash
+```
 npm install && npm run build
 ```
 
 *Mac OS X users may need to use sudo and Windows users may need to execute the command shell as Administrator*
 
-When everything goes well, you should see a similar output:
+If everything goes well, you should see a similar output:
 
 ```
 $ sudo npm install && npm run build
@@ -156,11 +152,12 @@ Running "createFontHtaccess" task
 
 Done, without errors.
 ```
-*The warning can be ignored, it's triggers because `grunt` uses a older version of `loadash`*
+
+*The warning can be ignored, it's triggers by `grunt`, which uses an older version of `loadash`*
 
 ## Managing frontend dependencies
-All frontend dependencies are now defined in the `package.json` file unlike older versions of Shopware version which are using `bower`
-and the `bower.json` file to define dependencies. The following shows the default dependencies of Shopware:
+
+All frontend dependencies are now defined in the `package.json` file, unlike previous versions of Shopware, which used `bower` and the `bower.json` file. The following shows the default dependencies of Shopware:
 
 ```
 {
@@ -189,11 +186,11 @@ and the `bower.json` file to define dependencies. The following shows the defaul
     <img src="logo-grunt.png" alt="Grunt logo">
 </div>
 
-The dependencies will be downloaded to the `themes/Frontend/Responsive/node_modules/` directory. We're using `grunt` and
+The dependencies are downloaded to the `themes/Frontend/Responsive/node_modules/` directory. We're using `grunt` and
 a few custom tasks to map the necessary files to the corresponding folders inside the `frontend/_public/vendors` directory.
 Here's an example on how to map the files inside the `Gruntfile.js` file:
 
-```js
+```
 grunt.initConfig({
     clean: { vendors: [ vendorDir ] },
     copy: {
@@ -213,17 +210,19 @@ grunt.initConfig({
     // ...
 });
 ```
+
 *Mapping example for the library `jquery.event.move` in `Gruntfile.js`*
 
 ## Adding new dependencies to your theme
+
 The same technology we're using to update our core frontend dependencies can be used to install new dependencies for your project.
 
 1. Create a new frontend theme. You can use either the theme manager in the administration panel or our
-CLI tools in order to do so. More information on <a href="{{ site.url}}/designers-guide/getting-started/#custom-themes" title="Getting started with Shopware 5 templating">how to create a new theme can be found here</a>.
-2. Open up your command shell and switch to your newly created theme. You can find it in your Shopware installation under `/themes/Frontend/`
-3. Inside your theme directory we're creating a new `package.json` file using the following command. You'll have to answer common questions about your theme like what's the name of it and what license you want to use:
+CLI tools in order to do so. You can find more information on Shopware 5 themes [here](/designers-guide/getting-started/#custom-themes).
+2. Open up your command line interface and switch to your newly created theme. You can find it in your Shopware installation under `/themes/Frontend/`
+3. Inside your theme directory, create a new `package.json` file using the following command. You'll be asked a few simple details about your theme, such as its name a license:
 
-```bash
+```
 sudo npm init
 ```
 
@@ -235,9 +234,9 @@ npm install --save grunt grunt-contrib-clean grunt-contrib-copy
 
 *Mac OS X users may need to use sudo and Windows users may need to execute the command shell as Administrator*
 
-5. Now it's time to create your own `Gruntfile.js`. Use the following code snippet as template for the file:
+5. You can now create your own `Gruntfile.js`. Use the following code snippet as template for the file:
 
-```js
+```
 module.exports = function (grunt) {
     'use strict';
 
@@ -270,15 +269,13 @@ module.exports = function (grunt) {
 };
 ```
 
-6. Look up the npm package you want to install on [npm.js](https://www.npmjs.com/ "NPM package search"). In this example,
-we're installing the javascript library [Moment.js](http://momentjs.com/). It provides us with an easy-to-use API to format
-dates. Use the following command to install and save the dependency:
+6. Look up the npm package you want to install on [the npm.js website](https://www.npmjs.com/ "NPM package search"). In this example, we're installing the javascript library [Moment.js](http://momentjs.com/). It implements an easy-to-use API to format dates. Use the following command to install and save the dependency:
 
 ```bash
 npm install --save moment
 ```
 
-7. After installing the library, we have to take a look at the directory structure of it to create the mapping in the `Gruntfile.js` in the next step.
+7. After installing the library, we have to take a look at its directory structure to create the mapping in the `Gruntfile.js` in the next step.
 
 ```bash
 .
@@ -299,13 +296,13 @@ npm install --save moment
 ```
 *Directory structure of the `Moment.js` library*
 
-Based on the directory stucture we can decide what files we want to copy. Typically we copy the minified version of library, the readme and the license file:
+Based on the directory structure we can decide what files we want to copy. Typically we copy the minified version of library, the readme and license files:
 
 * `LICENSE`
 * `README.md`
 * `min/moment-with-locales.min.js`
 
-8. To map the files, we head to the `Gruntfile.js` in our custom theme and looking for the copy task. Inside the `copy` task, we have to map the files
+8. To map the files, edit the `Gruntfile.js` in the custom theme and change the `copy` task to map the files
 to the corresponding folders inside the `frontend/_public/vendors` directory.
 
 ```js
@@ -322,6 +319,7 @@ to the corresponding folders inside the `frontend/_public/vendors` directory.
     }]
 }
 ```
+
 *Example mapping library files*
 
 9. The next step and final step is to simply run the `default` task of our `Gruntfile.js` using the following command:
@@ -330,5 +328,5 @@ to the corresponding folders inside the `frontend/_public/vendors` directory.
 grunt
 ```
 
-10. Now include the file `moment-with-locales.min.js` in your `Theme.php` and you're ready to go. More information on <a href="{{ site.url}}/designers-guide/css-and-js-files-usage/" title="Using CSS and JavaScript files in themes">how to add
-additional javascript files in your Theme.php can be found here</a>.
+10. Now include the file `moment-with-locales.min.js` in your `Theme.php`. More information on adding custom javascript files
+ to your theme can be found [here](/designers-guide/css-and-js-files-usage/).

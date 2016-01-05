@@ -2,7 +2,7 @@
 layout: default
 title: How to use Karma for storefront tests
 github_link: designers-guide/how-to-use-karma/index.md
-shopware_version: 5.0.3
+from_version: 5.0.3
 indexed: true
 ---
 

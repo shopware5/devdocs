@@ -2,7 +2,7 @@
 layout: default
 title: Digital Publishing Elements
 github_link: developers-guide/digital-publishing-elements/index.md
-shopware_version: 5.1.0
+from_version: 5.1.0
 indexed: true
 tags:
   - Digital Publishing

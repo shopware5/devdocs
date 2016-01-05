@@ -2,7 +2,7 @@
 layout: default
 title: Choosing the right range slider algorithm
 github_link: designers-guide/range-slider-algorithm/index.md
-shopware_version: 5.0.3
+from_version: 5.0.3
 indexed: true
 ---
 

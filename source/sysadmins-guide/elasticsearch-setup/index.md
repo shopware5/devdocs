@@ -2,7 +2,7 @@
 layout: default
 title: Elasticsearch setup
 github_link: sysadmins-guide/elasticsearch-setup/index.md
-shopware_version: 5.1.0
+from_version: 5.1.0
 tags:
   - performance
   - elasticsearch

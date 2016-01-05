@@ -2,7 +2,7 @@
 layout: default
 title: Managing third-party dependencies with npm
 github_link: designers-guide/managing-third-party-dependencies-with-npm/index.md
-shopware_version: 5.2
+from_version: 5.2
 indexed: true
 ---
 

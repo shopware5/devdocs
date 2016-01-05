@@ -2,7 +2,7 @@
 layout: default
 title: Elasticsearch development
 github_link: developers-guide/elasticsearch/index.md
-shopware_version: 5.1.0
+from_version: 5.1.0
 indexed: true
 tags:
   - performance

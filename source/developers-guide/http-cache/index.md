@@ -2,7 +2,7 @@
 layout: default
 title: Shopware HTTP cache
 github_link: developers-guide/http-cache/index.md
-shopware_version: 5.1.2
+from_version: 5.1.2
 indexed: true
 redirect:
   - /blog/2015/12/04/working-with-the-http-cache/index.html

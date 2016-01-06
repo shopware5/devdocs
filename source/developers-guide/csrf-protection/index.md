@@ -97,7 +97,7 @@ class Shopware_Controllers_Backend_MyPlugin extends Shopware_Controllers_Backend
 
 ## Disable the protection
 
-In some cases you might want to disable the protection for the backend or frontend. You can achieve this by setting the following options in your `config.php`. By default, both options are enabled and set to `true`.
+In some cases you might want to disable the protection for the backend or frontend. You can achieve this by setting the following options in your `config.php`. By default, both options are set to `true`.
 
 ```php
 ...

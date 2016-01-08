@@ -256,7 +256,7 @@ Registering or removing an event listener which uses the state manager is as eas
 The following example shows how to register an event listener:
 
 ```javascript
-StateManager.registerEventListener([{
+StateManager.registerListener([{
 	state: 'xs',
 	enter: function() { console.log('onEnter'); },
 	exit: function() { console.log('onExit'); }
@@ -266,7 +266,7 @@ StateManager.registerEventListener([{
 The registration of event listeners also supports wildcards, so the ```enter()``` and ```exit()``` methods are called by every change of the breakpoint:
 
 ```javascript
-StateManager.registerEventListener([{
+StateManager.registerListener([{
 	state: '*',
 	enter: function() { console.log('onEnter'); },
 	exit: function() { console.log('onExit'); }

@@ -62,3 +62,24 @@ history:
 ---
 
 ```
+
+## Angolia Search Configuration
+
+The search is powered by [Algolia](https://www.algolia.com).
+Configuration is done via kernel Parameters in `app/config/sculpin_kernel.yml`:
+
+```yaml
+# app/config/sculpin_kernel.yml
+sculpin_algolia:
+  application_id: 'MYAPPLICATION'
+  index_name:     'developers.shopware.com_prod'
+```
+
+The API Key should be provided via the environment variable `SYMFONY__ALGOLIA_API_KEY`.
+To enable the also the environment variable `SYMFONY__ALGOLIA_ENABLED` must exist.
+
+```bash
+SYMFONY__ALGOLIA_ENABLED=1 SYMFONY__ALGOLIA_API_KEY=MYAPIKEY ./vendor/bin/sculpin generate
+```
+
+These variables are automatically exported during the Travis-CI build for every merge/commit on the `master` branch.

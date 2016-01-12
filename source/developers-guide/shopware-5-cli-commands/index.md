@@ -112,7 +112,7 @@ EOF
 
         $em = $this->container->get('models');
 
-        $output->writeln('<info>'.sprintf("Got filepath: %s.", $filepath).'</info>');
+        $output->writeln('<info>'.sprintf("Got filepath: %s.", $filePath).'</info>');
     }
 }
 ```

@@ -2,7 +2,7 @@
 layout: default
 title: Shopware Enterprise Dashboard Installation Guide
 github_link: enterprise/tech-guide/installation-guide.md
-indexed: true
+indexed: false
 ---
 
 This guide will cover the Shopware Enterprise Dashboard installation process

@@ -63,7 +63,7 @@ history:
 
 ```
 
-## Angolia Search Configuration
+## Algolia Search Configuration
 
 The search is powered by [Algolia](https://www.algolia.com).
 Configuration is done via kernel Parameters in `app/config/sculpin_kernel.yml`:

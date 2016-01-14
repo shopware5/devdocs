@@ -56,7 +56,8 @@ Shopware host machines also have special requirements in order to be compatible 
 - The must meet the requirements of any Shopware version you wish to install on them
 - `tar`
 - `python-mysqldb`
-- A user `edb-deploy` must exist with `edb-deploy` as password (this will be changed before the initial stable release). It must have permissions to read and write to your configured web server folder.
+- A system user `edb-deploy` must exist with `edb-deploy` as password (this will be changed before the initial stable release). It must have permissions to read and write to your configured web server folder.
+- A MySQL user `edb-deploy` must exist with `edb-deploy` as password (this will be changed before the initial stable release). It must have permissions to create new databases.
 - `acl` installed and enabled for the mount point in which your Shopware instances will be installed
 - `/tmp` folder access
 - Each Shopware host machine must be present in the EDB host's `known_hosts` file of the user that runs the worker tasks

@@ -11,7 +11,7 @@
 
             timeout = setTimeout(function () {
                 fn.apply(ctx, args);
-            }, 100);
+            }, 200);
         };
     };
 
@@ -85,7 +85,7 @@
                         'href': entry.url
                     }).append($('<h2/>', {
                         'class': "entry-headline",
-                        'text': entry.title
+                        'html': entry._highlightResult.title.value
                     }));
 
                     $entries.append(elem);

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a5dc23d906cea5af222089558e7be5c5",
-    "content-hash": "be21828328199fbe44caedef286acd9d",
+    "hash": "095008a1c3adb7526526bcfe6c3ec014",
+    "content-hash": "aeec47513d2270e3d8e739fc441e3379",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -60,20 +60,20 @@
         },
         {
             "name": "bcremer/sculpin-commonmark-bundle",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bcremer/sculpin-commonmark-bundle.git",
-                "reference": "9ddfd7657560b2cbc1003f86c25a7c320fd897a1"
+                "reference": "fc6de53b4806725d4863eb6cf7d576522804b87d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bcremer/sculpin-commonmark-bundle/zipball/9ddfd7657560b2cbc1003f86c25a7c320fd897a1",
-                "reference": "9ddfd7657560b2cbc1003f86c25a7c320fd897a1",
+                "url": "https://api.github.com/repos/bcremer/sculpin-commonmark-bundle/zipball/fc6de53b4806725d4863eb6cf7d576522804b87d",
+                "reference": "fc6de53b4806725d4863eb6cf7d576522804b87d",
                 "shasum": ""
             },
             "require": {
-                "league/commonmark": "~0.10",
+                "league/commonmark": "~0.13",
                 "php": ">=5.4.0"
             },
             "type": "library",
@@ -99,7 +99,7 @@
                 "markdown",
                 "sculpin"
             ],
-            "time": "2015-09-04 12:29:18"
+            "time": "2016-01-16 11:27:38"
         },
         {
             "name": "bcremer/sculpin-less-bundle",
@@ -192,12 +192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "03299ff075236be27be356498d6c64def973fe41"
+                "reference": "2491679ba3584886c191f5869303b9c431af3b91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/03299ff075236be27be356498d6c64def973fe41",
-                "reference": "03299ff075236be27be356498d6c64def973fe41",
+                "url": "https://api.github.com/repos/composer/composer/zipball/2491679ba3584886c191f5869303b9c431af3b91",
+                "reference": "2491679ba3584886c191f5869303b9c431af3b91",
                 "shasum": ""
             },
             "require": {
@@ -258,7 +258,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2016-01-10 20:34:53"
+            "time": "2016-01-16 11:24:04"
         },
         {
             "name": "composer/semver",

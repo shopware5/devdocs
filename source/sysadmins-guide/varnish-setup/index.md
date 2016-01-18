@@ -1,0 +1,325 @@
+---
+layout: default
+title: Varnish Setup
+github_link: sysadmins-guide/varnish-setup/index.md
+tags:
+  - performance
+  - varnish
+
+indexed: true
+---
+
+## Support
+Please note that shopware AG exclusively supports Varnish cache configuration for customers with Shopware Enterprise licenses.
+
+## Requirements
+This configuration requires at least version 4.0 of Varnish and at least version 4.3.3 of shopware.
+
+## Shopware configuration
+
+### Disable the inbuilt reverse proxy
+The PHP-based reverse proxy has to be disabled. To disable add the following section to your `config.php`:
+
+```
+'httpCache' => array(
+    'enabled' => false,
+),
+```
+
+### Configure Trusted Proxies
+If you have a reverse proxy in front of your shopware installation you have to set the IP of the proxy in the `trustedProxies` section in your `config.php`:
+
+```
+'trustedProxies' => array(
+    '127.0.0.1'
+)
+```
+
+
+### TLS Termination
+
+Varnish does not support SSL/TLS ([Why no SSL?](https://www.varnish-cache.org/docs/trunk/phk/ssl.html#phk-ssl)).
+To support TLS requests a [TLS termination proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy) like nginx or HAProxy has to n to handle incoming TLS connections and forward them to Varnish.
+
+You can put Varnish on port 80 and handle unencrypted requests directly.
+
+
+```
+# /etc/default/varnish
+DAEMON_OPTS="-a :80 \
+             -T localhost:6082 \
+             -f /etc/varnish/default.vcl \
+             -S /etc/varnish/secret \
+             -s malloc,256m"
+```
+
+**Traffic flow:**
+
+```
+Internet ▶ 0.0.0.0:443 (nginx/TLS Termination) ▶ 0.0.0.0:80 (Varnish Cache) ▶ 127.0.0.1:8080 (Apache/Shopware)
+Internet ▶ 0.0.0.0:80 (Varnish/Caching) ▶ 127.0.0.1:8080 (Apache/Shopware)
+```
+
+Or you can forward unencrypted traffic to the secure port via HTTP 301. In this case all incoming traffic is handled by the reverse proxy upfront and Varnish can run on Port 6081 on localhost.
+
+
+```
+# /etc/default/varnish
+DAEMON_OPTS="-a :6081 \
+             -T localhost:6082 \
+             -f /etc/varnish/default.vcl \
+             -S /etc/varnish/secret \
+             -s malloc,256m"
+```
+
+**Traffic flow:**
+
+```
+Internet ▶ 0.0.0.0:80 (nginx/forward to TLS) ▶ 0.0.0.0:443 via HTTP 301 (TLS Only)
+Internet ▶ 0.0.0.0:443 (nginx/TLS Termination) ▶ 127.0.0.1:6081 (Varnish Cache) ▶ 127.0.0.1:8080 (Apache/Shopware)
+```
+
+#### Forward HTTP Headers
+The reverse proxy has to forward headers to to Varnish:
+
+```nginx
+server {
+   listen         80;
+   server_name    example.com www.example.com;
+   return         301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name example.com;
+
+    # Server certificate and key.
+    ssl_certificate /etc/nginx/ssl/example.com.crt;
+    ssl_certificate_key /etc/nginx/ssl/example.com.crt;
+
+    location / {
+        # Forward request to Varnish.
+        proxy_pass  http://127.0.0.1:6081; // change to port 80 if varnish is running upfront
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        proxy_redirect off;
+    }
+}
+```
+
+For a secure TLS (SSL) you can use the [Mozilla SSL Configuration Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/).
+
+
+### Enable cache plugin
+The Shopware HTTP-Cache-Plugin has to be activated, to activate follow the these steps in your Shopware Backend:
+
+`Einstellungen -> Caches / Performance -> Einstellungen -> HttpCache atkivieren`
+
+## Varnish configuration (vcl)
+
+```
+# Shopware Varnish Configuration
+# Copyright © shopware AG
+
+vcl 4.0;
+
+import std;
+
+backend default {
+    .host = "127.0.0.1";
+    .port = "8080";
+}
+
+# ACL for purgers IP.
+# Provide here IP addresses that are allowed to send PURGE requests.
+# PURGE requests will be sent by the backend.
+acl purgers {
+    "127.0.0.1";
+    "localhost";
+    "::1";
+}
+
+sub vcl_recv {
+
+    # Normalize query arguments
+    set req.url = std.querysort(req.url);
+
+    # Set a header announcing Surrogate Capability to the origin
+    set req.http.Surrogate-Capability = "shopware=ESI/1.0";
+
+    # Make sure that the client ip is forward to the client.
+    if (req.http.x-forwarded-for) {
+        set req.http.X-Forwarded-For = req.http.X-Forwarded-For + ", " + client.ip;
+    } else {
+        set req.http.X-Forwarded-For = client.ip;
+    }
+
+    # Handle PURGE
+    if (req.method == "PURGE") {
+        if (!client.ip ~ purgers) {
+            return (synth(405, "Method not allowed"));
+        }
+
+        return (purge);
+    }
+
+    # Handle BAN
+    if (req.method == "BAN") {
+        if (!client.ip ~ purgers) {
+            return (synth(405, "Method not allowed"));
+        }
+
+        if (req.http.X-Shopware-Invalidates) {
+            ban("obj.http.X-Shopware-Cache-Id ~ " + ";" + req.http.X-Shopware-Invalidates + ";");
+            return (synth(200, "BAN of content connected to the X-Shopware-Cache-Id (" + req.http.X-Shopware-Invalidates + ") done."));
+        } else {
+            ban("req.url ~ "+req.url);
+            return (synth(200, "BAN URLs containing (" + req.url + ") done."));
+        }
+    }
+
+    # Normalize Accept-Encoding header
+    # straight from the manual: https://www.varnish-cache.org/docs/3.0/tutorial/vary.html
+    if (req.http.Accept-Encoding) {
+        if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
+            # No point in compressing these
+            unset req.http.Accept-Encoding;
+        } elsif (req.http.Accept-Encoding ~ "gzip") {
+            set req.http.Accept-Encoding = "gzip";
+        } elsif (req.http.Accept-Encoding ~ "deflate") {
+            set req.http.Accept-Encoding = "deflate";
+        } else {
+            # unkown algorithm
+            unset req.http.Accept-Encoding;
+        }
+    }
+
+    if (req.method != "GET" &&
+        req.method != "HEAD" &&
+        req.method != "PUT" &&
+        req.method != "POST" &&
+        req.method != "TRACE" &&
+        req.method != "OPTIONS" &&
+        req.method != "DELETE") {
+        /* Non-RFC2616 or CONNECT which is weird. */
+        return (pipe);
+    }
+
+    # We only deal with GET and HEAD by default
+    if (req.method != "GET" && req.method != "HEAD") {
+        return (pass);
+    }
+
+    # Don't cache Authenticate & Authorization
+    if (req.http.Authenticate || req.http.Authorization) {
+        return (pass);
+    }
+
+    # Don't cache selfhealing-redirect
+    if (req.http.Cookie ~ "ShopwarePluginsCoreSelfHealingRedirect") {
+        return (pass);
+    }
+
+    # Do not cache these paths.
+    if (req.url ~ "^/backend" ||
+        req.url ~ "^/backend/.*$") {
+
+        return (pass);
+    }
+
+    # Do a standard lookup on assets
+    # Note that file extension list below is not extensive, so consider completing it to fit your needs.
+    if (req.method == "GET" && req.url ~ "\.(css|js|gif|jpe?g|bmp|png|tiff?|ico|img|tga|wmf|svg|swf|ico|mp3|mp4|m4a|ogg|mov|avi|wmv|zip|gz|pdf|ttf|eot|wof)$") {
+        unset req.http.Cookie;
+    }
+
+    return (hash);
+}
+
+sub vcl_hash {
+    ## normalize shop and currency cookie in hash to improve hitrate
+    if (req.http.cookie ~ "shop=") {
+        hash_data("+shop=" + regsub(req.http.cookie, "^.*?shop=([^;]*);*.*$", "\1"));
+    } else {
+        hash_data("+shop=1");
+    }
+
+    if (req.http.cookie ~ "currency=") {
+        hash_data("+currency=" + regsub(req.http.cookie, "^.*?currency=([^;]*);*.*$", "\1"));
+    } else {
+        hash_data("+currency=1");
+    }
+
+    if (req.http.cookie ~ "x-cache-context-hash=") {
+        hash_data("+context=" + regsub(req.http.cookie, "^.*?x-cache-context-hash=([^;]*);*.*$", "\1"));
+    }
+}
+
+sub vcl_hit {
+    if (obj.http.X-Shopware-Allow-Nocache && req.http.cookie ~ "nocache=") {
+        set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1");
+        if (std.strstr(req.http.X-Cookie-Nocache, obj.http.X-Shopware-Allow-Nocache)) {
+            return (pass);
+        }
+    }
+}
+
+sub vcl_backend_response {
+    # Enable ESI only if the backend responds with an ESI header
+    # Unset the Surrogate Control header and do ESI
+    if (beresp.http.Surrogate-Control ~ "ESI/1.0") {
+        unset beresp.http.Surrogate-Control;
+        set beresp.do_esi = true;
+        return (deliver);
+    }
+
+    # Respect the Cache-Control=private header from the backend
+    if (
+        beresp.http.Pragma        ~ "no-cache" ||
+        beresp.http.Cache-Control ~ "no-cache" ||
+        beresp.http.Cache-Control ~ "private"
+    ) {
+        set beresp.ttl = 0s;
+        set beresp.http.X-Cacheable = "NO:Cache-Control=private";
+        # set beresp.ttl = 120s;
+        set beresp.uncacheable = true;
+        return (deliver);
+    }
+
+    # strip the cookie before the image is inserted into cache.
+    if (bereq.url ~ "\.(png|gif|jpg|swf|css|js)$") {
+        unset beresp.http.set-cookie;
+    }
+
+    # Allow items to be stale if needed.
+    set beresp.grace = 6h;
+
+    # Save the bereq.url so bans work efficiently
+    set beresp.http.x-url = bereq.url;
+    set beresp.http.X-Cacheable = "YES";
+
+    return (deliver);
+}
+
+sub vcl_deliver {
+    ## we don't want the client to cache
+    set resp.http.Cache-Control = "max-age=0, private";
+
+    ## unset the headers, thus remove them from the response the client sees
+    unset resp.http.X-Shopware-Allow-Nocache;
+    unset resp.http.X-Shopware-Cache-Id;
+
+    # Set a cache header to allow us to inspect the response headers during testing
+    if (obj.hits > 0) {
+        unset resp.http.set-cookie;
+        set resp.http.X-Cache = "HIT";
+    }  else {
+        set resp.http.X-Cache = "MISS";
+    }
+
+    set resp.http.X-Cache-Hits = obj.hits;
+}
+```

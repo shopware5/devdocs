@@ -17,7 +17,7 @@ redirect:
 In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
 
 <div class="alert alert-warning">
-<strong>Note:</strong> This guide only covers system configuration optimizations, and does not cover Shopware's configuration itself. However, there are several configuration options inside Shopware itself that you can use to improve you shop's performance. Please refer to the <a href="/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a> for more details on this subject. 
+<strong>Note:</strong> This guide only covers system configuration optimizations, and does not cover Shopware's configuration itself. However, there are several configuration options inside Shopware itself that you can use to improve you shop's performance. Please refer to the <a href="/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a> for more details on this subject.
 </div>
 
 ## Server
@@ -28,7 +28,7 @@ Shopware performance optimization should start long before you install Shopware 
 
 - `Memory`: Memory is used by all parts of your system. Not only does Shopware consume memory, but so does your server's operating system, your database server, your web server, and any other application your server might be running. Additionally, in the sections bellow, we will cover different caching configurations, that you can use to speed up Shopware, at the expense of additional memory. So, even if your Shopware installation runs with minimal memory configurations like 1 or 2 GBs, it's recommended that you consider adding additional memory to your setup, especially if you plan on using other applications on your server simultaneously, or if you want to configure the caching features described below.
 
-- `Hard drive`: Aside from disk space, which does not affect performance (unless the disk is full or close to it), hard drives are differentiated by their nature into one of two categories: `hard disc drive` (HDD) and `solid state drives` (SSD). The former are more commonly available, especially in entry level hosting solutions, but are gradually being phased out by most providers in favor of the latter, which are usually more expensive but offer significantly better performance. As the price difference between the two has been declining over the last few years, it's now possible to find hosting solution that use the faster SSD technology even for budget-level hosting solutions. 
+- `Hard drive`: Aside from disk space, which does not affect performance (unless the disk is full or close to it), hard drives are differentiated by their nature into one of two categories: `hard disc drive` (HDD) and `solid state drives` (SSD). The former are more commonly available, especially in entry level hosting solutions, but are gradually being phased out by most providers in favor of the latter, which are usually more expensive but offer significantly better performance. As the price difference between the two has been declining over the last few years, it's now possible to find hosting solution that use the faster SSD technology even for budget-level hosting solutions.
 
 ## Database configuration - MySQL
 
@@ -71,7 +71,7 @@ Apache configuration settings is often split into multiple files, to improve rea
 
 - `MinSpareServers` and `MaxSpareServers`: These settings control the number of idle server processes that are allowed to exist. Idle processes are processes that exist but are not actually doing any work. They consume resources (although, as they are idle, this consumption is relatively low) but are immediately available to answer a request once it comes in. The creation of these processes take time, which is why Apache keeps a few always available. The default value for these settings are usually 5 and 10 respectively, which is adequate for smaller servers. Increase them to scale performance on more powerful servers. Note that its generally recommended to use the same value for `MinSpareServers` and `StartServers`.
 
-- `MaxRequestWorkers` and `ServerLimit`: The maximum number of active server processes that are allowed to simultaneously exist on your server. Setting these values too low may cause simultaneous requests to be queued or ignored, decreasing response time during times of heavy load. Setting them too high may exhaust your server memory, causing memory swaps and decreasing performance or even crashing the server altogether. These two values should be equal. 
+- `MaxRequestWorkers` and `ServerLimit`: The maximum number of active server processes that are allowed to simultaneously exist on your server. Setting these values too low may cause simultaneous requests to be queued or ignored, decreasing response time during times of heavy load. Setting them too high may exhaust your server memory, causing memory swaps and decreasing performance or even crashing the server altogether. These two values should be equal.
 
 - `MaxConnectionsPerChild`: This value represents the number of connections each thread will accept and handle before its terminated by Apache. This setting is mostly used to prevent memory leakage from consuming a significant amount of server memory. The default 0 prevents processes from ever being terminated (unless they are idle and `MaxSpareServers` has been reached, or Apache itself is terminated). If you suspect your server is affected by memory leakage, set a different value to this variable.
 
@@ -81,12 +81,12 @@ Nginx has been known to run Shopware on several server setups. If you wish to, y
 
 The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx blog might be a good place to start if you are looking for performance tips for your nginx configuration. You can also use the [nginx configuration for Shopware](https://github.com/bcremer/shopware-with-nginx) provided by [Benjamin Cremer](https://github.com/bcremer).
 
-## PHP 
- 
+## PHP
+
 Shopware 5.0 has PHP 5.4 as minimum requirement, which is, at the time of the release, the oldest supported PHP version. However, PHP 5.4 support will be dropped during Shopware 5's lifetime, and the minimum requirement will be raised to PHP 5.5. As such, we recommend using, whenever possible, PHP 5.5 or higher, not only for performance reasons, but also to ensure your system will support future releases of Shopware 5.
 
 At the time of this publication, the latest stable PHP version was 5.6, which includes several performance optimizations over PHP 5.5. As such, we recommend that you use PHP 5.6 whenever possible.
- 
+
 ### Opcode cache
 
 Shopware's PHP code (and all PHP code) needs to be transformed from the format you see and understand into machine code your computer can actually execute. This process is complicated, and you don't need to know how it's done, but it is important to understand that it's executed on every incoming request to your server, meaning it can have a significant performance impact.
@@ -115,7 +115,7 @@ Depending on your system and PHP installation, OPcache might not be installed, i
 
 #### Opcode cache in PHP 5.4 - APC
 
-PHP 5.4 does not include a opcode cache out of the box, but you can (and we recommend) that you install APC opcode cache. APC is and stands for Alternative PHP Cache, and will allow you to increase your server performance if you are using PHP 5.4 
+PHP 5.4 does not include a opcode cache out of the box, but you can (and we recommend) that you install APC opcode cache. APC is and stands for Alternative PHP Cache, and will allow you to increase your server performance if you are using PHP 5.4
 
 #### APC configuration
 
@@ -139,7 +139,7 @@ While OPcache and APC speed up PHP code processing, APCu does the same for user 
 
 APCu uses the same configuration variables as APC, so you can see the above APC configuration section for more details.
  Please keep in mind that you need to change `apc.num_files_hint` and/or `apc.shm_size` depending on if you are using only APC, only APCu or both simultaneously.
-   
+
 ## Cron
 
 Some tasks associated with your shop can be executed in the background, like sending emails or refreshing search indexes. For these tasks, you can use Cron jobs. These execute certain processes in the background, automatically, at certain intervals, indirectly contributing to increased usage speed when a customer visits your shop. To find out more about Cron jobs in Shopware, read [the following wiki page](http://en.wiki.shopware.com/_detail_1103.html).
@@ -151,7 +151,7 @@ One of the most commonly used tools for speeding up websites is an HTTP cache. T
 ### Shopware HTTP Cache
 
 Shopware 5, like previous versions, includes its own HTTP cache implementation, in PHP. You can read more details about it in the [Shopware 5 performance guide for developers](/developers-guide/shopware-5-performance-for-devs). While this is not the most performing HTTP cache implementation, it requires no additional system configuration, and should work properly even in entry level hosting solutions, where resources and configuration access are limited.
-  
+
 ### Varnish
 
-Varnish is also an HTTP cache implementation, but offers much better performance and customization than Shopware's PHP HTTP cache. It's a very scalable HTTP cache, meaning it can be used for small as well as enterprise grade shops. Shopware officially supports Varnish cache configuration for customers with Enterprise licenses. 
+Varnish is also an HTTP cache implementation, but offers much better performance and customization than Shopware's PHP HTTP cache. It's a very scalable HTTP cache, meaning it can be used for small as well as enterprise grade shops. Shopware officially supports [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) for customers with Enterprise licenses.

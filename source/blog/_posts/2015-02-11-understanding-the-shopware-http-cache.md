@@ -64,7 +64,7 @@ A second aspect of the cache is the cache keys: Usually the cache tells apart th
 ### Cache invalidation IDs
 A third mechanism is the automated invalidation of pages. When rendering a listing or detail page, the HTTP cache will automatically check, which products and categories are shown on the current page and stores this information with the cached page (`x-shopware-cache-id` header). The cache plugin will then monitor products and categories for changes: When you change a product, the corresponding cache pages will be invalidated, so for the next request an uncached page will be returned. This way e.g. price changes will immediately reflect in the frontend. This automatization applies for any change which happens through doctrine models and can also be triggered by event.
 
-The actual invalidation is done by so called "BAN" requests: So once the article with ID 713 is changed, shopware's cache plugin will send a HTTP BAN request with the header `x-shopware-invalidates: a713` (`a` for articles, `c` for categories). The reverse proxy (shopware's build in one or varnish) will then search through all cached pages and delete all pages which have `a713` in their `x-shopware-cache-id` header.
+The actual invalidation is done by so called "BAN" requests: So once the article with ID 713 is changed, shopware's cache plugin will send a HTTP BAN request with the header `x-shopware-invalidates: a713` (`a` for articles, `c` for categories). The reverse proxy (shopware's build in one or Varnish) will then search through all cached pages and delete all pages which have `a713` in their `x-shopware-cache-id` header.
 
 ### Nocache tags
 The fourth mechanism is the (often misunderstood) nocache-tag system. A tag is basically a certain "state" a user session can have. When an unknown customer visits your shop, he will be in the customer group "EK" and see cached pages with default prices. If the customer now logs in, he might become a member of your merchant group "M". Merchants pay other prices - so from now one, all price-aware pages should be live.
@@ -98,7 +98,7 @@ If you want to take a deeper look at the HTTP cache in shopware, there are basic
 This plugin is responsible for marking responses for the HTTP cache. It will mark the controllers with the correct cache time and nocache tags and will automatically detect, which products and categories might influence the current page. Also it will take care of the automated cache invalidation and tell the reverse proxy to delete a cached page, when e.g. a product's price changed.
 
 ### engine/Shopware/Components/HttpCache/*
-The reverse proxy: By default shopware comes with a PHP reverse proxy which will quickly return the cached pages. Of course you can also run own reverse proxies like varnish - but as long as you don't explicitly configure another reverse proxy, our default symfony-based reverse proxy will respond.
+The reverse proxy: By default shopware comes with a PHP reverse proxy which will quickly return the cached pages. Of course you can also run own reverse proxies like Varnish - but as long as you don't explicitly configure another reverse proxy, our default symfony-based reverse proxy will respond.
  If you take a look at our shopware.php file, you'll find, that the PHP reverse proxy decorates the default symfony HTTP kernel:
 
 ```
@@ -145,7 +145,7 @@ Invalidate the cache for a certain category or article as described above. In or
     );
     ```
 
-    Note that depending on your reverse proxy (php reverse proxy or varnish) this might have a massive performance impact and should not be used in batch operations.
+    Note that depending on your reverse proxy (php reverse proxy or Varnish) this might have a massive performance impact and should not be used in batch operations.
 
 * `Shopware\Components\Api\Resource\Cache`
 This cache resource of API not only handles the HTTP cache but many other caches in shopware, too. So if you need to clear the HTTP, proxy, template or object cache, you can use this resource - even with a REST client

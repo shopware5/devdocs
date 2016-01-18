@@ -7,7 +7,7 @@ indexed: true
 redirect:
   - /blog/2015/12/04/working-with-the-http-cache/index.html
 ---
-Caching is a common approach to improve the scalability of a system. For that reason, Shopware provides a build in 
+Caching is a common approach to improve the scalability of a system. For that reason, Shopware provides a build in
 HTTP cache, that should be enabled in production systems. This document will handle some basics regarding
 configuration and debugging of the HTTP cache.
 
@@ -26,7 +26,7 @@ The cache configuration module can be found in `Settings`->`Caches / Performance
 
 It mainly has the following configuration options:
 
-* Activate HTTP Cache: Turn the HTTP caching on or off 
+* Activate HTTP Cache: Turn the HTTP caching on or off
 * [Automatic cache invalidation](/blog/2015/02/11/understanding-the-shopware-http-cache/#cache-invalidation-ids): If an item X is changed, clear the caches for pages which contain X.
 This is highly recommended, as this will allow you to have full cached pages AND almost instant
 cache updates, if e.g. the price of an item changes.
@@ -65,7 +65,7 @@ Depending on your Shopware version, it will look like this:
 Some of the fields are Shopware specific:
 
 * `enabled`: If you want to use Shopware's builtin cache (a.k.a `reverse proxy`), this needs
-to be set to `true`. If you are using a varnish cache, you need to set this config to `false`.
+to be set to `true`. If you are using a Varnish cache, you need to set this config to `false`.
 * `cache_dir`: The cache files will be stored in this directory.
 * `cache_cookies`: The content of these cookies is taken into account in the cacheID - so
 e.g. there will be a different cache for "shop=1" and "shop=2". We will discuss this in depth later.
@@ -115,7 +115,7 @@ The `X-Content-Digest` header gives you information of the cached file - you cou
 `/your/doc/root/var/cache/production____REVISION___/html/en/1d/ac/22cb10b9a66cb6590a7819384d54fcb637e838f65c40b655b07c85cd5f7d`.
 So the first 6 chars describe the directory, the rest of the content digest is the file name.
 
-`X-Shopware-Allow-Nocache` will tell which `nocache` tags the current page reacts to. In the given case, 
+`X-Shopware-Allow-Nocache` will tell which `nocache` tags the current page reacts to. In the given case,
 the `index` controller was called, which will not be cached if the `price` tag is active. The suffixed `-1` indicates that the current
 shop has ID `1`.
 
@@ -138,7 +138,7 @@ usually having too many ESI requests will lower your cache performance.
 There are other headers like `Cache-Control`, `Age` or `Pragma` that might be useful when making assumptions regarding
 the cache. These, however, are usually not a good indicator for what actually happened: Shopware uses the `Cache-Control` header,
 for example, to tell the HTTP cache / reverse proxy if it should cache the response. The Symfony HTTP cache, as well
-as our varnish configuration, will modify this header in many cases, in order to prevent other proxies or the user
+as our Varnish configuration, will modify this header in many cases, in order to prevent other proxies or the user
 agent from additionally caching the response. So even if Shopware internally sets the `Cache-Control` header to a value
 like `Cache-Control', 'public, max-age=3600, s-maxage=3600` as configured in the cache backend module, the
 actual caching instance might still decide to set another header to prevent double cached content.
@@ -233,15 +233,15 @@ Generally this is a quite powerful mechanism to have good control over the cache
 overall target of HTTP caching is to serve as many pages from the cache. The more complex your cache key is, the lower
 the cache hit rate will become - so think twice before adding new cache keys.
 
-Also, be aware that this approach only applies to Shopware's built-in reverse proxy. If you are using varnish, you also
-have to make your varnish configuration aware of this cookie.
+Also, be aware that this approach only applies to Shopware's built-in reverse proxy. If you are using Varnish, you also
+have to make your [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) aware of this cookie.
 
 
 ## Trusted Proxies
 Another topic that is quite relevant for you, if you are working with bigger environments, is the [`trustedproxies`
 configuration](http://symfony.com/doc/current/components/http_foundation/trusting_proxies.html).
 
-It does not affect the cache directly, but as soon as you have e.g. a varnish and a load balancer in play, you will need
+It does not affect the cache directly, but as soon as you have e.g. a Varnish and a load balancer in play, you will need
 to deal with the fact that your IP address is replaced with e.g. the proxy's IP address. This might have effects on
 various functions which check for your IP address, e.g. the "maintenance mode", which only allows users with a configured
 IP to see the shop. Usually, the proxy will set a header `HTTP_X_FORWARDED_FOR` which indicates which user originally

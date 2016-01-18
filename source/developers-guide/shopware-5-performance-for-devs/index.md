@@ -14,7 +14,7 @@ redirect:
 In this document we cover the performance-related features of Shopware 5, that you should both use as a plugin developer and configure as a shop administrator. This document presents some of the techniques Shopware 5 uses to speed up internal processes, and that, most of the time, are available to you as a developer to take advantage of while developing your plugins. We also discuss core implementation details that are relevant for performance reasons, and that you should know of, even if they are not used directly by your plugins.
 
 <div class="alert alert-warning">
-<strong>Note:</strong> This guide only covers the details of Shopware 5 itself, and does not cover system configuration details. Please refer to the <a href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">Shopware 5 performance guide system administrators</a> for more details on how you can fine tune your server for improved performance. 
+<strong>Note:</strong> This guide only covers the details of Shopware 5 itself, and does not cover system configuration details. Please refer to the <a href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">Shopware 5 performance guide system administrators</a> for more details on how you can fine tune your server for improved performance.
 </div>
 
 ## Caching
@@ -28,7 +28,7 @@ The HTTP Cache is a caching layer between your application and the customer's br
 You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this
 [article](http://wiki.shopware.com/Understanding-the-shopware-http-Cache_detail_1809_928.html)
 
-Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official Varnish configuration support for Enterprise customers.
+Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) support for Enterprise customers.
 
 ## Theme Cache
 

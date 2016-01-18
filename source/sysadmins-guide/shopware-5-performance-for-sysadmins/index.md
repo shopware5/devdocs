@@ -154,4 +154,4 @@ Shopware 5, like previous versions, includes its own HTTP cache implementation, 
 
 ### Varnish
 
-Varnish is also an HTTP cache implementation, but offers much better performance and customization than Shopware's PHP HTTP cache. It's a very scalable HTTP cache, meaning it can be used for small as well as enterprise grade shops. Shopware officially supports [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) for customers with Enterprise licenses.
+Varnish is also an HTTP cache implementation, but offers much better performance and customization than Shopware's PHP HTTP cache. It's a very scalable HTTP cache, meaning it can be used for small as well as enterprise grade shops. Shopware officially supports [Varnish configuration](/sysadmins-guide/varnish-setup/) for customers with Enterprise licenses.

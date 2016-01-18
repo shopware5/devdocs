@@ -28,7 +28,7 @@ The HTTP Cache is a caching layer between your application and the customer's br
 You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this
 [article](http://wiki.shopware.com/Understanding-the-shopware-http-Cache_detail_1809_928.html)
 
-Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) support for Enterprise customers.
+Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](/sysadmins-guide/varnish-setup/) support for Enterprise customers.
 
 ## Theme Cache
 

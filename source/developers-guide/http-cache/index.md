@@ -234,7 +234,7 @@ overall target of HTTP caching is to serve as many pages from the cache. The mor
 the cache hit rate will become - so think twice before adding new cache keys.
 
 Also, be aware that this approach only applies to Shopware's built-in reverse proxy. If you are using Varnish, you also
-have to make your [Varnish configuration](https://github.com/shopwareLabs/varnish-configuration) aware of this cookie.
+have to make your [Varnish configuration](/sysadmins-guide/varnish-setup/) aware of this cookie.
 
 
 ## Trusted Proxies

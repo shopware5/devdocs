@@ -38,13 +38,13 @@ return array (
 ```
 
 Please keep in mind that changing this setting might cause PHP to throw exceptions in processes that would otherwise work flawlessly. We strongly advice that you do not enable this setting in production environments without prior thorough testing in a development environment.
-  
-Also, using this setting in PHP 5.x only emulates one of the many changes done in PHP 7. Be sure to fully test your plugins in a native PHP 7 environment to ensure their full compatibility. 
+
+Also, using this setting in PHP 5.x only emulates one of the many changes done in PHP 7. Be sure to fully test your plugins in a native PHP 7 environment to ensure their full compatibility.
 
 
 ### JavaScript events
 
-* All JavaScript plugins now have `sw` prepended to their name. 
+* All JavaScript plugins now have `sw` prepended to their name.
 * All event names have `on` prepended to them
 
 As such, old calls, like the following:
@@ -84,7 +84,7 @@ $.subscribe('plugin/swAjaxVariant/onRequestData', function() {
 ```
 
 Moreover, if your custom JavaScript plugin is initialized outside of the `product--detail-upper` element, it will not be automatically reinitialized after the new content is loaded. Also, due to the way in which our plugin handler is built, you cannot reinitialize plugins multiple times on the same element. As such, you need to explicitly destroy the plugin instance prior to the AJAX call, and reinitialize it after the loading process is finished.
- 
+
 ```
 $.subscribe('plugin/swAjaxVariant/onBeforeRequestData', function() {
     $('body').data('plugin_swagCustomPlugin').destroy()
@@ -104,7 +104,7 @@ If you are upgrading from Shopware 5.0 or previous, the actual media files will 
 #### For backend developers
 
 Like mentioned before, if your server-side code manipulates media files, you will probably need to do a few changes to it. The `shopware_media.media_service` is responsible for retrieving the real path of a file based on its virtual path. You should also use it if you need to perform any other CRUD operation on media files in your custom code. The service implements methods that will allow you to perform these operations.
- 
+
 Suppose your custom controller has the following code:
 
 ```
@@ -155,7 +155,7 @@ In addition to the PHP functionality, we have created a new Smarty tag for gener
 
 #### Garbage Collector
 
-To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files. 
+To find unused media files, we created the `GarbageCollector` which searches through all Shopware core tables to identify unused media files.
 
 As a plugin developer, you may have created new tables and established a relation to a media file. In case of that, you have to register your tables to the `GarbageCollector`. First, subscribe to the `Shopware_Collect_MediaPositions` event and add your tables to an `ArrayCollection`.
 
@@ -197,12 +197,12 @@ The **third** parameter selects the `s_media` column you are referencing to. The
     * `beberlei/assert`
     * `zendframework/zend-escaper`
     * `elasticsearch/elasticsearch`
-    
+
 ### New CLI commands
 * `sw:clone:category:tree`
 * `sw:plugin:reinstall`
 * `sw:media:cleanup`
-* `sw:media:migrate` 
+* `sw:media:migrate`
 
 ### Removals
 
@@ -536,7 +536,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * `Shopware.model.Container` provides now the raw record value as id parameter to the `searchAssociationAction` to request the whole record on form load.
 * Added way to early exit the dispatch.
     * After `Enlight_Controller_Front_RouteShutdown` a response containing a redirect will not enter the dispatch loop.
-* `HttpCache` plugin is no longer handled by the Plugin manager. Use the `Performance` window to enable/configure the Http cache instead
+* `HttpCache` plugin is no longer handled by the Plugin manager. Use the `Performance` window to enable/configure the HTTP cache instead
 * `\Shopware\Models\Emotion\Repository::getListQuery` function replaced by `getListingQuery`.
 
 
@@ -577,7 +577,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
 * added a confirmation message for deleting images in the media manager
 * fixed several styles for the IE 11
 * fixed several First Run Wizard bugs
-* fixed several Emotion World bugs 
+* fixed several Emotion World bugs
 * fixed several SEO tags
 * fixed cache interaction between multiple Shopware installations
 * fixed tap on search results in the drop down search

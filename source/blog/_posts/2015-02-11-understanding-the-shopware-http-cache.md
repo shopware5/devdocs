@@ -1,5 +1,5 @@
 ---
-title: Understanding the shopware http-Cache
+title: Understanding the Shopware HTTP Cache
 tags:
 - cache
 - development
@@ -21,7 +21,7 @@ For that reason, the following overview might come in handy for you.
 
 ## Enabling the cache
 
-If you want to configure the HTTP cache, follow this link to our  [wiki documentation](http://en.wiki.shopware.com/_detail_855.html#HTTP_cache) and the new [working with the HTTP cache](/blog/2015/12/04/working-with-the-http-cache/) article. 
+If you want to configure the HTTP cache, follow this link to our  [wiki documentation](http://en.wiki.shopware.com/_detail_855.html#HTTP_cache) and the new [working with the HTTP cache](/blog/2015/12/04/working-with-the-http-cache/) article.
 
 ## HTTP cache setup
 

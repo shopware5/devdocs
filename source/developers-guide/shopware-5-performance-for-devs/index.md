@@ -26,7 +26,7 @@ Shopware uses multiple caches for different contents. Most of them are included 
 The HTTP Cache is a caching layer between your application and the customer's browser. Shopware includes a PHP implemented HTTP Cache you can use without additional system dependencies associated with other equivalent tools. You can enable/disable the built in HTTP Cache by switching between "productive" and "development" modes in the Backend of your shop. The development mode disables the HTTP cache and allows you to prepare your shop before going live. After you modify all data, enable the shop to "productive" mode to enable the HTTP cache.
 
 You can learn more about Shopware's HTTP cache, its configuration options, behaviour and alternatives by reading this
-[article](http://wiki.shopware.com/Understanding-the-shopware-http-Cache_detail_1809_928.html)
+[article](/blog/2015/02/11/understanding-the-shopware-http-cache/)
 
 Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](/sysadmins-guide/varnish-setup/) support for Enterprise customers.
 

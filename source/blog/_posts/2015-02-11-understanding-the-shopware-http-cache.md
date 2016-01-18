@@ -21,7 +21,7 @@ For that reason, the following overview might come in handy for you.
 
 ## Enabling the cache
 
-If you want to configure the HTTP cache, follow this link to our  [wiki documentation](http://en.wiki.shopware.com/_detail_855.html#HTTP_cache) and the new [working with the HTTP cache](/blog/2015/12/04/working-with-the-http-cache/) article.
+If you want to configure the HTTP cache, follow this link to our  [documentation](/developers-guide/http-cache/) and the new [working with the HTTP cache](/blog/2015/12/04/working-with-the-http-cache/) article.
 
 ## HTTP cache setup
 
@@ -30,7 +30,7 @@ If you think about a simple web page, you will usually have a setup like this:
  * an user that requests a page
  * the web application generates a result
 
-So whenever an user requests a page, the web application (e.g. shopware) will create a result page individually. If you have many users requesting the same pages, it makes sense to have an additional instance in between:
+So whenever an user requests a page, the web application (e.g. Shopware) will create a result page individually. If you have many users requesting the same pages, it makes sense to have an additional instance in between:
 
  * an user that requests a page
  * a reverse proxy cache
@@ -64,7 +64,7 @@ A second aspect of the cache is the cache keys: Usually the cache tells apart th
 ### Cache invalidation IDs
 A third mechanism is the automated invalidation of pages. When rendering a listing or detail page, the HTTP cache will automatically check, which products and categories are shown on the current page and stores this information with the cached page (`x-shopware-cache-id` header). The cache plugin will then monitor products and categories for changes: When you change a product, the corresponding cache pages will be invalidated, so for the next request an uncached page will be returned. This way e.g. price changes will immediately reflect in the frontend. This automatization applies for any change which happens through doctrine models and can also be triggered by event.
 
-The actual invalidation is done by so called "BAN" requests: So once the article with ID 713 is changed, shopware's cache plugin will send a HTTP BAN request with the header `x-shopware-invalidates: a713` (`a` for articles, `c` for categories). The reverse proxy (shopware's build in one or Varnish) will then search through all cached pages and delete all pages which have `a713` in their `x-shopware-cache-id` header.
+The actual invalidation is done by so called "BAN" requests: So once the article with ID 713 is changed, shopware's cache plugin will send a HTTP BAN request with the header `x-shopware-invalidates: a713` (`a` for articles, `c` for categories). The reverse proxy (Shopware's build in one or Varnish) will then search through all cached pages and delete all pages which have `a713` in their `x-shopware-cache-id` header.
 
 ### Nocache tags
 The fourth mechanism is the (often misunderstood) nocache-tag system. A tag is basically a certain "state" a user session can have. When an unknown customer visits your shop, he will be in the customer group "EK" and see cached pages with default prices. If the customer now logs in, he might become a member of your merchant group "M". Merchants pay other prices - so from now one, all price-aware pages should be live.

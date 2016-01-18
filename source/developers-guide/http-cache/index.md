@@ -138,7 +138,7 @@ usually having too many ESI requests will lower your cache performance.
 There are other headers like `Cache-Control`, `Age` or `Pragma` that might be useful when making assumptions regarding
 the cache. These, however, are usually not a good indicator for what actually happened: Shopware uses the `Cache-Control` header,
 for example, to tell the HTTP cache / reverse proxy if it should cache the response. The Symfony HTTP cache, as well
-as our Varnish configuration, will modify this header in many cases, in order to prevent other proxies or the user
+as our [Varnish configuration](/sysadmins-guide/varnish-setup/), will modify this header in many cases, in order to prevent other proxies or the user
 agent from additionally caching the response. So even if Shopware internally sets the `Cache-Control` header to a value
 like `Cache-Control', 'public, max-age=3600, s-maxage=3600` as configured in the cache backend module, the
 actual caching instance might still decide to set another header to prevent double cached content.

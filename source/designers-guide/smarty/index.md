@@ -120,6 +120,23 @@ class Theme extends \Shopware\Components\Theme
 }
 ```
 
+### Inheritance and plugin templates
+<img src="/designers-guide/smarty/injectBeforePlugins.jpg" alt="Inheritance and plugin templates" style="width: 400px; float: right; margin:0 0 0 40px;" />
+The plugins installed to your shop have a special position in the order of the inheritance system. All plugin templates are processed after the templates of the core themes. You can decide if your theme should be processed before or after the plugin templates by setting the `$injectBeforePlugins` variable in your `Theme.php` file. If you want to create a normal theme, which can be purchased in the shopware community store, the value should be set to `true`, so your theme is processed before the plugins. This ensures that all plugins can be used with your theme. When you want to make some local changes to specific plugins, you can set the value to `false` for extending the plugin templates.
+
+```
+class Theme extends \Shopware\Components\Theme
+{
+    protected $extend = 'Responsive';
+
+    protected $name = 'CustomTheme';
+
+    protected $injectBeforePlugins =  true;
+
+    // ...
+}
+```
+
 ### Overwriting template files
 
 Shopware uses a fixed directory structure for all parts of the frontend, where each part has its own directory with its own template files. In each of these directories you will find an `index.tpl` file, which contains the base template for the whole part. When you defined a parent theme, you can overwrite the existing template files just by creating the same file in your own theme directory. For example, if you want to completely overwrite the product detail page, you can create the file with the corresponding directory structure `frontend/detail/index.tpl` in your own theme. Shopware will automatically detect the files you created and add them to the inheritance system.

@@ -119,6 +119,8 @@ The file path of the `extends` function call has to match the directory structur
 
 Had we chosen not to use the `extends` function call, the content of the `shop-navigation.tpl` file from the inherited theme would be ignored when redering our theme, and our empty file would be used instead.
 
+You can find a complete guide to the template inheritance in the [Smarty 101 guide](https://developers.shopware.com/designers-guide/smarty/#template-inheritance).
+
 ## Template blocks
 The `Bare` theme's HTML structure is wrapped in Smarty's `block` elements. These block elements group the frontend components into small, isolated blocks that can be edited/overwritten individually. To add changes to the elements of the `Bare` theme, you __can't__ simply write code inside your file. To customize a block, you have to call the correct Shopware block name.
 

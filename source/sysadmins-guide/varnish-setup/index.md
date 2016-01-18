@@ -2,6 +2,7 @@
 layout: default
 title: Varnish Setup
 github_link: sysadmins-guide/varnish-setup/index.md
+shopware_version: 4.3.3
 tags:
   - performance
   - varnish
@@ -10,15 +11,15 @@ indexed: true
 ---
 
 ## Support
-Please note that shopware AG exclusively supports Varnish cache configuration for customers with Shopware Enterprise licenses.
+Please note that shopware AG only supports Varnish cache configuration for customers with Shopware Enterprise licenses.
 
 ## Requirements
-This configuration requires at least version 4.0 of Varnish and at least version 4.3.3 of shopware.
+This configuration requires at least version 4.0 of Varnish and at least version 4.3.3 of Shopware.
 
 ## Shopware configuration
 
 ### Disable the inbuilt reverse proxy
-The PHP-based reverse proxy has to be disabled. To disable add the following section to your `config.php`:
+The PHP based reverse proxy has to be disabled, which can be done by adding the following section to your `config.php`:
 
 ```
 'httpCache' => array(
@@ -27,7 +28,7 @@ The PHP-based reverse proxy has to be disabled. To disable add the following sec
 ```
 
 ### Configure Trusted Proxies
-If you have a reverse proxy in front of your shopware installation you have to set the IP of the proxy in the `trustedProxies` section in your `config.php`:
+If you have a reverse proxy in front of your Shopware installation, you have to set the IP of the proxy in the `trustedProxies` section in your `config.php`:
 
 ```
 'trustedProxies' => array(
@@ -39,9 +40,9 @@ If you have a reverse proxy in front of your shopware installation you have to s
 ### TLS Termination
 
 Varnish does not support SSL/TLS ([Why no SSL?](https://www.varnish-cache.org/docs/trunk/phk/ssl.html#phk-ssl)).
-To support TLS requests a [TLS termination proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy) like nginx or HAProxy has to n to handle incoming TLS connections and forward them to Varnish.
+To support TLS requests, a [TLS termination proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy) like nginx or HAProxy has to handle incoming TLS connections and forward them to Varnish.
 
-You can put Varnish on port 80 and handle unencrypted requests directly.
+You can configure Varnish to use port 80 and handle unencrypted requests directly.
 
 
 ```
@@ -60,7 +61,7 @@ Internet ▶ 0.0.0.0:443 (nginx/TLS Termination) ▶ 0.0.0.0:80 (Varnish Cache) 
 Internet ▶ 0.0.0.0:80 (Varnish/Caching) ▶ 127.0.0.1:8080 (Apache/Shopware)
 ```
 
-Or you can forward unencrypted traffic to the secure port via HTTP 301. In this case all incoming traffic is handled by the reverse proxy upfront and Varnish can run on Port 6081 on localhost.
+Or you can forward unencrypted traffic to the secure port via HTTP 301. In this case, all incoming traffic is handled by the reverse proxy upfront and Varnish can run on port 6081 on localhost.
 
 
 ```
@@ -114,9 +115,9 @@ For a secure TLS (SSL) you can use the [Mozilla SSL Configuration Generator](htt
 
 
 ### Enable cache plugin
-The Shopware HTTP-Cache-Plugin has to be activated, to activate follow the these steps in your Shopware Backend:
+The Shopware HTTP Cache Plugin has to be activated, to activate follow the these steps in your Shopware Backend:
 
-`Einstellungen -> Caches / Performance -> Einstellungen -> HttpCache atkivieren`
+`Configuration -> Caches / Performance -> Settings -> HTTP Cache -> Activate HTTP cache`
 
 ## Varnish configuration (vcl)
 

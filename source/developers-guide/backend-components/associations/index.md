@@ -1121,7 +1121,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing and detail](img/assoc_2.png)
 
@@ -1149,7 +1149,7 @@ return Ext.create('Ext.data.Store', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Tax selection detail](img/assoc_3.png)
 
@@ -1251,7 +1251,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Search field detail](img/assoc_4.png)
 
@@ -1274,7 +1274,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Search field detail](img/assoc_5.png)
 
@@ -1393,7 +1393,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product attributes form](img/assoc_6.png)
 
@@ -1416,7 +1416,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product detail with attributes](img/assoc_7.png)
 
@@ -1511,7 +1511,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Variants tab](img/assoc_8.png)
 
@@ -1534,7 +1534,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product detail with variant](img/assoc_9.png)
 

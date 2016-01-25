@@ -6,7 +6,7 @@ shopware_version: 5.2
 indexed: true
 ---
 
-<div style="text-align:center">
+<div class="is-center">
     <img src="logo-npm-normal.png" alt="NPM logo">
 </div>
 
@@ -182,7 +182,7 @@ All frontend dependencies are now defined in the `package.json` file, unlike pre
 
 ### Mapping files
 
-<div style="text-align: center">
+<div class="is-center">
     <img src="logo-grunt.png" alt="Grunt logo">
 </div>
 

@@ -32,7 +32,7 @@ The augmented view of the Meta is quite amazing. It still don't covers the whole
 
 <br />
 
-<div style='text-align:center; clear:both; width:780px; height:480px; margin: 0 auto;'>
+<div class="is-center" style='clear:both; width:780px; height:480px; margin: 0 auto;'>
 <script type='text/javascript' src='http://pshared.5min.com/Scripts/PlayerSeed.js?sid=281&width=780&height=480&playList=518132621'></script>
 </div>
 

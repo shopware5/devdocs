@@ -74,7 +74,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Basic detail page](img/detail_1.png)
 
@@ -107,7 +107,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Detail window with two field sets](img/detail_2.png)
 
@@ -147,7 +147,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Custom field sets](img/detail_3.png)
 
@@ -194,7 +194,7 @@ Ext.define('...view.detail.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Expanded detail page](img/detail_4.png)
 
@@ -240,7 +240,7 @@ Ext.define('...view.detail.Product', {
    }
 });
 ```
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Warning message](img/detail_5.png)
 

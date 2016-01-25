@@ -27,7 +27,7 @@ a recommendation engine using neo4j in Shopware.
  <div class="toc-list" data-depth="4" data-headline=""></div>
 
 ## What is it all about?
-<img src="/blog/img/graph_simple_result.png" alt="Simple graph" style="float: left; margin: 10px;width:300px" />
+<img src="/blog/img/graph_simple_result.png" alt="Simple graph" class="is-float-left" style="width:300px" />
 A graph database is a database which represents information in form of graphs. It's ideal for highly cross-linked
 data which needs to be queried in a semantic way.
 A typical graph database will have **nodes**, **edges** and **properties** to represent data. The **nodes** are entities
@@ -48,7 +48,7 @@ As you can see, all customers purchased the "ESD download" item, so other items 
  based on this common preference.
 
 ## Neo4j
-<img src="/blog/img/graph_tom_hanks.png" alt="Tom hanks movies + directors" style="float: right; margin: 10px;max-width:350px" />
+<img src="/blog/img/graph_tom_hanks.png" alt="Tom hanks movies + directors" class="is-float-right"  style="max-width:350px" />
 
 Neo4j is a very popular open source graph database written in Java. You can simply download the community edition
 at [http://neo4j.com/download/](http://neo4j.com/download/), unzip the archive and run `bin/neo4j start` in order
@@ -226,7 +226,7 @@ Now you can install and activate the plugin using the shopware command line tool
 ```
 
 ### Creating some demo data
-<img src="/blog/img/graph_outdoor.png" alt="Simple graph" style="float: right; margin: 10px;width:400px" />
+<img src="/blog/img/graph_outdoor.png" alt="Simple graph" class="is-float-right" style="width:400px" />
 
 First of all, the plugin provides some demo data that can be used to test various recommendation scenarios. It will
 create some items, customers and orders. The items are separated into groups like "console games", "outdoor games" and
@@ -259,7 +259,7 @@ So it will basically iterate the CSV and create `Customer` and `Item` nodes and 
 customer to the items he purchased.
 
 ### Having a look at the resulting graph
-<img src="/blog/img/graph_neo.png" alt="Resulting graph graph" style="float: left; margin: 10px;width:300px" />
+<img src="/blog/img/graph_neo.png" alt="Resulting graph graph" class="is-float-left" style="width:300px" />
 Now you can navigate to your neo4j frontend, typically `http://localhost:7474/browser/`. In the query window at the top
 cypher queries can be entered. The query `MATCH (n) RETURN n LIMIT 100`, for example, will print the whole graph:
 

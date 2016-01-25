@@ -23,7 +23,7 @@ out in our case.
 
 
 ## Computer vision
-<div style="float: right; margin-left: 30px; margin-bottom: 40px; width:300px">
+<div style="width:300px" class="is-float-right">
     <img src="/blog/img/sikuli-cv.png" width="300"/>
     <p style="font-size:small; text-align:justify">
     Face recognition with eye detection and face outline.<br> 
@@ -92,7 +92,7 @@ while True:
 	img.show()
 ```
 
-<img src="/blog/img/sikuli-simplecv2.gif" width="300" style="float: left; margin: 10px;width:300px" />
+<img src="/blog/img/sikuli-simplecv2.gif" width="300" class="is-float-left" style="width:300px" />
 Using the `Camera()` call I can access my webcam - if multiples are attached to your PC, you can pass an optional index.
 The following endless loop will read the current image from the web cam and process it. In the example above,
  a so called [haar feature](https://en.wikipedia.org/wiki/Haar-like_features) is used, to find my eyes in that image:
@@ -105,7 +105,7 @@ and update it with each iteration of the while loop. As you can see in the image
 videos, even though the image processing adds a little delay from the real camera image. 
  
 ### Sikuli
-<a target="_blank" href="/blog/img/sikuli-sikuli.png"><img src="/blog/img/sikuli-sikuli.png" style="float: right;  margin: 10px;;width:600px" /></a>
+<a target="_blank" href="/blog/img/sikuli-sikuli.png"><img src="/blog/img/sikuli-sikuli.png" class="is-float-right" style="width:600px" /></a>
 [Sikuli](http://www.sikuli.org/) is another tool which makes use of computer vision / image recognition. Unlike OpenCV and SimpleCV, it's a whole scripting language based on computer vision. 
 Sikuli is based on [Jython](http://www.jython.org/) - a Java implementation of Python - and it will allow you to write
 scripts in Python syntax. In addition to that, it allows you to query the screen for images. So there are constructs like

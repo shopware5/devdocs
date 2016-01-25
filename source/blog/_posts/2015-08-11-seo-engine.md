@@ -20,7 +20,7 @@ While most of these techniques are not that interesting from a technical perspec
 code and also is common target of extensibility. For that reason, this blog post will cover Shopware's handling of
 SEO urls regarding generation, routing and normalization of URLs.
 
-<img alt="Overview of the SEO URL concept" style="float: left" src="/blog/img/seo-general.png">
+<img alt="Overview of the SEO URL concept" class="is-float-left" src="/blog/img/seo-general.png">
 # General concept
 Usually there is some kind of technical representation of any given URL in a shop. So for example the SEO URL
 `http://my-shop.com/living-world` will be internally mapped to a representation like `http://my-shop.com/frontend/listing/index/?sCategory=8`.

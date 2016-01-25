@@ -15,7 +15,7 @@ This tutorial will cover the listing extensions which you have implemented in th
 
 The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductListingExtension.zip](/exampleplugins/SwagProductListingExtension.zip)
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Listing and detail windows](img/ext_1.png)
 
@@ -125,7 +125,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with side details](img/ext_2.png)
 
@@ -158,7 +158,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with side simple description](img/ext_3.png)
 
@@ -189,7 +189,7 @@ Ext.define('...view.list.extensions.Info', {
     }
 });
 ```
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with side name](img/ext_4.png)
 
@@ -221,7 +221,7 @@ Ext.define('...view.list.extensions.Info', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with side name and description](img/ext_5.png)
 
@@ -259,7 +259,7 @@ Ext.define('...view.list.extensions.Info', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with customized side panel](img/ext_6.png)
 
@@ -322,7 +322,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with search pane](img/ext_7.png)
 
@@ -330,13 +330,13 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
 The generated fields are similar to the generated fields in the detail window. They will be created in an additional container, including a checkbox which marks whether a filter is active or not. If more than one filters are active, all fields will be concatenated with an `AND` conjunction:
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with date filter](img/ext_8.png)
 
 </div>
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with name and date filter](img/ext_9.png)
 
@@ -370,7 +370,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
     }
 });
 ```
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with custom filters](img/ext_10.png)
 
@@ -380,7 +380,7 @@ The configuration of the filter fields is similar to the column of the `Shopware
 
 ## Plugin Download - [SwagProductListingExtension.zip](/exampleplugins/SwagProductListingExtension.zip)
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing with custom filters and info pane](img/ext_11.png)
 

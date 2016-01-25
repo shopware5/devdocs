@@ -24,7 +24,7 @@ This blog post will have a look at Shopware items in several situations like lis
 Furthermore it will discuss the general difference between e.g. *variant* and *property*.
 
 # The correct name
-<img alt="shopping carts" style="margin:10px;float: right;width:20%;" src="/blog/img/cart.jpg">
+<img alt="shopping carts" class="is-float-right" style="width:20%;" src="/blog/img/cart.jpg">
 What an item actually is, highly depends on the actual shopping cart solution - many manufactures
 have different approaches to items. This does not only apply for the item from a technical
 perspective; it even applies for the name: *product*, *article* or *item* - somehow these terms
@@ -43,10 +43,10 @@ In this blog post I will stick to the name *item* for any entity that can be pur
 # What does an item look like…
 ## …in the item tables?
 <a href="/blog/img/db_article.png">
-    <img alt="s_articles db schema" style="margin:10px;float: left;width:20%;" src="/blog/img/db_article.png">
+    <img alt="s_articles db schema" class="is-float-left" style="width:20%;" src="/blog/img/db_article.png">
 </a>
 <a href="/blog/img/db_detail.png">
-    <img alt="s_articles_details db schema" style="margin:10px;float: right;width:20%;" src="/blog/img/db_detail.png">
+    <img alt="s_articles_details db schema" class="is-float-right" style="width:20%;" src="/blog/img/db_detail.png">
 </a>
 In Shopware there are basically four database tables that will describe a concrete item:
 The most relevant are `s_articles` and `s_articles_details`. These define the basic information
@@ -96,7 +96,7 @@ methods (indicated by `+` in the last section of every class) do provide additio
 
 ## …in the cart
 <a href="/blog/img/db_basket.png">
-    <img alt="s_order_basket db schema" style="margin:10px;float: left;width:20%;" src="/blog/img/db_basket.png">
+    <img alt="s_order_basket db schema" class="is-float-left" style="width:20%;" src="/blog/img/db_basket.png">
 </a>
 Items, as discussed above, are used everywhere in the back office as well as the frontend or even the API.
 In many cases it boils down to entries in `s_articles`, `s_articles_details`, `s_articles_prices` and
@@ -112,7 +112,7 @@ table for plugin extensions and Shopware tends to re-calculate the cart items by
 
 ## …in an order
 <a href="/blog/img/db_order.png">
-    <img alt="s_order db schema" style="margin:10px;float: left;width:20%;" src="/blog/img/db_order.png">
+    <img alt="s_order db schema" class="is-float-left" style="width:20%;" src="/blog/img/db_order.png">
 </a>
 When a customer finishes the checkout, an order is created. The main order table is `s_order`, it will
 summarize the order regarding shipping method, total costs, payment state and associated user.

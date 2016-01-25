@@ -83,3 +83,34 @@ SYMFONY__ALGOLIA_ENABLED=1 SYMFONY__ALGOLIA_API_KEY=MYAPIKEY ./vendor/bin/sculpi
 ```
 
 These variables are automatically exported during the Travis-CI build for every merge/commit on the `master` branch.
+
+
+## CSS helper classes
+We added a bunch of CSS helper classes which should help you to build simple layouts.
+
+### Centering of content
+
+```
+<div class="center">
+</div>
+```
+
+Alternative:
+```
+<div class="is--center">
+</div>
+```
+
+### Floating images
+
+```
+<div class="is-float-left">
+    <img src="sample.png" alt="Sample image" />
+</div>
+```
+
+```
+<div class="is-float-right">
+    <img src="sample.png" alt="Sample image" />
+</div>
+```

@@ -53,7 +53,7 @@ The SSH username is `vagrant`, the password: `vagrant`. To automatically SSH int
 $ vagrant ssh-config
 ```
 
-<div style="text-align:center">
+<div class="is-center">
 
 ![vagrant-ssh-config](img/ssh-config.png)
 
@@ -114,7 +114,7 @@ To deploy a locally installed project to the Vagrant server, you need to configu
 Open your Shopware project in PhpStorm.
 Choose in your toolbar `Tools` -> `Deployment` -> `Configuration`
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/toolbar-deploy.png)
 
@@ -123,7 +123,7 @@ Choose in your toolbar `Tools` -> `Deployment` -> `Configuration`
 #### Step 2
 Now we add our new Vagrant machine as deployment target.
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/deployment-root.png)
 
@@ -131,7 +131,7 @@ Now we add our new Vagrant machine as deployment target.
 
 Choose a unique name and the "SFTP" type.
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/deployment-add.png)
 
@@ -147,7 +147,7 @@ Fill in all required fields.
 * Save Password: `yes`
 * Web server root URL: `http://33.33.33.10/`
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/deployment-conf.png)
 
@@ -162,7 +162,7 @@ After adding your deploy machine, you have to create a mapping between the local
 
 Switch to the Mappings folder and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with a right click.
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/deployment-map.png)
 
@@ -172,7 +172,7 @@ Now press *OK* and close all deployment windows, so that you are back in your de
 
 Right click on your document root folder and click on `Upload to Vagrant Deployment`
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![image](img/deployment-upload.png)
 

@@ -23,7 +23,7 @@ The following blog post will discuss this exact scenario.
 
 
 ## The goal
-<img src="/blog/img/dynamic_backend.png" alt="" width="350" style="float: left; margin: 0 20px 30px 0" />
+<img src="/blog/img/dynamic_backend.png" alt="" width="350" class="is-float-left" />
 In my example there will be a new "store manager" **backend module**. It will allow the user to define stores (name, description,
 address, opening times). In addition to that, the "store manager" will allow the user to edit a shopping world template -
 which is used for all stores. So the user can arrange name, description, google map and opening times.
@@ -32,14 +32,14 @@ In order not to bloat the shopping world module, the "store template" shopping w
  applies to our store shopping world components: they should only be visible in the store manager - not in the default
  shopping world module.
 
-<img src="/blog/img/dynamic_frontend.png" alt="" width="350" style="float: left; margin: 0 20px 30px 0" />
+<img src="/blog/img/dynamic_frontend.png" alt="" width="350" class="is-float-left" />
 On the image on the left you can see the **frontend result**. It is a simple store page, which shows some details for a given
 store - in this example name, description, google map and opening times can be seen.
 
 The marked blocks are completely independent. By modifying the "store template" shopping world, the user can easily
 move those boxes around.
 
-<img src="/blog/img/dynamic_template.png" alt="" width="350" style="float: right; margin: 0 20px 30px 0" />
+<img src="/blog/img/dynamic_template.png" alt="" width="350" class="is-float-right" />
 The backend module is a simple CRUD module, that allows the user to create / edit stores. In our case stores in Berlin,
 Schöppingen and Münster have been defined.  As the Shopware backend components were used, this module is quite simple to
 create - the only special thing is the "edit store template" button in the list window. This will open up the **template

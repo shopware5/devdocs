@@ -18,7 +18,7 @@ In 5.0.3, we added the log algorithm for calculation to cover this scenario too.
 
 ### Linear
 
-<img src="linear.png" style="float:right;padding-left: 20px">
+<img src="linear.png" class="is-float-right">
 
 Just like described above, the calculation is simple. Given a maximum price of 850 EUR and a step count of 20, the step width would be 42,50 EUR. So every slide step would increase the value by 42,50 EUR. 
 
@@ -28,7 +28,7 @@ Take a look at the graph to get an idea of it.
 
 ### Log
 
-<img src="log.png" style="float:right;padding-left: 20px">
+<img src="log.png" class="is-float-right">
 
 In Shopware 5.0.3, we introduced the `log` function. The calculation is based on exponents. Given a maximum price of 850 EUR and a step count of 20, the step width would be dynamic, since it's based on the range slider position. So every slide step would increase the value by an exponential function.
 

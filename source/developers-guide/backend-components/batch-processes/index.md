@@ -15,7 +15,7 @@ This tutorial will teach you how to implement batch processing for large data se
 
 The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductAssociations.zip](/exampleplugins/SwagProductAssociations.zip)
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Listing and detail windows](img/batch_1.png)
 
@@ -26,7 +26,7 @@ The following plugin will be the basis for this tutorial. If you don't have it a
 ## Process large data sets
 To help you process large data sets, Shopware provides you with the `Shopware.window.Progress` component. This component allows you to iterate and run through a list of tasks. For example, the `Shopware.grid.Panel` uses this component to delete multiple items at once: 
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Batch process window](img/batch_2.png)
 
@@ -135,7 +135,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 });
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product listing window](img/batch_3.png)
 
@@ -210,7 +210,7 @@ tasks: [{
 }]
 ```
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product batch processing detail](img/batch_4.png)
 
@@ -270,7 +270,7 @@ The `Shopware.window.Progress` now expects that the application handles the data
 
 In the example above, an AJAX request will be sent to the `deactivateProductsAction()` method in the plugin controller.
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Batch process window](img/batch_2.png)
 
@@ -349,7 +349,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
 There is one pitfall you should be aware of. Since you use the same array for each task, you have to clone the array by calling `Ext.clone(selection)`, because data is referenced and may changes during the task. The upcoming task will then use the modified array from the previous task. To prevent this you simply clone the original array and pass it to the task. 
 
-<div style="text-align:center;">
+<div class="is-center">
 
 ![Product batch processing detail](img/batch_6.png)
 

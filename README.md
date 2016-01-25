@@ -100,3 +100,17 @@ Alternative:
 <div class="is--center">
 </div>
 ```
+
+### Floating images
+
+```
+<div class="is-float-left">
+    <img src="sample.png" alt="Sample image" />
+</div>
+```
+
+```
+<div class="is-float-right">
+    <img src="sample.png" alt="Sample image" />
+</div>
+```

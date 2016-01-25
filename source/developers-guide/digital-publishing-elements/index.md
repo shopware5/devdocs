@@ -16,7 +16,7 @@ Digital Publishing is introduced in Shopware 5.1.0 as a new advanced feature. Th
 
 ## The basic plugin structure
 
-<img src="img/file_structure.jpg" style="float:right; margin: 10px 0 20px 40px;" />
+<img src="img/file_structure.jpg" class="is-float-right" />
 
 We will not describe the hole plugin development in this article, but only the important parts to get started with the custom element. To get more details about developing plugins for Shopware, see the <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">quick start guide</a>. In our example we create a plugin called `SwagDigitalPublishingSample`. This is just an example name for our plugin and will be used for some directory and file names. When you create your own plugin, just replace the corresponding parts with the name of your own plugin. 
 
@@ -125,7 +125,7 @@ In the `getSubscribedEvents()` method we return all necessary events we want to 
 - `onPostDispatchFrontend`: Adds the *Views* directory, so we can automatically extend the templates of the storefront.
 - `onAddLessFiles`: enables us to add new LESS files to the theme compiler for a little bit of styling.
 
-<img src="img/file_structure_backend.jpg" style="float:right; margin: 10px 0 20px 40px;" />
+<img src="img/file_structure_backend.jpg" class="is-float-right" />
 
 In the next step, we will look at the first event, which subscribes to the post dispatch of the backend. With it, we can extend the backend with our ExtJS template files in the `onPostDispatchBackend` callback. To add a new element to the Digital Publishing module, we have to extend the original `container.js` of the editor with our own `extension.js` file. All files should go in the `Views` directory of our plugin, in `backend/swag_digital_publishing_sample/view/editor`. We also create the custom handler for our element in the `elements` subdirectory called `youtube_element_handler.js`. These files are added to the backend template by the `extendsTemplate()` method.
 
@@ -193,7 +193,7 @@ Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.YouTubeExtension', {
 //{/block}
 ```
 
-<img src="img/screen_element_menu.jpg" style="float:left; margin: 10px 40px 20px 0;" />
+<img src="img/screen_element_menu.jpg" class="is-float-left" />
 
 We're using an override of the `Shopware.apps.SwagDigitalPublishing.view.editor.Container` to add a new instance of our custom handler to the `elementHandlers` property, which holds a list of all available handlers. Don't forget to call `me.callParent(arguments)` to make sure the original component works as intended. After installing the plugin, you should already see the new element as a selectable item in the element menu of the Digital Publishing editor. 
 

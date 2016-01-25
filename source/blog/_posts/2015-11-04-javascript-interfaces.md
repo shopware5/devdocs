@@ -16,7 +16,7 @@ Dealing with complex web applications you want to use some kind of abstraction l
 
 > When I see a bird that walks like a duck, swims like a duck and quacks like a duck, I call that bird a duck.
 
-<img src="/blog/img/dog_quack.jpg" style="width: 190px; float: right; margin: 0 0 30px 40px;" />
+<img src="/blog/img/dog_quack.jpg" style="width: 190px;" class="is-float-right" />
 
 It means that an object with the methods `walk()`, `swim()` and `quack()` can always be treated as a `duck`. In JavaScript objects are defined by the methods they implement and not by an explicit type. When you have a second object of type `dog`, which also implements the `walk()` method, it could be treated like a `duck` as long as none of the other methods get called. So you never can be sure if a given object has implemented the necessary method until you proof it.
 

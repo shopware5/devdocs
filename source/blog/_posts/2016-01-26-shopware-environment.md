@@ -1,5 +1,5 @@
 ---
-title: Shopware Environment
+title: Configuring multiple shopware environments
 tags:
     - environment
     - htaccess

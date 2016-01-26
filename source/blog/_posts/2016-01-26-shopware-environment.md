@@ -5,7 +5,7 @@ tags:
     - htaccess
     - vhost
     - configuration
-
+indexed: true
 github_link: blog/_posts/2016-01-26-shopware-environment.md
 
 authors: [bc]

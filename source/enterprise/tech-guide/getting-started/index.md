@@ -37,6 +37,8 @@ Under `Shop overview` you can select a shop and a given time interval. You will 
  
 ## Servers
 
+![image](img/edb-servers.png)
+
 The servers tab is where you can manage Shopware servers and, in those, Shopware installations.
 
 Depending on your EDB installation, this section might come pre-populated with sample data or, alternatively, be empty. In any case, we will take a detailed look at all the actions you are able to perform here.
@@ -49,6 +51,8 @@ Besides creating servers, you can also remove them. Keep in mind that you can on
 
 ### Creating shops
 
+![image](img/edb-shops-create.png)
+
 Once you have successfully registered a server, you can add a Shopware installation to it. By clicking on the `Create shop` button, you can go to the shop configuration page, where you will be asked for several details about your shop and its location in the server's file system. If you have installed and/or configured a Shopware installation before, most of these options will be familiar to you, including the non-trivial ones. Just be sure to read the help texts under each field to avoid pitfalls.
  
 Among this options is a field to select which Shopware version you wish to install. You can also, using this field, choose to connect to an existing Shopware installation or not install any Shopware version at all. We will discuss the usefulness of this last option later on.
@@ -56,6 +60,8 @@ Among this options is a field to select which Shopware version you wish to insta
 Once you save, you will be taken back to the server tab. The setup process will also automatically start, and you will get live feedback of its current status. Many tasks in the EDB, such as installing a shop, are executed asynchronously in the server, meaning that you can continue navigating the EDB (or even close your browser) without interrupting or affecting these processes. You can check the current status of the Shopware installation process by clicking on the server to expand it, or by checking the `Log` page of the EDB.
 
 ### Cloning shops
+
+![image](img/edb-shops-clone.png)
 
 Besides installing new Shopware instances, you can also clone your shops. This is useful, for example, when you want to test new features on a shop but, at the same time, want to keep it available to your customers. To clone a shop, you need to have it defined in the EDB (remember that you can use the "create shop " interface even with preexisting shops). Additionally, you need an "empty" shop, which will be the destination of the clone. You can create this "empty" shop using the previously discussed option "Do not install any Shopware version". 
 
@@ -70,6 +76,8 @@ Once you have both shops defined on your EDB, you can click the "Hot copy" butto
  
 ## Shopware ID
 
+![image](img/edb-shopware-id.png)
+
 In the Shopware ID tab you can register your Shopware accounts and access your Shopware and plugin licenses.
 
 You will need to start by adding your Shopware ID to the EDB. You can do so using the `+` sign in the top left of the window. Once you input your Shopware ID and password, the EDB will automatically retrieve your account data. When the synchronization process finishes, you will be able to see, in this tab, all your Shopware, premium and 3rd party plugin licenses.
@@ -80,6 +88,8 @@ If you have multiple Shopware IDs, you can add them using the same process as de
 
 ## Users
 
+![image](img/edb-users.png)
+
 By default, your EDB installation will come with just the `admin` user. If you wish, you can create different accounts for other members of your organization. To do so, simply use the `Add` button and fill in all the fields (all are required). Once you have clicked on `Save user`, the new account will be created. You now need to add it to a group, which will specify which EDB actions that user will have access to.
 
 ### EDB Groups
@@ -87,6 +97,8 @@ By default, your EDB installation will come with just the `admin` user. If you w
 EDB groups specify a set of actions that a given user may perform. At this point, there is no fully functional mechanism to define custom EDB groups, and the EDB is provided with just the `Admin` group. So after you create your new user, select it, and click on `EDB groups` panel on the bottom right part of the page. In it, toggle the `Admin` button. This user account has now access to all of the EDB actions. In the future, other groups, with limited privileges, will be added here, allowing you to fine tune who, in your organization, has access to which features of the EDB. A way to let you specify your own custom EDB groups will also be implemented in future EDB versions.
 
 ### Shopware roles
+
+![image](img/edb-users-roles.png)
 
 Another advantage of using the EDB to manage your Shopware instances is that you can centralize user accounts management in the EDB, instead of having, for example, to create an individual account in each shop each time you wish to add someone new to your organization. The EDB lets you specify your Shopware roles from its own interface, and then handles the synchronization process automatically in the background for you.
 
@@ -97,5 +109,7 @@ Once you save your changes, the EDB will update the affected Shopware instances 
 If all went well, after a few seconds you will be taken to the Shopware backend, already authenticated. Your available Shopware actions will also reflect the role permissions assigned to this user account in the EDB. You can use the EDB to assign multiple roles to the same user, if you wish to. 
 
 ## Logs
+
+![image](img/edb-logs.png)
 
 As we mentioned before, several actions in EDB take place asynchronously in the background. In the `Log` tab, you can see the history and state of these actions. You can also filter these logs by server, shop, user or state, so if you are having trouble with a specific process, you can view it here. You can also open each log entry individually to get more detailed information about it. This can be particularly helpful for debugging failing processes.

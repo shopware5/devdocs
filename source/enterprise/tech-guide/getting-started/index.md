@@ -125,3 +125,18 @@ If all went well, after a few seconds you will be taken to the Shopware backend,
 ![image](img/edb-logs.png)
 
 As we mentioned before, several actions in EDB take place asynchronously in the background. In the `Log` tab, you can see the history and state of these actions. You can also filter these logs by server, shop, user or state, so if you are having trouble with a specific process, you can view it here. You can also open each log entry individually to get more detailed information about it. This can be particularly helpful for debugging failing processes.
+
+## Advanced details
+
+The 3 virtual machines provided are meant to be used without requiring SSH access to them. However, if you want to, you can access them using `vagrant` as username and password. Both `edb_client` and `edb_shopware` act only as simple web servers, with `/var/www` as web roots. The `edb_server` virtual machine hosts the actual EDB code, which can also be found at `/var/www`. In particular, the interface you see on your browser is available in  `/var/www/enterprise-dashboard/components/EnterpriseDashboard`.
+
+The EDB is composed by many parts which work together to provide all the features presented above. We will not discuss them in detail at this point, but it is worth noting that these different parts have different execution environments:
+
+### EDB web application
+
+The EDB web application is the interface with which you interacted in your browser. It's composed by a frontend application (based on AngularJS) and a backend API with which it communicates (based on Symfony2). When used in `dev` environment (the default during this beta phase), the cache and log folders will be placed in `/tmp/shopware_edb`, and will both be managed by the Apache2 user, which is set to be `vagrant`, instead of the usual default.
+
+
+### EDB supervisor tasks
+
+Like mentioned before, certain actions performed by the EDB are executed asynchronously in the background. This is done by using `beanstalk` and `supervisor` to execute dedicated Symfony2 based CLI commands. The tasks executed in this context are done so by the `edb-supervisor` user, and are logged to `/home/edb-supervisor/logs`.

@@ -18,7 +18,19 @@ After the importing process is finished, you should have 3 new virtual machines 
 
 ![image](img/virtualbox-images.png)
 
-We recommend start the images in headless mode (no display emulation), as you won't be using the VM's GUI. You can do so by right-clicking the images => "Start" => "Headless start". The VMs will boot, which might some time, depending on your hardware specifications. If you feel comfortable with it and your hardware allows it, you can dedicate more resources to the VMs (in particular to the `enterprise-dashboard_edb_server`) to achieve better end performance, but this should not be necessary and is completely optional.
+Next you need to configure your Virtualbox's network adapter. Open Virtualbox's `Preferences` click on the `Network` tab, select `Host-only networks` and add a new adapter. Next, select that adapter and configure it with the following data:
+
+- IPv4 address: 10.100.200.1
+- IPv4 Network Mask: 255.255.255.0
+- DHCP Server: disabled
+
+![image](img/virtualbox-network-config-host.png)
+
+Once this is done, you need to adjust each of the virtual machines network adapters to use the new virtual adapter. Right click on a virtual machine and select `Settings...`. Under `Network`, select `Adapter 2`, which should be configured as `Host-only adapter`. Under `Name`, select the name of the network adapter you just created, and save. Do this for each of the 3 virtual machines provided.
+
+![image](img/virtualbox-network-config-guest.png)
+
+Once this is done, you can start the 3 virtual machines. We recommend using headless mode (no display emulation), as you won't be using the VM's GUI. You can do so by right-clicking the images => `Start` => `Headless start`. The VMs will boot, which might some time, depending on your hardware specifications. If you feel comfortable with it and your hardware allows it, you can dedicate more resources to the VMs (in particular to the `enterprise-dashboard_edb_server`) to achieve better end performance, but this should not be necessary and is completely optional.
 
 Once the 3 machines have started, you can access the EDB by opening the following address on your browser: [http://10.100.200.26](http://10.100.200.26)
 

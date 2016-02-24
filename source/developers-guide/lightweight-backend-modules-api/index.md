@@ -71,6 +71,27 @@ postMessageApi.openModule({
 });
 ```
 
+**Example Detail View for Articles**:
+```js
+postMessageApi.openModule({
+    name: 'Shopware.apps.Article'
+    action: 'detail',
+    params: {
+        articleId: 007
+    }
+});
+```
+
+**Example Detail View for Orders**:
+```js
+postMessageApi.openModule({
+    name: 'Shopware.apps.Order'
+    params: {
+        orderId: 007
+    }
+});
+```
+
 ---
 
 `createSubWindow(payload)`

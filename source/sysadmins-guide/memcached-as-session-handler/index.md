@@ -45,7 +45,7 @@ For other distributions you can [compile](http://php.net/manual/en/memcached.ins
     'save_path' => "localhost:11211",
 ),
 
-'backendsession' => (
+'backendsession' => array(
     'save_handler' => 'memcached',
     'save_path' => "localhost:11211",
 ),

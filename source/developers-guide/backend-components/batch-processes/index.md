@@ -33,7 +33,7 @@ To help you process large data sets, Shopware provides you with the `Shopware.wi
 </div>
 
 ### Preparation: PHP Controller
-Out goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have to implement the following methods in your PHP controller:
+Our goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have to implement the following methods in your PHP controller:
 
 ```php
 class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application

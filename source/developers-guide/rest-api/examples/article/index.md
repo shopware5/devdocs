@@ -364,7 +364,9 @@ $client->get('articles?limit=2);
 To update an article it's always required to provide the id of the article to update.
 In this example, we will update the name of the article with the id 3
 ```
-$client->put('articles/3?name=NewName');
+$client->put('articles/3', array(
+    'name' => 'NewName'
+));
 ```
 ### Result
 ```

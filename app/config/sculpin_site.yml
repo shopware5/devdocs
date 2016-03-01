@@ -10,12 +10,14 @@ authors:
       twitter: http://twitter.com/benjamincremer
       github: https://github.com/bcremer
       bio: I am Developer and Advocate in the Core department of shopware. I do web and linux stuff.
+
   dn:
       name: Daniel Nögel
       title: Developer
       twitter: https://twitter.com/danielnoegel
       github: https://github.com/dnoegel/
       url: https://github.com/dnoegel/
+
   dr:
       name: Oliver Skroblin
       title: Developer
@@ -51,3 +53,10 @@ authors:
       title: Developer
       twitter: http://twitter.com/tiagojsag
       github: https://github.com/tiagojsag
+
+  jp:
+      name: Jan Philipp Pietrzyk
+      title: Developer
+      twitter: https://twitter.com/FloydThreepwood
+      github: https://github.com/JanPietrzyk/
+      url: https://jpietrzyk.de

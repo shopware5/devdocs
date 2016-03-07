@@ -41,7 +41,7 @@ These tutorials are built upon each other and you will find a zip file with the 
 To do so, you can add the following configuration to your `config.php`:
 
 ```php
-'front' => array( 'noErrorHandler' => true, 'throwExceptions' => true ),
+'front' => array( 'throwExceptions' => true ),
 'template' => array( 'forceCompile' => true ),
 'model' => array( 'cacheProvider' => 'Array' ),
 'cache' => array(

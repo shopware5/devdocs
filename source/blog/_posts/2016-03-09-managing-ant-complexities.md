@@ -5,8 +5,7 @@ tags:
     - build
     - clean code
     - software layer
-indexed: false
-github_link: blog/_posts/2016-02-26-managing-ant-complexity.md
+github_link: blog/_posts/2016-03-09-managing-ant-complexity.md
 
 authors: [jp]
 ---
@@ -23,7 +22,7 @@ I want to share some problems and solutions we encountered in the past few month
 ### What is a Build?
   
 Historically the necessity to build an application stems from compiled languages like C or Java. They often need to include and precompile certain modules 
-either from third partys or operating system dependant. These are tasks that can not be done through the application itself because it does not compile as long as it 
+either from third parties or operating system dependent. These are tasks that can not be done through the application itself because it does not compile as long as it 
 is incomplete. Build scripts also usually employ configuration files that can set e.g. compiler values or en- and disable features in the resulting compiled application.
 
 In more recent years build scripts have evolved to contain different targets. So one can create a production version of the application, prepare and execute the unit 
@@ -199,13 +198,13 @@ install
                     ├── check-composer-binary
 ```
 
-Now applying migrations is dependant on a successful composer install which fixes the problem in the first place. Problem solved, blog finished... Wait not so fast... How can I now 
+Now applying migrations is dependent on a successful composer install which fixes the problem in the first place. Problem solved, blog finished... Wait not so fast... How can I now 
 create a different chain for a different target? If certain chain elements should be reusable and others not we can only copy and paste for the newly created targets. So in the end
 in our application we could not get a suitable chain of targets that would be robust and secure for the user. Furthermore it meant splitting everything to the least common denominator
 so that we gained an uncontrollable amount of syntax without gaining features. The result was a mess to read, understand and handle.
 
 
-### Selfexplaining
+### Self explaining
 
 Ant heavily depends on documentation. You have to create documents to state the original intend, describe securely executable targets, describe the applications expected dependencies.
 Either in the form of recipes and tables in README files or inline through comments. And now you have to sync your knowledge from the external documentation with the implementation. So
@@ -221,7 +220,7 @@ if it should really be well documented you will start with something like this:
 7. echo "Installation done"
 ```
 
-And have to map it to the buildfile. I just put the comments in the codeblock below, to remove the noise. Let's see how fast this can be matched up:
+And have to map it to the buildfile. I just put the comments in the code block below, to remove the noise. Let's see how fast this can be matched up:
 
 ```
 <project name="Enterprise Dashboard" basedir="../">
@@ -391,7 +390,7 @@ This of course leads to far more complex topics, but for the buildscript at hand
 
 We can now create application design that serves a purpose other then just building the application so let's formulate some quality requirements.
 
-* I want to see immediately what build targets are available - this should be done through a convention ain the source itself.
+* I want to see immediately what build targets are available - this should be done through a convention in the source itself.
 * I want every build target to create the desired state on it's own. Especially I don't want to be required to remember any order in which a call should happen. 
 * If a build target is broken I want to be able to understand what the author intended, what the application needs and how it is implemented
 
@@ -539,7 +538,7 @@ It is kind of curious, that although you depend on a Ant version that must be ne
 
 ### No errors in older versions
 
-Doe to the nature of XML older Ant versions will not issue warnings, or interrupt execution if the do not support the conditions. Therefore if you see unexplained behaviour
+Doe to the nature of XML older Ant versions will not issue warnings, or interrupt execution if the do not support the conditions. Therefore if you see unexplained behavior
 be sure to check
 
 ```

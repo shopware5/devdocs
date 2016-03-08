@@ -14,8 +14,8 @@ authors: [jp]
 We @shopware use different tools for our highly automated development setups. We use Docker and Vagrant to set up operating system environments for development and testing, 
 we use composer, bower and npm to manage library dependencies and we use Bamboo, Scrutinizer and Travis as integrated testing environments.
 
-All these Setups work a little different. A Vagrant Virtual Machine and a Travis build share just the basic Operating System type, but nothing else. 
-Therefore it is still  necessary to rely on tools that help you build your application in 2016. And here Ant is the default solution. In the following paragraphs
+All these setups work a little different. A Vagrant virtual machine and a Travis build share just the basic operating system type, but nothing else. 
+Therefore it is still necessary to rely on tools that help you build your application in 2016. And here Ant is the default solution. In the following paragraphs
 I want to share some problems and solutions we encountered in the past few months concerning Ant.
   
 ## Quick introduction to Ant 
@@ -34,7 +34,7 @@ Thus everything that can be automatically installed, configured and executed is 
  
 ### Ant
  
-Ant is the defacto standard for a mostly operating system independent build system. It is completely written in Java and therefore works on all major operating systems. 
+Ant is the de facto standard for a mostly operating system independent build system. It is completely written in Java and therefore works on all major operating systems. 
 Moreover the Linux, OSX and Windows versions all share a library of common tasks that allow you to create portable scripts. If you have ever encountered a project with a `build.xml`
 you most certainly have seen an Ant build script.
   
@@ -106,9 +106,6 @@ can depend on each other and almost always will.
 Each target then contains tasks. A task is the most basic unit of work in Ant and basically maps to a shell command. Either directly through the
 `<exec />` task or more abstract with `<copy />`, `<available />` or `<zipfile />`.
 
-### A note on configuration
-
-
 ## The problem
 
 ### XML
@@ -179,13 +176,13 @@ Oh, this is actually in the file, although a little bit hidden:
 ...
 ```
 
-I think you see the issue with Ant syntax now. The intend of the author is rarely not matched by the syntax of Ant. Instead Ant forces you to think in a chain of dependencies that are
+I think you see the issue with the Ant syntax now. The intend of the author is rarely matched by the syntax of Ant. Instead Ant forces you to think in a chain of dependencies that are
 composed to a tree.
 
 ### User left alone
 
-So if writing Ant scripts is cumbersome, what about the other way around? Does it communicate intend and options to developers using it? We can easily be examine this by 
-just thinking about what can go wrong. Of course installing the application is now easier then it was before. just execute `ant install` and be done with it. So Ant fulfills 
+So if writing Ant scripts is cumbersome, what about the other way around? Does it communicate intend and options to developers using it? We can easily examine this by 
+just thinking about what can go wrong. Of course installing the application is now easier then it was before. Just execute `ant install` and be done with it. So Ant fulfills 
 its original purpose here, but where does the information come from what build target to execute in which case? Splitting your build into too many targets is s source of potential 
 confusion, because Ant makes executing `ant apply-migrations` just as easy, although this task has a implicit dependency on the composer files.
 
@@ -212,7 +209,7 @@ so that we gained an uncontrollable amount of syntax without gaining features. T
 
 Ant heavily depends on documentation. You have to create documents to state the original intend, describe securely executable targets, describe the applications expected dependencies.
 Either in the form of recipes and tables in README files or inline through comments. And now you have to sync your knowledge from the external documentation with the implementation. So
-if it really well documented you will start with something like this:
+if it should really be well documented you will start with something like this:
 
 ```
 1. check-composer-binary
@@ -350,10 +347,10 @@ Although the syntax is strange, it just works and after a while becomes a second
 
 ### Conclusion 
 
-Are you thinking what I think? ***We can build functions with this :)***. On their own both features are interesting, but only become usefull in edge cases in 
+Are you thinking what I think? ***We can build functions with this :)***. On their own both features are interesting, but only become useful in 
 certain edge cases, because both lack key ingredients.
 
-* Conditions on their own are not that useful because of the lack of dynamically set Properties. 
+* Conditions on their own are not that useful because of the lack of dynamically set properties. 
 * Macros on their own are not that useful because they can not make decisions on input variables.
  
 But the combination of dynamic input from a caller and the ability to make decisions based on that makes a powerful tool, that might even be enough to 
@@ -369,7 +366,7 @@ Don't worry I am not going to apply everything I can think of to the art of buil
 From [Clean Code](https://de.wikipedia.org/wiki/Clean_Code) I will cherry pick the scope invariant from taken out from the functions/methods chapter. Each macro and target will contain only the same 
 level of abstraction. If it starts low level, the next task will also be low level, if it starts abstract it will only contain abstract calls.
 
-This ensures that there is no polution in mapping intend of the developer to the implementation. Different levels of abstraction call for different macros or targets. 
+This ensures that there is no pollution in mapping intend of the developer to the implementation. Different levels of abstraction call for different macros or targets. 
 
 ### Clean Code - naming
 
@@ -392,7 +389,7 @@ This of course leads to far more complex topics, but for the buildscript at hand
 
 ## Software - the practice
 
-We can now create application design that serves a purpose other then just building the application so lt's formulate some quality requirements.
+We can now create application design that serves a purpose other then just building the application so let's formulate some quality requirements.
 
 * I want to see immediately what build targets are available - this should be done through a convention ain the source itself.
 * I want every build target to create the desired state on it's own. Especially I don't want to be required to remember any order in which a call should happen. 
@@ -536,7 +533,7 @@ The above graph highlights that
 * Although the outset may differ the outcome is always guaranteed. 
 
  
-## Problems Encountered
+## Problems encountered
 
 It is kind of curious, that although you depend on a Ant version that must be newer than 2013 it is actually not present everywhere.
 
@@ -570,5 +567,5 @@ before_install:
 What you see here of course was the result of a longer period of trial and error. But the end result looks promising enough to last for the next year or two at least. 
 It is easier to understand, debug and develop the scripts. With no end in sight on when it will no longer scale.
 
-Would I do it again like this on my next project? I am actually not sure...  What I definitely take away here is that Ant scripts can scale and can be readable 
-but for a small project actually the more common solution to just create targets might be enough. Only time will tell.
+Would I do it again like this on my next project? I am actually not sure...  What I definitely take away here is that Ant scripts can scale and can be readable -  
+but for a small project the more common solution to just create targets might be enough. Only time will tell.

@@ -5,8 +5,7 @@ tags:
     - build
     - clean code
     - software layer
-github_link: blog/_posts/2016-03-09-managing-ant-complexity.md
-
+github_link: blog/_posts/2016-03-09-managing-ant-complexities.md
 authors: [jp]
 ---
 

@@ -146,7 +146,7 @@ install
 ```
 
 So this is supposed to just install the composer dependencies and execute a console command? Obvious? No magic involved... For installing the application which 
-just expects that all composer dependencies are available and that the database was migrated we end up with this wired tree like structure. Where each target 
+just expects that all composer dependencies are available and that the database was migrated we end up with this weird tree like structure. Where each target 
 depends on another target. I personally can not understand what is happening by looking at the tree, so I transform this into into a simpler recipe like this 
  
 ```
@@ -275,7 +275,7 @@ I don't just want to reiterate the conclusions already drawn but introduce a new
 To me the mechanism of abstraction is different from the mechanism of flow control. I control abstraction by creating reusable entities and the flow by 
 rearranging these reusable entities in unique ways. Ant does not. It just creates a chain of actions that can depend on each other in any order necessary. Moreover
 Ant expects that information is not decided upon but created from the outset through properties. This may lead to more stable builds but the way to getting this
-stability was neither pleasant not easy. So we started investigating alternatives. 
+stability was neither pleasant nor easy. So we started investigating alternatives. 
 
 ## Ant lesser known features
 
@@ -283,7 +283,7 @@ As it turns out the described features above are not everything that Ant provide
  
 ### Macros 
 
-Since version 1.6 *(2003!)* Ant supports a way to create custom tasks with custom input by creating a macro. It it works a lot like targets by also being a sequence 
+Since version 1.6 *(2003!)* Ant supports a way to create custom tasks with custom input by creating a macro. It works a lot like targets by also being a sequence 
 of tasks, with the one exception: **Macros allow you to pass arguments**.
 
 So let's take a look how *hello world* might look like using a macro:
@@ -538,7 +538,7 @@ It is kind of curious, that although you depend on a Ant version that must be ne
 
 ### No errors in older versions
 
-Doe to the nature of XML older Ant versions will not issue warnings, or interrupt execution if the do not support the conditions. Therefore if you see unexplained behavior
+Due to the nature of XML older Ant versions will not issue warnings, or interrupt execution if the do not support the conditions. Therefore if you see unexplained behavior
 be sure to check
 
 ```

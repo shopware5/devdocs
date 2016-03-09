@@ -48,7 +48,7 @@ Simply get the `shopware_media.media_service` from the DI container and call `ge
 In your Smarty templates you may use the `{media path=...}` expression to get the fully qualified URL.
 
 ```smarty
-<img href="{media path="media/image/my-fancy-image.png"}">
+<img src="{media path="media/image/my-fancy-image.png"}">
 ```
 
 `{media}` evaluates the given path at template's compile time, so you cannot use runtime variables for its path argument (generally you will use a constant path as in the example above).

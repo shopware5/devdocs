@@ -87,7 +87,7 @@ For the Responsive theme we use CSS media queries to create different device bre
 Following the mobile first concept you start creating your styles for the mobile viewport and proceed upwards by using the `min-width` media query to start a new breakpoint at the given minimum screen size.
 
 ## Predefined mixins and components
-We already created several mixins for CSS3 cross-browser support and some other useful features. Also when extending from the Shopware Responsive theme you have access to all standard components like buttons, alerts, and so on. They all follow a simple CSS class syntax which you might know from other frameworks. For example creating a basic button you just add the class `btn` to your element. To make it a highlighted primary button you can extend the styles by adding additional configuration classes like `is--primary`. We have a complete documentation of all Shopware basic components in the **[Shopware 5 Styletile](https://developers.shopware.com/styletile/)**.
+We already created several mixins for CSS3 cross-browser support and some other useful features. Also when extending from the Shopware Responsive theme you have access to all standard components like buttons, alerts, and so on. They all follow a simple CSS class syntax which you might know from other frameworks. For example creating a basic button you just add the class `btn` to your element. To make it a highlighted primary button you can extend the styles by adding additional configuration classes like `is--primary`. We have a complete documentation of all Shopware basic components in the **[Shopware UI components overview](https://developers.shopware.com/styletile/)**.
 
 ### All Shopware mixins
 - appearance.less

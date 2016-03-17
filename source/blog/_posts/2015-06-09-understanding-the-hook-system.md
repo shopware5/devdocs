@@ -18,7 +18,7 @@ github_link: blog/_posts/2015-06-09-understanding-the-hook-system.md
 Shopware was built with plugin developers in mind, so there are powerful ways to modify the default behaviour of the system 
 without loosing backward compatibility. In this post I want to discuss the technical details of Shopware's hook system.
 
-# Hook?
+## Hook?
 Generally there are several ways to extend Shopware. By default we distinguish *global events*, *application events* and *hooks*
 (for a brief overview see the [plugin quick start guide](http://devdocs.shopware.com/developers-guide/plugin-quick-start#logical-extensions)).
 In addition to that, you are able to [decorate Shopware's core services](https://developers.shopware.com/developers-guide/shopware-5-core-service-extensions/).
@@ -29,7 +29,7 @@ are a more generic approach and allow you to extend any public or protected meth
 explicit event is available, a hook might help you to extend Shopware's functionality. You are then able to modify
 input arguments, return values or replace a method entirely. For that reason, the hook system can be considered as offering aspect oriented programming (AOP) in Shopware. 
 
-# What is AOP?
+## What is AOP?
 AOP ([aspect oriented programming](http://en.wikipedia.org/wiki/Aspect-oriented_programming)) is a programming paradigm
 that addresses [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern) in software. It allows you
 to add behaviour to your objects, without having to modify the objects themselves. As PHP does not support AOP natively,
@@ -37,8 +37,8 @@ it is usually added using other patterns like the proxy pattern.
 So from an architectural point of view, one could consider Shopware implementing extensibility of some objects by using
 an AOP based paradigm. The up and downsides of this will be discussed in the [Best practice?](#best-practice%3F) section. 
 
-# Implementation details
-## Proxy pattern
+## Implementation details
+### Proxy pattern
 Technically speaking the hook system makes use of the [proxy pattern](http://en.wikipedia.org/wiki/Proxy_pattern). Hookable
 classes are not instantiated directly but with a generated proxy class, which inherits from the hooked class. 
 
@@ -46,7 +46,7 @@ Whenever you request a core class, e.g. via `Shopware()->Modules()->Article()`, 
 class name (see \Shopware_Components_Modules::loadModule for more details). You can test it easily by printing out the class
 name of your article core class: `echo get_class(Shopware()->Modules()->Articles());` will print `Shopware_Proxies_sArticlesProxy`. 
 
-## What does the proxy do?
+### What does the proxy do?
 So we already know, that - behind the scenes - we are always working with the proxy objects and not the actual class. In
 most cases this does not make any difference, as the proxy object inherits from the base class. But how does the
 extensibility come in?
@@ -93,7 +93,7 @@ In this case we have three methods:
 So whenever `sGetArticleById` is called, it will run `executeHooks` in the `HookManager`. The result of that call will then
 be returned.
 
-## What does the HookManager do?
+### What does the HookManager do?
 The actual logic of the `executeHook` method is quite simple:
 
 ```php
@@ -159,11 +159,11 @@ Finally the *after* hooks are processed and the result is returned (`$args->getR
 return $eventManager->filter($event, $args->getReturn(), $args);
 ```
 
-# Structural overview
+## Structural overview
 The following diagram shows the rough call stack of hooked calls.
 ![Structural overview of hooks](/blog/img/hook-overview.png)
 
-# Best practice?
+## Best practice?
 Hooks are a double-edged sword in some regards. They are stable, powerful and add extensibility to a wide range of objects
 without the need to take care of the extensibility in any single object. 
 There are downsides, however. As hooks allow you to directly bind to public and also protected methods, hookable classes are hard

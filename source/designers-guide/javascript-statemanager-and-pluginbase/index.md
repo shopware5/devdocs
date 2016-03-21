@@ -275,7 +275,8 @@ StateManager.registerListener([{
 
 
 ### Register additional breakpoints
-The default breakpoints can be extended using the ```registerBreakpoint()``` method of the StateManager:
+The default breakpoints can be extended using the ```registerBreakpoint()``` method of the StateManager.  
+**Note:** Breakpoint ranges are not allowed to overlap with other existing ones.
 
 ```javascript
 StateManager.registerBreakpoint({

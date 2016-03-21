@@ -385,9 +385,11 @@ In order to get started with subscribers, you can make use of the [Shopware plug
 
 Be aware that the `Enlight_Controller_Front_StartDispatch` event, which we used to initialize the subscribers, will
 not be triggered when Shopware is used in command line mode. In this case you need to use `Shopware_Console_Add_Command`
-in addition to `Enlight_Controller_Front_StartDispatch`. Refer to the [CLI command documentation](/developers-guide/shopware-5-cli-commands/#creating-custom-shopwares-cli-co)
- for more details. 
- 
+in addition to `Enlight_Controller_Front_StartDispatch` in order to register your subscribers. For some events
+like `Theme_Compiler_Collect_Plugin_Less` and `Theme_Compiler_Collect_Plugin_Javascript` the "old" `subscribeEvent` method
+might be easier to use. Same might apply for events like `Shopware_SearchBundleDBAL_Collect_Facet_Handlers`,
+`Shopware_SearchBundleDBAL_Collect_Sorting_Handlers` or `Shopware_SearchBundleDBAL_Collect_Condition_Handlers` in some cases.
+
 ## Finding events
 By the nature of events, you will always need to know the context in order to work with them properly. For that reason, there
 is no generalized overview of all events. Instead of that, we suggest to step into the code, you want to extend.

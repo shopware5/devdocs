@@ -5,7 +5,7 @@ github_link: developers-guide/event-guide/index.md
 indexed: true
 ---
 
-In order to extend Shopware or modify its behaviour you will need some sort of extension system, that allows you too
+In order to extend Shopware or modify its behavior you will need some sort of extension system, that allows you too
 hook onto Shopware. The following guide will give an overview of event systems in general and the Shopware event system
 specifically
 
@@ -36,7 +36,7 @@ event and push those information to the ERP.
 * event manager
     * The central instance that takes care of *emitting* events and notifies all subscribers about that event. The process
     of notifying the correct subscribers about a certain event is also called "event dispatching", as the event is "dispatched"
-    to one or more susbcribers
+    to one or more subscribers
 
 
 ### How does it work?
@@ -185,7 +185,7 @@ public function getArticlesForCategory($categoryId)
 ```
 
 In this example a list of articles for a given category has been loaded. The `CATEGORY_ARTICLES` event would allow you
-to modify this list and return a modifed set with your subscriber:
+to modify this list and return a modified set with your subscriber:
 
 ```
 public function myEventSubscriber(\Enlight_Event_EventArgs $args)
@@ -242,7 +242,7 @@ Now the script would print `hello world how are you`.
  
 Some real world examples for `collect` are:
  
-* `Shopware_Console_Add_Command`: Add one or more symfony console commands
+* `Shopware_Console_Add_Command`: Add one or more Symfony console commands
 * `Shopware_SearchBundleDBAL_Collect_Facet_Handlers`: Register a facet handler for the DBAL gateway
 * `Theme_Compiler_Collect_Plugin_Javascript`: Collect javascript files for the JS compiler
 
@@ -397,7 +397,7 @@ is no generalized overview of all events. Instead of that, we suggest to step in
 ### Finding application events
 Application events are those events, that are explicitly emitted for a certain purpose, e.g. "stop you from buying this"
 or "modify basket item price". Let's imagine, you want to stop a user from adding a certain item to the cart. The easiest
-approach is to have a look which controller is responsible for the behaviour, you want to influence - in our case "adding
+approach is to have a look which controller is responsible for the behavior, you want to influence - in our case "adding
 items to the cart". So in this example an item is added to the cart with an opened developer toolbar:
 
 ![inspecting](/developers-guide/event-guide/img/inspect.png)

@@ -69,22 +69,8 @@ The actual HTTP stack of Shopware is currently powered by Zend Framework which S
 ## Hooking into the system
 Shopware uses plugins to extend the base systems. Changes in the core are never required and never recommended.
 Extensions of the core system can basically be separated into logical extensions, data extensions and template extensions.
-## Logical extensions
-Shopware uses a extensive event system to allow you to hook into the system. Events have one of three possible types:
 
- * global events
- * application events
- * hooks
-
-### Global events
-Global events are generic events which are emitted through the dispatch process. Usually these are quite technical events like
- * Starting the routing
- * Routing ended
- * Starting dispatch loop
- * Dispatch loop ended
- * Will send response to the user now
-
-Some global events, however, are very powerful when it comes to extending Shopware's behaviour:
+Some global events are very powerful when it comes to extending Shopware's behaviour:
 
 * Enlight_Controller_Action_PreDispatch_*
 * Enlight_Controller_Action_PostDispatchSecure_*
@@ -100,19 +86,7 @@ $this->subscribeEvent(
 
 This snippet will call the callback function `myDetailCallback` any time the detail controller (and therefore: the detail page) was requested. In your callback you could now load template extensions or modify view assignments.
 
-### Application events
-Application events are events that are explicitly emitted in order to allow you certain modifications. In contrast to the very generic global events, application events have certain use cases in mind. For example:
-
- * do not allow this customer to log in
- * do not allow this product to be put in the cart
- * modify the result of the current article query
- * invalidate the cache for a certain article id
- * register a new command line tool
-
-### Hooks
-Hooks are the "last resort" for a programmer: If there is no good global or application event for your use case, hooks will allow you to literally "hook" into an existing function and execute your code before, afterwards or even instead the original function.
-
-Hooks are very powerful - but also very tightly bound to our internal code. As such, events should always be used whenever possible, and hooks should only be used as a last resort. For that same reason, we don't allow hooks on every class, but only for controllers, core classes and repositories.
+If you want to read more about the events in Shopware you can take a look at the [events article](https://developers.shopware.com/developers-guide/event-guide/#further-events).
 
 ## Extending the database
 Your plugin is free to create its own table in the Shopware database in order to store additional data. But there is even a more convenient way: The Shopware attribute system.
@@ -211,7 +185,7 @@ As we want our plugin to actually do something, we should add the `install` meth
  * we call the createConfig method
  * we return a success flag
 
-In order to subscribe to an event, we use the `$this->subscribeEvent` helper method from the bootstrap base class. The first parameter is the event to subscribe to, in this case `Enlight_Controller_Action_PostDispatchSecure_Frontend`. As mentioned above, this event will be triggered every time **after** a controller in the frontend was executed. THe second parameter is the callback function that should be called - `onFrontendPostDispatch`
+In order to subscribe to an event, we use the `$this->subscribeEvent` helper method from the bootstrap base class. The first parameter is the event to subscribe to, in this case `Enlight_Controller_Action_PostDispatchSecure_Frontend`. As mentioned above, this event will be triggered every time **after** a controller in the frontend was executed. The second parameter is the callback function that should be called - `onFrontendPostDispatch`
 
 The `createConfig` method will create the configuration for our plugin. We will have a look at it later.
 

@@ -12,7 +12,7 @@ The javascript development can be painful especially when you have to deal on re
 
 On the other hand we have our lovely jQuery plugins which are not always a pleasure to built. To simplify the process we implemented a plugin base class which features the best practices of the jQuery plugin development and flawlessly integrate with the *StateManager*.
 
-In the following document we wannt to guide you through we want to give you a general overview of the provided functionality, which can come in handy for your next theme.
+In the following document we want to give you a general overview of the provided functionality, which can come in handy for your next theme.
 
 ## Plugin base class
 As mentioned, the jQuery plugin base class was built up with the best practice of the jQuery plugin development. Here's feature set at a glance:

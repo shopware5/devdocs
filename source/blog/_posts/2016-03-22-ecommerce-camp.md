@@ -4,7 +4,7 @@ tags:
     - conference
     - visit
     - ecommercecamp
-github_link: blog/_posts/2016-03-21-ecommerce-camp.md
+github_link: blog/_posts/2016-03-22-ecommerce-camp.md
 authors: [dn]
 ---
 Information exchange with other developers is a vital part of a developer's life. Exactly for this reason, we are always

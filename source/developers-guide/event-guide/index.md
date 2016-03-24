@@ -231,7 +231,7 @@ public function myEventSubscriber(\Enlight_Event_EventArgs $args)
     return new ArrayCollection([
         'world',
         'how',
-        'are,
+        'are',
         'you'
     ]);
     
@@ -279,7 +279,7 @@ class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Componen
 ```
 
 Using this approach, you can subscribe to events in the `install` method of your plugin using the `subscribeEvent` call.
-For this call, you just pass the event name as first parameter and the name of you callback function as second parameter
+For this call, you just pass the event name as first parameter and the name of your callback function as second parameter
 (in this case it is `onFrontendPostDispatch`). The shopware event manager will now automatically call this callback
 as soon as the event `Enlight_Controller_Action_PostDispatchSecure_Frontend` occurs.
 
@@ -482,14 +482,14 @@ After the actual controller method was run, the `postDispatch` method of the con
 * `Enlight_Controller_Action_PostDispatchSecure_MODULE_CONTROLLER`
 * `Enlight_Controller_Action_PostDispatchSecure_MODULE`
 * `Enlight_Controller_Action_PostDispatchSecure`
-* `Enlight_Controller_Action_PostDispatch_CONTROLLER`
+* `Enlight_Controller_Action_PostDispatch_MODULE_CONTROLLER`
 * `Enlight_Controller_Action_PostDispatch_MODULE`
 * `Enlight_Controller_Action_PostDispatch`
 
 Basically the same mechanics as for the `PreDispatch` applies (so there is a MODULE_CONTROLLER and a MODULE suffix
 as well as a "global" PostDispatch event without suffix. Notice that there are two types of PostDispatch event:
 `Enlight_Controller_Action_PostDispatchSecure*` will only be emitted, if a *template* is available and *no exception*
-occured before; the `Enlight_Controller_Action_PostDispatch` event (with *secure* as suffix) will also be emitted
+occured before; the `Enlight_Controller_Action_PostDispatch` event (without *secure* as suffix) will also be emitted
 when an exception occured or no template was rendered for some reason. Usually the `Enlight_Controller_Action_PostDispatchSecure*`
 events are recommended - if you are not using them, you need to perform the checks by yourself.
 

@@ -19,7 +19,7 @@ This resource supports the following operations:
 
 If you want to access this resource, simply query the following URL
 
-* **http://my-shop-url/api/translations**
+* **http://my-shop-url/api/variants**
 
 ## GET
 

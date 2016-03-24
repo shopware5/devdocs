@@ -26,7 +26,7 @@ This year, we also contributed to the program with a lecture. Shopware’s sessi
 provided those interested with an exciting summary about the refactoring of product search and product filtering in Shopware 5.
 Those who weren’t able to attend the eCommerce Camp still have the opportunity to hear the lecture at the upcoming
 [code.talks](http://commerce.codetalks.de/2016/programm/auf-der-suche-nach-dem-richtigen-artikel-eine-refaktorierungsgeschichte)
-in Hamburg.
+in Berlin.
 
 Similar to previous years, the eCommerce Camp was a well-run and very positive event. For us, it was a given that we would
 support the 2016 event as a Gold and coffee sponsor. There was an all-around great atmosphere,

@@ -298,7 +298,11 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
     {
         $this->subscribeEvent(
             'Enlight_Controller_Front_StartDispatch',
-            'onStartDispatch'
+            'onRegisterSubscriber'
+        );
+        $this->subscribeEvent(
+            'Shopware_Console_Add_Command',
+            'onRegisterSubscriber'
         );
 
         return true;
@@ -307,10 +311,11 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
 ```
 
 In the install method of the plugin an early Shopware event called `Enlight_Controller_Front_StartDispatch` is subscribed.
-So still one event is needed to bring my subscribers into play - but afterwards, most other events can be
+It is also necessary to always subscribe to the `Shopware_Console_Add_Command`.
+So still these events are needed to bring my subscribers into play - but afterwards, most other events can be
 registered using subscribers.
 
-The event callback `onStartDispatch` usually looks like this:
+The event callback `onRegisterSubscriber` usually looks like this:
 
 ```
 public function onStartDispatch(Enlight_Event_EventArgs $args)
@@ -329,7 +334,7 @@ public function onStartDispatch(Enlight_Event_EventArgs $args)
     );
 
     foreach ($subscribers as $subscriber) {
-        $this->Application()->Events()->addSubscriber($subscriber);
+        Shopware()->Events()->addSubscriber($subscriber);
     }
 }
 

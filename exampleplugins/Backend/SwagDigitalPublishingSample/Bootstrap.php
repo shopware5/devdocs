@@ -16,7 +16,8 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
 
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Action_PreDispatch', 'registerSubscriber');
+        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'registerSubscriber');
+        $this->subscribeEvent('Shopware_Console_Add_Command', 'registerSubscriber');
 
         return true;
     }
@@ -34,14 +35,7 @@ class Shopware_Plugins_Backend_SwagDigitalPublishingSample_Bootstrap extends Sho
     public function registerSubscriber()
     {
         $this->registerPluginNamespace();
-
-        $subscribers = array(
-            new Resources($this)
-        );
-
-        foreach ($subscribers as $subscriber) {
-            $this->Application()->Events()->addSubscriber($subscriber);
-        }
+        $this->Application()->Events()->addSubscriber(new Resources($this));
     }
 
     public function registerPluginNamespace()

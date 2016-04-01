@@ -51,10 +51,8 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
 {
     public function install()
     {
-        $this->subscribeEvent(
-            'Enlight_Controller_Front_StartDispatch',
-            'onStartDispatch'
-        );
+        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onRegisterSubscriber');
+        $this->subscribeEvent('Shopware_Console_Add_Command', 'onRegisterSubscriber');
 
         return true;
     }
@@ -65,10 +63,10 @@ In the install method of the plugin I register to an early Shopware event called
 So I will still need this one event to bring my subscribers into play - but afterwards, most other events can be
 registered using subscribers.
 
-The event callback `onStartDispatch` usually looks like this in my plugins:
+The event callback `onRegisterSubscriber` usually looks like this in my plugins:
 
 ```
-public function onStartDispatch(Enlight_Event_EventArgs $args)
+public function onRegisterSubscriber(Enlight_Event_EventArgs $args)
 {
     // setting everything up
     $this->registerMyTemplateDir();
@@ -87,7 +85,6 @@ public function onStartDispatch(Enlight_Event_EventArgs $args)
         $this->Application()->Events()->addSubscriber($subscriber);
     }
 }
-
 ```
 
 In the event callback there are mainly two things to be done:

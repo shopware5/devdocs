@@ -312,7 +312,7 @@ registered using subscribers.
 The event callback `onRegisterSubscriber` usually looks like this:
 
 ```
-public function onStartDispatch(Enlight_Event_EventArgs $args)
+public function onRegisterSubscriber(Enlight_Event_EventArgs $args)
 {
     Shopware()->Events()->addSubscriber(new \Shopware\MyPlugin\MySubscriber());
 }

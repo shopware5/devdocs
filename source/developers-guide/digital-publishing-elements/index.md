@@ -35,7 +35,8 @@ First we register a new **subscriber** and the plugin namespace in the `Bootstra
 ```
 public function install()
 {
-    $this->subscribeEvent('Enlight_Controller_Action_PreDispatch', 'registerSubscriber');
+    $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'registerSubscriber');
+    $this->subscribeEvent('Shopware_Console_Add_Command', 'registerSubscriber');
 
     return true;
 }

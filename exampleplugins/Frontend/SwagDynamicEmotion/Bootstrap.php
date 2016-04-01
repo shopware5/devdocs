@@ -107,7 +107,7 @@ class Shopware_Plugins_Frontend_SwagDynamicEmotion_Bootstrap extends Shopware_Co
      * us to register additional events on the fly. This way you won't ever need to reinstall you
      * plugin for new events - any event and hook can simply be registerend in the event subscribers
      */
-    public function onStartDispatch(Enlight_Event_EventArgs $args)
+    public function registerSubscriber(Enlight_Event_EventArgs $args)
     {
         $this->registerMyComponents();
         $this->registerCustomModels();
@@ -179,9 +179,7 @@ class Shopware_Plugins_Frontend_SwagDynamicEmotion_Bootstrap extends Shopware_Co
      */
     protected function registerBaseEvent()
     {
-        $this->subscribeEvent(
-            'Enlight_Controller_Front_DispatchLoopStartup',
-            'onStartDispatch'
-        );
+        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'registerSubscriber');
+        $this->subscribeEvent('Shopware_Console_Add_Command', 'registerSubscriber');
     }
 }

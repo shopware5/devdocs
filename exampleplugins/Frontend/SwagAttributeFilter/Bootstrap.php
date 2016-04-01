@@ -7,7 +7,8 @@ class Shopware_Plugins_Frontend_SwagAttributeFilter_Bootstrap
 {
     public function install()
     {
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'startDispatch');
+        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'registerSubscriber');
+        $this->subscribeEvent('Shopware_Console_Add_Command', 'registerSubscriber');
         return true;
     }
 
@@ -19,7 +20,7 @@ class Shopware_Plugins_Frontend_SwagAttributeFilter_Bootstrap
         );
     }
 
-    public function startDispatch()
+    public function registerSubscriber()
     {
         $this->get('events')->addSubscriber(
             new AttributeFilterSubscriber(

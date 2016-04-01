@@ -296,10 +296,8 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
 {
     public function install()
     {
-        $this->subscribeEvent(
-            'Enlight_Controller_Front_StartDispatch',
-            'onStartDispatch'
-        );
+        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'onRegisterSubscriber');
+        $this->subscribeEvent('Shopware_Console_Add_Command', 'onRegisterSubscriber');
 
         return true;
     }
@@ -307,46 +305,27 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
 ```
 
 In the install method of the plugin an early Shopware event called `Enlight_Controller_Front_StartDispatch` is subscribed.
-So still one event is needed to bring my subscribers into play - but afterwards, most other events can be
+It is also necessary to always subscribe to the `Shopware_Console_Add_Command`.
+So still these events are needed to bring my subscribers into play - but afterwards, most other events can be
 registered using subscribers.
 
-The event callback `onStartDispatch` usually looks like this:
+The event callback `onRegisterSubscriber` usually looks like this:
 
 ```
 public function onStartDispatch(Enlight_Event_EventArgs $args)
 {
-    // setting everything up
-    $this->registerMyTemplateDir();
-    $this->registerMyComponents();
-    $this->registerCustomModels();
-    $this->registerNamespaces();
-    $this->registerMySnippets();
-
-    $subscribers = array(
-        new \Shopware\MyPlugin\Subscriber\ControllerPath(),
-        new \Shopware\MyPlugin\Subscriber\Container(),
-        // as many subscribers as you like…
-    );
-
-    foreach ($subscribers as $subscriber) {
-        $this->Application()->Events()->addSubscriber($subscriber);
-    }
+    Shopware()->Events()->addSubscriber(new \Shopware\MyPlugin\MySubscriber());
 }
 
 ```
 
-In the event callback there are mainly two things to be done:
-
-* registering template dirs, namespace, models etc - so everything you might need later on
-* create instances of the subscriber classes and pass them to the event managers `addSubscriber` method
-
-What do the subscribers now look like? The `ControllerPath` subscriber gives a good example:
+What do the subscribers now look like? The `MySubscriber` subscriber gives a good example:
 
 ```
 <?php
 namespace Shopware\MyPlugin\Subscriber;
 
-class ControllerPath implements \Enlight\Event\SubscriberInterface
+class MySubscriber implements \Enlight\Event\SubscriberInterface
 {
     public static function getSubscribedEvents()
     {
@@ -382,13 +361,6 @@ events or subscribers have been added to the plugin. This makes development easi
 
 By the way: not only events can be handled in this way: hooks can also be registered using subscribers.
 In order to get started with subscribers, you can make use of the [Shopware plugin code generator](/blog/2015/09/01/generating-plugins-with-the-cli-tools/).
-
-Be aware that the `Enlight_Controller_Front_StartDispatch` event, which we used to initialize the subscribers, will
-not be triggered when Shopware is used in command line mode. In this case you need to use `Shopware_Console_Add_Command`
-in addition to `Enlight_Controller_Front_StartDispatch` in order to register your subscribers. For some events
-like `Theme_Compiler_Collect_Plugin_Less` and `Theme_Compiler_Collect_Plugin_Javascript` the "old" `subscribeEvent` method
-might be easier to use. Same might apply for events like `Shopware_SearchBundleDBAL_Collect_Facet_Handlers`,
-`Shopware_SearchBundleDBAL_Collect_Sorting_Handlers` or `Shopware_SearchBundleDBAL_Collect_Condition_Handlers` in some cases.
 
 ## Finding events
 By the nature of events, you will always need to know the context in order to work with them properly. For that reason, there

@@ -19,6 +19,10 @@ This will download sculping and install the required dependencies.
 ```
 
 This will start a local webserver at <http://localhost:8000/>.
+You can use a different port like so:
+```
+./watch.sh 8001
+```
 
 ## Automatic Plugin Packaging
 

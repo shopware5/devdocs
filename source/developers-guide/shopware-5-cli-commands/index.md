@@ -61,8 +61,8 @@ class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Component
     public function onAddConsoleCommand(Enlight_Event_EventArgs $args)
     {
         return new ArrayCollection(array(
-            new \ShopwarePlugins\SwagExample\Commands\ImportCommand();
-            new \ShopwarePlugins\SwagExample\Commands\ListCommand();
+            new \ShopwarePlugins\SwagExample\Commands\ImportCommand(),
+            new \ShopwarePlugins\SwagExample\Commands\ListCommand(),
         ));
     }
 }

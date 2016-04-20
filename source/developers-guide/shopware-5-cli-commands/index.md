@@ -99,7 +99,7 @@ class ImportCommand extends ShopwareCommand
             ->setHelp(<<<EOF
 The <info>%command.name%</info> imports data from a file.
 EOF
-            );
+            )
         ;
     }
 

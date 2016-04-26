@@ -775,7 +775,7 @@ indexed: false
 ## Translation
 
 * **Model:** Shopware\Models\Article\Translation
-* **Table:** s_articles_translations
+* **Table:** s_core_translation, s_articles_translations
 
 ### Structure
 

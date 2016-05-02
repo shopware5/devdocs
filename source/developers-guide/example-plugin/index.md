@@ -533,7 +533,7 @@ The `Theme.php` contains first the meta information inside the class properties:
 
 namespace Shopware\Themes\CustomTheme;
 
-use Shopware\Components\Form as Form;
+use Shopware\Components\Form;
 
 class Theme extends \Shopware\Components\Theme
 {

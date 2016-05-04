@@ -217,8 +217,8 @@ SwagModelTest/
 ├── LICENSE
 ├── Models
 │   └── SwagModelTest
-│       ├── Repository
-│       └── TestName.p
+│       ├── Repository.php
+│       └── TestName.php
 ├── phpunit.xml.dist
 ├── plugin.json
 ├── Readme.md

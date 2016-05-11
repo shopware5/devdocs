@@ -82,7 +82,7 @@ Now add the **public ssh key** of the Enterprise Dashboards background process u
 
 ````shell
 touch /home/edb-deploy/.ssh/authorized_keys
-echo "PUBLIC KEY" >> /home/edb-deploy/.ssh/authorized_keys
+echo "YOUR PUBLIC KEY" >> /home/edb-deploy/.ssh/authorized_keys
 chown edb-deplpoy /home/edb-deploy/.ssh/authorized_keys
 chmod 0600 /home/edb-deploy/.ssh/authorized_keys
 

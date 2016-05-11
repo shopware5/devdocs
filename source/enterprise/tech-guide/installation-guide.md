@@ -11,13 +11,15 @@ This guide will cover the Shopware Enterprise Dashboard installation process
 
 ## System Requirements
 
-The following system libraries/applications are required to install and run the Shopware Enterprise Dashboard:
+The following system libraries/applications are required to install and run the Shopware Enterprise Dashboard.
+
+Since the Enterprise Dashboard not only has a webfrontend that is served through a webserver but also uses background processes for potentially long running actions we need a little more infrastructure then the typical PHP application.
 
 ##### Requirements
 
 - Linux operating system
-- PHP 5.6 or later (PHP 7 recommended) including CLI support and mod_rewrite
-- Apache2 web server
+- PHP 5.6 or later (PHP 7 recommended) including CLI support, with extensions gd, zip, curl, intl, pdo and pdo_mysql
+- Apache2 web server including mod_rewrite
 - MySQL
 - Ansible Version 2.0+
 - Beanstalk Version 1.4+, with a max job size of at least `65533 Byte`
@@ -39,7 +41,20 @@ The following system libraries/applications are required to install and run the 
 
 > Important: This is intended to help you understand and not a fully secured production setting.
 
-To help you with the more abstract requirements, we show you here a possible way to setup the background processes.
+Since you should already be familiar with webserver setup from your past Shopware experience, we are showing you here the Enterprise Dashboard specific background process setup.
+
+Install [supervisor](http://supervisord.org/installing.html#installing-to-a-system-with-internet-access), [beanstalkd](https://www.vultr.com/docs/setup-beanstalkd-and-beanstalk-console-on-ubuntu-14) and [ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu).
+
+````shell
+apt-get install software-properties-common
+apt-add-repository ppa:ansible/ansible
+apt-get update
+apt-get install supervisor
+apt-get install beanstalkd
+apt-get install ansible
+````
+
+Then create a shell user under which the background processes will be executed
 
 ````shell
 useradd edb-supervisor -s /bin/bash -m
@@ -67,10 +82,13 @@ Now we link the Enterprise Dashboards supervisor config to the supervisor servic
 ln -s _APPLICATION_PATH_/supervisord/edb.conf.dist /etc/supervisor/conf.d/edb.conf
 supervisorctl reload
 ```
+> Notice: Some supervisor configurations may only allow `*.conf` files to be enabled.
 
 After following [the shopware server guide](/enterprise/tech-guide/shopware-server-configuration-guide) you should now be able to connect without a password to a shopware server by executing
 
 ````
 sudo -i -u edb-supervisor ssh edb-deploy@_HOST_
 ````
+> Notice: you should try this for all new servers, because it will also register the new Shopware Server as a known host.
+
 Congratulations you now set up the background processes with a user that is capable of connecting to Shopware servers through a key file. 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware 5 Upgrade guide
+title: Shopware 5 Upgrade Guide
 github_link: developers-guide/shopware-5-upgrade-guide-for-developers/index.md
 indexed: true
 ---
@@ -9,9 +9,387 @@ indexed: true
 In this document, developers will find details about changes made in the different Shopware 5 minor releases.
 
 This document only covers the main changes done in each version. For a comprehensive change list of all Shopware versions,
-including minor and bugfix releases, refer to the `upgrade.md` file found in your Shopware installation.
+including minor and bugfix releases, refer to the `UPGRADE.md` file found in your Shopware installation.
 
 <div class="toc-list"></div>
+
+## Shopware 5.2
+
+### System requirements changes
+
+The required PHP version is now **PHP 5.6.4 or higher**. Please check your system configuration and update your PHP version
+if necessary. If you are using a PHP version prior to 5.6.4 there will be errors.
+
+### CSRF protection
+
+Shopware now includes CSRF protection which is enabled by default. Every ajax and form request
+has to provide a CSRF token and will fail if it doesn't.
+
+The header `X-CSRF-Token` is automatically added to every ajax request, the field `__csrf_token` to
+every html form in the frontend as well as every ExtJS backend request. The ExtJS field is added via override
+in `ExtJs/overrides/Ext.form.Base.js`.
+
+If you can't for whatever reasons use the new CSRF protection mechanism, you can either implement the interface
+`Shopware\Components\CSRFWhitelistAware` in your plugin or disable the CSRF protection completely in your shop config
+via the config option `csrfProtection`. Please note this is a potential security risk and we do not recommend disabling
+CSRF protection when avoidable.
+
+For more in-depth information please see [developers-guide/csrf-protection/](https://developers.shopware.com/developers-guide/csrf-protection/ "CSRF Protection")
+
+[//]: # (TODO: ### New plugin system)
+
+### Address management
+
+Prior to Shopware 5.2 each customer had two addresses assigned: A shipping and a billing address.   
+ With Shopware 5.2 a customer is able to have a virtually unlimited number of addresses.
+ These addresses can either be managed by the customer via his account page or in the Shopware backend.
+
+To reflect these changes the new database table `s_user_addresses` holds all user addresses. The current default billing
+and shipping address is indicated via the according flags `default_billing_address_id` and `default_shipping_address_id`
+in the the `s_user` table.
+
+The old and now obsolete tables `s_user_shippingaddress` and `s_user_billingaddress` are still existing. However it is
+important to note: **The previous address tables are read only!** Though your plugin could in fact write data to these
+tables, the changes would be overwritten. As soon as a new default billing/shipping address is set for a user, the information
+is synched into the legacy tables. Changes in these legacy tables `s_user_shippingaddress` and `s_user_billingaddress` are
+not transfered into the new address management.
+
+With the new address management the registration process was rewritten. Plugins that are tampering with data throughout the
+registration process have to be adapted. Events and other entry points regarding the registration process in `\sAdmin` and
+`Shopware_Controllers_Frontend_Register` were removed. Please have a look at the services `shopware_account.address_service`,
+`shopware_account.customer_service` and `shopware_account.register_service` for further information.
+
+When you are developing custom templates it is important to note that the billing and shipping templates were removed from the
+registration process.
+
+In addition to addresses from the database, a user can choose a non-default address during checkout which is saved in the session
+and directly written to the according order tables during the order process. Those intermediate addresses won't show up in the
+`s_user_addresses` table, so make sure to not rely exclusive on the database fields if your plugin affects the checkout process.
+
+The new address management is based on [Symfony Forms](http://symfony.com/doc/current/book/forms.html).
+
+### Attribute management
+
+With Shopware 5.2 a new attribute management is introduced. New attributes can be defined in the Shopware backend by an admin user or
+created as new database table column by a plugin. Even though in both cases a new database field is created in the related database table,
+there is a difference. When a new attribute is created by simply adding the column to an attribute table in the database the name and
+type of the field can not be changed through the backend.
+
+The backend implementation regarding attributes was completely rewritten. When a new attribute is created, it will automatically show up
+at the right places. Example given, if you create a new attribute for table `s_user`, it is created in `s_user_attributes`
+and automatically shows up in the customer management form in the backend. Attributes are automatically translatable when the according
+flag is set.
+
+Newly created attributes not only show up in the related forms, they are also saved automatically. Basically, to create a new attriute as
+a plugin developer, since shopware 5.2 all your plugin has to do is create a new field in the correct attribute table.
+
+In whole there are 39 attribute tables, recognizable through the name ending in `_attributes`. To make use of these, there are numerous
+`shopware_attribute.*` services to work with.
+
+When creating new attributes, you are able to introduce new column types. When you create selection type attributes, you can introduce new
+entities.
+
+Please note, the table `s_core_engine_elements`, although still present, is now ignored by the attribute system.
+
+The form that is loaded in in all backend modules in order to display attributes is `Shopware.attribute.Form`. The central entry points like
+services and fields can be found in `themes/backend/base/attribute`. Other entry points can be found in the appropriate modules.
+
+For further information on attribute management please refer to the `README.md` in `engine/Shopware/Bundle/AttributeBundle`.
+
+### Shopping worlds
+
+The shopping worlds, also known as emotion, got a complete overhaul. There are a few changes notable for plugin developers.
+
+Up until now, shopping worlds had a so called _masonry_ mode, which was realised via a jQuery plugin. The mode now is replaced by a mode
+called _fluid_. Both modes aim to automatically create a pleasant user experience when viewing a shopping world on a smaller screen than intended by the shopping world author.
+Since the _masonry_ plugin is no longer needed, it was removed. This will affect your plugin if it made use of this now formerly
+included library.
+
+The fields of a shopping world as well as the corresponding SEO URL is now translatable.
+
+Landing pages depended on categories, with shopware 5.2 they are bound to shops. In the consequence banner images in a category linking to a connected shopping world are
+no longer present. Landing pages can be assigned to one or more shops.
+
+If you are writing widgets for shopping worlds, their fields are now translatable. To make use of this ability, it is sufficient to set the `translatable` field in `s_library_component_field`
+to 1 for a given element.
+
+Additionally, every element in a shopping world has its own viewport settings which are saved in `s_emotion_element_viewports`.
+These settings include position and visibility for each viewport.
+
+You can define a default config for each custom shopping world widget. This includes settings like maximal height or width or an icon to make your widget easier identifiable.
+For further information on this topic have a look at `themes/Backend/ExtJs/backend/emotion/view/detail/elements/base.js`.
+
+To make overriding the widget configuration easy, there are new blocks in `widgets/emotion/index.tpl`:
+* `widgets/emotion/index/attributes`
+* `widgets/emotion/index/config`
+* `widgets/emotion/index/element/config`
+
+
+### Library updates
+
+* Updated Symfony Components to version 2.8 LTS
+* Updated `monolog/monolog` to version 1.17.2
+* Updated `ongr/elasticsearch-dsl` to v2.0.0, see [ElasticsearchDSL changelog](https://github.com/ongr-io/ElasticsearchDSL/blob/master/CHANGELOG.md#v200-2016-03-03) for backwards compatibility breaks.
+
+### Replacements
+
+* Replaced `bower` with `npm` to manage the frontend dependencies
+    * Removed the file `vendors/less/open-sans-fontface/open-sans.less`. It's now located under `public/src/less/_components/fonts.less`
+    * The dependencies can now be installed using the command: `npm install && npm run build`
+
+### Deprecations
+
+<div class="alert alert-info" role="alert">
+<strong>Note:</strong> Deprecated methods now use <code>trigger_error</code> of type <code>E_USER_DEPRECATED</code>.
+</div>
+
+* `Enlight_Application::ComponentsPath()` / `Shopware()->ComponentsPath()`.
+* `Enlight_Application::CorePath()` / `Shopware()->CorePath()`.
+* `Enlight_Application::DS()`.
+* `Enlight_Application::Instance()` and `Enlight()`, use `Shopware()` instead.
+* `Enlight_Application::Path()` / `Shopware()->Path()`.
+* `Enlight_Application`.
+* `initMasonryGrid` method and `plugin/swEmotion/onInitMasonryGrid` event in `jquery.emotion.js`.
+* `Shopware()->Models()->__call()`.
+* `Shopware::App()` / `Shopware()->App()`.
+* `Shopware::Environment()` / `Shopware()->Environment()`.
+* `Shopware::OldPath()` / `Shopware()->OldPath()`.
+* `Shopware::setEventManager()` / `Shopware()->setEventManager()`.
+* `Shopware\Kernel::getShopware()`.
+* `Shopware_Bootstrap` and `Enlight_Bootstrap`, commonly accessed by `Shopware()->Bootstrap()`.
+* `\Shopware\Models\Article\Element`.
+* Database field `s_articles_prices.baseprice`. All data is left intact but this field is not used in shopware anymore and will be dropped in a future version.
+
+### Removals
+
+<div class="alert alert-info" role="alert">
+    <strong>Note:</strong> This section covers only the most relevant removals. Please refer to the UPGRADE.MD file in your Shopware installation for a complete, detailed list of removed elements
+</div>
+
+* 'Article' related:
+    * Database field `s_article_configurator_template_prices.baseprice`.
+    * Methods `Shopware\Models\Article\Price::getBasePrice()` and `Shopware\Models\Article\Price::setBasePrice()`.
+    * Property `basePrice` of `Shopware\Models\Article\Configurator\Template\Price`.
+    * Property `basePrice` of `Shopware\Models\Article\Price`.
+* Attribute associations from the following backend models:
+    * `Shopware.apps.Banner.model.BannerDetail`
+    * `Shopware.apps.Blog.model.Detail`
+    * `Shopware.apps.Config.model.form.Country`
+    * `Shopware.apps.Customer.model.Customer`
+    * `Shopware.apps.Emotion.model.Emotion`
+    * `Shopware.apps.Form.model.Form`
+    * `Shopware.apps.MediaManager.model.Media`
+    * `Shopware.apps.Order.model.Order`
+    * `Shopware.apps.Order.model.Position`
+    * `Shopware.apps.Order.model.Receipt`
+    * `Shopware.apps.Property.model.Set`
+    * `Shopware.apps.Supplier.model.Supplier`
+    * `Shopware.apps.Voucher.model.Detail`
+* Columns `s_filter_values.value_numeric` and `s_filter_options.default`.
+* Emotion category teaser `image` property
+* Events:
+    * `sArticles::calculateCheapestBasePriceData::after`
+    * `sArticles::calculateCheapestBasePriceData::replace`
+    * `sArticles::getArticleListingCover::after`
+    * `sArticles::getArticleListingCover::replace`
+    * `sArticles::sCalculatingPrice::replace`
+    * `sArticles::sCalculatingPrice::replace`
+    * `sArticles::sGetArticlePictures::after`
+    * `sArticles::sGetArticlePictures::replace`
+    * `sArticles::sGetArticleProperties::after`
+    * `sArticles::sGetArticleProperties::replace`
+    * `sArticles::sGetArticlesAverangeVote::after`
+    * `sArticles::sGetArticlesAverangeVote::replace`
+    * `sArticles::sGetArticlesVotes::after`
+    * `sArticles::sGetArticlesVotes::replace`
+    * `sArticles::sGetCheapestPrice::after`
+    * `sArticles::sGetCheapestPrice::replace`
+    * `sArticles::sGetPricegroupDiscount::after`
+    * `sArticles::sGetPricegroupDiscount::replace`
+    * `sArticles::sGetUnit::after`
+    * `sArticles::sGetUnit::replace`
+    * `Shopware_Modules_Articles_GetArticleById_FilterArticle`
+    * `Shopware_Modules_Articles_GetPromotionById_FilterResult`
+* Fax field from billing addresses
+* Model `Shopware.apps.Customer.view.detail.Billing`
+* Model `Shopware.apps.Customer.view.detail.Shipping`
+* Session variables `__SW_REFERER` and `__SW_CLIENT`.
+* Shopping world mode `masonry`. The fallback is the new mode `fluid`.
+* Smarty variable `sCategoryInfo` in listing and blog controllers. Use `sCategoryContent` instead.
+* Table `s_user_debit`
+    * `\Shopware\Models\Customer\Customer::$debit`
+    * `\Shopware\Models\Customer\Customer::getDebit()`
+    * `\Shopware\Models\Customer\Customer::setDebit()`
+* Template blocks for campaign boxes corresponding to the removed emotion fields:
+    * `frontend_blog_index_campaign_bottom`
+    * `frontend_blog_index_campaign_middle`
+    * `frontend_blog_index_campaign_top`
+    * `frontend_index_left_campaigns_bottom`
+    * `frontend_index_left_campaigns_middle`
+    * `frontend_index_left_campaigns_top`
+* Templates including their snippets and blocks:
+    * `frontend/account/billing.tpl`
+    * `frontend/account/billing_checkout.tpl`
+    * `frontend/account/content_right.tpl`
+    * `frontend/account/select_address.tpl`
+    * `frontend/account/select_billing.tpl`
+    * `frontend/account/select_billing_checkout.tpl`
+    * `frontend/account/select_shipping.tpl`
+    * `frontend/account/select_shipping_checkout.tpl`
+    * `frontend/account/shipping.tpl`
+    * `frontend/account/shipping_checkout.tpl`
+    * `frontend/checkout/cart_left.tpl`
+    * `frontend/checkout/confirm_left.tpl`
+* The following backend files:
+    * `themes/Backend/ExtJs/backend/blog/view/blog/detail/sidebar/attributes.js`
+    * `themes/Backend/ExtJs/backend/config/model/form/attribute.js`
+    * `themes/Backend/ExtJs/backend/config/store/form/attribute.js`
+    * `themes/Backend/ExtJs/backend/config/view/form/attribute.js`
+* The following backend models including their smarty blocks:
+    * `Shopware.apps.Banner.model.Attribute`
+    * `Shopware.apps.Blog.model.Attribute`
+    * `Shopware.apps.Config.model.form.Attribute`
+    * `Shopware.apps.Customer.model.Attribute`
+    * `Shopware.apps.Customer.model.BillingAttributes`
+    * `Shopware.apps.Customer.model.ShippingAttributes`
+    * `Shopware.apps.Emotion.model.Attribute`
+    * `Shopware.apps.Form.model.Attribute`
+    * `Shopware.apps.MediaManager.model.Attribute`
+    * `Shopware.apps.Order.model.Attribute`
+    * `Shopware.apps.Order.model.BillingAttribute`
+    * `Shopware.apps.Order.model.PositionAttribute`
+    * `Shopware.apps.Order.model.ReceiptAttribute`
+    * `Shopware.apps.Order.model.ShippingAttribute`
+    * `Shopware.apps.Property.model.Attribute`
+    * `Shopware.apps.Supplier.model.Attribute`
+    * `Shopware.apps.Voucher.model.Attribute`
+* The following repository methods no longer select attributes or have been removed entirely
+    * `\Shopware\Models\Article\Repository::getSupplierQueryBuilder()`
+    * `\Shopware\Models\Banner\Repository::getBannerMainQuery()`
+    * `\Shopware\Models\Blog\Repository::getBackedDetailQueryBuilder()`
+    * `\Shopware\Models\Customer\Repository::getAttributesQuery()`
+    * `\Shopware\Models\Customer\Repository::getAttributesQueryBuilder()`
+    * `\Shopware\Models\Customer\Repository::getBillingAttributesQuery()`
+    * `\Shopware\Models\Customer\Repository::getBillingAttributesQueryBuilder()`
+    * `\Shopware\Models\Customer\Repository::getCustomerDetailQueryBuilder()`
+    * `\Shopware\Models\Customer\Repository::getShippingAttributesQuery()`
+    * `\Shopware\Models\Customer\Repository::getShippingAttributesQueryBuilder()`
+    * `\Shopware\Models\Emotion\Repository::getEmotionDetailQueryBuilder()`
+    * `\Shopware\Models\Order\Repository::getBackendAdditionalOrderDataQuery()`
+    * `\Shopware\Models\Order\Repository::getBackendOrdersQueryBuilder()`
+    * `\Shopware\Models\ProductFeed\Repository::getDetailQueryBuilder()`
+* Third party jQuery plugin dependency `masonry`.
+* Unnecessary method `getCampaignByCategoryQuery()` from `Models/Emotion/Repository.php`.
+* Unnecessary template file for campaign boxes `frontend/campaign/box.tpl`.
+* `billingAction()` in `Controllers/Frontend/Account.php`
+* `blog.media.path`
+* `client_check` and `referer_check` from the config in favor of the CSRF protection.
+* `Enlight_Application::getOption()`
+* `Enlight_Application::getOptions()`
+* `Enlight_Application::setIncludePaths()`
+* `Enlight_Application::setOptions()`
+* `Enlight_Application::setPhpSettings()`
+* `Enlight_Application::__callStatic()`
+* `file` property of banner mappings.
+* `landingPageTeaser` and `landingPageBlock` fields from emotion shopping worlds.
+* `sAdmin::sGetPreviousAddresses()`
+* `sAdmin::sUpdateAccount()`
+* `sAdmin::sUpdateBilling()`
+* `sAdmin::sUpdateShipping()`
+* `sAdmin::sValidateStep1()`
+* `sAdmin::sValidateStep2()`
+* `sAdmin::sValidateStep2ShippingAddress()`
+* `sArticle.sVoteAverange` in product listings.
+* `saveAccount()` in `Controllers/Frontend/Account.php`
+* `saveBillingAction()` in `Controllers/Frontend/Account.php`
+* `saveShippingAction()` in `Controllers/Frontend/Account.php`
+* `sBanner.img` variable
+* `selectBillingAction()` in `Controllers/Frontend/Account.php`
+* `selectShippingAction()` in `Controllers/Frontend/Account.php`
+* `shippingAction()` in `Controllers/Frontend/Account.php`
+* `Shopware\Models\Menu\Repository::addItem()` and `Shopware\Models\Menu\Repository::save()`.
+* `sNote.sVoteAverange` in note listing.
+* `sOrder::sManageEsdOrder()`
+
+
+### Method signature changes
+
+* Constructor of `\Shopware\Bundle\PluginInstallerBundle\Service\DownloadService`
+    * Now expects an `array` of strings representing plugin directories as second parameter (additionally)
+* Constructor of `\Shopware\Components\Theme\PathResolver`
+    * Now expects an `array` of strings representing plugin directories as second parameter (additionally)
+* Constructor of `\Shopware_Components_Snippet_Manager`
+    * Now expects an `array` of strings representing plugin directories as second parameter (additionally)
+* `Shopware\Bundle\SearchBundleDBAL\PriceHelper::getSelection`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface`
+* `Shopware\Bundle\SearchBundleDBAL\PriceHelperInterface::getSelection`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface`
+* `Shopware\Bundle\StoreFrontBundle\Gateway\GraduatedPricesGatewayInterface`
+    * Requires now a provided `ShopContextInterface`
+* `Shopware\Bundle\StoreFrontBundle\Service\CheapestPriceServiceInterface::getList`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface`
+* `Shopware\Bundle\StoreFrontBundle\Service\CheapestPriceServiceInterface::get`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface` and `ListProduct` instead of `BaseProduct`
+* `Shopware\Bundle\StoreFrontBundle\Service\Core\CheapestPriceService::getList`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface`
+* `Shopware\Bundle\StoreFrontBundle\Service\Core\CheapestPriceService::get`
+    * Now expects `ProductContextInterface` instead of `ShopContextInterface` and `ListProduct` instead of `BaseProduct`
+
+### Other changes
+
+* Added AdvancedMenu feature to configure menu opening delay on mouse hover
+* Added composer dependency for Symfony Form and implemented FormBundle
+* Added creation of custom `__construct()` method to `Shopware\Components\Model\Generator`, which initializes any default values of properties when generating attribute models
+* Added HTML code widget for the shopping worlds which lets the user enter actual Smarty & JavaScript code which will be included like it is
+    * The Smarty code has access to all globally available Smarty variables
+* Added new blocks to `widgets/emotion/index.tpl` for better overriding of the configuration.
+    * `widgets/emotion/index/attributes`
+    * `widgets/emotion/index/config`
+    * `widgets/emotion/index/element/config`
+* Added new configuration field to the emotion banner widget for link target.
+* Added new database field `s_articles_details.purchaseprice`.
+* Added polyfill for `random_bytes()` and `random_int()` via `paragonie/random_compat`
+* Added property `purchasePrice` to `Shopware\Models\Article\Detail`.
+* Added service `shopware.number_range_manager` for safely retrieving the next number of a number range (`s_order_number`)
+* Added the ability to add custom CSS classes to emotion elements in the backend.
+    * Added new `css_class` column to the `s_emotion_elements` table.
+    * Multiple classnames can be added by separating them with whitespaces.
+* Added the following fields to status emails:
+    * `billing_additional_address_line1`
+    * `billing_additional_address_line2`
+    * `shipping_additional_address_line1`
+    * `shipping_additional_address_line2`
+* Added validation of order number to `Shopware\Components\Api\Resource\Variant::prepareData()` to respond with meaningful error message for duplicate order numbers
+* Categories of `Shopware\Components\Api\Resource\Article::getArticleCategories($articleId)` are no longer indexed by category id
+* Changed default error_reporting to `E_ALL & ~E_USER_DEPRECATED`
+* Changed markup and styling on checkout confirm and finish page
+* Changed position of `Shopware.apps.Customer.view.detail.Billing` fields
+* Changed position of `Shopware.apps.Customer.view.detail.Shipping` fields
+* Changed the following methods to use the `shopware.number_range_manager` service for retrieving the next number of a range:
+    * `sAdmin::assignCustomerNumber()`
+    * `Shopware_Components_Document::saveDocument()`
+    * `sOrder::sGetOrderNumber()`
+* Fixed Shopware.form.plugin.Translation, the plugin can now be used in multiple forms at the same time.
+    * Removed `clear`, `onOpenTranslationWindow`, `getFieldValues` and `onGetTranslatableFields` function
+* HttpCache: Added possibility to add multiple, comma separated proxy URLs
+* Moved block `frontend_checkout_confirm_left_billing_address` outside panel body
+* Moved block `frontend_checkout_confirm_left_shipping_address` outside panel body
+* Moved field `birthday` from billing address to customer
+* Moved `<form>` element in checkout confirm outside the agreement box to wrap around address and payment boxes
+* Moved `s_articles_prices.baseprice` to `s_articles_details.purchaseprice`
+* Renamed block 'frontend_blog_bookmarks_deliciosus' to 'frontend_blog_bookmarks_delicious'
+* Replaced old LESS mixin `createColumnSizes` for new grid mixins `createGrid` and `createColumns` in `_components/emotion.less`.
+* Support arbitrary namespaces for doctrine entities instead of the `Shopware\CustomModels` namespace.
+* The filter event `Shopware_Modules_Order_SaveBilling_FilterArray` now contains an associative array instead of one with numeric keys.
+* The filter event `Shopware_Modules_Order_SaveBilling_FilterSQL` now uses named parameters in the query instead of question marks.
+* The filter event `Shopware_Modules_Order_SaveShipping_FilterArray` now contains an associative array instead of one with numeric keys.
+* The filter event `Shopware_Modules_Order_SaveShipping_FilterSQL` now uses named parameters in the query instead of question marks.
+* The following article arrays are now indexed by their order number
+    * emotion slider data
+    * recommendation data (also bought and also viewed)
+    * similar and related articles
+    * top seller
+
 
 ## Shopware 5.1
 

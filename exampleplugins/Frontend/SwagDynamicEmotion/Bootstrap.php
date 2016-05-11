@@ -169,7 +169,7 @@ class Shopware_Plugins_Frontend_SwagDynamicEmotion_Bootstrap extends Shopware_Co
                 'class' => 'sprite-application-block',
                 'action' => 'Index',
                 'active' => 1,
-                'parent' => $this->Menu()->findOneBy('controller', 'content')
+                'parent' => $this->Menu()->findOneBy(array('controller' => 'content'))
             )
         );
     }

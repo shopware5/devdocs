@@ -23,7 +23,7 @@ The following system libraries/applications are required to install and run the 
 - Beanstalk Version 1.4+, with a max job size of at least `65533 Byte`
 - Supervisor 3.0+ 
 - A distinct shell user for SSH access to the connected shop servers 
-- The EDB requires to be run from the root of a apache host, prepare a domain
+- The EDB requires to be run from the root of an apache host, prepare a domain
 - Set PHP *(cli & apache2)* and MySQL timezone to UTC
 
 ## Installing the Shopware Enterprise Dashboard
@@ -33,7 +33,7 @@ The following system libraries/applications are required to install and run the 
 - Enable web server access to *_APPLICATION_/web* 
 - Execute `php setup.phar` through the command line
 - Follow the instructions
-- Remember to symlink the Supervisor configuration in *_APPLICATION_/supervisord/edb.conf.dist* to enable the background processes  must be published to your 
+- Remember to symlink the Supervisor configuration in *_APPLICATION_/supervisord/edb.conf.dist* to enable the background processes
 
 ## HowTo: Setup the background processes on Ubuntu 14.04
 
@@ -68,7 +68,7 @@ ln -s _APPLICATION_PATH_/supervisord/edb.conf.dist /etc/supervisor/conf.d/edb.co
 supervisorctl reload
 ```
 
-After following [the shopware server guide](/enterprise/tech-guide/shopware-server-configuration-guide) you should now be able to connect without a password to a shipware server by executing
+After following [the shopware server guide](/enterprise/tech-guide/shopware-server-configuration-guide) you should now be able to connect without a password to a shopware server by executing
 
 ````
 sudo -i -u edb-supervisor ssh edb-deploy@_HOST_

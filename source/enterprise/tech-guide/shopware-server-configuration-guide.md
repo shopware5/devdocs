@@ -5,24 +5,24 @@ github_link: enterprise/tech-guide/shopware-server-configuration-guide.md
 indexed: false
 ---
 
-This guide will describe dependencies the Enterprise Dashboard has on it's connected servers. 
+This guide describes how you need to configure your Shopware servers in order to be compatible with the Enterprise Dashboard.
 <div class="toc-list"></div>
 
 ## System Requirements
 
 The following system libraries/application are required to install and run Shopware through the Enterprise Dashboard.
 
-##### Viable Shopware Host
+##### Shopware Host
 
 The basic requirements are the same as for Shopware itself. [Please review this guide for details.](https://developers.shopware.com/sysadmins-guide/system-requirements)
 
 ##### RAM / Memory
 
-Make shure the server has enough Memory for deployment tasks like `mysqldump` and `unzip`. It is therefore recommended to set an appropriate SWAP size. 
+Make sure the server has enough memory for deployment tasks like `mysqldump` and `unzip`. It is therefore recommended to set an appropriate SWAP size.
 
 ##### Ansible Node Setup
 
-The enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client communication. Although Ansible's logic is mostly executed on it's host, there are a few required packages that must be met
+The Enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client communication. Although Ansible's logic is mostly executed on it's host, there are a few required packages that must be met
 
 * Python 2.*, with python-simplejson - [docs](http://docs.ansible.com/ansible/intro_installation.html#managed-node-requirements)
 * Mysql Tools, `mysql` and `mysqldump`, as well as `MySQLdb` - [docs](http://docs.ansible.com/ansible/mysql_db_module.html#requirements-on-host-that-executes-module)
@@ -33,7 +33,7 @@ The enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client 
 
 * Username: *edb-deploy*
 * Password: *edb-deploy*
-* Needs privileges to create Databases
+* Needs privileges to create databases
 
 ##### Unix Deployment User Setup
 
@@ -46,16 +46,16 @@ The enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client 
 
 ## HowTo: Setup on Ubuntu 14.04
 
-> Important: This is intended to help you understand and not a fully secured production setting.
-
-This HOWTO should help you understand the abstract requirements postulated above, but be aware that based on your specific operating system and version the commands you actually have to execute may differ vastly. We assume here that you have already setup a system that is capable of executing Shopware and has an configured apache host. 
+This HOWTO should help you understand the requirements postulated above, but be aware that based on your specific
+operating system and version the commands you actually have to execute may differ vastly. We assume that you
+have already setup a system that is capable of executing Shopware and has an configured apache host.
 
 First you create a MySQL user that has full access from the current host:
 
 ````shell
 mysql -u _YOUR_USER_ -p _YOUR_PASSWORD_ -e "CREATE USER 'edb-deploy'@'localhost' IDENTIFIED BY 'edb-deploy'" 
 ````
-> Notice: MySQL defaults to grant newly created users all rights. If you want to reduce this, please make shure that the user is still able to create tables.
+> Notice: MySQL defaults to grant newly created users all rights. If you want to reduce this, please make sure that the user is still able to create tables.
 
 
 Now you create the edb-deploy shell user and add him to the apache group (in this case `www-data`). 
@@ -78,7 +78,7 @@ After that we can securely set the ownership of the apache host directory to the
 chown -R edb-deploy:edb-deploy /var/www
 ````
 
-The last step is a little tricky, we now need to add the **public ssh key** of the Enterprise Dashboards background process user to the edb-deploy user. To enable SSH access from the Enterprise Dashboard.
+Now add the **public ssh key** of the Enterprise Dashboards background process user to the edb-deploy user. To enable SSH access from the Enterprise Dashboard.
 
 ````shell
 touch /home/edb-deploy/.ssh/authorized_keys

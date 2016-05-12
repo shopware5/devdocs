@@ -216,7 +216,7 @@ The article(s) to delete can be defined using the following syntax:
 In order to delete more than one article at once, it's possible to provide an array of ids to the REST API.
 Simply pass the array of article ids to the following URL (example)
 
-* **[DELETE] http://my-shop-url/articles/**
+* **[DELETE] http://my-shop-url/api/articles/**
 
 without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.
 
@@ -224,6 +224,6 @@ without providing an id as seen in the single `DELETE` request. As data provide 
 
 Updating many articles at once requires an array of article data being provided to the following URL using the `PUT` request (example):
 
-* **[PUT] http://my-shop-url/articles/**
+* **[PUT] http://my-shop-url/api/articles/**
 
 Simply provide the same data as described in the create statement.

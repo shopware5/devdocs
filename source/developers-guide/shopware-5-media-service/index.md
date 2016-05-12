@@ -45,6 +45,16 @@ $url = $mediaService->getUrl($path);
 
 Simply get the `shopware_media.media_service` from the DI container and call `getUrl()` with your virtual path. As a result you'll get a full qualified URL and you are able to bind it to a view. There is no need to use the `{link ...}` Smarty expression.
 
+### URL generation of thumbnails
+
+To generate your thumbnail URLs you need to use the same function, but with different path. You need to add the "thumbnails" subfolder to get the correct thumbnail URL.
+
+```php
+$thumbnailPath = 'media/image/thumbnails/my-fancy-image_540x540.png
+$url = $mediaService->getUrl($thumbnailPath);
+// result: https://www.myshop.com/media/image/d6/30/f2/my-fancy-image_540x540.png
+```
+
 In your Smarty templates you may use the `{media path=...}` expression to get the fully qualified URL.
 
 ```smarty

@@ -49,7 +49,7 @@ Although more complex, Shopware's solution applies the concept illustrated above
 
 ### Backend
 
-When you open the backend, the first request made will be a `generate` request. This request will return a new token, bound to your session. Since this token is required for every other request, all subsequent requests wil be queued until the `generate` request returns a response. From that point on, all future requests will automatically be modified to make use of the `X-CSRF-Token` header. If you have, for some reason, decided to use your own request library, make sure to set the `X-CSRF-Token` header in your request, otherwise every request will result in an exception.
+When you open the backend, the first request made will be a `generate` request. This request will return a new token, bound to your session. Since this token is required for every other request, all subsequent requests will be queued until the `generate` request returns a response. From that point on, all future requests will automatically be modified to make use of the `X-CSRF-Token` header. If you have, for some reason, decided to use your own request library, make sure to set the `X-CSRF-Token` header in your request, otherwise every request will result in an exception.
 
 Once the token has been returned, you can get it by using the `Ext.CSRFService` service. The `Ext.CSRFService.getToken()` method will return the current token.
 

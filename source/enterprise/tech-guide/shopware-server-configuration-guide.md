@@ -5,59 +5,86 @@ github_link: enterprise/tech-guide/shopware-server-configuration-guide.md
 indexed: false
 ---
 
-This guide covers the steps necessary to configure a new Shopware Server to be used in conjunction with your Enterprise Dashboard.
-
-<div class="alert alert-warning">
-This guide should only be used in the Enterprise Dashboard context. It is not meant to be used for standalone Shopware installations.
-</div>
-
+This guide describes how you need to configure your Shopware servers in order to be compatible with the Enterprise Dashboard.
 <div class="toc-list"></div>
 
-## Requirements
+## System Requirements
 
-- The must meet the requirements of any Shopware version you wish to install on it
-- `tar`
-- `python-mysqldb`
-- A system user `edb-deploy` must exist and be accessible by SSH by your EDB server's supervisor user  (defaults to `edb-supervisor`) without prompting for passwords 
-- A MySQL user `edb-deploy` must exist with `edb-deploy` as password (this will be changed before the initial stable release). It must have permissions to create new databases.
-- `acl` installed and enabled for the mount point in which your Shopware instances will be installed
-- `/tmp` folder access
+The following system libraries/application are required to install and run Shopware through the Enterprise Dashboard.
 
-While not strictly necessary, it is recommended that you add the `edb-deploy` user to your web server's group (typically `www-data` for Apache). This usually helps avoid certain pitfalls related to file system permission handling.
+##### Shopware Host
 
-Keep in mind that if you are using the EDB to connect to pre-existing Shopware installations, these hosts also need to meet these requirements, otherwise the EDB will not be able to correctly install the necessary integration plugin.
+The basic requirements are the same as for Shopware itself. [Please review this guide for details.](https://developers.shopware.com/sysadmins-guide/system-requirements)
+
+##### RAM / Memory
+
+Make sure the server has enough memory for deployment tasks like `mysqldump` and `unzip`. It is therefore recommended to set an appropriate SWAP size.
+
+##### Ansible Node Setup
+
+The Enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client communication. Although Ansible's logic is mostly executed on it's host, there are a few required packages that must be met
+
+* Python 2.*, with python-simplejson - [docs](http://docs.ansible.com/ansible/intro_installation.html#managed-node-requirements)
+* Mysql Tools, `mysql` and `mysqldump`, as well as `MySQLdb` - [docs](http://docs.ansible.com/ansible/mysql_db_module.html#requirements-on-host-that-executes-module)
+* GNU `tar` needs to support the `--exclude=FILE` option - [docs](https://www.gnu.org/software/tar/)
+* `unzip` needs to be installed - [docs](http://linux.about.com/od/commands/l/blcmdl1_unzip.htm)
+
+##### MySQL Deployment User Setup
+
+* Username: *edb-deploy*
+* Password: *edb-deploy*
+* Needs privileges to create databases
+
+##### Unix Deployment User Setup
+
+* Username: *edb-deploy*
+* Needs a home directory
+* Needs to be part of the web server group
+* Web server needs to be part of edb-deploy group
+* Needs access to the */tmp* directory
+* Needs to own the directory directory where new shops can be installed
+
+## HowTo: Setup on Ubuntu 14.04
+
+This HOWTO should help you understand the requirements postulated above, but be aware that based on your specific
+operating system and version the commands you actually have to execute may differ vastly. We assume that you
+have already setup a system that is capable of executing Shopware and has an configured apache host.
+
+First you create a MySQL user that has full access from the current host:
+
+````shell
+mysql -u _YOUR_USER_ -p _YOUR_PASSWORD_ -e "CREATE USER 'edb-deploy'@'localhost' IDENTIFIED BY 'edb-deploy'" 
+````
+> Notice: MySQL defaults to grant newly created users all rights. If you want to reduce this, please make sure that the user is still able to create tables.
 
 
-## Configuration steps
+Now you create the edb-deploy shell user and add him to the apache group (in this case `www-data`). 
 
-The following steps are meant to guide you through the setup of a new Shopware server that you will use with the Shopware Enterprise Dashboard. If you want to use the Shopware Enterprise Dashboard with a previously configured Shopware server, you might need to adapt some of these steps, depending on your exact server configuration.
+````shell
+useradd edb-deploy -s /bin/bash -m
+usermod -a -G edb-deploy www-data
+````
+> Notice: Although it is not necessary to specify a shell for the deployment user, I found it very helpful for debugging purposes.
 
-### Install required packages 
+We need to add the Apache users group to the edb-deploy user
 
-All system packages required by Shopware and the Enterprise Dashboard. Refer to the requirements list above and Shopware's documentation for more info.
+````shell
+usermod -a -G www-data edb-deploy
+````
+
+After that we can securely set the ownership of the apache host directory to the deploy user, in this case simply `/var/www`
  
- 
-### Create a user account
+````shell
+chown -R edb-deploy:edb-deploy /var/www
+````
 
-To access your Shopware server, the Enterprise Dashboard requires a user account. This user account should be named `edb-deploy` and be accessible by the Enterprise Dashboard Server's `edb-supervisor` user (or other, in case you changed it during the setup process).
+Now add the **public ssh key** of the Enterprise Dashboards background process user to the edb-deploy user. To enable SSH access from the Enterprise Dashboard.
 
-Additionally, the Enterprise Dashboard Server's `edb-supervisor` user must be able to login using SSH to your Shopware server without triggering a password prompt. You can run the following command on the Enterprise Dashboard Server to this this:
-  
-```
-sudo -u edb-supervisor ssh edb-deploy@<ip-or-host-name>
-```
+````shell
+touch /home/edb-deploy/.ssh/authorized_keys
+echo "YOUR PUBLIC KEY" >> /home/edb-deploy/.ssh/authorized_keys
+chown edb-deplpoy /home/edb-deploy/.ssh/authorized_keys
+chmod 0600 /home/edb-deploy/.ssh/authorized_keys
 
-This command should take you directly to a shell in your Shopware Server. If that doesn't happen, you need to review your SSH configuration. We recommend using SSH key authentication between your two servers. Additionally, for increased security, you should use different pairs of keys for connecting to different servers. You can find extensive documentation online about how to do this, and how to create a `.ssh/config` file that will reflect your desired configuration.
-  
-### Create a MySQL account
-
-Certain actions will require the Enterprise Dashboard to access your Shopware Server's database directly. For that reason, you should ensure that a `edb-deploy` MySQL user exists and has `edb-deploy` as a password. It must have permissions to create new databases, as well as access the existing ones. As a security measure, you can limit this user to local access. All MySQL actions from the Enterprise Dashboard are tunneled in SSH by `ansible`.
- 
- 
-### Handle file system permissions
-
-As a security precaution, we use file system ACLs, which should be active on your file system. Access to the `/tmp` folder is also required, for storing temporary data.
- 
-### Configure your server on the Enterprise Dashboard
-
-After following the above steps, your server is now ready to be used together with the Enterprise Dashboard. You can log in to the Enterprise Dashboard, access the `Servers` panel and configure you server.
+````
+Congratulations now the server is set up correctly.

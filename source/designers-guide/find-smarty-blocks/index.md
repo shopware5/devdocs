@@ -132,7 +132,7 @@ Now let's work on a real-world example. Let's say we want to remove the comment 
 
 Now we have found the Smarty block named ```frontend_blog_detail_comments``` and we can overwrite it in our theme like this:
 
-```smarty
+```html
 {extends file="parent:frontend/blog/detail.tpl"}
 
 {* Remove the comment section *}
@@ -146,7 +146,7 @@ We've classified widgets as a separate section in Shopware, which means that the
 
 You might see a call to the Smarty ```action``` plugin in a template file like this:
 
-```smarty
+```html
 {action module=widgets controller=listing action=tag_cloud sController=index}
 ```
 

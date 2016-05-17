@@ -36,7 +36,7 @@ Then we extend our new template from `frontend/listing/index.tpl`:
 
 We will add some custom LESS/CSS modifications later. Therefore, we add a wrapping element with an individual `custom-detail` class as a container class:
 
-```smarty
+```html
 {block name='frontend_index_content'}
     <div class="custom-listing">
         {$smarty.block.parent}
@@ -55,7 +55,7 @@ We will add some custom LESS/CSS modifications later. Therefore, we add a wrappi
 
 We will manually exclude the `sidebar` and the `topseller-slider` from our custom listing template by overwriting the specific blocks with empty content. These are the blocks that contain the specific definitions:
 
-```smarty
+```html
 {block name='frontend_index_content_left'}
 {/block}
 
@@ -67,13 +67,13 @@ We will manually exclude the `sidebar` and the `topseller-slider` from our custo
 
 We want to overwrite the default CMS content output of the listing and implement some custom markup and styling to it. This is the original block we will overwrite to add our new CMS markup:
 
-```smarty
+```html
 {block name="frontend_listing_index_text"}
 ```
 
 The CMS content that can be added to a category in the backend is optional, so in order to not display an empty element if no content is added, we will create a prompt that checks if the `cmsHeadline` or `cmsText` contain any information.
 
-```smarty
+```html
 {if $sCategoryContent.cmsHeadline || $sCategoryContent.cmsText}
     <div class="custom-listing--intro">
         <h1 class="intro--cmsHeadline">{$sCategoryContent.cmsHeadline}</h1>
@@ -107,19 +107,19 @@ We will simply overwrite the default listing block and add our own iteration thr
 
 The new product box is separated into its own `box-custom.tpl` file and extends the default `box-basic` product box of the bare theme. When we added the `{extends}` command of Smarty and chose the correct path, we can now overwrite every part of the product box inside our newly created file:
 
-```smarty
+```html
 {extends file="parent:frontend/listing/product-box/box-basic.tpl"}
 ```
 
 When we take a look at the `box-basic.tpl` file of the bare theme, we can find the `frontend_listing_box_article` block that contains the whole content of the product box. We will take that block and overwrite it completely:
 
-```smarty
+```html
 {block name="frontend_listing_box_article_content"}
 ```
 
 After defining the block we are ready to add some markup to our template file. We can adopt the `box--content` element and the helper class `is--rounded` that adds a border radius to the product box. Inside the `box--content` element we will add an `<a>`, which will later be the hovering layer. We also add some additional information like the `articleName` and `price` properties. The article image will be included from the bare theme with the `{include file="parent: ... "}` tag, with which you can import partials of the inherited theme:
 
-```smarty
+```html
 <div class="box--content is--rounded">
     <a class="box-custom--info" href="{$sArticle.linkDetails|rewrite:$sArticle.articleName}">
         <div class="info--wrapper">

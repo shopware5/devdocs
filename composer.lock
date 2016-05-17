@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9004902c9848b41ead49a8b1feb5940",
-    "content-hash": "c5f7c4a113384e495ab1e3f91ee96d11",
+    "hash": "c52f8a5676c308447c1e2660b60477ab",
+    "content-hash": "34988d46af2d15f4441294917eca1e2f",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
-            "version": "1.8.2",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-client-php.git",
-                "reference": "2166501dfc0efa16c205c1e5b43487a7e325ae63"
+                "reference": "06bc47a5024cfeea5e475f1abd4516cd5bf4fad6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/2166501dfc0efa16c205c1e5b43487a7e325ae63",
-                "reference": "2166501dfc0efa16c205c1e5b43487a7e325ae63",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/06bc47a5024cfeea5e475f1abd4516cd5bf4fad6",
+                "reference": "06bc47a5024cfeea5e475f1abd4516cd5bf4fad6",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,7 @@
             ],
             "description": "Algolia Search API Client for PHP",
             "homepage": "https://github.com/algolia/algoliasearch-client-php",
-            "time": "2016-05-05 12:48:06"
+            "time": "2016-05-10 21:01:23"
         },
         {
             "name": "bcremer/sculpin-commonmark-bundle",
@@ -143,48 +143,6 @@
                 "sculpin"
             ],
             "time": "2015-06-08 07:43:05"
-        },
-        {
-            "name": "components/highlightjs",
-            "version": "8.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/components/highlightjs.git",
-                "reference": "f27b85bc25d6c70c69347e77193688ec562ce2eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/components/highlightjs/zipball/f27b85bc25d6c70c69347e77193688ec562ce2eb",
-                "reference": "f27b85bc25d6c70c69347e77193688ec562ce2eb",
-                "shasum": ""
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "highlight.pack.js"
-                    ],
-                    "files": [
-                        "styles/*"
-                    ],
-                    "shim": {
-                        "exports": "hljs"
-                    }
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Ivan Sagalaev",
-                    "email": "maniac@softwaremaniacs.org",
-                    "homepage": "http://softwaremaniacs.org"
-                }
-            ],
-            "description": "Highlight.js highlights syntax in code examples on blogs, forums and in fact on any web pages.",
-            "time": "2014-12-10 02:08:20"
         },
         {
             "name": "composer/composer",
@@ -1141,83 +1099,6 @@
             "time": "2016-01-25 15:43:01"
         },
         {
-            "name": "kriswallsmith/assetic",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/9928f7c4ad98b234e3559d1049abd13387f86db5",
-                "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.1",
-                "symfony/process": "~2.1|~3.0"
-            },
-            "conflict": {
-                "twig/twig": "<1.23"
-            },
-            "require-dev": {
-                "cssmin/cssmin": "3.0.1",
-                "joliclic/javascript-packer": "1.1",
-                "kamicane/packager": "1.0",
-                "leafo/lessphp": "^0.3.7",
-                "leafo/scssphp": "~0.1",
-                "mrclay/minify": "~2.2",
-                "patchwork/jsqueeze": "~1.0|~2.0",
-                "phpunit/phpunit": "~4.8",
-                "psr/log": "~1.0",
-                "ptachoire/cssembed": "~1.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0",
-                "twig/twig": "~1.8|~2.0"
-            },
-            "suggest": {
-                "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
-                "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
-                "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
-                "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
-                "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
-                "twig/twig": "Assetic provides the integration with the Twig templating engine"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Assetic": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kris Wallsmith",
-                    "email": "kris.wallsmith@gmail.com",
-                    "homepage": "http://kriswallsmith.net/"
-                }
-            ],
-            "description": "Asset Management for PHP",
-            "homepage": "https://github.com/kriswallsmith/assetic",
-            "keywords": [
-                "assets",
-                "compression",
-                "minification"
-            ],
-            "time": "2015-11-12 13:51:40"
-        },
-        {
             "name": "league/commonmark",
             "version": "0.13.2",
             "source": {
@@ -1706,54 +1587,6 @@
                 "stream"
             ],
             "time": "2012-12-14 00:58:14"
-        },
-        {
-            "name": "robloach/component-installer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "0912e09cb1b79de1ebb76becbeb37c3b70937b52"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/0912e09cb1b79de1ebb76becbeb37c3b70937b52",
-                "reference": "0912e09cb1b79de1ebb76becbeb37c3b70937b52",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "kriswallsmith/assetic": "1.*",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "composer/composer": "1.*@alpha",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                },
-                "class": "ComponentInstaller\\ComponentInstallerPlugin"
-            },
-            "autoload": {
-                "psr-0": {
-                    "ComponentInstaller": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Loach",
-                    "homepage": "http://robloach.net"
-                }
-            ],
-            "description": "Allows installation of Components via Composer.",
-            "time": "2016-04-18 13:37:04"
         },
         {
             "name": "sculpin/sculpin",
@@ -3122,7 +2955,6 @@
         "sculpin/sculpin-theme-composer-plugin": 20,
         "dflydev/embedded-composer-console": 20,
         "dflydev/embedded-composer-core": 20,
-        "robloach/component-installer": 20,
         "mavimo/sculpin-redirect-bundle": 20
     },
     "prefer-stable": false,

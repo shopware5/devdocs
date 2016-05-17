@@ -57,7 +57,7 @@ $url = $mediaService->getUrl($thumbnailPath);
 
 In your Smarty templates you may use the `{media path=...}` expression to get the fully qualified URL.
 
-```smarty
+```html
 <img src="{media path="media/image/my-fancy-image.png"}">
 ```
 

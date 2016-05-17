@@ -46,7 +46,7 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 ```
 
 #### SwagExample1/Views/frontend/detail/example1.tpl
-```smarty
+```html
 {block name="frontend_detail_index_detail"}
     {block name="frontend_detail_example"}
         <div class="example--own-topseller">
@@ -83,7 +83,7 @@ First, the template structure is revised. The example1.tpl file is now divided i
 
 The new files contain the following source code:
 #### SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl
-```smarty
+```html
 {block name="frontend_detail_example"}
     <div class="example--own-topseller">
         {block name="frontend_detail_example_headline"}
@@ -104,14 +104,14 @@ The new files contain the following source code:
 ```
 
 #### SwagExample1/Views/emotion/frontend/detail/example1.tpl
-```smarty
+```html
 {block name="frontend_detail_index_detail"}
     {include file="frontend/swag_example1/detail_extension.tpl"}
 {/block}
 ```
 
 #### SwagExample1/Views/responsive/frontend/detail/index.tpl
-```smarty
+```html
 {extends file="parent:frontend/detail/index.tpl"}
 
 {block name="frontend_detail_index_detail"}
@@ -342,19 +342,19 @@ If you want to display message to the shop customer, you can use the __messages_
 Examples:
 
 ##### account/password.tpl - Display a success message.
-```smarty
+```html
 {include file="frontend/_includes/messages.tpl" type="success" content="{s name='PasswordInfoSuccess'}{/s}"}
 ```
 ![Success Message](message-success.png)
 
 ##### account/orders.tpl - Display a warning message.
-```smarty
+```html
 {include file="frontend/_includes/messages.tpl" type="warning" content="{s name='OrdersInfoEmpty'}{/s}"}
 ```
 ![Warning Message](message-warning.png)
 
 ##### blog/comment/form.tpl - Display an error message
-```smarty
+```html
 {include file="frontend/_includes/messages.tpl" type="error" content="{s name='BlogInfoFailureFields'}{/s}"}
 ```
 ![Error Message](message-error.png)
@@ -635,7 +635,7 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 ```
 
 #### SwagExample1/Views/common/frontend/swag_example1/detail_extension.tpl
-```smarty
+```html
 {block name="frontend_detail_example"}
     <div class="example--own-topseller">
         {block name="frontend_detail_example_headline"}
@@ -656,14 +656,14 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 ```
 
 #### SwagExample1/Views/emotion/frontend/detail/example1.tpl
-```smarty
+```html
 {block name="frontend_detail_index_detail"}
     {include file="frontend/swag_example1/detail_extension.tpl"}
 {/block}
 ```
 
 #### SwagExample1/Views/responsive/frontend/detail/index.tpl
-```smarty
+```html
 {extends file="parent:frontend/detail/index.tpl"}
 
 {block name="frontend_detail_index_detail"}

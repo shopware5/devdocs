@@ -25,14 +25,14 @@ The Shopware 5 media manager allows you to upload pictures with large file sizes
 ### Basic image
 This example is the Shopware 5 equivalent to the basic `<img src="">` tag. Instead of applying the `src` attribute, we now have the opportunity to use the `srcset`, which allows us to specify the original thumbnail and its high dpi optimized version in the same attribute. Depending on the screen density, one of the two pictures is displayed. In convention the high dpi display image names are suffixed with a `@2x`.
 
-```smarty
+```html
 <img srcset="product.jpg, product@2x.jpg 2x" alt="Produktfoto">
 ```
 
 ### Picture element
 The `picture` element takes the term "responsive" even a little step further. It is part of the [official W3C standard](http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-picture-element "W3C picture element specifications") and is supported by most of the latest browsers. To ensure support for outdated browsers we are using the `picturefill.js` polyfill. Inside the `picture` element we can define multiple image sources and determine their visibility using a media query like syntax in the `media` attribute. In other words, we can choose which image is displayed at which viewport size. This fits perfectly well with the thumbnails that the thumbnail generator is able to create. The `picture` element also contains a default `img` tag, in cases the `media` attributes do not match the browser viewport.
 
-```smarty
+```html
 <picture>
     <source media="(min-width: 64em)" srcset="product-large.jpg, product-large@2x.jpg 2px">
     <source media="(min-width: 48em)" srcset="product-medium.jpg, product-medium@2px.jpg 2px">

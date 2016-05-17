@@ -5,16 +5,11 @@
     "sculpin/sculpin-theme-composer-plugin": "@dev",
     "dflydev/embedded-composer-console": "@dev",
     "dflydev/embedded-composer-core": "@dev",
-    "robloach/component-installer": "dev-master",
-    "components/highlightjs": "~8.4.0",
     "bcremer/sculpin-less-bundle": "~0.1",
     "mavimo/sculpin-redirect-bundle": "@dev",
     "bcremer/sculpin-commonmark-bundle": "^0.4.0",
     "webuni/commonmark-table-extension": "^0.4.0",
     "algolia/algoliasearch-client-php": "^1.6"
-  },
-  "config": {
-    "component-dir": "source/components"
   },
   "autoload": {
     "psr-4": {

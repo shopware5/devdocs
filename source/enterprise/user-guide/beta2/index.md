@@ -40,9 +40,17 @@ look at all the actions you are able to perform here.
 
 As the EDB ist able to install / clone your shops from servers, it requires some privileges to access those machines.
 As such, before you can register those servers on the EDB, you must first ensure that they meet a defined set of requirements
-in order for them to be accessible by the EDB. The server configuration process is detailed
-[here](/enterprise/tech-guide/shopware-server-configuration-guide). Once you have configured your server to meet all
-requirements, you can then register it in the EDB's server tab.
+in order for them to be accessible by the EDB.
+
+Make sure you have:
+
+* A Host or IP Address
+* The foreign SSH user
+* MySQL Credentials
+* Enabled passwordless SSH access through the EDBs background process, including adding the new system to the *known hosts* 
+
+The detailed server configuration process can be found [here](/enterprise/tech-guide/shopware-server-configuration-guide). 
+Once you have configured your server to meet all requirements, you can then register it in the EDB's server tab.
 
 Besides creating servers, you can also remove them. Keep in mind that you can only remove servers that no longer have
 registered shops in them. Both adding and removing servers in the EDB's server tab doesn't perform any actual changes

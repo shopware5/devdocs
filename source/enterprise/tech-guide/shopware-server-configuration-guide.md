@@ -31,24 +31,26 @@ The Enterprise Dashboard uses [Ansible](http://www.ansible.org) for it's client 
 
 ##### MySQL Deployment User Setup
 
-* Username: *edb-deploy*
-* Password: *edb-deploy*
+* Password optional
+* The MySQL server can be on another system, the Host can be configured, but must be accessible through this system.
 * Needs privileges to create databases
 
 ##### Unix Deployment User Setup
 
-* Username: *edb-deploy*
+* A unix user with SSH access
 * Needs a home directory
 * Needs to be part of the web server group
-* Web server needs to be part of edb-deploy group
+* Web server needs to be part of this users group
 * Needs access to the */tmp* directory
-* Needs to own the directory directory where new shops can be installed
+* Needs to own the directory where new shops can be installed
 
 ## HowTo: Setup on Ubuntu 14.04
 
 This HOWTO should help you understand the requirements postulated above, but be aware that based on your specific
 operating system and version the commands you actually have to execute may differ vastly. We assume that you
 have already setup a system that is capable of executing Shopware and has an configured apache host.
+
+> Notice: Although all usernames and passwords can be configured for each server individually, we will use `edb-deploy` for this guide. Feel free to change the names and passwords.
 
 First you create a MySQL user that has full access from the current host:
 

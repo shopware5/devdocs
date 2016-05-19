@@ -34,7 +34,7 @@ $this->get('shopware_account.address_service')->create($address, $customer);
 
 ### Update an address
 
-Updating an address is almost the same like creating one. The only difference is, that you don't have to provide the customer anymore since the address is already associated with him.
+Updating an address is almost the same like creating one. The only difference is, that you don't have to provide the customer since the address is already associated with it.
 
 Pretending that you already fetched an address in `$address`, your update call might look like this:
 
@@ -81,7 +81,7 @@ The address form also supports attributes. They will automatically be mapped to 
 
 ### Custom data
 
-If you don't want to use attributes, e.g. for temporary data transfer or non persistent data, you can use the `additional` field. The address model now contains a new property `additional` which is declared as an array, a key/value store to be exact.
+If you don't want to use attributes, e.g. for temporary data transfer or non persistent data, you can use the `additional` field. The address model now contains a new property `additional` which is declared as an array, a key/value store to be exact. This array will be filled with these form fields, you've added earlier using the event (see Example #1 below).
 
 To correctly map the submitted data to your new fields, you have to follow the convention of using the additional array as field name like:
 
@@ -89,9 +89,7 @@ To correctly map the submitted data to your new fields, you have to follow the c
 <input type="text" name="address[additional][neighboursName]" />
 ```
 
-The address model now contains a new property `additional` which is declared as an array, a key/value store to be exact. This array will be filled with that form fields, you've added earlier using the event (see Example #1 below).
-
-You now have access to your data using `$address->getAdditional()`. The first example will show you how to add fields to the address form.
+You have access to your data by using `$address->getAdditional()`. The first example will show how to add fields to the address form.
 
 #### Example #1: Adding a new field
 

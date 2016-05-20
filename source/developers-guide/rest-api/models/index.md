@@ -7,6 +7,31 @@ indexed: false
 
 <div class="toc-list" data-depth="1"></div>
 
+## Address
+
+* **Model:** Shopware\Models\Customer\Address
+* **Table:** s_user_addresses
+
+### Structure
+
+| Field                    | Type                  | Original object                                 |
+|--------------------------|-----------------------|-------------------------------------------------|
+| id				       | integer (primary key) | 							                     |                          |
+| company                  | string                |       											 |                             |
+| department               | string                |       											 |                             |
+| salutation               | string                |       											 |                             |
+| firstname                | string                |       											 |                             |
+| lastname                 | string                |       											 |                             |
+| street                   | string                |       											 |                             |
+| zipcode                  | string                |       											 |                             |
+| city                     | string                |       											 |                             |
+| phone                    | string                |       											 |                             |
+| vatId                    | string                |       											 |                             |
+| additionalAddressLine1   | string                |       											 |                             |
+| additionalAddressLine2   | string                |       											 |                             |
+| country	               | int (foreign key)	   | **[Country](../models/#country)**               |                             |
+| state	                   | int (foreign key)	   |                                                 |                             |
+| attribute                | array                 | 												 |		                      |
 
 ## Article Attribute
 

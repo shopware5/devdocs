@@ -24,6 +24,7 @@ To get more details about the data provided by each specified resource, click on
 
 | Name                                                              |  Access URL                 | GET                | GET (List)      | PUT             | PUT (Batch)      | POST             | DELETE          | DELETE (Batch)  |
 |-------------------------------------------------------------------|-----------------------------|--------------------|-----------------|-----------------|------------------|------------------|-----------------|-----------------|
+| **[Address](api-resource-address/)**                              |  /api/addresses             |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png) | ![No](img/no.png)  | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![No](img/no.png) |
 | **[Article](api-resource-article/)**                              |  /api/articles              |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png) | ![Yes](img/yes.png)  | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
 | **[Cache](api-resource-cache/)**                  				|  /api/caches                |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![No](img/no.png)   | ![No](img/no.png)    | ![No](img/no.png)    | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
 | **[Categories](api-resource-categories/)**				        |  /api/categories            |  ![Yes](img/yes.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png) | ![No](img/no.png)    | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![No](img/no.png)   |

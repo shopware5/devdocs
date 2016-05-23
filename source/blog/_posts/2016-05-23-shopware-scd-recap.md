@@ -29,3 +29,7 @@ At the end we have build back our counters in record time and after the we went 
 Conclusion:
 
 The SCD 2016 was amazing. Even as an employee. Even though I have seen barely more then the Deepsea Labs. And I am already looking forward to the next SCD, I am curious where our journey will lead to and what we will encounter in the next months, and if we can amaze the people again, just like this year :)
+
+<br>
+
+First published on: <a href="http://sven-finke.de/2016/05/community-day-2016/">sven-finke.de</a>

@@ -35,6 +35,13 @@ authors:
       github: https://github.com/Phil23
       url: https://www.facebook.com/phil.schuch
       bio: I am a web-developer in the frontend department of shopware. I test new technologies to create forward thinking user experience.
+  sf:
+      name: Sven Finke
+      title: Developer Connect
+      twitter: https://twitter.com/svenfinke
+      github: https://github.com/svenfinke
+      url: http://sven-finke.de
+      bio: I am a web-developer in the Shopware Connect team. I am interested in new technologies and like to experience them in a playful way to experience its limits and find real-world scenarios to use them.
 
   hd:
       name: Dennis Höting

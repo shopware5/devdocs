@@ -22,6 +22,12 @@ Download the required software:
 
  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
  - [Vagrant](https://www.vagrantup.com/downloads)
+  
+ Additional Information for VirtualBox setup (Windows), or you get errors like "error downloading the file" without any further explanation:
+- make sure VirtualBox supports 64bit Guest Systems, if only 32 bit is supported check if:
+  - your host OS is a 64 bit system
+  - Intel Virtualization Technology and VT-d are both(!) enabled
+  - the Hyper-V platform is disabled in the Windows Features list
 
 The provisioning is done directly on your new virtual machine by [Ansible](http://www.ansibleworks.com/docs/).
 

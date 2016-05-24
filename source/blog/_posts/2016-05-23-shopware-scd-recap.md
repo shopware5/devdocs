@@ -13,22 +13,26 @@ indexed: true
 github_link: blog/_posts/2016-05-23-shopware-scd-recap.md
 ---
 
-Last friday was the Shopware Community Day 2016 - aka SCD. My frist Community Day as a shopware employee. It was different. But great.
+Last Friday was the Shopware Community Day 2016 - aka SCD – and my first Community Day as a Shopware employee. The whole experience was different to say the least, but I mean that in the best way possible.
 
-As naive as I am, I imagined that I could visit the different talks just like I would normally do. Like a visitor. Or strave around the grounds of the SCD. Like a visitor. How foolish. This idea was smashed quite a few days before the SCD started and I abandoned the idea of poodling around the whole day. Of course.
+I naïvely imagined I would spend the day attending various interesting presentations and visiting the exhibition hall, just as I would normally do as a visitor. How foolish I was – of course, I abandoned my idea of moseying about just a few days leading up to the event. 
 
-But as lucky as I am, this is Shopware. Not any other ordinary company. So we had a few tasks in addition to the general roomkeeping, the ordinary sales talks and playing the general servant. I was lucky enough to be assigned to the Deepsea Labs as a stand-by man. Again, lucky enough, the lab was not as deepsea as the name suggested so I kept my feet dry. In the Labs we had the nice task to explain different bleeding edge technologies, devices and toys to our visitors and customers. These tools were boroughed from our Open Device Lab, and as time and space were limited we have shown these:
-Amazon Echo, Amazon Echo Dot, Amazon Dash, Myo Band, Muse Headband, Microsoft Kinect, Oculus Rift, Samsung Gear VR, VR Headset from Zeiss, HTC Vive, Beacons, LifX Light Bulbs, Google's project Tango and the LEAP motion... that should've been it. I guess. Its quite a lot of stuff and most of it has not been seen or experienced my most of our visitors. At least the reactions second this. Many of them were amazed an stunned by the way especially VR works and how smooth it is.
+Fortunately, this is Shopware and not any ordinary company event. There was plenty to do besides general housekeeping and as luck would have it, I was assigned as a sprinter to the Deep Sea Labs (which, contrary to what the name suggests, keeps you on land). 
 
-As I was a stand-by man, one might guess that I had quite a lot of spare time. In reality I was jumping in between the different counters (HTC Vive, other VR stuff, LEAP motion and the "internet of things") and had a lot of interesting conversations with all kind of different people. In addition to this I set up the "new" computer that we had to use for the Oculus, as the one that was planned died away just about half an hour before the first visitors arrived. So much fun. 
+Since our motto this year was “Digital Blue”, the Deep Sea Labs was designed as a space where visitors could explore different bleeding edge technologies, devices and toys, thus inspiring them to discover the uncharted depths of the digital ocean. These gadgets came from our Open Device Lab, which we use at the Shopware headquarters for purposes of research and development. 
 
-So there was not all too much of spare time to discover the different counters in the fair, attend in talks or take a rest. But I somehow managed to go to the Shopware connect talk, as I am working on this project and I was eager to see and hear the reactions. And in the evening - just right before they closed - I managed to try the ocean dive. A drop from about 8m into a big cushion. The heaviest part was not the jumping, but getting out of that wobbly mess... But it was awesome :)
+Since time and space is limited, we brought along devices which we consider most important for the future of online retail, including: Amazon Echo, Amazon Echo Dot, Amazon Dash, Myo Band, Muse Headband, Microsoft Kinect, Oculus Rift, Samsung Gear VR, VR Headset from Zeiss, HTC Vive, Beacons, LifX Light Bulbs, Google's project Tango and the LEAP motion. As you can imagine, there was quite a lot to talk about and test, and for most visitors, it was their first opportunity to experience these devices. Many visitors were particularly shocked by how smooth VR works, which inspired conversations about its application in eCommerce. 
 
-At the end we have build back our counters in record time and after the we went to the bamboo for the first beers and burgers of the day. And for the great after show party. It was amazing! Even though we had a little bit of rain in between... But somewhen my voice cracked away, my head was throbbing and I was pretty tired... so I grabbed my phone, called my wife and went home.
+Since I was on stand-by, I thought there would be a bit of downtime. Wrong again! I was busy throughout the entire event, jumping between the different stations (HTC Vive, other VR gadgets, LEAP motion and the "internet of things") and speaking with visitors with various technical backgrounds. In addition, I was able to set up the “new” computer for the Oculus Rift, since the original computer died only a half an hour before the visitors arrived. The entire experience was a whirlwind, and I enjoyed every minute of it.  
+
+In total, there wasn’t a lot of spare time to explore the different counters, attend talks or pause for a rest. However, I did manage to make it to the Shopware Connect talk, which is especially interesting for me since this is my core project at Shopware and I was eager to hear the audience’s reaction. Later in the evening, I was also able to try the Shopware Ocean Jump (powered by PayPal) right before they closed. This was a free-fall from about 8m into a giant cushion. The most challenging part wasn’t the jumping, rather the gymnastics required to get out of the cushion.
+
+At the end of the conference, we packed up our counters in record time and made our way to the Bamboo club to enjoy burgers and beers. The after show party was definitely the most impressive I’ve seen from any company event. 
 
 Conclusion:
 
-The SCD 2016 was amazing. Even as an employee. Even though I have seen barely more then the Deepsea Labs. And I am already looking forward to the next SCD, I am curious where our journey will lead to and what we will encounter in the next months, and if we can amaze the people again, just like this year :)
+The SCD 2016 was amazing. Period. Even as an employee. Although I didn’t experience much more than the Deep Sea Labs, I am already looking forward the SCD 2017 and am curious to see where our journey will lead, what we’ll encounter this the upcoming year and if we can amaze our Community again, just as we did this year. 
+
 
 <br>
 

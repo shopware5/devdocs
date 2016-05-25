@@ -692,7 +692,7 @@ indexed: false
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id 	         	  | integer (primary key) |                                                 |
-| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer/)**        |
+| customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer/)**       |
 | countryId       	  | integer (foreign key) | **[Country](#country)**                         |
 | stateId       	  | integer (foreign key) | 		                                        |
 | company			  | string				  |													|
@@ -775,7 +775,7 @@ indexed: false
 
 | Field                 | Type                  | Original object                                 |
 |-----------------------|-----------------------|-------------------------------------------------|
-| id            	    | integer (primary key  |                                                 |
+| id            	    | integer (primary key) |                                                 |
 | name                  | string                |                                                 |
 | image                 | string                |                                                 |
 | link                  | string                |                                                 |

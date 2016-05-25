@@ -30,8 +30,22 @@ indexed: false
 | additionalAddressLine1   | string                |       											 |                             |
 | additionalAddressLine2   | string                |       											 |                             |
 | country	               | int (foreign key)	   | **[Country](../models/#country)**               |                             |
-| state	                   | int (foreign key)	   |                                                 |                             |
+| state	                   | int (foreign key)	   | **[State](#state)**                             |                             |
 | attribute                | array                 | 												 |		                      |
+
+## Area
+
+* **Model:** Shopware\Models\Country\Area
+* **Table:** s_core_countries_areas
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id 	         	  | integer (primary key) |                                                 |
+| name                | string                |                                                 |
+| active          	  | boolean               |                                                 |
+| countries     	  | object array          | **[Country](#country)**                         |
 
 ## Article Attribute
 
@@ -228,7 +242,8 @@ indexed: false
 | iso3				  		  | string				  | 												|
 | displayStateInRegistration  | boolean				  | 												|
 | forceStateInRegistration	  | boolean				  | 												|
-| areaId					  | integer				  | 												|
+| areaId					  | integer	(foreign key) | **[Area](#area)**     					        |
+| states                      | object array          | **[State](#state)**                             |
 
 ## Currency
 
@@ -694,7 +709,7 @@ indexed: false
 | id 	         	  | integer (primary key) |                                                 |
 | customerId       	  | integer (foreign key) | **[Customer](../api-resource-customer/)**       |
 | countryId       	  | integer (foreign key) | **[Country](#country)**                         |
-| stateId       	  | integer (foreign key) | 		                                        |
+| stateId       	  | integer (foreign key) | **[State](#state)**                             |
 | company			  | string				  |													|
 | department		  | string				  |													|
 | salutation		  | string				  |													|
@@ -765,6 +780,22 @@ indexed: false
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id            	    | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | name                  | string                |                                                       |
+
+## State
+
+* **Model:** Shopware\Models\Country\State
+* **Table:** s_core_countries_states
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id            	    | integer (primary key) |                                                 |
+| countryId             | integer (foreign key) | **[Country](../api-resource-countries/)**       |
+| position              | integer               |                                                 |
+| name                  | string                |                                                 |
+| shortCode             | string                |                                                 |
+| active                | boolean               |                                                 |
 
 ## Supplier
 

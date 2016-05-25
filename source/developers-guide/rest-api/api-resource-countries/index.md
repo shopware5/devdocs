@@ -2,6 +2,7 @@
 layout: default
 title: REST API - Countries Resource
 github_link: developers-guide/rest-api/api-resource-countries/index.md
+shopware_version: 5.2
 indexed: false
 ---
 

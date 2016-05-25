@@ -15,7 +15,7 @@ github_link: blog/_posts/2016-05-25-shopware-scd-recap.md
 
 Last Friday was the Shopware Community Day 2016 - aka SCD – and my first Community Day as a Shopware employee. The whole experience was different to say the least, but I mean that in the best way possible.
 
-I naïvely imagined I would spend the day attending various interesting presentations and visiting the exhibition hall, just as I would normally do as a visitor. How foolish I was – of course, I abandoned my idea of moseying about just a few days leading up to the event. 
+I naively imagined I would spend the day attending various interesting presentations and visiting the exhibition hall, just as I would normally do as a visitor. How foolish I was – of course, I abandoned my idea of moseying about just a few days leading up to the event. 
 
 Fortunately, this is Shopware and not any ordinary company event. There was plenty to do besides general housekeeping and as luck would have it, I was assigned as a sprinter to the Deep Sea Labs (which, contrary to what the name suggests, keeps you on land). 
 

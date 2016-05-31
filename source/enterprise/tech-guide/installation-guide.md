@@ -23,7 +23,7 @@ Since the Enterprise Dashboard not only has a webfrontend that is served through
 - MySQL
 - Ansible Version 2.0+
 - Beanstalk Version 1.4+, with a max job size of at least `65533 Byte`
-- Supervisor 3.0+ 
+- Supervisor 3.0+ with configured RPC access
 - A distinct shell user for SSH access to the connected shop servers 
 - The EDB requires to be run from the root of an apache host, prepare a domain
 - Set PHP *(cli & apache2)* and MySQL timezone to UTC
@@ -54,7 +54,30 @@ apt-get install beanstalkd
 apt-get install ansible
 ````
 
-Then create a shell user under which the background processes will be executed
+First we enable the RPC access for supervisor. Start editing the file. 
+
+````shell
+vi /etc/supervisor/init.d/rpc.conf
+````
+
+And paste this content:
+
+````ini
+[inet_http_server]
+port = *:9001
+username = edb-supervisor-rpc
+password = edb-supervisor-rpc
+````
+
+This binds the Port 9001 to the supervisor RPC-API. To enable the configuration we need to restart the supervisor service.
+ 
+````shell
+service supervisor restart
+````
+
+Now the EDB has access to the current status of it's background processes.
+
+Next we create a shell user under which the background processes will be executed
 
 ````shell
 useradd edb-supervisor -s /bin/bash -m

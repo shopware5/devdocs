@@ -117,7 +117,7 @@ The file path of the `extends` function call has to match the directory structur
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 ```
 
-Had we chosen not to use the `extends` function call, the content of the `shop-navigation.tpl` file from the inherited theme would be ignored when redering our theme, and our empty file would be used instead.
+Had we chosen not to use the `extends` function call, the content of the `shop-navigation.tpl` file from the inherited theme would be ignored when rendering our theme, and our empty file would be used instead.
 
 You can find a complete guide to the template inheritance in the [Smarty 101 guide](https://developers.shopware.com/designers-guide/smarty/#template-inheritance).
 

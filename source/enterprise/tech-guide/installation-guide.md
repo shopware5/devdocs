@@ -21,7 +21,7 @@ Since the Enterprise Dashboard not only has a webfrontend that is served through
 - PHP 5.6 or later (PHP 7 recommended) including CLI support, with extensions gd, zip, curl, intl, pdo and pdo_mysql
 - Apache2 web server including mod_rewrite
 - MySQL
-- Ansible Version 2.0+
+- Ansible Version 2.0.*
 - Beanstalk Version 1.4+, with a max job size of at least `65533 Byte`
 - Supervisor 3.0+ with configured RPC access
 - A distinct shell user for SSH access to the connected shop servers 

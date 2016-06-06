@@ -556,7 +556,6 @@ indexed: false
 | description      	  | string				  | 		                                        |
 | position			  | integer				  | 												|
 | group		      	  | string				  | 		                                        |
-| sendMail			  | boolean				  | 												|
 
 ## Payment Data
 

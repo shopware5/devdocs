@@ -25,7 +25,7 @@ The `Shopware\Bundle\AttributeBundle` contains the following services:
 | `Shopware\Bundle\AttributeBundle\Service\TypeMapping`     | shopware_attribute.type_mapping | Contains all defined data types which can be used for table columns |
 
 ## Attribute data types
-The attribute data types are store in the `Shopware\Bundle\AttributeBundle\Service\TypeMapping` class. Each type is defined in a unified format and the corresponding sql and elastic search format.
+The attribute data types are stored in the `Shopware\Bundle\AttributeBundle\Service\TypeMapping` class. Each type is defined in a unified format and the corresponding sql and elastic search format.
 Following types are supported:
 
 | Unified type        | SQL type           | Backend view  |
@@ -126,8 +126,8 @@ class SwagAttribute extends Plugin
 ```
 
 ### Backend view configuration
-All above examples only creates or updates the attribute table schema but won't display the attribute in the corresponding backend module.
-The backend view configuration can be configured over the `$data` parameter which can contains all properties of the `\Shopware\Models\Attribute\Configuration`.
+All above examples only create or update the attribute table schema but won't display the attribute in the corresponding backend module.
+The backend view configuration can be configured over the `$data` parameter which can contain all properties of the `\Shopware\Models\Attribute\Configuration`.
 
 ```
 <?php
@@ -146,7 +146,7 @@ class SwagAttribute extends Plugin
         $service->update('s_articles_attributes', 'my_column', 'combobox', [
             'label' => 'Field label',
             'supportText' => 'Value under the field',
-            'helpText' => 'Value which displayed inside a help icon tooltip',
+            'helpText' => 'Value which is displayed inside a help icon tooltip',
 
             //user has the opportunity to translate the attribute field for each shop
             'translatable' => true,
@@ -175,8 +175,8 @@ class SwagAttribute extends Plugin
 
 ## ExtJS extensions
 ### Shopware.attribute.Form
-All attributes are defined, loaded and saved over the `Shopware.attribute.Form`. It requires only the attribute table generated all fields dynamically.
-The following example shows it can be used to display, load and save customer attributes:
+All attributes are defined, loaded and saved over the `Shopware.attribute.Form`. It requires only the attribute table and generates all fields dynamically.
+The following example shows how to display, load and save customer attributes:
 ```
 me.attributeForm = Ext.create('Shopware.attribute.Form', {
     table: 's_user_attributes'
@@ -189,7 +189,7 @@ me.attributeForm.saveAttribute(me.customerRecord.get('id'));
 
 
 ### Hook into the backend definition
-To define an own backend view for an attribute, it is required to extend the `Shopware.attribute.Form`. Each attribute type is generated over a corresponding handler class which defined in the form.
+For defining an own backend view for an attribute, it is required to extend the `Shopware.attribute.Form`. Each attribute type is generated over its corresponding handler class which is defined in the form.
 The following example registers an additional handler to modify the backend view of an attribute:
 ```
 //{block name="backend/base/attribute/form"}
@@ -238,7 +238,7 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 
 //{/block}
 ```
-The `supports` function is called for each handler till one handler returns `true`. The `create` function creates the field definition for the attribute. It is recommended to use `Ext.apply(field, { })` to support all core features like translation, help text, support text ...
+The `supports` function is called for each handler until one handler returns `true`. The `create` function creates the field definition for the attribute. It is recommended to use `Ext.apply(field, { })` to support all core features like translation, help text, support text ...
 This extension has to be loaded over the `Enlight_Controller_Action_PostDispatch_Backend_Base` event.
 ```
 <?php
@@ -282,7 +282,7 @@ class SwagAttribute extends Plugin
 ```
 
 ### Add own backend validation
-It is possible to add own validations for each attribute field. In the above example, the `my_column` attribute is defined over an own field handler.
+It is possible to add own validations for each attribute field. In the example above, the `my_column` attribute is defined over an own field handler.
 Following example shows how to apply different validations to an ExtJs field.
 ```
 //{block name="backend/base/attribute/form"}
@@ -334,12 +334,12 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 //{/block}
 ```
 
-This example only shows a small validation to `allowBlank: false` and defines a min string length of 10. ExtJS supports different validation functions for an `Ext.form.field.Base`, for more information see:
-http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.form.field.VTypes
+This example only shows a small validation to `allowBlank: false` and defines a minimum string length of 10. ExtJS supports different validation functions for an `Ext.form.field.Base`, for more information see:
+[ExtJs Docs](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.form.field.VTypes)
 
 ### Define own backend view
 In some cases it is required to define an own view for the backend attribute which is not kind of the default view elements.
-For this cases it is possible to use the `Ext.form.field.Base` class as mixin which allows to define an form fields for ExtJs.
+For this cases it is possible to use the `Ext.form.field.Base` class as mixin which allows to define an form field for ExtJs.
 The following example shows how to create an view element with three text fields inside.
 
 ```

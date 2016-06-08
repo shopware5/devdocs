@@ -17,7 +17,7 @@ class SwagAttribute extends Plugin
 
     public function install(InstallContext $context)
     {
-        $context->scheduleClearCache(PluginContext::CACHE_LIST_DEFAULT);
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_DEFAULT);
 
         $service = $this->container->get('shopware_attribute.crud_service');
 

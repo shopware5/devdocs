@@ -50,11 +50,11 @@ Following types are supported:
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->update('s_articles_attributes', 'my_column', 'string');
@@ -70,11 +70,11 @@ Creates a new attribute in the database, which is not configurable for the shop 
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->update('s_articles_attributes', 'my_column', 'text');
@@ -90,11 +90,11 @@ Updates the existing `my_column` attribute with the new provided data type `text
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->update('s_articles_attributes', 'my_column', 'text', [], 'my_new_column_name');
@@ -113,11 +113,11 @@ The `update` function supports this functionality by providing `true` for parame
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->update('s_user_addresses_attributes', 'my_column', 'text', [], null, true);
@@ -135,11 +135,11 @@ The backend view configuration can be configured over the `$data` parameter whic
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
 
@@ -246,11 +246,11 @@ This extension has to be loaded over the `Enlight_Controller_Action_PostDispatch
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
 
@@ -259,7 +259,7 @@ class SwagAttribute extends Plugin
             'displayInBackend' => true
         ]);
 
-        $context->scheduleClearCache(PluginContext::CACHE_LIST_DEFAULT);
+        $context->scheduleClearCache(InstallContext::CACHE_LIST_DEFAULT);
     }
 
     public static function getSubscribedEvents()
@@ -510,11 +510,11 @@ namespace SwagAttribute;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Shopware\Components\Plugin;
-use Shopware\Components\Plugin\PluginContext;
+use Shopware\Components\Plugin\Context\InstallContext;
 
 class SwagAttribute extends Plugin
 {
-    public function install(PluginContext $context)
+    public function install(InstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
 

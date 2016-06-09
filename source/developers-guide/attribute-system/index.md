@@ -851,3 +851,5 @@ Attributes are loaded automatically with the entity they belong to. To display t
 {/block}
 ```
 
+
+Plugin Download: [SwagAttribute.zip](/exampleplugins/SwagAttribute.zip)

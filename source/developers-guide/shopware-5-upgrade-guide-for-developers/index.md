@@ -77,6 +77,11 @@ The account section and registration have been refactored to continue the refact
 
 ### Address management
 
+<div class="alert alert-info">
+<strong>Important tasks after updating to Shopware 5.2</strong><br/>
+Existing adresses including their attributes have been migrated into <code>s_user_addresses</code>. Please verify that all addresses have been merged completely. Addresses have been read from <code>s_user_billingaddress</code>, <code>s_user_shippingaddress</code>, <code>s_order_billingaddress</code>, <code>s_order_shippingaddress</code>.
+</div>
+
 The address management allows a customer to manage more than only one address which gets changed with every order. The customer is now able to create more address, e.g. for home and work, and use them later on in an order without loosing all existing address data. He can just change the reference to the default billing address, instead of changing it entirely.
 
 * Shopware versions prior to 5.2 were using the tables `s_user_billingaddress` and `s_user_shippingaddress` which have now been marked as deprecated as well as their associated models `\Shopware\Models\Customer\Billing` and `\Shopware\Models\Customer\Shipping`. Their association in `\Shopware\Models\Customer\Customer` will be removed with Shopware version 5.3. Please use `s_user_addresses` and it's model `\Shopware\Models\Customer\Address` instead.
@@ -84,6 +89,7 @@ The address management allows a customer to manage more than only one address wh
     * Changes to the old models or tables **won't** be synchronised to the new model and will be overwritten in case that the default billing or shipping address model changes.
 * The new model is associated with the customer using the `$defaultBillingAddress` and `$defaultShippingAddress` properties. The associations are no longer managed by the customer which implies, that you have to use the new `shopware_account.address_service` to make changes to addresses.
 * Selecting another address in the checkout results in a change of the session key `checkoutBillingAddressId` or `checkoutShippingAddressId` with the corresponding address id. After the order has been saved, the session keys will be reset.
+* The customer api endpoint now uses the structure of the address model, instead of the billing or shipping model
 * The checkout templates have been rewritten which results in changed and removed blocks.
     * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE.md).
 
@@ -215,6 +221,31 @@ To learn more about the new attribute management, refer to the [README.md](https
 * Replaced `bower` with `npm` to manage the frontend dependencies
     * Removed the file `vendors/less/open-sans-fontface/open-sans.less`. It's now located under `public/src/less/_components/fonts.less`
     * The dependencies can now be installed using the command: `npm install && npm run build`
+* Replaced all occurrences with one unified product slider
+    * Created template files
+        * `themes/Frontend/Bare/frontend/_includes/product_slider.tpl`
+        * `themes/Frontend/Bare/frontend/_includes/product_slider_item.tpl`
+        * `themes/Frontend/Bare/frontend/_includes/product_slider_items.tpl`
+    * Created template blocks
+        * `frontend_common_product_slider_config`
+        * `frontend_common_product_slider_component`
+        * `frontend_common_product_slider_container`
+        * `frontend_common_product_slider_items`
+        * `frontend_common_product_slider_item_config`
+        * `frontend_common_product_slider_item`
+    * Removed template blocks
+        * `checkout_ajax_add_cross_slider_item`
+        * `frontend_detail_index_streams_slider_container`
+        * `frontend_detail_index_similar_slider_item`
+        * `widget_emotion_component_product_slider`
+        * `widgets_listing_top_seller_slider_container`
+        * `widgets_listing_top_seller_slider_container_inner`
+        * `widgets_listing_top_seller_slider_container_include`
+        * `frontend_detail_index_also_bought_slider_inner`
+        * `frontend_detail_index_similar_viewed_slider_inner`
+        * `frontend_widgets_slide_articles_item`
+    * Removed template files
+        * `themes/Frontend/Bare/widgets/emotion/slide_articles.tpl`
 
 ### Deprecations
 
@@ -434,6 +465,13 @@ To learn more about the new attribute management, refer to the [README.md](https
     * `Shopware\Bundle\PluginInstallerBundle\Service\InstallerService::getPluginBootstrap()`
     * `Shopware\Models\Menu\Menu::setStyle()`
     * `Shopware\Models\Menu\Menu::getStyle()`
+    * `Shopware_Controllers_Frontend_Account::validatePasswordResetForm()`
+    * `Shopware_Controllers_Frontend_Account::resetPassword()`
+    * `Shopware_Controllers_Backend_ImportExport::getCustomerRepository()`
+    * `Shopware_Controllers_Backend_ImportExport::exportCustomersAction()`
+    * `Shopware_Controllers_Backend_ImportExport::importCustomers()`
+    * `Shopware_Controllers_Backend_ImportExport::saveCustomer()`
+    * `Shopware_Controllers_Backend_ImportExport::prepareCustomerData()`
     * The following repository methods no longer select attributes or have been removed entirely
         * `\Shopware\Models\Article\Repository::getSupplierQueryBuilder()`
         * `\Shopware\Models\Banner\Repository::getBannerMainQuery()`
@@ -478,6 +516,9 @@ To learn more about the new attribute management, refer to the [README.md](https
 * Global
     * `client_check`
     * `referer_check`
+    * jQuery controller endpoints
+        * `ajax_login`
+        * `ajax_logout`
 * Blog
     * `media.path`
 * Banner mappings

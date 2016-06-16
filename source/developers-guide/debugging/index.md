@@ -179,7 +179,6 @@ In many cases, you will have no alternative but to debug using `console.log()` c
     
     A correct example might look like this:
     
-    
     ```
     // good example
     fields = [
@@ -187,3 +186,7 @@ In many cases, you will have no alternative but to debug using `console.log()` c
         { name:"another test" },
     ]
     ```
+
+### Tools
+
+The Chrome extension [App Inspector for Sencha™](https://chrome.google.com/webstore/detail/app-inspector-for-sencha/pbeapidedgdpniokbedbfbaacglkceae) might also be very useful.

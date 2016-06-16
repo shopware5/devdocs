@@ -17,8 +17,9 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ### System requirements changes
 
-The required PHP version is now **PHP 5.6.4 or higher**. Please check your system configuration and update your PHP version
-if necessary. If you are using a PHP version prior to 5.6.4 there will be errors.
+The required PHP version is now **PHP 5.6.4 or higher**. Please check your system configuration and update your PHP version if necessary. If you are using a PHP version prior to 5.6.4 there will be errors.
+
+The required IonCube Loader version was bumped to 5.0 or higher.
 
 ### Shopping worlds
 
@@ -215,6 +216,7 @@ To learn more about the new attribute management, refer to the [README.md](https
 * Updated Symfony Components to version 2.8 LTS
 * Updated `monolog/monolog` to version 1.17.2
 * Updated `ongr/elasticsearch-dsl` to v2.0.0, see [ElasticsearchDSL changelog](https://github.com/ongr-io/ElasticsearchDSL/blob/master/CHANGELOG.md#v200-2016-03-03) for backwards compatibility breaks.
+* Updated `elasticsearch/elasticsearch` to v2.2.0
 
 ### Replacements
 
@@ -270,6 +272,16 @@ To learn more about the new attribute management, refer to the [README.md](https
 * `Shopware\Models\Article\Element`.
 * `Shopware\Models\Customer\Billing`.
 * `Shopware\Models\Customer\Shipping`.
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::getContext`
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::getProductContext`
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::getLocationContext`
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::initializeContext`
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::initializeLocationContext`
+* `Shopware\Bundle\StoreFrontBundle\Service\ContextServiceInterface::initializeProductContext`
+* `Shopware\Bundle\StoreFrontBundle\Struct\LocationContext`
+* `Shopware\Bundle\StoreFrontBundle\Struct\ProductContext`
+* `Shopware\Bundle\StoreFrontBundle\Struct\LocationContextInterface`
+* `Shopware\Bundle\StoreFrontBundle\Struct\ProductContextInterface`
 * Database field `s_articles_prices.baseprice`. All data is left intact but this field is not used in shopware anymore and will be dropped in a future version.
 
 ### Removals
@@ -360,6 +372,7 @@ To learn more about the new attribute management, refer to the [README.md](https
 #### Classes
 
 * Unused
+    * `Shopware\Bundle\StoreFrontBundle\Struct\Context`
     * `Shopware_Components_Menu_Item`
     * `Shopware_Components_Menu_SaveHandler_DbTable`
     * `Shopware_Models_Payment`
@@ -555,6 +568,10 @@ To learn more about the new attribute management, refer to the [README.md](https
     * Now expects `ProductContextInterface` instead of `ShopContextInterface`
 * `Shopware\Bundle\StoreFrontBundle\Service\Core\CheapestPriceService::get`
     * Now expects `ProductContextInterface` instead of `ShopContextInterface` and `ListProduct` instead of `BaseProduct`
+* `Shopware\Bundle\SearchBundleES\ConditionHandler\ProductAttributeConditionHandler`
+    * Now expects `\Shopware\Bundle\AttributeBundle\Service\CrudService` as constructor parameter
+* `\sAdmin::sManageRisks`
+    * Removed `$basket` from parameters
 
 ### Other changes
 

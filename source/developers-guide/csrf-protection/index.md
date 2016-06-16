@@ -107,3 +107,25 @@ In some cases you might want to disable the protection for the backend or fronte
 ],
 ...
 ```
+
+## Plugin compatibility for older versions
+
+Since Shopware 5.2, your plugin needs to whitelist an action in order to e.g. transfer files or show a page within an window or iframe. For Shopware versions prior to 5.2, the interface `CSRFWhitelistAware` isn't available and you'll receive an exception. In this case, you have to create a dummy interface which will only be loaded if the original one does not exists.
+
+#### 1. Create a new file `Components/CSRFWhitelistAware.php`
+
+```
+<?php
+
+namespace Shopware\Components;
+
+if (!interface_exists('\Shopware\Components\CSRFWhitelistAware')) {
+    interface CSRFWhitelistAware {}
+}
+```
+
+#### 2. Require this file above your class definition in your `Bootstrap.php`
+
+```
+require_once __DIR__ . '/Components/CSRFWhitelistAware.php';
+```

@@ -92,6 +92,14 @@ These variables are automatically exported during the Travis-CI build for every 
 ## CSS helper classes
 We added a bunch of CSS helper classes which should help you to build simple layouts.
 
+### Warning box
+
+```
+<div class="alert alert-warning">
+This is a warning
+</div>
+```
+
 ### Centering of content
 
 ```

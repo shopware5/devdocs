@@ -204,11 +204,26 @@ This way the backoffice will fetch all required files from that specific virtual
  
 ### Syncing
 After deploying Shopware from VCS, installing plugins or generating themes from the admin panel the file base of the
-admin server should be synced to all the app servers. `rsync` is a commonly used tool for this kind of task -
+admin server should be synced to all the appservers. `rsync` is a commonly used tool for this kind of task -
 but you could also consider using [lsyncd](https://github.com/axkibe/lsyncd), which is an extension to `rsync` and
 watches and syncs directories automatically.
-Generally it is recommended, to sync all source files from admin server to the appservers - except caches. The caches
-can be generated on each appserver separately.
+As most shop setups are quite individual and will include custom plugins, there is no finite list of folders that needs
+to be synced. Generally all files / folders of the Shopware setup should be synced across the appservers.
+The following folders, however, need special treatment:
+
+**No syncing**:
+* `/var/cache`: Handled individually on every appserver, no syncing
+* `/web`: Handled individually on every appserver, no syncing needed as of Shopware 5.2
+
+**Larger folders**:
+* `/files`: Synced to each appserver or shared storage. Depends on installed plugins  and used Shopware featured such as ESD etc.
+* `/media`: see [above](#images)
+
+**Folders that might change during runtime**:
+* `/engine/Shopware/Plugins`: Changed when plugins are installed from the admin panel
+* `/themes/Frontend`: Changed when new themes are created from the admin panel
+* `/media`: Changed when new images / videos / media are uploaded in the admin panel
+* `/files`: Changed when ESD items are uploaded or order documents are generated
 
 ## Additional resources
 * [Shopware system requirements](/sysadmins-guide/system-requirements/)
@@ -216,3 +231,4 @@ can be generated on each appserver separately.
 * [Elasticsearch configuration](/sysadmins-guide/elasticsearch-setup/)
 * [Varnish configuration](/sysadmins-guide/varnish-setup/)
 * [Memcached configuration](/sysadmins-guide/memcached-as-session-handler/)
+* [Using Amazon S3 for images](/developers-guide/shopware-5-media-service/#example-migrating-all-media-file)

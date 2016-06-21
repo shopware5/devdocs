@@ -25,12 +25,14 @@ By default, Shopware hides exceptions from your customers, in order to not expos
 
 ```
 array(
-    'db' => array(
+    'db' => [
         // your database configuration
-    ),
+    ],
     'front' => [
-        'throwExceptions' => true,
         'showException' => true
+    ],
+    'phpsettings' => [
+        'display_errors' => 1,
     ],
 )
 ```

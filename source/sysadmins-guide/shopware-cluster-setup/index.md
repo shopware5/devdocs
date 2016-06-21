@@ -19,10 +19,9 @@ This document is currently work in progress
 
 ## What is clustering?
 Generally speaking, clustering is a way to link multiple computers for a certain purpose. Usually this purpose is to increase
-availability and / or performance of the setup.
-In case of Shopware, clustering has several benifits:
+availability and / or performance of the setup and has several benefits:
 
-* you can introduce redundancy for any single componenent (e.g. cache, appserver or database). Even if a component
+* you can introduce redundancy for any single component (e.g. cache, appserver or database). Even if a component
 fails, the shop will still work, as there is no "single point of failure"
 * the load (i.e. the users) can be distributed across the cluster. So there is not a single appserver that will
 need to handle all users - but all users are distributed across all available appservers.
@@ -30,16 +29,14 @@ need to handle all users - but all users are distributed across all available ap
 varnish server or appserver on the fly once your shop is confronted with more traffic (e.g. after an TV advertisement).
 
 ## Shopware cluster setup
-
-### The big picture
 The following schema shows a simplified cluster setup. The components will be discussed in detail below.
 ![server setup overview](/sysadmins-guide/shopware-cluster-setup/img/setup.svg)
 
-#### Load Balancer (LB)
+### Load Balancer (LB)
 The load balancer is the foremost instance in every cluster setup. It will handle all customer requests and dispatch
 them to one of the varnish cache instances.
 
-Task:
+Responsibility:
 * SSL offloading
 * equal distribution of the traffic across all caches / appservers
 
@@ -50,11 +47,11 @@ Scaling:
 * second load balancer as failover
 * possibly floating IP and health checks for automated failover
 
-#### Varnish servers
+### Varnish servers
 If stand alone caches are required, Shopware recommends Varnish, as there is a [varnish configuration](/sysadmins-guide/varnish-setup/)
 available.
 
-Tasks:
+Responsibility:
 * caching - reduce load on database and appserver
 
 Software to run:
@@ -63,11 +60,11 @@ Software to run:
 Scaling:
 * scales horizontally (numerous cache server possible)
 
-#### Appserver
+### Appserver
 An appserver runs the actual Shopware application and handles all requests which could not be handled by the cache
 before:
 
-Task:
+Responsibility:
 * handle user requests
 * the shop itself
 
@@ -81,12 +78,12 @@ See: [system requirements](/sysadmins-guide/system-requirements/)
 Scaling:
 * scales horizontally (numerous appserver possible)
 
-#### Admin server
+### Admin server
 The admin server is an appserver dedicated to the Shopware back office. It is also the leading appserver - all code changes
 (e.g. deployment) happen on the admin server and are synced to the appservers. Furthermore all periodic tasks should be
 run here.
 
-Task:
+Responsibility:
 * serving of /backend (the back office)
 * Cronjobs
 * Jumphost
@@ -99,11 +96,10 @@ See: [system requirements](/sysadmins-guide/system-requirements/)
 * PHP
 * latest version of Shopware
 
-
-#### Database
+### Database
 The database is the central persistent storage of all shop related data.
 
-Task:
+Responsibility:
 * Holds all persistent data, e.g. articles, orders, customers
 
 Software to run:
@@ -113,24 +109,24 @@ Scaling:
 * replication master/slave
 * cluster like percona / galera
 
-#### Memcache
+### Memcache
 For high performance setups, we recommend to store the sessions in memcache instead of the database (which is Shopware's
 default behaviour). See [setup description here](/sysadmins-guide/memcached-as-session-handler/).
 
-Task:
+Responsibility:
 * Store sessions
 
 Scaling:
-* memcache.session_redundandy
+* memcache.session_redundancy
 * solutions like repcache available
 
-#### Elasticsearch
+### Elasticsearch
 Elasticsearch is a so called "no sql" storage, a non relational database engine, which is very efficient in searching
 and filtering big catalogues. For that reason it can optionally be used, if you have many articles in your shop
 or if there are special requirements for filtering and searching. Shopware generally recommends using elasticsearch
 if more then ~140000 articles are in place. Additional information regarding [elasticsearch are available here](/sysadmins-guide/elasticsearch-setup/).
 
-Task:
+Responsibility:
 * Search and filter articles quickly
 * reduce load on database engine
 
@@ -140,7 +136,7 @@ Software to run:
 Scaling:
 * scales horizontally (numerous ES server possible)
 
-#### Images
+### Images
 Images are usually uploaded on the admin server - but need to be available on all appservers as well. Usually syncing
 (duplicating) the images is not to be recommended for larger setups, so there are alternatives in place:
 

@@ -73,6 +73,8 @@ To show these early errors the `display_errors` configuration can be set back to
 ],
 ```
 
+This was changed to prevent information leakage of security sensitive data like usernames or directories in the error messages.
+
 ### Account / Registration
 
 The account section and registration have been refactored to continue the refactoring of core classes.

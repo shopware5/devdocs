@@ -61,6 +61,20 @@ In case you want to disable the CSRF protection entirely, you can change the opt
 
 To learn more about the new CSRF protection, refer to the [CSRF Protection Guide](/developers-guide/csrf-protection/).
 
+### Display errors
+
+The PHP configuration [`display_errors`](http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors) defaults to `0` / `off` now.
+This means for errors that happen early in the shopware stack no errors are shown to the user.
+To show these early errors the `display_errors` configuration can be set back to `1` / `on` by adding the following to your `config.php` file:
+
+```
+'phpsettings' => [
+    'display_errors' => 1,
+],
+```
+
+This was changed to prevent information leakage of security sensitive data like usernames or directories in the error messages.
+
 ### Account / Registration
 
 The account section and registration have been refactored to continue the refactoring of core classes.

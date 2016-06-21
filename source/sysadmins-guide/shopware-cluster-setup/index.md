@@ -125,7 +125,7 @@ Elasticsearch is a so called "no sql" storage, a non relational database engine,
 and filtering big catalogues. For that reason it can optionally be used, if you have many articles in your shop
 or if there are special requirements for filtering and searching. Shopware generally recommends using elasticsearch
 if more then ~140000 articles are in place. Even with less articles your overall system performance might profit from
-using elasticsearch, as filtering and search queries will usually generate quite some load on the database and 
+using elasticsearch, as filtering and search queries will usually generate quite some load on the database and
 have a low cache hit rate.
 Additional information regarding [elasticsearch are available here](/sysadmins-guide/elasticsearch-setup/).
 
@@ -209,3 +209,10 @@ but you could also consider using [lsyncd](https://github.com/axkibe/lsyncd), wh
 watches and syncs directories automatically.
 Generally it is recommended, to sync all source files from admin server to the appservers - except caches. The caches
 can be generated on each appserver separately.
+
+## Additional resources
+* [Shopware system requirements](/sysadmins-guide/system-requirements/)
+* [Performance tipps for sysadmins](/sysadmins-guide/shopware-5-performance-for-sysadmins/)
+* [Elasticsearch configuration](/sysadmins-guide/elasticsearch-setup/)
+* [Varnish configuration](/sysadmins-guide/varnish-setup/)
+* [Memcached configuration](/sysadmins-guide/memcached-as-session-handler/)

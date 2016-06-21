@@ -65,7 +65,7 @@ To learn more about the new CSRF protection, refer to the [CSRF Protection Guide
 
 The PHP configuration [`display_errors`](http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors) defaults to `0` / `off` now.
 This means for errors that happen early in the shopware stack no errors are shown to the user.
-To to show these early errors the `display_errors` configuration can be set back to `1` / `on` by adding the following to your `config.php` file:
+To show these early errors the `display_errors` configuration can be set back to `1` / `on` by adding the following to your `config.php` file:
 
 ```
 'phpsettings' => [

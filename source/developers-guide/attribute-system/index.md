@@ -12,6 +12,8 @@ The attribute system allows developers and users to configure additional fields 
 
 Developers can define new attributes over the database or use the corresponding service `Shopware\Bundle\AttributeBundle\Service\CrudService`.
 
+<div class="toc-list"></div>
+
 ## Services
 The `Shopware\Bundle\AttributeBundle` contains the following services:
 
@@ -483,9 +485,11 @@ Ext.define('SwagAttribute.form.field.OwnType', {
 });
 ```
 
-## Attribute bundle repository namespace
+## Add your own entities to single- and multi-selection
+
 ### EntitySearch controller
-Through the new attribute system a new search controller was implemented, which allows to search for any entity in Shopware.
+
+With the new attribute management, a new search controller was implemented to search for any entity in Shopware.
 
 * Required parameters:
     * `model` - Class name of the model to search, e.g. `\Shopware\Models\Article\Supplier`
@@ -498,9 +502,10 @@ Through the new attribute system a new search controller was implemented, which 
     * `sortings` - Sort results using the Doctrine sorting syntax
     * `conditions` - Filter results using the Doctrine filter syntax
 
-Each entity can configure their own data providers and search gateways. All search repositories are stored in the `\Shopware\Bundle\AttributeBundle\Repository\Registry`.
+Each entity can have its own data providers and search gateways. All search repositories are stored in the `\Shopware\Bundle\AttributeBundle\Repository\Registry`.
 
-# Define own single- and multi-selection
+### Define own single- and multi-selection
+
 Shopware supports different single and multi selections for a single attribute. This entities are defined in `\Shopware\Bundle\AttributeBundle\Service\TypeMapping::getEntities`.
 It is really simple to define own single and multi selections for plugin entities. It is only required to configure the entity in the attribute configuration.
 ```
@@ -652,3 +657,99 @@ Ext.define('Shopware.form.field.SwagAttributeGrid', {
     }
 });
 ```
+
+## Move attribute fields into another form
+
+All attribute fields are placed in a new fieldset or tab, which sometimes doesn't fit your needs. The following example will show you how to move an article attribute field out of the fieldset into the basic information fieldset.
+
+This section presumes, that you already created your own attribute and registered your view directory.
+
+### Add your field and load the data
+
+First, you have to extend the detail base template and overwrite the methods that are responsible for creating the fields and loading the data. In this case, the methods `createRightElements` and `onStoresLoaded` will be overwritten.
+
+```
+//{block name="backend/article/view/detail/base"}
+//{$smarty.block.parent}
+Ext.define('Shopware.apps.Article.view.detail.MyBase', {
+    override: 'Shopware.apps.Article.view.detail.Base',
+
+    createRightElements: function() {
+        var me = this,
+            elements = me.callParent(arguments);
+
+        me.attrField = Ext.create('Ext.form.field.Text', {
+            xtype: 'textfield',
+            name: 'my_column',
+            labelWidth: 155,
+            fieldLabel: 'My custom field'
+        });
+
+        elements.push(me.attrField);
+
+        return elements;
+    },
+
+    onStoresLoaded: function() {
+        var me = this;
+
+        me.callParent(arguments);
+
+        Ext.Ajax.request({
+            url: '{url controller=AttributeData action=loadData}',
+            params: {
+                _foreignKey: me.article.get('mainDetailId'),
+                _table: 's_articles_attributes'
+            },
+            success: function(responseData, request) {
+                var response = Ext.JSON.decode(responseData.responseText);
+
+                me.attrField.setValue(response.data['__attribute_my_column']);
+            }
+        });
+    }
+});
+//{/block}
+```
+
+### Save your attribute data
+
+To save your data afterwards, you have to overwrite the `onSaveArticle` method in the controller and extend the options object with your custom callback. But keep in mind to call the original callback if provided.
+
+```
+//{block name="backend/article/controller/detail"}
+//{$smarty.block.parent}
+Ext.define('Shopware.apps.Article.controller.MyDetail', {
+    override: 'Shopware.apps.Article.controller.Detail',
+
+    onSaveArticle: function(win, article, options) {
+        var me = this,
+            originalCallback = options.callback;
+
+        var customCallback = function(newArticle, success) {
+            Ext.callback(originalCallback, this, arguments);
+
+            Ext.Ajax.request({
+                method: 'POST',
+                url: '{url controller=AttributeData action=saveData}',
+                params: {
+                    _foreignKey: newArticle.get('mainDetailId'),
+                    _table: 's_articles_attributes',
+                    __attribute_my_column: me.getBaseFieldSet().attrField.getValue()
+                }
+            });
+        };
+
+        if (!options.callback || options.callback.toString() !== customCallback.toString()) {
+            options.callback = customCallback;
+        }
+
+        me.callParent([win, article, options]);
+    }
+});
+//{/block}
+```
+
+### Using existing attributes
+
+It is possible to use existing attributes like `attr1` and `attr2` though it's not recommended. To prevent race-conditions with the attribute management itself, you have to uncheck the option "Display in backend" of the desired attribute. It will not be visible within the attribute management fieldset but in your own implementation. Therefore you have to handle the save process yourself and it will not be saved with the default attribute implementation.

@@ -187,7 +187,7 @@ All frontend dependencies are now defined in the `package.json` file, unlike pre
 </div>
 
 The dependencies are downloaded to the `themes/Frontend/Responsive/node_modules/` directory. We're using `grunt` and
-a few custom tasks to map the necessary files to the corresponding folders inside the `frontend/_public/vendors` directory.
+a few custom tasks to map the necessary files to the corresponding directories inside the `frontend/_public/vendors` directory.
 Here's an example on how to map the files inside the `Gruntfile.js` file:
 
 ```
@@ -303,7 +303,7 @@ Based on the directory structure we can decide what files we want to copy. Typic
 * `min/moment-with-locales.min.js`
 
 8. To map the files, edit the `Gruntfile.js` in the custom theme and change the `copy` task to map the files
-to the corresponding folders inside the `frontend/_public/vendors` directory.
+to the corresponding directories inside the `frontend/_public/vendors` directory.
 
 ```js
 'moment.js': {

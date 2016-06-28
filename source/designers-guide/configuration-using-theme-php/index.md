@@ -46,7 +46,7 @@ Working with compressors isn't always as easy as adding the files to your HTML s
 
 ### Adding JavaScript
 
-Simply place your JavaScript files in the `frontend/_public` folder and add their paths to the `$javascript` array in your `Theme.php`:
+Simply place your JavaScript files in the `frontend/_public` directory and add their paths to the `$javascript` array in your `Theme.php`:
 
 ```
 /** @var array Defines the files which should be compiled by the javascript compressor */

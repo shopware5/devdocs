@@ -11,7 +11,7 @@ Besides the commands included in the core, plugins can define their own CLI comm
 
 ## Using Shopware's CLI commands
 
-Shopware's CLI commands are executed by typing the following command on the shell interface, inside your Shopware installation folder
+Shopware's CLI commands are executed by typing the following command on the shell interface, inside your Shopware installation directory
 
 ```
 php bin/console <command> [arguments and options]

@@ -408,7 +408,7 @@ StateManager.addPlugin('.my-selector', 'myPlugin', {
 ## Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
 
-Simply place your javascript files in the ```frontend/_public``` folder and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
+Simply place your javascript files in the ```frontend/_public``` directory and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
 
 ```php
 /** @var array Defines the files which should be compiled by the javascript compressor */

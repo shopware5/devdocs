@@ -12,7 +12,7 @@ indexed: true
 In this guide you will learn how to modify the default appearance of Shopware's newsletter and document templates.
 
 <div class="alert alert-warning">
-<strong>Note:</strong> Before you start modifying your newsletter or document templates please keep in mind that you shouldn't apply any changes to the default <code>Bare</code> theme folder. This can cause issues during the next update process and your changes could be overwritten. You should always include your own newsletter and document modifications within your own Shopware theme. If your don't have a custom Shopware theme you should create one for newsletter and document editing.
+<strong>Note:</strong> Before you start modifying your newsletter or document templates please keep in mind that you shouldn't apply any changes to the default <code>Bare</code> theme directory. This can cause issues during the next update process and your changes could be overwritten. You should always include your own newsletter and document modifications within your own Shopware theme. If your don't have a custom Shopware theme you should create one for newsletter and document editing.
 </div>
 
 In the following examples we will use a newly created theme called `NewsDocExample`:
@@ -115,7 +115,7 @@ In this quick example you will learn how to edit Shopware's default document tem
 
 ### Documents directory structure
 
-You can find the document templates within the documents folder of the `Bare` theme.
+You can find the document templates within the documents directory of the `Bare` theme.
 
 ```
 themes

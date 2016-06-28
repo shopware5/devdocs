@@ -61,7 +61,7 @@ You are even able to configure "ShopwareInstallRepos" - these are repositories t
 ## Extending the CLI tools
 If you want to know, how the extensions work, just have a look at the src/Extensions directory of the CLI tools. All the main commands are implemented as extensions. The only difference is, that you should create your extension in ~/.config/sw-cli-tools/extensions if you want it to be detected automatically.
 
-Once you create a folder like ~/.config/sw-cli-tools/extensions/VENDOR/NAME, you can just create a Bootsrap.php inside. The namespace of that Bootstrap is VENDOR\NAME, any by implementing the interfaces ContainerAwareExtension and ConsoleAwareExtension, you can make the cli tools fetch your container extensions or console command by implementing the corresponding methods:
+Once you create a directory like ~/.config/sw-cli-tools/extensions/VENDOR/NAME, you can just create a Bootsrap.php inside. The namespace of that Bootstrap is VENDOR\NAME, any by implementing the interfaces ContainerAwareExtension and ConsoleAwareExtension, you can make the cli tools fetch your container extensions or console command by implementing the corresponding methods:
 
 ```php
 public function setContainer(ContainerBuilder $container)

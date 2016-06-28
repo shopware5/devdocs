@@ -166,7 +166,7 @@ If you configured your deployment machine successfully, you will now be asked to
 
 After adding your deploy machine, you have to create a mapping between the local and remote files. 
 
-Switch to the Mappings folder and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware folder doesn't exists, create it here with a right click.
+Switch to the Mappings directory and press the "..." near `Deployment path`. Choose `/home/vagrant/www/shopware`. If the shopware directory doesn't exists, create it here with a right click.
 
 <div class="is-center">
 
@@ -176,7 +176,7 @@ Switch to the Mappings folder and press the "..." near `Deployment path`. Choose
 
 Now press *OK* and close all deployment windows, so that you are back in your default IDE view.
 
-Right click on your document root folder and click on `Upload to Vagrant Deployment`
+Right click on your document root directory and click on `Upload to Vagrant Deployment`
 
 <div class="is-center">
 

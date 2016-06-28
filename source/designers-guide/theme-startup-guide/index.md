@@ -134,7 +134,7 @@ class Theme extends \Shopware\Components\Theme
 ### Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
 
-Simply place your javascript files in the ```frontend/_public``` folder and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
+Simply place your javascript files in the ```frontend/_public``` directory and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
 
 ```
 /** @var array Defines the files which should be compiled by the javascript compressor */
@@ -367,9 +367,9 @@ The structure of a Shopware 5 theme is very similar to the one already existing 
 ### Differences between the Shopware 4 and Shopware 5 structure
 Shopware 5 themes, like in Shopware 4, are still divided in great sections, with multiple subsections each. In addition we've divided the template files even smaller parts to increase the reusability and maintainability.
 
-For example, we splitted the product box template file ```box_article.tpl``` in smaller parts which can be found in the ```listing/product-box``` folder.
+For example, we splitted the product box template file ```box_article.tpl``` in smaller parts which can be found in the ```listing/product-box``` directory.
 
-We've also created a new folder named ```_includes```, which contains components which are used across the whole Shopware theme.
+We've also created a new directory named ```_includes```, which contains components which are used across the whole Shopware theme.
 
 ## The "Responsive" theme
 The "Responsive" theme is our new default theme in Shopware 5. It is based on the "Bare" theme and provides its styling and client side functionalities.
@@ -416,7 +416,7 @@ As it's based on the "Bare" theme, the "Responsive" theme only contains the LESS
             └── open-sans-fontface
 ```
 
-Please notice that the ```_resources``` folder was renamed to ```_public```. This folder now contains separated third-party and Shopware specific source files in its subfolders.
+Please notice that the ```_resources``` directory was renamed to ```_public```. This directory now contains separated third-party and Shopware specific source files in its subdirectories.
 
 The third-party libraries can now be found under ```_public/vendors``` and the Shopware specific code under ```_public/src```. 
 

@@ -31,7 +31,7 @@ Since the Client Administration not only has a webfrontend that is served throug
 ## Installing the Shopware Client Administration
 
 - Download the installation package
-- Extract the archive to your web server's content folder
+- Extract the archive to your web server's content directory
 - Enable web server access to *_APPLICATION_/web*
 - Execute `php setup.phar` through the command line
 - Follow the instructions

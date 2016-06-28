@@ -19,7 +19,7 @@ protected $javascript = [
     'src/js/browser-notification.js'
 ];
 ```
-* Save the file and head to the folder ```frontend/_public/src/js``` in your theme.
+* Save the file and head to the directory ```frontend/_public/src/js``` in your theme.
 * Now create a new file named ```browser-notification.js``` and insert the following code:
 
 ```

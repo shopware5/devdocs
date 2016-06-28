@@ -34,7 +34,7 @@ Single cache details can be retrieved by using its id:
 
 | Field               | Type                  | Comment			                                |
 |---------------------|-----------------------|-------------------------------------------------|
-| dir				  | string				  | The path to this cache folder                   |
+| dir				  | string				  | The path to this cache directory                   |
 | size		          | string				  | Including size unit                    			|
 | files               | integer               | Amount of files within the cache directory      |
 | freeSpace           | string                | Free space, including the size unit             |
@@ -56,7 +56,7 @@ This API call returns an array of elements, one for each cache type. Each of the
 
 | Field               | Type                  | Comment			                                            |
 |---------------------|-----------------------|-------------------------------------------------------------|
-| dir				  | string				  | The path to this cache folder                               |
+| dir				  | string				  | The path to this cache directory                               |
 | size		          | string				  | Spaced used by this cache's content, including size unit    |
 | files               | integer               | Number of files within the cache directory                  |
 | freeSpace           | string                | Free space, including the size unit                         |

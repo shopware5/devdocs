@@ -113,15 +113,15 @@ scripts in Python syntax. In addition to that, it allows you to query the screen
 Also there are possibilities to interact with the screen, for example using the `click`, `doubleClick` or `dragDrop` as
 well as interactions like `type` or `paste`. 
 
-The program in the image on top, for example, will search for a folder called "HelloWorld" using image recognition.
-If a match is found, it will drag the folder to the recycle bin and wait a short time for the confirmation message to appear.
-When it does, it will confirm the deletion of that folder.
+The program in the image on top, for example, will search for a directory called "HelloWorld" using image recognition.
+If a match is found, it will drag the directory to the recycle bin and wait a short time for the confirmation message to appear.
+When it does, it will confirm the deletion of that directory.
 
 Internally this boils down to a source code like this:
 
 ```
-if exists("folder.png"):
-    dragDrop(Pattern("folder.png").similar(0.83).targetOffset(-7,-11), Pattern("recycle-bin.png").targetOffset(-1,-5))
+if exists("directory.png"):
+    dragDrop(Pattern("directory.png").similar(0.83).targetOffset(-7,-11), Pattern("recycle-bin.png").targetOffset(-1,-5))
     wait("confirm-boy.png", 2)
     click("yes.png")
 ```

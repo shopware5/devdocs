@@ -308,7 +308,7 @@ In addition to the options mentioned above, there are also these two flags:
 * `--licenseHeader`: File you want to include in each file as license header
 
 # Why should I use it?
-Of course writing plugins by hand is perfectly fine. The plugin generator just makes generating the files and folders
+Of course writing plugins by hand is perfectly fine. The plugin generator just makes generating the files and directories
 much easier and faster and takes care of the correct naming convention. So even when not using it, you might take a peek,
 how e.g. store front filters are created.
 Furthermore, it's also frequently updated to reflect best practice approaches, so it might also provide nice insights into

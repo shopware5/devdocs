@@ -22,7 +22,7 @@ npm install karma karma-phantomjs-launcher karma-jasmine karma-junit-reporter
 ```
 
 ## Running tests using the command line
-Running the storefront tests is easy. Start up for favourite terminal application and switch to the `themes/Frontend/Responsive` folder of your Shopware installation. Now you can run the tests using the following command:
+Running the storefront tests is easy. Start up for favourite terminal application and switch to the `themes/Frontend/Responsive` directory of your Shopware installation. Now you can run the tests using the following command:
 
 ```bash
 karma start karma.conf.js

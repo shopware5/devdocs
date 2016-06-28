@@ -25,9 +25,9 @@ Additionally, although they are still supported, **Shopware 4 templates support 
 As before, there are two ways to add templates to Shopware:
 
 * As part of a plugin
-* Placing them in the `templates` folder on the root of your Shopware installation
+* Placing them in the `templates` directory on the root of your Shopware installation
 
-If you don't have a `templates` folder in your clean Shopware 5 installation you can download a newer version of Shopware 5 (at least RC 3) where the Shopware 4 template is included.
+If you don't have a `templates` directory in your clean Shopware 5 installation you can download a newer version of Shopware 5 (at least RC 3) where the Shopware 4 template is included.
 
 As the new Shopware 5 Responsive theme has different requirements when compared with Shopware 4 templates, you might need to reconfigure some of your shop's settings in order for your template to work properly. This is applicable only if:
 

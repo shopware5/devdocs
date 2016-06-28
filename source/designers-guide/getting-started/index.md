@@ -17,8 +17,8 @@ This guide explains how to add a new theme to the shop, implement a new element 
 
 # Templating
 ## Bare and responsive
-The default template folder of Shopware 5 is the `Themes` folder in the root directory.
-Inside the `frontend` folder, which is the focus of this guide, you can find our two default Shopware 5 themes.
+The default template directory of Shopware 5 is the `Themes` directory in the root directory.
+Inside the `frontend` directory, which is the focus of this guide, you can find our two default Shopware 5 themes.
 
 +   The `Bare` theme is the base of the Shopware frontend. It contains the basic element structure.
 +   The `Responsive` theme contains the default Shopware 5 Responsive theme styling based on the Bare theme.
@@ -31,9 +31,9 @@ __Important:__ Do not change the Bare/Responsive themes themselves, as the chang
 ![Adding a new theme](img-custom-theme.jpg)
 
 In order to create your theme, you have to click on the `Create theme` button inside the `Theme manager` and give it a suiting name (in this example: `TutorialTheme`) and some additional information.
-It will automatically create a folder inside the `themes` directory and add the required files for it to work.
+It will automatically create a directory inside the `themes` directory and add the required files for it to work.
 
-The frontend folder now contains 3 themes:
+The frontend directory now contains 3 themes:
 
 - `Bare`
 - `Responsive`
@@ -44,7 +44,7 @@ The frontend folder now contains 3 themes:
 You can also create a new custom theme by using the `sw:theme:create` CLI command:
 
 ```
-sw:theme:create --description="Text" --author="shopware AG" --license="MIT" Responsive TutorialThemeFolder TutorialTheme
+sw:theme:create --description="Text" --author="shopware AG" --license="MIT" Responsive TutorialThemeDirectory TutorialTheme
 ```
 If you need a general introduction regarding the CLI commands you can take a look at our [Shopware 5 CLI commands article](https://developers.shopware.com/developers-guide/shopware-5-cli-commands/).
 
@@ -54,7 +54,7 @@ If you need a general introduction regarding the CLI commands you can take a loo
 Before you can see any changes made to the files you are editing, you have to select the new theme. To choose the theme, first refresh the themes using the `Refresh themes` button and then simply click on the thumbnail image of your own created template and press the `Select theme` button.
 
 ## Directory structure
-The Shopware directory structure that is located in the `Bare/Frontend` folder contains subfolders (named after the controllers) that separate the template files by the specific frontend areas they relate to.
+The Shopware directory structure that is located in the `Bare/Frontend` directory contains subdirectories (named after the controllers) that separate the template files by the specific frontend areas they relate to.
 
 ```
 frontend
@@ -100,7 +100,7 @@ While creating the theme you have the ability to choose an existing theme you wa
 
 If you want to edit a specific store section inside your new template, you would __extend__ the already existing files that the `Bare` theme provides. In order to do that, you have to __maintain the same directory structure__ that the `Bare` theme uses.
 
-So, for instance, if you would like to modify the `header`, you would want to recreate the specific directory structure in order to be able to overwrite or extend the already existing elements. The frontend header in the `shop-navigation.tpl` file (which is later included into the `index.tpl`) is located inside the `Frontend/Index` folder.
+So, for instance, if you would like to modify the `header`, you would want to recreate the specific directory structure in order to be able to overwrite or extend the already existing elements. The frontend header in the `shop-navigation.tpl` file (which is later included into the `index.tpl`) is located inside the `Frontend/Index` directory.
 
 This is how your template directory should look like.
 ```
@@ -168,7 +168,7 @@ TutorialTheme
  │              └── all.less
 ```
 
-To add new Less files, you need to create a new `all.less` file. This file is required, and should be used exclusively to import other Less files, in which you will define your custom styling. Your custom Less files can be imported by using the `@import` function on your `all.less` file. If you have extensive theme changes, it's recommended to adapt the Less file subfolders of the `Responsive` theme to have a better overview, but in this case we will just create a new Less file called `navigation.less`.
+To add new Less files, you need to create a new `all.less` file. This file is required, and should be used exclusively to import other Less files, in which you will define your custom styling. Your custom Less files can be imported by using the `@import` function on your `all.less` file. If you have extensive theme changes, it's recommended to adapt the Less file subdirectories of the `Responsive` theme to have a better overview, but in this case we will just create a new Less file called `navigation.less`.
 
 ```
 //inside the all.less file

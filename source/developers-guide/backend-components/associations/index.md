@@ -36,7 +36,7 @@ Before you start to implement the ExtJS part, you have to modify the PHP impleme
 
 Shopware uses Doctrine 2 to manage models and their corresponding associations. The way in which you can define these associations is not part of the scope of this document, but you can read more about them in the [Official Doctrine 2 documentation page](http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/association-mapping.html).
 
-However, as these associations are required before we can continue our Backend module development, you should copy the following model code into your plugin (or, as an alternative, replace your `Models` folder with the corresponding content from [SwagProductAssoc.zip](/exampleplugins/SwagProductAssoc.zip))
+However, as these associations are required before we can continue our Backend module development, you should copy the following model code into your plugin (or, as an alternative, replace your `Models` directory with the corresponding content from [SwagProductAssoc.zip](/exampleplugins/SwagProductAssoc.zip))
 
 ### The Product model (`Models\Product\Product.php`)
 

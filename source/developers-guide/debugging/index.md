@@ -17,7 +17,7 @@ So what should you do if something does not work as it is supposed to?
 </div>
 
 ## Default log output
-First of all you should check if Shopware already logged the error message you are looking for. For that reason you should check the webserver's `error.log` file, as well as Shopware's `logs` folder. Shopware creates a log file per day (if there was something to log).
+First of all you should check if Shopware already logged the error message you are looking for. For that reason you should check the webserver's `error.log` file, as well as Shopware's `logs` directory. Shopware creates a log file per day (if there was something to log).
 
 As Shopware frequently uses AJAX queries in the frontend and backend, you should also open an instance of your browser's developer tools. You might find error messages in the Javascript console or in the network tab. 
 

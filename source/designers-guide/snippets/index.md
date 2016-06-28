@@ -39,7 +39,7 @@ If you use this feature, your snippets will no longer require an explicit declar
 
 You can optionally still declare the namespace in that snippet. The namespace declared in the snippets takes precedence over the file's global namespace. Use this if you need to reuse, in your current namespace, a snippet from another namespace. Keep in mind that this is not recommended, as later changes to that snippet will impact multiple points of your plugin, potentially causing undesired consequences.
 
-Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` folder will have the `theme/<theme name>` prefix automatically added to them.
+Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` directory will have the `theme/<theme name>` prefix automatically added to them.
 
 ### Using snippets
 
@@ -105,7 +105,7 @@ frontend/checkout/cart/separate_dispatch = "Beispieltext"
 Like mentioned before, snippets require a `name` and a `namespace`. The above .ini file contains only one snippet, but more can be added, as long as they all have a common namespace. The file's location in the filesystem *must* match the snippet's namespace. So, to match the snippet declaration in our template file, this .ini file must be in the following location:
 
 ```
-ThemeFolder
+ThemeDirectory
     _private
         snippets
             frontend
@@ -113,9 +113,9 @@ ThemeFolder
                     box_article.ini
 ```
 
-Keep in mind that snippets defined inside a theme's `_private` folder will have their namespace automatically prefixed with `themes/<theme name>/`.
+Keep in mind that snippets defined inside a theme's `_private` directory will have their namespace automatically prefixed with `themes/<theme name>/`.
 
-The `ThemeFolder` location will depend on where you are developing. You might have to create the `_private` folder manually.
+The `ThemeDirectory` location will depend on where you are developing. You might have to create the `_private` directory manually.
 
 ### Developing with snippets
 
@@ -147,7 +147,7 @@ A few things to keep in mind when using this approach:
 - Only snippets rendered in the frontend will be written automatically to .ini files (or database, if `writeToDb` is true).
 - Snippet are written to the current locale of your shop. You can duplicate those sections manually for creating translations.
 - Changes made to snippets in the backend are not saved to .ini files
-- The automatically generated .ini files might not be so inside your plugin folder, but directly in Shopware's root folder. However, the internal folder structure is the same, so you can just move that folder inside your plugin once you are finished
+- The automatically generated .ini files might not be so inside your plugin directory, but directly in Shopware's root directory. However, the internal directory structure is the same, so you can just move that directory inside your plugin once you are finished
 - Enabling `writeToIni` will write *ALL* missing snippets to .ini files. This means that if, for some reason, a missing snippet that does not belong to your template file is detected, it will also be written to .ini file, and might get mixed with your new snippets. For this reason it's recommended that you carefully review your .ini files once you are finished developing your plugin/theme.
 - If your template files have snippets with an empty default value, they will also be written to db/.ini file as an empty string. The `showSnippetPlaceholder` only affects the rendered value, not the value that is written into storage.  
 
@@ -155,7 +155,7 @@ A few things to keep in mind when using this approach:
 
 ### Snippets during plugin installation
 
-If you plugin/theme uses snippets, they should be placed inside the corresponding folder in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
+If you plugin/theme uses snippets, they should be placed inside the corresponding directory in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
 
 ## Snippets during installation/production phases
 ![Backend snippet administration](admin.jpg)
@@ -169,11 +169,11 @@ Shopware includes some CLI tools that you can use to better manage your snippets
 
 ### sw:snippets:find:missing
 
-This command expects a `locale` key (e.g. `en_GB`, see all possible value in `s_core_locales`) as a required argument. For that locale, it will check the snippets database table to find unique snippets (defined by a unique `name`-`namespace` pair) that are defined for other locales but not the given one. Those snippets are then exported into the ´snippets´ folder of your Shopware installation (by default, it doesn't exist in Shopware 5 installations, and it will be automatically created if needed) as .ini files. If the target file already exists, the new snippets will be appended to it.
+This command expects a `locale` key (e.g. `en_GB`, see all possible value in `s_core_locales`) as a required argument. For that locale, it will check the snippets database table to find unique snippets (defined by a unique `name`-`namespace` pair) that are defined for other locales but not the given one. Those snippets are then exported into the ´snippets´ directory of your Shopware installation (by default, it doesn't exist in Shopware 5 installations, and it will be automatically created if needed) as .ini files. If the target file already exists, the new snippets will be appended to it.
 
 The command accepts two optional arguments:
 
-- `target`: Folder to which the snippets will be written. Defaults to `snippets`
+- `target`: Directory to which the snippets will be written. Defaults to `snippets`
 
 - `fallback`: By default, the exported snippets are left with empty values. If you provide a locale key in this argument, the snippets are exported with the value of the matching snippet in the fallback language (if available).
 
@@ -181,28 +181,28 @@ This command is useful in many situations. It can be used to find missing transl
 
 ### sw:snippets:remove
 
-This command requires a `folder` argument. It scans that folder (and subfolders) for .ini snippet files and, for those found, removes them from the database.
+This command requires a `directory` argument. It scans that directory (and subdirectories) for .ini snippet files and, for those found, removes them from the database.
 
 ### sw:snippets:to:db
 
-This command loads all snippets from the .ini files inside the`snippets` folder in your Shopware installation path into the database. 
+This command loads all snippets from the .ini files inside the`snippets` directory in your Shopware installation path into the database. 
 
-- `include-plugins`: If provided, the command will also search all your active plugins for a `snippets` folder, and import those too.
+- `include-plugins`: If provided, the command will also search all your active plugins for a `snippets` directory, and import those too.
 
 - `force`: By default, if a snippet being imported already exists in the database, it will not be overwritten. Use the `force` argument to change this behaviour
 
-- `source`: use this argument if your wish to import snippets from a folder other that then `snippets` folder in the root of your Shopware installation.
+- `source`: use this argument if your wish to import snippets from a directory other that then `snippets` directory in the root of your Shopware installation.
 
 ### sw:snippets:to:ini
 
 Exports snippets from the database into .ini files. It requires a ´locale´ argument (e.g. `en_GB`, see all possible value in `s_core_locales`) indicating which snippet set to export. If a file for a given namespace already exists, the snippets will be appended to the existing content.
 
-- `target`: Folder to which the snippets will be written. Defaults to `snippets`
+- `target`: Directory to which the snippets will be written. Defaults to `snippets`
 
 
 ### sw:snippets:to:sql
 
-Loads snippets from the `snippets` folder of your Shopware installation and creates a SQL file that, when executed, will insert those snippets into the `s_core_snippets` table. It requires a `file` argument containing the desired location of the SQL file. 
+Loads snippets from the `snippets` directory of your Shopware installation and creates a SQL file that, when executed, will insert those snippets into the `s_core_snippets` table. It requires a `file` argument containing the desired location of the SQL file. 
 
 - `force`: By default, if the target `file` already exists, it will not be overwritten. Use this argument to change this behaviour.
 

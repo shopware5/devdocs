@@ -15,7 +15,7 @@ The `Shopware\Bundle\MediaBundle` defines how Shopware manages its media files. 
 
 ## The problem
 
-Since the beginning of Shopware, the media files were organized in a folder called `media` with sub-folders for each media type, e.g. image, video, and so on. Inside a sub-folder, every file has just been thrown in. The problem is that, if you have a huge amount of media files, file operations get very slow, especially on Windows systems.
+Since the beginning of Shopware, the media files were organized in a directory called `media` with sub-directories for each media type, e.g. image, video, and so on. Inside a sub-directory, every file has just been thrown in. The problem is that, if you have a huge amount of media files, file operations get very slow, especially on Windows systems.
 
 For that reason, we decided to apply commonly used techniques to our media management and introduce the new MediaService.
 
@@ -47,7 +47,7 @@ Simply get the `shopware_media.media_service` from the DI container and call `ge
 
 #### URL generation of thumbnails
 
-To generate your thumbnail URLs you need to use the same function, but with different path. You need to add the "thumbnails" subfolder to get the correct thumbnail URL.
+To generate your thumbnail URLs you need to use the same function, but with different path. You need to add the "thumbnails" subdirectory to get the correct thumbnail URL.
 
 ```php
 $thumbnailPath = 'media/image/thumbnails/my-fancy-image_540x540.png
@@ -136,11 +136,11 @@ To make migrations easy, we've added a new CLI command to migrate all of your me
 bin/console sw:media:migrate
 ```
 
-If you are upgrading to Shopware 5.1 or later from 5.0 or previous version, you might also use this command to migrate your files from the legacy location to their new folder. If you can't or decide not to run this command, your media files will still be migrated. The live migration mechanism moves the files to the right place as they get requested. However, we recommend that you use the CLI command to migrate your files, as the live migration might impact your shop's performance.
+If you are upgrading to Shopware 5.1 or later from 5.0 or previous version, you might also use this command to migrate your files from the legacy location to their new directory. If you can't or decide not to run this command, your media files will still be migrated. The live migration mechanism moves the files to the right place as they get requested. However, we recommend that you use the CLI command to migrate your files, as the live migration might impact your shop's performance.
 
 <div class="alert alert-info">
 <strong>Important information for nginx users</strong><br/>
-If you are still facing problems with media files, you should update your nginx configuration to the latest version. A working configuration can be found <a href="https://github.com/bcremer/shopware-with-nginx">at GitHub</a>. It adds a location for the media folder and redirects a failed image lookup to a new frontend controller, which then tries to find the requested image.
+If you are still facing problems with media files, you should update your nginx configuration to the latest version. A working configuration can be found <a href="https://github.com/bcremer/shopware-with-nginx">at GitHub</a>. It adds a location for the media directory and redirects a failed image lookup to a new frontend controller, which then tries to find the requested image.
 </div>
 
 #### Example: Migrating all media files to Amazon S3
@@ -165,9 +165,9 @@ bin/console sw:media:migrate --from=s3 --to=local
 
 Again, keep in mind that the live migration mechanism will still be in place, meaning that, if your Amazon S3 adapter is still configured, files will be migrated back to Amazon's servers when loaded by any incoming frontend request.
 
-#### Example: Migrating back to the simple folder structure
+#### Example: Migrating back to the simple directory structure
 
-Shopware provides you with two strategies: `md5` (default) and `plain`. A strategy describes how your media files are stored. By default, you'll use the `md5` based folder structure, which splits the files into three sub folders. This is intended to gain performance for a large set of media files. In case you want the old folder structure back, you have to do the following steps.
+Shopware provides you with two strategies: `md5` (default) and `plain`. A strategy describes how your media files are stored. By default, you'll use the `md5` based directory structure, which splits the files into three sub directories. This is intended to gain performance for a large set of media files. In case you want the old directory structure back, you have to do the following steps.
 
 ##### 1. Create a new CDN adapter in your config.php
 

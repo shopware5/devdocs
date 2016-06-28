@@ -95,7 +95,7 @@ Let us take a closer look at the blog directory of your theme which is located u
 ├── listing_sidebar.tpl
 └── rss.tpl
 ```
-*Directory structure of the "frontend/blog" folder*
+*Directory structure of the "frontend/blog" directory*
 
 As you can see, there's a bunch of files in the directory. Don't get confused. There are several ways to determine the action and therefore the associated template file in your theme.
 

@@ -18,7 +18,7 @@ If the edited user is currently logged in, you might need to empty the backend c
 
 ## List of API Resources
 
-The API has multiple resources, each responsible for managing a specific data type. These resources can be found in the `engine/Shopware/Controllers/Api/` folder of your Shopware installation. Each resource has a correspondent URI, and supports a different set of operations.
+The API has multiple resources, each responsible for managing a specific data type. These resources can be found in the `engine/Shopware/Controllers/Api/` directory of your Shopware installation. Each resource has a correspondent URI, and supports a different set of operations.
 
 To get more details about the data provided by each specified resource, click on its name.
 

@@ -13,15 +13,15 @@ To publish your plugins in the Shopware Community Store, you need to register yo
 ![community store image](img-store.jpg)
 
 ## Plugin structure
-The plugin directory has to have a specific structure in order to work inside Shopware 5. The plugin folder name has to match the Shopware plugin naming pattern, which consists of the `developer prefix` and the `plugin name`. In this example the plugin directory name is "SwagTutorialTheme" (`Swag` as the prefix for shopware AG, `TutorialTheme` as the plugin name).
+The plugin directory has to have a specific structure in order to work inside Shopware 5. The plugin directory name has to match the Shopware plugin naming pattern, which consists of the `developer prefix` and the `plugin name`. In this example the plugin directory name is "SwagTutorialTheme" (`Swag` as the prefix for shopware AG, `TutorialTheme` as the plugin name).
 
 ```
 [developer prefix][plugin name]
 ```
 
-Themes in the Shopware Community Store have to be wrapped inside plugins in order to be installable with the plugin manager. The plugin requires a `Bootstrap.php` file in the root directory and the custom theme, that was previously created. It has to be located inside the `Themes/Frontend` folder (just as it would be inside the normal Shopware installation).
+Themes in the Shopware Community Store have to be wrapped inside plugins in order to be installable with the plugin manager. The plugin requires a `Bootstrap.php` file in the root directory and the custom theme, that was previously created. It has to be located inside the `Themes/Frontend` directory (just as it would be inside the normal Shopware installation).
 
-**Attention: the folder and file names are case sensitive.**
+**Attention: the directory and file names are case sensitive.**
 
 
 ##### Plugin directory
@@ -38,7 +38,7 @@ SwagTutorialTheme
 
 ## Creating the plugin
 
-The only requirements the `Bootstrap.php` file has, in this case, are the plugin label (name that is displayed in the plugin manager later on) and the version number. So, with that in mind, you would create the file and add the 2 required functions to it. Because the `TutorialTheme` folder is located inside the `Themes/Frontend`, the plugin automatically detects its content.
+The only requirements the `Bootstrap.php` file has, in this case, are the plugin label (name that is displayed in the plugin manager later on) and the version number. So, with that in mind, you would create the file and add the 2 required functions to it. Because the `TutorialTheme` directory is located inside the `Themes/Frontend`, the plugin automatically detects its content.
 
 ##### Bootstrap.php
 ```

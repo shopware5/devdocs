@@ -71,7 +71,7 @@ We will start by writing our own small backend application with standard compone
 To speed things up, our plugin is expected to create a new product list to cover all sections of our backend components. Since the doctrine models are an essential part of the backend development and modules, this tutorial will rebuild and explain some parts of the `Shopware\Models\Article` namespace.
 
 ### The Plugin Bootstrap - `Bootstrap.php`
-First, you have to create a folder called `SwagProduct` with a new file called `Bootstrap.php` in it. The following features will be implemented in the bootstrap class:
+First, you have to create a directory called `SwagProduct` with a new file called `Bootstrap.php` in it. The following features will be implemented in the bootstrap class:
 
 * Register your own backend controller
 * Create a backend menu item which calls the controller
@@ -108,7 +108,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
 
     public function getBackendController(Enlight_Event_EventArgs $args)
     {
-        // Register the template folder to not have to provide it
+        // Register the template directory to not have to provide it
         // in the controller every time
         $this->Application()->Template()->addTemplateDir(
             $this->Path() . 'Views/'
@@ -403,7 +403,7 @@ Different from previous backend controllers, the `SwagProduct` controller derive
 The property `$alias` will be the query alias used in every query with the root model (`$model` property).
 
 ## ExtJS Implementation
-Now, we go on to the proper usage of the backend components. First, we implement the following components in our folder `Views/backend`:
+Now, we go on to the proper usage of the backend components. First, we implement the following components in our directory `Views/backend`:
 
 * `swag_product/app.js`
 * `swag_product/controller/main.js`

@@ -207,19 +207,19 @@ After deploying Shopware from VCS, installing plugins or generating themes from 
 admin server should be synced to all the appservers. `rsync` is a commonly used tool for this kind of task -
 but you could also consider using [lsyncd](https://github.com/axkibe/lsyncd), which is an extension to `rsync` and
 watches and syncs directories automatically.
-As most shop setups are quite individual and will include custom plugins, there is no finite list of folders that needs
-to be synced. Generally all files / folders of the Shopware setup should be synced across the appservers.
-The following folders, however, need special treatment:
+As most shop setups are quite individual and will include custom plugins, there is no finite list of directories that needs
+to be synced. Generally all files / directories of the Shopware setup should be synced across the appservers.
+The following directories, however, need special treatment:
 
 **No syncing**:
 * `/var/cache`: Handled individually on every appserver, no syncing
 * `/web`: Handled individually on every appserver, no syncing needed as of Shopware 5.2
 
-**Larger folders**:
+**Larger directories**:
 * `/files`: Synced to each appserver or shared storage. Depends on installed plugins  and used Shopware featured such as ESD etc.
 * `/media`: see [above](#images)
 
-**Folders that might change during runtime**:
+**Directories that might change during runtime**:
 * `/engine/Shopware/Plugins`: Changed when plugins are installed from the admin panel
 * `/themes/Frontend`: Changed when new themes are created from the admin panel
 * `/media`: Changed when new images / videos / media are uploaded in the admin panel

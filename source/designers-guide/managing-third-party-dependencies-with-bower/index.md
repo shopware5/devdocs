@@ -27,7 +27,7 @@ In order to be able to use Bower inside your theme, you need to install it local
 }
 ```
 
-After creating the `package.json` file (if you haven't added Bower to the dependencies yet) you can use the npm CLI command `npm install bower --save` to automatically install Bower and add it to the dependencies object. To install all dependencies that are defined in the `package.json` file, simply run the `npm install` CLI command and the packages are installed into the `node_modules` folder, which is the default installation directory of npm. When the installation is completed and Bower is installed correctly, you are ready to configure Bower and add components to your theme.
+After creating the `package.json` file (if you haven't added Bower to the dependencies yet) you can use the npm CLI command `npm install bower --save` to automatically install Bower and add it to the dependencies object. To install all dependencies that are defined in the `package.json` file, simply run the `npm install` CLI command and the packages are installed into the `node_modules` directory, which is the default installation directory of npm. When the installation is completed and Bower is installed correctly, you are ready to configure Bower and add components to your theme.
 This is an example of how a theme directory structure could look like:
 
 ```
@@ -44,9 +44,9 @@ MyAwesomeTheme
 
 ## Bower configuration
 
-The main configuration of Bower is handled inside a `.bowerrc` file that has to be located in the root of the theme, the same level as the `node_modules` folder. The `.bowerrc` file can contain settings for timeouts, proxies and custom shorthand resolvers, but the most popular settings is the `directory` option which specifies the output path of the installed packages. The default directory is `bower_components`.
+The main configuration of Bower is handled inside a `.bowerrc` file that has to be located in the root of the theme, the same level as the `node_modules` directory. The `.bowerrc` file can contain settings for timeouts, proxies and custom shorthand resolvers, but the most popular settings is the `directory` option which specifies the output path of the installed packages. The default directory is `bower_components`.
 
-**Important:** We recommend using the `frontend/_public/vendor/` folder as the default installation directory for Bower components, as the `_public` folder is the intended directory for theme assets.
+**Important:** We recommend using the `frontend/_public/vendor/` directory as the default installation directory for Bower components, as the `_public` directory is the intended directory for theme assets.
 
 ```json
 {

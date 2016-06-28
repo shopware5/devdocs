@@ -169,7 +169,7 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 ```
 
 - The "Views/common/" directory is always registered as a template directory. Templates inside this directory are now loaded for both template versions.
-- A template version check was added, so that only the corresponding view folder is loaded.
+- A template version check was added, so that only the corresponding view directory is loaded.
 - Responsive - Template files for the responsive template loaded automatically over the inheritance by using the same names. Therefore, only the template directory must registered here
 - Emotion - In the emotion template we can load the template extension like in Shopware 4. After the template directory is registered, the template file is loaded via the __extendsTemplate__ call.
 
@@ -262,12 +262,12 @@ public function addLessFiles(Enlight_Event_EventArgs $args)
 ```
 #### Structure convention
 
-Like in the example above, in most cases there is only one .less file to compile - the __all.less__. It includes additional files named by their content. Most likely the __all.less__ file includes the __modules.less__ and __variables.less__ files, which are often needed by default. These files include additional files from same named folders, e.g. modules.less includes files from the folder called __"_modules/"__.
+Like in the example above, in most cases there is only one .less file to compile - the __all.less__. It includes additional files named by their content. Most likely the __all.less__ file includes the __modules.less__ and __variables.less__ files, which are often needed by default. These files include additional files from same named directories, e.g. modules.less includes files from the directory called __"_modules/"__.
 
-As an example, if the file contains styles for Shopware's checkout page, it would be called __"checkout.less"__ and place in the ___modules__ folder.
+As an example, if the file contains styles for Shopware's checkout page, it would be called __"checkout.less"__ and place in the ___modules__ directory.
 The files inside ___variables/__ should only contain variable definitions made in Less.
 
-Folder/File    | Utility
+Directory/File    | Utility
 -------------- | ---------------------------------------------
 _modules       | Contains less styles of modules
 _variables     | Contains less variables
@@ -398,7 +398,7 @@ public function addJsFiles(Enlight_Event_EventArgs $args)
 }
 ```
 #### jQuery plugins
-Shopware 5 already includes several jQuery plugins you can use to implement useful features, like sliders or search fields. All of these can be found in the 'Themes/Frontend/Responsive/frontend/_public/src/js/' folder.
+Shopware 5 already includes several jQuery plugins you can use to implement useful features, like sliders or search fields. All of these can be found in the 'Themes/Frontend/Responsive/frontend/_public/src/js/' directory.
 
 #### Write own jQuery plugins
 If you want to write your own jQuery plugin, you should use our new plugin base class. It provides all the basic operations every jQuery plugin needs to have.
@@ -443,16 +443,16 @@ Keep the required additional data in mind, e.g. the new view variable "pageSizes
 ## Updating an example plugin
 In the following steps we'll update our "SwagExample1" Plugin to run with Shopware 5 and fully responsive.
 
-### Creating folder structure
-In the first step of updating our plugin to be compatible with Shopware 5, we'll simply create the new folder structure. The current folder structure looks like this:
+### Creating directory structure
+In the first step of updating our plugin to be compatible with Shopware 5, we'll simply create the new directory structure. The current directory structure looks like this:
 ![Current structure](current-structure.png)
 
-Now we simply create two new folders inside of "Views":
+Now we simply create two new directories inside of "Views":
 __emotion__ and __responsive__.
-Additionally, we move the existing "frontend" folder into the "emotion" folder.
+Additionally, we move the existing "frontend" directory into the "emotion" directory.
 
-All we need to do for now is create some additional folders inside the __responsive__ folder.
-Your folder structure should look like this:
+All we need to do for now is create some additional directories inside the __responsive__ directory.
+Your directory structure should look like this:
 ```
 Views/
 |->responsive/
@@ -464,9 +464,9 @@ Views/
 
 ### Implement new Less structure
 
-As mentioned in the tutorial, our new CSS/Less, Javascript and images files will be placed inside the ___public__ folder, which contains the __src__ folder. The __src__ folder contains the __less__ folder.
+As mentioned in the tutorial, our new CSS/Less, Javascript and images files will be placed inside the ___public__ directory, which contains the __src__ directory. The __src__ directory contains the __less__ directory.
 
-At first we start by creating a file called __all.less__ inside the __less__ folder, which has to be included in PHP now. This can be done using the new __"Theme_Compiler_Collect_Plugin_Less"__ event, which should be registered in the plugin's __install__ method:
+At first we start by creating a file called __all.less__ inside the __less__ directory, which has to be included in PHP now. This can be done using the new __"Theme_Compiler_Collect_Plugin_Less"__ event, which should be registered in the plugin's __install__ method:
 
 #### Registering the new event in the Bootstrap.php
 ```php
@@ -505,15 +505,15 @@ public function addLessFiles(Enlight_Event_EventArgs $args)
 
 In the __addLessFiles__ method should return a Doctrine array collection containing the plugin's Less files. The Shopware 5 core will automatically process them into CSS files, and merge them together with the theme's standard CSS content (also processed from Less). This unified file will be minimized and served to the browser when a page is requested. After (re)installing the plugin and refreshing the theme cache, your plugin's __all.less__ file should be included in future requests.
 
-As mentioned in the tutorial, the __all.less__ is needed to include other Less files. Therefore, we new create a file called __modules.less__ and a folder called ___modules__. The newly created __modules.less__ file needs to be imported in __all.less__
+As mentioned in the tutorial, the __all.less__ is needed to include other Less files. Therefore, we new create a file called __modules.less__ and a directory called ___modules__. The newly created __modules.less__ file needs to be imported in __all.less__
 
 #### all.less
 ```less
 @import "modules";
 ```
 
-In turn, the __modules.less__ file should import all the .less files that will be created inside of the ___modules__ folder. There files will contain the actual Less code, and should be grouped by their usage in the frontend.
-E.g. as we need styles for the detail page, we will create a new file called __detail.less__ inside of the ___modules__ folder.
+In turn, the __modules.less__ file should import all the .less files that will be created inside of the ___modules__ directory. There files will contain the actual Less code, and should be grouped by their usage in the frontend.
+E.g. as we need styles for the detail page, we will create a new file called __detail.less__ inside of the ___modules__ directory.
 
 #### modules.less
 ```less
@@ -671,8 +671,8 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 {/block}
 ```
 
-#### New folder structure
-![New folder structure](new-structure.png)
+#### New directory structure
+![New directory structure](new-structure.png)
 
 ## Questions?
 For further questions you should read the complete Shopware 5 upgrade guide.

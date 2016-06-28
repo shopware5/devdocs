@@ -140,7 +140,7 @@ We strongly recommend using <a href="http://getbootstrap.com/" target="_blank">B
 Check it out: <a href="https://github.com/shopwareLabs/bootstrap-theme-shopware" target="_blank">Bootstrap Shopware Backend Theme</a>
 </div>
 
-Now let's start templating our backend module. We recommend using [Bootstrap](http://getbootstrap.com/) as the frontend framework. First let's take a look on the directory structure in the `Views/backend` folder of our plugin:
+Now let's start templating our backend module. We recommend using [Bootstrap](http://getbootstrap.com/) as the frontend framework. First let's take a look on the directory structure in the `Views/backend` directory of our plugin:
 
 ```bash
 |-- _base

@@ -15,7 +15,7 @@ The `Shopware\Bundle\MediaBundle` defines how Shopware manages its media files. 
 
 ## The problem
 
-Since the beginning of Shopware, the media files were organized in a directory called `media` with sub-directories for each media type, e.g. image, video, and so on. Inside a sub-directory, every file has just been thrown in. The problem is that, if you have a huge amount of media files, file operations get very slow, especially on Windows systems.
+Since the beginning of Shopware, the media files were organized in a directory called `media` with subdirectories for each media type, e.g. image, video, and so on. Inside a sub-directory, every file has just been thrown in. The problem is that, if you have a huge amount of media files, file operations get very slow, especially on Windows systems.
 
 For that reason, we decided to apply commonly used techniques to our media management and introduce the new MediaService.
 

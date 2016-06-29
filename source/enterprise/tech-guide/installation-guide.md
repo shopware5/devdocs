@@ -23,9 +23,9 @@ Since the Client Administration not only has a webfrontend that is served throug
 - with Php5 extensions: cli, curl, intl, mysql, gd and mcrypt
 - with Php7 extensions: common, cli, curl, intl, mysql, gd, zip, xml and mcrypt
 - MySQL
-- Ansible Version 2.0.* (see below)
-- Beanstalk Version 1.4+, with a max job size of at least `65533 Byte` (see below)
-- Supervisor 3.0+ with configured RPC access (see below)
+- Ansible Version 2.0.*
+- Beanstalk Version 1.4+, with a max job size of at least `65533 Byte`
+- Supervisor 3.0+ with configured RPC access
 - A distinct shell user for SSH access to the connected shop servers
 - The ECA requires to be run from the root of an apache host, prepare a domain
 - Set PHP *(cli & apache2)* and MySQL timezone to UTC
@@ -35,17 +35,16 @@ Since the Client Administration not only has a webfrontend that is served throug
 - Download the installation package
 - Extract the archive to your web server's content folder
 - Enable web server access to *_APPLICATION_/web*
-- Execute `php setup.phar` through the command line
-- Follow the instructions
-- Remember to symlink the Supervisor configuration in *_APPLICATION_/supervisord/eca.conf.dist* to enable the background processes
+- Execute `php setup.phar` through the command line, follow the instructions of the setup
+- Remember to symlink the Supervisor configuration in *_APPLICATION_PATH_/supervisord/eca.conf.dist* to enable the background processes
 
-## HowTo: Setup the background processes on Ubuntu 14.04
+### Example for setting up background processes on Ubuntu 14.04.
 
 > Important: This is intended to help you understand and not a fully secured production setting.
 
 Since you should already be familiar with webserver setup from your past Shopware experience, we are showing you here the Client Administration specific background process setup.
 
-Install [supervisor](http://supervisord.org/installing.html#installing-to-a-system-with-internet-access), [beanstalkd](https://www.vultr.com/docs/setup-beanstalkd-and-beanstalk-console-on-ubuntu-14) and [ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu).
+Install [supervisor](http://supervisord.org/installing.html#installing-to-a-system-with-internet-access), [beanstalkd](https://www.vultr.com/docs/setup-beanstalkd-and-beanstalk-console-on-ubuntu-14) and [ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu)
 
 ````shell
 sudo -i
@@ -91,9 +90,11 @@ useradd eca-supervisor -s /bin/bash -m
 Now create a SSH key *without a password* for the eca-deploy user. Since it is an interactive command, make sure to save the key in `home/eca-supervisor/.ssh/example_ssh`
 
 ````shell
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+mkdir /home/eca-supervisor/.ssh
 
-Enter to /home/eca-supervisor/.ssh/id_rsa
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+home/eca-supervisor/.ssh/example_ssh#
+
 chown eca-supervisor:eca-supervisor -R /home/eca-supervisor/.ssh
 ````
 
@@ -108,7 +109,7 @@ chmod 0600 /home/eca-supervisor/.ssh/example_ssh
 Now we link the Client Administrations supervisor config to the supervisor service and restart it so the workers are executed.
 
 ```shell
-ln -s _APPLICATION_PATH_/supervisord/eca.conf.dist /etc/supervisor/conf.d/eca.conf
+ln -s _APPLICATION_PATH_/supervisord/background-process.conf.dist /etc/supervisor/conf.d/background-process.conf
 supervisorctl reload
 ```
 > Notice: Some supervisor configurations may only allow `*.conf` files to be enabled.

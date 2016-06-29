@@ -453,6 +453,7 @@ To learn more about the new attribute management, refer to the [README.md](https
     * `frontend_blog_index_campaign_bottom`
     * `frontend_blog_index_campaign_middle`
     * `frontend_blog_index_campaign_top`
+    * `frontend_checkout_finish_info`
     * `frontend_index_left_campaigns_bottom`
     * `frontend_index_left_campaigns_middle`
     * `frontend_index_left_campaigns_top`

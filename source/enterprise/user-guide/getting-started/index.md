@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting started with the Client Administration
-github_link: enterprise/user-guide/beta2/index.md
+github_link: enterprise/user-guide/getting-started/index.md
 indexed: false
 ---
 

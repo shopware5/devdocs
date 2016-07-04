@@ -12,7 +12,7 @@ The following document will describe ways to cluster Shopware as well as conside
 in a clustered setup.
 
 <div class="alert alert-warning">
-This document is currently work in progress
+Clustering is always highly individual and depends on the customer's requirements as well as the functional scope of the shop. For this reason every project will need to adjust the suggestions of this document for the actual hosting circumstances and customer / deploment workflows.
 </div>
 
 <div class="toc-list"></div>

@@ -8,7 +8,6 @@ categories:
 - dev
 
 authors: [psc]
-indexed: true
 
 github_link: blog/_posts/2016-04-07-introducing-project-tango.md
 ---

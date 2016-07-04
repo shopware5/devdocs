@@ -5,7 +5,7 @@ github_link: enterprise/user-guide/getting-started/index.md
 indexed: false
 ---
 
-This guide will give you an overview of the basic usage of the Shopware Client Administration (ECA).
+This guide will give you an overview of the basic usage of the Enterprise Client Administration (ECA).
 
 <div class="toc-list"></div>
 

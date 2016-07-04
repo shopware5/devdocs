@@ -5,7 +5,7 @@ github_link: enterprise/tech-guide/backup-eca-guide.md
 indexed: false
 ---
 
-This guide describes how you back up the Client Administration.
+This guide describes how you back up the Enterprise Client Administration.
 
 <div class="toc-list"></div>
 

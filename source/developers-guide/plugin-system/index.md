@@ -118,10 +118,10 @@ During plugin installation / deinstallation / update / activate / deactivate a m
 namespace SwagSloganOfTheDay;
 
 use Shopware\Components\Plugin\Context\ActivateContext;
-use ;
+use Shopware\Components\Plugin\Context\DeactivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
-use Shopware\Components\Plugin\Context\UninstallContext;
 use Shopware\Components\Plugin\Context\UpdateContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
 
 class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 {

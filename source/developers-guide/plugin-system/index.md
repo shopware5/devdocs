@@ -68,7 +68,7 @@ Plugin SwagSloganOfTheDay has been activated successfully.
 At this point the plugin has no funcionallity at all.
 
 
-### Pluginbootstrap as Event Subscriber
+## Pluginbootstrap as Event Subscriber
 
 The Pluginbootstrap implements `\Enlight\Event\SubscriberInterface` so it can be used as a [Event Subscriber](/developers-guide/event-guide/#subscribers).
 
@@ -92,7 +92,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
-#### Access to the DI-Container
+### Access to the DI-Container
 
 Inside the plugin bootstrap the DI-Container can be accessed with the `$this->container` property:
 
@@ -104,12 +104,12 @@ Inside the plugin bootstrap the DI-Container can be accessed with the `$this->co
     }
 ```
 
-### Autoloading
+## Autoloading
 
 The plugin namespace is registered as a [PSR-4](http://www.php-fig.org/psr/psr-4/) Autoloading prefix.
 For example the class `\SwagSloganOfTheDay\Log\Writer` will be loaded from file `SwagSloganOfTheDay/Log/Writer.php`.
 
-### Plugin Install / Update
+## Plugin Install / Update
 
 During plugin installation / deinstallation / update / activate / deactivate a method on the plugin bootstrap is called that can optionally be overwritten.
 
@@ -147,7 +147,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
-### Container Configuration
+## Container Configuration
 
 The [Symfony DependencyInjection Component](http://symfony.com/doc/current/components/dependency_injection/introduction.html)
 
@@ -201,7 +201,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 
-### Extended Container Configuration
+## Extended Container Configuration
 
 By overwriting the `build()`-method the `ContainerBuilder` can extended:
 
@@ -223,7 +223,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
-### Access to other plugins
+## Access to other plugins
 
 Other plugins can be accessed via the `getPlugins()` method of the kernel. 
 
@@ -231,4 +231,9 @@ Other plugins can be accessed via the `getPlugins()` method of the kernel.
 $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample'];
 $path = $swagExample->getPath();
 ```
+
+## Example Plugins
+
+- https://github.com/shyim/shopware-profiler
+- https://github.com/bcremer/SwagModelTest
 

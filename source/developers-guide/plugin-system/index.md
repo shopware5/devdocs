@@ -20,10 +20,10 @@ The 5.2 Plugins are located in the `custom/plugins/` directory. There is no sepe
 
 ## Plugin Name
 
-The plugin name should always be prefixed with your your developer prefix so it's unique in the Shopware universe.
+The plugin name should always be prefixed with your developer prefix so it's unique in the Shopware universe.
 To submit plugins to the [shopware store](http://store.shopware.com/) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
-In the following examples the developer preix "Swag" will be used (short for Shopware AG).
+In the following examples the developer prefix "Swag" will be used (short for Shopware AG).
 
 ## Minimal Plugin Example
 
@@ -225,7 +225,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 ### Access to other plugins
 
-Other plugins can be accessed vio the `getPlugins()` method of the kernel. 
+Other plugins can be accessed via the `getPlugins()` method of the kernel. 
 
 ```php
 $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample'];

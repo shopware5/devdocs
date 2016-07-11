@@ -11,6 +11,8 @@ This document is work in progress and not finished yet.
 Please feel free to open a pull request on github to extend parts of this document.
 </div>
 
+<div class="toc-list"></div>
+
 ## Parallel mode
 The new plugin system runs fully in parallel to the "legacy" plugin system.
 

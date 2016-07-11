@@ -52,6 +52,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+
 ### Install and activate
 
 Now the plugin can be installed using the Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/) or the Plugin Manager in the backend.
@@ -149,6 +150,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+
 ## Container Configuration
 
 The [Symfony DependencyInjection Component](http://symfony.com/doc/current/components/dependency_injection/introduction.html)
@@ -203,7 +205,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 
-## Extended Container Configuration
+### Extended Container Configuration
 
 By overwriting the `build()`-method the `ContainerBuilder` can extended:
 
@@ -223,6 +225,76 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
         parent::build($container);
     }
 }
+```
+
+### Event subscriber
+The new plugin system has the ability to add event subscriber by adding subscribers in the `services.xml`.
+
+```
+SwagSloganOfTheDay
+├── Resources
+│   └── services.xml
+├──SloganPrinter.php
+├──RouteSubscriber.php
+└──SwagSloganOfTheDay.php
+```
+
+The `onRouteStartup` subscriber above now will be encapsulated in a subscriber class. 
+
+`SwagSloganOfTheDay/RouteSubscriber.php`
+
+```
+<?php
+namespace SwagSloganOfTheDay\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class RouteSubscriber implements SubscriberInterface
+{
+    private $sloganPrinter;
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Front_RouteStartup' => 'onRouteStartup'
+        ];
+    }
+    
+    public function __construct(SloganPrinter $sloganPrinter)
+    {
+        $this->sloganPrinter = $sloganPrinter;
+    }
+
+    public function onRouteStartup(\Enlight_Controller_EventArgs $args)
+    {
+        $this->sloganPrinter->print();
+    }
+}
+```
+
+After adding the `RouteSubscriber.php`, the subscriber can be added to the `services.xml` as a tagged service ([Symfony - Working with Tagged Services](http://symfony.com/doc/current/components/dependency_injection/tags.html)).
+This allows shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
+
+`SwagSloganOfTheDay/Resources/services.xml`
+```
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_slogan_of_the_day.subscriber.route" class="SwagSloganOfTheDay\Subscriber\Route">
+            <argument type="service" id="swag_slogan_of_the_day.slogan_printer" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="swag_slogan_of_the_day.slogan_printer" class="SwagSloganOfTheDay\SloganPrinter">
+            <argument type="service" id="dbal_connection" />
+        </service>
+    </services>
+</container>
 ```
 
 ## Register plugin controller with template
@@ -305,7 +377,79 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 
 You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
 
-## Add menu items to backend
+## Plugin Resources
+
+Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
+IDE`s like PhpStorm support auto completion by default for these files if schema file location is valid.
+
+```
+SwagSloganOfTheDay
+├──plugin.xml
+├── Resources
+│   ├── config.xml
+│   └── menu.xml
+└──SwagSloganOfTheDay.php
+```
+
+You can find the schema of the xml files in `engine/Shopware/Components/Plugin/schema`.
+ - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
+ - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
+ - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
+ 
+<div class="alert alert-warning">
+At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will receive an exception. <br/>
+You can use the CLI to install the plugin with extended error messages: <code>php ./bin/console sw:plugin:install SwagSloganOfTheDay -v</code>
+</div>
+
+### Plugin Metadata 
+ 
+```
+<!-- plugin.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Slogan des Tages</label>
+    <label lang="en">Slogan of the day</label>
+
+    <version>1.0.0</version>
+    <link>http://example.org</link>
+    <author>shopware AG</author>
+    <compatibility minVersion="5.2.0" />
+
+    <changelog version="1.0.0">
+        <changes lang="de">Veröffentlichung</changes>
+        <changes lang="en">Release</changes>
+    </changelog>
+</plugin>
+```
+
+### Plugin Configuration / Forms
+
+
+Backend plugin configuration can be extended by `config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`
+
+
+```
+<!-- Resources/config.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element required="true" type="text">
+            <name>slogan</name>
+            <label lang="de">Dein Slogan</label>
+            <label lang="en">Your slogan</label>
+            <value>XML is fun!</value>
+        </element>
+    </elements>
+</config>
+```
+
+Configuration is accessible by following code snippet:
+
+```
+Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
+```
+
+### Backend Menu Items
 
 ```xml
 <!-- Resources/menu.xml -->
@@ -334,8 +478,7 @@ For available parent controllers take a look into table s_core_menu (column cont
 
 Menuitem won't be displayed if controller and action are missing.
 
-How to know which class for which icon take a look at:
-<a href="https://github.com/mankerst/shopware-backend-icons">github.com/mankerst/shopware-backend-icons </a>
+To know which class for which icon take a look at the <a href="/designers-guide/backend-icons/">Backen icon set overview</a>.
 
 ## Access to other plugins
 
@@ -346,39 +489,28 @@ $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample
 $path = $swagExample->getPath();
 ```
 
-## Resources
 
-You can add xml files which are imported by Shopware via `SwagSloganOfTheDay/Resources/*` in plugin installation workflow. IDE`s like PhpStorm support auto completion by default for these files if schema file location is valid.
 
+## Update from legacy plugin system
+
+Shopware recognizes whether the plugin is based on the legacy or 5.2 plugin system and moves it to the correct directory. Shopware does not support moving of extracted plugins based on the 5.2 plugin system, if they are placed in the legacy directory structure.
+Further the zip archive structure changed. 
+
+**Legacy zip structure:**
 ```
-Resources
-└──config.xml
-└──menu.xml
-```
-
-### Plugin configuration
-
-Backend plugin configuration can be extended by `config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`
-
-```xml
-<!-- Resources/config.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
-
-    <elements>
-        <element>
-            <label>My Config Label</label>
-            <name>my_config_value</name>
-        </element>
-    </elements>
-</config>
+SwagSloganOfTheDay.zip
+└──Frontend
+   └──SwagSloganOfTheDay
+      ├──Bootstrap.php
+      └──...
 ```
 
-Configuration is accessible by following code snippet:
-
+**New 5.2 zip structure:**
 ```
-Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'my_config_value'),
+SwagSloganOfTheDay.zip
+└──SwagSloganOfTheDay
+   ├──SwagSloganOfTheDay.php
+   └──...
 ```
 
 ## Example Plugins

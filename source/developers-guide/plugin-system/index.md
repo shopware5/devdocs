@@ -50,6 +50,44 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+### Plugin configuration
+Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
+
+```
+SwagSloganOfTheDay
+├──plugin.xml
+├── Resources
+│   ├── config.xml
+│   └── menu.xml
+└──SwagSloganOfTheDay.php
+```
+
+You can find the schema of the xml files in `engine/Shopware/Components/Plugin/schema`.
+ - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
+ - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
+ - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
+ 
+`SwagSloganOfTheDay/plugin.xml`
+```
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="de">Slogan des Tages</label>
+    <label lang="en">Slogan of the day</label>
+
+    <version>1.0.0</version>
+    <link>http://example.org</link>
+    <author>shopware AG</author>
+    <compatibility minVersion="5.2.0" />
+
+    <changelog version="1.0.0">
+        <changes lang="de">Veröffentlichung</changes>
+        <changes lang="en">Release</changes>
+    </changelog>
+</plugin>
+```
+
 ### Install and acivate
 
 Now the plugin can be installed using the Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/) or the Plugin Manager in the backend.
@@ -65,7 +103,7 @@ Plugin SwagSloganOfTheDay has been installed successfully.
 Plugin SwagSloganOfTheDay has been activated successfully.
 ```
 
-At this point the plugin has no funcionallity at all.
+At this point the plugin has no functionality at all.
 
 
 ## Pluginbootstrap as Event Subscriber
@@ -152,11 +190,14 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 The [Symfony DependencyInjection Component](http://symfony.com/doc/current/components/dependency_injection/introduction.html)
 
 The container configuration is the main extension point for shopware plugins.
-In this configuration new services can be defined, core services can be decorated or replaced or functiallity can be added to the system.
+In this configuration new services can be defined, core services can be decorated or replaced or functionality can be added to the system.
 
 ```
 SwagSloganOfTheDay
+├──plugin.xml
 ├── Resources
+│   ├── config.xml
+│   ├── menu.xml
 │   └── services.xml
 ├──SloganPrinter.php
 └──SwagSloganOfTheDay.php

@@ -23,7 +23,7 @@ The 5.2 Plugins are located in the `custom/plugins/` directory. There is no sepe
 The plugin name should always be prefixed with your developer prefix so it's unique in the Shopware universe.
 To submit plugins to the [shopware store](http://store.shopware.com/) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
-In the following examples the developer prefix "Swag" will be used (short for Shopware AG).
+In the following examples the developer prefix "Swag" will be used (short for shopware AG).
 
 ## Minimal Plugin Example
 
@@ -68,7 +68,7 @@ You can find the schema of the xml files in `engine/Shopware/Components/Plugin/s
  - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
  
 <div class="alert alert-warning">
-At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will recive an exception. <br/>
+At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will receive an exception. <br/>
 You can use the CLI to install the plugin with extended error messages: <code>php ./bin/console sw:plugin:install SwagSloganOfTheDay -v</code>
 </div>
  
@@ -91,6 +91,23 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
         <changes lang="en">Release</changes>
     </changelog>
 </plugin>
+```
+
+`SwagSloganOfTheDay/Resources/config.xml`
+```
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+
+    <elements>
+        <element required="true" type="text">
+            <name>slogan</name>
+            <label lang="de">Dein Slogan</label>
+            <label lang="en">Your slogan</label>
+            <value>XML is fun!</value>
+        </element>
+    </elements>
+</config>
 ```
 
 ### Install and acivate
@@ -142,7 +159,7 @@ Inside the plugin bootstrap the DI-Container can be accessed with the `$this->co
 ```php
     public function onRouteStartup(\Enlight_Controller_EventArgs $args)
     {
-        $conn = $this->container()->get('dbal_connection');
+        $conn = $this->container->get('dbal_connection');
         $conn->.... // do some query
     }
 ```

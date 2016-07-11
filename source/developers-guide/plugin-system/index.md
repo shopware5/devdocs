@@ -67,6 +67,11 @@ You can find the schema of the xml files in `engine/Shopware/Components/Plugin/s
  - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
  - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
  
+<div class="alert alert-warning">
+At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will recive an exception. <br/>
+You can use the CLI to install the plugin with extended error messages: <code>php ./bin/console sw:plugin:install SwagSloganOfTheDay -v</code>
+</div>
+ 
 `SwagSloganOfTheDay/plugin.xml`
 ```
 <?xml version="1.0" encoding="utf-8"?>

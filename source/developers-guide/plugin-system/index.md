@@ -263,6 +263,82 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 </container>
 ```
 
+### Event subscriber
+The new plugin system has the ability to add event subscriber by adding subscribers in the `services.xml`.
+Subscriber are located in `SwagSloganOfTheDay/Subscriber`, so the directory structure should look like this:
+
+```
+SwagSloganOfTheDay
+├──plugin.xml
+├── Resources
+│   ├── config.xml
+│   ├── menu.xml
+│   └── services.xml
+├──SloganPrinter.php
+├──Subscriber
+│   └── Route.php
+└──SwagSloganOfTheDay.php
+```
+
+The `onRouteStartup` subscriber above now will be encapsulated in a subscriber class. 
+
+`SwagSloganOfTheDay/Subscriber/Route.php`
+```
+<?php
+namespace SwagSloganOfTheDay\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class Route implements SubscriberInterface
+{
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Front_RouteStartup' => 'onRouteStartup'
+        ];
+    }
+
+    public function onRouteStartup(\Enlight_Controller_EventArgs $args)
+    {
+        $sloganPrinter = $this->container->get('swag_slogan_of_the_day.slogan_printer');
+        $sloganPrinter->print();
+    }
+}
+```
+
+After adding the `Route.php`, the subscriber can be added to the `services.xml` as a tagged service ([Symfony - Working with Tagged Services](http://symfony.com/doc/current/components/dependency_injection/tags.html)).
+This allows shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
+
+`SwagSloganOfTheDay/Resources/services.xml`
+```
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_slogan_of_the_day.subscriber.route" class="SwagSloganOfTheDay\Subscriber\Route">
+            <argument type="service" id="service_container" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="swag_slogan_of_the_day.slogan_printer" class="SwagSloganOfTheDay\SloganPrinter">
+            <argument type="service" id="dbal_connection" />
+        </service>
+    </services>
+</container>
+```
+
+The `SwagSloganOfTheDay::getSubscribedEvents()` and `SwagSloganOfTheDay::onRouteStartup` can be removed after adding the subscriber to the `services.xml`.
 
 ## Extended Container Configuration
 

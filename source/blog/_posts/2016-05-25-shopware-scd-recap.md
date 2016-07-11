@@ -8,7 +8,6 @@ categories:
 - dev
 
 authors: [sf]
-indexed: true
 
 github_link: blog/_posts/2016-05-25-shopware-scd-recap.md
 ---

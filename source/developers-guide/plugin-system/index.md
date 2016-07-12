@@ -373,6 +373,28 @@ $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample
 $path = $swagExample->getPath();
 ```
 
+## Update from legacy plugin system
+
+Shopware recognizes whether the plugin is based on the legacy or 5.2 plugin system and moves it to the correct directory. Shopware does not support moving of extracted plugins based on the 5.2 plugin system, if they are placed in the legacy directory structure.
+Further the zip archive structure changed. 
+
+**Legacy zip structure:**
+```
+SwagSloganOfTheDay.zip
+└──Frontend
+   └──SwagSloganOfTheDay
+      ├──Bootstrap.php
+      └──...
+```
+
+**New 5.2 zip structure:**
+```
+SwagSloganOfTheDay.zip
+└──SwagSloganOfTheDay
+   ├──SwagSloganOfTheDay.php
+   └──...
+```
+
 ## Example Plugins
 
 - https://github.com/shyim/shopware-profiler

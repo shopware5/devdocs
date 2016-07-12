@@ -2,10 +2,10 @@
 layout: default
 title: Shopware Client Administration Installation Guide
 github_link: enterprise/tech-guide/installation-guide.md
-indexed: false
+indexed: true
 ---
 
-This guide will cover the Shopware Client Administration installation process
+This guide will cover the [Shopware Client Administration](https://account.shopware.com/#/enterprise) installation process.
 
 <div class="toc-list"></div>
 

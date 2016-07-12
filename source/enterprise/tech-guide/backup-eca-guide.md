@@ -2,7 +2,7 @@
 layout: default
 title: Backup the Client Administration
 github_link: enterprise/tech-guide/backup-eca-guide.md
-indexed: false
+indexed: true
 ---
 
 This guide describes how you back up the Enterprise Client Administration.

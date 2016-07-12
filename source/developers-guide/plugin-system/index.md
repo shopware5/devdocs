@@ -11,6 +11,8 @@ This document is work in progress and not finished yet.
 Please feel free to open a pull request on github to extend parts of this document.
 </div>
 
+<div class="toc-list"></div>
+
 ## Parallel mode
 The new plugin system runs fully in parallel to the "legacy" plugin system.
 
@@ -23,7 +25,7 @@ The 5.2 Plugins are located in the `custom/plugins/` directory. There is no sepe
 The plugin name should always be prefixed with your developer prefix so it's unique in the Shopware universe.
 To submit plugins to the [shopware store](http://store.shopware.com/) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
-In the following examples the developer prefix "Swag" will be used (short for Shopware AG).
+In the following examples the developer prefix "Swag" will be used (short for shopware AG).
 
 ## Minimal Plugin Example
 
@@ -65,7 +67,7 @@ Plugin SwagSloganOfTheDay has been installed successfully.
 Plugin SwagSloganOfTheDay has been activated successfully.
 ```
 
-At this point the plugin has no funcionallity at all.
+At this point the plugin has no functionality at all.
 
 
 ## Pluginbootstrap as Event Subscriber
@@ -99,7 +101,7 @@ Inside the plugin bootstrap the DI-Container can be accessed with the `$this->co
 ```php
     public function onRouteStartup(\Enlight_Controller_EventArgs $args)
     {
-        $conn = $this->container()->get('dbal_connection');
+        $conn = $this->container->get('dbal_connection');
         $conn->.... // do some query
     }
 ```
@@ -152,7 +154,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 The [Symfony DependencyInjection Component](http://symfony.com/doc/current/components/dependency_injection/introduction.html)
 
 The container configuration is the main extension point for shopware plugins.
-In this configuration new services can be defined, core services can be decorated or replaced or functiallity can be added to the system.
+In this configuration new services can be defined, core services can be decorated or replaced or functionality can be added to the system.
 
 ```
 SwagSloganOfTheDay
@@ -225,7 +227,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 ## Access to other plugins
 
-Other plugins can be accessed via the `getPlugins()` method of the kernel. 
+Other plugins can be accessed via the `getPlugins()` method of the kernel.
 
 ```php
 $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample'];
@@ -234,6 +236,6 @@ $path = $swagExample->getPath();
 
 ## Example Plugins
 
-- https://github.com/shyim/shopware-profiler
-- https://github.com/bcremer/SwagModelTest
+- <a href="https://github.com/shyim/shopware-profiler">github.com/shyim/shopware-profiler</a>
+- <a href="https://github.com/bcremer/SwagModelTest">github.com/bcremer/SwagModelTest</a>
 

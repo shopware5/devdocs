@@ -225,6 +225,57 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+## Add console commands
+
+There are two ways to add Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/).
+
+### Implement registerCommands
+
+You can implement the method `registerCommands()` and add commands to the Console application:
+
+```
+<?php
+namespace SwagCommandExample;
+
+use Shopware\Components\Plugin;
+use Shopware\Components\Console\Application;
+use SwagCommandExample\Commands\FirstCommand;
+use SwagCommandExample\Commands\SecondCommand;
+
+class SwagCommandExample extends Plugin
+{
+    public function registerCommands(Application $application)
+    {
+        $application->add(new FirstCommand());
+        $application->add(new SecondCommand());
+    }
+}
+```
+
+### Commands as Services
+
+As of Shopware 5.2.2 you can also register commands as a service and tag it with `console.command`:
+
+```xml
+<!-- Resources/services.xml -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service
+            id="swag_command_example.commands.first_command"
+            class="SwagCommandExample\Commands\FirstCommand">
+            <tag name="console.command"/>
+        </service>
+    </services>
+</container>
+```
+
+You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
+
+
 ## Access to other plugins
 
 Other plugins can be accessed via the `getPlugins()` method of the kernel.

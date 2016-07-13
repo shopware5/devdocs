@@ -16,7 +16,7 @@ github_link: blog/_posts/2016-07-14-open-hackathon-review.md
 ---
 
 <img src="/blog/img/open-hackathon-2016/cody_mate.jpg" alt="" width="140" class="is-float-left" />
-Last year in august we ran our [first Open Hackathon](https://en.shopware.com/impressive-outcome-from-the-shopware-open-hackathon/) together with in Münster. It was a great success so naturally we repeated the event this year again.
+Last year in august we ran our [first Open Hackathon](https://en.shopware.com/impressive-outcome-from-the-shopware-open-hackathon/) together with attendees from the shopware community in Münster. It was a great success so naturally we repeated the event this year again.
 This year we ran the event in our new Shopware HQ in Schöppingen where we had plenty of space to get creative. Also our beach was the perfect place to work outside, play some volleyball or just chill. You can find a general write-up over at our main website at [shopware.com (GER)](https://de.shopware.com/erster-open-hackathon-im-neuen-shopware-headquarter-/).
 
 <div style="clear:both"></div>

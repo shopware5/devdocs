@@ -2,7 +2,7 @@
 layout: default
 title: Getting started with the Client Administration
 github_link: enterprise/user-guide/getting-started/index.md
-indexed: true
+indexed: false
 ---
 
 This guide will give you an overview of the basic usage of the Enterprise Client Administration (ECA).

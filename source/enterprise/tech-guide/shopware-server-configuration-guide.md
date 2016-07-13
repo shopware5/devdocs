@@ -2,7 +2,7 @@
 layout: default
 title: Shopware Server Configuration Guide
 github_link: enterprise/tech-guide/shopware-server-configuration-guide.md
-indexed: true
+indexed: false
 ---
 
 This guide describes how you need to configure your Shopware servers in order to be compatible with the Client Administration.

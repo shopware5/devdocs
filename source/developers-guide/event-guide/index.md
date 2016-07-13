@@ -14,9 +14,9 @@ specifically
 
 ## What is an "event system"?
 Event systems (also known as [publish subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
-are basically a pattern to layout software. They allow to emit an event at any point in the software - and let other peaces
-of software react to that event. The main aspect is the fact, that the peace of software emitting the event does not need
-to know the peace of software consuming the event. So very generally speaking, Shopware could emit a event `ORDER_FINISHED`
+are basically a pattern to layout software. They allow to emit an event at any point in the software - and let other pieces
+of software react to that event. The main aspect is the fact, that the piece of software emitting the event does not need
+to know the piece of software consuming the event. So very generally speaking, Shopware could emit a event `ORDER_FINISHED`
 with the additional information `AMOUNT: 300; PRODUCTS: [SW-123, SW-456]` and a plugin developer could just subscribe to that very 
 event and push those information to the ERP. 
 

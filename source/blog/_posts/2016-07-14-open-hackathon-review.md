@@ -58,7 +58,7 @@ Improving the developer experience of the [new plugin system](developers-guide/p
 ### Shopware goes composer (part 2)
 <img src="/blog/img/open-hackathon-2016/logo-composer-transparent4.png" class="is-float-left" style="width:175px" />
 
-During the last (internal) hackathon, I worked on a project called [Shopware goes Composer](blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#shopware-goes-composer), the goal of which was to deploy Shopware via git as a composer dependency as well as install plugins via composer. During this hackathon, the team made great progress to reach this goal. There are still a lot of patches that need to be merged in the main shopware branch but "soon" it should be possible to deploy Shopware from git.
+During the last (internal) hackathon, I worked on a project called [Shopware goes Composer](/blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#shopware-goes-composer), the goal of which was to deploy Shopware via git as a composer dependency as well as install plugins via composer. During this hackathon, the team made great progress to reach this goal. There are still a lot of patches that need to be merged in the main shopware branch but "soon" it should be possible to deploy Shopware from git.
 
 <div style="clear:both"></div>
 

@@ -785,6 +785,88 @@ input#search-query {
         }
     }
 
+    .guide--teaser {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .guide-list {
+        list-style: none;
+
+        li {
+            display: block;
+            padding: 0;
+            margin: 0 0 10px 0;
+
+            &:before {
+                content: none;
+            }
+
+            a {
+                display: block;
+                padding: 10px 25px;
+                font-size: 18px;
+                font-weight: 400;
+                background: #f1f5f8;
+                color: #4e697a;
+
+                &:hover {
+                    color: @blue02;
+                    background: #e7f2f9;
+                }
+            }
+        }
+
+        &.is--numbered {
+            counter-reset: guide-counter;
+
+            li a {
+                padding-left: 10px;
+
+                &:before {
+                    content: counter(guide-counter);
+                    counter-increment: guide-counter;
+                    display: inline-block;
+                    min-width: 20px;
+                    padding: 0 10px;
+                    margin: 0 20px 0 0;
+                    line-height: 40px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-align: center;
+                    border-radius: 28px;
+                    background: #46a8d1;
+                    border: 2px solid #ffffff;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .guide--forward {
+        padding: 20px 0 0 0;
+        text-align: center;
+
+        .forward--info {
+            font-size: 18px;
+            font-style: italic;
+            margin: 0 0 5px 0;
+        }
+
+        .forward--btn {
+            display: inline-block;
+            padding: 6px 20px;
+            font-size: 20px;
+            background: #46a8d1;
+            color: #ffffff;
+            border-radius: 8px;
+
+            &:hover {
+                background: @blue01;
+            }
+        }
+    }
+
     /* TABLES */
     table {
         margin: 30px 0;

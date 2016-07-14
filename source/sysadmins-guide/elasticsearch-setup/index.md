@@ -46,6 +46,8 @@ To enable Elasticsearch (provided it's already installed, configured and running
 [
     'es' => [
         'enabled' => true,
+        'number_of_replicas' => null,
+        'number_of_shards' => null,
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -56,7 +58,12 @@ To enable Elasticsearch (provided it's already installed, configured and running
 ]
 ```
 
-Shopware 5 communicates with Elasticsearch using the latter's REST API. The `hosts` array accepts multiple address syntaxes, about which you can read more [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/_configuration.html#_host_configuration).
+Shopware 5 communicates with Elasticsearch using the latter's REST API. The `hosts` array accepts multiple address syntaxes, about which you can read more [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/_configuration.html#_host_configuration). The `number_of_shards` and `number_of_replicas` parameter provided to the generated index. A `null` configuration allows to use the elastic search server configuration of this parameters.
+
+<div class="alert alert-info" role="alert">
+    <strong>Note:</strong> For a single node configuration, which is sufficient for a development environment, it is necessary to configure a `number_of_replicas` of `0`, otherwise the indexing process would wait for cluster health `green`, which can't be reached if no replicas can be applied.
+</div>
+
 
 ### Initial data import
 

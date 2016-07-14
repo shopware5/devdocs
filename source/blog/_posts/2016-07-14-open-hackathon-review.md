@@ -23,10 +23,9 @@ This year we ran the event in our new Shopware HQ in Schöppingen where we had p
 
 ## The projects
 
-We had a good mixture of Shopware employees and attendees from the Shopware community and so the range of projects reached from a meal ordering system for our employee catering to a third party service integration from one our partners that also attended.
-You can find most of the code that was written during the hackathon on [GitHub](https://github.com/ShopwareHackathon).
+Considering we had an eclectic mixture of Shopware employees and participants from the Community, the range of projects spanned from a meal ordering system for our employee catering to a third party service integration from one our partners that also attended.
 
-I will not describe every project in detail here.
+You can find most of the code that was written during the hackathon on [GitHub](https://github.com/ShopwareHackathon).
 
 ### Shopware Plugin for PhpStorm
 A team lead by [Daniel Espendiller](https://twitter.com/BigHaehnchen) worked on new features for the [Shopware Plugin for PhpStorm](https://plugins.jetbrains.com/plugin/7410?pr=).
@@ -35,36 +34,37 @@ This resulted in some cool features like initial support for the new plugins sys
 ![](/blog/img/open-hackathon-2016/phpstorm-plugin.jpg)
 
 ### Code name m2e (Meal to employee)
-Since a few weeks we have employee catering here at the Shopware HQ. But up to now the ordering process involves big spreadsheet in confluence (yikes!).
+For a few weeks now, we've enjoyed the luxury of employee catering here at the Shopware HQ. But, up until now, the ordering process has involved a giant spreadsheet in a confluence document (yikes!).
+
 To slimline the whole ordering process a RESTfuel API based on an existing Symfony application was created that is operated with a nice Angular based frontend.
-In the future this application will be also used to let attendees of our academy choose their meals.
+In the future, this application will also be used to so that participants in our in-house Shopware Academy can choose their meals.
 
 ![](/blog/img/open-hackathon-2016/m2e_erd.jpg)
 
 ### Unsplash
-Another team integrated [unplash](https://unsplash.com/) into the shopware media manger. Unsplash provides Do-whatever-you-want high-resolution photos via an API. This API was integrated into the media manager so you can find photos for emotion worlds etc. from unsplash.
+Another team integrated [unplash](https://unsplash.com/) into Shopware's Media Manger. Unsplash provides do-whatever-you-want, high-resolution photos via an API. This API was integrated into the Media Manager so that you can find photos for Shopping Worlds / Storytelling etc. from Unsplash.
 
 ![](/blog/img/open-hackathon-2016/unsplash.png)
 <div style="clear:both"></div>
 
 ### Meleven Image Cloud Integration
 <img src="/blog/img/open-hackathon-2016/meleven-logo.png" class="is-float-left" style="width:175px" />
-A few people from our partner shopmacher worked on an integration to the [meleven](http://www.meleven.de/) image cloud. This goes further that our current CDN support as all thumbnails are generated on-the-fly by meleven.
+A few participants from our partner shopmacher worked on an integration to the [meleven](http://www.meleven.de/) image cloud. This goes further than our current CDN support, since as all thumbnails are generated on-the-fly by meleven.
 
 <div style="clear:both"></div>
 ### Plugin System Developer Experience Improvements
-Improve the Developer Experience of the [new plugin system](developers-guide/plugin-system/) was another project that will have direct impact for shopware plugin developers. This involved thing like automatic registration of JS/LESS files or a more convenient way to register customer controllers.
+Improving the developer experience of the [new plugin system](developers-guide/plugin-system/) was another project that will have a direct impact for Shopware plugin developers. This involved topics like automatic registration of JS/LESS files and creating a more convenient way to register customer controllers.
 
 ### Shopware goes composer (part 2)
 <img src="/blog/img/open-hackathon-2016/logo-composer-transparent4.png" class="is-float-left" style="width:175px" />
 
-During the last (internal) hackathon I worked on a project called [Shopware goes Composer](blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#shopware-goes-composer). Goal of this project is to deploy shopware via git as a composer dependency as well as install plugins via composer. During this hackathon the team did great progress to reach this goal. There are still a lot of patches that need to be merged in the main shopware branch but "soon" it should be possible to deploy shopware from git.
+During the last (internal) hackathon, I worked on a project called [Shopware goes Composer](blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#shopware-goes-composer), the goal of which was to deploy Shopware via git as a composer dependency as well as install plugins via composer. During this hackathon, the team made great progress to reach this goal. There are still a lot of patches that need to be merged in the main shopware branch but "soon" it should be possible to deploy Shopware from git.
 
 <div style="clear:both"></div>
 
 ### Product Listing Improvements
-The next project will probably have the biggest visible impact for merchants. The team was working on shopware listing improvements like custom sort orders per category or variants in products listing.
+The next project will probably have the greatest visible impact for Shopware merchants. The team was working on Shopware listing improvements such as "custom sort orders per category" or "variants in products listing".
 
-## Some more pictures
+## Glimpse into the Open Hackathon
 
 ![](/blog/img/open-hackathon-2016/breakfast.jpg)

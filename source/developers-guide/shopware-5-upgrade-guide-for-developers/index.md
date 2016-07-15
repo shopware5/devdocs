@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware 5 Upgrade Guide
+title: Shopware 5 upgrade guide
 github_link: developers-guide/shopware-5-upgrade-guide-for-developers/index.md
 indexed: true
 ---

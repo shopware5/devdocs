@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting started with the statemanager and the jQuery plugin base
+title: Getting started with the StateManager and the jQuery plugin base
 github_link: designers-guide/javascript-statemanager-and-pluginbase/index.md
 indexed: true
 ---

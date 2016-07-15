@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JavaScript Coding Style
+title: JavaScript coding Style
 github_link: designers-guide/javascript-coding-style/index.md
 indexed: true
 ---

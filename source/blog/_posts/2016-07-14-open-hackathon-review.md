@@ -67,4 +67,14 @@ The next project will probably have the greatest visible impact for Shopware mer
 
 ## Glimpse into the Open Hackathon
 
+<div class="video-container">
+<iframe class="youtube--frame"
+        src="https://www.youtube-nocookie.com/embed/u6I3VcJUqfQ?rel=0&amp;controls={$controls}&amp;showinfo={$showinfo}"
+        frameborder="0"
+        allowfullscreen>
+</iframe>
+</div>
+
 ![](/blog/img/open-hackathon-2016/breakfast.jpg)
+
+

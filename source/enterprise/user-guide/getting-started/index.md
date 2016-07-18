@@ -195,5 +195,5 @@ As mentioned before, several actions in ECA take place asynchronously in the bac
 
 ![image](img/eca-quicklogin.png)
 
-The second side to which oyu can login is the Quick login. Here you can directly [Single Sign-on](https://en.wikipedia.org/wiki/Single_sign-on)
-to all for your available shops's backend and also come to their storefronts.
+
+The second login option (Log into shop) will lead to a simplified overview page allowing you to directly log into any shop you have access to.

@@ -285,6 +285,41 @@ $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample
 $path = $swagExample->getPath();
 ```
 
+## Resources
+
+You can add xml files which are imported by Shopware via `SwagSloganOfTheDay/Resources/*` in plugin installation workflow. IDE`s like PhpStorm support auto completion by default for these files if schema file location is valid.
+
+```
+Resources
+└──config.xml
+└──menu.xml
+```
+
+### Plugin configuration
+
+Backend plugin configuration can be extended by `config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`
+
+```xml
+<!-- Resources/config.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+
+    <elements>
+        <element>
+            <label>My Config Label</label>
+            <name>my_config_value</name>
+        </element>
+    </elements>
+</config>
+```
+
+Configuration is accessible by following code snippet:
+
+```
+Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'my_config_value'),
+```
+
 ## Example Plugins
 
 - <a href="https://github.com/shyim/shopware-profiler">github.com/shyim/shopware-profiler</a>

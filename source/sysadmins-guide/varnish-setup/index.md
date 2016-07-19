@@ -144,6 +144,8 @@ acl purgers {
 }
 
 sub vcl_recv {
+    # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
+    unset req.http.Proxy;
 
     # Normalize query arguments
     set req.url = std.querysort(req.url);

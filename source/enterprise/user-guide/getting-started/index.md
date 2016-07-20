@@ -20,6 +20,8 @@ After entering the username and password you can navigate (1) to the ECA itself 
 
 ## Dashboard
 
+![image](img/eca-dashboard.png)
+
 Once you logged in to the ECA, you will be taken to the Dashboard tab. This will allow you quick access to your
 Shopware installations and aggregated data. On the top of the page, you can select one of the shops you currently have
 access to, and instantly access its backend using [Single Sign-on](https://en.wikipedia.org/wiki/Single_sign-on).
@@ -186,3 +188,12 @@ As mentioned before, several actions in ECA take place asynchronously in the bac
  the history and state of these actions. You can also filter these logs by server, shop, user or state, so if you are
  having trouble with a specific process, you can view it here. You can also open each log entry individually to get more
  detailed information about it. This can be particularly helpful for debugging failing processes.
+
+![image](img/eca-logs-detail.png)
+
+## Quick Login
+
+![image](img/eca-quicklogin.png)
+
+
+The second login option (Log into shop) will lead to a simplified overview page allowing you to directly log into any shop you have access to.

@@ -9,7 +9,7 @@ indexed: true
 The required server hardware is mostly dependent on the number of articles available in your shop and on the expected traffic (visitors per day). Upon request, we'll gladly send you guidelines for suitable server equipment. These requirements are met by most modern hosting providers.
 
 - Linux-based operating system with Apache 2.x web server
-- PHP 5.4 or higher (PHP 5.5 or higher recommended)*
+- PHP 5.6.4 or higher*
 - MySQL 5.5 or higher
 - Possibility to set up cron jobs
 - Minimum 4 GB available hard disk space

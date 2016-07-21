@@ -34,7 +34,7 @@ $path = 'media/image/my-fancy-image.png';
 $mediaService = $container->get('shopware_media.media_service');
 ```
 
-#### URL generation
+### URL generation
 
 The following example shows how to generate a url based on the virtual path.
 
@@ -45,7 +45,7 @@ $url = $mediaService->getUrl($path);
 
 Simply get the `shopware_media.media_service` from the DI container and call `getUrl()` with your virtual path. As a result you'll get a full qualified URL and you are able to bind it to a view. There is no need to use the `{link ...}` Smarty expression.
 
-#### URL generation of thumbnails
+### URL generation of thumbnails
 
 To generate your thumbnail URLs you need to use the same function, but with different path. You need to add the "thumbnails" subdirectory to get the correct thumbnail URL.
 
@@ -64,7 +64,7 @@ In your Smarty templates you may use the `{media path=...}` expression to get th
 `{media}` evaluates the given path at template's compile time, so you cannot use runtime variables for its path argument (generally you will use a constant path as in the example above).
 
 
-#### Check if a files exists
+### Check if a files exists
 
 This should be used as replacement for `file_exists()`
 
@@ -72,7 +72,7 @@ This should be used as replacement for `file_exists()`
 $fileExists = $mediaService->has($path);
 ```
 
-#### Reading
+### Reading
 
 This should be used as replacement for `file_get_contents()` and `fopen()`/`fread()`
 
@@ -81,7 +81,7 @@ $fileContent = $mediaService->read($path);
 $fileStream = $mediaService->readStream($path);
 ```
 
-#### Writing
+### Writing
 
 This should be used as a replacement for `file_put_contents()` and `fopen()`/`fwrite()`
 
@@ -90,7 +90,7 @@ $mediaService->write($path, $fileContent);
 $mediaService->writeStream($path, $fileStream);
 ```
 
-#### Deleting
+### Deleting
 
 This should be used as a replacement for `unlink()`
 
@@ -98,7 +98,7 @@ This should be used as a replacement for `unlink()`
 $mediaService->delete($path);
 ```
 
-#### Moving / Renaming
+### Moving / Renaming
 
 This should be used as a replacement for `rename()`
 

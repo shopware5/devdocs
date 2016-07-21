@@ -5,6 +5,8 @@ github_link: designers-guide/responsive-images/index.md
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 
 The Shopware 5 default Responsive theme is a fully responsive cross-browser compatible high definition ready theme. This quick tip will introduce you to the "responsive" way of working with images in the Shopware 5 Responsive theme. Working with static widths is a thing of the past. Therefore, the optimal size of the images is often a question. Shopware's solution for this problem is the thumbnail generator in combination with new added template functionality as the `picture` element.

@@ -16,6 +16,8 @@ So what should you do if something does not work as it is supposed to?
 <strong>Note:</strong> All the suggested changes in this page are exclusively recommended for development environments. They might expose sensitive information about your system and shop, and should not be performed in public or production systems.
 </div>
 
+<div class="toc-list"></div>
+
 ## Default log output
 First of all you should check if Shopware already logged the error message you are looking for. For that reason you should check the webserver's `error.log` file, as well as Shopware's `logs` directory. Shopware creates a log file per day (if there was something to log).
 

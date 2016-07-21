@@ -20,6 +20,8 @@ In this document we detail performance related settings that you can set in your
 <strong>Note:</strong> This guide only covers system configuration optimizations, and does not cover Shopware's configuration itself. However, there are several configuration options inside Shopware itself that you can use to improve you shop's performance. Please refer to the <a href="/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a> for more details on this subject.
 </div>
 
+<div class="toc-list"></div>
+
 ## Server
 
 Shopware performance optimization should start long before you install Shopware itself. If needed, you can contact one of our partners, that will help you determine which server requirements you will have, depending on your estimated shop size and incoming traffic. There is no rule of thumb for this, as each shop is unique and should be analysed on a case-by-case basis. There are, however, some rules you should observe when choosing your hosting provider:

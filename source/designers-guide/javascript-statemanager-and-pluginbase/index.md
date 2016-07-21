@@ -7,7 +7,7 @@ indexed: true
 
 <div class="toc-list"></div>
 
-## Introducing
+## Introduction
 The javascript development can be painful especially when you have to deal on responsive websites where you have to adjust the behavior of the code based on the available screen real estate. Therefore we came up with a component called *StateManager*, which provides you with the ability to define states and triggers *callback* function, if a state was entered or left.
 
 On the other hand we have our lovely jQuery plugins which are not always a pleasure to built. To simplify the process we implemented a plugin base class which features the best practices of the jQuery plugin development and flawlessly integrate with the *StateManager*.

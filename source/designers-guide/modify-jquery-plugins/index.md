@@ -6,6 +6,8 @@ shopware_version: 5.0.2
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 The storefront of Shopware 5, with its new Responsive Theme, relies massively on jQuery plugins to provide a rich interface with a great usability. The plugins are optimized for the Responsive Theme, but may not be ideal for custom themes, where you may want to alter certain functionalities. All of our jQuery Plugins are built upon a ```publish / subscribe``` pattern, which makes it easy to add new functionality to existing plugins, but sometimes you need more. You may want to override certain methods in a plugin to match your interface behaviors, which can't be configure or accomplish using events.
 With Shopware 5.0.2, we're providing an easy to use way to override a plugin's behavior. The following guide will cover everything you need to know about the new functionality and on how to use it.

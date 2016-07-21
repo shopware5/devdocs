@@ -17,6 +17,8 @@ In this document we cover the performance-related features of Shopware 5, that y
 <strong>Note:</strong> This guide only covers the details of Shopware 5 itself, and does not cover system configuration details. Please refer to the <a href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">Shopware 5 performance guide system administrators</a> for more details on how you can fine tune your server for improved performance.
 </div>
 
+<div class="toc-list"></div>
+
 ## Caching
 
 Shopware uses multiple caches for different contents. Most of them are included and enabled out of the box with Shopware, and require no additional configuration to perform adequately on most scenarios.

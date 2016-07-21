@@ -4,6 +4,9 @@ title: Service extensions
 github_link: developers-guide/shopware-5-core-service-extensions/index.md
 indexed: true
 ---
+
+<div class="toc-list"></div>
+
 ## Introduction
 
 The new bundle services like __StoreFrontBundle__, __SearchBundle__ or __SearchBundleDBAL__

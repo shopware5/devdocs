@@ -4,6 +4,8 @@ title: Plugin License
 github_link: developers-guide/plugin-license/index.md
 ---
 
+<div class="toc-list"></div>
+
 ## Overview
 
 Should you wish to, you can have your plugin run a license check when used in a Shopware shop. This will ensure that the target shop has permission to use your plugin. This document covers the steps necessary to implement this check.

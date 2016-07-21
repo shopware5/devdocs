@@ -8,7 +8,9 @@ redirect:
   - /designers-guide/using-grunt/
 ---
 
-## Introducing
+<div class="toc-list"></div>
+
+## Introduction
 
 Introduced in Shopware 5.0.1, we ship our software with a `Gruntfile`, which helps you to create your own themes faster than ever before. [Grunt](http://gruntjs.com/) is a JavaScript task runner. When you're working on a JavaScript project, there are several things you'll want to do regularly, like concatenating given files or running JSHint on your code. You can achieve this with command line tools, but it would be nice to have a single, unified set of commands for all those extra tasks. That's what Grunt aims to be. It has several built-in tasks and can be extended with over 4.000 plugins.
 

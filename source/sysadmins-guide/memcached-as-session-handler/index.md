@@ -14,6 +14,8 @@ indexed: true
 By default Shopware stores sessions in the database.
 Alternatively [Memcached](http://memcached.org/) can be used as a session storage.
 
+<div class="toc-list"></div>
+
 ## Install the memcache Server
 
 For Debian/Ubuntu based distributions:

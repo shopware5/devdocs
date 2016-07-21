@@ -5,10 +5,10 @@ github_link: designers-guide/getting-started/index.md
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 This guide will provide you a quick overview on basic templating in Shopware 5 by providing a step by step explanation based on an example project. The content is aimed at beginners and lays the groundwork for templating and styling of Shopware themes. It shows the creation of a new theme and the usage of the Smarty template blocks to customize and add elements to the custom theme.
-
-<div class="toc-list"></div>
 
 ## Preview of the guide
 ![Guide preview](img-guide.jpg)

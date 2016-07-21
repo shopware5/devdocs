@@ -5,11 +5,11 @@ github_link: designers-guide/managing-third-party-dependencies-with-bower/index.
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 
 This is a small introduction on how to use the frontend package manager [Bower](https://www.bower.io) to manage the library and framework dependencies of custom themes in Shopware 5. A package manager, like Bower or npm, is a tool that automates the installation, upgrade, configuration and removal of software dependencies and prevents all third-party requirements from having to be shipped with the software itself. Bower is focused on frontend solutions like jQuery or Bootstrap and contains over 40.000 packages from which to choose. The default Shopware 5 Responsive theme in combination with Grunt also use Bower to install its third-party libraries.
-
-<div class="toc-list"></div>
 
 ## Setup Bower
 

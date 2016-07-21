@@ -5,6 +5,8 @@ github_link: designers-guide/custom-detail-page/index.md
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 
 In this tutorial you will learn how to create a custom template for detail pages. In this example, we want to replace the default detail page layout and create a more minimalistic layout for marketing purposes. This custom template could be used for products which are not yet in stock, but should be mentioned or announced to the customer.

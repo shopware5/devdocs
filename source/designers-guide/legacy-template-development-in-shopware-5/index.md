@@ -4,6 +4,9 @@ title: Legacy template development in Shopware 5
 github_link: designers-guide/legacy-template-development-in-shopware-5/index.md
 indexed: true
 ---
+
+<div class="toc-list"></div>
+
 ## Introduction
 
 Shopware 5 includes the new, ready to use Responsive theme, as well as the Bare theme that you can use as a starting point for your custom themes. While we recommend using these themes from now on, your existing Shopware 4 templates are still supported by Shopware 5.

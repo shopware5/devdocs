@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Best practice theme development
+title: Using Grunt for theme development
 github_link: designers-guide/best-practice-theme-development/index.md
 shopware_version: 5.0.1
 indexed: true

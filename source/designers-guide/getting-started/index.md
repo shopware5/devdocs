@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting started with Shopware 5 templating
+title: Getting started with Shopware templating
 github_link: designers-guide/getting-started/index.md
 indexed: true
 ---

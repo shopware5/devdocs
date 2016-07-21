@@ -44,3 +44,11 @@
   -o-transition: @transition;
   transition: @transition;
 }
+
+.clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

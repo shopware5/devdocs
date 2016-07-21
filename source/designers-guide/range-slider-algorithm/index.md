@@ -6,6 +6,8 @@ shopware_version: 5.0.3
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## The Problem
 
 In Shopware 5, we introduced our new filter system. With this new filter system, there is a range slider which is used as price range slider too.

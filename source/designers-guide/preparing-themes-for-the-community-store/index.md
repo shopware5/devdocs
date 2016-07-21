@@ -5,6 +5,8 @@ github_link: designers-guide/preparing-themes-for-the-community-store/index.md
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 This guide explains how to prepare your custom themes, wrap them in plugins that can be installed with the Shopware plugin manager and make them ready to be downloaded or purchased from the [Shopware Community Store](http://store.shopware.com/en/).
 

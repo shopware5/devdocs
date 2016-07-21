@@ -8,6 +8,7 @@ indexed: true
 
 Shopware 5.1.2 introduced a new event to provide custom risk rules: `Shopware_Modules_Admin_Execute_Risk_Rule_sRisk[RiskName]`.
 
+<div class="toc-list"></div>
 
 ## Extend Risk Managment Backend Module
 

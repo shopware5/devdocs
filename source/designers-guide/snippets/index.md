@@ -7,6 +7,8 @@ indexed: true
 
 Snippets are an extremely easy and useful way to translate and customize the Shopware storefront texts. By using snippets, you are able to determine the content of a specific text part of the theme individual for every shop. The part you would like to edit has to be wrapped inside a snippet tag. Every snippet is editable in the Shopware 5 backend by using the snippet administration module.
 
+<div class="toc-list"></div>
+
 ## Snippets during plugin/theme development 
 
 ### Creating snippets

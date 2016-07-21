@@ -4,6 +4,9 @@ title: Shopware 5 Plugin update guide
 github_link: developers-guide/shopware-5-plugin-update-guide/index.md
 indexed: true
 ---
+
+<div class="toc-list"></div>
+
 ## Introduction
 
 In this guide we provide you with all essential information you need to keep your plugins Shopware 5.0 compatible.

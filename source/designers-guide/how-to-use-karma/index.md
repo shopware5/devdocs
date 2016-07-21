@@ -6,7 +6,9 @@ shopware_version: 5.0.3
 indexed: true
 ---
 
-## Introducing
+<div class="toc-list"></div>
+
+## Introduction
 [Karma](http://karma-runner.github.io/) is a JavaScript test runner for Shopware's storefront. The tests themselves are written in [Jasmine](http://jasmine.github.io/).
 
 The main goal of Karma is to create a productive testing environment for developers, where they don't have to set up multiple configurations, and can just write code and get instant feedback from their tests.

@@ -4,6 +4,9 @@ title: REST API
 github_link: developers-guide/rest-api/index.md
 indexed: true
 ---
+
+<div class="toc-list"></div>
+
 ## Introduction
 
 The following page of the devdocs covers the REST API. By using the REST API, shop owners can grant access to almost all data stored

@@ -5,19 +5,14 @@ github_link: designers-guide/responsive-theme-default-components/index.md
 indexed: true
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 Within the new Shopware 5 Responsive Theme we provide you with many reusable components for easier template and plugin development. With our default components you can create buttons, panels, alert messages and other UI elements by using simple HTML code snippets. You can use these snippets within your smarty template `*.tpl` files.
 
 We implemented a parent child class naming in our [LESS](../less) structure that helps you to identify template components. A quick example: The `panel` class is a parent class and all related child classes are prefixed with a `panel--` e.g. `panel--title` or `panel--body`. If you are already familiar with frontend frameworks like Bootstrap you will understand Shopware's components even more easily. This guide gives you a quick overview of the usage of the most important components. If you want further information take a look at our [Shopware UI components overview](https://developers.shopware.com/styletile/).
 
 ## Quick examples
--   [Buttons](#buttons)
--   [Panels](#panels)
--   [Icons](#icons)
--   [Alert messages](#alert-messages)
--   [Modal boxes](#modal-boxes)
--   [Product boxes](#product-boxes)
--   [Product sliders](#product-sliders)
 
 ### Buttons
 Creates a styled button which can have different appearances.

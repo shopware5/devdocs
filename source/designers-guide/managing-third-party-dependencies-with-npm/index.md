@@ -6,15 +6,17 @@ shopware_version: 5.2
 indexed: true
 ---
 
-<div class="is-center">
-    <img src="logo-npm-normal.png" alt="NPM logo">
-</div>
+<div class="toc-list"></div>
 
 ## Introduction
 Modern web applications like a Shopware web shop have to deal with many frontend dependencies. There are several tools
 available which help manage these dependencies. In the following guide we'll provide you with the information you
 need to install additional third-party dependencies with `npm`, the default package manager for the javascript runtime
 environment `node.js`, in combination with `grunt`, a javascript task runner. This setup will be used in Shopware starting with version 5.2 to manage frontend dependencies.
+
+<div class="is-center">
+    <img src="logo-npm-normal.png" alt="NPM logo">
+</div>
 
 ## Requirements
 The guide assumes that you have the following applications / tools installed on your local machine:

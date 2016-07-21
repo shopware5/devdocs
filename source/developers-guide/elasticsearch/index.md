@@ -9,6 +9,8 @@ tags:
   - elasticsearch
 ---
 
+<div class="toc-list"></div>
+
 ## Introduction
 In this guide we introduce the Elasticsearch (ES) integration for Shopware.
 

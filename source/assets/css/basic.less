@@ -753,7 +753,11 @@ input#search-query {
 
         li {
             position: relative;
-            margin: 4px 0 4px 60px;
+            margin: 4px 0 4px 40px;
+
+            @media screen and (min-width: 768px) {
+                margin: 4px 0 4px 60px;
+            }
 
             &:before {
                 content: '';
@@ -774,6 +778,7 @@ input#search-query {
 
             li {
                 margin: 4px 0 4px 30px;
+
                 &:before {
                     background: #cad9e0;
                     padding-bottom: 0;
@@ -1159,10 +1164,6 @@ input#search-query {
                     float: none;
                 }
             }
-        }
-
-        ul li ul li {
-            margin-left: -30px;
         }
     }
 

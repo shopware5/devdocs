@@ -6,29 +6,45 @@ indexed: true
 ---
 This document will give you a brief overview of Shopware and everything you need to start developing your first plugin.
 
-# Big picture
-## Directory structure
+<div class="toc-list"></div>
 
-<img align="left" style="margin-right:10px" src="img/tree.png" />
+## Directory structure
 
 On the left you can see Shopware's default directory structure, as you will find in GitHub checkouts or release packages. Let's start with a quick overview:
 
- * **_sql**: (Not in release packages) Contains various deltas and migrations to set up Shopware or migrate the database of an old Shopware version to the database of a new versions.
- * **bin**: Contains the `console` command which can be executed to run the Shopware command line tools
- * **build**: (Not in release packages) Contains our ant-based build engine with various scripts to e.g. install dependencies, reset the database etc. When installing Shopware from GitHub you want to run `ant build-unit` first. If you use the install package, you can just use our web-based installer
- * **cache**: Contains various caches and generated files like smarty compile cache, proxy caches, HTML cache etc.
- * **engine/Library**: Some libraries / dependencies which are not available in composer.
-* **engine/Shopware**: The actual Shopware application with subdirectories for our bundles, services, models and plugins.
- * **files**: Files for ESD products or generated documents are stored here
- * **logs**: Our logging directory. Whenever an exception occurs in the Shopware stack, you'll find the stack trace and some context in these log files.
- * **media**: Files uploaded via the Shopware MediaManager are stored in here (images, thumbnails and other uploads)
- * **recovery**: Our web-based update and install tool can be found here.
- * **snippets**: Contains Shopware snippets for frontend and backend in a simple INI format. Snippets will automatically be deployed to database during installation. (Not in release packages)
- * **templates**: The Shopware 4 template base (emotion)
- * **tests**: PHPUnit and Mink tests
- * **themes**: The Shopware 5 template base (bare, responsive)
- * **vendor**: Dependencies from composer. Shipped with the release package, git users will need to run `composer install` or `ant build-unit`
- * **web**: The concatenated and minified javascript and CSS templates
+<img src="img/tree.png" class="is-float-left" />
+
+**_sql**: (Not in release packages) Contains various deltas and migrations to set up Shopware or migrate the database of an old Shopware version to the database of a new versions.
+
+**bin**: Contains the `console` command which can be executed to run the Shopware command line tools
+
+**build**: (Not in release packages) Contains our ant-based build engine with various scripts to e.g. install dependencies, reset the database etc. When installing Shopware from GitHub you want to run `ant build-unit` first. If you use the install package, you can just use our web-based installer
+
+**cache**: Contains various caches and generated files like smarty compile cache, proxy caches, HTML cache etc.
+
+**engine/Library**: Some libraries / dependencies which are not available in composer.
+
+**engine/Shopware**: The actual Shopware application with subdirectories for our bundles, services, models and plugins.
+
+**files**: Files for ESD products or generated documents are stored here
+
+**logs**: Our logging directory. Whenever an exception occurs in the Shopware stack, you'll find the stack trace and some context in these log files.
+
+**media**: Files uploaded via the Shopware MediaManager are stored in here (images, thumbnails and other uploads)
+
+**recovery**: Our web-based update and install tool can be found here.
+
+**snippets**: Contains Shopware snippets for frontend and backend in a simple INI format. Snippets will automatically be deployed to database during installation. (Not in release packages)
+
+**templates**: The Shopware 4 template base (emotion)
+
+**tests**: PHPUnit and Mink tests
+
+**themes**: The Shopware 5 template base (bare, responsive)
+
+**vendor**: Dependencies from composer. Shipped with the release package, git users will need to run `composer install` or `ant build-unit`
+
+**web**: The concatenated and minified javascript and CSS templates
 
 <div style="clear:both"></div>
 

@@ -219,6 +219,10 @@ var string = "2012-06-13T07:32:25.706Z"
 var date = new Date(string);
 ```
 
+### Retrieving multiple objects at once
+
+Bear in mind that all resources allowing to query a list of objects via GET will return at most 1000 objects, unless explicitly  instructed otherwise. You can do so using the `limit` query parameter and/or make subsequent queries for additional objects providing the number of objects to skip in the `start` parameter.
+
 ## Examples
 * **[Examples using the article resource](examples/article)**
 * **[Examples using the order resource](examples/order)**

@@ -58,7 +58,7 @@ Besides creating servers, you can also remove them. Keep in mind that you can on
 registered shops in them. Both adding and removing servers in the ECA's server tab doesn't perform any actual changes
 on those machines, so you can execute both operations safely without worrying about data loss.
 
-### Creating shops
+### Creating shops / Connecting to an existing shop
 
 ![image](img/eca-shops-create.png)
 
@@ -68,6 +68,9 @@ shop and its location in the server's file system. By default the ECA will assum
  a document root and that all shops on that server got to that document root. For that reason by default only "Shop name"
  and a Shopware version are required and all other fields will be filled automatically. If you have a differing server
  setup, you are still able to change any of these fields by switching to "Advanced mode".
+ 
+If you want to add an existing shop to the eca please choose as Shopware Version "Connect to an existing shop".
+For more configuration options you can enable the advanced mode if necessary.
 
 Once you save, you will be taken back to the server tab. The setup process will also automatically start, and you will
 get live feedback of its current status. Many tasks in the ECA, such as installing a shop, are executed asynchronously

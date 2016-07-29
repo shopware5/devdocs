@@ -26,7 +26,7 @@ indexed: true
 -   <a href="http://php.net/manual/en/book.image.php" target="_blank">gd</a> (Version >= 2.0 with freetype and libjpeg support)
 -   <a href="http://php.net/manual/en/book.json.php" target="_blank">json</a>
 -   <a href="http://php.net/manual/en/book.mbstring.php" target="_blank">mbstring</a>
--   <a href="http://php.net/manual/en/book.openssl.php" target="_blank">mbstring</a>
+-   <a href="http://php.net/manual/en/book.openssl.php" target="_blank">openssl</a>
 -   <a href="http://php.net/manual/en/book.session.php" target="_blank">session</a>
 -   <a href="http://php.net/manual/en/book.simplexml.php" target="_blank">SimpleXML</a>
 -   <a href="http://php.net/manual/en/book.xml.php" target="_blank">xml</a>

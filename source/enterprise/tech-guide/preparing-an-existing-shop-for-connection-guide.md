@@ -15,12 +15,12 @@ The ECA tries to upload and install the Connector plugin.
  
 1. Upload the plugin zip file to the remote /tmp directory
 2. Extract it to a newly created directory in `_shop_/engine/Shopware/Plugins/Local/Backend/`
-3. execute the cli installer through `bin/console`
-4. Clears the caches to finish the execution
+3. Execute the cli installer through `bin/console`
+4. Clear the caches to finish the execution
 
 ## Why is it not working out of the box?
 
-To connect an existing Shop to the ECA it is necessary to set the **filesystem rights** manually. On a fresh installation the ECA can control
+To connect an existing Shop to the ECA it is necessary to set the **filesystem permissions** manually. On a fresh installation the ECA can control
 file ownership and set it so that the webserver and deployment user can access the installation. This is then secured by the plugin and the ECA.
 
 But since existing shops don't have the plugin yet, file ownership needs to be changed manually in order for the ECA to deploy the plugin.
@@ -54,14 +54,14 @@ drwxrwxr-x 19 ssh-deploy ssh-deploy 4.0K Jul 29 07:54 vendor
 drwxrwxr-x  3 ssh-deploy ssh-deploy 4.0K Sep 16  2015 web
 ```
 
-As you can see the deployment user (in this cas `ssh-deploy`) owns all files and, since the webserver and deployment user share the same unix groups, 
+As you can see the deployment user (in this case `ssh-deploy`) owns all files and, since the webserver and deployment user share the same unix groups, 
 everything is group readable and writable.
 
 In almost all linux systems changing file ownership is **restricted to root**. Therefore you yourself will have to take care of this change.
 
 ## What do I need to do then?
 
-Log into your shop servers shell and adjust the filesystem access rights manually.
+Log into your shop servers shell and adjust the filesystem access permissions manually.
 
 1. Set ownership of the shop to either your webserver or your deployment user
 2. Update file permissions to make the files group readable and writable
@@ -70,7 +70,7 @@ Log into your shop servers shell and adjust the filesystem access rights manuall
 On your usual linux system this should look like the following commands:
 
 ```sh
-yhown -R ssh-deploy:ssh-deploy _shop_/
+chown -R ssh-deploy:ssh-deploy _shop_/
 chmod -Rv u+rwX g+rwX _shop_/
 chmod  +x _shop_/bin/console
 ```

@@ -6,14 +6,15 @@ indexed: true
 ---
 ## Server requirements
 
-- Linux-based operating system with Apache 2.2 or 2.4 web server with enabled  `mod_rewrite` module
+### Webserver 
+
+- Linux-based operating system with Apache 2.2 or 2.4 web server with enabled  `mod_rewrite` module and ability to override options in `.htaccess` files
 - PHP 5.6.4 or higher*
 - MySQL 5.5 or higher
 - Possibility to set up cron jobs
 - Minimum 4 GB available hard disk space
 
  (\*) PHP 5.6.0 - 5.6.3 are not compatible caused by a [session bug](https://bugs.php.net/bug.php?id=68331)
-
 
 ### Required PHP extensions:
 
@@ -37,21 +38,17 @@ indexed: true
 
 It's strongly recommend that you verify the <a href="https://secure.php.net/manual/en/book.opcache.php" target="_blank">PHP OPCache</a> is enabled for performance reasons.
 
-### Web server / PHP settings:
+### PHP settings:
 
 - `memory_limit` > 256M
 - `upload_max_filesize` > 6M
-- `magic_quotes_gpc` deactivated
 - `allow_url_fopen` activated
-- `register_globals` deactivated
-- ability to override options in `.htaccess` files
 
 ### Recommended
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
 - IonCube Loader version 5.0 or higher only needed for encrypted third-party plugins
 - When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
-
 
 ### Other requirements
 

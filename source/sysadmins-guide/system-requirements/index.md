@@ -6,37 +6,52 @@ indexed: true
 ---
 ## Server requirements
 
-The required server hardware is mostly dependent on the number of articles available in your shop and on the expected traffic (visitors per day). Upon request, we'll gladly send you guidelines for suitable server equipment. These requirements are met by most modern hosting providers.
-
-- Linux-based operating system with Apache 2.x web server
+- Linux-based operating system with Apache 2.2 or 2.4 web server with enabled  `mod_rewrite` module
 - PHP 5.6.4 or higher*
 - MySQL 5.5 or higher
 - Possibility to set up cron jobs
 - Minimum 4 GB available hard disk space
 
- (\*) The minimum required PHP version may be raised to 5.5 during Shopware 5 life cycle. We strongly recommend that you use PHP 5.5.
- 
  (\*) PHP 5.6.0 - 5.6.3 are not compatible caused by a [session bug](https://bugs.php.net/bug.php?id=68331)
 
-### PHP Extensions / Web server:
 
-- Apache mod_rewrite
-- GD Library version 2.0 or higher
-- cURL Library installed
-- IonCube Loader version 4.6 or higher is required when using commercial Shopware versions or plugins.
-- When using Shopware ESD functionalities, it's highly recommend to use Apache X-Sendfile.
+### Required PHP extensions:
 
+-   <a href="http://php.net/manual/en/book.ctype.php" target="_blank">ctype</a>
+-   <a href="http://php.net/manual/en/book.curl.php" target="_blank">curl</a>
+-   <a href="http://php.net/manual/en/book.dom.php" target="_blank">dom</a>
+-   <a href="http://php.net/manual/en/book.hash.php" target="_blank">hash</a>
+-   <a href="http://php.net/manual/en/book.iconv.php" target="_blank">iconv</a>
+-   <a href="http://php.net/manual/en/book.image.php" target="_blank">gd</a> (Version >= 2.0 with freetype and libjpeg support)
+-   <a href="http://php.net/manual/en/book.json.php" target="_blank">json</a>
+-   <a href="http://php.net/manual/en/book.mbstring.php" target="_blank">mbstring</a>
+-   <a href="http://php.net/manual/en/book.openssl.php" target="_blank">mbstring</a>
+-   <a href="http://php.net/manual/en/book.session.php" target="_blank">session</a>
+-   <a href="http://php.net/manual/en/book.simplexml.php" target="_blank">SimpleXML</a>
+-   <a href="http://php.net/manual/en/book.xml.php" target="_blank">xml</a>
+-   <a href="http://php.net/manual/en/book.zip.php" target="_blank">zip</a>
+-   <a href="http://php.net/manual/en/book.zlib.php" target="_blank">zlib</a>
+-   <a href="http://php.net/manual/en/ref.pdo-mysql.php" target="_blank">PDO/MySQL</a>
+
+### PHP OPcache
+
+It's strongly recommend that you verify the <a href="https://secure.php.net/manual/en/book.opcache.php" target="_blank">PHP OPCache</a> is enabled for performance reasons.
 
 ### Web server / PHP settings:
 
-- memory_limit > 256M
-- upload_max_filesize > 6M
-- magic_quotes_gpc deactivated
-- allow_url_fopen activated
-- register_globals deactivated
-- Possibility to modify the webserver settings via .htaccess
-- PHP calendar extension
-- PDO / PDO_Mysql
+- `memory_limit` > 256M
+- `upload_max_filesize` > 6M
+- `magic_quotes_gpc` deactivated
+- `allow_url_fopen` activated
+- `register_globals` deactivated
+- ability to override options in `.htaccess` files
+
+### Recommended
+ 
+- <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
+- IonCube Loader version 5.0 or higher only needed for encrypted third-party plugins
+- When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
+
 
 ### Other requirements
 

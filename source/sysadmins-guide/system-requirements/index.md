@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware 5 System Requirements
+title: System Requirements
 github_link: sysadmins-guide/system-requirements/index.md
 indexed: true
 ---

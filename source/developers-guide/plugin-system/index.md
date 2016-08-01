@@ -52,6 +52,66 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+### Plugin configuration
+Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
+
+```
+SwagSloganOfTheDay
+├──plugin.xml
+├── Resources
+│   ├── config.xml
+│   └── menu.xml
+└──SwagSloganOfTheDay.php
+```
+
+You can find the schema of the xml files in `engine/Shopware/Components/Plugin/schema`.
+ - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
+ - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
+ - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
+ 
+<div class="alert alert-warning">
+At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will receive an exception. <br/>
+You can use the CLI to install the plugin with extended error messages: <code>php ./bin/console sw:plugin:install SwagSloganOfTheDay -v</code>
+</div>
+ 
+`SwagSloganOfTheDay/plugin.xml`
+```
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="de">Slogan des Tages</label>
+    <label lang="en">Slogan of the day</label>
+
+    <version>1.0.0</version>
+    <link>http://example.org</link>
+    <author>shopware AG</author>
+    <compatibility minVersion="5.2.0" />
+
+    <changelog version="1.0.0">
+        <changes lang="de">Veröffentlichung</changes>
+        <changes lang="en">Release</changes>
+    </changelog>
+</plugin>
+```
+
+`SwagSloganOfTheDay/Resources/config.xml`
+```
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+
+    <elements>
+        <element required="true" type="text">
+            <name>slogan</name>
+            <label lang="de">Dein Slogan</label>
+            <label lang="en">Your slogan</label>
+            <value>XML is fun!</value>
+        </element>
+    </elements>
+</config>
+```
+
 ### Install and acivate
 
 Now the plugin can be installed using the Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/) or the Plugin Manager in the backend.
@@ -158,7 +218,10 @@ In this configuration new services can be defined, core services can be decorate
 
 ```
 SwagSloganOfTheDay
+├──plugin.xml
 ├── Resources
+│   ├── config.xml
+│   ├── menu.xml
 │   └── services.xml
 ├──SloganPrinter.php
 └──SwagSloganOfTheDay.php
@@ -202,6 +265,82 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 </container>
 ```
 
+### Event subscriber
+The new plugin system has the ability to add event subscriber by adding subscribers in the `services.xml`.
+Subscriber are located in `SwagSloganOfTheDay/Subscriber`, so the directory structure should look like this:
+
+```
+SwagSloganOfTheDay
+├──plugin.xml
+├── Resources
+│   ├── config.xml
+│   ├── menu.xml
+│   └── services.xml
+├──SloganPrinter.php
+├──Subscriber
+│   └── Route.php
+└──SwagSloganOfTheDay.php
+```
+
+The `onRouteStartup` subscriber above now will be encapsulated in a subscriber class. 
+
+`SwagSloganOfTheDay/Subscriber/Route.php`
+```
+<?php
+namespace SwagSloganOfTheDay\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class Route implements SubscriberInterface
+{
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Front_RouteStartup' => 'onRouteStartup'
+        ];
+    }
+
+    public function onRouteStartup(\Enlight_Controller_EventArgs $args)
+    {
+        $sloganPrinter = $this->container->get('swag_slogan_of_the_day.slogan_printer');
+        $sloganPrinter->print();
+    }
+}
+```
+
+After adding the `Route.php`, the subscriber can be added to the `services.xml` as a tagged service ([Symfony - Working with Tagged Services](http://symfony.com/doc/current/components/dependency_injection/tags.html)).
+This allows shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
+
+`SwagSloganOfTheDay/Resources/services.xml`
+```
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_slogan_of_the_day.subscriber.route" class="SwagSloganOfTheDay\Subscriber\Route">
+            <argument type="service" id="service_container" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="swag_slogan_of_the_day.slogan_printer" class="SwagSloganOfTheDay\SloganPrinter">
+            <argument type="service" id="dbal_connection" />
+        </service>
+    </services>
+</container>
+```
+
+The `SwagSloganOfTheDay::getSubscribedEvents()` and `SwagSloganOfTheDay::onRouteStartup` can be removed after adding the subscriber to the `services.xml`.
 
 ## Extended Container Configuration
 
@@ -283,6 +422,28 @@ Other plugins can be accessed via the `getPlugins()` method of the kernel.
 ```php
 $swagExample = Shopware()->Container()->get('kernel')->getPlugins()['SwagExample'];
 $path = $swagExample->getPath();
+```
+
+## Update from legacy plugin system
+
+Shopware recognizes whether the plugin is based on the legacy or 5.2 plugin system and moves it to the correct directory. Shopware does not support moving of extracted plugins based on the 5.2 plugin system, if they are placed in the legacy directory structure.
+Further the zip archive structure changed. 
+
+**Legacy zip structure:**
+```
+SwagSloganOfTheDay.zip
+└──Frontend
+   └──SwagSloganOfTheDay
+      ├──Bootstrap.php
+      └──...
+```
+
+**New 5.2 zip structure:**
+```
+SwagSloganOfTheDay.zip
+└──SwagSloganOfTheDay
+   ├──SwagSloganOfTheDay.php
+   └──...
 ```
 
 ## Example Plugins

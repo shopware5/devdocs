@@ -52,7 +52,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
-### Install and acivate
+### Install and activate
 
 Now the plugin can be installed using the Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/) or the Plugin Manager in the backend.
 

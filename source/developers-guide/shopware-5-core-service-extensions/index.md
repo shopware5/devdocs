@@ -228,7 +228,7 @@ class RedisProductService implements ListProductServiceInterface
         // and add the missing data to Redis
         $this->connection->put($coreProducts, ...);
 
-        return array_merge($redisProducts, $core);
+        return array_merge($redisProducts, $coreProducts);
     }
 
     public function get($number, Struct\ProductContextInterface $context)

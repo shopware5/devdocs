@@ -275,6 +275,32 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 
 You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
 
+### Add menu items to backend
+
+```xml
+<!-- Resources/menu.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="menu.xsd">
+	<entries>
+		<entry>
+			<name>SloganOfTheDay</name>
+			<label lang="en">Slogan of the Days</label>
+			<label lang="de">Spruch des Tages</label>
+			<controller>SwagSloganOfTheDay</controller>
+			<class>sprite-metronome</class>
+			<parent identifiedBy="controller">Marketing</parent>
+		</entry>
+	</entries>
+</menu>
+```
+
+For available parent controllers take a look into table s_core_menu (column controller). For example you can use one of the following:
+- Article
+- Content
+- Customer
+- ConfigurationMenu
+- Marketing
+
 
 ## Access to other plugins
 

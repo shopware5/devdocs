@@ -304,6 +304,9 @@ For available parent controllers take a look into table s_core_menu (column cont
 
 Menuitem won't be displayed if controller and action are missing.
 
+How to know which class for which icon take a look at:
+<a href="https://github.com/mankerst/shopware-backend-icons">github.com/mankerst/shopware-backend-icons </a>
+
 ## Access to other plugins
 
 Other plugins can be accessed via the `getPlugins()` method of the kernel.

@@ -226,7 +226,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 ## Register plugin controller with template
-
+```php
 <?php
 namespace SwagControllerExample;
 
@@ -253,6 +253,7 @@ class SwagControllerExample extends Plugin
         return $this->getPath() . "/Controllers/Frontend/MyController.php";
     }
 }
+```
 
 ## Add console commands
 

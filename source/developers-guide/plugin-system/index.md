@@ -225,6 +225,35 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 }
 ```
 
+## Register plugin controller with template
+
+<?php
+namespace SwagControllerExample;
+
+use Shopware\Components\Plugin;
+
+class SwagControllerExample extends Plugin
+{
+    /**
+     * @inheritdoc
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_MyController' => 'registerController',
+        ];
+    }
+
+    public function registerController(\Enlight_Event_EventArgs $args)
+    {
+        $this->container->get('Template')->addTemplateDir(
+            $this->getPath() . '/Resources/views/'
+        );
+
+        return $this->getPath() . "/Controllers/Frontend/MyController.php";
+    }
+}
+
 ## Add console commands
 
 There are two ways to add Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/).
@@ -275,7 +304,7 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 
 You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
 
-### Add menu items to backend
+## Add menu items to backend
 
 ```xml
 <!-- Resources/menu.xml -->

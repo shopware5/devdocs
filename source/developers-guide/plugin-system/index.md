@@ -287,6 +287,7 @@ You can read more in the Symfony Documentation: [How to Define Commands as Servi
 			<label lang="en">Slogan of the Days</label>
 			<label lang="de">Spruch des Tages</label>
 			<controller>SwagSloganOfTheDay</controller>
+			<action>index</action>
 			<class>sprite-metronome</class>
 			<parent identifiedBy="controller">Marketing</parent>
 		</entry>
@@ -301,6 +302,7 @@ For available parent controllers take a look into table s_core_menu (column cont
 - ConfigurationMenu
 - Marketing
 
+Menuitem won't be displayed if controller and action are missing.
 
 ## Access to other plugins
 

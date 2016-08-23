@@ -2,6 +2,7 @@
 layout: default
 title: Plugin License
 github_link: developers-guide/plugin-license/index.md
+indexed: true
 ---
 
 <div class="toc-list"></div>

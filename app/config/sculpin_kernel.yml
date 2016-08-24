@@ -7,6 +7,19 @@ sculpin_content_types:
          - categories
          - authors
 
+    sysadmin:
+      path: sysadmins-guide
+      type: path
+
+    developer:
+      path: developers-guide
+      type: path
+
+    designer:
+      path: designers-guide
+      type: path
+
+
 sculpin:
     ignore:
         - assets/css/_imports/

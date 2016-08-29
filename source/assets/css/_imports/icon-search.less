@@ -1,0 +1,113 @@
+.download--actions {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+
+    .btn {
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+    }
+    .small {
+        font-size: 12px;
+        margin: 15px 0 0;
+    }
+}
+
+.search--form {
+    position: relative;
+    margin: 20px 0 30px;
+
+    .sort { display: none }
+
+    .search--label {
+        position: absolute;
+        width: 24px;
+        left: 20px;
+        top: 0;
+    }
+
+    .search--input {
+        display: block;
+        width: 100%;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        height: 46px;
+        padding: 10px 46px;
+        font-size: 15px;
+        line-height: 1.3333333;
+        border-radius: 23px;
+
+        &:focus {
+            border-color: #66afe9;
+            outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+        }
+    }
+}
+
+.ico--wrapper {
+    .clearfix();
+    margin: 0 0 50px;
+
+    .icon--search:before {
+        content: "\f002";
+    }
+
+    *[class*=sprite-key], *[class*=sprite-] {
+        display: block;
+        float: left;
+        width: 16px;
+        height: 16px;
+        margin: 0 8px 0 0;
+    }
+    *[class*=sprite-key_] {
+        height: 48px;
+        width: 48px;
+    }
+    .list--entry {
+        margin: 0;
+        float: left;
+        width: 100%;
+        padding: 0 10px;
+        display: block;
+
+        &:before {
+            display: none;
+        }
+    }
+    .ico--name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        height: 32px;
+        font-size: 13px;
+    }
+}
+
+.keys--list .ico--name {
+    height: 42px;
+    line-height: 42px;
+}
+
+@media (min-width: 480px) {
+    .ico--wrapper .list--entry {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .ico--wrapper .list--entry {
+        width: 33.332%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ico--wrapper .list--entry {
+        width: 25%;
+    }
+}

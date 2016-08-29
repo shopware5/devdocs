@@ -16,11 +16,11 @@ First create a new template file in the `frontend/listing/` directory of your th
 <br />
 <br />
 To make your new file selectable in the category settings you have to add it in the basic settings of your shop.  
-You go to *Configuration* -> *Basic settings* -> *Frontend* -> *Categories* -> *Available template categories*. 
+You go to *Configuration* -> *Basic settings* -> *Frontend* -> *Categories / lists* -> *Available template categories*. 
 
 ![Custom category templates](custom_category_templates_2.jpg)
 
-You can add your template by extending the string with the name of your new template file and the name for the label. In our example it is `;custom_listing.tpl:My custom template`. After saving you have to clear the configuration cache to make your new template option appear in the category settings.
+You can add your template by extending the string with the name of your new template file and the name for the label. In our example it is `custom_listing.tpl:My custom template`. After saving you have to clear the configuration cache to make your new template option appear in the category settings.
 
 ## Custom detail page templates
 You cannot only create custom templates for category, but also for detail pages. It works quite the same way.

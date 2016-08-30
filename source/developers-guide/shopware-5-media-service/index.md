@@ -2,7 +2,7 @@
 layout: default
 title: MediaService
 github_link: developers-guide/shopware-5-media-service/index.md
-shopware_version: 5.1.0
+from_version: 5.1.0
 indexed: true
 history:
     2015-09-08: creation

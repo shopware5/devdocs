@@ -62,10 +62,17 @@
 
             <div class="info">
 
-                {% if page.shopware_version %}
-                <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
-                    <span class="versionDisc">as of version</span>
-                    <span class="versionBadge">{{ page.shopware_version }}</span>
+                {% if page.until_version %}
+                <span class="version clearfix" data-until-version="{{ page.until_version }}">
+                    <span class="versionDisc">Removed in version</span>
+                    <span class="versionBadge">{{ page.until_version }}</span>
+                </span>
+                {% endif %}
+
+                {% if page.from_version %}
+                <span class="version clearfix" data-from-version="{{ page.from_version }}">
+                    <span class="versionDisc">From version</span>
+                    <span class="versionBadge">{{ page.from_version }}</span>
                 </span>
                 {% endif %}
 

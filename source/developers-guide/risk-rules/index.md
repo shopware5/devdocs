@@ -2,7 +2,7 @@
 layout: default
 title: Custom Risk Rules
 github_link: developers-guide/risk-rules/index.md
-shopware_version: 5.1.2
+from_version: 5.1.2
 indexed: true
 ---
 

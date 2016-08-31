@@ -11,7 +11,7 @@ title: 99 Paper Cuts
 
 ## Get involved!
 
-In the two weeks from Monday the 5th September to monday the 19th September we would like to fix as many papercut bugs as possible together with our community.
+In the two weeks from Monday the 5th September to Monday the 19th September we would like to fix as many papercut bugs as possible together with our community.
 
 ### How to contribute?
 

@@ -25,7 +25,7 @@ Papercuts can be reported via our [Issue Tracker](https://issues.shopware.com). 
 
 ## Existing Papercuts
 
-You can also see all [existing Papercuts](https://issues.shopware.com/#/?status=1&status=3&status=10001&status=4&status=10010&status=10025&status=10017&swversion=Papercut) in the issue tracker.
+You can also see all <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a> in the issue tracker.
 
 ## Communication
 

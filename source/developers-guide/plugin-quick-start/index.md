@@ -288,6 +288,8 @@ This will result in a configuration form like this:
 
 ![The plugin configuration](img/config.png)
 
+If you want to read more about plugin configuration start reading [Plugin configuration](/developers-guide/plugin-configuration/) article.
+
 ### Template extension
 
 So far we have set up the bootstrap - but where does the actual template extension come from?

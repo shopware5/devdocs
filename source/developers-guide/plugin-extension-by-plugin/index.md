@@ -13,10 +13,19 @@ tags:
 <div class="toc-list"></div>
 
 ## Introduction
+This document will describe how existing plugins can be extended.
+
+With the objective of implement our own option type in CustomProducts which we can use in a Template and make it possible for a customer to upload files with special mime types.
+
+To achieve the objective we decorate a service to extend the function, extend ExtJs by Smarty blocks and implement new ExtJs and Smarty templates.
+
+
 In this wiki article we expand the plugin Custom Product (v2) with the following functions on base of the 5.2 plugin system: 
- - Decoration of the FileTypeWhitList.php to add other file extensions to the whitlist. 
+
+ - Decoration of the FileTypeWhiteList.php to add other file extensions to the whitelist. 
  - Adding a custom option type. 
   
+
 #### Skills: 
 - 5.2 plugin system 
 - PHP
@@ -26,11 +35,16 @@ In this wiki article we expand the plugin Custom Product (v2) with the following
 ## The file and directory structure
 ![Directory and file overview](img/fileOverview.png)
 
-## Create the plugin
+## Create the plugin basics
 At first create the base structure of the plugin, including plugin.xml, config.xml, services.xml and the SwagExtendCustomProducts.php.
+This files are the base of each plugin. 
+
+For more information about <a href="{{ site.url }}/developers-guide/plugin-system/">the 5.2 Plugin system</a>
 
 ### SwagExtendCustomProducts/plugin.xml 
-contains the base information about the plugin.
+contains the base information about the plugin, the label in englisch and german, the plugin version, the required shopware version and the changelog. 
+This file is equal to the old plugin.json.
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -44,24 +58,40 @@ contains the base information about the plugin.
     <author>shopware AG</author>
     <compatibility minVersion="5.2.0"/>
     <changelog version="1.0.0">
-        <changes lang="de">PT-5866 - Erstveröffentlichung;</changes>
-        <changes lang="en">PT-5866 - First release;</changes>
+        <changes lang="de">Erstveröffentlichung;</changes>
+        <changes lang="en">First release;</changes>
     </changelog>
 </plugin>
 ```
 
 ### SwagExtendCustomProducts/Resources/config.xml
 describes possible global plugin settings.
+
+In this file you can easy implement a bunch of plugin setting which the customer can use to control the pluign.
+Each element node represent a single plugin setting. 
+Also you can translate the label and the description in your language.
+
+Possible types for elements are:
+
+- text 
+- password 
+- textarea 
+- boolean 
+- color 
+- date 
+- datetime 
+- time 
+- interval 
+- html 
+- mediaselection 
+- number 
+- select 
+- combo
+    
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
-
-    <!--
-        Possible types for elements:
-        text, password, textarea, boolean, color, date, datetime, time,
-        interval, html, mediaselection, number, select, combo
-    -->
 
     <elements>
 
@@ -69,7 +99,7 @@ describes possible global plugin settings.
             <name>extend</name>
             <label lang="de">Custom Products erweitern?</label>
             <label lang="en">Extend Custom Products?</label>
-            <description lang="de">Wenn Sie Custom Products erweitern wollen müssen diese Option aktivieren.
+            <description lang="de">Wenn Sie Custom Products erweitern wollen müssen Sie diese Option aktivieren.
             </description>
             <description lang="en">If you want to extend Custom Products, you must enable this option.</description>
         </element>
@@ -87,7 +117,30 @@ describes possible global plugin settings.
 ```
 
 ### SwagExtendCustomProducts/Resources/service.xml
-defines in this case Subscribers which react to certain events. Make sure that Subscriber-Services implements the tag ```<tag name="shopware.event_subscriber" />```
+
+defines in this case Subscribers which react to certain events. 
+Make sure that Subscriber-Services implement the tag. 
+
+```xml
+<tag name="shopware.event_subscriber" />
+```
+
+Also you can define each type of service here. 
+
+```xml
+<!-- Custom services -->
+<service id="swag_custom_plugin.custom_repository" class="SwagCustomPlugin\Components\CustomRepository">
+    <argument type="service" id="models" />
+</service>
+```
+
+With the tag 
+```xml
+<argument type="service" id="customID" />
+``` 
+you can specify other services as parameter to inject them into the service.
+
+
 ```xml
 <?xml version="1.0" ?>
 
@@ -122,7 +175,20 @@ defines in this case Subscribers which react to certain events. Make sure that S
 ```
 
 ### SwagExtendCustomProducts/SwagExtendCustomProducts.php
-is like the Bootstrap.php in the old plugin-system. Overwrite functions to execute your code here. 
+is like the Bootstrap.php in the old plugin-system. 
+Overwrite functions to execute your code here.
+ 
+For more information about the functions you can use and overwrite take a look into the wiki <a href="{{ site.url }}/developers-guide/plugin-system/">The 5.2 Plugin system</a> or in the class _\Shopware\Components\Plugin_ which you can find in the folder _ /engine/Shopware/Components_.
+
+in our example we overwrite the build and the install methods. 
+ - The build method, to add a new parameter into the dependency container.
+Whenever you have the container for disposal you can call the parameter by:
+
+```php
+$this->container->getParameter('swag_extend_custom_products.plugin_dir');
+```
+ - The install method, to initialize our installation procedure.
+
 ```php
 <?php
 
@@ -161,7 +227,9 @@ class SwagExtendCustomProducts extends Plugin
 ```
 
 ### SwagExtendCustomProducts/Installer.php
-Only checks if the plugin "Custom Products (v2)" is installed. Add other code here if necessary for your installation.
+To keep track of the code, swap out the installation code in this extra file. 
+In this example it checks if the plugin "Custom Products (v2)" is installed, but you can add other code here if necessary for your installation.
+
 ```php
 <?php
 
@@ -198,9 +266,14 @@ class Installer
 ```
 
 ## Decorate the WhiteListService
+To add new items into the white list we must to decorate the service. 
+That means, call the original service and create a own service. This contains the original service, implements the same interface and extend the functions. 
+At end set the service to the container instead of the original. 
 
  - To decorate the WhiteListService of the Custom Product (v2) plugin we need the event name that invokes the Service. _custom_products.file_upload.file_type_whitelist_
  - In combination with the prefix _Enlight_Bootstrap_AfterInitResource_ we create the full event name: **_Enlight_Bootstrap_AfterInitResource_custom_products.file_upload.file_type_whitelist_**
+ 
+ For more information about Shopware events read the <a href="{{ site.url }}/developers-guide/event-guide/">Event guide</a>
  
 The Subscriber **_SwagExtendCustomProducts/Subscriber/FileTypeDecorator.php_** 
 
@@ -243,7 +316,7 @@ class FileTypeDecorator implements SubscriberInterface
     }
 }
 ```
-If Custom Products (v2) calls the event, set the decorator in the container to replace the original service.
+If Custom Products (v2) calls the event, set the decorator into the container to replace the original service.
 
 **_SwagExtendCustomProducts/Decorators/FileTypeWhiteListDecorator.php_** adds an array of new mime types to the white list.
 
@@ -329,11 +402,15 @@ class FileTypeWhiteListDecorator implements FileTypeWhitelistInterface
 ## Create the new option type
 For adding a new option type to Custom Products (v2) subscribe to _SwagCustomProduct_Collect_Types_ event, which is fired in _SwagCustomProducts/Components/Types/TypeFactory.php_
 
+More information about <a href="{{ site.url }}/developers-guide/backend-extension/">extending the backend</a>.
+
 ```php 
 $this->eventManager->collect('SwagCustomProduct_Collect_Types', $collection);
 ```
 
-Create a new Subscriber. **_SwagExtendCustomProducts/Subscriber/TypeFactory.php_**
+Create a new Subscriber.
+ 
+ **_SwagExtendCustomProducts/Subscriber/TypeFactory.php_**
 
 ```php
 <?php
@@ -370,6 +447,8 @@ class TypeFactory implements SubscriberInterface
 ```
 
 The new custom type must implement the interface _ShopwarePlugins\SwagCustomProducts\Components\Types\TypeInterface_.
+
+Define the type of the "customType" with a string and control whether the class has values like the image selection or has no values like a text area with a **true** or **false**.
 
 **_SwagExtendCustomProducts/Components/Types/Types.php_**
 
@@ -422,6 +501,8 @@ snippets: {
 
 Create a new directory structure and the file _SwagExtendCustomProducts/Resources/Views/backend/swag_extend_custom_products/swag_custom_products/view/components/type_translator.js_
 
+Its necessary to call **//{$smarty.block.parent}** because other plugins can extend the same Smarty block. 
+
 ```js
 //{block name="backend/swag_custom_products/components/typeTranslator/snippets"}
 //{$smarty.block.parent}
@@ -432,6 +513,11 @@ Create a new directory structure and the file _SwagExtendCustomProducts/Resource
 After that, use a subscriber to add the js file to the template view.
 
 **_SwagExtendCustomProducts/Subscriber/Backend.php_**
+
+In two cases extend ExtJs with files from plugins. 
+
+ - Extend ExtJs with new functions an classes: use the index action.
+ - Overwrite classes or smarty blocks: use the load action.
 
 ```php
 <?php
@@ -496,6 +582,8 @@ class Backend implements SubscriberInterface
 ```
 
 Add the option type in ExtJs. Create **_SwagExtendCustomProducts/Resources/Views/backend/swag_custom_products/view/option/types/custom_type.js_** which extends "Shopware.apps.SwagCustomProducts.view.option.types.AbstractTypeContainer"
+
+The AbstractTypeContainer is a abstract ExtJs class which defines functions and "template functions" you can use or overwrite. 
 
 ```js
 //
@@ -574,9 +662,9 @@ class Frontend implements SubscriberInterface
 }
 ```
 
-Now we can use the plugin that extend the plugin **Custom Products (v2)** 
+Now we can use the plugin that extends the plugin **Custom Products (v2)** 
  - We can upload files with a new mime type 
- - we can use our own custom type to configure a product
+ - We can use our own custom type to configure a product
 
 The full Plugin is available to download it here: TODO: Make it possible to download the plugin. 
  
@@ -586,7 +674,7 @@ The full Plugin is available to download it here: TODO: Make it possible to down
 
 **New method** if the plugin is based on the 5.2 plugin system
 ```php
-$swagExample = $this->container()->get('kernel')->getPlugins()['yourPluginName'];
+$customProducts = $this->container()->get('kernel')->getPlugins()['SwagCustomProducts'];
 ```
 
 **Old method**

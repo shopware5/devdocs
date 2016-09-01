@@ -580,3 +580,17 @@ Now we can use the plugin that extend the plugin **Custom Products (v2)**
 
 The full Plugin is available to download it here: TODO: Make it possible to download the plugin. 
  
+## General
+
+### Call the PluginBootstrap of other plugins
+
+**New method** if the plugin is based on the 5.2 plugin system
+```php
+$swagExample = $this->container()->get('kernel')->getPlugins()['yourPluginName'];
+```
+
+**Old method**
+```php
+/** @var Shopware_Plugins_Frontend_SwagCustomProducts_Bootstrap $customProducts */
+$customProducts = Shopware()->Plugins()->Frontend()->SwagCustomProducts();
+

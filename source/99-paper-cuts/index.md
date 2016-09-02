@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 99 Paper Cuts
+indexed: true
 ---
 
 <img style="width: 60%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/paper-cuts-logo.png">
@@ -11,13 +12,20 @@ title: 99 Paper Cuts
 
 ## Get involved!
 
-In the two weeks from Monday the 5th September to Monday the 19th September we would like to fix as many papercut bugs as possible together with our community.
+In the two weeks from Monday the <strong>5th September to Monday the 19th September</strong> we would like to fix as many papercut bugs as possible together with our community.
 
 ### How to contribute?
 
 1. Join our IRC channel for direct communication with us and the rest of the community.
-2. Find a papercut that you want to fix from the existing papercuts.
+2. Find a papercut that you want to fix from the <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a>.
+    -  When you start working please write a comment like "Working on it" into the ticket.
 3. Create a Pull Request on [Github](https://github.com/shopware/shopware).
+    - The pull request must be based on the `99-papercuts` branch
+    - Prefix the Pull Request Title with `[Papercut]` like this: `[Papercut] Fix spelling of newsletter`
+    - The commit message must be formatted with the Issue number like this: `SW-9999 - Fix spelling of newsletter`
+4. Our team will review and test your code, please watch out for feedback in the pull request
+5. If the code is sucessfully reviewed and tested it will be merged into the `99-papercuts` branch
+6. `GOTO 2.`
 
 ## How to submit a Papercut
 

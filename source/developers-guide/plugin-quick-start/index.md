@@ -207,6 +207,59 @@ The `createConfig` method will create the configuration for our plugin. We will 
 
 Finally `return true;` will tell Shopware that everything went fine and no problems occurred. If you return `false` or just nothing, Shopware will not finish the plugin installation.
 
+### The update method
+It is necessary to explain that __files__, removed in update versions, __will not be automatically removed__ from file system while updating. This can cause problems with __templates__ and rendering smarty. So if a template file is removed
+in a newer plugin version, it is necessary to remove the deleted template during the update process manually.
+
+A working example could be like what we did in our __SwagBundle__ plugin.
+
+```php
+/**
+     * Update function of the bundle plugin
+     *
+     * @param string $oldVersion
+     * @return bool|void
+     * @throws Exception
+     */
+    public function update($oldVersion)
+    {
+        ...
+
+        // 5.2+ specific: manually delete old files, which are not included in this version anymore.
+        if (version_compare($oldVersion, '3.2.0', '<')) {
+            $this->unlinkOldFiles($oldVersion);
+        }
+
+       ...
+    }
+
+    /**
+     * Unlinks old files which are not available for this version anymore.
+     * @param string $oldVersion
+     */
+    private function unlinkOldFiles($oldVersion)
+    {
+        $filesToDelete = [];
+
+        //Initial version for the 5.2 Plugin version.
+        if (version_compare($oldVersion, '3.2.0', '<')) {
+            $filesToDelete[] = __DIR__ . '/Subscriber/ControllerPath.php';
+            $filesToDelete[] = __DIR__ . '/Views/responsive';
+            $filesToDelete[] = __DIR__ . '/Views/emotion';
+        }
+
+        //Iterate through all provided file paths and unlink every file.
+        foreach ($filesToDelete as $filePath) {
+            if (!file_exists($filePath)) {
+                continue;
+            }
+
+            //Delete file from filesystem.
+            unlink($filePath);
+        }
+    }
+```
+
 ### Event callback
 
 Now the event callback function should be implemented:

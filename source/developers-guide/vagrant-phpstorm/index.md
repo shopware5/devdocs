@@ -45,9 +45,9 @@ $ cd vagrant
 $ vagrant up
 ```
 
-The first boot may take a while. After that, your machine will be available at [http://33.33.33.10/](http://33.33.33.10/). All required tools like the LAMP stack are already installed.
+The first boot may take a while. After that, your machine will be available at [http://192.168.33.10/](http://192.168.33.10/). All required tools like the LAMP stack are already installed.
 
-- PHPMyAdmin: [http://33.33.33.10/phpmyadmin](http://33.33.33.10/phpmyadmin)
+- PHPMyAdmin: [http://192.168.33.10/phpmyadmin](http://192.168.33.10/phpmyadmin)
 - MySQL user: `root`, password: `shopware`
 
 
@@ -151,7 +151,7 @@ Fill in all required fields.
 * User name: `vagrant`
 * Password: `vagrant`
 * Save Password: `yes`
-* Web server root URL: `http://33.33.33.10/`
+* Web server root URL: `http://192.168.33.10/`
 
 <div class="is-center">
 
@@ -212,7 +212,7 @@ Input fields:
 - db name: `shopware`
 - db username: `root`
 - db password: `shopware`
-- app host: `33.33.33.10`
+- app host: `192.168.33.10`
 - app path: `/shopware`
 
 After you get the `BUILD SUCCESSFUL` message you can run the full build command.
@@ -231,6 +231,6 @@ $ wget -O test_images.zip http://releases.s3.shopware.com/test_images.zip
 $ unzip test_images.zip
 ```
 
-Your Shopware installation is now complete and can be accessed at [http://33.33.33.10/shopware](http://33.33.33.10/shopware).
+Your Shopware installation is now complete and can be accessed at [http://192.168.33.10/shopware](http://192.168.33.10/shopware).
 
-To open the backend, add `/backend` to your URL so it becomes [http://33.33.33.10/shopware/backend](http://33.33.33.10/shopware/backend). You can then login using the default user credentials **demo**/**demo**.
+To open the backend, add `/backend` to your URL so it becomes [http://192.168.33.10/shopware/backend](http://192.168.33.10/shopware/backend). You can then login using the default user credentials **demo**/**demo**.

@@ -212,7 +212,7 @@ And now we can execute the `install` script with the different `DB_HOST` by just
 
 ### The bigger picture
 
-I think you now shhould have an idea how psh works and what it is capable of. Now let's resume our discussion on build scripts:
+I think you now should have an idea how psh works and what it is capable of. Now let's resume our discussion on build scripts:
 
 #### Complexity
 
@@ -277,7 +277,7 @@ I think a quick adaption rate to changes is entirely preferable.
 
 #### Bash only, why not?
 
-So why even use `PSH`? And I get the point. [As was pointed out to me] (https://github.com/shopware/devdocs/pull/353#issuecomment-244027980) bash already brings some of capabilities that PSH emulates.
+So why even use `PSH`? And I get the point. [As was pointed out to me](https://github.com/shopware/devdocs/pull/353#issuecomment-244027980) bash already brings some capabilities that PSH emulates.
 So let's discuss this a little bit here.
 
 **`set -e` - Put it at the top of your script and execution fails if a statement fails.**
@@ -289,7 +289,7 @@ reviewing the script. It is already guaranteed automated behaviour, that the scr
 
 Bash supports variables, so why reimplemented them? This mainly boils down to validation. PSH parses and replaces variables in a defined order, and throws exceptions if a variable is not defined.
 Bash contrary to that has a behaviour that reminds me [of the good old PHP notice](https://www.sitepoint.com/community/t/php-notice-use-of-undefined-constant-localhost/3934) 
-`"Notice: Use of undefined constant MY_CONST - assumed 'MY_CONST`.
+`Notice: Use of undefined constant MY_CONST - assumed 'MY_CONST`.
 
 **`ln` already has an option to recreate the link if it already exists.**
 

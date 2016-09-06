@@ -5,21 +5,21 @@ indexed: true
 github_link: 99-paper-cuts/index.md
 ---
 
-<img style="width: 60%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/paper-cuts-logo.png">
+<img style="width: 70%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/paper-cuts-logo.png">
 
 ## What is the 99 Papercut Project?
 
-**As an open source project, Shopware’s strength is attributed to the feedback and involvement from our vibrant Community. So in honor of this philosophy, we created the project “99 Papercuts” to encourage your direct involvement in making Shopware the best possible eCommerce software for your needs. 
+As an open source project, Shopware’s strength is attributed to the feedback and involvement from our vibrant Community. So in honor of this philosophy, we created the project “99 Papercuts” to encourage your direct involvement in making Shopware the best possible eCommerce software for your needs. 
 
-In the first phase of the project, we asked for your suggestions on how Shopware could be tweaked and made even better. To make this project a huge success, we need the added manpower from your contributions in this second phase.**
+In the first phase of the project, we asked for your suggestions on how Shopware could be tweaked and made even better. To make this project a huge success, we need the added manpower from your contributions in this second phase.
 
 ## Get involved in making Shopware an even better solution!  
 
-<img style="width: 60%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/header.jpg">
+<img style="width: 100%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/header.jpg">
 
 Starting on Monday, <strong>5th September and continuing until Monday, 19th September</strong>, we would like to tackle as many papercut bugs as possible, together with developers and coders from our Community.
 
-### How you can contribute:
+## How you can contribute:
 
 1. Join our [IRC Channel](/contributing/irc) for direct communication with us and the rest of the community.
 2. Find a papercut that you want to fix from the <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a>.

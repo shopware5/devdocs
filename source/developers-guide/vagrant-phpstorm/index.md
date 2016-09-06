@@ -47,8 +47,9 @@ $ vagrant up
 
 The first boot may take a while. After that, your machine will be available at [http://192.168.33.10/](http://192.168.33.10/). All required tools like the LAMP stack are already installed.
 
-- PHPMyAdmin: [http://192.168.33.10/phpmyadmin](http://192.168.33.10/phpmyadmin)
+- Adminer (DB-Administration): [http://192.168.33.10/adminer.php](http://192.168.33.10/adminer.php)
 - MySQL user: `root`, password: `shopware`
+
 
 
 ### 3. SSH access

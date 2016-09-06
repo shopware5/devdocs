@@ -13,7 +13,7 @@ github_link: 99-paper-cuts/index.md
 
 In the first phase of the project, we asked for your suggestions on how Shopware could be tweaked and made even better. To make this project a huge success, we need the added manpower from your contributions in this second phase.**
 
-## Get involved!
+## Get involved in making Shopware an even better solution!  
 
 <img style="width: 60%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/header.jpg">
 
@@ -34,18 +34,14 @@ Starting on Monday, <strong>5th September and continuing until Monday, 19th Sept
 5. If the code is sucessfully reviewed and tested it will be merged into the `99-papercuts` branch
 6. `GOTO 2.`
 
-## How to submit a Papercut
+## Take your pick from submitted papercuts 
 
-Papercuts can be reported via our [Issue Tracker](https://issues.shopware.com/99-paper-cuts). Please choose "Papercut" as the Shopware Version when submitting a new papercut.
+Don't know where to start? You can also see all <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a> in the Issue Tracker. Papercuts with the most votes can be considered priority! 
 
-## Existing Papercuts
+## Direct contact & help from Shopware developers
 
-You can also see all <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a> in the issue tracker.
-
-## Communication
-
-The best tool to directly communicate with the community and shopware developers is the [\#shopware IRC Channel](/contributing/irc).
-During the time of the papercut project we will be particularly active there to help you with your pull requests.
+The best tool to directly communicate with the Community and shopware developers is the [\#shopware IRC Channel](/contributing/irc).
+During the time of the papercut project, we will be paying close attention to this channel and supporting you with your pull requests.
 
 ## Brag about it on Twitter
-Please use the hashtag [#99papercuts](https://twitter.com/hashtag/99papercuts) to make some noise on twitter.
+Please use the hashtag [#99papercuts](https://twitter.com/hashtag/99papercuts) to make some noise on Twitter. We look forward to putting your work in the spotlight! 

@@ -8,6 +8,11 @@ tags: [pullrequest, github, contribute, git, pull-request, fork]
 
 ## How to create a Pull Request
 
+- https://git-scm.com/book
+- https://try.github.io
+
+
+
 ## Configure Git
 
 Set up your user information with your real name and a working email address:

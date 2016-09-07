@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="de">Swag Test Beispiel</label>
+    <label lang="en">Swag Test Example</label>
+
+    <version>1.0.0</version>
+    <copyright>(c) by shopware AG</copyright>
+    <license>proprietary</license>
+    <link>http://store.shopware.com</link>
+    <author>shopware AG</author>
+    <compatibility minVersion="5.2.0" />
+</plugin>

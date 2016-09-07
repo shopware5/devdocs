@@ -5,6 +5,7 @@
 /app/config/sculpin_kernel_*.yml
 /app/logs/*
 /output_*/
+/tmp/
 /source/assets/css/_imports/*.css
 /source/assets/css/basic.css
 /deploy_key

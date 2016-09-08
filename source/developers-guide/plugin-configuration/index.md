@@ -602,6 +602,11 @@ is used in all subshops. We´ve mentioned this earlier this article.
 ```
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 {
+	//code example for subshop config
+	//$repository = Shopware()->Container()->get('models')->getRepository('Shopware\Models\Shop\Shop');
+    	//$shop = $repository->getActiveById($shopId);
+    	//$config = $this->Collection()->getConfig($this->getName(), $shop);
+	
 	$config = $this->Config();
 	if (empty($config->show)) {
 	    return;

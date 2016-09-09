@@ -30,3 +30,5 @@ Please see our dedicated page for the [JavaScript Coding Standard](/designers-gu
 ## CSS Coding Guidelines
 Please see the following blog post for the [CSS Coding Guidelines](/blog/2016/08/26/css-coding-guidelines/).
 
+## Smarty / HTML Coding Guidelines
+Please see our dedicated page for the [Smarty / HTML Coding Guidelines](/designers-guide/html-smarty-coding-guidelines/).

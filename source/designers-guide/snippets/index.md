@@ -90,8 +90,9 @@ The above example configuration values represent the default values that are use
 While developing with snippets, you need to declare them in your template files and, later on, assign them values besides the default ones. These values can be set inside .ini files:
 
 <div class="alert alert-warning">
-<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme, the namespace will not match the default namespace of your template files, to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will be prefixed with <code>themes/<theme name>/</code>.<br>
-<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/<theme name>/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme. The namespace can either be set for the whole file (affecting the namespaces of all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
+<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme (/themes/Frontend/<THEME>/_private), the namespace will not match the default namespace of your template files, to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will be prefixed with <code>themes/THEMENAME/</code>.<br>
+<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/THEMENAME/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme.<br /><br />
+In this example the snippet tag has to be <code>{s name="SnippetName" namespace="themes/THEMENAME/frontend/index/shop-navigation"}</code>.<br /><br />The namespace can either be set for the whole file by using the {namespace} tag as described above (affecting the namespaces of all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
 </div>
 
 ```

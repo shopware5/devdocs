@@ -204,7 +204,6 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 </container>
 ```
 
-
 ### Decorate a service
 The following example shows how you can decorate a service with implements an interface and defined in the shopware di container. 
 ```
@@ -260,7 +259,6 @@ The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService`
 ```
 
 For more information see http://symfony.com/doc/current/service_container/service_decoration.html
-
 
 ### Extended Container Configuration
 

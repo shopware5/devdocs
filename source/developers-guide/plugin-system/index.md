@@ -205,7 +205,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 ### Decorate a service
-The following example shows how you can decorate a service with implements an interface and defined in the shopware di container. 
+The following example shows you how to decorate a service which implements an interface and gets defined in the shopware dependency injection container.
 ```
 <?php
 

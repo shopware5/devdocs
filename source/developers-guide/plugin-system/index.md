@@ -236,7 +236,7 @@ class ListProductService implements ListProductServiceInterface
     }
 }
 ```
-The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`. The following service definition decorates this service with the above service:
+The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`. The following service definition decorates this service using the service above:
 
 ```
 <?xml version="1.0" ?>

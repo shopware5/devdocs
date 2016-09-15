@@ -204,6 +204,61 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 </container>
 ```
 
+### Decorate a service
+The following example shows you how to decorate a service which implements an interface and gets defined in the shopware dependency injection container.
+```
+<?php
+
+namespace SwagExample\Bundle\StoreFrontBundle;
+
+use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ProductContextInterface;
+
+class ListProductService implements ListProductServiceInterface
+{
+    private $service;
+
+    public function __construct(ListProductServiceInterface $service)
+    {
+        $this->service = $service;
+    }
+
+    public function getList(array $numbers, ProductContextInterface $context)
+    {
+        $products = $this->service->getList($numbers, $context);
+        //...
+        return $products;
+    }
+
+    public function get($number, ProductContextInterface $context)
+    {
+        return array_shift($this->getList([$number], $context));
+    }
+}
+```
+The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`. The following service definition decorates this service using the service above:
+
+```
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_example.list_product_service"
+                 class="SwagExample\Bundle\StoreFrontBundle\ListProductService"
+                 decorates="shopware_storefront.list_product_service"
+                 public="false">
+
+            <argument type="service" id="swag_example.list_product_service.inner"/>
+        </service>
+    </services>
+</container>
+
+```
+
+For more information see http://symfony.com/doc/current/service_container/service_decoration.html
 
 ### Extended Container Configuration
 

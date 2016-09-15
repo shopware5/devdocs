@@ -265,7 +265,52 @@ class Installer
 }
 ```
 
+### SwagExtendCustomProducts/Components/Verifier.php
+Simple class to check if a plugin is installed.
+
+```php
+<?php
+
+namespace SwagExtendCustomProducts\Components;
+
+use Doctrine\DBAL\Connection;
+
+class Verifier
+{
+    /** @var Connection */
+    private $connection;
+
+    /**
+     * Verifier constructor.
+     * @param Connection $connection
+     */
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDependingPluginInstalled()
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+
+        return (bool)$queryBuilder->select('id')
+            ->from('s_core_plugins')
+            ->where('name LIKE "SwagCustomProducts"')
+            ->andWhere('active = 1')
+            ->execute()
+            ->fetchColumn();
+    }
+}
+
+```
+
 ## Decorate the WhiteListService
+We decide to decorate the service by the event method because the plugin we want to expand is still based on the old plug system. Thus, the service wasn't injected into the container yet.
+
+
 To add new items into the white list we must to decorate the service. 
 That means, call the original service and create a own service. This contains the original service, implements the same interface and extend the functions. 
 At end set the service to the container instead of the original. 
@@ -450,7 +495,7 @@ The new custom type must implement the interface _ShopwarePlugins\SwagCustomProd
 
 Define the type of the "customType" with a string and control whether the class has values like the image selection or has no values like a text area with a **true** or **false**.
 
-**_SwagExtendCustomProducts/Components/Types/Types.php_**
+**_SwagExtendCustomProducts/Components/Types/CustomType.php_**
 
 ```php
 <?php
@@ -666,7 +711,7 @@ Now we can use the plugin that extends the plugin **Custom Products (v2)**
  - We can upload files with a new mime type 
  - We can use our own custom type to configure a product
 
-The full Plugin is available to download it here: TODO: Make it possible to download the plugin. 
+The full Plugin is available to download it here: <a href="{{ site.url }}SwagExtendCustomProducts.zip">Example plugin here</a>. 
  
 ## General
 
@@ -681,4 +726,23 @@ $customProducts = $this->container()->get('kernel')->getPlugins()['SwagCustomPro
 ```php
 /** @var Shopware_Plugins_Frontend_SwagCustomProducts_Bootstrap $customProducts */
 $customProducts = Shopware()->Plugins()->Frontend()->SwagCustomProducts();
+```
 
+### Decorate services by using the new plugin system.
+To decorade a service you only add a new service to the .../.../Resources/services.xml and inject the old service as parameter
+
+```xml
+<services>
+    <service id="swag_custom_services.service" class="SwagCustomService\Services\Service">
+    </service>
+    
+    <!-- to decorate the service above register a new service -->
+    <!-- decorates: tells the container that the new_services.service service replaces the swag_custom_services.service -->
+    <service id="new_services.service" 
+             decorates="swag_custom_services.service"
+             class="SwagCustomService\Decorators\NewService">
+             <!-- The old service is renamed to new_services.service.inner. So you can inject it -->
+        <argument type="service" id="new_services.service.inner"/>
+    </service>
+</services>
+```

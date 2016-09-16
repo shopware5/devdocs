@@ -533,7 +533,7 @@ For available parent controllers take a look into table s_core_menu (column cont
 
 Menuitem won't be displayed if controller and action are missing.
 
-To know which class for which icon take a look at the <a href="/designers-guide/backend-icons/">Backen icon set overview</a>.
+To know which class for which icon take a look at the <a href="/designers-guide/backend-icons/">Backend icon set overview</a>.
 
 ## Access to other plugins
 

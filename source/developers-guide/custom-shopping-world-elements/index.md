@@ -572,6 +572,16 @@ In the component we can extend the base class of the designer elements `Shopware
     </tr>
 </table>
 
+### Your custom designer component is not working? ###
+Check if you have added a xtype in "createEmotionComponent" in your Bootstrap.
+It's required to set, even if you don't need custom elements. Just create a file, like described in "Advanced: Adding a custom emotion component in ExtJS", with only a few lines of code:
+```
+Ext.define('Shopware.apps.Emotion.view.components.VimeoVideo', {
+    extend: 'Shopware.apps.Emotion.view.components.Base',
+    alias: 'widget.vimeo_video'
+});
+```
+
 ## Downloads ##
 You can downlad the complete example plugin with documented code here:
 

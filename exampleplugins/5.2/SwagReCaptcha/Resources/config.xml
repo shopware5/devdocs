@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element required="true" type="text">
+            <name>sitekey</name>
+            <label lang="de">ReCaptcha Sitekey</label>
+            <label lang="en">ReCaptcha Sitekey</label>
+        </element>
+        <element required="true" type="text">
+            <name>secret</name>
+            <label lang="de">ReCaptcha Secret</label>
+            <label lang="en">ReCaptcha Secret</label>
+        </element>
+    </elements>
+</config>

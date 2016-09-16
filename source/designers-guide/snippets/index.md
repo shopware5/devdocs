@@ -157,7 +157,7 @@ A few things to keep in mind when using this approach:
 
 ### Snippets during plugin installation
 
-If you plugin/theme uses snippets, they should be placed inside the corresponding directory in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
+If your plugin/theme uses snippets, they should be placed inside the corresponding directory in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
 
 ## Snippets during installation/production phases
 ![Backend snippet administration](admin.jpg)

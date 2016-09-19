@@ -15,12 +15,12 @@ tags:
 ## Introduction
 This document will describe how existing plugins can be extended.
 
-With the objective of implement our own option type in CustomProducts which we can use in a Template and make it possible for a customer to upload files with special mime types.
+The objective is to implement an own option type in SwagCustomProducts, which can be used in a template. This new option makes it possible for a customer to upload files with special mime types.
 
 To achieve the objective we decorate a service to extend the function, extend ExtJs by Smarty blocks and implement new ExtJs and Smarty templates.
 
 
-In this wiki article we expand the plugin Custom Product (v2) with the following functions on base of the 5.2 plugin system: 
+On base of the new 5.2 plugin system, we extend the plugin SwagCustomProducts with the following functions.
 
  - Decoration of the FileTypeWhiteList.php to add other file extensions to the whitelist. 
  - Adding a custom option type. 

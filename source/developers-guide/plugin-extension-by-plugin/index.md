@@ -15,6 +15,8 @@ tags:
 ## Introduction
 This document will describe how existing plugins can be extended.
 
+Why change a plugin with a plugin: Because changes after a plugin update are gone.
+
 The objective is to implement an own option type in SwagCustomProducts, which can be used in a template. This new option makes it possible for a customer to upload files with special mime types.
 
 To achieve the objective we decorate a service to extend the function, extend ExtJs by Smarty blocks and implement new ExtJs and Smarty templates.

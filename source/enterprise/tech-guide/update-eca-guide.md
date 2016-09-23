@@ -15,24 +15,24 @@ This guide describes how you update the Enterprise Client Administration.
 
 ### 1. Start the maintenance mode
 
-First of all, you should turn the eca into the maintenance mode.
-This blocks the frontend for every user interaction, so that no invalid state can be created when the update is happening.
+First of all, you should turn the eca into the maintenance mode for security reasons.
+This blocks the frontend from every user interaction.
 
-For this just create a app.lock file in the root of your eca directory.
+To enable the maintenance mode create a `app.lock` file in the root directory of your eca.
 
 E.g.
-`/var/www/enterprise-client-administration/app.lock`
+`touch /var/www/enterprise-client-administration/app.lock`
 
 ----------------------
 
-### 2. Turn of the supervisor
+### 2. Turn of the ECA background processes
 
-Now you can turn of the supervisor.
+Now you can turn of the ECA background processes, by stopping the supervisor service.
 
 Just start a terminal and execute
 
 ```shell
-sudo supervisorctl stop
+sudo supervisorctl stop all
 ```
 
 ----------------------
@@ -63,14 +63,14 @@ Now you can execute
 sudo supervisorctl restart
 ```
 
-in the terminal to restart supervisor.
+in the terminal to restart the ECA background processes.
 
-Them you can turn off the maintenance mode, so the frontend is accessible.
+Then you can turn off the maintenance mode, so the frontend is accessible.
 
 ```shell
 rm /var/www/enterprise-client-administration/app.lock
 ```
 
-After you completed this steps you are finished.
+After you completed these steps you should open the frontend and validate the update and that the processes are working.
 
 ----------------------

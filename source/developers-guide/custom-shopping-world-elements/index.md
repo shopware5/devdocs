@@ -527,6 +527,10 @@ Ext.define('Shopware.apps.Emotion.view.detail.elements.VimeoVideo', {
 //{/block}
 ```
 
+<div class="alert alert-info">
+When you want to use a custom component for the designer, it is necessary to define a xtype in the createEmotionComponent() method for your element.
+</div>
+
 In the component we can extend the base class of the designer elements `Shopware.apps.Emotion.view.detail.elements.Base`. It is important to set the `alias` property to the correct xtype of the element with the prefix `widget.detail-element-`. In the component you have the possibility to override the following options:
 
 <table cellpadding="0" cellspacing="0" width="100%">

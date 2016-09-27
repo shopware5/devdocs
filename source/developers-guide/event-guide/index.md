@@ -3,6 +3,10 @@ layout: default
 title: Shopware events
 github_link: developers-guide/event-guide/index.md
 indexed: true
+menu_title: Events
+menu_order: 50
+group: Developer Guides
+subgroup: Developing plugins
 ---
 
 In order to extend Shopware or modify its behavior you will need some sort of extension system, that allows you too

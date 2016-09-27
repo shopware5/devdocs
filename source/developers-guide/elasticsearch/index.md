@@ -7,6 +7,10 @@ indexed: true
 tags:
   - performance
   - elasticsearch
+group: Developer Guides
+subgroup: General Resources
+menu_title: Elasticsearch
+menu_order: 40
 ---
 
 <div class="toc-list"></div>

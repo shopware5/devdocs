@@ -3,6 +3,10 @@ layout: default
 title: Legacy template development in Shopware 5
 github_link: designers-guide/legacy-template-development-in-shopware-5/index.md
 indexed: true
+group: Designer Guides
+subgroup: General Resources
+menu_title: Legacy template development in Shopware 5
+menu_order: 120
 ---
 
 <div class="toc-list"></div>

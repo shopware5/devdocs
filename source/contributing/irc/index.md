@@ -3,6 +3,8 @@ layout: default
 title: Shopware IRC Channel
 github_link: contributing/irc/index.md
 indexed: true
+menu_title: IRC Channel
+group: Contributing
 ---
 
 The official IRC Channel is [\#shopware](irc://irc.freenode.net/shopware) on the Freenode IRC network.

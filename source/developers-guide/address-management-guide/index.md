@@ -7,6 +7,10 @@ indexed: true
 tags:
   - address
   - services
+group: Developer Guides
+subgroup: General Resources
+menu_title: Address Management
+menu_order: 80
 ---
 
 The address management allows a customer to manage more than only one address which gets changed with every order. The customer is now able to create more addresses, e.g. for home and work, and use them later on in an order without losing all existing address data. He can just change the reference to the default billing address, instead of changing it entirely.

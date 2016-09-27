@@ -4,6 +4,10 @@ title: Managing third-party dependencies with npm
 github_link: designers-guide/managing-third-party-dependencies-with-npm/index.md
 shopware_version: 5.2
 indexed: true
+group: Designer Guides
+subgroup: General Resources
+menu_title: Managing third-party dependencies with NPM
+menu_order: 100
 ---
 
 <div class="toc-list"></div>

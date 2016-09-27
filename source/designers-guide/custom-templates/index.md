@@ -3,6 +3,10 @@ layout: default
 title: Custom templates for category and detail pages
 github_link: designers-guide/custom-templates/index.md
 indexed: true
+group: Designer Guides
+subgroup: Tutorials
+menu_title: Custom templates for category and detail pages
+menu_order: 20
 ---
 
 <div class="toc-list"></div>

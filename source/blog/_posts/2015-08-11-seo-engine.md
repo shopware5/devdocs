@@ -9,7 +9,10 @@ categories:
 - dev
 indexed: true
 github_link: blog/_posts/2015-08-11-seo-engine.md
-
+group: Developer Guides
+subgroup: General Resources
+menu_title: SEO Engine
+menu_order: 60
 authors: [dn]
 ---
 The term "SEO" summarizes various features and functionalities which targeted at increasing the ranking of a given website

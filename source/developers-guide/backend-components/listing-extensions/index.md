@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Listing extensions
+menu_order: 60
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Associations](/developers-guide/backend-components/associations/) we covered the extension of the product model the the differences of the association types.

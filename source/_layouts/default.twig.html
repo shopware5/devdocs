@@ -11,6 +11,10 @@
           content="{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}: {% if page.description is defined %}{{ page.description }}{% else %}{{ page.project.description }}{% endif %}"/>
     {% endblock %}
 
+    {% if page.menu_chapter %}
+    <meta name="robots" content="noindex" />
+    {% endif %}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
@@ -27,86 +31,128 @@
 
     <header class="header--main">
 
-        <div class="container clearfix">
-            <!-- LOGO -->
-            <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
-                <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}"
-                     data-small-src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs-symbol.png')) }}"/>
-            </a>
+        <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
+            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}"
+                 data-small-src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs-symbol.png')) }}"/>
+        </a>
 
-            <div id="searchBox">
-                <form action="#" method="get">
-                    <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
-                </form>
-            </div>
-
-            <section id="search-results" style="display: none;">
-                <div class="entries">
-                </div>
-            </section>
-        </div>
     </header>
 
-    <nav class="navi--main">
-        <div class="container">
-            <a href="{{ site.url }}/sysadmins-guide/" class="navi--link"><span>System Guides</span></a>
-            <a href="{{ site.url }}/developers-guide/" class="navi--link"><span>Developer Guides</span></a>
-            <a href="{{ site.url }}/designers-guide/" class="navi--link"><span>Frontend Guides</span></a>
-            <a href="{{ site.url }}/contributing/" class="navi--link"><span>Contributing</span></a>
-            <a href="{{ site.url }}/blog/" class="navi--link"><span>Blog</span></a>
-        </div>
-    </nav>
+    <table class="content--table">
+        <tr>
+            <td class="navi--column">
+                <nav class="navi--main">
 
-    <div class="devdocs content container">
-        <div class="inner-container">
+                    <div class="clearfix">
+                        <!-- LOGO -->
+                        <div id="searchBox">
+                            <form action="#" method="get">
+                                <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+                            </form>
+                        </div>
 
-            <div class="info">
+                    </div>
 
-                {% if page.shopware_version %}
-                <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
-                    <span class="versionDisc">as of version</span>
-                    <span class="versionBadge">{{ page.shopware_version }}</span>
-                </span>
-                {% endif %}
+                    <ul class="navi--tree">
+                        {% for group in page.menu %}
 
-                {% if site.github_enabled and page.github_link %}
-                <a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i
-                        class="icon-github"></i> Edit this page on GitHub</a>
-                {% endif %}
+                        <li class="navi--chapter {% if (page.menu_title == group.menu_title) or (page.group == group.menu_title) %}is--active{% endif %}">
+                            <a class="{% if page.menu_title == group.menu_title %}active{% endif %}" href="{{ group.url }}">{{ group.menu_title }}</a>
 
-            </div>
+                            {% if group.children %}
+                            <ul class="{% if group.menu_style == 'numeric' %}is--numbered{% endif %}{% if group.menu_style == 'bullet' %}is--bulleted{% endif %}">
+                                {% for subgroup in group.children %}
+                                <li>
+                                    {% if subgroup.menu_chapter %}
+                                        <span class="{% if subgroup.children %}has--children{% endif %}">{{ subgroup.menu_title }}</span>
+                                    {% else %}
+                                        <a class="{% if page.menu_title == subgroup.menu_title %}active{% endif %} {% if subgroup.children %}has--children{% endif %}" href="{{ subgroup.url }}">{{ subgroup.menu_title }}</a>
+                                    {% endif %}
 
-            {% if page.title is defined %}
-            <h1>
-                {{ page.title }}
-            </h1>
-            {% endif %}
+                                    {% if subgroup.children %}
+                                    <ul class="{% if subgroup.menu_style == 'numeric' %}is--numbered{% endif %}{% if subgroup.menu_style == 'bullet' %}is--bulleted{% endif %}">
+                                        {% for item in subgroup.children %}
+                                        <li><a class="{% if page.menu_title == item.menu_title %}active{% endif %}" href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
 
-            {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </td>
 
-            {% if page.history is defined %}
-            <h2>Version History</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Changes</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for changeDate, changeText in page.history|reverse(true) %}
-                <tr>
-                    <td>{{ changeDate|date("Y-m-d") }}</td>
-                    <td>{{ changeText }}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {% endif %}
-        </div>
+            <td>
+                <div class="devdocs content">
 
-        <div class="clearfix"></div>
-    </div>
+                    <section id="search-results" style="display: none;">
+                        <h1>Search results</h1>
+
+                        <div class="entries">
+                        </div>
+                    </section>
+
+                    <div class="inner-container">
+
+                        <div class="info">
+
+                            {% if page.shopware_version %}
+                                <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
+                                    <span class="versionDisc">as of version</span>
+                                    <span class="versionBadge">{{ page.shopware_version }}</span>
+                                </span>
+                            {% endif %}
+
+                            {% if site.github_enabled and page.github_link %}
+                            <a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i
+                                    class="icon-github"></i> Edit this page on GitHub</a>
+                            {% endif %}
+
+                        </div>
+
+                        {% if page.title is defined %}
+                        <h1>
+                            {{ page.title }}
+                        </h1>
+                        {% endif %}
+
+                        {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+
+                        {% if page.history is defined %}
+                        <h2>Version History</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Changes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for changeDate, changeText in page.history|reverse(true) %}
+                            <tr>
+                                <td>{{ changeDate|date("Y-m-d") }}</td>
+                                <td>{{ changeText }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+
 
     <!-- Footer -->
     <footer class="main-footer">

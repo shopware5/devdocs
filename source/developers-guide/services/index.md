@@ -7,6 +7,10 @@ tags:
   - dependency injection
   - di
 indexed: true
+menu_title: Services
+menu_order: 60
+group: Developer Guides
+subgroup: Developing plugins
 ---
 
 When writing object oriented code, you will usually need small, reusable services that encapsulate certain parts of your business logic.

@@ -6,7 +6,8 @@
     "mavimo/sculpin-redirect-bundle": "@dev",
     "bcremer/sculpin-commonmark-bundle": "^0.4.0",
     "webuni/commonmark-table-extension": "^0.4.0",
-    "algolia/algoliasearch-client-php": "^1.6"
+    "algolia/algoliasearch-client-php": "^1.6",
+    "janbuecker/sculpin-meta-navigation-bundle": "^0.4"
   },
   "autoload": {
     "psr-4": {

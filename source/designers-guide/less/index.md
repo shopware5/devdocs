@@ -3,6 +3,10 @@ layout: default
 title: Getting started with LESS
 github_link: designers-guide/less/index.md
 indexed: true
+group: Designer Guides
+subgroup: Developing Themes
+menu_title: Getting started with LESS
+menu_order: 20
 ---
 
 <div class="toc-list"></div>

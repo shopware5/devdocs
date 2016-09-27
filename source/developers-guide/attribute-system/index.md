@@ -6,6 +6,10 @@ shopware_version: 5.2.0
 indexed: true
 tags:
   - attributes
+group: Developer Guides
+subgroup: General Resources
+menu_title: Attributes
+menu_order: 90
 ---
 
 The attribute system allows developers and users to configure additional fields for different entities in shopware. Users can simply define new fields over the free text fields backend module.

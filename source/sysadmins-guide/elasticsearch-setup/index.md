@@ -8,8 +8,11 @@ tags:
   - elasticsearch
 redirect:
   - sysadmins-guide/elastic-search-setup/
-
 indexed: true
+group: System Guides
+subgroup: General Resources
+menu_title: Elasticsearch setup
+menu_order: 50
 ---
 
 <div class="toc-list"></div>

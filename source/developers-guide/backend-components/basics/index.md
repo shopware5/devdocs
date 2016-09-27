@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Basics
+menu_order: 20
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. These components have been built to simplify and speed up the development of Backend modules.

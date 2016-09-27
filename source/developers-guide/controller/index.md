@@ -6,6 +6,10 @@ tags:
   - controller
   - mvc
 indexed: true
+menu_title: Controllers
+menu_order: 30
+group: Developer Guides
+subgroup: Developing plugins
 ---
 
 Whenever you want to create your own custom pages, AJAX or API endpoints, you will probably need a controller.

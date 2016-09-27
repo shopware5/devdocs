@@ -4,6 +4,12 @@ title: Lightweight backend modules
 github_link: developers-guide/lightweight-backend-modules/index.md
 shopware_version: 5.1.0
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Lightweight backend modules
+menu_order: 10
+redirect:
+  - developers-guide/backend-and-extjs/
 ---
 
 <div class="toc-list"></div>

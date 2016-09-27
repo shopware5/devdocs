@@ -3,6 +3,10 @@ layout: default
 title: Storefront extension
 github_link: developers-guide/example-plugin/index.md
 indexed: true
+menu_title: Storefront extension
+menu_order: 20
+group: Developer Guides
+subgroup: Developing plugins
 ---
 
 <div class="toc-list"></div>

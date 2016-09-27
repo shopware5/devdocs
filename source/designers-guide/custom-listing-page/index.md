@@ -3,6 +3,10 @@ layout: default
 title: In-depth example: Custom listing page
 github_link: designers-guide/custom-listing-page/index.md
 indexed: true
+group: Designer Guides
+subgroup: Tutorials
+menu_title: Example: Listing page
+menu_order: 30
 ---
 
 <div class="toc-list"></div>

@@ -6,6 +6,10 @@ tags:
   - models
   - mvc
 indexed: true
+menu_title: Models
+menu_order: 40
+group: Developer Guides
+subgroup: Developing plugins
 ---
 
 The [Doctrine framework](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/) has been integrated since Shopware 4 and offers the possibility of centrally defining the database structure in PHP. In addition, Doctrine offers the ability to centrally define all queries in a single system, called `Repositories`, to be used later at various points in the system.

@@ -8,7 +8,7 @@ indexed: false
 ## Introduction
 
 In this article, you will find examples of the article resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
-Please read the page covering the **[article API resource](../api-resource-article)** if you haven't yet, to get more information about the article resource and the data it provides.
+Please read the page covering the **[article API resource](/developers-guide/rest-api/api-resource-article/)** if you haven't yet, to get more information about the article resource and the data it provides.
 
 These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-a)**. One of its advantages is that, instead of providing query arguments directly in the URL, you can do so by means of method argument. The client application will, internally, handle the full URL generation. You can also place variables using this technique. An example call would look like this:
 

@@ -115,26 +115,31 @@ class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_
     /**
      * Return the last registered users with an offset if it is defined
      */
-    public function getLastRegistrationsAction()
+    public function listAction()
     {
         $start = (int) $this->Request()->getParam('start');
         $limit = (int) $this->Request()->getParam('limit');
+        $queryBuilder = Shopware()->Container()->get('dbal_connection')->createQueryBuilder();
 
-        $select = "
-            SELECT
-                user.id,
-                CONCAT(billing.firstname, ' ', billing.lastname) AS customer,
-                user.customergroup,
-                user.firstlogin as date,
-                (SELECT COUNT(*) FROM s_user) AS total
-            FROM s_user AS user
-            INNER JOIN s_user_billingaddress billing
-                ON user.id = billing.userID
-            ORDER BY date DESC
-            LIMIT $start, $limit
-        ";
+        $queryBuilder->select([
+            'user.id',
+            'CONCAT(billing.firstname, \' \', billing.lastname) AS customer',
+            'user.customergroup',
+            'user.firstlogin as date',
+            '(SELECT COUNT(*) FROM s_user) AS total'
+        ])
+            ->from('s_user', 'user')
+            ->innerJoin('user','s_user_billingaddress', 'billing', 'user.id = billing.userID')
+            ->orderBy('date', 'DESC');
 
-        $data = Shopware()->Db()->fetchAll($select);
+        if(!empty($start)){
+            $queryBuilder->setFirstResult($start);
+        }
+        if(!empty($limit)){
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        $data = $queryBuilder->execute()->fetchAll();
 
         $this->View()->assign([
             'success' => true,
@@ -149,7 +154,8 @@ The controller has only an __getLastRegistrationsAction__ function which creates
 ## ExtJS Part ##
 `Resources/views/backend/index/swag_last_registrations/app.js`:
 ```
-//{block name="backend/index/application" append}
+//{block name="backend/index/application"}
+//{$smarty.block.parent}
 
 //{include file="backend/index/swag_last_registrations/model/account.js"}
 //{include file="backend/index/swag_last_registrations/store/account.js"}
@@ -301,38 +307,22 @@ Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.store.Account', {
      * Extends the default Ext Store
      * @string
      */
-    extend: 'Ext.data.Store',
+    extend: 'Shopware.store.Listing',
 
     model: 'Shopware.apps.Index.swagLastRegistrationsWidget.model.Account',
 
     remoteSort: true,
 
-    pageSize: 25,
-
     autoLoad: true,
-
+            
     /**
-     * Configure the data communication
-     * @object
-     */
-    proxy: {
-        type: 'ajax',
-
-        /**
-         * Configure the url mapping for the different
-         * store operations based on
-         * @object
-         */
-        url: '{url controller="SwagLastRegistrationsWidget" action="getLastRegistrations"}',
-
-        /**
-         * Configure the data reader
-         * @object
-         */
-        reader: {
-            type: 'json',
-            root: 'data',
-            totalProperty: 'total'
+    * This function is used to override the { @link #displayConfig } object of the statics() object.
+    *
+    * @returns { Object }
+    */
+    configure: function() {
+        return {
+            controller: 'SwagLastRegistrationsWidget'
         }
     }
 });

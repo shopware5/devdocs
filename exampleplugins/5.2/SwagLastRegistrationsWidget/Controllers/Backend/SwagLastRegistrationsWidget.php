@@ -5,26 +5,31 @@ class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_
     /**
      * Return the last registered users with an offset if it is defined
      */
-    public function getLastRegistrationsAction()
+    public function listAction()
     {
         $start = (int) $this->Request()->getParam('start');
         $limit = (int) $this->Request()->getParam('limit');
+        $queryBuilder = Shopware()->Container()->get('dbal_connection')->createQueryBuilder();
 
-        $select = "
-            SELECT
-                user.id,
-                CONCAT(billing.firstname, ' ', billing.lastname) AS customer,
-                user.customergroup,
-                user.firstlogin as date,
-                (SELECT COUNT(*) FROM s_user) AS total
-            FROM s_user AS user
-            INNER JOIN s_user_billingaddress billing
-                ON user.id = billing.userID
-            ORDER BY date DESC
-            LIMIT $start, $limit
-        ";
+        $queryBuilder->select([
+            'user.id',
+            'CONCAT(billing.firstname, \' \', billing.lastname) AS customer',
+            'user.customergroup',
+            'user.firstlogin as date',
+            '(SELECT COUNT(*) FROM s_user) AS total'
+        ])
+            ->from('s_user', 'user')
+            ->innerJoin('user','s_user_billingaddress', 'billing', 'user.id = billing.userID')
+            ->orderBy('date', 'DESC');
 
-        $data = Shopware()->Db()->fetchAll($select);
+        if(!empty($start)){
+            $queryBuilder->setFirstResult($start);
+        }
+        if(!empty($limit)){
+            $queryBuilder->setMaxResults($limit);
+        }
+
+        $data = $queryBuilder->execute()->fetchAll();
 
         $this->View()->assign([
             'success' => true,

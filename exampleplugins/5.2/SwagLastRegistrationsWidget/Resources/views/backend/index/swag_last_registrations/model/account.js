@@ -2,7 +2,7 @@
 
 Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.model.Account', {
 
-    extend: 'Ext.data.Model',
+    extend: 'Shopware.data.Model',
 
     fields: [
         'id',

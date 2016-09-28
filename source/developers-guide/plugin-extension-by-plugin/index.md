@@ -15,7 +15,7 @@ tags:
 ## Introduction
 This document will describe how existing plugins can be extended.
 
-Why change a plugin with a plugin: Because changes after a plugin update are gone.
+Why change a plugin with a plugin? To keep the changes compatible if the plugins gets an update.
 
 The objective is to implement an own option type in SwagCustomProducts, which can be used in a template. This new option makes it possible for a customer to upload files with special mime types.
 
@@ -184,7 +184,7 @@ For more information about the functions you can use and overwrite take a look i
 
 in our example we overwrite the build and the install methods. 
  - The build method, to add a new parameter into the dependency container.
-Whenever you have the container for disposal you can call the parameter by:
+wherever you have the container available you can call the parameter by:
 
 ```php
 $this->container->getParameter('swag_extend_custom_products.plugin_dir');
@@ -561,7 +561,7 @@ After that, use a subscriber to add the js file to the template view.
 
 **_SwagExtendCustomProducts/Subscriber/Backend.php_**
 
-In two cases extend ExtJs with files from plugins. 
+To extend ExtJs with our files we need to cases. 
 
  - Extend ExtJs with new functions an classes: use the index action.
  - Overwrite classes or smarty blocks: use the load action.

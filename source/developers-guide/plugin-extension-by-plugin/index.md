@@ -561,7 +561,7 @@ After that, use a subscriber to add the js file to the template view.
 
 **_SwagExtendCustomProducts/Subscriber/Backend.php_**
 
-To extend ExtJs with our files we need to cases. 
+To extend ExtJs with our files we need to cases:
 
  - Extend ExtJs with new functions an classes: use the index action.
  - Overwrite classes or smarty blocks: use the load action.

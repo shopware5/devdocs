@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Enhance a plugin with a plugin
+title: Extend an existing plugin via another plugin
 github_link: developers-guide/plugin-extendion-by-plugin/index.md
 indexed: true
 tags:
@@ -34,7 +34,7 @@ On base of the new 5.2 plugin system, we extend the plugin SwagCustomProducts wi
 At first create the base structure of the plugin, including plugin.xml, config.xml, services.xml and the SwagExtendCustomProducts.php.
 This files are the base of each plugin. 
 
-For more information about <a href="{{ site.url }}/developers-guide/plugin-system/">the 5.2 Plugin system</a>
+For more information about <a href="{{ site.url }}/developers-guide/plugin-system/">the 5.2 Plugin system click here</a>
 
 ### SwagExtendCustomProducts/plugin.xml 
 contains the base information about the plugin, the label in englisch and german, the plugin version, the required shopware version and the changelog. 

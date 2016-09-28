@@ -27,13 +27,6 @@ On base of the new 5.2 plugin system, we extend the plugin SwagCustomProducts wi
  - Decoration of the FileTypeWhiteList.php to add other file extensions to the whitelist. 
  - Adding a custom option type. 
   
-
-#### Skills: 
-- 5.2 plugin system 
-- PHP
-- ExtJs
-- Template engine Smarty
-
 ## The file and directory structure
 ![Directory and file overview](img/fileOverview.png)
 

@@ -15,6 +15,7 @@ In this guide we will create our own backend widget plugin for the new shopware 
 This plugin will show some information about the last registered users in a handy widget.
 
 ## Plugin metadata ##
+### plugin.xml
 As always in the new plugin system we set our metadata in the `plugin.xml`
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -34,7 +35,7 @@ As always in the new plugin system we set our metadata in the `plugin.xml`
 Since we use the new system for our plugin we set the `compability minVersion` to `5.2.0`.
 
 ## Plugin bootstrap file ##
-`SwagLastRegistrationsWidget.php`
+### SwagLastRegistrationsWidget.php
 ```
     public static function getSubscribedEvents()
     {
@@ -74,7 +75,7 @@ In the __onPostDispatchBackendIndex()__ method we add our template path to the v
 javascript files later. Furthermore we extend the original app.js with our own if the __indexAction__ of the indexModule
 is called. In the app.js we add our own stores, models etc.
 
-__install()__
+`install()`
  ```
     public function install(InstallContext $context)
     {
@@ -91,7 +92,7 @@ __install()__
  The __install()__ method creates a new widget Entity and adds it to our plugin. It is important to set the same
  __name__ as in our view alias(`Resources/views/backend/index/swag_last_registrations/view/main.js`)
 
-__uninstall()__
+`uninstall()`
 ```
     public function uninstall(UninstallContext $context)
     {
@@ -107,8 +108,8 @@ __uninstall()__
 ```
 To __uninstall()__ the plugin we need to remove the widget entity from the database with the help of our entity manager.
 
-## controller ##
-`Controller/Backend/SwagLastRegistrationsWidget.php`
+## Controller ##
+### Controller/Backend/SwagLastRegistrationsWidget.php
 ```
 class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_Controllers_Backend_ExtJs
 {
@@ -152,7 +153,7 @@ class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_
 The controller has only an __getLastRegistrationsAction__ function which creates an sql query to fetch the last registered users and adds them to the view.
 
 ## ExtJS Part ##
-`Resources/views/backend/index/swag_last_registrations/app.js`:
+### Resources/views/backend/index/swag_last_registrations/app.js
 ```
 //{block name="backend/index/application"}
 //{$smarty.block.parent}
@@ -166,7 +167,7 @@ The controller has only an __getLastRegistrationsAction__ function which creates
 In our backend application we use the `app.js` to extend the shopware main app.js and add our own model,
 store and view via the smarty include function.
 
-`Resources/views/backend/index/swag_last_registrations/view/main.js`:
+### Resources/views/backend/index/swag_last_registrations/view/main.js
 ```
 //{namespace name=backend/index/view/widgets}
 
@@ -300,7 +301,7 @@ It is important to extend from the `Shopware.apps.Index.view.widgets.Base` compo
 You also need to use the same alias as in our `$widget->setName()` method in the bootstrap file.
 The rest should be self explanatory. For more help take a look at the __ExtJS documentation.__
 
-`Resources/views/backend/index/swag_last_registrations/store/account.js`:
+### Resources/views/backend/index/swag_last_registrations/store/account.js
 ```
 Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.store.Account', {
     /**
@@ -328,7 +329,7 @@ Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.store.Account', {
 });
 ```
 
-`Resources/views/backend/index/swag_last_registrations/model/account.js`:
+### Resources/views/backend/index/swag_last_registrations/model/account.js
 ```
 Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.model.Account', {
 

@@ -65,12 +65,7 @@ Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.view.Main', {
         return Ext.create('Ext.grid.Panel', {
             border: 0,
             store: me.accountStore,
-            columns: me.createColumns(),
-            bbar: {
-                xtype: 'pagingtoolbar',
-                displayInfo: true,
-                store: me.accountStore
-            }
+            columns: me.createColumns()
         });
     },
 

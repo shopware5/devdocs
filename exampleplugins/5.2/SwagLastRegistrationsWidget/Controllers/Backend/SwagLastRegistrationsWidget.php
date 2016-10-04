@@ -19,13 +19,13 @@ class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_
             '(SELECT COUNT(*) FROM s_user) AS total'
         ])
             ->from('s_user', 'user')
-            ->innerJoin('user','s_user_billingaddress', 'billing', 'user.id = billing.userID')
+            ->innerJoin('user', 's_user_billingaddress', 'billing', 'user.id = billing.userID')
             ->orderBy('date', 'DESC');
 
-        if(!empty($start)){
+        if (!empty($start)) {
             $queryBuilder->setFirstResult($start);
         }
-        if(!empty($limit)){
+        if (!empty($limit)) {
             $queryBuilder->setMaxResults($limit);
         }
 

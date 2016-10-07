@@ -38,7 +38,6 @@ If you have a reverse proxy in front of your Shopware installation, you have to 
 )
 ```
 
-
 ### TLS Termination
 
 Varnish does not support SSL/TLS ([Why no SSL?](https://www.varnish-cache.org/docs/trunk/phk/ssl.html#phk-ssl)).
@@ -322,3 +321,15 @@ sub vcl_deliver {
     set resp.http.X-Cache-Hits = obj.hits;
 }
 ```
+
+### Resolve issues
+
+#### The pictures are not loaded with SSL or the IP address of the customer is not correct.
+The proxy is not recognized as a "trusted proxy". More information about debugging is available here:
+[Symfony and a Reverse Proxy](http://symfony.com/doc/current/request/load_balancer_reverse_proxy.html)
+
+#### Reverse proxy returned invalid status code.
+This message appears when automatic cache invalidation fails.
+A Proxy (mostly the SSL Proxy) don't pass the BAN or PURGE Request.
+Storing the Proxy IP as a direct link (http://127.0.01/) to the proxy should solve the problem.
+[Backend configuration](/developers-guide/http-cache/#backend

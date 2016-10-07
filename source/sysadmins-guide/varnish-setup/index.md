@@ -201,16 +201,6 @@ sub vcl_recv {
         }
     }
 
-    # Fix Vary Header in some cases
-    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
-    if (beresp.http.Vary ~ "User-Agent") {
-        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
-        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
-        if (beresp.http.Vary == "") {
-            unset beresp.http.Vary;
-        }
-    }
-
     # Fix ConflictingHeadersException with opera mini
     # https://github.com/contao/standard-edition/issues/45
     if (req.http.Forwarded) {
@@ -282,6 +272,16 @@ sub vcl_hit {
 }
 
 sub vcl_backend_response {
+    # Fix Vary Header in some cases
+    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
+    if (beresp.http.Vary ~ "User-Agent") {
+        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
+        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
+        if (beresp.http.Vary == "") {
+            unset beresp.http.Vary;
+        }
+    }
+
     # Enable ESI only if the backend responds with an ESI header
     # Unset the Surrogate Control header and do ESI
     if (beresp.http.Surrogate-Control ~ "ESI/1.0") {

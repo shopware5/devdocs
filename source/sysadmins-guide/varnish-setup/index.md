@@ -38,7 +38,6 @@ If you have a reverse proxy in front of your Shopware installation, you have to 
 )
 ```
 
-
 ### TLS Termination
 
 Varnish does not support SSL/TLS ([Why no SSL?](https://www.varnish-cache.org/docs/trunk/phk/ssl.html#phk-ssl)).
@@ -200,6 +199,22 @@ sub vcl_recv {
             # unkown algorithm
             unset req.http.Accept-Encoding;
         }
+    }
+
+    # Fix Vary Header in some cases
+    # https://www.varnish-cache.org/trac/wiki/VCLExampleFixupVary
+    if (beresp.http.Vary ~ "User-Agent") {
+        set beresp.http.Vary = regsub(beresp.http.Vary, ",? *User-Agent *", "");
+        set beresp.http.Vary = regsub(beresp.http.Vary, "^, *", "");
+        if (beresp.http.Vary == "") {
+            unset beresp.http.Vary;
+        }
+    }
+
+    # Fix ConflictingHeadersException with opera mini
+    # https://github.com/contao/standard-edition/issues/45
+    if (req.http.Forwarded) {
+        unset req.http.Forwarded;
     }
 
     if (req.method != "GET" &&

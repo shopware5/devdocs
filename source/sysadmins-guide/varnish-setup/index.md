@@ -322,14 +322,11 @@ sub vcl_deliver {
 }
 ```
 
-### Resolve issues
-
-#### The pictures are not loaded with SSL or the IP address of the customer is not correct.
-The proxy is not recognized as a "trusted proxy". More information about debugging is available here:
+## Common issues
+### Images are not loaded via SSL or the IP address of the customer is not correct.
+The proxy is not recognized as a "[trusted proxy](https://developers.shopware.com/sysadmins-guide/varnish-setup/#configure-trusted-proxies)". More information about debugging is available here:
 [Symfony and a Reverse Proxy](http://symfony.com/doc/current/request/load_balancer_reverse_proxy.html)
 
-#### Reverse proxy returned invalid status code.
-This message appears when automatic cache invalidation fails.
-A Proxy (mostly the SSL Proxy) don't pass the BAN or PURGE Request.
-Storing the Proxy IP as a direct link (http://127.0.01/) to the proxy should solve the problem.
-[Backend configuration](/developers-guide/http-cache/#backend
+### Error message "Reverse proxy returned invalid status code"
+This message appears when automatic cache invalidation fails. A proxy (mostly the SSL Proxy) didn't forward the BAN or PURGE request to the cache. Storing the cache proxy's IP (e.g. http://127.0.01/) should solve the problem. [Backend configuration](/developers-guide/http-cache/#backend)
+If the problem still persists, investigate on the actual status code the proxy returns. Code 405 indicates, that the appserver is not permitted to purge the cache, code 404 indicates, that the proxy's IP is wrong or not accessible by the appserver. 

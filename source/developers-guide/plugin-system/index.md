@@ -7,7 +7,7 @@ shopware_version: 5.2
 group: Developer Guides
 subgroup: Developing plugins
 menu_title: The 5.2 Plugin System
-menu_order: 110
+menu_order: 120
 ---
 
 <div class="alert alert-warning">

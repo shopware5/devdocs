@@ -3,6 +3,10 @@ layout: default
 title: Preparing themes for the community store
 github_link: designers-guide/preparing-themes-for-the-community-store/index.md
 indexed: true
+group: Designer Guides
+subgroup: General Resources
+menu_title: Preparing themes for the community store
+menu_order: 110
 ---
 
 <div class="toc-list"></div>

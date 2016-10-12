@@ -3,6 +3,10 @@ layout: default
 title: Theme.php
 github_link: designers-guide/configuration-using-theme-php/index.md
 indexed: true
+group: Designer Guides
+subgroup: Developing Themes
+menu_title: Using the Theme.php for custom theme configuration
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

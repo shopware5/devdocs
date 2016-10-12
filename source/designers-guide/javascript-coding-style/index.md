@@ -3,6 +3,12 @@ layout: default
 title: JavaScript coding Style
 github_link: designers-guide/javascript-coding-style/index.md
 indexed: true
+group: Designer Guides
+subgroup: General Resources
+menu_title: Javascript Coding Style
+menu_order: 20
+redirect:
+  - designers-guide/general-resources/
 ---
 
 This document explains the basic styles and patterns used in the Shopware JavaScript codebase. New code should try to conform to these standards so that it is as easy to maintain as existing code. Of course every rule has an exception, but it's important to know the rules nonetheless.

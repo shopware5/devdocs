@@ -3,6 +3,10 @@ layout: default
 title: Shopware 5 CLI commands
 github_link: developers-guide/shopware-5-cli-commands/index.md
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: CLI commands
+menu_order: 110
 ---
 
 Shopware 5 includes several CLI commands that you can use to run operations that, for any reason, can or should not be executed from the browser interface. These commands will help you perform otherwise complicated tasks, or optimize, in the background, certain aspects of your shop, which will make it perform better.

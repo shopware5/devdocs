@@ -6,6 +6,10 @@ shopware_version: 5.0.1
 indexed: true
 redirect:
   - /designers-guide/using-grunt/
+group: Designer Guides
+subgroup: General Resources
+menu_title: Using the Grunt watcher
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

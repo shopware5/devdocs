@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Associations
+menu_order: 50
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the [Backend Components - Detail](/developers-guide/backend-components/detail/) tutorial we covered the different configuration options of the detail window. In this tutorial, you'll learn the basics about the implementation of associations.

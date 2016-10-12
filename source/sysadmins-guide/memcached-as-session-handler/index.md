@@ -7,8 +7,11 @@ tags:
   - session
   - memcache
   - memcached
-
 indexed: true
+group: System Guides
+subgroup: General Resources
+menu_title: Memcached Session Handler
+menu_order: 70
 ---
 
 By default Shopware stores sessions in the database.

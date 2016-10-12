@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Batch processes
+menu_order: 70
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Listing Extensions](/developers-guide/backend-components/listing-extensions/) we covered the listing extensions.

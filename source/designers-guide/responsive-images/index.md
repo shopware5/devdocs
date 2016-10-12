@@ -3,7 +3,7 @@ layout: default
 title: Responsive Images in Shopware 5
 github_link: designers-guide/responsive-images/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
 menu_title: Responsive images
 menu_order: 50

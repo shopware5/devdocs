@@ -3,9 +3,9 @@ layout: default
 title: Legacy template development in Shopware 5
 github_link: designers-guide/legacy-template-development-in-shopware-5/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
-menu_title: Legacy template development in Shopware 5
+menu_title: Legacy template development
 menu_order: 120
 ---
 

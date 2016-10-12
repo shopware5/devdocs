@@ -3,7 +3,7 @@ layout: default
 title: Shopware 5 snippet management
 github_link: designers-guide/snippets/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
 menu_title: Snippet Management
 menu_order: 30

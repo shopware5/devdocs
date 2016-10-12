@@ -3,6 +3,10 @@ layout: default
 title: Using the Responsive theme default components
 github_link: designers-guide/responsive-theme-default-components/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: Using the theme default components
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

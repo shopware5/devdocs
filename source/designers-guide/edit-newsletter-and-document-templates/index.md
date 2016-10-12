@@ -3,6 +3,10 @@ layout: default
 title: Edit newsletter and document templates
 github_link: designers-guide/edit-newsletter-and-document-templates/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Tutorials
+menu_title: Edit newsletter and document templates
+menu_order: 50
 ---
 
 <div class="toc-list"></div>

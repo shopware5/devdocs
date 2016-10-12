@@ -4,7 +4,6 @@ title: Shopware cluster setup
 github_link: sysadmins-guide/shopware-cluster-setup/index.md
 indexed: true
 group: System Guides
-subgroup: General Resources
 menu_title: Cluster setup
 menu_order: 80
 ---

@@ -3,10 +3,10 @@ layout: default
 title: Using CSS and JavaScript files in themes.
 github_link: designers-guide/css-and-js-files-usage/index.md
 indexed: true
-group: Designer Guides
-subgroup: General Resources
-menu_title: Using CSS and JavaScript files in themes
-menu_order: 40
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: Using CSS and JavaScript files
+menu_order: 50
 ---
 
 This quick tip shows off the best way on how to use CSS and JavaScript files for your custom themes, in order to enable them to be automatically compressed by the Shopware theme compiler. To use this feature you have to place your CSS and JavaScript files inside your theme directory under the subdirectories `frontend/_public`. This would be an example directory structure:

@@ -3,6 +3,10 @@ layout: default
 title: SearchBundle
 github_link: developers-guide/shopware-5-search-bundle/index.md
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: SearchBundle
+menu_order: 120
 ---
 
 The `Shopware\Bundle\SearchBundle` defines how Shopware searches for different product lists. Classes defined inside this bundle are independent from the underlying search engine, and can be reused across different search engine implementations.

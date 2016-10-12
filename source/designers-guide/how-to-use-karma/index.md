@@ -4,7 +4,7 @@ title: How to use Karma for storefront tests
 github_link: designers-guide/how-to-use-karma/index.md
 shopware_version: 5.0.3
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
 menu_title: Testing with Karma
 menu_order: 130

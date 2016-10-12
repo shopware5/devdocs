@@ -4,9 +4,9 @@ title: Managing third-party dependencies with npm
 github_link: designers-guide/managing-third-party-dependencies-with-npm/index.md
 shopware_version: 5.2
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
-menu_title: Managing third-party dependencies with NPM
+menu_title: Managing dependencies with NPM
 menu_order: 100
 ---
 

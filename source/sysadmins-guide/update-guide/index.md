@@ -4,7 +4,6 @@ title: Shopware 5 Update Guide
 github_link: sysadmins-guide/update-guide/index.md
 indexed: true
 group: System Guides
-subgroup: General Resources
 menu_title: Update Guide
 menu_order: 30
 ---

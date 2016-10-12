@@ -1,11 +1,11 @@
 ---
 layout: default
-title: In-depth example: Custom listing page
+title: Example: Custom listing page
 github_link: designers-guide/custom-listing-page/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: Tutorials
-menu_title: Example: Listing page
+menu_title: Example: Custom listing page
 menu_order: 30
 ---
 

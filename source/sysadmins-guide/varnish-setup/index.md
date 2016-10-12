@@ -8,7 +8,6 @@ tags:
   - varnish
 indexed: true
 group: System Guides
-subgroup: General Resources
 menu_title: Varnish setup
 menu_order: 60
 ---

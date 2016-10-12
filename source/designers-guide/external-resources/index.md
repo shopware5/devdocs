@@ -3,7 +3,7 @@ layout: default
 title: Embedding external resources
 github_link: designers-guide/external-resources/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
 menu_title: Embedding external resources
 menu_order: 50

@@ -7,8 +7,6 @@ group: Developer Guides
 subgroup: General Resources
 menu_title: Upgrade Guide
 menu_order: 10
-redirect:
-  - developers-guide/general-resources/
 ---
 ## General
 

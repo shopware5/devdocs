@@ -4,6 +4,10 @@ title: Choosing the right range slider algorithm
 github_link: designers-guide/range-slider-algorithm/index.md
 shopware_version: 5.0.3
 indexed: true
+group: Frontend Guides
+subgroup: Tutorials
+menu_title: Range slider algorithm
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

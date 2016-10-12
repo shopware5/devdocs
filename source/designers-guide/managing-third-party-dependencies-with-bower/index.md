@@ -3,9 +3,9 @@ layout: default
 title: Managing third-party dependencies with Bower
 github_link: designers-guide/managing-third-party-dependencies-with-bower/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
-menu_title: Managing third-party dependencies with Bower
+menu_title: Managing dependencies with Bower
 menu_order: 90
 ---
 

@@ -3,6 +3,10 @@ layout: default
 title: Shopware 5 Plugin update guide
 github_link: developers-guide/shopware-5-plugin-update-guide/index.md
 indexed: true
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Plugin update guide
+menu_order: 100
 ---
 
 <div class="toc-list"></div>

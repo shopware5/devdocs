@@ -3,12 +3,10 @@ layout: default
 title: Finding Smarty blocks in Shopware
 github_link: designers-guide/find-smarty-blocks/index.md
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: Tutorials
 menu_title: How to find smarty blocks
 menu_order: 10
-redirect:
-  - designers-guide/tutorials/
 ---
 
 <div class="toc-list"></div>

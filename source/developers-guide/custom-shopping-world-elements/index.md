@@ -11,8 +11,6 @@ group: Developer Guides
 subgroup: Tutorials
 menu_title: Create custom shopping worlds elements
 menu_order: 10
-redirect:
-  - developers-guide/tutorials/
 ---
 
 <img src="img/screenshot_emotion_elements.jpg" alt="Shopping worlds" />

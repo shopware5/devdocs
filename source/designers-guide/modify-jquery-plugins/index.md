@@ -4,7 +4,7 @@ title: Modify jQuery plugins
 github_link: designers-guide/modify-jquery-plugins/index.md
 shopware_version: 5.0.2
 indexed: true
-group: Designer Guides
+group: Frontend Guides
 subgroup: General Resources
 menu_title: Modify jQuery plugins
 menu_order: 80

@@ -7,9 +7,7 @@ indexed: true
 group: Developer Guides
 subgroup: Backend and ExtJS
 menu_title: Lightweight backend modules
-menu_order: 10
-redirect:
-  - developers-guide/backend-and-extjs/
+menu_order: 80
 ---
 
 <div class="toc-list"></div>

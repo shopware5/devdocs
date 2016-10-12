@@ -31,128 +31,120 @@
 
     <header class="header--main">
 
+        <a href="{{ site.url }}/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
         <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
-            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}"
-                 data-small-src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs-symbol.png')) }}"/>
+            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}" />
         </a>
 
     </header>
 
-    <table class="content--table">
-        <tr>
-            <td class="navi--column">
-                <nav class="navi--main">
+    <div id="searchBox">
+        <form action="#" method="get">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+        </form>
+    </div>
 
-                    <div class="clearfix">
-                        <!-- LOGO -->
-                        <div id="searchBox">
-                            <form action="#" method="get">
-                                <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
-                            </form>
-                        </div>
+    <nav class="navi--main" data-offcanvas="true">
 
-                    </div>
+        <ul class="navi--tree">
+            {% for group in page.menu %}
 
-                    <ul class="navi--tree">
-                        {% for group in page.menu %}
+            <li class="navi--chapter{% if (page.group == group.menu_title) or (page.menu_title == group.menu_title) %} is--active{% endif %}">
+                <a href="{{ group.url }}" class="navi--link{% if (page.group == group.menu_title) or (page.menu_title == group.menu_title) %} is--active{% endif %}{% if group.children %} has--children{% endif %}">
+                   {{ group.menu_title }}
+                </a>
 
-                        <li class="navi--chapter {% if (page.menu_title == group.menu_title) or (page.group == group.menu_title) %}is--active{% endif %}">
-                            <a class="{% if page.menu_title == group.menu_title %}active{% endif %}" href="{{ group.url }}">{{ group.menu_title }}</a>
+                {% if group.children %}
+                <ul class="navi--sub-tree{% if group.menu_style == 'numeric' %} is--numbered{% endif %}{% if group.menu_style == 'bullet' %} is--bulleted{% endif %}">
+                    {% for subgroup in group.children %}
+                    <li class="navi--sub-chapter{% if ((page.subgroup == subgroup.menu_title) and (page.group == group.menu_title)) or (page.menu_title == subgroup.menu_title) %} is--active{% endif %}">
 
-                            {% if group.children %}
-                            <ul class="{% if group.menu_style == 'numeric' %}is--numbered{% endif %}{% if group.menu_style == 'bullet' %}is--bulleted{% endif %}">
-                                {% for subgroup in group.children %}
-                                <li>
-                                    {% if subgroup.menu_chapter %}
-                                        <span class="{% if subgroup.children %}has--children{% endif %}">{{ subgroup.menu_title }}</span>
-                                    {% else %}
-                                        <a class="{% if page.menu_title == subgroup.menu_title %}active{% endif %} {% if subgroup.children %}has--children{% endif %}" href="{{ subgroup.url }}">{{ subgroup.menu_title }}</a>
-                                    {% endif %}
+                        <a class="navi--link{% if page.subgroup == subgroup.menu_title or (page.menu_title == subgroup.menu_title) %} is--active{% endif %}{% if subgroup.children %} has--children{% endif %}" href="{{ subgroup.url }}">
+                            {{ subgroup.menu_title }}
+                        </a>
 
-                                    {% if subgroup.children %}
-                                    <ul class="{% if subgroup.menu_style == 'numeric' %}is--numbered{% endif %}{% if subgroup.menu_style == 'bullet' %}is--bulleted{% endif %}">
-                                        {% for item in subgroup.children %}
-                                        <li><a class="{% if page.menu_title == item.menu_title %}active{% endif %}" href="{{ item.url }}">{{ item.menu_title }}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                </li>
+                        {% if subgroup.children %}
+                            <ul class="navi--sub-tree{% if subgroup.menu_style == 'numeric' %} is--numbered{% endif %}{% if subgroup.menu_style == 'bullet' %} is--bulleted{% endif %}">
+
+                                {% for item in subgroup.children %}
+                                    <li class="navi--sub-chapter">
+                                        <a class="navi--link{% if page.menu_title == item.menu_title %} is--active{% endif %}" href="{{ item.url }}">
+                                            {{ item.menu_title }}
+                                        </a>
+                                    </li>
                                 {% endfor %}
                             </ul>
-                            {% endif %}
-                        </li>
-
-                        {% endfor %}
-                    </ul>
-                </nav>
-            </td>
-
-            <td>
-                <div class="devdocs content">
-
-                    <section id="search-results" style="display: none;">
-                        <h1>Search results</h1>
-
-                        <div class="entries">
-                        </div>
-                    </section>
-
-                    <div class="inner-container">
-
-                        <div class="info">
-
-                            {% if page.shopware_version %}
-                                <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
-                                    <span class="versionDisc">as of version</span>
-                                    <span class="versionBadge">{{ page.shopware_version }}</span>
-                                </span>
-                            {% endif %}
-
-                            {% if site.github_enabled and page.github_link %}
-                            <a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i
-                                    class="icon-github"></i> Edit this page on GitHub</a>
-                            {% endif %}
-
-                        </div>
-
-                        {% if page.title is defined %}
-                        <h1>
-                            {{ page.title }}
-                        </h1>
                         {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
 
-                        {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+            {% endfor %}
+        </ul>
+    </nav>
 
-                        {% if page.history is defined %}
-                        <h2>Version History</h2>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Changes</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for changeDate, changeText in page.history|reverse(true) %}
-                            <tr>
-                                <td>{{ changeDate|date("Y-m-d") }}</td>
-                                <td>{{ changeText }}</td>
-                            </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        {% endif %}
-                    </div>
+    <div class="devdocs content">
 
-                    <div class="clearfix"></div>
-                </div>
-            </td>
-        </tr>
-    </table>
+        <section id="search-results" style="display: none;">
+            <h2 class="search-results--headline">Search results</h2>
 
+            <div class="entries"></div>
+        </section>
 
+        <div class="inner-container">
 
+            <div class="info">
 
+                {% if page.shopware_version %}
+                    <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
+                        <span class="versionDisc">as of version</span>
+                        <span class="versionBadge">{{ page.shopware_version }}</span>
+                    </span>
+                {% endif %}
+
+                {% if site.github_enabled and page.github_link %}
+                <a class="edit-on-github" href="{{ site.githuburl }}{{ page.github_link }}" target="_blank"><i
+                        class="icon-github"></i> Edit this page on GitHub</a>
+                {% endif %}
+
+            </div>
+
+            {% if page.title is defined %}
+            <h1>
+                {{ page.title }}
+            </h1>
+            {% endif %}
+
+            {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+
+            {% if page.history is defined %}
+            <h2>Version History</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Changes</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for changeDate, changeText in page.history|reverse(true) %}
+                <tr>
+                    <td>{{ changeDate|date("Y-m-d") }}</td>
+                    <td>{{ changeText }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="main-footer">
@@ -180,7 +172,7 @@
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.toc.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.algolia.search.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.expandSearch.js')) }}"></script>
-<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/app.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.offcanvas.js')) }}"></script>
 
 <script>
     addAnchors('.content h2, .content h3, .content h4');

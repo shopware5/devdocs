@@ -13,7 +13,6 @@ tags:
 redirect:
   - /sysadmins-guide/optimize-performance/
 group: System Guides
-subgroup: General Resources
 menu_title: Performance Guide
 menu_order: 40
 ---

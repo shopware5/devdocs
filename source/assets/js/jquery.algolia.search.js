@@ -83,7 +83,7 @@
                     var elem = $('<a/>', {
                         'class': "entry",
                         'href': entry.url
-                    }).append($('<h2/>', {
+                    }).append($('<div/>', {
                         'class': "entry-headline",
                         'html': entry._highlightResult.title.value
                     }));

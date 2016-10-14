@@ -197,6 +197,41 @@ The following types can be defined for the plugin:
 - ISO - ISO format for date formatting
 - PHP - PHP's date() function for date formatting
 
+<<<<<<< HEAD
+=======
+
+## Rewrite plugin ##
+
+The rewrite plugin is used to rewrite old URLs that are known from previous versions of Shopware. One example is the URL for the category list in the category examples. In this case, the shop is running on the domain http://meinshop.de and the Examples category has the ID 32:
+
+<div class="alert alert-info">
+	Note: This plugin is only intended to rewrite links which still have the old URL format of Shopware. All other URLs are rewritten with the urn plugin and do not need to be processed by the rewrite plugin.
+</div>
+ 
+Example: *call to a category list without a plugin*
+``` 
+http://myshop.com/shopware.php?sViewport=cat&sCategory=32
+``` 
+ 
+Using this Smarty plugin, the URL of the category list would be rewritten as follows:
+
+Example: *call to a category listing with a plugin*
+``` 
+http://myshop.de/examples
+``` 
+ 
+As an additional parameter a title can be specified for the Smarty plugin, which is then displayed with the old SEO links in the URL.
+ 
+ 
+Example: *plugin call with a set parameter*
+``` 
+{* Syntax *}
+{"shopware.php?sViewport=cat&sCategory=32"|rewrite:"examples"}
+ 
+{* Output *}
+http://myshop.de/examples_cat_32.html
+``` 
+>>>>>>> [FEATURE] Added smarty plugins page to designers guide
  
 ## Action plugin ##
 

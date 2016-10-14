@@ -198,6 +198,7 @@ The following types can be defined for the plugin:
 - PHP - PHP's date() function for date formatting
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 ## Rewrite plugin ##
@@ -232,6 +233,8 @@ Example: *plugin call with a set parameter*
 http://myshop.de/examples_cat_32.html
 ``` 
 >>>>>>> [FEATURE] Added smarty plugins page to designers guide
+=======
+>>>>>>> [FEATURE] Removed rewrite plugin from smarty plugins page
  
 ## Action plugin ##
 

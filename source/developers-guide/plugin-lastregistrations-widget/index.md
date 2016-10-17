@@ -4,6 +4,13 @@ title: Own Backend Widget
 github_link: developers-guide/plugin-lastregistrations-widget/index.md
 shopware_version: 5.2.0
 indexed: true
+tags:
+  - backend
+  - widgets
+group: Developer Guides
+subgroup: Tutorials
+menu_title: Create your own backend widget
+menu_order: 30
 ---
 
 <img src="img/widget.jpg" alt="Last Registrations Widget" />

@@ -7,7 +7,7 @@ indexed: true
 group: Developer Guides
 subgroup: Tutorials
 menu_title: Risk Rules
-menu_order: 30
+menu_order: 40
 ---
 
 Shopware 5.1.2 introduced a new event to provide custom risk rules: `Shopware_Modules_Admin_Execute_Risk_Rule_sRisk[RiskName]`.

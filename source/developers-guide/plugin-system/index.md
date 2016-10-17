@@ -4,6 +4,10 @@ title: The 5.2 Plugin System
 github_link: developers-guide/plugin-system/index.md
 indexed: true
 shopware_version: 5.2
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: The 5.2 Plugin System
+menu_order: 120
 ---
 
 <div class="alert alert-warning">

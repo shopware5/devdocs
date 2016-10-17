@@ -3,6 +3,10 @@ layout: default
 title: Plugin testing
 github_link: developers-guide/plugin-testing/index.md
 indexed: true
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Plugin testing
+menu_order: 80
 ---
 
 <div class="toc-list"></div>

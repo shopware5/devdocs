@@ -9,6 +9,10 @@ tags:
   - override
   - backend
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Extending the backend
+menu_order: 10
 ---
 
 The Shopware backend, with its powerful JavaScript framework, offers many tools to design nice interfaces for the end user.

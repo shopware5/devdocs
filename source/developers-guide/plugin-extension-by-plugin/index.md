@@ -8,6 +8,10 @@ tags:
   - plugin
   - custom
   - products
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Extend an existing plugin
+menu_order: 110
 ---
 
 <div class="toc-list"></div>

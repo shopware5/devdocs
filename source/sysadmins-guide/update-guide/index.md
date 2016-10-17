@@ -3,6 +3,9 @@ layout: default
 title: Shopware 5 Update Guide
 github_link: sysadmins-guide/update-guide/index.md
 indexed: true
+group: System Guides
+menu_title: Update Guide
+menu_order: 30
 ---
 
 ## Updating to Shopware 5

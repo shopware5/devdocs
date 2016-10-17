@@ -7,6 +7,10 @@ indexed: true
 tags:
   - security
   - csrf
+group: Developer Guides
+subgroup: General Resources
+menu_title: CSRF Protection
+menu_order: 100
 ---
 
 This article will focus CSRF attack protection, a new security feature included in Shopware. First, a short introduction to the problem:

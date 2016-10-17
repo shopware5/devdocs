@@ -7,6 +7,10 @@ indexed: true
 tags:
   - Digital Publishing
   - custom elements
+group: Developer Guides
+subgroup: Tutorials
+menu_title: Create custom digital publishing elements
+menu_order: 20
 ---
 
 <div class="toc-list"></div>

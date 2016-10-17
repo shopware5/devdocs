@@ -1,8 +1,12 @@
 ---
 layout: default
-title: Smarty 101
+title: Getting started with Smarty
 github_link: designers-guide/smarty/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: Getting started with Smarty
+menu_order: 30
 ---
 
 <div class="toc-list"></div>

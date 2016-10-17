@@ -1,12 +1,12 @@
 <div class="blog-user-info">
-	<div class="blog-avatar">
-		<img src="{{ site.url }}/blog/img/authors/author_{{ authorhandle|url_encode(true) }}.jpg" width="50" height="50">
-	</div>
-	<div class="blog-user">
-		<div class="user-info">
-			<a rel="author" href="{{ site.url }}/blog/authors/{{ authorhandle|url_encode(true) }}">{{ author.name }}</a>
+    <div class="blog-avatar">
+        <img src="{{ site.url }}/blog/img/authors/author_{{ authorhandle|url_encode(true) }}.jpg" width="50" height="50">
+    </div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="{{ site.url }}/blog/authors/{{ authorhandle|url_encode(true) }}">{{ author.name }}</a>
             {% if author.title %}<span class="user-title">, {{ author.title }}</span>{% endif %}
-		</div>
+        </div>
 
         <div class="release">
             <span class="icon icon-clock"></span> {{ date | date(site.default_date_format) }}
@@ -37,10 +37,6 @@
                     </a>
                 </span>
             {% endif %}
-
         </div>
-		<div class="clearfix"></div>
-	</div>
-
-    <div class="clearfix"></div>
+    </div>
 </div>

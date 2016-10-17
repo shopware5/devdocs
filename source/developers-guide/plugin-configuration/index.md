@@ -3,6 +3,10 @@ layout: default
 title: Plugin configuration
 github_link: developers-guide/plugin-configuration/index.md
 indexed: true
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Plugin configuration
+menu_order: 70
 ---
 This document will give you a brief introduction about how to set configuration options for legacy plugins, which parameters are available and
 how to use them. By using the [new plugin system](/developers-guide/plugin-system) (since 5.2) the following code examples

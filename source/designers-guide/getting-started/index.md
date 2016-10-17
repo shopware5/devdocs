@@ -3,6 +3,10 @@ layout: default
 title: Getting started with Shopware templating
 github_link: designers-guide/getting-started/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: Getting started with templating
+menu_order: 20
 ---
 
 <div class="toc-list"></div>

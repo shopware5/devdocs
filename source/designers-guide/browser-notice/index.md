@@ -1,8 +1,12 @@
 ---
 layout: default
-title: Quick tip: Browser notification for visitors with a outdated browser
+title: Browser notification for visitors with a outdated browser
 github_link: designers-guide/browser-notice/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Tutorials
+menu_title: Outdated browser notification
+menu_order: 60
 ---
 
 In this quick tip we like to explain how to integrate a notification bar in your web shop using the code snippet from [browser-update.org](http://browser-update.org). We'll end up with the following result:

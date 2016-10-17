@@ -1,8 +1,12 @@
 ---
 layout: default
-title: Plugin quick start
+title: Plugin quick start guide
 github_link: developers-guide/plugin-quick-start/index.md
 indexed: true
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Quick start guide
+menu_order: 10
 ---
 This document will give you a brief overview of Shopware and everything you need to start developing your first plugin.
 

@@ -3,6 +3,10 @@ layout: default
 title: Embedding external resources
 github_link: designers-guide/external-resources/index.md
 indexed: true
+group: Frontend Guides
+subgroup: General Resources
+menu_title: Embedding external resources
+menu_order: 50
 ---
 
 In Shopware 5 we created the possibility to embed external resources directly via the backend. In the theme configuration of the new Shopware Responsive theme you will find two input fields for additional CSS and JavaScript files. This enables you to simply add external resources like for example a web font or a tracking code to your theme.

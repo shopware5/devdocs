@@ -3,6 +3,10 @@ layout: default
 title: Shopware 5 upgrade guide
 github_link: developers-guide/shopware-5-upgrade-guide-for-developers/index.md
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: Upgrade Guide
+menu_order: 10
 ---
 ## General
 

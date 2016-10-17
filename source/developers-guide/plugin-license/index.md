@@ -3,6 +3,10 @@ layout: default
 title: Plugin License
 github_link: developers-guide/plugin-license/index.md
 indexed: true
+group: Developer Guides
+subgroup: Developing plugins
+menu_title: Plugin License
+menu_order: 90
 ---
 
 <div class="toc-list"></div>

@@ -3,6 +3,10 @@ layout: default
 title: Service extensions
 github_link: developers-guide/shopware-5-core-service-extensions/index.md
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: Service extensions
+menu_order: 130
 ---
 
 <div class="toc-list"></div>

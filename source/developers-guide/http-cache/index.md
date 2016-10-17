@@ -6,6 +6,10 @@ shopware_version: 5.1.2
 indexed: true
 redirect:
   - /blog/2015/12/04/working-with-the-http-cache/index.html
+group: Developer Guides
+subgroup: General Resources
+menu_title: HTTP Cache
+menu_order: 80
 ---
 Caching is a common approach to improve the scalability of a system. For that reason, Shopware provides a build in
 HTTP cache, that should be enabled in production systems. This document will handle some basics regarding

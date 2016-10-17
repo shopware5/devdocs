@@ -10,6 +10,10 @@ tags:
   - diagramm
   - entity
   - model
+group: Developer Guides
+subgroup: General Resources
+menu_title: Entity relationship model
+menu_order: 140
 ---
 
 Below you can download the Shopware entity relationship model. 

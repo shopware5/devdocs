@@ -4,6 +4,8 @@ title: Contributing Code
 github_link: contributing/contributing-code/index.md
 indexed: true
 tags: [pullrequest, github, contribute, git, pull-request, fork]
+menu_title: Contributing Code
+group: Contributing
 ---
 
 ## How to create a Pull Request

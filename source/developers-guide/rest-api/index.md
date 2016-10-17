@@ -3,6 +3,10 @@ layout: default
 title: REST API
 github_link: developers-guide/rest-api/index.md
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: REST API
+menu_order: 40
 ---
 
 <div class="toc-list"></div>

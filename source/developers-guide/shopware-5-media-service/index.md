@@ -7,6 +7,10 @@ indexed: true
 history:
     2015-09-08: creation
     2015-12-15: added strategy documentation
+group: Developer Guides
+subgroup: General Resources
+menu_title: MediaService
+menu_order: 70
 ---
 
 The `Shopware\Bundle\MediaBundle` defines how Shopware manages its media files. Shopware 5.1 includes a new media management layer, which abstracts the location of your media files. This applies to both new and existing installations, and there is no possibility to revert to the old behaviour.

@@ -3,6 +3,10 @@ layout: default
 title: Shopware 5 Theme Startup Guide
 github_link: designers-guide/theme-startup-guide/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: Theme Startup Guide
+menu_order: 10
 ---
 
 <div class="toc-list"></div>

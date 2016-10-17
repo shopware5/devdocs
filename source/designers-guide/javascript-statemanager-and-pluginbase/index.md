@@ -1,8 +1,12 @@
 ---
 layout: default
-title: Getting started with the StateManager and the jQuery plugin base
+title: jQuery plugins and the StateManager
 github_link: designers-guide/javascript-statemanager-and-pluginbase/index.md
 indexed: true
+group: Frontend Guides
+subgroup: Developing Themes
+menu_title: jQuery plugins & the StateManager
+menu_order: 70
 ---
 
 <div class="toc-list"></div>

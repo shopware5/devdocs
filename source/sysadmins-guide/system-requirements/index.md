@@ -3,6 +3,9 @@ layout: default
 title: System Requirements
 github_link: sysadmins-guide/system-requirements/index.md
 indexed: true
+group: System Guides
+menu_title: System requirements
+menu_order: 10
 ---
 ## Server requirements
 

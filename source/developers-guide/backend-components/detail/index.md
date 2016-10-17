@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Detail
+menu_order: 40
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial we covered the [Backend Components - Listing](/developers-guide/backend-components/listing/) and the different configuration options of the `Shopware.grid.Panel`. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the `Shopware.model.Container` and `Shopware.window.Detail` components will be explained in more detail.

@@ -7,6 +7,10 @@ tags:
   - hash
   - example
 indexed: true
+group: Developer Guides
+subgroup: General Resources
+menu_title: Password encoder
+menu_order: 150
 ---
 
 By default, Shopware will use the best available password hashing algorithm on your system (e.g. bcrypt). For default usage there is **no need** to modify Shopware's hashing algorithm.

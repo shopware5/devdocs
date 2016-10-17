@@ -7,6 +7,10 @@ tags:
   - extjs
   - standard components
 indexed: true
+group: Developer Guides
+subgroup: Backend and ExtJS
+menu_title: Listing
+menu_order: 30
 ---
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Basics](/developers-guide/backend-components/basics/) we covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.

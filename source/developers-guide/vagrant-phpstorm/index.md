@@ -7,6 +7,10 @@ tags:
   - vagrant
   - tools
 indexed: true
+group: Developer Guides
+subgroup: Tutorials
+menu_title: Vagrant and PHPStorm
+menu_order: 40
 ---
 
 We published a [Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) that provides you with a basic Ubuntu 14.04 that contains everything that you needed to develop with Shopware.

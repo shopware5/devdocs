@@ -3,6 +3,10 @@ layout: default
 title: Shopware 5 snippet management
 github_link: designers-guide/snippets/index.md
 indexed: true
+group: Frontend Guides
+subgroup: General Resources
+menu_title: Snippet Management
+menu_order: 30
 ---
 
 Snippets are an extremely easy and useful way to translate and customize the Shopware storefront texts. By using snippets, you are able to determine the content of a specific text part of the theme individual for every shop. The part you would like to edit has to be wrapped inside a snippet tag. Every snippet is editable in the Shopware 5 backend by using the snippet administration module.

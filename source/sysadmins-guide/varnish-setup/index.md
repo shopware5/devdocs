@@ -6,8 +6,10 @@ shopware_version: 4.3.3
 tags:
   - performance
   - varnish
-
 indexed: true
+group: System Guides
+menu_title: Varnish setup
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

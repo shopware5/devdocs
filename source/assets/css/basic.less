@@ -79,10 +79,6 @@ a {
     .clearfix();
     position: relative;
     padding-bottom: 160px;
-
-    @media screen and (min-width: 1200px) {
-        background-image: linear-gradient(to right, @blue06 0%, @blue06 350px, #ffffff 350px);
-    }
 }
 
 .container {
@@ -127,7 +123,7 @@ a {
     top: 0; left: 0;
     width: 100%;
     z-index: 9900;
-    background: #eef4f7;
+    background: @blue06;
     height: 46px;
 
     @media screen and (min-width: 1200px) {
@@ -178,7 +174,13 @@ a {
 .searchButton {
     right: 0;
 }
-
+.navi--content {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .navi--main {
     .transform(translateX(-100%));
     .transition(all 0.4s ease-out);
@@ -187,10 +189,9 @@ a {
     height: 100%;
     background: @blue06;
     position: fixed;
-    top: 90px; left: 0;
+    top: 0; left: 0;
     z-index: 9000;
-    overflow-y: auto;
-    overflow-x: hidden;
+    padding: 90px 0 0 0;
 
     &.is--active {
         .transform(translateX(0));
@@ -199,12 +200,8 @@ a {
     @media screen and (min-width: 1200px) {
         .transform(translateX(0));
         .transition(none);
-        position: absolute;
-        overflow: auto;
         width: 350px;
-        height: auto;
-        top: 152px;
-        left: 0;
+        padding-top: 152px;
     }
 
     ul.navi--tree {
@@ -402,133 +399,44 @@ a {
 
 /* FOOTER */
 .main-footer {
-    background: @blue04;
-    color: #fff;
-    padding: 0 0 26px 0;
+    .clearfix();
+    background: #26556f;
+    padding: 20px 10px;
     overflow: hidden;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-
-    h4 {
-        border-bottom: 1px solid @gray04;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-        color: #fff;
-    }
-
-    a {
-        color: #fff;
-
-        &:hover {
-            color: @gray04;
-        }
-    }
-}
-
-.main-footer-nav-col {
-    a {
-        display: block;
-        padding: 10px 20px 10px 0;
-    }
-}
-
-.main-footer-newsletter {
-    position: relative;
-
-    .btn {
-        position: absolute;
-        right: 0;
-        top: 0;
-        font-size: 19px;
-        height: 39px;
-        font-family: 'scc';
-        .border-radius(0 5px 5px 0);
-    }
-}
-
-input.main-footer-newsletter-textfield {
-    border: none;
-    background: @blue03;
-    padding-right: 65px;
     color: #fff;
-    width: 100%;
-}
-
-.main-footer-social {
-    a {
-        font-size: 40px;
-    }
-}
-
-.main-footer-bottom {
-    border-top: 1px solid fade(@gray04, 40%);
-    margin: 30px 20px 0 20px;
-}
-
-.main-footer-bottom-col1 {
-    padding: 20px 0 0;
     text-align: center;
-}
 
-.main-footer-bottom-col3 {
-    text-align: right;
-    font-size: 14px;
-    padding: 20px 0 0;
-}
+    .footer--links {
+        a {
+            color: #fff;
 
-.main-footer-contact {
-    margin-bottom: 20px;
-    border-top: 5px solid fade(@blue05, 60%);
-}
-
-.main-footer-contact-inner {
-    background: @blue05;
-    color: @gray04;
-    padding: 0 0 40px 0;
-    display: none;
-
-    .social-media .icon {
-        font-size: 24px;
-        color: #fff;
-
-        &:hover {
-            color: fade(#fff, 50%);
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
-    h3 {
-        margin-bottom: 10px;
-        margin-top: 0;
-        color: #fff;
+    @media screen and (min-width: 1200px) {
+        padding: 20px 0 20px 40px;
+        margin-left: 350px;
+        text-align: left;
 
-        .small {
-            font-size: 14px;
-            color: @gray04;
-            display: block;
+        .copyright,
+        .footer--links {
+            float: left;
         }
-    }
 
-    h2 {
-        margin-bottom: 40px;
-        margin-top: 25px;
-        text-align: center;
-        color: #fff;
-    }
+        .copyright {
+            margin-right: 40px;
+        }
 
-    a, a:hover, a:active, a:focus {
-        text-decoration: none;
-        color: @blue02;
-    }
-    a:hover {
-        color: lighten(@blue01, 10%);
-    }
-
-    &.is-active {
-        display: block;
     }
 }
+
 .row {
     margin: 0;
 }
@@ -541,7 +449,7 @@ input.main-footer-newsletter-textfield {
     display: block;
     width: 100%;
     padding: 6px 10px 8px 10px;
-    background: #eef4f7;
+    background: @blue06;
     position: fixed;
     top: 46px; left: 0;
     z-index: 9990;
@@ -1353,4 +1261,48 @@ input#search-query {
             border-top: 2px solid rgba(14, 56, 79, 0.15);
         }
     }
+}
+
+// Scrollbar Styles
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8FA6BA;
+    border: 0 none #ffffff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8FA6BA;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #8FA6BA;
+}
+
+::-webkit-scrollbar-track {
+    background: @blue06;
+    border: 0 none #d2d2d2;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: @blue06;
+}
+
+::-webkit-scrollbar-track:active {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
 }

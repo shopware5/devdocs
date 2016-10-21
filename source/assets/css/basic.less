@@ -190,7 +190,7 @@ a {
     background: @blue06;
     position: fixed;
     top: 0; left: 0;
-    z-index: 9000;
+    z-index: 9800;
     padding: 90px 0 0 0;
 
     &.is--active {
@@ -409,6 +409,7 @@ a {
     right: 0;
     color: #fff;
     text-align: center;
+    z-index: 9200;
 
     .footer--links {
         a {
@@ -454,39 +455,83 @@ a {
     top: 46px; left: 0;
     z-index: 9990;
 
-    &:after {
-        content: "\f002";
-        font-family: 'scc';
-        font-size: 16px;
-        display: block;
-        position: absolute;
-        top: 12px;
-        right: 25px;
-    }
-
     @media screen and (min-width: 1200px) {
         top: 100px; left: 0;
         padding: 10px 12px 12px 12px;
         width: 350px;
+    }
+}
 
-        &:after {
-            top: 17px;
+#search-form {
+    position: relative;
+}
+
+#search-action {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -9px;
+    background: none;
+    border: none;
+    font-family: 'scc';
+    font-size: 16px;
+    color: @blue03;
+    text-align: center;
+
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &:before {
+        display: block;
+        content: "\f002";
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+    .active & {
+        cursor: pointer;
+        font-size: 18px;
+
+        &:before {
+            content: '\e678';
         }
     }
 }
 
 input#search-query {
+    .box-shadow(inset 0 2px 3px 0 #d3e5f1);
     font-size: 14px;
     height: 32px;
     padding: 0 20px;
     width: 100%;
     border-radius: 12px;
     border: 1px solid #8cadc4;
+    color: @blue03;
+    font-weight: bold;
+
+    &::-ms-clear {
+        display: none;
+    }
+
+    &:focus,
+    &:active {
+        .box-shadow(inset 0 2px 3px 0 #bfd7e7);
+        background: #f4fcff;
+        border-color: #6a98b8;
+    }
 }
 
 #search-results {
     position: fixed;
-    z-index: 9900;
+    z-index: 9100;
     top: 90px;
     left: 0;
     width: 100%;
@@ -516,28 +561,19 @@ input#search-query {
     color: #4e697a;
     margin-bottom: 10px;
 
-    &:hover {
-        color: #1491e7;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        color: @blue02;
         background: #e7f2f9;
+        outline: none;
     }
 }
 
 #search-results em {
     background: #a1ddff;
     font-style: normal;
-}
-
-#search-results a:hover h2,
-#search-results a:focus h2,
-#search-results a:active h2 {
-    color: #1491e7;
-}
-
-#search-results a:hover,
-#search-results a:focus,
-#search-results a:active {
-    background-color: #ebf0f3;
-    outline: none;
 }
 
 #search-results p {
@@ -551,15 +587,6 @@ input#search-query {
 #search-results article:last-of-type h2 {
     border-bottom: none;
     margin-bottom: 5px;
-}
-
-#search-results .active {
-    background-color: #ebf0f3;
-    outline: none;
-}
-
-#search-results .active h2 {
-    color: #1491e7;
 }
 
 .badge {

@@ -52,6 +52,8 @@
         AlgoliaSearch.prototype.search = function (query) {
             var me = this;
 
+            this.$elem.trigger('search', [ query ]);
+
             if (query.length < 2) {
                 this.$results.hide();
                 this.$entries.empty();
@@ -74,6 +76,8 @@
         AlgoliaSearch.prototype.displayResults = function (content) {
             var $entries = this.$entries;
             var $results = this.$results;
+
+            this.$elem.trigger('displayResults');
 
             $entries.empty();
             if (content.hits.length === 0) {

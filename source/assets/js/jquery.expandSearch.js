@@ -44,6 +44,9 @@
             /** @string Search input field (id selector) */
             inputForm: 'search-query',
 
+            /** @string Search action button selector */
+            actionBtn: '#search-action',
+
             /** @int search show effect animation speed */
             animationSpeed: 200,
 
@@ -73,6 +76,7 @@
         me.$result = $(me.opts.results);
         me.$entries = $(me.opts.entries);
         me.$input = $('#' + me.opts.inputForm);
+        me.$action = $(me.opts.actionBtn);
 
         this.init();
     }
@@ -83,29 +87,42 @@
     Plugin.prototype.init = function () {
         var me = this;
 
-        me.$body.on('click.' + pluginName, $.proxy(me.onBodyClick, me));
         me.$body.on('keydown.' + pluginName, $.proxy(me.navigateResults, me));
+        me.$input.on('displayResults', $.proxy(me.onDisplayResults, me));
+        me.$input.on('search', $.proxy(me.onSearch, me));
+        me.$action.on('click', $.proxy(me.onActionButton, me))
     };
 
-    /**
-     * closes menu on body click (if not button or input field)
-     * @event click
-     * @param {Event} event
-     */
-    Plugin.prototype.onBodyClick = function (event) {
+    Plugin.prototype.onDisplayResults = function () {
         var me = this;
-        var $target = $(event.target);
 
-        if ($target.attr('id') === me.opts.inputForm
-            || $target.hasClass('searchButton')
-            || $target.hasClass('icon-search')) {
-            return;
-        }
+        me.$search.addClass(me.opts.activeClass);
+    };
 
-        if (!me.$input.val().length || me.$result.is(':visible')) {
-            me.$result.hide();
-            me.$input.val("");
+    Plugin.prototype.onSearch = function (event, query) {
+        var me = this;
+
+        if (query.length <= 0) {
+            me.closeSearch();
         }
+    };
+
+    Plugin.prototype.onActionButton = function (event) {
+        var me = this;
+
+        event.preventDefault();
+
+        if (me.$search.hasClass(me.opts.activeClass)) {
+            me.closeSearch();
+        }
+    };
+
+    Plugin.prototype.closeSearch = function () {
+        var me = this;
+
+        me.$result.hide();
+        me.$input.val("");
+        me.$search.removeClass(me.opts.activeClass);
     };
 
     /**
@@ -125,8 +142,9 @@
             if (activeElement.length === 1) {
                 if (key === 40 || key == 9) { // down OR tab
                     event.preventDefault();
+
                     if (!activeElement.next().length) {
-                        var entry = me.$entries.children().first();
+                        entry = me.$entries.children().first();
                         entry.addClass(me.opts.activeClass);
                         activeElement.removeClass(me.opts.activeClass);
                     } else {
@@ -136,7 +154,7 @@
                 } else if (key === 38) { // up
                     event.preventDefault();
                     if (!activeElement.prev().length) {
-                        var entry = me.$entries.children().last();
+                        entry = me.$entries.children().last();
                         entry.addClass(me.opts.activeClass);
                         activeElement.removeClass(me.opts.activeClass);
                     } else {

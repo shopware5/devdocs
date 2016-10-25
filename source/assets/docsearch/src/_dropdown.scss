@@ -182,6 +182,7 @@
       background: transparent;
       border: none;
       z-index: 999;
+      overflow: visible;
       @include layout-width($layout-width);
       @include shadow-type($box-shadow);
 

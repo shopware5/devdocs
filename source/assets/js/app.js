@@ -4,7 +4,7 @@ $(function() {
         apiKey: '4c10d9397401c1dbbbae98ad3897c5e0',
         indexName: 'shopware',
         inputSelector: 'input#search-query',
-        debug: true, // Set debug to true if you want to inspect the dropdown
+        debug: false, // Set debug to true if you want to inspect the dropdown
         algoliaOptions: {
             hitsPerPage: 7
         }

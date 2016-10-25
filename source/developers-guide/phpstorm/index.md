@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shopware development with PhpStorm
+title: Setting up PhpStorm
 github_link: developers-guide/phpstorm/index.md
 tags:
   - phpstorm
@@ -8,12 +8,25 @@ tags:
 indexed: true
 group: Developer Guides
 subgroup: General Resources
-menu_title: PhpStorm
-menu_order: 150
+menu_title: Setting up PhpStorm
+menu_order: 5
 ---
+
+<div class="toc-list"></div>
+
+## Introduction
 
 PhpStorm is a PHP IDE that many of the Shopware Developers use on a daily basis.
 You can find installation instructions on the official [PhpStorm Website](https://www.jetbrains.com/phpstorm/).
+
+### Requirements for developing
+
+First of all you need a working Shopware installation. Just visit our [Github Repository](https://github.com/shopware/shopware) 
+and follow the `README.md` installation instructions. You do not want to worry about a local webserver or database server?
+Then take a look at our [Vagrant and PHPStorm](/developers-guide/vagrant-phpstorm/) guide to set up a virtual
+machine, ready to develop with Shopware. If you want to contribute to the Shopware repository also check out our
+[Contributing](/contributing/) guides.
+
 
 ### Benefits of using PhpStorm
 
@@ -63,13 +76,16 @@ To exclude directories from indexing, open the Settings and select **Directories
 
 From the context menu `Mark directory as` -> `Excluded`
 
+- `files`
+- `media`
+- `recovery`
+- `snippets`
 - `var/`
 - `web/cache/`
 
 ### Configre Source Directories
 
 `Mark directory as` -> `Sources Root`
-
 
 - `engine/Shopware/`
 - `engine/Library/Enlight/`
@@ -78,6 +94,6 @@ From the context menu `Mark directory as` -> `Excluded`
 
 `Mark directory as` -> `Test Sources Root`
 
-- `test/Unit/`
+- `tests/Unit/`
 - `tests/Functional/`
 

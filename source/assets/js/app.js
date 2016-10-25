@@ -10,6 +10,26 @@ $(function() {
         }
     });
 
+    var $overlay;
+    search.autocomplete.on('autocomplete:opened', function() {
+        $overlay = $('<div>', {
+            'class': 'search-result--overlay'
+        });
+
+        $overlay.appendTo($('body'));
+        $overlay.animate({
+            opacity: 1
+        }, 750);
+    });
+
+    search.autocomplete.on('autocomplete:closed', function() {
+        $overlay.animate({
+            opacity: 0
+        }, 500, function() {
+            $overlay.remove();
+        })
+    });
+
     // Anchor tag generation
     addAnchors('.content h2, .content h3, .content h4');
 

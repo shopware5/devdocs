@@ -99,12 +99,12 @@ $this->subscribeEvent(
 ```php
 public function prePersistArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 
 public function postPersistArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 ```
 
@@ -127,12 +127,12 @@ $this->subscribeEvent(
 ```php
 public function preUpdateArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 
 public function postUpdateArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 ```
 
@@ -156,12 +156,12 @@ $this->subscribeEvent(
 ```php
 public function preRemoveArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 
 public function postRemoveArticle(Enlight_Event_EventArgs $arguments) {
     $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('model');
+    $model = $arguments->get('entity');
 }
 ```
 

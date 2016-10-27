@@ -161,24 +161,21 @@ function random() {
     	if (Math.random() > 0.5) {
         	fulfill('Yeah');
         } else {
-        	new Error('Oh no something went wrong');
+        	throw new Error('Oh no something went wrong');
         }
     });
 }
 
 random().then(function(results) {
     alert('Success');
-}).catch(function(err) {
-	// ...never called
-	alert('Error');
 });
 ```
 
-<iframe src="https://jsfiddle.net/klarstil/rn62zntv/embedded/result/" frameborder="0" width="100%" height="250px"></iframe>
+<iframe src="https://jsfiddle.net/klarstil/rn62zntv/1/embedded/result/" frameborder="0" width="100%" height="250px"></iframe>
 
 *Error handling with promises - the wrong way*
 
-As you can see in the above code and playing around with the example, the error will never be reported and silently ignored, which is a worst case scenario. This is the place where the `reject()` method comes in handy. The modification is very simple but has a huge impact on your application and the propagation of errors.
+As you can see in the above code and playing around with the example, the error will never be reported and silently ignored, which is a worst case scenario. This is the place where the `reject()` method comes in handy. The modification is very simple but has a huge impact on your application and the propagation of errors. Always make sure you're adding a `catch()` callback to catch the error.
 
 ```
 function random() {
@@ -194,7 +191,7 @@ function random() {
 random().then(function(results) {
     alert('Success');
 }).catch(function(err) {
-	alert('Error');
+	 alert('Error');
 });
 ```
 
@@ -240,8 +237,8 @@ fetchPost(1).then(function(post) {
 	return Promise.all([ post, fetchAuthor(post.userId) ]);
 }).then(function(results) {
 	var data = {
-    	'post': results[0],
-       'user': results[1]
+		'post': results[0],
+		'user': results[1]
     };
     
     // Do something with the data...

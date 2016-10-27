@@ -389,7 +389,7 @@ class SwagControllerExample extends Plugin
 ### Controller auto-registration
 
 As of version `5.2.7` there is no need for a subscriber which registers your controllers. This will be automatically done by the Shopware core.
-Just place a controller in `SwagControllerExample/Controllers/*` and you are done. 
+Just place a controller in `SwagControllerExample/Controllers/Backend|Frontend|Widgets|Api` and you are done. 
 The registration of the template would be done, i.e. in the `preDispatch()`-Method of your controller.
 
 ```php

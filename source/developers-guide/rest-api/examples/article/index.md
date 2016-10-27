@@ -2,8 +2,15 @@
 layout: default
 title: REST API - Examples using the article resource
 github_link: developers-guide/rest-api/examples/article/index.md
-indexed: false
+menu_title: The article resource
+menu_order: 20
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
+
+<div class="toc-list"></div>
 
 ## Introduction
 
@@ -785,5 +792,3 @@ $configuratorArticle = array(
 
 $client->post('articles', $configuratorArticle);
 ```
-
-**[Back to overview](../#examples)**

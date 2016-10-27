@@ -2,8 +2,15 @@
 layout: default
 title: REST API - Examples using the customer resource
 github_link: developers-guide/rest-api/examples/customer/index.md
-indexed: false
+menu_title: The customer resource
+menu_order: 30
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
+
+<div class="toc-list"></div>
 
 ## Introduction
 
@@ -215,5 +222,3 @@ $client->put('customers/1', array(
 $client->delete('customers/1');
 
 ```
-
-**[Back](../)**

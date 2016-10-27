@@ -2,7 +2,12 @@
 layout: default
 title: REST API - Examples using the translation resource
 github_link: developers-guide/rest-api/examples/translation/index.md
-indexed: false
+menu_title: The translation resource
+menu_order: 50
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
@@ -18,12 +23,12 @@ This example shows how to create a new article translation
 
 ```
 $api->post('translations/200, array(
-    				'key' => 200,            #  s_articles.id
-   					'type' => 'article',
-    				'localeId' => 2,         # s_core_locales.id
-    				'data' => array(
-        			'name' => 'Dummy translation',
-        			...
+        'key' => 200,            #  s_articles.id
+        'type' => 'article',
+        'localeId' => 2,         # s_core_locales.id
+        'data' => array(
+        'name' => 'Dummy translation',
+        ...
     )
 ));
 
@@ -33,12 +38,12 @@ $api->post('translations/200, array(
 
 ```
 $client->put('translations/200', array(
-     			    'type' => 'article',
-        			'localeId' => 2,         # s_core_locales.id
-        			'data' => array(
-            		'name' => 'Dummy translation',
-            		...
-        			)
+        'type' => 'article',
+        'localeId' => 2,         # s_core_locales.id
+        'data' => array(
+        'name' => 'Dummy translation',
+        ...
+    )
 ));
 
 ```

@@ -2,7 +2,12 @@
 layout: default
 title: REST API - Models
 github_link: developers-guide/rest-api/models/index.md
-indexed: false
+menu_title: Models
+menu_order: 120
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 <div class="toc-list" data-depth="1"></div>

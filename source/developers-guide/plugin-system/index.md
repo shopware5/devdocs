@@ -415,11 +415,11 @@ class SwagCommandExample extends Plugin
 
 ### Commands as Services
 
-As of Shopware 5.2.2 you can also register commands as a service and tag it with `console.command`:
+As of Shopware 5.2.2 you can also register commands as a service and tag it with `console.command` in the `Resources/services.xml`:
 
 ```xml
-<!-- Resources/services.xml -->
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
@@ -462,8 +462,9 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
 
 ### Plugin Metadata 
  
+Example `plugin.xml`:
+ 
 ```
-<!-- plugin.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Slogan des Tages</label>
@@ -484,11 +485,10 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
 ### Plugin Configuration / Forms
 
 
-Backend plugin configuration can be extended by `config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`
+Backend plugin configuration can be extended by `Resources/config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`.
 
 
 ```
-<!-- Resources/config.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
@@ -510,8 +510,9 @@ Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
 
 ### Backend Menu Items
 
+Example `Resources/menu.xml`:
+
 ```xml
-<!-- Resources/menu.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
 	<entries>
@@ -576,4 +577,4 @@ SwagSloganOfTheDay.zip
 
 - <a href="https://github.com/shyim/shopware-profiler">github.com/shyim/shopware-profiler</a>
 - <a href="https://github.com/bcremer/SwagModelTest">github.com/bcremer/SwagModelTest</a>
-
+- <a href="https://github.com/shopwareLabs/SwagBackendOrder">github.com/shopwareLabs/SwagBackendOrder</a>

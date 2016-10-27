@@ -386,6 +386,26 @@ class SwagControllerExample extends Plugin
 }
 ```
 
+### Controller auto-registration
+
+As of version `5.2.7` there is no need for a subscriber which registers your controllers. This will be automatically done by the Shopware core.
+Just place a controller in `SwagControllerExample/Controllers/*` and you are done. 
+The registration of the template would be done, i.e. in the `preDispatch()`-Method of your controller.
+
+```php
+class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Action
+{
+    public function preDispatch()
+    {
+        /** @var \Shopware\Components\Plugin $plugin */
+        $plugin = $this->get('kernel')->getPlugins()['SwagControllerExample'];
+        
+        $this->get('template')->addTemplateDir($plugin->getPath() . '/Resources/views/');
+        $this->get('snippets')->addConfigDir($plugin->getPath() . '/Snippets/');
+    }
+}
+```
+
 ## Add console commands
 
 There are two ways to add Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/).

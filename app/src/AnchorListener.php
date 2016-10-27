@@ -9,6 +9,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class AnchorListener implements EventSubscriberInterface
 {
     /**
+     * @var string[]
+     */
+    private $usedAnchors = array();
+
+    /**
      * {@inheritDoc}
      */
     public static function getSubscribedEvents()
@@ -55,6 +60,9 @@ class AnchorListener implements EventSubscriberInterface
             return;
         }
 
+        // Reset stateful anchor property
+        $this->usedAnchors = [];
+
         foreach (['h2', 'h3', 'h4'] as $tagName) {
             /** @var \DOMNodeList $elements */
             $elements = $dom->getElementsByTagName($tagName);
@@ -76,7 +84,14 @@ class AnchorListener implements EventSubscriberInterface
             $id = strtolower($id);
             $id = preg_replace('/\s+/', '-', $id);
             $id = preg_replace('/-+/', '-', $id);
+
+            $counter = 0;
+            while (array_key_exists($id, $this->usedAnchors)) {
+                $id = $id.'-'.$counter++;
+            }
+
             $element->setAttribute('id', $id);
+            $this->usedAnchors[$id] = true;
         }
     }
 }

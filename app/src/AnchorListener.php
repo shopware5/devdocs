@@ -86,9 +86,11 @@ class AnchorListener implements EventSubscriberInterface
             $id = preg_replace('/-+/', '-', $id);
 
             $counter = 0;
-            while (array_key_exists($id, $this->usedAnchors)) {
-                $id = $id.'-'.$counter++;
+            $tmpId = $id;
+            while (array_key_exists($tmpId, $this->usedAnchors)) {
+                $tmpId = $id.'-'.$counter++;
             }
+            $id = $tmpId;
 
             $element->setAttribute('id', $id);
             $this->usedAnchors[$id] = true;

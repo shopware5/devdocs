@@ -25,7 +25,7 @@ It is possible to change the default behavior of the API to process associated d
 ## API merge Mode (Data merge)
 
 <b>Example situation:</b>
-* There exists a Product with two images in the database. <code>Artikel-ID: 1</code> and <code>Bild-ID: 2, 3</code>
+* There exists a product with two images in the database. <code>Artikel-ID: 1</code> and <code>Bild-ID: 2, 3</code>
 * The first example overwrites the images with two new images.
 * The second example adds two new images.
 

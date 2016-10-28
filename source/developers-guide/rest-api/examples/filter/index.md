@@ -20,7 +20,7 @@ These examples assume you are using the provided **[demo API client](/developers
 
 ## Filter by language
 
-In this article you can read more about the filter function. The filter functionality is to limit the result.
+In this article you can read more about the filter function. The filter functionality is for limiting the result.
   
 ```php
 $translationResource->getList(0, 10, array(
@@ -33,8 +33,8 @@ $translationResource->getList(0, 10, array(
 ```php
 $translationResource->getList(0, 1, array(
     array('property' => 'translation.shopId', 'value' => 2),
-    array('property' => 'translation.key',      'value' => 200),
-    array('property' => 'translation.type',     'value' => 'article')
+    array('property' => 'translation.key', 'value' => 200),
+    array('property' => 'translation.type', 'value' => 'article')
 ));
 ```
 

@@ -30,7 +30,7 @@ The following resources supports the batch mode.
 * Variant
 * Translation
 
-To use the batch mode, send a PUT request without a id in the URL.
+To use the batch mode, send a PUT request without an id in the URL.
 
 ```php
 $restClient->put(

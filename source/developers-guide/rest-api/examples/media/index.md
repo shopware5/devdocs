@@ -26,17 +26,17 @@ With the variant resource it is possible to create images for variants. This con
 
 ### Configuration 1
 
-is to assign the image via the mediaId.
+The image is assigned by the mediaId.
 If the image array contains a mediaId, the resource first checks whether the media file is already assigned as an product image.
 If no image with the given media ID exists, the resource creates a new product image with this media ID.
 
 ### Configuration 2
 
-Is to pass an image URL.
+Passing an image URL.
 This function is copied from the article image array. The image URL can be a local file, base64, or some other type supported by the article and media resource.
 Both configurations automatically create the child data sets in <code>s_articles_img</code> and the relation for the backend configuration.
 
-<b>Example:</b> (Updates an existing variant using the resource variants and assigns two variants of images.)
+<b>Example:</b> (Updates an existing variant using the resource <code>variants</code> and assigns two types of images.)
 
 ```php
 // PUT /api/variants/1042
@@ -53,7 +53,7 @@ array(
 ## The configuration for image assignment
 
 In addition to the image mapping option, it is possible to create new assignments by using the article resource.
-This way generates no child data sets im <code>s_articles_img</code> because a product could contain 10.000 variants. The generation for each relation would be too slow.
+This way generates no child data sets in <code>s_articles_img</code> because a product could contain 10.000 variants. The generation for each relation would be too slow.
 It is necessary to call a additional API request to generate images for each variant. 
 
 The following example creates a product with two variants. The first variant with <code>"0,2 Liter"</code> and the second variant with <code>"0,5 Liter"</code>.
@@ -176,11 +176,11 @@ array(
 
 ### Assignment
  
-The first level of the option array defines how many assignment are created. You create within each assignment how to assign. 
+The first level of the option array defines how many assignment are created. 
+You can define <code>AND / OR</code> assignment for each assignment.
 
 ```php
-'options' => array(
-    
+'options' => array(    
     array(
         array('name' => '0,5 Liter'),
         // AND

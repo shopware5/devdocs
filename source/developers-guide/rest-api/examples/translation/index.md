@@ -25,7 +25,7 @@ This example shows how to create a new article translation
 $api->post('translations/200, array(
         'key' => 200,            #  s_articles.id
         'type' => 'article',
-        'localeId' => 2,         # s_core_locales.id
+        'shopId' => 2,           # s_core_shops.id
         'data' => array(
         'name' => 'Dummy translation',
         ...
@@ -39,7 +39,7 @@ $api->post('translations/200, array(
 ```
 $client->put('translations/200', array(
         'type' => 'article',
-        'localeId' => 2,         # s_core_locales.id
+        'shopId' => 2,          # s_core_shops.id
         'data' => array(
         'name' => 'Dummy translation',
         ...

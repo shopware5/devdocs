@@ -1,12 +1,13 @@
 ---
 layout: default
-title: REST API
+title: REST API - Basics
 github_link: developers-guide/rest-api/index.md
+menu_title: REST API Basics
+menu_order: 10
 indexed: true
+menu_style: bullet
 group: Developer Guides
-subgroup: General Resources
-menu_title: REST API
-menu_order: 40
+subgroup: REST API
 ---
 
 <div class="toc-list"></div>
@@ -222,13 +223,6 @@ console.log(string); // Output: 2012-06-13T07:32:25.706Z
 var string = "2012-06-13T07:32:25.706Z"
 var date = new Date(string);
 ```
-
-## Examples
-* **[Examples using the article resource](examples/article)**
-* **[Examples using the order resource](examples/order)**
-* **[Examples using the customer resource](examples/customer)**
-* **[Examples using the translation resource](examples/translation)**
-* **[Examples using the category resource](examples/category)**
 
 ## Models
 

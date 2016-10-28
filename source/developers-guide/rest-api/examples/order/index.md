@@ -1,9 +1,15 @@
 ---
 layout: default
 title: REST API - Examples using the order resource
-github_link: developers-guide/rest-api/examples/order/index.md
-indexed: false
+menu_title: The order resource
+menu_order: 40
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
+
+<div class="toc-list"></div>
 
 ## Introduction
 

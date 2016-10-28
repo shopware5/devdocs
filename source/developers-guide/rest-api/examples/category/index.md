@@ -2,7 +2,12 @@
 layout: default
 title: REST API - Examples using the category resource
 github_link: developers-guide/rest-api/examples/category/index.md
-indexed: false
+menu_title: The category resource
+menu_order: 60
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
@@ -45,5 +50,3 @@ $categoryData = array(
 $client->post('categories', $categoryData );
 
 ```
-
-**[Back](../)**

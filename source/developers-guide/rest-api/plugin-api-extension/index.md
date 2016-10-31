@@ -18,7 +18,7 @@ menu_order: 130
 
 ## Introduction
 This article describes how to extend the REST API and create an API endpoint. We create an exmaple plugin which 
-provides functions for managing manufacturer.
+provides functions for managing banners.
 
 Normally every basic API resource contains of two parts:
 * a controller which handles the different request types(POST, GET, PUT, DELETE)
@@ -32,32 +32,16 @@ operations
 For our REST API example we only need a few files. For more information about necessary files and the 5.2 plugin system
 see the [5.2 plugin guide](/developers-guide/plugin-system).
 
-### plugin.xml
-contains the base information about the plugin, the label in englisch and german, the plugin version and the required
-shopware version.
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label lang="de">Swag Hersteller API</label>
-    <label lang="en">Swag Producer API</label>
-    <version>1.0.0</version>
-    <compatibility minVersion="5.2.0"/>
-</plugin>
-
-```
-
-### SwagProducerApi.php
+### SwagBannerApi.php
 
 ```
 <?php
 
-namespace SwagProducerApi;
+namespace SwagBannerApi;
 
 use Shopware\Components\Plugin;
 
-class SwagProducerApi extends Plugin
+class SwagBannerApi extends Plugin
 {
     /**
      * @inheritdoc
@@ -65,7 +49,7 @@ class SwagProducerApi extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Dispatcher_ControllerPath_Api_Producer' => 'onGetProducerApiController',
+            'Enlight_Controller_Dispatcher_ControllerPath_Api_Banner' => 'onGetBannerApiController',
             'Enlight_Controller_Front_StartDispatch' => 'onEnlightControllerFrontStartDispatch'
         ];
     }
@@ -73,9 +57,9 @@ class SwagProducerApi extends Plugin
     /**
      * @return string
      */
-    public function onGetProducerApiController()
+    public function onGetBannerApiController()
     {
-        return $this->getPath() . '/Controllers/Api/Producer.php';
+        return $this->getPath() . '/Controllers/Api/Banner.php';
     }
 
     /**
@@ -89,15 +73,17 @@ class SwagProducerApi extends Plugin
 ```
 This is our plugin bootstrap which subscribes to two events. For the one thing it uses the
 `Enlight_Controller_Dispatcher_ControllerPath_Api` event to register the API controller and for 
-the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register our resource to Shopware.
+the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register an additional namespace for 
+our plugin. We do that, because then the API manager class can load our resource
+with `\Shopware\Components\Api\Manager::getResource('Banner')`.
 
-### Components/Api/Resource/Producer.php
+### Components/Api/Resource/Banner.php
 The resource gets called by our controller. Every controller action relies on one method of our resource. 
-* indexAction -> getList() -> returns a list of producers
-* getAction -> getOne() -> returns one producer identified by its id
-* putAction -> update() -> updates one producer identified by its id
-* postAction -> create() -> creates a new producer
-* deleteAction -> delete() -> deletes a producer
+* indexAction -> getList() -> returns a list of banners
+* getAction -> getOne() -> returns one banner identified by its id
+* putAction -> update() -> updates one banner identified by its id
+* postAction -> create() -> creates a new banner
+* deleteAction -> delete() -> deletes a banner
 
 We recommend using doctrine models in the resource, because it allows you to use the `fromArray()` method in the 
 `create()` and `update()` method to write the data directly. `fromArray()` searches for the setter methods of the 
@@ -109,38 +95,38 @@ attributes and saves the values to the variables which saves you time and code.
 namespace Shopware\Components\Api\Resource;
 
 use Shopware\Components\Api\Exception as ApiException;
-use Shopware\Models\Article\Supplier as SupplierModel;
+use Shopware\Models\Banner\Banner as BannerModel;
 
 /**
- * Class Producer
+ * Class Banner
  *
  * @package Shopware\Components\Api\Resource
  */
-class Producer extends Resource
+class Banner extends Resource
 {
     /**
      * @return \Shopware\Models\Article\SupplierRepository
      */
     public function getRepository()
     {
-        return $this->getManager()->getRepository(SupplierModel::class);
+        return $this->getManager()->getRepository(BannerModel::class);
     }
 
     /**
-     * Create new Producer
+     * Create new Banner
      *
      * @param array $params
-     * @return SupplierModel
+     * @return BannerModel
      * @throws ApiException\ValidationException
      */
     public function create(array $params)
     {
-        /** @var SupplierModel $producer */
-        $producer = new SupplierModel();
+        /** @var BannerModel $Banner */
+        $Banner = new BannerModel();
 
-        $producer->fromArray($params);
+        $Banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($producer);
+        $violations = $this->getManager()->validate($Banner);
 
         /**
          * Handle Violation Errors
@@ -149,10 +135,10 @@ class Producer extends Resource
             throw new ApiException\ValidationException($violations);
         }
 
-        $this->getManager()->persist($producer);
+        $this->getManager()->persist($Banner);
         $this->flush();
 
-        return $producer;
+        return $Banner;
     }
 
     /**
@@ -164,7 +150,7 @@ class Producer extends Resource
      */
     public function getList($offset = 0, $limit = 25, array $criteria = [], array $orderBy = [])
     {
-        $builder = $this->getRepository()->createQueryBuilder('supplier');
+        $builder = $this->getRepository()->createQueryBuilder('banner');
 
         $builder->addFilter($criteria)
             ->addOrderBy($orderBy)
@@ -178,14 +164,14 @@ class Producer extends Resource
         //returns the total count of the query
         $totalResult = $paginator->count();
 
-        //returns the producer data
-        $producer = $paginator->getIterator()->getArrayCopy();
+        //returns the Banner data
+        $Banner = $paginator->getIterator()->getArrayCopy();
 
-        return ['data' => $producer, 'total' => $totalResult];
+        return ['data' => $Banner, 'total' => $totalResult];
     }
 
     /**
-     * Delete Existing Producer
+     * Delete Existing Banner
      *
      * @param $id
      * @return null|object
@@ -200,18 +186,18 @@ class Producer extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        $producer = $this->getRepository()->find($id);
+        $Banner = $this->getRepository()->find($id);
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $this->getManager()->remove($producer);
+        $this->getManager()->remove($Banner);
         $this->flush();
     }
 
     /**
-     * Get One Producer Information
+     * Get One Banner Information
      *
      * @param $id
      * @return mixed
@@ -227,19 +213,19 @@ class Producer extends Resource
         }
 
         $builder = $this->getRepository()
-            ->createQueryBuilder('Supplier')
-            ->select('Supplier')
-            ->where('Supplier.id = ?1')
+            ->createQueryBuilder('Banner')
+            ->select('Banner')
+            ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var SupplierModel $producer */
-        $producer = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
+        /** @var BannerModel $Banner */
+        $Banner = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        return $producer;
+        return $Banner;
     }
 
     /**
@@ -258,36 +244,35 @@ class Producer extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        /** @var $producer SupplierModel */
+        /** @var $Banner BannerModel */
         $builder = $this->getRepository()
-            ->createQueryBuilder('Supplier')
-            ->select('Supplier')
-            ->where('Supplier.id = ?1')
+            ->createQueryBuilder('Banner')
+            ->select('Banner')
+            ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var SupplierModel $producer */
-        $producer = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
+        /** @var BannerModel $Banner */
+        $Banner = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $producer->fromArray($params);
+        $Banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($producer);
+        $violations = $this->getManager()->validate($Banner);
         if ($violations->count() > 0) {
             throw new ApiException\ValidationException($violations);
         }
 
         $this->flush();
 
-        return $producer;
+        return $Banner;
     }
 }
-
 ```
 
-### Controllers/Api/Producer
+### Controllers/Api/Banner
 The controller handles all requests to our REST API endpoint. Authorisation and routing is managed by the Shopware REST API.
 
 You should name your actions after this schema:
@@ -307,22 +292,22 @@ You should name your actions after this schema:
 <?php
 
 /**
- * Class Shopware_Controllers_Api_Producer
+ * Class Shopware_Controllers_Api_Banner
  */
-class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
+class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
 {
     /**
-     * @var Shopware\Components\Api\Resource\Producer
+     * @var Shopware\Components\Api\Resource\Banner
      */
     protected $resource = null;
 
     public function init()
     {
-        $this->resource = \Shopware\Components\Api\Manager::getResource('Producer');
+        $this->resource = \Shopware\Components\Api\Manager::getResource('Banner');
     }
 
     /**
-     * GET Request on /api/Producer
+     * GET Request on /api/Banner
      */
     public function indexAction()
     {
@@ -337,18 +322,18 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Create new Producer
+     * Create new Banner
      *
-     * POST /api/producer
+     * POST /api/Banner
      */
     public function postAction()
     {
-        $producer = $this->resource->create($this->Request()->getPost());
+        $Banner = $this->resource->create($this->Request()->getPost());
 
-        $location = $this->apiBaseUrl . 'producer/' . $producer->getId();
+        $location = $this->apiBaseUrl . 'Banner/' . $Banner->getId();
 
         $data = [
-            'id' => $producer->getId(),
+            'id' => $Banner->getId(),
             'location' => $location,
         ];
         $this->View()->assign(['success' => true, 'data' => $data]);
@@ -356,35 +341,35 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Get one Producer
+     * Get one Banner
      *
-     * GET /api/producer/{id}
+     * GET /api/Banner/{id}
      */
     public function getAction()
     {
         $id = $this->Request()->getParam('id');
-        /** @var \Shopware\Models\Article\Supplier $producer */
-        $producer = $this->resource->getOne($id);
+        /** @var \Shopware\Models\Banner\Banner $Banner */
+        $Banner = $this->resource->getOne($id);
 
-        $this->View()->assign(['success' => true, 'data' => $producer]);
+        $this->View()->assign(['success' => true, 'data' => $Banner]);
     }
 
     /**
-     * Update One Producer
+     * Update One Banner
      *
-     * PUT /api/producer/{id}
+     * PUT /api/Banner/{id}
      */
     public function putAction()
     {
-        $producerId = $this->Request()->getParam('id');
+        $BannerId = $this->Request()->getParam('id');
         $params = $this->Request()->getPost();
 
-        /** @var \Shopware\Models\Article\Supplier $producer */
-        $producer = $this->resource->update($producerId, $params);
+        /** @var \Shopware\Models\Banner\Banner $Banner */
+        $Banner = $this->resource->update($BannerId, $params);
 
-        $location = $this->apiBaseUrl . 'producer/' . $producerId;
+        $location = $this->apiBaseUrl . 'Banner/' . $BannerId;
         $data = [
-            'id' => $producer->getId(),
+            'id' => $Banner->getId(),
             'location' => $location
         ];
 
@@ -392,15 +377,15 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Delete One Producer
+     * Delete One Banner
      *
-     * DELETE /api/producer/{id}
+     * DELETE /api/Banner/{id}
      */
     public function deleteAction()
     {
-        $producerId = $this->Request()->getParam('id');
+        $BannerId = $this->Request()->getParam('id');
 
-        $this->resource->delete($producerId);
+        $this->resource->delete($BannerId);
 
         $this->View()->assign(['success' => true]);
     }
@@ -412,10 +397,10 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                   | GET (List)            | PUT                    | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
 |-----------------------------|-----------------------|-----------------------|------------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/producer               | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| /api/banner               | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
-* http://my-shop-url/api/producer
+* http://my-shop-url/api/banner
 
 The following examples assume you are using the provided
 **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-a)**. One of its advantages is that, 
@@ -424,105 +409,112 @@ The client application will, internally, handle the full URL generation. You can
 this technique.
 
 ### GET
-Getting one producer by its id.
+Getting one banner by its id.
 ```
-$client->get('producer/1');
+$client->get('banner/1');
 ```
 
 Result:
 ```
 {
+  "success": true,
   "data": {
     "id": 1,
-    "name": "shopware AG",
-    "image": "",
-    "link": "http://www.shopware.de",
-    "description": "",
-    "metaTitle": null,
-    "metaDescription": "New description",
-    "metaKeywords": null,
-    "changed": "2016-10-21T13:53:42+0200"
-  },
-  "success": true
+    "description": "Shopware-Example-Banner1",
+    "validFrom": null,
+    "validTo": null,
+    "image": "media/image/41/f8/25/Blog-Koffer.jpg",
+    "link": "www.shopware.com",
+    "linkTarget": "_blank",
+    "categoryId": 3,
+    "extension": "jpg"
+  }
 }
 ```
 
 ### GET(List)
-Get a list of producers. With the optional `limit` parameter, it is possible to specify how many producer you want the 
+Get a list of banners. With the optional `limit` parameter, it is possible to specify how many banner you want the 
 API to return.
 ```
-$client->get('producer?limit=3');
+$client->get('banner');
 ```
 
 Result
 ```
 {
-  "data": [
-    {
-      "id": 1,
-      "name": "shopware AG",
-      "image": "",
-      "link": "http://www.shopware.de",
-      "description": "",
-      "metaTitle": null,
-      "metaDescription": "New description",
-      "metaKeywords": null,
-      "changed": "2016-10-21T13:53:42+0200"
-    },
-    {
-      "id": 2,
-      "name": "Feinbrennerei Sasse",
-      "image": "media/image/sasse.png",
-      "link": "http://www.sassekorn.de",
-      "description": "",
-      "metaTitle": null,
-      "metaDescription": null,
-      "metaKeywords": null,
-      "changed": "2016-10-21T13:53:42+0200"
-    },
-    {
-      "id": 3,
-      "name": "Teapavilion",
-      "image": "media/image/tea.png",
-      "link": "http://www.teapavilion.com",
-      "description": "",
-      "metaTitle": null,
-      "metaDescription": null,
-      "metaKeywords": null,
-      "changed": "2016-10-21T13:53:42+0200"
-    }
-  ],
-  "total": 16,
-  "success": true
+  "success": true,
+  "data": {
+    "data": [
+      {
+        "id": 4,
+        "description": "Shopware-Example-Banner1",
+        "validFrom": null,
+        "validTo": null,
+        "image": "media/image/41/f8/25/Blog-Koffer.jpg",
+        "link": "www.shopware.com",
+        "linkTarget": "_blank",
+        "categoryId": 3,
+        "extension": "jpg"
+      },
+      {
+        "id": 5,
+        "description": "Shopware-Example-Banner2",
+        "validFrom": null,
+        "validTo": null,
+        "image": "media/image/41/f8/25/Blog-Koffer.jpg",
+        "link": "www.shopware.com",
+        "linkTarget": "_blank",
+        "categoryId": 3,
+        "extension": "jpg"
+      },
+      {
+        "id": 6,
+        "description": "Shopware-Example-Banner3",
+        "validFrom": null,
+        "validTo": null,
+        "image": "media/image/41/f8/25/Blog-Koffer.jpg",
+        "link": "www.shopware.com",
+        "linkTarget": "_blank",
+        "categoryId": 3,
+        "extension": "jpg"
+      }
+    ],
+    "total": 3
+  }
 }
 ```
 
 ### PUT
-To update an producer it is always required to provide the id of the producer. In this example, we will update the 
-`metaDescription` of the producer with id 1.
+To update a banner it is always required to provide the id of the banner. In this example, we will update the 
+`description` of the banner with id 1.
 ```
-$client->put('producer/1', [
-   'metaDescription' => 'New description'
+$client->put('banner/1', [
+   'description' => 'New description'
 ]);
 ```
 
 Result:
 ```
 {
+{
   "success": true,
   "data": {
-    "id": 1,
-    "location": "http://my-shop-url/api/producer/1"
+    "id": 5,
+    "location": "http://my-shop-url/api/Banner/5"
   }
 }
 ```
 
 ### POST
-Create a new producer
+Create a new banner
 
 ```
-$client->post('producer', [
-    'name' => 'Swag Producer API test'
+$client->post('banner', [
+    'description' => 'Shopware-Example-Banner1',
+    'image' => 'media/image/41/f8/25/Blog-Koffer.jpg',
+    'link' => 'www.shopware.com',
+    'linkTarget' => '_blank',
+    'categoryId' => '3',
 ]);
 ```
 
@@ -531,17 +523,17 @@ Result:
 {
   "success": true,
   "data": {
-    "id": 19,
-    "location": "http://my-shop-url/api/producer/19"
+    "id": 4,
+    "location": "http://my-shop-url/api/Banner/4"
   }
 }
 ```
 
 ### DELETE
-Delete one producer identified by its id. In this case we delete the producer with id 1.
+Delete one banner identified by its id. In this case we delete the banner with id 1.
 
 ```
-$client->delete('producer/1');
+$client->delete('banner/1');
 ```
 
 Result:
@@ -552,6 +544,6 @@ Result:
 ```
 
 ## Download plugin ##
-The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagProducerApi.zip">here</a>.
+The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagBannerApi.zip">here</a>.
 
 

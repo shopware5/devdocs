@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Class Shopware_Controllers_Api_Producer
+ * Class Shopware_Controllers_Api_Banner
  */
-class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
+class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
 {
     /**
-     * @var Shopware\Components\Api\Resource\Producer
+     * @var Shopware\Components\Api\Resource\Banner
      */
     protected $resource = null;
 
     public function init()
     {
-        $this->resource = \Shopware\Components\Api\Manager::getResource('Producer');
+        $this->resource = \Shopware\Components\Api\Manager::getResource('Banner');
     }
 
     /**
-     * GET Request on /api/Producer
+     * GET Request on /api/Banner
      */
     public function indexAction()
     {
@@ -31,18 +31,18 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Create new Producer
+     * Create new Banner
      *
-     * POST /api/producer
+     * POST /api/Banner
      */
     public function postAction()
     {
-        $producer = $this->resource->create($this->Request()->getPost());
+        $Banner = $this->resource->create($this->Request()->getPost());
 
-        $location = $this->apiBaseUrl . 'producer/' . $producer->getId();
+        $location = $this->apiBaseUrl . 'Banner/' . $Banner->getId();
 
         $data = [
-            'id' => $producer->getId(),
+            'id' => $Banner->getId(),
             'location' => $location,
         ];
         $this->View()->assign(['success' => true, 'data' => $data]);
@@ -50,35 +50,35 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Get one Producer
+     * Get one Banner
      *
-     * GET /api/producer/{id}
+     * GET /api/Banner/{id}
      */
     public function getAction()
     {
         $id = $this->Request()->getParam('id');
-        /** @var \Shopware\Models\Article\Supplier $producer */
-        $producer = $this->resource->getOne($id);
+        /** @var \Shopware\Models\Banner\Banner $Banner */
+        $Banner = $this->resource->getOne($id);
 
-        $this->View()->assign(['success' => true, 'data' => $producer]);
+        $this->View()->assign(['success' => true, 'data' => $Banner]);
     }
 
     /**
-     * Update One Producer
+     * Update One Banner
      *
-     * PUT /api/producer/{id}
+     * PUT /api/Banner/{id}
      */
     public function putAction()
     {
-        $producerId = $this->Request()->getParam('id');
+        $BannerId = $this->Request()->getParam('id');
         $params = $this->Request()->getPost();
 
-        /** @var \Shopware\Models\Article\Supplier $producer */
-        $producer = $this->resource->update($producerId, $params);
+        /** @var \Shopware\Models\Banner\Banner $Banner */
+        $Banner = $this->resource->update($BannerId, $params);
 
-        $location = $this->apiBaseUrl . 'producer/' . $producerId;
+        $location = $this->apiBaseUrl . 'Banner/' . $BannerId;
         $data = [
-            'id' => $producer->getId(),
+            'id' => $Banner->getId(),
             'location' => $location
         ];
 
@@ -86,15 +86,15 @@ class Shopware_Controllers_Api_Producer extends Shopware_Controllers_Api_Rest
     }
 
     /**
-     * Delete One Producer
+     * Delete One Banner
      *
-     * DELETE /api/producer/{id}
+     * DELETE /api/Banner/{id}
      */
     public function deleteAction()
     {
-        $producerId = $this->Request()->getParam('id');
+        $BannerId = $this->Request()->getParam('id');
 
-        $this->resource->delete($producerId);
+        $this->resource->delete($BannerId);
 
         $this->View()->assign(['success' => true]);
     }

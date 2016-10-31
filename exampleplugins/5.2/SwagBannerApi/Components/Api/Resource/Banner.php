@@ -3,38 +3,38 @@
 namespace Shopware\Components\Api\Resource;
 
 use Shopware\Components\Api\Exception as ApiException;
-use Shopware\Models\Article\Supplier as SupplierModel;
+use Shopware\Models\Banner\Banner as BannerModel;
 
 /**
- * Class Producer
+ * Class Banner
  *
  * @package Shopware\Components\Api\Resource
  */
-class Producer extends Resource
+class Banner extends Resource
 {
     /**
      * @return \Shopware\Models\Article\SupplierRepository
      */
     public function getRepository()
     {
-        return $this->getManager()->getRepository(SupplierModel::class);
+        return $this->getManager()->getRepository(BannerModel::class);
     }
 
     /**
-     * Create new Producer
+     * Create new Banner
      *
      * @param array $params
-     * @return SupplierModel
+     * @return BannerModel
      * @throws ApiException\ValidationException
      */
     public function create(array $params)
     {
-        /** @var SupplierModel $producer */
-        $producer = new SupplierModel();
+        /** @var BannerModel $Banner */
+        $Banner = new BannerModel();
 
-        $producer->fromArray($params);
+        $Banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($producer);
+        $violations = $this->getManager()->validate($Banner);
 
         /**
          * Handle Violation Errors
@@ -43,10 +43,10 @@ class Producer extends Resource
             throw new ApiException\ValidationException($violations);
         }
 
-        $this->getManager()->persist($producer);
+        $this->getManager()->persist($Banner);
         $this->flush();
 
-        return $producer;
+        return $Banner;
     }
 
     /**
@@ -58,7 +58,7 @@ class Producer extends Resource
      */
     public function getList($offset = 0, $limit = 25, array $criteria = [], array $orderBy = [])
     {
-        $builder = $this->getRepository()->createQueryBuilder('supplier');
+        $builder = $this->getRepository()->createQueryBuilder('banner');
 
         $builder->addFilter($criteria)
             ->addOrderBy($orderBy)
@@ -72,14 +72,14 @@ class Producer extends Resource
         //returns the total count of the query
         $totalResult = $paginator->count();
 
-        //returns the producer data
-        $producer = $paginator->getIterator()->getArrayCopy();
+        //returns the Banner data
+        $Banner = $paginator->getIterator()->getArrayCopy();
 
-        return ['data' => $producer, 'total' => $totalResult];
+        return ['data' => $Banner, 'total' => $totalResult];
     }
 
     /**
-     * Delete Existing Producer
+     * Delete Existing Banner
      *
      * @param $id
      * @return null|object
@@ -94,18 +94,18 @@ class Producer extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        $producer = $this->getRepository()->find($id);
+        $Banner = $this->getRepository()->find($id);
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $this->getManager()->remove($producer);
+        $this->getManager()->remove($Banner);
         $this->flush();
     }
 
     /**
-     * Get One Producer Information
+     * Get One Banner Information
      *
      * @param $id
      * @return mixed
@@ -121,19 +121,19 @@ class Producer extends Resource
         }
 
         $builder = $this->getRepository()
-            ->createQueryBuilder('Supplier')
-            ->select('Supplier')
-            ->where('Supplier.id = ?1')
+            ->createQueryBuilder('Banner')
+            ->select('Banner')
+            ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var SupplierModel $producer */
-        $producer = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
+        /** @var BannerModel $Banner */
+        $Banner = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        return $producer;
+        return $Banner;
     }
 
     /**
@@ -152,29 +152,29 @@ class Producer extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        /** @var $producer SupplierModel */
+        /** @var $Banner BannerModel */
         $builder = $this->getRepository()
-            ->createQueryBuilder('Supplier')
-            ->select('Supplier')
-            ->where('Supplier.id = ?1')
+            ->createQueryBuilder('Banner')
+            ->select('Banner')
+            ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var SupplierModel $producer */
-        $producer = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
+        /** @var BannerModel $Banner */
+        $Banner = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
 
-        if (!$producer) {
-            throw new ApiException\NotFoundException("Producer by id $id not found");
+        if (!$Banner) {
+            throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $producer->fromArray($params);
+        $Banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($producer);
+        $violations = $this->getManager()->validate($Banner);
         if ($violations->count() > 0) {
             throw new ApiException\ValidationException($violations);
         }
 
         $this->flush();
 
-        return $producer;
+        return $Banner;
     }
 }

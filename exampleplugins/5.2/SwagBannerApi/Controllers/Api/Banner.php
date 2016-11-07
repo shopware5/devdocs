@@ -37,12 +37,12 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
      */
     public function postAction()
     {
-        $Banner = $this->resource->create($this->Request()->getPost());
+        $banner = $this->resource->create($this->Request()->getPost());
 
-        $location = $this->apiBaseUrl . 'Banner/' . $Banner->getId();
+        $location = $this->apiBaseUrl . 'Banner/' . $banner->getId();
 
         $data = [
-            'id' => $Banner->getId(),
+            'id' => $banner->getId(),
             'location' => $location,
         ];
         $this->View()->assign(['success' => true, 'data' => $data]);
@@ -57,10 +57,10 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
     public function getAction()
     {
         $id = $this->Request()->getParam('id');
-        /** @var \Shopware\Models\Banner\Banner $Banner */
-        $Banner = $this->resource->getOne($id);
+        /** @var \Shopware\Models\Banner\Banner $banner */
+        $banner = $this->resource->getOne($id);
 
-        $this->View()->assign(['success' => true, 'data' => $Banner]);
+        $this->View()->assign(['success' => true, 'data' => $banner]);
     }
 
     /**
@@ -70,15 +70,15 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
      */
     public function putAction()
     {
-        $BannerId = $this->Request()->getParam('id');
+        $bannerId = $this->Request()->getParam('id');
         $params = $this->Request()->getPost();
 
-        /** @var \Shopware\Models\Banner\Banner $Banner */
-        $Banner = $this->resource->update($BannerId, $params);
+        /** @var \Shopware\Models\Banner\Banner $banner */
+        $banner = $this->resource->update($bannerId, $params);
 
-        $location = $this->apiBaseUrl . 'Banner/' . $BannerId;
+        $location = $this->apiBaseUrl . 'Banner/' . $bannerId;
         $data = [
-            'id' => $Banner->getId(),
+            'id' => $banner->getId(),
             'location' => $location
         ];
 
@@ -92,9 +92,9 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
      */
     public function deleteAction()
     {
-        $BannerId = $this->Request()->getParam('id');
+        $bannerId = $this->Request()->getParam('id');
 
-        $this->resource->delete($BannerId);
+        $this->resource->delete($bannerId);
 
         $this->View()->assign(['success' => true]);
     }

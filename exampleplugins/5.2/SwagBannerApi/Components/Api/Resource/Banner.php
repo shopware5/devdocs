@@ -13,7 +13,7 @@ use Shopware\Models\Banner\Banner as BannerModel;
 class Banner extends Resource
 {
     /**
-     * @return \Shopware\Models\Article\SupplierRepository
+     * @return \Shopware\Models\Banner\Repository
      */
     public function getRepository()
     {
@@ -29,12 +29,12 @@ class Banner extends Resource
      */
     public function create(array $params)
     {
-        /** @var BannerModel $Banner */
-        $Banner = new BannerModel();
+        /** @var BannerModel $banner */
+        $banner = new BannerModel();
 
-        $Banner->fromArray($params);
+        $banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($Banner);
+        $violations = $this->getManager()->validate($banner);
 
         /**
          * Handle Violation Errors
@@ -43,10 +43,10 @@ class Banner extends Resource
             throw new ApiException\ValidationException($violations);
         }
 
-        $this->getManager()->persist($Banner);
+        $this->getManager()->persist($banner);
         $this->flush();
 
-        return $Banner;
+        return $banner;
     }
 
     /**
@@ -73,9 +73,9 @@ class Banner extends Resource
         $totalResult = $paginator->count();
 
         //returns the Banner data
-        $Banner = $paginator->getIterator()->getArrayCopy();
+        $banner = $paginator->getIterator()->getArrayCopy();
 
-        return ['data' => $Banner, 'total' => $totalResult];
+        return ['data' => $banner, 'total' => $totalResult];
     }
 
     /**
@@ -94,13 +94,13 @@ class Banner extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        $Banner = $this->getRepository()->find($id);
+        $banner = $this->getRepository()->find($id);
 
-        if (!$Banner) {
+        if (!$banner) {
             throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $this->getManager()->remove($Banner);
+        $this->getManager()->remove($banner);
         $this->flush();
     }
 
@@ -126,14 +126,14 @@ class Banner extends Resource
             ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var BannerModel $Banner */
-        $Banner = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
+        /** @var BannerModel $banner */
+        $banner = $builder->getQuery()->getOneOrNullResult($this->getResultMode());
 
-        if (!$Banner) {
+        if (!$banner) {
             throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        return $Banner;
+        return $banner;
     }
 
     /**
@@ -152,29 +152,29 @@ class Banner extends Resource
             throw new ApiException\ParameterMissingException();
         }
 
-        /** @var $Banner BannerModel */
+        /** @var $banner BannerModel */
         $builder = $this->getRepository()
             ->createQueryBuilder('Banner')
             ->select('Banner')
             ->where('Banner.id = ?1')
             ->setParameter(1, $id);
 
-        /** @var BannerModel $Banner */
-        $Banner = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
+        /** @var BannerModel $banner */
+        $banner = $builder->getQuery()->getOneOrNullResult(self::HYDRATE_OBJECT);
 
-        if (!$Banner) {
+        if (!$banner) {
             throw new ApiException\NotFoundException("Banner by id $id not found");
         }
 
-        $Banner->fromArray($params);
+        $banner->fromArray($params);
 
-        $violations = $this->getManager()->validate($Banner);
+        $violations = $this->getManager()->validate($banner);
         if ($violations->count() > 0) {
             throw new ApiException\ValidationException($violations);
         }
 
         $this->flush();
 
-        return $Banner;
+        return $banner;
     }
 }

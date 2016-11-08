@@ -130,6 +130,6 @@ if (!interface_exists('\Shopware\Components\CSRFWhitelistAware')) {
 require_once __DIR__ . '/Components/CSRFWhitelistAware.php';
 ```
 
-##Possible problems for security fanatics
+##Troubleshooting for Http-Only Cookies
 
 Because of the kind of implementation of xscrf-token-transmission in shopware via cookies (invalidate-xcsrf-token), these have to be readable in javascript of the browser. If you transmit the cookies with the parameter httponly, the js in current browsers will not be able to read the data and no new token is written via js to the local storage/cookie. In this case you will only get errors like "Shopware\Components\CSRFTokenValidationException: The provided X-CSRF-Token is invalid. Please go back, reload the page and try again" in your shopware-logfile. The problem may be caused by Apache-Config too, so all Cookies will be sent with httponly-Tag. Look in Apache-Config files for "Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure" or similar expressions.

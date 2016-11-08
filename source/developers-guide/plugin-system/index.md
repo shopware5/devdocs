@@ -436,6 +436,70 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 
 You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
 
+
+## Add backend emotion components
+The `Shopware\Components\Emotion\ComponentInstaller` service can be used to generate backend emotion components inside plugin installations:
+```
+public function install(InstallContext $context)
+{
+    $installer = $this->container->get('shopware.emotion_component_installer');
+
+    $vimeoElement = $installer->createOrUpdate(
+        $this->getName(),
+        'Vimeo Video',
+        [
+            'name' => 'Vimeo Video',
+            'xtype' => 'emotion-components-vimeo',
+            'template' => 'emotion_vimeo',
+            'cls' => 'emotion-vimeo-element',
+            'description' => 'A simple vimeo video element for the shopping worlds.'
+        ]
+    );
+
+    $vimeoElement->createTextField(
+        [
+            'name' => 'vimeo_video_id',
+            'fieldLabel' => 'Video ID',
+            'supportText' => 'Enter the ID of the video you want to embed.',
+            'allowBlank' => false
+        ]
+    );
+}
+```
+
+Registering the `Shopware\Components\Emotion\EmotionComponentViewSubscriber` as event subscriber allows to add the required template directory automatically:
+```xml
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_emotion.emotion_view_subscriber" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
+            <argument>%swag_emotion.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber" />
+        </service>
+    </services>
+</container>
+```
+
+By convention, the following template structure is required:
+```
+SwagEmotion
+├── Resources
+│   ├── views
+│   │   └── emotion_components
+│   │       ├── backend
+│   │       │  └── vimeo_video.js
+│   │       └── widgets
+│   │           └── emotion
+│   │               └── components
+│   │                   └── emotion_vimeo.tpl   
+│   └── services.xml
+└──SwagEmotion.php
+```
+
 ## Plugin Resources
 
 Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.

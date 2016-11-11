@@ -80,10 +80,10 @@ array(
 
 When handling snippets while rendering templates, the following workflow is used:
 
-+ If `readFromDb` is true, Shopware will look for your snippet value in the database
-+ If the snippet is not present in the database, has a default value set and `writeToDb` is true, Shopware will write that value into the database.
-+ If `readFromIni` is true, Shopware will look for your snippet value in your .ini files.
-+ If the snippet is not present in the .ini file, has a default value set and `writeToIni` is true, Shopware will write that value into an .ini file.
++ If `readFromDb` is `true`, Shopware will look for your snippet value in the database
++ If the snippet is not present in the database, has a default value set and `writeToDb` is `true`, Shopware will write that value into the database.
++ If `readFromIni` is `true`, Shopware will look for your snippet value in your .ini files.
++ If the snippet is not present in the .ini file, has a default value set and `writeToIni` is `true`, Shopware will write that value into an .ini file.
 
 The additional `showSnippetPlaceholder` (introduced in Shopware 5.0.2) option allows you to specify how you want Shopware to display empty and undefined snippets (snippets that are declared in your template files, but are not defined or defined as empty in your database and/or .ini files). By default, these snippets are displayed as an empty string, which is recommended for production environments. If you set this option to `true`, these snippets will be rendered as their name wrapped in hash signs. This makes it easier for you to identify and handle missing or empty snippets during development.
 
@@ -133,7 +133,7 @@ array(
         // your database configuration
     ),
     'snippet' => array(
-        'readFromDb' => true,
+        'readFromDb' => false,
         'writeToDb' => false,
         'readFromIni' => true,
         'writeToIni' => true,
@@ -142,20 +142,26 @@ array(
 )
 ```
 
-The above settings illustrate an example development configuration. In this scenario, snippets are read but not written into the database, but are read and written into the .ini files automatically. So, suppose you just added a new snippet to your template, and refresh the browser page to see your result. As the template is rendered, Shopware will look for that snippet in the database. As it's new, it won't find it, but it also won't write it, as `writeToDb` is set to false.
+The above settings illustrate an example development configuration. In this scenario, snippets are read and written 
+into the .ini files automatically. So, suppose you just added a new snippet to your template, and refresh the browser
+page to see your result. As the template is rendered, Shopware will look for that snippet in your .ini files because
+we set `readFromDB` to `false`. As it's new, it won't find it, but it will write it. If the particular .ini file for
+that namespace doesn't exist already, it will be created automatically, and the snippet will be added to the file
+automatically.
 
-Next, it will look for it in your .ini files. It also won't find it, but it will write it. If the particular .ini file for that namespace doesn't exist already, it will be created automatically, and the snippet will be added to the file automatically.
-
-As you no longer have to worry about creating .ini files, you can focus on developing your templates. When you are finished with that, should check your .ini files, and manually add translations for other languages, or make sure all your snippets are there.
+As you no longer have to worry about creating .ini files, you can focus on developing your templates. When you are
+finished with that, should check your .ini files, and manually add translations for other languages, or make sure
+all your snippets are there.
 
 A few things to keep in mind when using this approach:
 - Snippet values are only written automatically to the .ini file when the snippet is first detected in the frontend. Further changes to the snippet's default value will not be written to the file automatically
-- Only snippets rendered in the frontend will be written automatically to .ini files (or database, if `writeToDb` is true).
+- Only snippets rendered in the frontend will be written automatically to .ini files (or database, if `writeToDb` is `true`).
 - Snippet are written to the current locale of your shop. You can duplicate those sections manually for creating translations.
 - Changes made to snippets in the backend are not saved to .ini files
 - The automatically generated .ini files might not be so inside your plugin directory, but directly in Shopware's root directory. However, the internal directory structure is the same, so you can just move that directory inside your plugin once you are finished
 - Enabling `writeToIni` will write *ALL* missing snippets to .ini files. This means that if, for some reason, a missing snippet that does not belong to your template file is detected, it will also be written to .ini file, and might get mixed with your new snippets. For this reason it's recommended that you carefully review your .ini files once you are finished developing your plugin/theme.
 - If your template files have snippets with an empty default value, they will also be written to db/.ini file as an empty string. The `showSnippetPlaceholder` only affects the rendered value, not the value that is written into storage.  
+- If `readFromDb` is `true` your .ini files will be ignored and all snippets are read from database
 
 **Note: Shopware 5 includes some CLI commands that can prove useful when handling snippets. Please refer to [the related section](#snippet-cli-commands) for more details.**
 

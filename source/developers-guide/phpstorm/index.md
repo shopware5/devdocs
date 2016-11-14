@@ -83,7 +83,7 @@ From the context menu `Mark directory as` -> `Excluded`
 - `var/`
 - `web/cache/`
 
-### Configre Source Directories
+### Configure Source Directories
 
 `Mark directory as` -> `Sources Root`
 

@@ -54,10 +54,10 @@ output (headers, cookies, session, template).
 
 Depending on the namespace of the controller, it will usually have another class name and another base class:
 
-* `frontend`: `class Shopware_Controller_Frontend_NAME extends Enlight_Controller_Action`
-* `backend`: `class Shopware_Controller_Backend_NAME extends Shopware_Controllers_Backend_Application`
-* `widgets`: `class Shopware_Controller_Widget_NAME extends Enlight_Controller_Action`
-* `api`: `class Shopware_Controller_Api_NAME extends Shopware_Controllers_Api_Rest`
+* `frontend`: `class Shopware_Controllers_Frontend_NAME extends Enlight_Controller_Action`
+* `backend`: `class Shopware_Controllers_Backend_NAME extends Shopware_Controllers_Backend_Application`
+* `widgets`: `class Shopware_Controllers_Widgets_NAME extends Enlight_Controller_Action`
+* `api`: `class Shopware_Controllers_Api_NAME extends Shopware_Controllers_Api_Rest`
 
 This is not as cumbersome as it might look: `Enlight_Controller_Action` is the generic base controller, while
 `Shopware_Backend_Application` and `Shopware_Controllers_Api_Rest` add authentication, JSON and input parameter handling.

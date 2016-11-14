@@ -132,7 +132,7 @@ There are 3 ways to interact with blocks and add your changes inside your new te
 
 +   `append` (adds content __after__ the selected block)
 +   `prepend` (adds content __before__ the selected block)
-+   `overwrite` (without calling append/prepend, __overwrites__ the whole block)
++   without calling append/prepend, the whole block is __overwritten__
 
 In order to add a new button to your navigation menu, you would search for a fitting block and __append/prepend__ a new element to it, so it displays before or after the already existing buttons inside the shop navigation menu.
 

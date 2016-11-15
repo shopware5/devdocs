@@ -174,32 +174,24 @@ Smarty blocks are used for structuring template code in logical segments. These 
 {/block}
 ```
 
-When you inherit a template file via the `{extends}` method, you're provided with all blocks from the parent file. These are your access points to make changes or add your additional code. There are three possibilities on how you can use these blocks.
-
-- **replace:** the original content will be overwritten by the new content. *- default -*
-- **prepend:** new content will be added before the original content.
-- **append:** new content will be added after the original content.
-
-The insert mode you want to use is just added as an attribute to the `{block}` tag. If you don't explicitly specify a method, by default, the existing content of the block will be replaced by the new content you defined. In other words, you don't always have to add the `replace` attribute. But if you want to only append your new content and leave the original content untouched, you can use the `prepend` or `append` attributes.
-
-**Example:** *Appending the content of a Smarty block*
+When you inherit a template file via the `{extends}` method, you're provided with all blocks from the parent file. These are your access points to make changes or add your additional code.
 
 ```
-{block name="frontend_index_logo" append}
+{block name="frontend_index_logo"}
+	{$smarty.block.parent}
 
     <div class="shop--slogan"> 
         <h2>My shop is the best!</h2>
     </div>
-
 {/block}
 ```
 
-In the example above, we use the `append` attribute on the `frontend_index_logo` block to append a slogan right after the shop logo. The original code stays unchanged while the new content for our slogan is placed right after it. To edit or extend existing templates you have to do the following steps:
+In the example above, we override the parent block and then call `{$smarty.block.parent}` to append our own code to on the `frontend_index_logo` block and add a slogan right after the shop logo. The original code stays unchanged while the new content for our slogan is placed right after it. To edit or extend existing templates you have to do the following steps:
 
 1. Find the block of the content you want to edit in the template file.
 2. Create the template file under the same structure in your own theme directory.
 3. Add the `{extend}` tag at the beginning of your file and enter the path to the original file.
-4. Define the `{block}` from the original file to replace it. Use the `append` or `prepend` attribute if you want to add new content.
+4. Define the `{block}` from the original file to replace it. If you want to insert your content before or after the content of the parent block, use `{$smarty.block.parent}` before or after your own code to add new content.
 
 ## Register custom Smarty plugins
 In Shopware 5 we added the ability to register your own custom Smarty plugins in your theme. This enables you to create new modifiers and Smarty functions. To register a new Smarty plugin just create the necessary directory structure in your theme directory. If you want to learn more about writing Smarty plugins you can see the **[official guide](http://www.smarty.net/docs/en/plugins.tpl)**.

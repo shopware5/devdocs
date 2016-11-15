@@ -128,19 +128,41 @@ You can find a complete guide to the template inheritance in the [Smarty 101 gui
 ## Template blocks
 The `Bare` theme's HTML structure is wrapped in Smarty's `block` elements. These block elements group the frontend components into small, isolated blocks that can be edited/overwritten individually. To add changes to the elements of the `Bare` theme, you __can't__ simply write code inside your file. To customize a block, you have to call the correct Shopware block name.
 
-There are 3 ways to interact with blocks and add your changes inside your new template file:
+You can override the whole content of an inherited block like this:
+```
+{block name='frontend_index_checkout_actions'}
+	// place your new element here
+{/block}
+```
 
-+   `append` (adds content __after__ the selected block)
-+   `prepend` (adds content __before__ the selected block)
-+   `overwrite` (without calling append/prepend, __overwrites__ the whole block)
+The variable `{$smarty.block.parent}` contains the content of the inherited block.
+So you can use it to add the initial content of the block in your block.
 
-In order to add a new button to your navigation menu, you would search for a fitting block and __append/prepend__ a new element to it, so it displays before or after the already existing buttons inside the shop navigation menu.
+If you wish to add your content __after__ the initial block content you can do it like this:
+```
+{block name='frontend_index_checkout_actions'}
+	{$smarty.block.parent}
+ 	// place your new element here
+{/block}
+```
+
+Of cause the other way around will also work, if you wish to add your content __before__ the content of the initial block:
+```
+{block name='frontend_index_checkout_actions'}
+    // place your new element here
+    {$smarty.block.parent}
+{/block}
+```
+
+For example, in order to add a new button to your navigation menu, you would search for a fitting block and insert a new element to it, so it displays before or after the already existing buttons inside the shop navigation menu.
 
 ```
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 
-{block name='frontend_index_checkout_actions' prepend}
+{block name='frontend_index_checkout_actions'}
     // place your new element here
+    
+    {$smarty.block.parent}
 {/block}
 ```
 
@@ -149,14 +171,20 @@ The navigation menu uses `<li>` elements to wrap its entries. In the example bel
 ```
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 
-{block name='frontend_index_checkout_actions' prepend}
+{block name='frontend_index_checkout_actions'}
     <li class="navigation--entry">
         <a href="" class="btn starButton"> {* Add an URL to the href attribute to make your link work *}
             <i class="icon--star"></i>
         </a>
     </li>
+    
+    {$smarty.block.parent}
 {/block}
 ```
+
+<div class="alert alert-warning"> 
+	<strong>Attention:</strong> It is recommend to not use the smarty block parameter <strong>append</strong> and <strong>prepend</strong>, so other templates or plugins can overwrite the same block without problems.
+</div>
 
 ## Add Less files
 Less files can be added in a similar way to template files. The directory structure has to match the structure of the source files of the `Responsive` template. The sample directory structure would look like this:

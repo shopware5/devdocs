@@ -1,4 +1,5 @@
-//{block name="backend/emotion/controller/main" append}
+//{block name="backend/emotion/controller/main"}
+//{$smarty.block.parent}
 Ext.define('Shopware.apps.SwagEmotion.controller.Main', {
     override: 'Shopware.apps.Emotion.controller.Main',
 

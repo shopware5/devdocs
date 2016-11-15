@@ -1,4 +1,5 @@
-//{block name="backend/swag_digital_publishing/view/editor/abstract_element_handler" append}
+//{block name="backend/swag_digital_publishing/view/editor/abstract_element_handler"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.elements.YouTubeElementHandler', {
 
     extend: 'Shopware.apps.SwagDigitalPublishing.view.editor.elements.AbstractElementHandler',

@@ -155,7 +155,7 @@ In this example we extended the button and transformed it to a drop down button.
 apply both classes to the "button" element:
   
 ```
-<button class="button dropdown-button">
+<button class="button dropdown--button">
     Dropdown
 </button>
 ```
@@ -311,7 +311,7 @@ styling. To match our guidelines we're splitting the object in two objects and u
  
 ```
 .noun {}            // parent:  .post
-.noun--noun {}      // child:   .post-title
+.noun-noun {}       // child:   .post-title
 ```
 
 **Subclasses** using a prefixed adjective which defines the type:

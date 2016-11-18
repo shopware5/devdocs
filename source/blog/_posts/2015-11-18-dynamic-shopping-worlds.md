@@ -427,7 +427,8 @@ as well. In order to do so, I created the template file `backend/swag_emotion/co
 main controller of the shopping world module:
 
 ```
-//{block name="backend/emotion/controller/main" append}
+//{block name="backend/emotion/controller/main"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagEmotion.controller.Main', {
     override: 'Shopware.apps.Emotion.controller.Main',
 

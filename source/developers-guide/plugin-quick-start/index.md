@@ -358,7 +358,7 @@ Now our plugin's `index.tpl` might look like this:
 ```
 {extends file="parent:frontend/index/index.tpl"}
 
-{block name="frontend_index_navigation_categories_top_include" prepend}
+{block name="frontend_index_navigation_categories_top_include"}
 
     <style>
         .slogan-box {
@@ -375,14 +375,18 @@ Now our plugin's `index.tpl` might look like this:
     <div class="slogan-box">
         <span class="slogan">{$slogan}</span>
     </div>
+    
+    {$smarty.block.parent}
 {/block}
 ```
 
 The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopware to not completely replace the default index.tpl file - but to extend from it. Now we can overwrite single or multiple blocks in the default index.tpl using the `block` directive:
 
 ```
-{block name="frontend_index_navigation_categories_top_include" prepend}
-
+{block name="frontend_index_navigation_categories_top_include"}
+	...
+	
+	{$smarty.block.parent}
 {/block}
 ```
 

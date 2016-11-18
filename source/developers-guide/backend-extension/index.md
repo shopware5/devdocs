@@ -164,7 +164,8 @@ So in the `load` action, where all the components are loaded, we inject our modi
 this file looks like this:
 
 ```
-//{block name="backend/customer/view/detail/billing" append}
+//{block name="backend/customer/view/detail/billing"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Billing', {
     override:'Shopware.apps.Customer.view.detail.Billing',
 
@@ -187,7 +188,8 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Billing', {
 As you can see, the block of the original customer module is extended using Smarty:
 
 ```
-{block name="backend/customer/view/detail/billing" append}
+{block name="backend/customer/view/detail/billing"}
+ {$smarty.block.parent}
 ```
 
 Then a ExtJS class is defined. The class name `Shopware.apps.SwagExtendCustomer.view.detail.Billing` originates
@@ -251,7 +253,8 @@ public function onCustomerPostDispatch(Enlight_Event_EventArgs $args)
 As the template file `backend/swag_extend_customer/app.js` just needs to include the new component, its rather simple:
 
 ```
-//{block name="backend/customer/application" append}
+//{block name="backend/customer/application"}
+// 		{$smarty.block.parent}
 //      {include file="backend/swag_extend_customer/view/detail/my_own_tab.js"}
 //{/block}
 ```
@@ -301,7 +304,8 @@ Also, instead of modifying an existing array element, a new one is pushed - whic
 that we introduced before:
 
 ```
-//{block name="backend/customer/view/detail/window" append}
+//{block name="backend/customer/view/detail/window"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
    override: 'Shopware.apps.Customer.view.detail.Window',
 

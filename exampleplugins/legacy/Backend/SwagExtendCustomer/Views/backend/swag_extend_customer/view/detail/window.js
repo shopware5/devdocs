@@ -1,4 +1,5 @@
-//{block name="backend/customer/view/detail/window" append}
+//{block name="backend/customer/view/detail/window"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
    override: 'Shopware.apps.Customer.view.detail.Window',
 

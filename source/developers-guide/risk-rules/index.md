@@ -48,7 +48,8 @@ The file `SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js` adds a n
 
 ```
 // SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js
-//{block name="backend/risk_management/store/risk/data" append}
+//{block name="backend/risk_management/store/risk/data"}
+// {$smarty.block.parent}
 { description: 'My Custom Rule', value: 'MyCustomRule' },
 //{/block}
 ```

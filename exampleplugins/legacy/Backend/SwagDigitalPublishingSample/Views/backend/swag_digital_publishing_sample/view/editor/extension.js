@@ -1,4 +1,5 @@
-//{block name="backend/swag_digital_publishing/view/editor/container" append}
+//{block name="backend/swag_digital_publishing/view/editor/container"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.YouTubeExtension', {
 
     /**

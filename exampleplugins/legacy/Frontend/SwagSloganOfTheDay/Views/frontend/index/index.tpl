@@ -1,6 +1,6 @@
 {extends file="parent:frontend/index/index.tpl"}
 
-{block name="frontend_index_navigation_categories_top_include" prepend}
+{block name="frontend_index_navigation_categories_top_include"}
 
     <style>
         .slogan-box {
@@ -17,4 +17,5 @@
     <div class="slogan-box">
         <span class="slogan">{$slogan}</span>
     </div>
+    {$smarty.block.parent}
 {/block}

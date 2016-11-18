@@ -139,7 +139,8 @@ In the next step, we will look at the first event, which subscribes to the post 
 Now that we extended the backend template and created the necessary ExtJS files, we can write some code. Let's start with the custom handler for our element: `Views/backend/swag_digital_publishing_sample/view/editor/elements/youtube_element_handler.js`
 
 ```
-//{block name="backend/swag_digital_publishing/view/editor/abstract_element_handler" append}
+//{block name="backend/swag_digital_publishing/view/editor/abstract_element_handler"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.elements.YouTubeElementHandler', {
 
     extend: 'Shopware.apps.SwagDigitalPublishing.view.editor.elements.AbstractElementHandler',
@@ -155,7 +156,7 @@ Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.elements.YouTubeElem
 //{/block}
 ```
 
-To extend the backend template, we're editing the Smarty `{block}` of the abstract handler by using the `append` attribute, so we can add our custom handler. Every element handler has to extend the abstract handler to implement the basic functionality for the Digital Publishing elements. This has also some advantages for you, because you don't have to take care of data handling and other trivial operations. All element handlers have to define the following properties:
+To extend the backend template, we're editing the Smarty `{block}` of the abstract handler by using the `{$smarty.block.parent}` function, so we can append our custom handler to the parent `{block}`. Every element handler has to extend the abstract handler to implement the basic functionality for the Digital Publishing elements. This has also some advantages for you, because you don't have to take care of data handling and other trivial operations. All element handlers have to define the following properties:
 
 - `name`: a machine name for internal use
 - `label`: the readable name of the element
@@ -165,7 +166,8 @@ To extend the backend template, we're editing the Smarty `{block}` of the abstra
 Now that we have created the handler, we have to add it to the list of available element handlers. Therefore, we created the `extension.js` to extend the original editor: `Views/backend/swag_digital_publishing_sample/view/editor/extension.js`
 
 ```
-//{block name="backend/swag_digital_publishing/view/editor/container" append}
+//{block name="backend/swag_digital_publishing/view/editor/container"}
+// {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagDigitalPublishing.view.editor.YouTubeExtension', {
 
     override: 'Shopware.apps.SwagDigitalPublishing.view.editor.Container',

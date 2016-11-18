@@ -33,7 +33,7 @@ Download the required software:
   - Intel Virtualization Technology and VT-d are both(!) enabled
   - the Hyper-V platform is disabled in the Windows Features list
 
-The provisioning is done directly on your new virtual machine by [Ansible](http://www.ansibleworks.com/docs/).
+The provisioning is done directly on your new virtual machine by [Ansible](http://docs.ansible.com/).
 
 ### 1. Clone the repository to your local machine
 

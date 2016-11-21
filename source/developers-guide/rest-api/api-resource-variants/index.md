@@ -112,7 +112,7 @@ You can use this data to add a new variant to the shop
 
 You can post or put data by sending the following data to this URL:
 
-* **(POST or PUT) http://my-shop-url/api/translations/id**
+* **(POST or PUT) http://my-shop-url/api/variants/id**
 
 ## PUT (update)
 

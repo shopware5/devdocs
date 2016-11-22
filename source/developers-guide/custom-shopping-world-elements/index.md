@@ -296,6 +296,21 @@ There are several methods for nearly any kind of form field. Here is a list of a
         <td><img src="img/screen_htmleditor.jpg" alt="html editor" /></td>
     </tr>
     <tr>
+        <td><h5>Media field</h5><code>createMediaField()</code></td>
+        <td>
+            <ul>
+                <li><code>name</code></li>
+                <li><code>defaultValue</code></li>
+                <li><code>fieldLabel</code></li>
+                <li><code>supportText</code></li>
+                <li><code>helpTitle</code></li>
+                <li><code>helpText</code></li>
+                <li><code>allowBlank</code></li>
+            </ul>
+        </td>
+        <td><img src="img/screen_mediafield.jpg" alt="media field" /></td>
+    </tr>
+    <tr>
         <td><h5>Display field</h5><code>createDisplayField()</code></td>
         <td>
             <ul>

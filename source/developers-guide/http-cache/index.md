@@ -263,7 +263,8 @@ return [
         // your default db configuration
     ],
     'trustedproxies' => [
-        192.168.0.10
+        '192.168.0.10',
+        '192.168.0.11',
     ],
 ]
 ```

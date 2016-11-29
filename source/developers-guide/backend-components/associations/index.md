@@ -1433,7 +1433,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 ### OneToMany Association - Products & Variants
 The following tasks are necessary to use the `OneToMany` association using the Shopware backend components:
 
-* Implemention of the association in the product model
+* Implementation of the association in the product model
 * Integration of the variant model
 * Definition of the variant view
 * Definition of where the variant view should be displayed

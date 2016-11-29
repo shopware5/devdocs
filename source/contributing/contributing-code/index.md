@@ -39,7 +39,7 @@ After the "forking action" has completed, clone your fork locally (this will cre
 git clone git@github.com:USERNAME/shopware.git
 ```
 
-Add the shopware repositry as `upstream` remote:
+Add the shopware repository as `upstream` remote:
 
 ```bash
 cd shopware
@@ -68,7 +68,7 @@ git checkout -b my-new-feature upstream/5.2
 ```
 
 The first command will fetch the latest updates from the upstream project (shopware).
-The seconad will create a new branch named `my-new-feature`, that is based off the `5.2`-branch of the `upstream` remote.
+The second will create a new branch named `my-new-feature`, that is based off the `5.2`-branch of the `upstream` remote.
 
 ## Submit your pull request
 

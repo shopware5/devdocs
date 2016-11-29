@@ -31,7 +31,7 @@ Starting on Monday, <strong>5th September and continuing until Monday, 19th Sept
     - The commit message must be formatted with the Issue number like this: `SW-9999 - Fix spelling of newsletter`
     - When you have opened the pull request please add a comment with the pull request URL to the ticket
 4. Our team will review and test your code, please watch out for feedback in the pull request
-5. If the code is sucessfully reviewed and tested it will be merged into the `99-papercuts` branch
+5. If the code is successfully reviewed and tested it will be merged into the `99-papercuts` branch
 6. `GOTO 2.`
 
 ## Take your pick from submitted papercuts 

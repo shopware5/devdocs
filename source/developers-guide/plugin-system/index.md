@@ -22,7 +22,7 @@ The new plugin system runs fully in parallel to the "legacy" plugin system.
 
 ## Directory Structure
 
-The 5.2 Plugins are located in the `custom/plugins/` directory. There is no seperation in `frontend`, `core` or `backend` like in the "legacy" plugin system.
+The 5.2 Plugins are located in the `custom/plugins/` directory. There is no separation in `frontend`, `core` or `backend` like in the "legacy" plugin system.
 
 ## Plugin Name
 

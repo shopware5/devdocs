@@ -64,7 +64,7 @@ fetchPost(1).then(function(response) {
 
 *Transforming jQuery promises into standard promises*
 
-The only difference in the above code is that we're not returing the jQuery promise right away. We're wrapping it in a call of `Promise.resolve()`. The call returning a promise object that is resolved with the given value which is the AJAX response in this example.
+The only difference in the above code is that we're not returning the jQuery promise right away. We're wrapping it in a call of `Promise.resolve()`. The call returning a promise object that is resolved with the given value which is the AJAX response in this example.
 
 Sometimes you're finding yourself in the position that you don't know if you're dealing with a promise or not. In this case `Promise.resolve()` can come in handy too.
 
@@ -151,7 +151,7 @@ There's a lot of buzz going on in the above example, so let's break it down. `Ar
 ## Error handling
 Sadly we're not living in a perfect world where everything goes well. Sometimes it's like a rollercoaster, you have good days but sometimes everything that can go wrong goes wrong ([Murphy's law](https://en.wikipedia.org/wiki/Murphy%27s_law)) - it's the same when you're coding. Errors can always occur along the way, a server can be offline temporarily or the user simply inputs something wrong.
 
-Exceptions in JavaScript are synchronous which doesn't go along well in an asychronous operation. We're bringing back the [workflow diagram](https://developers.shopware.com/blog/2016/10/12/promises-asynchronous-processes-made-easy/#getting-started-with-promises) in our mind. A promise can have multiple states. It can be pending, fulfilled or rejected. In our case we want to take a closer look on the rejected state - it provides us with the ability to reject a promise when an error occurred.
+Exceptions in JavaScript are synchronous which doesn't go along well in an asynchronous operation. We're bringing back the [workflow diagram](https://developers.shopware.com/blog/2016/10/12/promises-asynchronous-processes-made-easy/#getting-started-with-promises) in our mind. A promise can have multiple states. It can be pending, fulfilled or rejected. In our case we want to take a closer look on the rejected state - it provides us with the ability to reject a promise when an error occurred.
 
 One of the most useful features of promises is the automatic propagation of errors. However this feature is only useful if errors are correctly propagated up the call stack. If you're writing a promise chain and ignore the `reject()` method, errors in the chain will be silently ignored which can hide serious bugs in your application:
 
@@ -201,7 +201,7 @@ random().then(function(results) {
 
 We're switching out the exception with a call of `reject()` and using the exception as the first argument. Now we can use the benefits of the automatic propagation feature. Returning a promise has the benefit that people can always handle all errors in the same consistent way.
 
-Keep in mind, you can use the `Promise.reject()` method to create a new promise object with a rejected state and an error instead of instaniating a new promise object:
+Keep in mind, you can use the `Promise.reject()` method to create a new promise object with a rejected state and an error instead of instantiating a new promise object:
 
 ```
 Promise.reject(new Error('Oh no something went wrong'));
@@ -214,7 +214,7 @@ Here are some brief advices for handling errors in promises:
 - Bubble up errors the promise chain to the caller and consider throwing the exception to trigger the default unhandled error notifications (e.g. `window.onerror` or the `error` event in `process` for example). This is a convenient way to handle errors in your promise chains, especially when you have a generic error handler in your application already.
 
 ## Passing state
-Sometimes you want to pass around state in your promise chain. A common example is solving relationships between two data sets for example an "n-1" relationship between multiple posts and an author. You want to fetch the post and author asychronously and render both objects when both operations are fulfilled.
+Sometimes you want to pass around state in your promise chain. A common example is solving relationships between two data sets for example an "n-1" relationship between multiple posts and an author. You want to fetch the post and author asynchronously and render both objects when both operations are fulfilled.
 
 Again, we're using our `fetchPost()` function to fetch the post from the endpoint. We're adding a new function called `fetchAuthor()` which fetches the author from the endpoint:
 
@@ -283,6 +283,6 @@ timeout(fetchPost(1), 500).then(function(post) {
 Whichever promise settles (fulfills or rejects) first wins the race and determines the result.
 
 ## Conclusion
-Promises are an awesome utility to get rid of the "pyramid of doom" and enhance the flow control of your application. The transition from jQuery promises to the standard compatible implementation is quite simple and the additional methods in the API gives us an excellent flexibility to solve common tasks when working with asychronous operations. The automatic propagation of errors is a powerful feature. It has some pitfalls you can easily overcome when you're using the API correctly.
+Promises are an awesome utility to get rid of the "pyramid of doom" and enhance the flow control of your application. The transition from jQuery promises to the standard compatible implementation is quite simple and the additional methods in the API gives us an excellent flexibility to solve common tasks when working with asynchronous operations. The automatic propagation of errors is a powerful feature. It has some pitfalls you can easily overcome when you're using the API correctly.
 
 This blog post rounds up the JavaScript promises series in this blog.

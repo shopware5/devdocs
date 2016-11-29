@@ -11,7 +11,7 @@ The shopware team uses the following coding standards. All contributions to Shop
 
 ## General
 
-If not statet otherwise we use the following coding styles for all source files:
+If not stated otherwise we use the following coding styles for all source files:
 
 - Unix-like newlines (Line Feed/LF, `\n`)
 - 4 spaces for indenting, not tabs

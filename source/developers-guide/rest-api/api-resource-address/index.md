@@ -35,9 +35,10 @@ Single address details can be retrieved via the address ID:
 | Shopware\Models\Customer\Address   | s_user_addresses |
 
 
-| Field                    | Type                  | Original Object                                                               |
-|--------------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				       | integer (primary key) | 							                                                  |
+| Field                    | Type                  | Original Object                                          |
+|--------------------------|-----------------------|----------------------------------------------------------|
+| id				               | integer (primary key) | 							                                            |
+| customer				         | integer (primary key) | **[Customer](../models/#customer)**                      |
 | company                  | string                |       											                              |
 | department               | string                |       											                              |
 | salutation               | string                |       											                              |
@@ -50,7 +51,7 @@ Single address details can be retrieved via the address ID:
 | vatId                    | string                |       											                              |
 | additionalAddressLine1   | string                |       											                              |
 | additionalAddressLine2   | string                |       											                              |
-| country	               | int (foreign key)	   | **[Country](../models/#country)**                                            |
+| country	                 | int (foreign key)	   | **[Country](../models/#country)**                                            |
 | state	                   | int (foreign key)	   |                                                                              |
 | attribute                | array                 | 														                      |
 

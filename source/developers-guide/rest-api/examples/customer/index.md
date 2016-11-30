@@ -44,6 +44,9 @@ $client->get('customers?limit=20');
             "hashPassword":"a256a310bc1e5db755fd392c524028a8",
             "active":true,
             "email":"test@example.com",
+            "salutation": "mr",
+            "firstname": "Max",
+            "lastname": "Mustermann",
             "firstLogin":"2011-11-23T00:00:00+0100",
             "lastLogin":"2012-01-04T14:12:05+0100",
             "accountMode":0,
@@ -69,6 +72,9 @@ $client->get('customers?limit=20');
             "hashPassword":"352db51c3ff06159d380d3d9935ec814",
             "active":true,
             "email":"mustermann@b2b.com",
+            "salutation": "mr",
+            "firstname": "Max",
+            "lastname": "Mustermann",
             "firstLogin":"2012-08-30T00:00:00+0200",
             "lastLogin":"2012-08-30T11:43:17+0200",
             "accountMode":0,
@@ -112,6 +118,9 @@ $client->get('customers/1');
         "hashPassword":"a256a310bc1e5db755fd392c524028a8",
         "active":true,
         "email":"test@example.com",
+        "salutation": "mr",
+        "firstname": "Max",
+        "lastname": "Mustermann",
         "firstLogin":"2011-11-23T00:00:00+0100",
         "lastLogin":"2012-01-04T14:12:05+0100",
         "accountMode":0,
@@ -130,14 +139,14 @@ $client->get('customers/1');
         "billing":{
             "id":1,
             "customerId":1,
-            "countryId":2,
-            "stateId":3,
+            "country":2,
+            "state":3,
             "company":"Muster GmbH",
             "department":"",
             "salutation":"mr",
             "number":"20001",
-            "firstName":"Max",
-            "lastName":"Mustermann",
+            "firstname":"Max",
+            "lastname":"Mustermann",
             "street":"Musterstr.",
             "streetNumber":"55",
             "zipCode":"55555",
@@ -157,14 +166,14 @@ $client->get('customers/1');
             "company":"shopware AG",
             "department":"",
             "salutation":"mr",
-            "firstName":"Max",
-            "lastName":"Mustermann",
+            "firstname":"Max",
+            "lastname":"Mustermann",
             "street":"Mustermannstra\u00dfe",
             "streetNumber":"92",
             "zipCode":"48624",
             "city":"Sch\u00f6ppingen",
-            "stateId":null,
-            "countryId":2,
+            "state":null,
+            "country":2,
             "attribute":null
         },
         "debit":{
@@ -187,8 +196,18 @@ This shows you how to create a minimalistic customer:
 ```
 $client->post('customers',  array(
     'email' => 'meier@mail.de',
+    'firstname' => 'Max',
+    'lastname' => 'Meier',
+    'salutation' => 'mr',
     'billing' => array(
-        "lastName" => "Meier"
+	    'firstname' => 'Max',
+	    'lastname' => 'Meier',
+	    'salutation' => 'mr',
+    	'street' => 'Musterstrasse',
+        'streetNumber' => '92',
+    	'city' => 'Sch\u00f6ppingen',
+    	'zipcode' => '48624',
+    	'country' => 2
     )
 ));
 ```

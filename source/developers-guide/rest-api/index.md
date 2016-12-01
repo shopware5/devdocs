@@ -19,7 +19,7 @@ in their shop to 3rd party applications. It also allows direct manipulation of t
 
 ## Basic Settings
 
-To enables access to the REST API, the shop owner must authorize one (or more) users in the Shopware backend. Simply open the Shopware backend and open the `User Administration` window, under `Settings`.
+To enable access to the REST API, the shop owner must authorize one (or more) users in the Shopware backend. Simply open the Shopware backend and open the `User Administration` window, under `Settings`.
 From the list of existing users displayed on this window, select `Edit` for the desired user and mark the `enabled` checkbox in the `API Access` section.
 You will get a randomly generated API access key, which needs to be included in your API requests for authentication. After clicking `Save`, the changes will take effect.
 If the edited user is currently logged in, you might need to empty the backend cache, and then log out an log in for your changes to take effect.

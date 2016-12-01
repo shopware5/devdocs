@@ -593,11 +593,60 @@ Configuration is accessible by following code snippet:
 Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
 ```
 
+#### add store values
+It is possible to define custom config stores directly inside your `config.xml`.
+
+A custom config store is defined like this:
+```
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element type="select">
+            <name>selectArray</name>
+            <label>XML Store</label>
+            <store>
+                <option>
+                    <value>1</value>
+                    <label lang="de">DE 1</label>
+                    <label lang="en">EN 1</label>
+                </option>
+                <option>
+                    <value>TWO</value>
+                    <label lang="de">DE 2</label>
+                    <label lang="en">EN 2</label>
+                </option>
+                <option>
+                    <value>3</value>
+                    <label>Test</label>
+                </option>
+                <option>
+                    <value>4</value>
+                    <label>Test default</label>
+                    <label lang="de">Test</label>
+                </option>
+            </store>
+        </element>
+        <element type="select">
+            <name>selectExtjsStore</name>
+            <label>Extjs Store</label>
+            <store>Shopware.apps.Base.store.Category</store>
+        </element>
+    </elements>
+</config>
+```
+There are two unique constraints:
+* Inside a store, a value tag's value must only occur once
+* Inside an option tag, a label tag's lang attribute value must only occur once
+
+Additionally, the order is fixed. The value tag must be defined before the label tag(s).
+
+There must be at least one option tag and inside each option tag there must be at least one value and one label tag. 
+
 ### Backend Menu Items
 
 Example `Resources/menu.xml`:
 
-```xml
+```
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
 	<entries>

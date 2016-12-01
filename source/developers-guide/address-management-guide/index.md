@@ -106,7 +106,8 @@ $this->subscribeEvent('Shopware_Form_Builder', 'onFormBuild');
 
 ##### Create method onFormBuild() in Bootstrap.php
 ```php
-public function onFormBuild(\Enlight_Event_EventArgs $event) {
+public function onFormBuild(\Enlight_Event_EventArgs $event)
+{
     if ($event->getReference() !== \Shopware\Bundle\AccountBundle\Form\Account\AddressFormType::class) {
         return;
     }
@@ -120,7 +121,7 @@ public function onFormBuild(\Enlight_Event_EventArgs $event) {
                     new \Symfony\Component\Validator\Constraints\NotBlank()
                 ]
             ]);
-});
+}
 ```
 
 #### Example #2: Adding multiple fields at once

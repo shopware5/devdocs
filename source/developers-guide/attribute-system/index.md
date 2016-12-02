@@ -755,5 +755,71 @@ Ext.define('Shopware.apps.Article.controller.MyDetail', {
 ```
 
 ### Using existing attributes
-
 It is possible to use existing attributes like `attr1` and `attr2` though it's not recommended. To prevent race-conditions with the attribute management itself, you have to uncheck the option "Display in backend" of the desired attribute. It will not be visible within the attribute management fieldset but in your own implementation. Therefore you have to handle the save process yourself and it will not be saved with the default attribute implementation.
+
+# Example Plugin "Shoesize"
+This example plugin allows the user to enter his shoesize at the registration form and shows this information in the account and the admin backend.
+
+## Plugin definition and attribute creation
+First we create the necessary attribute using the CRUD service. Notice the `displayInBackend` option to have the attribute show up in the backend customer detail view.
+
+There is no need to differentiate between the first and subsequent runs of the installer, the CRUD service checks if the attribute needs to be created and does so if necessary.
+
+```
+class SwagShoeSize extends Plugin
+{
+    public function install(InstallContext $context)
+    {
+        $service = $this->container->get('shopware_attribute.crud_service');
+        $service->update('s_user_attributes', 'swag_shoesize', 'string', [
+            'label' => 'Shoesize',
+            'displayInBackend' => true
+        ]);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return ['Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onFrontendPostDispatch'];
+    }
+
+    public function onFrontendPostDispatch(\Enlight_Controller_ActionEventArgs $args)
+    {
+        $args->getSubject()->View()
+                ->addTemplateDir($this->getPath() . '/Resources/views');
+    }
+}
+```
+
+### Adding an input element for the attribute to the registration form
+We create the template `Resources/Views/frontend/register/personal_fieldset.tpl` and extend the block where we want the input to show up. The attribute is persisted automatically along with the registered customer.
+
+```
+{extends file="parent:frontend/register/personal_fieldset.tpl"}
+{block name='frontend_register_personal_fieldset_input_lastname'}
+    {$smarty.block.parent}
+    <div class="register--shoesize">
+        <input type="number"
+               placeholder="Shoesize"
+               name="register[personal][attribute][swagShoesize]"
+               value="{$form_data.attribute.swagShoesize|escape}" />
+               <!-- Notice the camelCase of the attribute name! -->
+    </div>
+{/block}
+```
+**Attention**: Although the field names are defined in snake_case when created using the CRUD-service, you need to use camelCase in name attributes. This is necessary due to the way the internally used FormBuilder works. 
+
+### Show attributes in the frontend
+Attributes are loaded automatically with the entity they belong to. To display the shoesize in the account we create `Resources/Views/frontend/account/index.tpl`:
+ 
+```
+{extends file="parent:frontend/account/index.tpl"}
+{block name="frontend_account_index_info_content"}
+    {$smarty.block.parent}
+    {if not empty($sUserData.additional.user.swag_shoesize)}
+        <div class="panel--body is--wide">
+            Shoesize: {$sUserData.additional.user.swag_shoesize}
+        </div>
+    {/if}
+{/block}
+```
+

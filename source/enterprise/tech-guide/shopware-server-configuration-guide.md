@@ -83,9 +83,10 @@ chown -R eca-deploy:eca-deploy /var/www
 Now add the **public ssh key** of the Client Administrations background process user to the eca-deploy user. To enable SSH access from the Client Administration.
 
 ````shell
+mkdir /home/eca-deploy/.ssh/
 touch /home/eca-deploy/.ssh/authorized_keys
 echo "YOUR PUBLIC KEY" >> /home/eca-deploy/.ssh/authorized_keys
-chown eca-deplpoy /home/eca-deploy/.ssh/authorized_keys
+chown eca-deploy /home/eca-deploy/.ssh/authorized_keys
 chmod 0600 /home/eca-deploy/.ssh/authorized_keys
 
 ````

@@ -118,6 +118,14 @@ $result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop())
 // now safely log $result with your preferred logger
 ```
 
+### shopware-profiler
+The [shopware-profiler](https://github.com/shyim/shopware-profiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
+* showing registered and called events
+* viewing of database operations and their results
+* providing various template information such as variables and which files were loaded
+
+Special thanks go to [Soner Sayakci](https://github.com/shyim) ([@Shyim97 on Twitter](https://twitter.com/shyim97)) who wrote and maintains this plugin.
+
 ## Frontend templates
 
 Writing frontend templates will confront you with questions like "what was that variable's name again?" or "which key holds the price?". 

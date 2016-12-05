@@ -594,7 +594,7 @@ Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
 ```
 
 #### add store values
-It is possible to define custom config stores directly inside your `config.xml`.
+As of shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.
 
 A custom config store is defined like this:
 ```

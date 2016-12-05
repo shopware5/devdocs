@@ -402,7 +402,7 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
         $plugin = $this->get('kernel')->getPlugins()['SwagControllerExample'];
         
         $this->get('template')->addTemplateDir($plugin->getPath() . '/Resources/views/');
-        $this->get('snippets')->addConfigDir($plugin->getPath() . '/Snippets/');
+        $this->get('snippets')->addConfigDir($plugin->getPath() . '/Resources/snippets/');
     }
 }
 ```

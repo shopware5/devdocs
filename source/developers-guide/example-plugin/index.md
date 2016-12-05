@@ -199,7 +199,7 @@ Adds the plugin `all.less` file to the Shopware LESS compiling step. This allows
 
 ## Plugin ListProductService
 
-```
+```php
 <?php
 
 namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
@@ -538,7 +538,7 @@ The plugin theme directory contains the following files:
 
 The `Theme.php` contains first the meta information inside the class properties:
 
-```
+```php
 <?php
 
 namespace Shopware\Themes\CustomTheme;
@@ -586,14 +586,14 @@ SHOPWARE_EOD;
 
 The `createConfig` function allows adding new configuration options to a theme. First, the plugin creates a new tab and adds it to the provided container. Each tab or element's name has to be unique.
 
-```
+```php
 $tab = $this->createTab('swag_custom_theme', 'Custom theme');
 $container->addTab($tab);
 ```
 
 Inside the tab, the plugin creates a new field set with two new color picker configuration fields:
 
-```
+```php
 $fieldSet = $this->createFieldSet('swag_custom_theme_field_set', 'Badge configuration');
 
 $fieldSet->addElement(
@@ -606,7 +606,7 @@ $fieldSet->addElement(
 
 The first parameter of the `createColorPickerField` function is the name of the variable, which can be used in template or LESS files. The `badge-seo-category-bg` and `badge-seo-category-color` fields are used for the font and background color of the SEO category listing badge.
 
-```
+```php
 $this->createColorPickerField('badge-seo-category-bg', ...)
 $this->createColorPickerField('badge-seo-category-color', ...)
 ```

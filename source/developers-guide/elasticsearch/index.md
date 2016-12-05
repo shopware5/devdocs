@@ -370,7 +370,7 @@ $this->client->bulk([
 
 Documents provided using the bulk API must be json serializable. In this case, the provider returns a `BlogStruct`, which implements the `JsonSerializable` interface.
 The indexing process can be started using the `sw:es:index:populate` console command:
-```
+```bash
 $ php bin/console sw:es:index:populate
 
 ## Indexing shop Deutsch ##

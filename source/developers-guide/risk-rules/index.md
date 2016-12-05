@@ -21,7 +21,7 @@ we use the smarty block `backend/risk_management/store/risk/data`
 that can be found in `themes/Backend/ExtJs/backend/risk_management/store/risks.js`.
 
 
-```
+```php
 // in install()
 $this->subscribeEvent(
     'Enlight_Controller_Action_PostDispatchSecure_Backend_RiskManagement',
@@ -29,7 +29,7 @@ $this->subscribeEvent(
 );
 ```
 
-```
+```php
 public function onRiskManagementBackend(Enlight_Controller_ActionEventArgs $args)
 {
     $subject = $args->getSubject();
@@ -58,7 +58,7 @@ The file `SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js` adds a n
 
 Given the new rule is named `MyCustomRule` the event we have subscribed to is `Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule`.
 
-```
+```php
 // in install()
 $this->subscribeEvent(
     'Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule',
@@ -68,7 +68,7 @@ $this->subscribeEvent(
 
 In the event callback we have access to the the name of the rule, the user, the basket and to the value:
 
-```
+```php
 /**
  * @param Enlight_Event_EventArgs $args
  * @return bool
@@ -92,7 +92,7 @@ public function onMyCustomRule(Enlight_Event_EventArgs $args)
 ## The complete plugin bootstrap
 
 
-```
+```php
 // SwagCustomRiskRule/Bootstrap.php
 <?php
 class Shopware_Plugins_Backend_SwagCustomRiskRule_Bootstrap extends Shopware_Components_Plugin_Bootstrap

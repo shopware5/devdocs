@@ -41,6 +41,7 @@ This will provide you with a description of the command's functionality, along w
 As a plugin developer, you can create your own custom CLI commands. To do so, your plugin's `Bootstrap.php` must first register the command itself:
 
 ```php
+<?php
 
 class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
@@ -76,8 +77,9 @@ The above example registers 2 commands, `import` and `list`. You now need to imp
 
 Shopware's CLI commands are based on the Symfony 2 Console Component, which documentation you can find [here](http://symfony.com/doc/current/components/console/introduction.html).
 
-```
+```php
 <?php
+
 namespace Shopware\Commands;
 
 use Shopware\Commands\ShopwareCommand;

@@ -459,7 +459,7 @@ You can read more in the Symfony Documentation: [How to Define Commands as Servi
 
 
 ## Add backend emotion components
-The `Shopware\Components\Emotion\ComponentInstaller` service can be used to generate backend emotion components inside plugin installations:
+Since shopware 5.2.10 the `Shopware\Components\Emotion\ComponentInstaller` service can be used to generate backend emotion components inside plugin installations:
 ```
 public function install(InstallContext $context)
 {
@@ -520,7 +520,32 @@ SwagEmotion
 │   └── services.xml
 └──SwagEmotion.php
 ```
+## Add a new payment method
+Since shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service can be used to add payment methods to the database inside plugin installations.
 
+```
+public function install(InstallContext $context)
+{
+	/** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
+	$installer = $this->container->get('shopware.plugin_payment_installer');
+
+	$options = [
+		'name' => 'example_payment_invoice',
+		'description' => 'Example payment method invoice',
+		'action' => 'example_payment',
+		'active' => 0,
+		'position' => 0,
+		'additionalDescription' =>
+			'<!-- Logo start -->'
+			.'  <img src="http://your-image-url"/>'
+			.'<!-- Logo end --><br/><br/>'
+			.'<div id="payment_desc">'
+			.'  Pay save and secured by invoice with our example payment provider.'
+			.'</div>'
+	];
+    $payment = $installer->update($context->getPlugin(), $options);
+}
+```
 ## Plugin Resources
 
 Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.

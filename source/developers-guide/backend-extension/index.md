@@ -46,7 +46,7 @@ controller `Shopware_Controllers_Backend_Application` is used.
 In order to connect the controller to a backend module, naming conventions are used. In our example the controller is
 called `Customer`, so Shopware will search for a backend application in `backend/customer/app.js`. If your controller
 was called `NewsletterManager`, the backend path would be `backend/newsletter_manager/app.js`. So basically, controllers
-names are in CamelCase, backend paths are in underscore, lowercase.
+names are in CamelCase, backend paths are in snake_case.
 
 ### Bootstrapping
 When clicking the menu item, Shopware will trigger the following request to the configured controller's `index` action:
@@ -200,7 +200,7 @@ override:'Shopware.apps.Customer.view.detail.Billing'
 ```
 
 Now the method `createBillingFormRight` can just be re-implemented. Calling `me.callParent(arguments)` will call the
-original (overridden) method and return its result - in our cas,e the array of fields we want to modify. This array can
+original (overridden) method and return its result - in our case the array of fields we want to modify. This array can
 be modified as needed - in this example the xtype of the 3rd field is changed to `numberfield`: `result[2].xtype = 'numberfield';`.
 
 At the end the modified array is returned - this way our extension is rendered into the window instead of the original

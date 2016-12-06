@@ -29,7 +29,7 @@ As Shopware frequently uses AJAX queries in the frontend and backend, you should
 
 By default, Shopware hides exceptions from your customers, in order to not expose private and/or technical data. If you are experiencing problems with your shop installation, you might want to re-enable the error output while debugging, by pasting this snippet into your `config.php` file:
 
-```
+```php
 array(
     'db' => [
         // your database configuration
@@ -83,20 +83,20 @@ These calls will render the messages "my info", "my warning" and "my error" to t
 
 Setting up Xdebug might not always be possible (e.g. you don't have full admin access over a server) or appropriate for a quick output check. The `error_log` function is useful in those cases. It allows you to write output to the webserver's error log file:
 
-```
-error_log("Hello world");
+```php
+error_log('Hello world');
 ```
 
 In addition to that, `error_log` also allows you to define a file to write to. If you don't have access to the server's log file, or you don't want to spam it with debug messages, this call might be useful to you: 
 
-```
+```php
 error_log(print_r(array('hello', 'world'), true)."\n", 3, Shopware()->DocPath() . '/error.log');
 ```
 
 This will write the content of the array `array('hello', 'world')` properly into the `error.log` file in your Shopware directory.
 In addition to that, you can use the linux `tail` command to constantly print out new lines written to that file:
 
-```
+```bash
 tail -f error.log
 ```
 
@@ -104,7 +104,7 @@ tail -f error.log
 
 Dumping complex object trees (such as Doctrine models) might cause your browser or server to freeze. For this reason, things like this will not work in most cases:
  
-```
+```php
 // bad example
 echo "<pre>";
 print_r(Shopware()->Shop());

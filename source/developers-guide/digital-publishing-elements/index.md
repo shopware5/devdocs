@@ -36,7 +36,7 @@ To add a new element to the Digital Publishing module we will need the following
 ## Registering the subscriber
 First we register a new **subscriber** and the plugin namespace in the `Bootstrap.php` of our plugin.
 
-```
+```php
 public function install()
 {
     $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'registerSubscriber');
@@ -69,7 +69,7 @@ public function registerSubscriber()
 
 To complete this step we have to create the corresponding file in the `Subscriber` directory of our plugin. In our example, we will use a single subscriber called  `Resources`. In most cases, you would create several subscribers, to split the tasks between backend and frontend, for example. But, for this little example, we will just use a single subscriber for all events. So let's take a look at our `Resources.php` file.
 
-```
+```php
 <?php
 
 namespace Shopware\SwagDigitalPublishingSample\Subscriber;
@@ -337,7 +337,7 @@ The YouTube element doesn't need much styling. We're using a combination of `wid
 
 Not every element has a simple structure like the YouTube sample. Sometimes you want to manipulate the data of the element before it gets passed to the frontend. Therefore, we added a special event you can subscribe to. You could use another subscriber to do so.
 
-```
+```php
 public static function getSubscribedEvents()
 {
     return array(

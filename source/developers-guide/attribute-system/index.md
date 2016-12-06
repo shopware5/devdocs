@@ -50,7 +50,7 @@ Following types are supported:
 
 ## Schema operations and configuration
 ### Create a new attribute
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -70,7 +70,7 @@ class SwagAttribute extends Plugin
 Creates a new attribute in the database, which is not configurable for the shop user and won't be displayed in the backend.
 
 ### Update an existing attribute
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -90,7 +90,7 @@ class SwagAttribute extends Plugin
 Updates the existing `my_column` attribute with the new provided data type `text`. In case the attribute doesn't exist, the update function creates the attribute.
 
 ### Change attribute name
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -113,7 +113,7 @@ Some attribute tables have dependencies to other attribute tables. This dependen
 For example attributes which generated for the `s_user_addresses_attributes` table, should also generated in `s_user_billingaddress_attributes`, `s_user_shippingaddress_attributes`, `s_order_billingaddress_attributes`, `s_order_shippingaddress_attributes`.
 The `update` function supports this functionality by providing `true` for parameter `$updateDependingTables`.
 
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -135,7 +135,7 @@ class SwagAttribute extends Plugin
 All above examples only create or update the attribute table schema but won't display the attribute in the corresponding backend module.
 The backend view configuration can be configured over the `$data` parameter which can contain all properties of the `\Shopware\Models\Attribute\Configuration`.
 
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -183,7 +183,7 @@ class SwagAttribute extends Plugin
 ### Shopware.attribute.Form
 All attributes are defined, loaded and saved over the `Shopware.attribute.Form`. It requires only the attribute table and generates all fields dynamically.
 The following example shows how to display, load and save customer attributes:
-```
+```javascript
 me.attributeForm = Ext.create('Shopware.attribute.Form', {
     table: 's_user_attributes'
 });
@@ -246,7 +246,7 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 ```
 The `supports` function is called for each handler until one handler returns `true`. The `create` function creates the field definition for the attribute. It is recommended to use `Ext.apply(field, { })` to support all core features like translation, help text, support text ...
 This extension has to be loaded over the `Enlight_Controller_Action_PostDispatch_Backend_Base` event.
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -512,7 +512,7 @@ Each entity can have its own data providers and search gateways. All search repo
 
 Shopware supports different single and multi selections for a single attribute. This entities are defined in `\Shopware\Bundle\AttributeBundle\Service\TypeMapping::getEntities`.
 It is really simple to define own single and multi selections for plugin entities. It is only required to configure the entity in the attribute configuration.
-```
+```php
 <?php
 
 namespace SwagAttribute;
@@ -551,7 +551,7 @@ class SwagAttribute extends Plugin
 }
 ```
 The `\SwagAttribute\Models\SwagAttribute` contains the following sources:
-```
+```php
 <?php
 
 namespace SwagAttribute\Models;

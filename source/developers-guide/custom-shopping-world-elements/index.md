@@ -75,7 +75,7 @@ In the `install()` method of our plugin we register a new element and save it in
 ## Adding configuration fields to the element ##
 After registering the new element we can add different form fields to the element which can be filled by the user to configure the element. For each type of field there is a helper function which can be called on the newly registered component. We will add some configuration fields to our example element for the different embed options the Vimeo platform offers. 
 
-```
+```php
 $vimeoElement->createTextField([
     'name' => 'vimeo_video_id',
     'fieldLabel' => 'Video ID',
@@ -389,7 +389,7 @@ The name of the file has to match the definition in your `createEmotionComponent
 ## Process the element data before output ##
 When you have to process the saved element data before it is passed to the frontend, you have the possibility to register to the `Shopware_Controllers_Widgets_Emotion_AddElement` controller event. Here you get the original data to manipulate the output.
 
-```
+```php
 public function install()
 {
     // ...
@@ -596,6 +596,6 @@ In the component we can extend the base class of the designer elements `Shopware
 </table>
 
 ## Downloads ##
-You can downlad the complete example plugin with documented code here:
+You can download the complete example plugin with documented code here:
 
 **Example Plugin**: <a href="{{ site.url }}/exampleplugins/SwagVimeoElement.zip">Download</a>.

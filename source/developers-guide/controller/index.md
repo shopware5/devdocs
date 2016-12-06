@@ -67,7 +67,7 @@ An action is a **method** in a controller. In the example above an `index` actio
 action must have the suffix `Action` and must be declared public. For that reason, the method definition for the `index` action
 will look like this:
 
-```
+```php
 public function indexAction()
 {
     // your code goes here
@@ -79,7 +79,7 @@ This makes it easy for you to tell apart public available endpoints from methods
 ## Plugin controllers
 Creating controllers from a plugin is quite easy: Starting from Shopware 4.2.0 there is a `registerController` convenience method you can use in your `install` method:
 
-```
+```php
 public function install()
 {
     $this->registerController('frontend', 'test');
@@ -91,12 +91,13 @@ will do the rest for you automatically.
 
 The `Test.php` should look like this:
 
-```
+```php
+<?php
 class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 {
     public function indexAction()
     {
-        die("Hello world");
+        die('Hello world');
     }
 }
 ```
@@ -126,7 +127,7 @@ Shopware with a "Hello World" message in the main context section.
 #### $this->get()
 You can access the Shopware DI container from every controller:
 
-```
+```php
 $this->get('db');
 $this->get('templatemail');
 ```
@@ -180,7 +181,7 @@ In the callback method of your event, you have complete access to the original c
 the view or some input parameters:
 
 
-```
+```php
 /**
  *  The install method of your plugin bootstrap
  */

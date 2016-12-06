@@ -21,7 +21,9 @@ This tutorial will cover the creation of services and how to use them together w
 ## Services
 Ideally a service is just a simple PHP class with only one responsibility:
 
-```
+```php
+<?php
+
 namespace SwagServicePlugin\Components;
 
 class TaxCalculator
@@ -39,7 +41,9 @@ This way the same instance of this class can be accessed everywhere in Shopware 
 ## Registering the service
 First of all, you should register the namespace of your plugin in your plugin's bootstrap:
 
-```
+```php
+<?php
+
 class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function afterInit()
@@ -54,7 +58,9 @@ class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Com
 
 Now the actual service can be registered using an event:
 
-```
+```php
+<?php
+
 class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()
@@ -77,7 +83,7 @@ and the service name `tax_calculator` in it.
 
 The event callback now just needs to return an instance of the requested service:
 
-```
+```php
 public function onInitTaxCalculator()
 {
     return new \ShopwarePlugins\SwagService\Component\TaxCalculator();
@@ -89,14 +95,14 @@ Be aware that the event will only be emitted (and thus the callback will only be
 ## Calling the service
 The new `TaxCalculator` can now be requested using the Shopware DI container:
 
-```
+```php
 $this->get('swag_service_plugin.tax_calculator');
 ```
 
 This will work e.g. from controllers or plugin bootstraps. You can also use the global Shopware container singleton, if needed:
 
 
-```
+```php
 Shopware()->Container()->get('swag_service_plugin.tax_calculator');
 ```
 
@@ -107,7 +113,9 @@ instances every time the service is requested, a [factory pattern](https://en.wi
 ## Injecting other services
 In many cases, your services might depend on other services. Usually you will inject those using constructor injection:
 
-```
+```php
+<?php
+
 namespace ShopwarePlugins\SwagService\Component;
 
 class TaxCalculator
@@ -129,7 +137,7 @@ class TaxCalculator
 
 In order to inject this dependency, a simple update of the event callback is needed:
 
-```
+```php
 public function onInitTaxCalculator()
 {
     return new \SwagServicePlugin\Components\TaxCalculator(

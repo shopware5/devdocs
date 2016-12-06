@@ -47,7 +47,7 @@ SwagSloganOfTheDay
 
 The Bootstrap `SwagSloganOfTheDay.php` must be namespaced with your plugin name and extend `\Shopware\Components\Plugin`:
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay;
 
@@ -61,12 +61,12 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 Now the plugin can be installed using the Shopware [CLI Commands](/developers-guide/shopware-5-cli-commands/) or the Plugin Manager in the backend.
 
-```
+```bash
 $ php ./bin/console sw:plugin:refresh
 Successfully refreshed
 ```
 
-```
+```bash
 $ php ./bin/console sw:plugin:install --activate SwagSloganOfTheDay
 Plugin SwagSloganOfTheDay has been installed successfully.
 Plugin SwagSloganOfTheDay has been activated successfully.
@@ -79,7 +79,7 @@ At this point the plugin has no functionality at all.
 
 The Pluginbootstrap implements `\Enlight\Event\SubscriberInterface` so it can be used as a [Event Subscriber](/developers-guide/event-guide/#subscribers).
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay;
 
@@ -94,7 +94,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
     public function onRouteStartup(\Enlight_Controller_EventArgs $args)
     {
-        die("A rolling stone gathers no moss");
+        die('A rolling stone gathers no moss');
     }
 }
 ```
@@ -120,7 +120,7 @@ For example the class `\SwagSloganOfTheDay\Log\Writer` will be loaded from file 
 
 During plugin installation / deinstallation / update / activate / deactivate a method on the plugin bootstrap is called that can optionally be overwritten.
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay;
 
@@ -170,7 +170,7 @@ SwagSloganOfTheDay
 └──SwagSloganOfTheDay.php
 ```
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay;
 
@@ -193,7 +193,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 `SwagSloganOfTheDay/Resources/services.xml`
 
-```
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -210,7 +210,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 ### Decorate a service
 The following example shows you how to decorate a service which implements an interface and gets defined in the shopware dependency injection container.
-```
+```php
 <?php
 
 namespace SwagExample\Bundle\StoreFrontBundle;
@@ -242,7 +242,7 @@ class ListProductService implements ListProductServiceInterface
 ```
 The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`. The following service definition decorates this service using the service above:
 
-```
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -268,7 +268,7 @@ For more information see http://symfony.com/doc/current/service_container/servic
 
 By overwriting the `build()`-method the `ContainerBuilder` can extended:
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay;
 
@@ -302,12 +302,11 @@ The `onRouteStartup` subscriber above now will be encapsulated in a subscriber c
 
 `SwagSloganOfTheDay/RouteSubscriber.php`
 
-```
+```php
 <?php
 namespace SwagSloganOfTheDay\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RouteSubscriber implements SubscriberInterface
 {
@@ -336,7 +335,7 @@ After adding the `RouteSubscriber.php`, the subscriber can be added to the `serv
 This allows shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
 
 `SwagSloganOfTheDay/Resources/services.xml`
-```
+```xml
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
@@ -381,7 +380,7 @@ class SwagControllerExample extends Plugin
             $this->getPath() . '/Resources/views/'
         );
 
-        return $this->getPath() . "/Controllers/Frontend/MyController.php";
+        return $this->getPath() . '/Controllers/Frontend/MyController.php';
     }
 }
 ```
@@ -415,7 +414,7 @@ There are two ways to add Shopware [CLI Commands](/developers-guide/shopware-5-c
 
 You can implement the method `registerCommands()` and add commands to the Console application:
 
-```
+```php
 <?php
 namespace SwagCommandExample;
 

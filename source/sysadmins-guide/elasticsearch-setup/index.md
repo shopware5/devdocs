@@ -158,7 +158,7 @@ Internally, Elasticsearch uses [indexes](https://www.elastic.co/guide/en/elastic
 #### Cycling indexes
 
 To avoid downtime, even when you are reindexing your shop's data, Shopware uses multiple indexes instead of just one. When you trigger the reindexing process, Shopware will index your data into a completely new index. While your shop is being indexed, if a customer queries your shop, the old index will be used to provide the results. As such, there's no downtime. Once your indexing process is finished, Shopware will automatically start using the new one. The old index is not deleted. Should you detect a problem with the new index, you can revert to the old one, instead of having to wait for a full reindexing of your shop. Shopware provides a tool to switch back to this old indices:
-```
+```bash
 php bin/console sw:es:switch:alias --shopId=1 --index=sw_shop1_TIMESTAMP
 ```
 Again, this is done so that, no matter what happens, there's no downtime for your customers.
@@ -173,7 +173,7 @@ As mentioned before, Shopware uses a queuing system to asynchronously handle cha
 
 After a new index is created, the old one is no longer used, but is not deleted. Should your new index be corrupted, you can just replace it with the old one, and have your shop running again without downtime. However, as new indexes should be created often (recommended every 24 hours), old indexes can accumulate and start taking up a significant amount of resources. Shopware provides a tool to cleanup those old indexes:
 
-```
+```bash
 php bin/console sw:es:index:cleanup
 ```
 
@@ -183,7 +183,7 @@ This command will delete every old version of an index, but keep the latest. As 
 
 Like the old indices, the processed backlog queue is never deleted which allows to reproduce data changes of the system in case of a index rollback. Shopware provides a tool to cleanup those processed backlog queue:
 
-```
+```bash
 php bin/console sw:es:backlog:clear
 ```
 

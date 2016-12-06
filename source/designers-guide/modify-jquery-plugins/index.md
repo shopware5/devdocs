@@ -28,14 +28,14 @@ Each override uses the new method we provide in Shopware 5.0.2. Here's its basic
 
 ```
 $.overridePlugin('<pluginName>', {
-	'<override the methods>'
+    '<override the methods>'
 });
 ```
 
 ### Modify the animation of the search result
 Basically, you need to alter the method implementation to change the animation. Therefore, we have to override the whole method and replace it with our own implementation.
 
-```
+```javascript
 $.overridePlugin('search', {
     showResult: function(response) {
         var me = this;
@@ -50,7 +50,7 @@ We also added the ability to call the original method and add additional logic t
 
 You have access to the original plugin implementation using the object property ```superclass```.
 
-```
+```javascript
 $.overridePlugin('search', {
     showResult: function() {
         var me = this;
@@ -62,7 +62,7 @@ $.overridePlugin('search', {
 
 As you can see in the example above, we call the original implementation of the ```showResult``` method. Now we can call the overlay and modify the ```z-index``` property of the search result and the search form to position it over the overlay.
 
-```
+```javascript
 $.overridePlugin('search', {
     showResult: function() {
         var me = this;
@@ -79,7 +79,7 @@ $.overridePlugin('search', {
 
 The last thing we have to do is close the overlay when the search result is closed and reset the ```z-index``` property.
 
-```
+```javascript
 $.overridePlugin('search', {
     showResult: function() {
         var me = this;

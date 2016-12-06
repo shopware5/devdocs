@@ -15,7 +15,7 @@ menu_order: 80
 
 The `Theme.php` is the base file of each Shopware theme. It contains the basic information like the name, author, description and the license, which are displayed in the Theme Manager:
 
-```
+```php
 <?php
 namespace Shopware\Themes\Example;
 
@@ -52,10 +52,10 @@ Working with compressors isn't always as easy as adding the files to your HTML s
 
 Simply place your JavaScript files in the `frontend/_public` directory and add their paths to the `$javascript` array in your `Theme.php`:
 
-```
+```php
 /** @var array Defines the files which should be compiled by the javascript compressor */
 protected $javascript = array(
-	'src/js/jquery.my-plugin.js'
+    'src/js/jquery.my-plugin.js'
 );
 ```
 
@@ -63,10 +63,10 @@ protected $javascript = array(
 
 You can add a `$css` array to your `Theme.php` file, similar to the `$javascript` array, with the paths of your CSS files:
 
-```
+```php
 /** @var array Defines the files which should be compiled by the javascript compressor */
 protected $css = array(
-	'src/css/my-styles.css'
+    'src/css/my-styles.css'
 );
 ```
 
@@ -76,7 +76,7 @@ It's possible to add custom configuration options to your theme. Using this meth
 
 To create configuration elements it's necessary to add a `createConfig()` method to your `Theme.php`. This method specifies the elements you need for the configuration form. The first parameter is the container element of type `Shopware\Components\Form\Container\TabContainer` where you can add additional fields as well as other container elements:
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
@@ -95,7 +95,7 @@ public function createConfig(Form\Container\TabContainer $container)
 
 The `$container` also accepts other container elements like a tab or a fieldset:
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
@@ -142,13 +142,13 @@ $this->createTextField([unique name], [label], [default value]);
 
 In the following example, we create a text and a color picker fields. The name of any field is mandatory and has to be unique. It will be used to assign the value of the field to the storefront:
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
 public function createConfig(Form\Container\TabContainer $container)
 {
-	// Create the fieldset which is the container of our field
+    // Create the fieldset which is the container of our field
     $fieldset = $this->createFieldSet(
         'my_custom_settings',
         'My custom settings'
@@ -156,9 +156,9 @@ public function createConfig(Form\Container\TabContainer $container)
 
     // Create the textfield
     $textField = $this->createTextField(
-    	'basic_font_size',
-    	'Basic font size',
-    	'16px'
+        'basic_font_size',
+        'Basic font size',
+        '16px'
     );
     
     // Create the color picker field
@@ -209,7 +209,7 @@ Helper methods like `createTab()` or `createFieldSet()` automatically create Ext
 
 This attributes array creates a two-column layout for the field set from the previous example:
 
-```
+```php
 $fieldset = $this->createFieldSet(
     'my_custom_settings',
     'My custom settings',
@@ -237,7 +237,7 @@ If you'd like to learn more about the layout options which can be used in the at
 
 It is also possible to create a completely blank theme configuration. To prevent your theme configuration from showing the parent theme configuration you can add the `$inheritanceConfig` variable to your `Theme.php`:
 
-```
+```php
 protected $inheritanceConfig = false;
 ```
 
@@ -255,7 +255,7 @@ Every existing field which is not overwritten in your <code>Theme.php</code> wil
 
 With every theme configuration you have the ability to create custom configuration sets. Inside those configuration sets you can apply a specific value to each configuration field using the `setValues()` method. In this example the color field gets a hex value for red and the font size field gets an increased value of 20px:
 
-```
+```php
 public function createConfigSets(ArrayCollection $collection)
 {
     $set = new ConfigSet();

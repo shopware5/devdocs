@@ -56,7 +56,7 @@ In JavaScript, functions should use camelCase but should not capitalize the firs
 
 ```
 doSomething: function (foo, bar) {
-	...
+    ...
 }
 ```
 
@@ -72,8 +72,8 @@ function valueObject(value) { return { value: value }; }
 var foo = { prop1: "value1" };
 
 var bar = {
-	prop1: "value1",
-	prop2: "value2"
+    prop1: "value1",
+    prop2: "value2"
 };
 ```
 
@@ -81,7 +81,7 @@ Constructors for objects should be capitalized and use CamelCase:
 
 ```
 function ObjectConstructor() {
-	this.foo = '';
+    this.foo = '';
 }
 ```
 
@@ -89,7 +89,7 @@ function ObjectConstructor() {
 Follow these naming prefix conventions:
 
 * ```_ = member (variable or function)```
-	* e.g. ```_length``` or ```_setType(type)```
+    * e.g. ```_length``` or ```_setType(type)```
 * ```on = event handler```
-	* e.g ```function onLoad()```
+    * e.g ```function onLoad()```
  

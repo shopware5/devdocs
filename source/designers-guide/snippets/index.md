@@ -63,7 +63,7 @@ While snippets are mostly used to translate plain text, they are flexible enough
 
 Snippet handling is configurable, so you can decide exactly how snippets are loaded and saved by Shopware. This can be changed in your `config.php` file, inside the `snippet` section:
 
-```
+```php
 array(
     'db' => array(
         // your database configuration
@@ -127,7 +127,7 @@ The `ThemeDirectory` location will depend on where you are developing. You might
 
 Manually generating .ini files, however, is a task you don't have to do. You can just define the snippets in your template files and, when you navigate to that page on your browser, Shopware can automatically create those snippets for you.
 
-```
+```php
 array(
     'db' => array(
         // your database configuration

@@ -25,40 +25,40 @@ This guide will introduce you to the new features and additions to the new Shopw
 - Theme specific registration of Smarty Plugins
 - Snippets are now be directly included in the theme directory
 - Fully restructured HTML5 structure with backward compatibility in mind
-	- Mobile first approach
-	- HTML5 form validation
-	- Rich snippets based on [schema.org](http://schema.org)
-	- Massive increase of Smarty blocks in the theme
+    - Mobile first approach
+    - HTML5 form validation
+    - Rich snippets based on [schema.org](http://schema.org)
+    - Massive increase of Smarty blocks in the theme
 - Retina ready adaptive images
-	- State of the art implementation using the HTML5 ```picture``` element
-	- Automatically creation of high dpi images for products and emotion worlds using the Media Manager module
+    - State of the art implementation using the HTML5 ```picture``` element
+    - Automatically creation of high dpi images for products and emotion worlds using the Media Manager module
 - Fully configurable using the Theme Manager
-	- Easily change the color of the complete theme
-	- 9 pre-configured color sets
-	- Changing your logo is as easy as selecting an image in the Media Manager module
+    - Easily change the color of the complete theme
+    - 9 pre-configured color sets
+    - Changing your logo is as easy as selecting an image in the Media Manager module
 - Built-in LESS compiler
-	- CSS source maps for easier debugging
-	- Component based styling
-	- Over 20 provided mixins
-	- All variables are configurable using the Theme Manager module in the Shopware backend
+    - CSS source maps for easier debugging
+    - Component based styling
+    - Over 20 provided mixins
+    - All variables are configurable using the Theme Manager module in the Shopware backend
 - Built-in Javascript compressor
-	- Concatenates all provided files to reduce the amount of HTTP requests
-	- Strips all whitespaces and inline comments for a smaller footprint
+    - Concatenates all provided files to reduce the amount of HTTP requests
+    - Strips all whitespaces and inline comments for a smaller footprint
 - Responsive Javascript State Manager and own jQuery plugin system
-	- Runs your jQuery plugin only for a specific breakpoint
-	- Simplifies the development of jQuery plugins
-	- Automatically unbinding of event listeners
-	- Destroys automatically jQuery plugins which aren't used in the certain viewport
-	- Global event system for easier communication between jQuery plugins
+    - Runs your jQuery plugin only for a specific breakpoint
+    - Simplifies the development of jQuery plugins
+    - Automatically unbinding of event listeners
+    - Destroys automatically jQuery plugins which aren't used in the certain viewport
+    - Global event system for easier communication between jQuery plugins
 - Fully customizable off-canvas panel
 - Infinite scrolling mode for the product listings
 - State of the art technologies
-	- [bower](http://bower.io/) as the package manager for third-party components
-	- Feature detection using [Modernizr](http://modernizr.com/)
-	- Pure CSS responsive grid system using [PocketGrid](http://arnaudleray.github.io/pocketgrid/)
-	- [jQuery](http://jquery.com/) 2.1.11 included
-	- CSS3 Animations with a jQuery fallback using [jQuery Transit](http://ricostacruz.com/jquery.transit/)
-	- Scalable icon set with 295 pre defined icons
+    - [bower](http://bower.io/) as the package manager for third-party components
+    - Feature detection using [Modernizr](http://modernizr.com/)
+    - Pure CSS responsive grid system using [PocketGrid](http://arnaudleray.github.io/pocketgrid/)
+    - [jQuery](http://jquery.com/) 2.1.11 included
+    - CSS3 Animations with a jQuery fallback using [jQuery Transit](http://ricostacruz.com/jquery.transit/)
+    - Scalable icon set with 295 pre defined icons
 - Ajaxified the emotion worlds, note functionality and compare function
 
 ## Compatibility note
@@ -108,7 +108,7 @@ The ```Theme.php``` is the base file of each and every theme. It provides the ba
 
 The following example shows a demo ```Theme.php``` file for a theme named "Example":
 
-```
+```php
 <?php
 namespace Shopware\Themes\Example;
 
@@ -118,20 +118,20 @@ use Shopware\Components\Theme\ConfigSet;
 
 class Theme extends \Shopware\Components\Theme
 {
-	/** @var string Defines the parent theme */
-	protected $extend = 'Bare';
+    /** @var string Defines the parent theme */
+    protected $extend = 'Bare';
 
-	/** @var string Defines the human readable name */
-	protected $name = 'Example';
+    /** @var string Defines the human readable name */
+    protected $name = 'Example';
 
-	/** @var string Description of the theme */
-	protected $description = 'An awesome Shopware theme';
+    /** @var string Description of the theme */
+    protected $description = 'An awesome Shopware theme';
 
-	/** @var string The author of the theme */
-	protected $author = 'shopware AG';
+    /** @var string The author of the theme */
+    protected $author = 'shopware AG';
 
-	/** @var string License of the theme */
-	protected $license = 'MIT';
+    /** @var string License of the theme */
+    protected $license = 'MIT';
 }
 ```
 
@@ -140,10 +140,10 @@ Working with compressors isn't always as easy as adding the files to your HTML s
 
 Simply place your javascript files in the ```frontend/_public``` directory and add their paths to the ```$javascript``` array in your ```Theme.php```, and you're good to go.
 
-```
+```php
 /** @var array Defines the files which should be compiled by the javascript compressor */
 protected $javascript = array(
-	'src/js/jquery.my-plugin.js'
+    'src/js/jquery.my-plugin.js'
 );
 ```
 
@@ -153,10 +153,10 @@ The built-in LESS compiler searches for a file named ```all.less``` in the ```fr
 ### I don't know LESS, what can I do?
 You can add a ```$css``` array to your ```Theme.php``` file, similar to the ```$javascript``` array, with the paths of your CSS files:
 
-```
+```php
 /** @var array Defines the files which should be compiled by the javascript compressor */
 protected $css = array(
-	'src/css/my-styles.css'
+    'src/css/my-styles.css'
 );
 ```
 
@@ -172,7 +172,7 @@ The following example shows how to use the mixin using a ```12px font-size```:
 
 ```
 p {
-	.unitize(font-size, 12);
+    .unitize(font-size, 12);
 }
 ```
 
@@ -184,7 +184,7 @@ It's possible to add custom configuration options to your theme. Using this meth
 ### Creating configuration elements
 To create configuration elements it's necessary to add a ```createConfig()``` method to your ```Theme.php```. The method specifies the elements you need for the configuration form. The first parameter is the container element of type ```Shopware\Components\Form\Container\TabContainer``` where you can add additional fields as well as other container elements.
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
@@ -202,7 +202,7 @@ public function createConfig(Form\Container\TabContainer $container)
 #### Container elements
 The ```$container``` also accepts other container elements like a tab or a fieldset.
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
@@ -248,13 +248,13 @@ $this->createTextField([unique name], [label], [default value]);
 
 In the following example we created a textfield with the label ```Basic font size``` and the name ```basic_font_size```. The name of any field is mandatory and has to be unique. It will be used to assign the value of the field to the storefront.
 
-```
+```php
 /**
  * @param Form\Container\TabContainer $container
  */
 public function createConfig(Form\Container\TabContainer $container)
 {
-	// Create the fieldset which is the container of our field
+    // Create the fieldset which is the container of our field
     $fieldset = $this->createFieldSet(
         'responsive_fieldset',
         'My responsive settings'
@@ -262,9 +262,9 @@ public function createConfig(Form\Container\TabContainer $container)
 
     // Create the textfield
     $textField = $this->createTextField(
-    	'basic_font_size',
-    	'Basic font size',
-    	'16px'
+        'basic_font_size',
+        'Basic font size',
+        '16px'
     );
 
     $fieldset->addElement($textField);
@@ -298,7 +298,7 @@ Using the "Bare" theme as the foundation for your own theme is easy.
 
 To modify the parent theme of your custom theme, open your ```Theme.php``` file and modify the following property:
 
-```
+```php
 <?php
 namespace Shopware\Themes\Example;
 
@@ -308,8 +308,8 @@ use Shopware\Components\Theme\ConfigSet;
 
 class Theme extends \Shopware\Components\Theme
 {
-	/** @var string Defines the parent theme */
-	protected $extend = 'Bare';
+    /** @var string Defines the parent theme */
+    protected $extend = 'Bare';
 }
 ```
 

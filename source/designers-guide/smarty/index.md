@@ -38,7 +38,7 @@ To start with, we use Smarty to output the data we receive from the shop system.
 
 **Example:** *Variable output*
 
-```
+```html
 <h2>{$sArticle.name}</h2>
 ```
 
@@ -49,7 +49,7 @@ Sometimes we not only want to simply output the content of a variable, but manip
 
 **Example:** *Applying a modifier to a variable*
 
-```
+```html
 <div>
     {$sArticle.description|truncate:120}
 </div>
@@ -61,7 +61,7 @@ You can also use more than one modifier on a variable by lining them up. They ge
 
 **Example:** *Applying two modifiers*
 
-```
+```html
 <div>
     {$sArticle.description|strip_tags|truncate:120}
 </div>
@@ -87,7 +87,7 @@ To handle a larger set of data, like a list of products, we can create dynamic o
 
 **Example:** *Looping through an array*
 
-```
+```html
 <ul>
     {foreach $sArticles as $item}
         <li>{$item.name}</li>
@@ -115,7 +115,7 @@ We recommend to always use the inheritance system when creating custom themes
 
 **Example:** *Specify a parent theme in the Theme.php*
 
-```
+```php
 class Theme extends \Shopware\Components\Theme
 {
     protected $extend = 'Responsive';
@@ -128,7 +128,7 @@ class Theme extends \Shopware\Components\Theme
 <img src="/designers-guide/smarty/injectBeforePlugins.jpg" alt="Inheritance and plugin templates" style="width: 400px; float: right; margin:0 0 0 40px;" />
 The plugins installed to your shop have a special position in the order of the inheritance system. All plugin templates are processed after the templates of the core themes. You can decide if your theme should be processed before or after the plugin templates by setting the `$injectBeforePlugins` variable in your `Theme.php` file. If you want to create a normal theme, which can be purchased in the shopware community store, the value should be set to `true`, so your theme is processed before the plugins. This ensures that all plugins can be used with your theme. When you want to make some local changes to specific plugins, you can set the value to `false` for extending the plugin templates.
 
-```
+```php
 class Theme extends \Shopware\Components\Theme
 {
     protected $extend = 'Responsive';
@@ -178,7 +178,7 @@ When you inherit a template file via the `{extends}` method, you're provided wit
 
 ```
 {block name="frontend_index_logo"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
     <div class="shop--slogan"> 
         <h2>My shop is the best!</h2>

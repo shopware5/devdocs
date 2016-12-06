@@ -98,7 +98,7 @@ We will overwrite the default listing and include our own customized product box
 
 We will simply overwrite the default listing block and add our own iteration through the products with an `{foreach}` tag. For every article that is found we will include a custom product box, that we will create next. We also define the `$productBoxLayout` variable of Shopware as `custom`:
 
-```
+```html
 {block name="frontend_listing_list_inline"}
     {$productBoxLayout = "custom"}
     <div class="custom-listing--listing">

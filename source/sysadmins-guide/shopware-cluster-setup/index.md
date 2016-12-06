@@ -126,18 +126,18 @@ Scaling:
 ### Elasticsearch
 Elasticsearch is a so called "no sql" storage, a non relational database engine, which is very efficient in searching
 and filtering big catalogues. For that reason it can optionally be used, if you have many articles in your shop
-or if there are special requirements for filtering and searching. Shopware generally recommends using elasticsearch
+or if there are special requirements for filtering and searching. Shopware generally recommends using Elasticsearch
 if more then ~140000 articles are in place. Even with less articles your overall system performance might profit from
-using elasticsearch, as filtering and search queries will usually generate quite some load on the database and
+using Elasticsearch, as filtering and search queries will usually generate quite some load on the database and
 have a low cache hit rate.
-Additional information regarding [elasticsearch are available here](/sysadmins-guide/elasticsearch-setup/).
+Additional information regarding [Elasticsearch are available here](/sysadmins-guide/elasticsearch-setup/).
 
 Responsibility:
 * Search and filter articles quickly
 * reduce load on database engine
 
 Software to run:
-* elasticsearch >= 2.0
+* Elasticsearch >= 2.0
 
 Scaling:
 * scales horizontally (numerous ES server possible)

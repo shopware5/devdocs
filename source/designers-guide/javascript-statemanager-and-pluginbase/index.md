@@ -140,55 +140,55 @@ $.plugin('example', {
 
 ### Class properties
 * ```_name : String```
-	* Name of the plugin. 
+    * Name of the plugin. 
 * ```$el : jQuery```
-	* The HTMLElement which instanciated the plugin as a jQuery object.
+    * The HTMLElement which instanciated the plugin as a jQuery object.
 * ```opts : Object```
-	* Result of the default configuration and the provides user configuration. Keep in mind that calling the ```this.applyDataAttributes()``` method overrides the property values in the object.
+    * Result of the default configuration and the provides user configuration. Keep in mind that calling the ```this.applyDataAttributes()``` method overrides the property values in the object.
 * ```_events : Array```
-	* Collection, which contains all registered event listener which are added using the ```_on``` method.
-	
+    * Collection, which contains all registered event listener which are added using the ```_on``` method.
+    
 ### Class methods
 * ```init()```
-	* Template method which acts as the constructor of the plugin where you can cache the necessary HTML elements and set up the event listeners.
+    * Template method which acts as the constructor of the plugin where you can cache the necessary HTML elements and set up the event listeners.
 * ```destroy()```
-	* Template method which destroyes the plugin. Usually you remove classes and event listeners which you're added to the element. The method should be implemented in your plugin especially when you plan to provide the plugin functionality only for certain states.
+    * Template method which destroyes the plugin. Usually you remove classes and event listeners which you're added to the element. The method should be implemented in your plugin especially when you plan to provide the plugin functionality only for certain states.
 * ```update()```
-	* Template method which will be called when a certain state was entered / left to update the behavior of the plugin. This method is only necessary when you use the StateManager to instanciate the plugin.
+    * Template method which will be called when a certain state was entered / left to update the behavior of the plugin. This method is only necessary when you use the StateManager to instanciate the plugin.
 * ```_destroy()```
-	* Private method which iterates over the registered event listeners in the ```_events``` property of the plugin. Additionally the method removes the in-memory binding of the plugin to the element using the jQuery's ```removeData()``` method and fires an event on the globally available observer.
+    * Private method which iterates over the registered event listeners in the ```_events``` property of the plugin. Additionally the method removes the in-memory binding of the plugin to the element using the jQuery's ```removeData()``` method and fires an event on the globally available observer.
 * ```_on()```
-	* **Arguments**
-		* ```element : jQuery | HTMLElement``` - The event target for the specified event listener.
-		* ```event : String``` - A string representing the event type to listen for.
-		* ```fn : Function``` - The object that receives a notification when an event of the specified type occurs.
-	* Proxy method for jQuery's ```on()``` method which binds an event listener to the provided element and registers the listener in the ```_events``` event collection.
+    * **Arguments**
+        * ```element : jQuery | HTMLElement``` - The event target for the specified event listener.
+        * ```event : String``` - A string representing the event type to listen for.
+        * ```fn : Function``` - The object that receives a notification when an event of the specified type occurs.
+    * Proxy method for jQuery's ```on()``` method which binds an event listener to the provided element and registers the listener in the ```_events``` event collection.
 * ```_off()```
-	* **Arguments**
-		* ```element : jQuery | HTMLElement``` - The event target which has an event listener
-		* ```event : String``` - One or more space-separated event types and optional namespaces, or just namespaces, such as "click" or "keydown.myPlugin"
+    * **Arguments**
+        * ```element : jQuery | HTMLElement``` - The event target which has an event listener
+        * ```event : String``` - One or more space-separated event types and optional namespaces, or just namespaces, such as "click" or "keydown.myPlugin"
 * ```getName()```
-	* Getter method for the plugin name.
+    * Getter method for the plugin name.
 * ```getEventName()```
-	* **Arguments**
-		* ```event : String | Array``` - One or more space-separated event types
-	* Applies the event namespace to the provided event types.
+    * **Arguments**
+        * ```event : String | Array``` - One or more space-separated event types
+    * Applies the event namespace to the provided event types.
 * ```getElement()```
-	* Getter method for the element which instanciate the plugin.
+    * Getter method for the element which instanciate the plugin.
 * ```getOptions()```
-	* Getter method for the merged configuration object.
+    * Getter method for the merged configuration object.
 * ```getOption()```
-	* **Arguments**
-		* ```key : String``` - Key of the configuration property
-	* Getter method for a certain configuration property
+    * **Arguments**
+        * ```key : String``` - Key of the configuration property
+    * Getter method for a certain configuration property
 * ```setOption()```
-	* **Arguments**
-		* ```key : String``` - Key of the configuration property
-		* ```value : Mixed``` - Value for the provided key
-	* Setter method which overrides the value of the provided key with the provided value.
+    * **Arguments**
+        * ```key : String``` - Key of the configuration property
+        * ```value : Mixed``` - Value for the provided key
+    * Setter method which overrides the value of the provided key with the provided value.
 * ```applyDataAttributes()```
-	* Fetches the provided configuration keys and overrides the values based on the elements ```data``` attributes.
-	
+    * Fetches the provided configuration keys and overrides the values based on the elements ```data``` attributes.
+    
 ## Global jQuery event observer
 
 We added a global event server into Shopware 5 too. It provides us with the ability to define events globally on the jQuery object and therefor every plugin can listen to this events:
@@ -199,7 +199,7 @@ $.publish('plugin/some-plugin/onInit', me);
 
 // Listen for an event
 $.subscribe('plugin/some-plugin/onInit', function() {
-	console.log('onInit');
+    console.log('onInit');
 })
 
 // Remove event listener
@@ -239,20 +239,20 @@ The state manager is self-containing and globally available in the global javasc
 It has been initialized with the following breakpoints:
 
 * State XS
-	* Range between ```0``` and ```479``` pixels
-	* Usually used for smartphones in portrait mode
+    * Range between ```0``` and ```479``` pixels
+    * Usually used for smartphones in portrait mode
 * State S
-	* Range between ```480``` and ```767``` pixels
-	* Usually used for smartphones in landscape mode
+    * Range between ```480``` and ```767``` pixels
+    * Usually used for smartphones in landscape mode
 * State M
-	* Range between ```768``` and ```1023``` pixels
-	* Usually used for tablets in portrait mode
+    * Range between ```768``` and ```1023``` pixels
+    * Usually used for tablets in portrait mode
 * State L
-	* Range between ```1024``` and ```1259``` pixels
-	* Usually used for tablets in landscape mode, netbooks and desktop PCs
+    * Range between ```1024``` and ```1259``` pixels
+    * Usually used for tablets in landscape mode, netbooks and desktop PCs
 * State XL
-	* Range between ```1260``` and ```5160``` pixels
-	* Usually used for desktop PCs with a high resolution monitor
+    * Range between ```1260``` and ```5160``` pixels
+    * Usually used for desktop PCs with a high resolution monitor
 
 ### Adding an event listener
 Registering or removing an event listener which uses the state manager is as easy as doing it in pure javascript.
@@ -261,9 +261,9 @@ The following example shows how to register an event listener:
 
 ```javascript
 StateManager.registerListener([{
-	state: 'xs',
-	enter: function() { console.log('onEnter'); },
-	exit: function() { console.log('onExit'); }
+    state: 'xs',
+    enter: function() { console.log('onEnter'); },
+    exit: function() { console.log('onExit'); }
 }]);
 ```
 
@@ -271,9 +271,9 @@ The registration of event listeners also supports wildcards, so the ```enter()``
 
 ```javascript
 StateManager.registerListener([{
-	state: '*',
-	enter: function() { console.log('onEnter'); },
-	exit: function() { console.log('onExit'); }
+    state: '*',
+    enter: function() { console.log('onEnter'); },
+    exit: function() { console.log('onExit'); }
 }]);
 ```
 
@@ -284,91 +284,91 @@ The default breakpoints can be extended using the ```registerBreakpoint()``` met
 
 ```javascript
 StateManager.registerBreakpoint({
-	state: 'xxl',
-	enter: 78.75  // = 1260px
-	exit: 90      // = 1440px
+    state: 'xxl',
+    enter: 78.75  // = 1260px
+    exit: 90      // = 1440px
 });
 ```
 
 ### Class methods
 * ```init()```
-	* **Arguments**
-		* ```breakpoints : Array | Object``` - The states, which should be available on start up
-	* Initializes the StateManager and registers the provided breakpoints, adds a browser specific class to the ```html``` element and sets a device specific cookie.
+    * **Arguments**
+        * ```breakpoints : Array | Object``` - The states, which should be available on start up
+    * Initializes the StateManager and registers the provided breakpoints, adds a browser specific class to the ```html``` element and sets a device specific cookie.
 * ```registerBreakpoint()```
-	* **Arguments**
-		* ```breakpoints : Array | Object``` - The states, which should be available on start up
-	* Registers an additional breakpoint to the State Manager.
+    * **Arguments**
+        * ```breakpoints : Array | Object``` - The states, which should be available on start up
+    * Registers an additional breakpoint to the State Manager.
 * ```removeBreakpoint()```
-	* **Arguments**
-		*  ```state : String``` - State which should be removed e.g. "xs" or "l"
-	* Removes the provided state from the StateManager.
+    * **Arguments**
+        *  ```state : String``` - State which should be removed e.g. "xs" or "l"
+    * Removes the provided state from the StateManager.
 * ```registerListener()```
-	* **Arguments**
-		* ```listener : Array | Object``` - Either a single listener object or an array with multiple listener objects
-	* Registers an event listener to the StateManager. The listener will be fired when the provided state is entered or left.
+    * **Arguments**
+        * ```listener : Array | Object``` - Either a single listener object or an array with multiple listener objects
+    * Registers an event listener to the StateManager. The listener will be fired when the provided state is entered or left.
 * ```addPlugin()```
-	* **Arguments**
-		* ```selector : String | HTMLElement | jQuery``` - Element selector
-		* ```pluginName : String``` - Name of the plugin which should be added to the selector.
-		* ```config : Object (optional)``` - Custom configuration for the plugin. Can be omitted.
-		* ```viewport: Array | String``` - The states where the plugin should be active.
-	* Registers a jQuery stateful to the StateManager. This functionality is especially useful when you want to provide a certian behavior only for specific states.
+    * **Arguments**
+        * ```selector : String | HTMLElement | jQuery``` - Element selector
+        * ```pluginName : String``` - Name of the plugin which should be added to the selector.
+        * ```config : Object (optional)``` - Custom configuration for the plugin. Can be omitted.
+        * ```viewport: Array | String``` - The states where the plugin should be active.
+    * Registers a jQuery stateful to the StateManager. This functionality is especially useful when you want to provide a certian behavior only for specific states.
 * ```removePlugin()```
-	* **Arguments**
-		* ```selector : String | HTMLElement | jQuery``` - Element selector
-		* ```pluginName : String``` - Name of the plugin which should be removed from the selector.
-		* ```viewport: Array | String``` - A state where the plugin should be removed.
-	* Removes a previously added plugin from a element for a certain state.
+    * **Arguments**
+        * ```selector : String | HTMLElement | jQuery``` - Element selector
+        * ```pluginName : String``` - Name of the plugin which should be removed from the selector.
+        * ```viewport: Array | String``` - A state where the plugin should be removed.
+    * Removes a previously added plugin from a element for a certain state.
 * ```updatePlugin()```
-	* **Arguments**
-		* ```selector : String | HTMLElement | jQuery``` - Element selector
-		* ```pluginName : String``` - Name of the plugin which should be updated.
-	* Programmatically update a plugin on an element. Usually the StateManager should call the ```update()``` method of the plugin themself. The method calls the ```update()``` method of the plugin.
+    * **Arguments**
+        * ```selector : String | HTMLElement | jQuery``` - Element selector
+        * ```pluginName : String``` - Name of the plugin which should be updated.
+    * Programmatically update a plugin on an element. Usually the StateManager should call the ```update()``` method of the plugin themself. The method calls the ```update()``` method of the plugin.
 * ```destroyPlugin()```
-	* **Arguments**
-		* ```selector : String | HTMLElement | jQuery``` - Element selector
-		* ```pluginName : String``` - Name of the plugin which should be destroyed.
-	* The method removes the plugin from the StateManager. Unlike to the ```removePlugin()``` method, the method calls the ```destroy()``` method of the provided plugin.
+    * **Arguments**
+        * ```selector : String | HTMLElement | jQuery``` - Element selector
+        * ```pluginName : String``` - Name of the plugin which should be destroyed.
+    * The method removes the plugin from the StateManager. Unlike to the ```removePlugin()``` method, the method calls the ```destroy()``` method of the provided plugin.
 * ```getViewportWidth()```
-	* Getter method which returns the current width of browser window.
+    * Getter method which returns the current width of browser window.
 * ```getViewportHeight()```
-	* Getter method which returns the current height of browser window.
+    * Getter method which returns the current height of browser window.
 * ```getPreviousState()```
-	* Returns the previous state. This can be either a ```String``` or ```null``` when no previous state was active.
+    * Returns the previous state. This can be either a ```String``` or ```null``` when no previous state was active.
 * ```isPreviousState()```
-	* **Arguments**
-		* ```state : String``` - State which should be checked e.g. "xs" or "l"
-	* Determine if the argument passed was the previous active state.
+    * **Arguments**
+        * ```state : String``` - State which should be checked e.g. "xs" or "l"
+    * Determine if the argument passed was the previous active state.
 * ```getCurrentState()```
-	* Getter method which returns the currently active state.
+    * Getter method which returns the currently active state.
 * ```isCurrentState()```
-	* **Arguments**
-		* ```state : String``` - State which should be checked e.g. "xs" or "l"
-	* Determine if the argument passed is the currently active state.
+    * **Arguments**
+        * ```state : String``` - State which should be checked e.g. "xs" or "l"
+    * Determine if the argument passed is the currently active state.
 * ```isPortraitMode()```
-	* Determine if the device is in portrait mode.
+    * Determine if the device is in portrait mode.
 * ```isLandscapeMode()```
-	* Determine if the device is in landscape mode.
+    * Determine if the device is in landscape mode.
 * ```getDevicePixelRatio()```
-	* Determine the pixel device ratio of the device.
+    * Determine the pixel device ratio of the device.
 * ```isBrowser()```
-	* **Arguments**
-		* ```browser : String``` - Browser name to test e.g. "firefox" or "safari"
-	* Determine if the argument passed is the current browser of the user.
+    * **Arguments**
+        * ```browser : String``` - Browser name to test e.g. "firefox" or "safari"
+    * Determine if the argument passed is the current browser of the user.
 * ```getScrollBarHeight()```
-	* Returns the default scroll bar width of the browser.
+    * Returns the default scroll bar width of the browser.
 * ```matchMedia()```
-	* ```matchMedia``` polyfill, which provides the ability to test CSS media queries in javascript.
+    * ```matchMedia``` polyfill, which provides the ability to test CSS media queries in javascript.
 * ```requestAnimationFrame()```
-	* ```requestAnimationFrame``` polyfill for cross-browser support
+    * ```requestAnimationFrame``` polyfill for cross-browser support
 * ```cancelAnimationFrame()```
-	* ```cancelAnimationFrame``` polyfill for cross-browser support
+    * ```cancelAnimationFrame``` polyfill for cross-browser support
 * ```getVendorProperty()```
-	* **Arguments**
-		* ```property : String``` - The property which needs the vendor prefix
-		* ```softError : Boolean``` - Truthy to return the provided property when no vendor was found, otherwise the method returns ```null```
-	* Tests the provided CSS style property on an empty div with all vendor properties.
+    * **Arguments**
+        * ```property : String``` - The property which needs the vendor prefix
+        * ```softError : Boolean``` - Truthy to return the provided property when no vendor was found, otherwise the method returns ```null```
+    * Tests the provided CSS style property on an empty div with all vendor properties.
 
 ## Working with stateful jQuery plugins
 The combination of the StateManager paired with the jQuery plugin base class provides an easy-to-use way to register jQuery plugins for certain state. That provides us with the ability to provide a different behavior of components based on the current active state. For example the Offcanvas menu plugin is only active on mobile devices (states "xs" and "s") and is disabled on tablets and desktop pc's.
@@ -408,7 +408,7 @@ StateManager.addPlugin('.my-selector', 'myPlugin', {
 }, 's');
 ```
 
-	
+
 ## Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
 
@@ -417,6 +417,6 @@ Simply place your javascript files in the ```frontend/_public``` directory and a
 ```php
 /** @var array Defines the files which should be compiled by the javascript compressor */
 protected $javascript = array(
-	'src/js/jquery.my-plugin.js'
+    'src/js/jquery.my-plugin.js'
 );
 ```

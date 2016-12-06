@@ -14,7 +14,3 @@ sculpin:
 sculpin_less:
     files:
         - assets/css/basic.less
-
-sculpin_algolia:
-  application_id: 'DX6UMWHNHY'
-  index_name:     'developers.shopware.com_prod'

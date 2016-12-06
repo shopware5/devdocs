@@ -3,10 +3,9 @@
     "sculpin/sculpin": "^2.1@dev",
     "dflydev/embedded-composer": "^1.0@dev",
     "bcremer/sculpin-less-bundle": "~0.1",
-    "mavimo/sculpin-redirect-bundle": "@dev",
     "bcremer/sculpin-commonmark-bundle": "^0.4.0",
+    "mavimo/sculpin-redirect-bundle": "@dev",
     "webuni/commonmark-table-extension": "^0.6.0",
-    "algolia/algoliasearch-client-php": "^1.6",
     "janbuecker/sculpin-meta-navigation-bundle": "^0.4",
     "ivopetkov/html5-dom-document-php": "^0.4.1"
   },

@@ -59,13 +59,13 @@ If the newsletter recipient cannot display HTML emails, Shopware will use the ne
 
 To change the **newsletter logo (1)** navigate to the index directory of the Shopware default newsletter theme: `themes/Frontend/Bare/newsletter/index`. Now copy the `header.tpl` file into the matching directory of your created theme: `themes/Frontend/NewsDocExample/newsletter/index`. Within the copied file you can see the following code on line 4:
 
-```
+```html
 <img align="left" src="{link file='frontend/_public/src/img/logos/logo--mobile.png' fullPath}" />
 ```
 
 If you don't want to display the default shop logo you can simply replace the path with a path to your desired image. In this example we copied our new logo into the `frontend/_public/src/img/logos/` directory of our `NewsDocExample` theme:
 
-```
+```html
 <img align="left" src="{link file='frontend/_public/src/img/logos/logo--newsletter.png' fullPath}" />
 ```
 
@@ -73,13 +73,13 @@ If you don't want to display the default shop logo you can simply replace the pa
 
 In this example we will change the color of the **newsletter headline (2)** in the right top corner. To change the color you can also edit your copied `header.tpl` file from the logo example. You can find the desired code in line 7:
 
-```
+```html
 <span style="color:#999;font-size:13px;">NEWSLETTER</span>
 ```
 
 Now you can modify the color property with another value. In this example we replace the color with a default red:
 
-```
+```html
 <span style="color:#ff0000;font-size:13px;">NEWSLETTER</span>
 ```
 
@@ -89,13 +89,13 @@ At first navigate into the default newsletter theme again: `themes/Frontend/Bare
 
 If you want to edit the **general appearance of the newsletter (3)** you can e.g. modify the styling of the wrapping newsletter table on line 37:
 
-```
+```html
 <table align="center" width="560" bgcolor="#ffffff" border="0" cellspacing="25" cellpadding="0" style="color:#8c8c8c; border:1px solid #dfdfdf;font-family:Arial,Helvetica;">
 ```
 
 In our example we will change the `bgcolor` attribute to a grey tone as well as the border to 2 pixels with a default red color:
 
-```
+```html
 <table align="center" width="560" bgcolor="#d8d8d8" border="0" cellspacing="25" cellpadding="0" style="color:#8c8c8c; border:2px solid #ff0000;font-family:Arial,Helvetica;">
 ```
 
@@ -103,9 +103,9 @@ In our example we will change the `bgcolor` attribute to a grey tone as well as 
 
 To change the **newsletter footer (4)** you copy the `footer.tpl` within the `themes/Frontend/Bare/newsletter/index` directory into your matching theme directory as in the examples before. In our example we will edit the copyright snippet in line 21 and change its color to red:
 
-```
+```html
 <td style="font-size:13px;text-align:left;color:#ff0000;margin:0;padding:0;padding-top:10px;">
-	{s name='NewsletterFooterCopyright'}{/s}
+    {s name='NewsletterFooterCopyright'}{/s}
 </td>
 ```
 
@@ -159,24 +159,24 @@ Within the extended `index.tpl` you can override the `document_index_table_name`
 The `$position` variable provides you with even more article variables. If you need more variables you can read our wiki tutorial about [additional variables in PDF document templates](http://wiki.shopware.com/pdf-Belegerstellung-Zus%C3%A4tzliche-Variablen_detail_1220.html).
 
 You can also set the article name to `<strong>` for better appearance:
-```
+```html
 <strong>{s name="DocumentIndexPositionNameDefault"}{$position.name|nl2br}{/s}</strong>
 ```
 
 Because of the table layout we also have to copy a few lines from the original `index.tpl`:
 
-```
+```html
 {extends file='parent:documents/index.tpl'}
 
 {block name="document_index_table_name"}
-	<td align="left" width="48%" valign="top">
-		{if $position.name == 'Versandkosten'}
-			{s name="DocumentIndexPositionNameShippingCosts"}{$position.name}{/s}
-		{else}
-			<strong>{s name="DocumentIndexPositionNameDefault"}{$position.name|nl2br}{/s}</strong><br/>
-			{$position.meta.description_long|truncate:70:""}
-		{/if}
-	</td>
+    <td align="left" width="48%" valign="top">
+        {if $position.name == 'Versandkosten'}
+            {s name="DocumentIndexPositionNameShippingCosts"}{$position.name}{/s}
+        {else}
+            <strong>{s name="DocumentIndexPositionNameDefault"}{$position.name|nl2br}{/s}</strong><br/>
+            {$position.meta.description_long|truncate:70:""}
+        {/if}
+    </td>
 {/block}
 ```
 

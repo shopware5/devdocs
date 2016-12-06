@@ -52,23 +52,23 @@ The next divisions in the modules are called "sections". Sections are parts of m
 * error
 * forms
 * home
-	* Contains the homepage of the storefront 
+    * Contains the homepage of the storefront 
 * index
-	* Contains the HTML skeleton 
+    * Contains the HTML skeleton 
 * listing
 * newsletter
-	* Contains the newsletter signup for the frontend, it has nothing to do with the newsletter templates 
+    * Contains the newsletter signup for the frontend, it has nothing to do with the newsletter templates 
 * note
 * register
 * robots_txt
-	* Contains template for the robots.txt
+    * Contains template for the robots.txt
 * search
 * sitemap
-	* Contains the sitemap which is accessible in the storefront 
+    * Contains the sitemap which is accessible in the storefront 
 * sitemap_mobile_xml
-	* Contains the template for the sitemap_mobile.xml. You can find [more information here](https://support.google.com/webmasters/answer/34648?hl=en).
+    * Contains the template for the sitemap_mobile.xml. You can find [more information here](https://support.google.com/webmasters/answer/34648?hl=en).
 * sitemap_xml
-	* Contains the sitemap.xml which will be used by web crawlers like the Google or Bing bots.
+    * Contains the sitemap.xml which will be used by web crawlers like the Google or Bing bots.
 * tellafriend
 
 If you're a developer, you'll notice that the sections match our frontend controllers.
@@ -159,10 +159,10 @@ You might see a call to the Smarty ```action``` plugin in a template file like t
 The ```action``` plugin works with a similar approach as the rest of the Shopware template system. Let's take a look at the plugin syntax.
 
 * module
-	* Basically the module we [outlined above](#modules)
+    * Basically the module we [outlined above](#modules)
 * controller
-	* The controller that, for example, fetches the necessary data from the database. The template files for the controller are located in the directory ```widgets/[controller]``` in your theme.
+    * The controller that, for example, fetches the necessary data from the database. The template files for the controller are located in the directory ```widgets/[controller]``` in your theme.
 * action
-	* The action that will be called in the controller. The action name defines the template filename as well. For the above example, the template filename is ```tag_cloud.tpl```
+    * The action that will be called in the controller. The action name defines the template filename as well. For the above example, the template filename is ```tag_cloud.tpl```
 
 Therefore, the template file for the Smarty ```action``` plugin is located under ```widgets/listing/tag_cloud.tpl```.

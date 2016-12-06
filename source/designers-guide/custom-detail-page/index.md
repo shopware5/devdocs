@@ -42,7 +42,7 @@ Then we extend our new template from `frontend/detail/index.tpl`:
 
 We will add some custom LESS/CSS modifications later. Therefore, we add a wrapping `div` container with an individual class `custom-detail`:
 
-```
+```html
 {block name='frontend_index_content'}
     <div class="custom-detail">
         {$smarty.block.parent}
@@ -60,7 +60,7 @@ In order to get a more minimalistic design, we want to remove the default produc
 
 This override makes the whole container of the primary buy options disappear:
 
-```
+```html
 {block name='frontend_detail_index_buy_container'}
 {/block}
 ```
@@ -69,7 +69,7 @@ This override makes the whole container of the primary buy options disappear:
 
 The product header contains the product title as well as the rating stars and the supplier logo. In our example, we only want to show the product title and the short description. To achieve that, we override the product header block. Inside this block, we only want to output `$sArticle.articleName` and `$sArticle.description`. The `custom-detail--claim` container is defined inside a condition and will only be shown when the `$sArticle.description` exists. We also add individual classes for styling purposes:
 
-```
+```html
 {block name='frontend_detail_index_header_inner'}
     <h1 class="custom-detail--title">
         {$sArticle.articleName}
@@ -87,7 +87,7 @@ The product header contains the product title as well as the rating stars and th
 
 In the next step, we will replace the default product description and rating tabs by overriding the `frontend_detail_index_detail` block. Due to our minimalistic design, we want to output the product description with 450 characters at most:
 
-```
+```html
 {block name='frontend_detail_index_detail'}
     <div class="custom-detail--description">
         {$sArticle.description_long|truncate:450}
@@ -101,7 +101,7 @@ The last thing we need to do in terms of the structure is add the necessary prod
 
 To add the "Remember" button, we create an `<a>` tag with the `btn` class, which will apply the general button appearance to it. As we want it to be a large and primary button with an icon on its side, we have to use additional helper classes: `is--primary`, `is--large` and `is--icon-left`. It is also **very important** to add the `link--notepad` class. This class is required by the `swAjaxWishlist` jQuery plugin which adds the current product to the wishlist without a page reload. To make the button work properly, we need to add the following action to the `href` attribute:
 
-```
+```html
 {url controller='note' action='add' ordernumber=$sArticle.ordernumber}
 ```
 
@@ -109,13 +109,13 @@ To add the "Remember" button, we create an `<a>` tag with the `btn` class, which
 
 To keep all ajax functionality, we have to add a `data-ajaxUrl` data-attribute and do basically the same thing, except that we use the `ajaxAdd` action:
 
-```
+```html
 {url controller='note' action='ajaxAdd' ordernumber=$sArticle.ordernumber}
 ```
 
 For the button texts we use the existing `DetailLinkNotepadShort` and `DetailLinkNotepad` snippets and set the namespace manually to `frontend/detail/actions`. To make sure that the button text changes to "Remembered" when clicking on it, we wrap the actual button text inside the `action--text` class. This class is also used by the `swAjaxWishlist` plugin:
 
-```
+```html
 <div class="custom-detail--actions">
     <a class="link--notepad btn is--primary is--large is--icon-left"
        href="{url controller='note' action='add' ordernumber=$sArticle.ordernumber}"
@@ -137,7 +137,7 @@ Adding the "More from supplier" button is a little easier. For the value of the 
 
 The button styling is almost the same and we also use an existing `DetailDescriptionLinkInformation` snippet for both `title` attribute and button text:
 
-```
+```html
 <a class="btn is--large"
    href="{url controller='listing' action='manufacturer' sSupplier=$sArticle.supplierID}"
    title="{"{s name="DetailDescriptionLinkInformation" namespace="frontend/detail/description"}{/s}"|escape}">
@@ -155,7 +155,7 @@ Using the Shopware default components, you should get the following button appea
 
 ### Smarty code overview `custom_detail.tpl`
 
-```
+```html
 {extends file='parent:frontend/detail/index.tpl'}
 
 {block name='frontend_index_content'}
@@ -223,13 +223,13 @@ CustomDetailTheme
 
 Don't forget to import the file inside the `all.less`:
 
-```
+```less
 @import "custom-detail";
 ```
 
 To ensure that our styling adjustments are only applied on the custom detail page, we wrap our code inside the class we have created before:
 
-```
+```css
 .custom-detail {
     // Custom styling here
 }
@@ -237,7 +237,7 @@ To ensure that our styling adjustments are only applied on the custom detail pag
 
 First of all, we want to center the product title, description and action buttons:
 
-```
+```css
 .product--header,
 .custom-detail--description,
 .custom-detail--actions {
@@ -250,7 +250,7 @@ To get a modern and minimalistic design, we increase the `font-size` of the prod
 
 ![Product title](product-title.png)
 
-```
+```less
 .custom-detail--title {
     .unitize(font-size, 50);
     .unitize(line-height, 45);
@@ -273,7 +273,7 @@ To get a modern and minimalistic design, we increase the `font-size` of the prod
 
 Due to the fact that we have removed the default purchase box, we can center the product image in the middle of the main content area. To achieve that, we give the the default `product--image-container` a `width: 100%` and remove the floating with `float: none;`:
 
-```
+```css
 .product--image-container {
     float: none;
     width: 100%;
@@ -282,7 +282,7 @@ Due to the fact that we have removed the default purchase box, we can center the
 
 When the product has more than one image, the product slider with slider dots and thumbnails will show up on the detail page. The slider dots are positioned absolute by default. We don't want the slider dots to be absolute and we give them a `position: relative` so they are displayed as a normal block element right underneath the product image:
 
-```
+```less
 .image-slider--dots {
     .unitize-padding(15, 0);
     position: relative;
@@ -292,7 +292,7 @@ When the product has more than one image, the product slider with slider dots an
 
 We also don't want the thumbnails of the image slider to be shown on the page:
 
-```
+```css
 .image-slider--thumbnails { 
     display: none; 
 }
@@ -300,7 +300,7 @@ We also don't want the thumbnails of the image slider to be shown on the page:
 
 The image slider container has a bottom margin for those thumbnails by default. Because we have removed it, we can also remove the bottom margin:
 
-```
+```css
 .image-slider--container {
     margin-bottom: 0;
 }
@@ -310,7 +310,7 @@ The image slider container has a bottom margin for those thumbnails by default. 
 
 On tablet landscape and desktop viewports, we want the product description to be centered and with 75% width:
 
-```
+```less
 @media screen and (min-width: @tabletLandscapeViewportWidth) {
     .custom-detail {
         .custom-detail--description {
@@ -325,7 +325,7 @@ On tablet landscape and desktop viewports, we want the product description to be
 
 To add a bit more spacing between the product action buttons and the further page content, we apply some margin and padding as well as a horizontal line:
 
-```
+```less
 .custom-detail--actions {
    .unitize(padding-bottom, 30);
    .unitize(margin-bottom, 30);
@@ -337,7 +337,7 @@ We also want the buttons to be block elements on the phone viewport:
 
 ![Custom detail mobile](custom-detail-mobile.png)
 
-```
+```less
 .btn {
     .unitize(margin-bottom, 10);
     display: block;
@@ -348,7 +348,7 @@ As mentioned before, the text of the "Remember" button should change to "Remembe
 
 ![Action buttons wishlist](buttons-saved.png)
 
-```
+```less
 .link--notepad.js--is-saved {
     color: #fff;
     background: @highlight-success;
@@ -357,7 +357,7 @@ As mentioned before, the text of the "Remember" button should change to "Remembe
 
 Now we can set the buttons back to `inline-block` when the phone landscape viewport is reached:
 
-```
+```less
 @media screen and (min-width: @phoneLandscapeViewportWidth) {
     .custom-detail {
         .custom-detail--actions {
@@ -372,7 +372,7 @@ Now we can set the buttons back to `inline-block` when the phone landscape viewp
 
 ### LESS code overview `custom-detail.less`
 
-```
+```less
 .custom-detail {
     .product--header,
     .custom-detail--description,
@@ -467,7 +467,7 @@ CustomDetailTheme
 
 We also need to include the new file inside the `Theme.php` of our custom theme:
 
-```
+```php
 protected $javascript = array(
     'src/js/jquery.custom-detail.js'
 );
@@ -475,7 +475,7 @@ protected $javascript = array(
 
 The code to remove the image zoom is pretty simple. We check if the main `content-wrapper` has a child `div` with the `custom-detail` class. If this is the case, we can remove the plugin for the `xl` viewport using the `removePlugin` method of the `StateManager`.
 
-```
+```javascript
 (function($, window) {
     if($('.content--wrapper').children('div').hasClass('custom-detail')) {
         window.StateManager.removePlugin('.product--image-zoom', 'swImageZoom', 'xl');

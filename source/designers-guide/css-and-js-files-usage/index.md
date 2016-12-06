@@ -25,14 +25,14 @@ ExampleTheme
 As the second step you will have to define the CSS or JavaScript files you would like to use inside your custom theme. This can be done by adding an array to your `Theme.php` file that contains the specific file paths, as the following examples shows:
 
 #### Add CSS files: ####
-```
+```php
 protected $css = array(
     'src/css/example.css'
 );
 ```
 
 #### Add JavaScript files: ####
-```
+```php
 protected $javascript = array(
     'src/js/example.js'
 );

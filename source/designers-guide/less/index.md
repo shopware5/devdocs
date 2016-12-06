@@ -72,7 +72,7 @@ For the Responsive theme we use CSS media queries to create different device bre
 ```
 **Example:** *Using breakpoint variables in media queries*
 
-```
+```less
 
 .my--class {
     .unitize-padding(10, 0);
@@ -85,7 +85,6 @@ For the Responsive theme we use CSS media queries to create different device bre
     }
 
 }
-
 ```
 
 Following the mobile first concept you start creating your styles for the mobile viewport and proceed upwards by using the `min-width` media query to start a new breakpoint at the given minimum screen size.
@@ -122,7 +121,7 @@ We already created several mixins for CSS3 cross-browser support and some other 
 
 ## LESS variables in Shopware
 Here you get an overview about all defined LESS variables in the Shopware Responsive theme.
-```
+```less
 // Breakpoints
 @phoneLandscapeViewportWidth: 30em;     // 480px
 @tabletViewportWidth: 48em;             // 768px

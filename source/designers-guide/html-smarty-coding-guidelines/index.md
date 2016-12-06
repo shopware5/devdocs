@@ -10,11 +10,11 @@ indexed: true
 
 As mentioned in the ["CSS coding guidelines" blog post](/blog/2016/08/26/css-coding-guidelines/) we're using a Parent-child naming scheme. A good example is the header of the Shopware storefront, especially the main category navigation. Let us take a closer look here on this simplified version:
 
-```
+```html
 <ul class="navigation--list">
-	<li class="navigation--entry">
-		....
-	</li>
+    <li class="navigation--entry">
+        ....
+    </li>
 </ul>
 ```
 
@@ -44,7 +44,7 @@ The block would look like this:
 ## Smarty conditions to add a certain class to an element
 You're adding classes to HTML elements all the time. A good example is here the `active` class to give an element an active state for example in navigation bars, tab panels or form elements. What we want to prevent is a space inside the `class` attribute, therefor we came up with the convention to put the space between the classes inside the condition.
 
-```
+```html
 <input type="text" name="name" class="input--field{if $sErrorFlag.name} has--error{/if}" />
 ```
 

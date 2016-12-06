@@ -33,7 +33,7 @@ The guide assumes that you have the following applications / tools installed on 
 ## Installation
 In order to get started, you need to install the frontend dependencies of Shopware. In the `themes/Frontend/Responsive/` directory of your Shopware, run the following command:
 
-```
+```bash
 npm install && npm run build
 ```
 
@@ -165,7 +165,7 @@ Done, without errors.
 
 All frontend dependencies are now defined in the `package.json` file, unlike previous versions of Shopware, which used `bower` and the `bower.json` file. The following shows the default dependencies of Shopware:
 
-```
+```json
 {
   ...
   "dependencies": {
@@ -228,7 +228,7 @@ CLI tools in order to do so. You can find more information on Shopware 5 themes 
 2. Open up your command line interface and switch to your newly created theme. You can find it in your Shopware installation under `/themes/Frontend/`
 3. Inside your theme directory, create a new `package.json` file using the following command. You'll be asked a few simple details about your theme, such as its name a license:
 
-```
+```bash
 sudo npm init
 ```
 

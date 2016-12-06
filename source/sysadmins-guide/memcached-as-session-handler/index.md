@@ -22,7 +22,7 @@ Alternatively [Memcached](http://memcached.org/) can be used as a session storag
 
 For Debian/Ubuntu based distributions:
 
-```
+```bash
 sudo apt-get install memcached
 ```
 
@@ -34,7 +34,7 @@ Also the [PHP memcached extension](https://pecl.php.net/package/memcached) has t
 For Debian/Ubuntu based distributions you can just install the `php5-memcached` package:
 
 
-```
+```bash
 sudo apt-get install php5-memcached
 ```
 

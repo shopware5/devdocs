@@ -129,9 +129,9 @@ You can find a complete guide to the template inheritance in the [Smarty 101 gui
 The `Bare` theme's HTML structure is wrapped in Smarty's `block` elements. These block elements group the frontend components into small, isolated blocks that can be edited/overwritten individually. To add changes to the elements of the `Bare` theme, you __can't__ simply write code inside your file. To customize a block, you have to call the correct Shopware block name.
 
 You can override the whole content of an inherited block like this:
-```
+```smarty
 {block name='frontend_index_checkout_actions'}
-	// place your new element here
+    // place your new element here
 {/block}
 ```
 
@@ -139,15 +139,15 @@ The variable `{$smarty.block.parent}` contains the content of the inherited bloc
 So you can use it to add the initial content of the block in your block.
 
 If you wish to add your content __after__ the initial block content you can do it like this:
-```
+```smarty
 {block name='frontend_index_checkout_actions'}
-	{$smarty.block.parent}
- 	// place your new element here
+    {$smarty.block.parent}
+    // place your new element here
 {/block}
 ```
 
 Of cause the other way around will also work, if you wish to add your content __before__ the content of the initial block:
-```
+```smarty
 {block name='frontend_index_checkout_actions'}
     // place your new element here
     {$smarty.block.parent}
@@ -156,7 +156,7 @@ Of cause the other way around will also work, if you wish to add your content __
 
 For example, in order to add a new button to your navigation menu, you would search for a fitting block and insert a new element to it, so it displays before or after the already existing buttons inside the shop navigation menu.
 
-```
+```smarty
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 
 {block name='frontend_index_checkout_actions'}
@@ -168,7 +168,7 @@ For example, in order to add a new button to your navigation menu, you would sea
 
 The navigation menu uses `<li>` elements to wrap its entries. In the example below, an icon is also added to the button.
 
-```
+```html
 {extends file="parent:frontend/index/shop-navigation.tpl"}
 
 {block name='frontend_index_checkout_actions'}
@@ -202,14 +202,14 @@ TutorialTheme
 
 To add new Less files, you need to create a new `all.less` file. This file is required, and should be used exclusively to import other Less files, in which you will define your custom styling. Your custom Less files can be imported by using the `@import` function on your `all.less` file. If you have extensive theme changes, it's recommended to adapt the Less file subdirectories of the `Responsive` theme to have a better overview, but in this case we will just create a new Less file called `navigation.less`.
 
-```
+```less
 //inside the all.less file
 @import 'navigation';
 ```
 
 The first step is to add some simple styling rules to the new button we just created, so that the icon is centered inside it. Inside the Less files, you are able to use all the Less __mixins__ and __variables__ that Shopware provides (e.g. the `unitize` mixin, that helps convert __px__ values into relative __rem__ values).
 
-```
+```less
 .starButton i.icon--star {
     .unitize(font-size, 18);
 }
@@ -223,7 +223,7 @@ Additionally, a few changes have to be made in order for the button to fit compl
 
 To hide the menu text, take the `offcanvas_left_trigger` block inside the `shop-navigation.tpl` file, and __overwrite__ it (without append or prepend) with a new block, without the description inside it.
 
-```
+```html
 {block name='frontend_index_offcanvas_left_trigger'}
     <li class="navigation--entry entry--menu-left" role="menuitem">
         <a class="entry--link entry--trigger btn is--icon-left" href="#offcanvas--left" data-offcanvas="true" data-offCanvasSelector=".sidebar-main">
@@ -234,7 +234,7 @@ To hide the menu text, take the `offcanvas_left_trigger` block inside the `shop-
 ```
 To change the search bar width, you can overwrite the default media query with the new width percentage.
 
-```
+```less
 .starButton i.icon--star {
     .unitize(font-size, 18);
 }
@@ -251,7 +251,7 @@ a.btn.starButton {
 ```
 
 As the last step, the cart button color needs to be changed. As said before, inside the Less files you have the ability to use all Less __mixins__ and __variables__ that Shopware provides. To create a gradient that matches the default store color you can use the `@brand-primary` and `@brand-primary-light` variables together with the `.linear-gradient` Less mixin. The last step is to change the colors of the icon and price inside the cart button.
-```
+```less
 .starButton i.icon--star {
     .unitize(font-size, 18);
 }

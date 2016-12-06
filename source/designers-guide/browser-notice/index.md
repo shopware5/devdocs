@@ -28,19 +28,19 @@ protected $javascript = [
 
 ```
 ;(function(window, document) {
-	var $buoop = {c:2};
-	 
-	function $buo_f(){ 
-		var e = document.createElement("script"); 
-		e.src = "//browser-update.org/update.js"; 
-		document.body.appendChild(e);
-	};
-	
-	try {
-		document.addEventListener("DOMContentLoaded", $buo_f,false);
-	} catch(e) {
-		window.attachEvent("onload", $buo_f);
-	}
+    var $buoop = {c:2};
+     
+    function $buo_f(){ 
+        var e = document.createElement("script"); 
+        e.src = "//browser-update.org/update.js"; 
+        document.body.appendChild(e);
+    };
+    
+    try {
+        document.addEventListener("DOMContentLoaded", $buo_f,false);
+    } catch(e) {
+        window.attachEvent("onload", $buo_f);
+    }
 })(window, document);
 ```
 * As a last step, clean your theme cache and you have a new notification bar when the user opens the page with a outdated browser.

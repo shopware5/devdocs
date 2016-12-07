@@ -459,7 +459,7 @@ You can read more in the Symfony Documentation: [How to Define Commands as Servi
 
 ## Add backend emotion components
 Since shopware 5.2.10 the `Shopware\Components\Emotion\ComponentInstaller` service can be used to generate backend emotion components inside plugin installations:
-```
+```php
 public function install(InstallContext $context)
 {
     $installer = $this->container->get('shopware.emotion_component_installer');
@@ -522,7 +522,7 @@ SwagEmotion
 ## Add a new payment method
 Since shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service can be used to add payment methods to the database inside plugin installations.
 
-```
+```php
 public function install(InstallContext $context)
 {
 	/** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
@@ -573,7 +573,7 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
  
 Example `plugin.xml`:
  
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Slogan des Tages</label>
@@ -597,7 +597,7 @@ Example `plugin.xml`:
 Backend plugin configuration can be extended by `Resources/config.xml` file. This replaces the usage of `$this->Form()` on old `Shopware_Components_Plugin_Bootstrap`.
 
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
@@ -621,7 +621,7 @@ Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
 As of shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.
 
 A custom config store is defined like this:
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
@@ -670,7 +670,7 @@ There must be at least one option tag and inside each option tag there must be a
 
 Example `Resources/menu.xml`:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
 	<entries>
@@ -682,19 +682,31 @@ Example `Resources/menu.xml`:
 			<action>index</action>
 			<class>sprite-metronome</class>
 			<parent identifiedBy="controller">Marketing</parent>
+            <children>
+                <entry>
+                    <name>SloganOfTheDayChild</name>
+                    <label lang="en">Child menu</label>
+                    <label lang="de">Kindmenü</label>
+                    <controller>SwagSloganOfTheDay</controller>
+                    <action>detail</action>
+                    <class>sprite-application-block</class>
+                </entry>
+            </children>
 		</entry>
 	</entries>
 </menu>
 ```
 
-For available parent controllers take a look into table s_core_menu (column controller). For example you can use one of the following:
+For available parent controllers take a look into the table `s_core_menu` (column `controller`). For example you can use one of the following:
 - Article
 - Content
 - Customer
 - ConfigurationMenu
 - Marketing
 
-Menuitem won't be displayed if controller and action are missing.
+As you can see in the example above, you are also able to add child menu entries for your new menu item. Just add them under the `<children>` element
+
+The menu item won't be displayed if controller and action are missing.
 
 To know which class for which icon take a look at the <a href="/designers-guide/backend-icons/">Backend icon set overview</a>.
 

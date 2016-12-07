@@ -8,4 +8,4 @@ chmod 600 deploy_key
 echo -e "Host developers.shopware.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 eval `ssh-agent -s`
 ssh-add deploy_key
-rsync -avze ssh --rsync-path="sudo rsync" --exclude=".git" output_prod/ shopware@developers.shopware.com:/var/www/developers.shopware.com
+rsync -avze ssh --rsync-path="sudo rsync" --exclude=".git" --delete --backup --backup-dir="backup_$(date +\%Y-\%m-\%d)" output_prod/ shopware@developers.shopware.com:/var/www/developers.shopware.com

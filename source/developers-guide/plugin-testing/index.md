@@ -34,7 +34,7 @@ you could initialize the __shop context__ to make currencies available. To prepa
  ```php
  <?php
  
- require __DIR__ . '/../../../../tests/Functional/bootstrap.php';
+ require __DIR__ . '/../../../../tests/Bootstrap.php';
  ```
  <div class="alert alert-warning">
  The path to this file depends on wheter you are using the <b>legacy plugin system</b> or the <b>new 5.2 Plugin system</b>.

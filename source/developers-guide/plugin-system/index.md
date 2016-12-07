@@ -542,7 +542,7 @@ public function install(InstallContext $context)
 			.'  Pay save and secured by invoice with our example payment provider.'
 			.'</div>'
 	];
-    $payment = $installer->update($context->getPlugin(), $options);
+    $payment = $installer->createOrUpdate($this->getName(), $options);
 }
 ```
 ## Plugin Resources

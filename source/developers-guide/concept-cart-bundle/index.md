@@ -15,7 +15,7 @@ menu_order: 400
 
 ## 2016/12/02 - First concept
 Today we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
-This article documents the current implementation and how it can be used. At the moment the cart bundle isn't implemented in the shopware frontend, it is only used for testing different calculations and processes.
+This article documents the current implementation and how it can be used. At the moment, the cart bundle isn't implemented in Shopware's frontend, rather it is only used for testing different calculations and processes.
 
 ## How to's
 
@@ -93,7 +93,7 @@ public function showLineItemsAction()
 }
 ```
 
-### How to get cart amount
+### How to get the cart total
 The cart amount is stored inside the `CalculatedCart` and can be accessed over `getPrice()`.
 ```php
 public function showAmountAction()
@@ -190,23 +190,23 @@ public function showDeliveriesAction()
 ## Architecture
 
 ### Cart layers
-Inside the calculation process, the cart passes through different states. To provide a valid state for each service layer the this states are reflected in different classes:
+The cart passes through different states during the calculation process. In order to provide a valid state for each service layer, the states are reflected in different classes:
 * `CartBundle\Domain\Cart\Cart`
-    * Defines which line items has to be calculated inside the process
+    * Defines which line items have to be calculated inside the process
 * `CartBundle\Domain\Cart\ProcessorCart`
-    * Defines which line items already calculated and which deliveries already generated 
+    * Defines which line items have already been calculated and which deliveries have been generated 
 * `CartBundle\Domain\Cart\CalculatedCart`
     * Contains a list of all calculated line items 
     * Contains a collection of all generated deliveries
-    * Has a calculated price with summed taxes, tax rules and net or gross prices 
+    * Has a calculated price with total tax amounts, tax rules and net or gross prices
 
 ### Processor concept 
 The following diagram shows the architecture behind the cart process for product calculation:   
 
 ![image](img/img.001.png)
 
-The cart calculation are done over the `CartBundle\Domain\Cart\CartCalculator` class. 
-This class contains a list of `CartBundle\Domain\Cart\CartProcessorInterface` which are the access points for the shopware core and third party developers in the cart process. 
+The cart calculation is done in the `CartBundle\Domain\Cart\CartCalculator` class.  
+This class contains a list of `CartBundle\Domain\Cart\CartProcessorInterface`, which are the access points for the Shopware core and third party developers in the cart process. 
 ```php
 interface CartProcessorInterface
 {
@@ -220,25 +220,25 @@ interface CartProcessorInterface
 ```
 
 ### Domain and Infrastructure layers
-We have taken great care in the design of the architecture, to decouple business logic from database and shopware dependencies.
-That means all shopware specify operations like database access, delivery information or price selections (with graduated prices or price groups) are separated into own gateways which can be replaced with other data sources.
-This layers are named **Domain** and **Infrastructure** and placed on the first level of the `CartBundle`.
-The domain layer should not have any dependencies to the shopware core. That's the infrastructure/bundle layer.
-Interactions with the shopware are defined over gateways. Applying this concept to the above product processor example leads to the following architecture:
+For the architecture design, we took great care to separate business logic from the database and Shopware dependencies.
+That means all Shopware-specific operations such as database access, delivery information or price selections (with graduated prices or price groups) are separated into individual gateways that can be replaced with other data sources.
+These layers are named **Domain** and **Infrastructure** and are placed on the first level of the `CartBundle`.
+The domain layer should not have any dependencies to the Shopware core. That's the infrastructure/bundle layer.
+Interactions with Shopware are defined over gateways. Applying this concept to the product processor described above leads to the following architecture:
 
 ![image](img/img.002.png)
 
 
 ## Price calculations
-The `CartBundle` contains at the moment the following calculation classes:
+At the moment, the `CartBundle` contains the following calculation classes:
 * `\Shopware\Bundle\CartBundle\Domain\Price\PriceCalculator`
     * Calculates a total price for a provided `PriceDefinition`
     * Calculates the gross/net unit price and total price
-    * Uses the tax calculation services for including/excluding taxes of price
+    * Uses tax calculation services for including/excluding taxes
 
 * `\Shopware\Bundle\CartBundle\Domain\Price\PercentagePriceCalculator`
     * Calculates a percentage price based on a provided collection of prices (`PriceCollection`)
-    * Sums all prices to a total amount and calculates percentage price value
+    * Sums all prices to a total amount and calculates a percentage price value
     * Calculates the percentage share of tax rules inside the provided prices and calculates the taxes percentage 
     * Example:
         * 100.00 € with 19% and 100.00€ with 7%
@@ -251,20 +251,20 @@ And the following tax calculation services:
 * `\Shopware\Bundle\CartBundle\Domain\Tax\TaxRuleCalculator`
     * Tax calculation is based on a price with a simple tax rate
     * Example
-        * 100.00 € should be calculated with 19% tax rate
+        * 100.00 € should be calculated with a 19% tax rate
     
 * `\Shopware\Bundle\CartBundle\Domain\Tax\PercentageTaxRuleCalculator`
     * Tax calculation is based on a percentage price value
     * Example: 
         * total price: 100.00 €
-        * 90.00€ should be calculated with 19% tax rate
-        * 10.00€ should be calculated with  7% tax rate
+        * 90.00€ should be calculated with a 19% tax rate
+        * 10.00€ should be calculated with a 7% tax rate
 
 ## Extensibility concept
 All services in the CartBundle defined inside the service container, which means each service can be replaced or decorated. 
 
 ### Example - Discount for new customers
-The following examples shows, one possible solution, to add a dynamic discount for new customers.  
+The following examples shows one possible solution for creating dynamic discounts for new customers.  
 ```
 <?php
 
@@ -362,9 +362,9 @@ class NewCustomerDiscountProcessor implements CartProcessorInterface
     }
 }
 ```
-First two conditions validates if a customer is logged in and if the customer has already taken an order.
-After the validation passes that the customer is a new customer, the processor collects first all calculated goods in the cart `$goods = $processorCart->getLineItems()->filterGoods();`.
-To calculate the percentage discount for the `new customer discount` the processor uses the shopware core calculator `\Shopware\Bundle\CartBundle\Domain\Price\PercentagePriceCalculator`.
+The first two conditions validate if a customer is logged in and if the customer has already made an order.
+After the validation passes that the customer is a new customer, the processor first collects all calculated goods in the cart `$goods = $processorCart->getLineItems()->filterGoods();`.
+To calculate the percentage discount for the `new customer discount` the processor uses the Shopware core calculator `\Shopware\Bundle\CartBundle\Domain\Price\PercentagePriceCalculator`.
 
 The processor has to be registered over the `cart_processor` container tag. The priority defines at which position the calculator has to be executed (after product calculation, before voucher, ...).
 ```
@@ -376,7 +376,7 @@ The processor has to be registered over the `cart_processor` container tag. The 
 ```
 
 ### Example - Blacklisted products
-The following examples shows, a possible solution, to prevent that some products can be inside the cart:
+The following examples shows a possible solution for preventing some products from entering the cart:
 
 ```
 <?php
@@ -421,4 +421,4 @@ The service is registered as follow:
     <tag name="cart_processor" priority="50000" />
 </service>
 ```
-Using a high priority defines an early position inside the cart calculation for this processor. The `\Shopware\Bundle\CartBundle\Domain\Product\ProductProcessor` is registered with priority 30000, which means it is executed after this black list processor.
+Using a high priority defines an early position inside the cart calculation for this processor. The `\Shopware\Bundle\CartBundle\Domain\Product\ProductProcessor` is registered with priority 30000, which means it is executed after this blacklist processor.

@@ -758,7 +758,7 @@ Ext.define('Shopware.apps.Article.controller.MyDetail', {
 It is possible to use existing attributes like `attr1` and `attr2` though it's not recommended. To prevent race-conditions with the attribute management itself, you have to uncheck the option "Display in backend" of the desired attribute. It will not be visible within the attribute management fieldset but in your own implementation. Therefore you have to handle the save process yourself and it will not be saved with the default attribute implementation.
 
 # Example Plugin "Shoesize"
-This example plugin allows the user to enter his shoesize at the registration form and shows this information in the account and the admin backend.
+This example plugin allows the user to enter his shoesize at the registration form and shows this information in the account and the admin backend. You can download the complete source of the plugin [SwagShoeSize.zip](/exampleplugins/SwagShoeSize.zip). 
 
 ## Plugin definition and attribute creation
 First we create the necessary attribute using the CRUD service. Notice the `displayInBackend` option to have the attribute show up in the backend customer detail view.

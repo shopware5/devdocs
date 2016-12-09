@@ -167,11 +167,7 @@ class ExamplePaymentService
      */
     public function isValidToken(PaymentResponse $response, $token)
     {
-        if($token === $response->token) {
-            return true;
-        }
-
-        return false;
+        return $token === $response->token;
     }
 
     /**

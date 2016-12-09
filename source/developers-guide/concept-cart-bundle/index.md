@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Concept - New cart bundle
+title: Cart Concept
 github_link: developers-guide/concept-cart-bundle/index.md
 shopware_version: X
 indexed: true
@@ -9,7 +9,7 @@ tags:
   - refactoring
 group: Developer Guides
 subgroup: General Resources
-menu_title: Concept - New cart bundle
+menu_title: Cart Concept
 menu_order: 400
 ---
 
@@ -17,9 +17,9 @@ menu_order: 400
 Today we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
 This article documents the current implementation and how it can be used. At the moment, the cart bundle isn't implemented in Shopware's frontend, rather it is only used for testing different calculations and processes.
 
-## How to's
+## Usage
 
-### How to add a line item
+### Add an line item
 Lets start with a simple example: *Add a product to cart*
 
 ```
@@ -38,7 +38,7 @@ public function addProductAction()
 }
 ```
 
-### How to remove a line item
+### Remove a line item
 Next we remove this item again using the cart identifier (see above `SW10239`)
 ```
 public function removeAction()
@@ -50,7 +50,7 @@ public function removeAction()
 }
 ```
 
-### How to get line items
+### Get line items
 To get access of all line items in cart, the `StoreFrontCartService` allows access on the calculated cart over `getCalculated()`.
 
 ```
@@ -93,7 +93,7 @@ public function showLineItemsAction()
 }
 ```
 
-### How to get the cart total
+### Get cart amount
 The cart amount is stored inside the `CalculatedCart` and can be accessed over `getPrice()`.
 ```php
 public function showAmountAction()
@@ -130,7 +130,7 @@ public function showAmountAction()
 }
 ```
 
-### How to get deliveries
+### Get deliveries
 Each cart contains a collection of deliveries, in case that the customer is logged in (requires a delivery address).
 This deliveries can be accessed over `getDeliveries()`. 
 ```

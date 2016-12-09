@@ -275,7 +275,7 @@ use Shopware\Bundle\CartBundle\Domain\Cart\Cart;
 use Shopware\Bundle\CartBundle\Domain\Cart\CartContextInterface;
 use Shopware\Bundle\CartBundle\Domain\Cart\CartProcessorInterface;
 use Shopware\Bundle\CartBundle\Domain\Cart\ProcessorCart;
-use Shopware\Bundle\CartBundle\Domain\Price\CalculatedDiscount;
+use Shopware\Bundle\CartBundle\Domain\LineItem\CalculatedLineItem;
 use Shopware\Bundle\CartBundle\Domain\Price\PercentagePriceCalculator;
 
 class NewCustomerDiscountProcessor implements CartProcessorInterface
@@ -335,7 +335,7 @@ class NewCustomerDiscountProcessor implements CartProcessorInterface
 
         //add calculated discount to cart
         $processorCart->getLineItems()->add(
-            new CalculatedDiscount('new-customer-discount', $discount)
+            new CalculatedLineItem('new-customer-discount', $discount)
         );
     }
 

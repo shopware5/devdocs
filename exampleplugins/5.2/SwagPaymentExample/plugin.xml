@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+
+    <label lang="en">Example Payment</label>
+    <label lang="de">Beispiel Payment</label>
+
+    <version>1.0.0</version>
+    <copyright>(c) shopware AG</copyright>
+    <author>shopware AG</author>
+
+    <compatibility minVersion="5.2.13" />
+</plugin>

@@ -21,11 +21,11 @@ At the Community Day, we also announced that we are striving for open developmen
 - Add and delete percentage-based vouchers
 - First concept for partial delivery
 
-There's currently isn't a storefront integration. A view layer will follow after all calculation processes are tested. For that reason, the classes are only used inside unit tests. From a technical perspective, the cart already contains the following concepts/features:
+There's currently no storefront integration. A view layer will follow after all calculation processes are tested. For that reason, the classes are only used inside unit tests. From a technical perspective, the cart already contains the following concepts/features:
 - Percentage price calculation
 - Gross and net price calculation
 - Proportional tax calculation
 - Exchangeable gateway for product prices and delivery information
 - First proof of concept for a partial delivery to different addresses and delivery dates
 
-If you want to get more information about the technical concept and current implementation, take a look at our <a href="/developers-guide/concept-cart-bundle/" target="_blank">new developers guide article</a>. This article is created to document the current state of the implementation and is contains more content regarding progressive refactoring. Due to the complexity and importance of the shopping cart inside Shopware, this will be a long-term project. Short-term integration into the core product is therefore not to be expected.
+If you want to get more information about the technical concept and current implementation, take a look at our <a href="/developers-guide/concept-cart-bundle/" target="_blank">new developers guide article</a>. This article is created to document the current state of the implementation and will contain more content regarding progressive refactoring. Due to the complexity and importance of the shopping cart inside Shopware, this will be a long-term project. Short-term integration into the core product is therefore not to be expected.

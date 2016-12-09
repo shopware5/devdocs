@@ -13,7 +13,7 @@ menu_title: Concept - New cart bundle
 menu_order: 400
 ---
 
-## 2016/12/02 - First concept
+## 2016/12/09 - First concept
 Today we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
 This article documents the current implementation and how it can be used. At the moment, the cart bundle isn't implemented in Shopware's frontend, rather it is only used for testing different calculations and processes.
 

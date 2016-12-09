@@ -9,7 +9,7 @@ categories:
 
 authors: [dr]
 
-github_link: blog/_posts/2016-11-30-new-cart-bundle.md
+github_link: blog/_posts/2016-12-09-new-cart-bundle.md
 ---
 
 Since the last Community Day, we've received several questions about Shopware's new shopping cart:

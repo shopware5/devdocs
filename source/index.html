@@ -35,6 +35,13 @@ use:
     </a>
 </div>
 
+<h2>Important Changes</h2>
+<div class="alert alert-warning">
+    Because of a problem within the internal smarty block inheritance system, we recommend to not use the smarty block parameter <code>append</code> or <code>prepend</code> anymore.
+    We recommend to use the variable <code>{$smarty.block.parent}</code>. For more information have a look at our <a href="https://developers.shopware.com/designers-guide/getting-started/#template-blocks" target="_blank">template documentation</a>.
+</div>
+
+
 <h2><a href="{{ site.url }}/blog/">Recent blog posts</a></h2>
 
 <div class="blog--teaser">

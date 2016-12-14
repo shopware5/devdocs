@@ -9,8 +9,7 @@ use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogSynchronizer;
 use ShopwarePlugins\SwagESBlog\SearchBundleES\BlogSearch;
 use ShopwarePlugins\SwagESBlog\Subscriber\ORMBacklogSubscriber;
 
-class Shopware_Plugins_Frontend_SwagESBlog_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_SwagESBlog_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()
     {

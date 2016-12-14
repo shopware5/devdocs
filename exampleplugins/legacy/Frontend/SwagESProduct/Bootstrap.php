@@ -10,8 +10,7 @@ use ShopwarePlugins\SwagESProduct\SearchBundleES\SalesFacetHandler;
 use ShopwarePlugins\SwagESProduct\SearchBundleES\SalesSortingHandler;
 use ShopwarePlugins\SwagESProduct\SearchBundleES\SearchTermQueryBuilder;
 
-class Shopware_Plugins_Frontend_SwagESProduct_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_SwagESProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()
     {

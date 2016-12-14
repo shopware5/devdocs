@@ -172,7 +172,4 @@ class Attribute extends ModelEntity
     {
         return $this->attr5;
     }
-
-
-
 }

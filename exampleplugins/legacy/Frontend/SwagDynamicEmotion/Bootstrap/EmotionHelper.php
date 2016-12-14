@@ -18,7 +18,6 @@ class EmotionHelper
     {
         list($openInfoComponent, $mapComponent, $descriptionComponent) = $this->createMyEmotionComponent();
         $this->createStoreShoppingWorld($openInfoComponent, $mapComponent, $descriptionComponent);
-
     }
 
     private function createMyEmotionComponent()
@@ -59,7 +58,6 @@ class EmotionHelper
 
 
         return [$openInfoComponent, $mapComponent, $descriptionComponent];
-
     }
 
 
@@ -145,5 +143,4 @@ class EmotionHelper
 
         $em->flush($emotion);
     }
-
 }

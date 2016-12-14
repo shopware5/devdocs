@@ -142,6 +142,5 @@ class Shopware_Plugins_Backend_SwagProductAssoc_Bootstrap extends Shopware_Compo
 
 
 //        `id`, `product_id`, `additionalText`, `active`, `inStock`, `stockMin`, `weight`
-
     }
 }

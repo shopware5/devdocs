@@ -2,8 +2,7 @@
 
 use ShopwarePlugins\SwagAttributeFilter\Subscribers\AttributeFilterSubscriber;
 
-class Shopware_Plugins_Frontend_SwagAttributeFilter_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_SwagAttributeFilter_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()
     {

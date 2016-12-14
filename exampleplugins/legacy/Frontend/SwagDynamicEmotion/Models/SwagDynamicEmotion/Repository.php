@@ -7,7 +7,6 @@ use Shopware\Models\Attribute\Emotion;
 
 class Repository extends ModelRepository
 {
-
     public function getStoreEmotionId()
     {
         $attributeEmotionRepo = $this->getEntityManager()->getRepository('Shopware\Models\Attribute\Emotion');

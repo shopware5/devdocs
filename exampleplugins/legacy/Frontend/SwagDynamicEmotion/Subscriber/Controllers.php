@@ -15,7 +15,6 @@ class Controllers implements \Enlight\Event\SubscriberInterface
     public function addBackendStoreController()
     {
         return __DIR__ . '/../Controllers/Backend/SwagStore.php';
-
     }
 
     public function addStoreController(\Enlight_Event_EventArgs $args)

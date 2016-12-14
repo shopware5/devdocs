@@ -123,5 +123,4 @@ class Store extends ModelEntity
     {
         $this->openInfo = $openInfo;
     }
-
 }

@@ -194,7 +194,4 @@ class Variant extends ModelEntity
     {
         return $this->weight;
     }
-
-
-
 }

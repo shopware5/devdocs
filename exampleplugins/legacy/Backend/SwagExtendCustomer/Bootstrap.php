@@ -40,5 +40,4 @@ class Shopware_Plugins_Backend_SwagExtendCustomer_Bootstrap extends Shopware_Com
             $view->extendsTemplate('backend/swag_extend_customer/view/detail/window.js');
         }
     }
-
 }

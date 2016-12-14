@@ -30,7 +30,6 @@ class Emotion implements \Enlight\Event\SubscriberInterface
             ->andWhere('attribute.swag_shop_template IS NULL or attribute.swag_shop_template != 1');
 
         return $builder;
-
     }
 
     /**
@@ -66,7 +65,6 @@ class Emotion implements \Enlight\Event\SubscriberInterface
             }
             $view->assign('data', $data);
         }
-
     }
 
     /**
@@ -103,5 +101,4 @@ class Emotion implements \Enlight\Event\SubscriberInterface
         $storeRepo = Shopware()->Models()->getRepository('Shopware\CustomModels\SwagDynamicEmotion\Store');
         return array_merge($data, ['store' => $storeRepo->find($storeId)]);
     }
-
 }

@@ -18,7 +18,8 @@
  */
 class Shopware_Plugins_Frontend_SwagModelPlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
-    public function getVersion() {
+    public function getVersion()
+    {
         $info = json_decode(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .'plugin.json'), true);
         if ($info) {
             return $info['currentVersion'];

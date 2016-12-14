@@ -17,5 +17,4 @@ class Shopware_Controllers_Backend_SwagStore extends Shopware_Controllers_Backen
         // this will make our emotion id available in the (smarty) template of our backend application
         $this->View()->assign('storeTemplateEmotionId', $repo->getStoreEmotionId());
     }
-
 }

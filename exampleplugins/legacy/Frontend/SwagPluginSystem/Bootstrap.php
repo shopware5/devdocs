@@ -3,8 +3,7 @@
 use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\ListProductService;
 use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\SeoCategoryService;
 
-class Shopware_Plugins_Frontend_SwagPluginSystem_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_SwagPluginSystem_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function getLabel()
     {

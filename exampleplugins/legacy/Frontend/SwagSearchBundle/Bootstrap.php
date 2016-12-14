@@ -2,8 +2,7 @@
 
 use ShopwarePlugins\SwagSearchBundle\Subscribers\SearchBundleSubscriber;
 
-class Shopware_Plugins_Frontend_SwagSearchBundle_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
+class Shopware_Plugins_Frontend_SwagSearchBundle_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()
     {

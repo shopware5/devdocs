@@ -1,0 +1,239 @@
+.bar.top {
+    background: @blue04;
+    box-shadow: none;
+
+    .container {
+        padding: 0;
+    }
+
+    a {
+        &:link,
+        &:visited {
+            text-shadow: none;
+            color: #fff;
+        }
+
+        &:hover,
+        &.is-active {
+            color: @border;
+            text-shadow: none;
+            text-decoration: none;
+        }
+    }
+}
+
+.highlight {
+    margin: 0 15px;
+}
+
+.permalink {
+    top: 5px;
+}
+
+.nav {
+    margin-top: 8px;
+
+    input[type="search"] {
+        padding: 0 22px;
+        color: #5f5f5f;
+        display: inline-block;
+        height: 35px;
+        width: 270px;
+        border: 1px solid #5e8093;
+        border-radius: 28px;
+        -moz-border-radius: 28px;
+        -webkit-border-radius: 28px;
+        -webkit-appearance: textfield;
+        background: #fff;
+        box-shadow: unset;
+
+        &:focus {
+            background-color: #fff;
+        }
+    }
+}
+
+a.dropdown-toggle.is-active {
+    &::before {
+        content: '';
+        display: inline-block;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #ccc;
+        border-bottom-color: rgba(255, 255, 255, 1);
+        position: absolute;
+        top: 46px;
+        z-index: 9999;
+        left: 5px;
+    }
+}
+
+a.dropdown-toggle {
+    margin-right: 8px;
+
+    &:link,
+    &:visited {
+        color: #fff;
+        padding-right: 0;
+        text-shadow: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @blue01;
+        text-shadow: none;
+    }
+
+    &::after {
+        right: -15px;
+        top: 19px;
+    }
+}
+
+
+.dropdown {
+    background-color: #fff;
+    border: 1px solid @border;
+    border-radius: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    font-size: 11px;
+    left: 2px;
+    line-height: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0;
+    position: absolute;
+    top: 61px;
+    width: 175px;
+    word-wrap: break-word;
+    z-index: 1020;
+
+    li {
+        padding: 0 !important;
+        border-bottom: 1px solid rgb(233, 248, 255);
+        
+        &::before,
+        &::after {
+            content: none !important;
+        }
+
+        a {
+            margin: 0;
+            padding: 5px 15px;
+            font-size: 13px;
+            
+            &:link,
+            &:visited {
+                color: @blue05 !important;
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: @hoverBG;
+            a {
+                color: @blue05 !important;
+                background-color: @hoverBG;
+            }
+        }
+    }
+}
+
+.nav-results {
+    right: 1px;
+    width: 268px;
+    left: auto;
+    margin-top: 3px!important;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1020;
+    top: 41px;
+    max-height: 500px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    font-size: 11px;
+    line-height: 20px;
+    background-color: #fff;
+    border: 1px solid rgba(175,179,182,.3);
+    border-radius: 0;
+    box-shadow: unset;
+
+    li a {
+        color: rgb(38, 85, 111) !important;
+    }
+
+    a {
+        &:hover,
+        &.is-active {
+            color: @hoverBG;
+            background-color: rgba(248, 249, 250, 1);
+            text-shadow: unset;
+            text-decoration: none;
+        }
+    }
+}
+
+ul.menu {
+    float: left;
+    padding-left: 80px;
+    font-size: 14px;
+    
+    li {
+        padding: 9px 25px;
+        margin: 0;
+    }
+
+    li:last-child::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        height: 30px;
+        border-left: 1px solid rgba(95, 152, 184, 0.37);
+        top: 16px;
+        margin-left: -23px;
+        right: 0;
+    }
+
+    li::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        height: 30px;
+        border-left: 1px solid rgba(95, 152, 184, 0.37);
+        top: 16px;
+        margin-left: -23px;
+    }
+}
+
+a.logo {
+    float: left;
+    margin-top: 4px;
+    text-shadow: none;
+    
+    &:hover {
+        text-shadow: none;
+    }
+
+    img {
+        height: 32px;
+        margin-top: 8px;
+        margin-right: 13px;
+        float: left;
+    }
+
+    .brand {
+        color: #fff;
+        font-weight: 400;
+        margin-top: 4px;
+        text-shadow: unset;
+        margin-right: 0;
+        
+        &:hover {
+            text-shadow: none;
+        }
+    }
+}

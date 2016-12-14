@@ -1,0 +1,106 @@
+.main {
+    background: #fff;
+    padding: 0 46px 20px 46px;
+    -webkit-box-shadow: 0 2px 2px rgba(202,217,224,0.4);
+    -moz-box-shadow: 0 2px 2px rgba(202,217,224,0.4);
+    box-shadow: 0 2px 2px rgba(202,217,224,0.4);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid rgb(248, 249, 250);
+    margin-bottom: 70px;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+.docs {
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 200px;
+    position: relative;
+    width: 68%;
+    z-index: 2;
+
+    strong {
+        display: inline-block;
+        margin-top: 15px;
+    }
+
+    code {
+        background-color: @codeBG;
+        border: 1px solid @codeBorder;
+    }
+
+    .preview {
+        background: #fff;
+        border-top: 0;
+        margin-top: 15px;
+        position: relative;
+        z-index: 1;
+
+        .resizeable {
+            background: #E9E9F0;
+            border: 1px solid rgb(205, 218, 228);
+            box-shadow: unset;
+            overflow: auto;
+            padding: 0 30px;
+            resize: both;
+        }
+    }
+
+    .preview-code {
+        background: inherit;
+        border: 1px solid #cddae4;
+        border-top: none;
+        border-radius: unset;
+        box-shadow: none;
+        color: #565f67;
+        display: block;
+        line-height: 1.1!important;
+        margin-bottom: 30px;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 15px;
+        position: relative;
+        resize: none;
+        width: 100%;
+        z-index: 2;
+
+        &:focus {
+            outline: 0;
+            background: inherit;
+            box-shadow: unset;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid @border;
+            border-radius: unset;
+        }
+    }
+}
+
+.code {
+    position: absolute;
+    top: 5px;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    width: 30%;
+    padding: 5px 10px 1px 15px;
+    border-radius: unset;
+    border: 1px solid rgba(205, 218, 228, 1);
+    background-color: rgba(240,243,245,.9);
+    background-clip: padding-box;
+    opacity: .5;
+    -webkit-transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -o-transition: opacity .4s;
+    transition: opacity .4s;
+}
+
+
+

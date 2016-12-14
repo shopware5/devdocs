@@ -8,4 +8,6 @@ chmod 600 deploy_key
 echo -e "Host developers.shopware.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 eval `ssh-agent -s`
 ssh-add deploy_key
+
+git clone . -b styletile output_prod/styletile
 rsync -avze ssh --rsync-path="sudo rsync" --exclude=".git" --delete --exclude styletile/ output_prod/ shopware@developers.shopware.com:/var/www/developers.shopware.com

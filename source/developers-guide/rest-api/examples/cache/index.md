@@ -64,7 +64,7 @@ These examples assume you are using the provided **[demo API client](/developers
             DELETE api/caches/template
         </td>
         <td colspan="1">
-            <div>Deletes the tamplate cache</div>
+            <div>Deletes the template cache</div>
         </td>
     </tr>
     <tr>

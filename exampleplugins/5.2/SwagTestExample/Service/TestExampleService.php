@@ -21,6 +21,7 @@ class TestExampleService
 
     /**
      * @param ListProductService $listProductService
+     * @param ContextService $contextService
      */
     public function __construct(ListProductService $listProductService, ContextService $contextService)
     {
@@ -32,9 +33,7 @@ class TestExampleService
     {
         /** @var ShopContext $context */
         $context = $this->contextService->getContext();
-        /** @var ListProduct $product */
-        $product = $this->listProductService->get('SW10170', $context);
 
-        return $product;
+        return $this->listProductService->get('SW10170', $context);
     }
 }

@@ -119,6 +119,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
             'cancelUrl' => $router->assemble(['action' => 'cancel', 'forceSecure' => true]),
             'token' => $service->createPaymentToken($this->getAmount(), $billing['customernumber'])
         ];
+
         return http_build_query($parameter);
     }
 }

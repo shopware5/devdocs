@@ -13,6 +13,7 @@ menu_order: 35
 
 ## Introduction
 In this tutorial we will point out some important information for adding a new payment method to shopware. This is done by creating a payment plugin. Payment handling is essential for every shop and therefore a payment plugin needs some extra functionalities to guarantee secure and comfortable payments. 
+
 ### Qualification
 Before getting started with this tutorial, it is recommended that you first become familiar with creating Shopware plugins, since this guide will only point out the extras for creating a __payment plugin__. For further information on developing plugins see [our plugin guides](plugin-guide/).
 
@@ -38,7 +39,8 @@ In our plugin base class we need some additional logic for the payment plugin.
 Some payment providers offer more than just one method of payment. Shopware offers the possibility of combining multiple payments within a plugin. To do that we need to add the payment method to the database in our plugin base class. In this example we add two payment methods. One for invoices and one for credit cards. In the 5.2 plugin system we can use the [`Shopware\Components\Payment\Installer` service since shopware 5.2.13](https://developers.shopware.com/developers-guide/plugin-system/#add-a-new-payment-method) to add the rows. In older versions of shopware we have to create a payment model on our own and save it to the database. In the legacy plugin system we can use the `$this->createPayment()` helper method in the plugin bootstrap. 
 
 `SwagPaymentExample/SwagPaymentExample.php`:
-```
+
+```php
 public function install(InstallContext $context)
 {
     /** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
@@ -58,7 +60,7 @@ public function install(InstallContext $context)
             .'  Pay save and secured by invoice with our example payment provider.'
             .'</div>'
     ];
-    $installer->update($context->getPlugin(), $options);
+    $installer->createOrUpdate($context->getPlugin(), $options);
 
     $options = [
         'name' => 'example_payment_cc',
@@ -75,7 +77,7 @@ public function install(InstallContext $context)
             .'</div>'
     ];
 
-    $installer->update($context->getPlugin(), $options);
+    $installer->createOrUpdate($context->getPlugin(), $options);
 }
 ```
 * name : This is the name of the payment method. This is required in order to clearly identify the payment method. It will not be displayed in the templates. The description will be used for this.
@@ -83,7 +85,6 @@ public function install(InstallContext $context)
 * action : This field is used to determine which controller is responsible for this payment method.
 * active : With this flag we can determine whether the payment method is activated or deactivated upon completion of the installation.
 * position : This determines where the payment method appears in the list of methods.
-* pluginID : This is the ID of the plugin which is returned with $this->getId().
 * additionalDescription : Here we can add more information about the payment method, for example add an image that will be shown in the checkout process.
 
 If several payment methods are used, their names should be unique and clearly distinguishable. In the checkout process our example could look like this:
@@ -167,11 +168,7 @@ class ExamplePaymentService
      */
     public function isValidToken(PaymentResponse $response, $token)
     {
-        if($token === $response->token) {
-            return true;
-        }
-
-        return false;
+        return hash_equals($token, $response->token);
     }
 
     /**
@@ -215,7 +212,7 @@ class PaymentResponse
 ```
 
 ### Register the service
-To register our service we just create the `services.xml`.
+To register our service we have to create the `services.xml`.
 
 `SwagPaymentExample/Resources/services.xml`:
 ```
@@ -231,7 +228,7 @@ To register our service we just create the `services.xml`.
 ```
 
 ## Backend configuration
-For our example plugin we just need a configuration field for the url of the payment provider. For testing purposes we set the default url to our demo payment provider to handle the requests.
+For our example plugin we need a configuration field for the url of the payment provider. For testing purposes we set the default url to our demo payment provider to handle the requests.
 
 `SwagPaymentExample/Resources/config.xml`:
 ```
@@ -429,6 +426,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
 ```
 
 ### Adjusting payment status
+
 To change the payment status of an order, use the `savePaymentStatus()` command. This method accepts three parameters:
 * transactionID
 * uniquepaymentID
@@ -444,7 +442,8 @@ In shopware 5.3 and higher there are some improvements on query manipulation and
 ### Generate signature
 We generate an unique signature for our basket and add it to the array we hand over to the controller of our payment provider. You need to ask your provider for a parameter field they return unchanged to our controller. This could look like this:  
 `SwagPaymentExample/Controllers/Frontend/PaymentExample.php`:
-```
+
+```php
 private function getUrlParameters()
 {
     ...
@@ -461,8 +460,10 @@ private function getUrlParameters()
 `$this-persistBasket` returns a signature based on the basket and customer id and saves it together with a copy of the basket to the database.
 ### Checking for signature on return
 When the customer has finished the external payment process he will be redirected to our controller and we load the signature and verify the basket.
+
 `SwagPaymentExample/Controllers/Frontend/PaymentExample.php`:
-```
+
+```php
 public function returnAction()
 {
     ...
@@ -477,7 +478,7 @@ public function returnAction()
         $success = false;
     }
     
-    if(!$success) {
+    if (!$success) {
         die('Signature does not match');
     }
     ...

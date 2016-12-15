@@ -8,7 +8,7 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
     /**
      * @var Shopware\Components\Api\Resource\Banner
      */
-    protected $resource = null;
+    protected $resource;
 
     public function init()
     {

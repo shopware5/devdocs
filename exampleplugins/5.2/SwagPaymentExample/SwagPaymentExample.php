@@ -26,9 +26,7 @@ class SwagPaymentExample extends Plugin
             'active' => 0,
             'position' => 0,
             'additionalDescription' =>
-                '<!-- Logo start -->'
-                .'  <img src="http://your-image-url"/>'
-                .'<!-- Logo end -->'
+                '<img src="http://your-image-url"/>'
                 .'<div id="payment_desc">'
                 .'  Pay save and secured by invoice with our example payment provider.'
                 .'</div>'
@@ -42,9 +40,7 @@ class SwagPaymentExample extends Plugin
             'active' => 0,
             'position' => 0,
             'additionalDescription' =>
-                '<!-- Logo start -->'
-                .'  <img src="http://your-image-url"/>'
-                .'<!-- Logo end -->'
+                '<img src="http://your-image-url"/>'
                 .'<div id="payment_desc">'
                 .'  Pay save and secured by credit card with our example payment provider.'
                 .'</div>'

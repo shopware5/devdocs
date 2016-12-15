@@ -14,6 +14,7 @@ class ExamplePaymentService
         $response->transactionId = $request->getParam('transactionId', null);
         $response->status = $request->getParam('status', null);
         $response->token = $request->getParam('token', null);
+
         return $response;
     }
 

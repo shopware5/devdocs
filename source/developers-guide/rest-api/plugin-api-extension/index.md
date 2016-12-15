@@ -17,7 +17,7 @@ menu_order: 130
 <div class="toc-list"></div>
 
 ## Introduction
-This article describes how to extend the REST API and create an API endpoint. We create an exmaple plugin which 
+This article describes how to extend the REST API and create an API endpoint. We create an example plugin which 
 provides functions for managing banners.
 
 Normally every basic API resource contains of two parts:

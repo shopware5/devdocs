@@ -1,5 +1,4 @@
 <?php
-
 class Shopware_Controllers_Frontend_DemoPaymentProvider extends Enlight_Controller_Action
 {
     public function preDispatch()
@@ -12,13 +11,13 @@ class Shopware_Controllers_Frontend_DemoPaymentProvider extends Enlight_Controll
 
     public function payAction()
     {
-        $cancelUrl = $this->Request()->getParam('cancelUrl').'?'. http_build_query([
+        $cancelUrl = $this->Request()->getParam('cancelUrl') . '?' . http_build_query([
             'status' => 'canceled',
             'token' => $this->Request()->getParam('token'),
             'transactionId' => random_int(0, 1000)
         ]);
 
-        $returnUrl = $this->Request()->getParam('returnUrl').'?'. http_build_query([
+        $returnUrl = $this->Request()->getParam('returnUrl') . '?' . http_build_query([
             'status' => 'accepted',
             'token' => $this->Request()->getParam('token'),
             'transactionId' => random_int(0, 1000)

@@ -27,9 +27,9 @@ class SwagPaymentExample extends Plugin
             'position' => 0,
             'additionalDescription' =>
                 '<img src="http://your-image-url"/>'
-                .'<div id="payment_desc">'
-                .'  Pay save and secured by invoice with our example payment provider.'
-                .'</div>'
+                . '<div id="payment_desc">'
+                . '  Pay save and secured by invoice with our example payment provider.'
+                . '</div>'
         ];
         $installer->createOrUpdate($context->getPlugin(), $options);
 
@@ -41,9 +41,9 @@ class SwagPaymentExample extends Plugin
             'position' => 0,
             'additionalDescription' =>
                 '<img src="http://your-image-url"/>'
-                .'<div id="payment_desc">'
-                .'  Pay save and secured by credit card with our example payment provider.'
-                .'</div>'
+                . '<div id="payment_desc">'
+                . '  Pay save and secured by credit card with our example payment provider.'
+                . '</div>'
         ];
 
         $installer->createOrUpdate($context->getPlugin(), $options);
@@ -83,7 +83,6 @@ class SwagPaymentExample extends Plugin
 
         foreach ($payments as $payment) {
             $payment->setActive($active);
-            $em->persist($payment);
         }
         $em->flush();
     }

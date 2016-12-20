@@ -9,5 +9,5 @@
     <copyright>(c) shopware AG</copyright>
     <author>shopware AG</author>
 
-    <compatibility minVersion="5.2.13" />
+    <compatibility minVersion="5.2.13"/>
 </plugin>

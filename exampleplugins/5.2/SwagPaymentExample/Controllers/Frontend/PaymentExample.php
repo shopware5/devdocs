@@ -23,7 +23,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
     public function indexAction()
     {
         /**
-         * Check if one of our payment methods is selected. Else return to default controller.
+         * Check if one of the payment methods is selected. Else return to default controller.
          */
         switch ($this->getPaymentShortName()) {
             case 'example_payment_invoice':
@@ -42,7 +42,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
      */
     public function gatewayAction()
     {
-        $providerUrl = Shopware()->Config()->getByNamespace('SwagPaymentExample', 'providerUrl');
+        $providerUrl = $this->getProviderUrl();
         $this->View()->assign('gatewayUrl', $providerUrl . $this->getUrlParameters());
     }
 
@@ -53,7 +53,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
      */
     public function directAction()
     {
-        $providerUrl = Shopware()->Config()->getByNamespace('SwagPaymentExample', 'providerUrl');
+        $providerUrl = $this->getProviderUrl();
         $this->redirect($providerUrl . $this->getUrlParameters());
     }
 
@@ -74,6 +74,7 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
 
         if (!$service->isValidToken($response, $token)) {
             $this->forward('cancel');
+
             return;
         }
 
@@ -120,6 +121,16 @@ class Shopware_Controllers_Frontend_PaymentExample extends Shopware_Controllers_
             'token' => $service->createPaymentToken($this->getAmount(), $billing['customernumber'])
         ];
 
-        return http_build_query($parameter);
+        return '?' . http_build_query($parameter);
+    }
+
+    /**
+     * Returns the URL of the payment provider. This has to be replaced with the real payment provider URL
+     *
+     * @return string
+     */
+    protected function getProviderUrl()
+    {
+        return $this->Front()->Router()->assemble(['controller' => 'DemoPaymentProvider', 'action' => 'pay']);
     }
 }

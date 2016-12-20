@@ -528,20 +528,18 @@ public function install(InstallContext $context)
 	/** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
 	$installer = $this->container->get('shopware.plugin_payment_installer');
 
-	$options = [
-		'name' => 'example_payment_invoice',
-		'description' => 'Example payment method invoice',
-		'action' => 'example_payment',
-		'active' => 0,
-		'position' => 0,
-		'additionalDescription' =>
-			'<!-- Logo start -->'
-			.'  <img src="http://your-image-url"/>'
-			.'<!-- Logo end --><br/><br/>'
-			.'<div id="payment_desc">'
-			.'  Pay save and secured by invoice with our example payment provider.'
-			.'</div>'
-	];
+    $options = [
+        'name' => 'example_payment_invoice',
+        'description' => 'Example payment method invoice',
+        'action' => 'PaymentExample',
+        'active' => 0,
+        'position' => 0,
+        'additionalDescription' =>
+            '<img src="http://your-image-url"/>'
+            . '<div id="payment_desc">'
+            . '  Pay save and secured by invoice with our example payment provider.'
+            . '</div>'
+    ];
     $payment = $installer->createOrUpdate($this->getName(), $options);
 }
 ```

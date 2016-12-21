@@ -22,12 +22,12 @@ Also we are using the API client of the following document **[API client](/devel
 This example shows how to create a new article translation
 
 ```
-$api->post('translations/200, array(
+$api->post('translations/200', array(
         'key' => 200,            #  s_articles.id
         'type' => 'article',
         'shopId' => 2,           # s_core_shops.id
         'data' => array(
-        'name' => 'Dummy translation',
+                'name' => 'Dummy translation',
         ...
     )
 ));
@@ -41,7 +41,7 @@ $client->put('translations/200', array(
         'type' => 'article',
         'shopId' => 2,          # s_core_shops.id
         'data' => array(
-        'name' => 'Dummy translation',
+                'name' => 'Dummy translation',
         ...
     )
 ));

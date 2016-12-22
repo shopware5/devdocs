@@ -305,7 +305,7 @@ First of all we can extract the reference of the executed frontend controller us
 
 Now we want to inject our own template directory to Shopware using the `addTemplateDir` method. It takes a path of a template directory as parameter. Whenever rendering a template, Shopware will now automatically check your `View` directory for extensions and load them dynamically.
 
-Finally we want to assign some configuration to the template - in this case a slogan, a flag that indicates if the slogan should be italic or not and the font size of the slogan. For assignments `$view->assign('name', 'value)` is used - this way we will be able to access it in the Smarty template using `{$name}`.
+Finally we want to assign some configuration to the template - in this case a slogan, a flag that indicates if the slogan should be italic or not and the font size of the slogan. For assignments `$view->assign('name', 'value')` is used - this way we will be able to access it in the Smarty template using `{$name}`.
 
 The slogan itself is randomly selected in the `getSlogan` method. This could easily be moved to a plugin configuration text field, so that the shop owner can enter his slogans line by line. But as seen above, we already picked the best ones.
 
@@ -407,7 +407,7 @@ Within the block we can use default Smarty / HTML. In the example above, we defi
 </style>
 ```
 
-As you can sse, we use Smarty syntax here to change the style dynamically corresponding the the configuration we assigned to the template in the `onFrontendPostDispatch` callback method. So the `italic` style will only be set if the `italic` option is set. The same way the font size is set depending on the config.
+As you can see, we use Smarty syntax here to change the style dynamically corresponding to the configuration we assigned to the template in the `onFrontendPostDispatch` callback method. So the `italic` style will only be set if the `italic` option is set. The same way the font size is set depending on the config.
 
 Now the only thing left to do is show the slogan:
 

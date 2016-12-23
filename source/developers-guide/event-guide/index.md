@@ -216,7 +216,7 @@ Some real world examples for `filter` are:
 * `Shopware_Modules_RewriteTable_sCreateRewriteTableArticles_filterArticles`: Allows modifying the article context data used for the SEO engine
 
 #### collect
-The `collect` event is used in places, where Shopware wants to allow you to register e.g. handler for certain situations.
+The `collect` event is used in places, where Shopware wants to allow you to register e.g. handlers for certain situations.
 The following example would (by default) just print `hello`:
 
 ```
@@ -227,7 +227,7 @@ foreach($textPrinter as $text) {
 
 ```
 
-The following subscriber will add additional worlds to the `TEXT_PRINTER` event: 
+The following subscriber will add additional words to the `TEXT_PRINTER` event: 
 
 ```
 public function myEventSubscriber(\Enlight_Event_EventArgs $args)
@@ -308,7 +308,7 @@ class Shopware_Plugins_Frontend_MyPlugin_Bootstrap extends Shopware_Components_P
 }
 ```
 
-In the install method of the plugin an early Shopware event called `Enlight_Controller_Front_StartDispatch` is subscribed.
+In the `install` method of the plugin an early Shopware event called `Enlight_Controller_Front_StartDispatch` is subscribed.
 It is also necessary to always subscribe to the `Shopware_Console_Add_Command`.
 So still these events are needed to bring my subscribers into play - but afterwards, most other events can be
 registered using subscribers.
@@ -373,7 +373,7 @@ is no generalized overview of all events. Instead of that, we suggest to step in
 ### Finding application events
 Application events are those events, that are explicitly emitted for a certain purpose, e.g. "stop you from buying this"
 or "modify basket item price". Let's imagine, you want to stop a user from adding a certain item to the cart. The easiest
-approach is to have a look which controller is responsible for the behavior, you want to influence - in our case "adding
+approach is to have a look which controller is responsible for the behavior you want to influence - in our case "adding
 items to the cart". So in this example an item is added to the cart with an opened developer toolbar:
 
 ![inspecting](/developers-guide/event-guide/img/inspect.png)
@@ -419,7 +419,7 @@ All these steps come with different events:
 The router mainly has the both events `Enlight_Controller_Front_RouteStartup` (before the routing) and
 `Enlight_Controller_Front_RouteShutdown` (after the routing). During routing the event `Enlight_Controller_Router_Route`
  is emitted - it allows you perform own routings via plugin. See `\Shopware\Components\Routing\Router` for more details.
-It is important to remember, that the full routing information (module, controller, action) is only remember with the
+It is important to remember, that the full routing information (module, controller, action) is only passed with the
 "RouteShutdown" event. Any event before will not have this information.
 
 #### Dispatching:

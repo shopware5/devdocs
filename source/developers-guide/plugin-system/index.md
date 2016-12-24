@@ -75,9 +75,9 @@ Plugin SwagSloganOfTheDay has been activated successfully.
 At this point the plugin has no functionality at all.
 
 
-## Pluginbootstrap as Event Subscriber
+## Plugin bootstrap as Event Subscriber
 
-The Pluginbootstrap implements `\Enlight\Event\SubscriberInterface` so it can be used as a [Event Subscriber](/developers-guide/event-guide/#subscribers).
+The plugin bootstrap implements `\Enlight\Event\SubscriberInterface` so it can be used as an [Event Subscriber](/developers-guide/event-guide/#subscribers).
 
 ```php
 <?php
@@ -159,7 +159,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
 The [Symfony DependencyInjection Component](http://symfony.com/doc/current/components/dependency_injection/introduction.html)
 
-The container configuration is the main extension point for shopware plugins.
+The container configuration is the main extension point for Shopware plugins.
 In this configuration new services can be defined, core services can be decorated or replaced or functionality can be added to the system.
 
 ```
@@ -209,7 +209,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 ### Decorate a service
-The following example shows you how to decorate a service which implements an interface and gets defined in the shopware dependency injection container.
+The following example shows you how to decorate a service which implements an interface and gets defined in the Shopware dependency injection container.
 ```php
 <?php
 
@@ -266,7 +266,7 @@ For more information see http://symfony.com/doc/current/service_container/servic
 
 ### Extended Container Configuration
 
-By overwriting the `build()`-method the `ContainerBuilder` can extended:
+By overwriting the `build()`-method the `ContainerBuilder` can be extended:
 
 ```php
 <?php
@@ -332,7 +332,7 @@ class RouteSubscriber implements SubscriberInterface
 ```
 
 After adding the `RouteSubscriber.php`, the subscriber can be added to the `services.xml` as a tagged service ([Symfony - Working with Tagged Services](http://symfony.com/doc/current/components/dependency_injection/tags.html)).
-This allows shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
+This allows Shopware to load all event subscriber automatically so you don't need to register the subscriber manually.
 
 `SwagSloganOfTheDay/Resources/services.xml`
 ```xml
@@ -520,7 +520,7 @@ SwagEmotion
 └──SwagEmotion.php
 ```
 ## Add a new payment method
-Since shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service can be used to add payment methods to the database inside plugin installations.
+Since Shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service can be used to add payment methods to the database inside plugin installations.
 
 ```php
 public function install(InstallContext $context)
@@ -546,7 +546,7 @@ public function install(InstallContext $context)
 ## Plugin Resources
 
 Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
-IDE`s like PhpStorm support auto completion by default for these files if schema file location is valid.
+IDE's like PhpStorm support auto completion by default for these files if schema file location is valid.
 
 ```
 SwagSloganOfTheDay
@@ -609,14 +609,14 @@ Backend plugin configuration can be extended by `Resources/config.xml` file. Thi
 </config>
 ```
 
-Configuration is accessible by following code snippet:
+Configuration is accessible by the following code snippet:
 
 ```
 Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
 ```
 
 #### add store values
-As of shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.
+As of Shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.
 
 A custom config store is defined like this:
 ```xml

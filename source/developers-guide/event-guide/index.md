@@ -9,7 +9,7 @@ group: Developer Guides
 subgroup: Developing plugins
 ---
 
-In order to extend Shopware or modify its behavior you will need some sort of extension system, that allows you too
+In order to extend Shopware or modify its behavior you will need some sort of extension system, that allows you to
 hook onto Shopware. The following guide will give an overview of event systems in general and the Shopware event system
 specifically
 
@@ -20,7 +20,7 @@ specifically
 Event systems also known as [publish subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern)
 are basically a pattern to layout software. They allow to emit an event at any point in the software - and let other pieces
 of software react to that event. The main aspect is the fact, that the piece of software emitting the event does not need
-to know the piece of software consuming the event. So very generally speaking, Shopware could emit a event `ORDER_FINISHED`
+to know the piece of software consuming the event. So very generally speaking, Shopware could emit an event `ORDER_FINISHED`
 with the additional information `AMOUNT: 300; PRODUCTS: [SW-123, SW-456]` and a plugin developer could just subscribe to that very 
 event and push those information to the ERP. 
 
@@ -31,7 +31,7 @@ event and push those information to the ERP.
     above the name was `ORDER_FINISHED` and the payload was `AMOUNT: 300; PRODUCTS: [SW-123, SW-456]`. Depending on the 
     event system, the payload can be an object, an array or any other data type.
 * emit
-    * Usually an event is *emitted* by telling the *event manager* that a certain event just occurred   
+    * Usually an event is *emitted* by telling the *event manager* that a certain event just occurred.   
 * Subscribe
     * *Subscribing* is the process of telling the *event manager* that you want to be notified about certain events.  
 * notify
@@ -40,7 +40,7 @@ event and push those information to the ERP.
 * event manager
     * The central instance that takes care of *emitting* events and notifies all subscribers about that event. The process
     of notifying the correct subscribers about a certain event is also called "event dispatching", as the event is "dispatched"
-    to one or more subscribers
+    to one or more subscribers.
 
 
 ### How does it work?
@@ -64,7 +64,7 @@ Shopware()->Events()->addListener(
 ```
 
 It will basically tell the Shopware event manager: If an event with the name 'ORDER_FINISHED' occurs, please execute given 
-callback. There are **more sophisticated** ways to register an event in Shopware - but this is the general mechanism.
+the callback. There are **more sophisticated** ways to register an event in Shopware - but this is the general mechanism.
 Technically this could already be a very simple plugin, that runs some code, when ORDER_FINISHED is emitted. 
 
 #### Emitting the event
@@ -416,9 +416,9 @@ In regards to events, this can be told apart in these steps:
 All these steps come with different events:
 
 #### Routing:
-The router mainly has the both events `Enlight_Controller_Front_RouteStartup` (before the routing) and
+The router mainly has the two events `Enlight_Controller_Front_RouteStartup` (before the routing) and
 `Enlight_Controller_Front_RouteShutdown` (after the routing). During routing the event `Enlight_Controller_Router_Route`
- is emitted - it allows you perform own routings via plugin. See `\Shopware\Components\Routing\Router` for more details.
+ is emitted - it allows you to perform your own routings via plugin. See `\Shopware\Components\Routing\Router` for more details.
 It is important to remember, that the full routing information (module, controller, action) is only passed with the
 "RouteShutdown" event. Any event before will not have this information.
 
@@ -462,7 +462,7 @@ After the actual controller method was run, the `postDispatch` method of the con
 * `Enlight_Controller_Action_PostDispatch_MODULE`
 * `Enlight_Controller_Action_PostDispatch`
 
-Basically the same mechanics as for the `PreDispatch` applies (so there is a MODULE_CONTROLLER and a MODULE suffix
+Basically the same mechanics as for the `PreDispatch` event apply (so there is a MODULE_CONTROLLER and a MODULE suffix)
 as well as a "global" PostDispatch event without suffix. Notice that there are two types of PostDispatch event:
 `Enlight_Controller_Action_PostDispatchSecure*` will only be emitted, if a *template* is available and *no exception*
 occured before; the `Enlight_Controller_Action_PostDispatch` event (without *secure* as suffix) will also be emitted
@@ -471,7 +471,7 @@ events are recommended - if you are not using them, you need to perform the chec
 
 ### Container events
 Technically container events are also global events - but they are specific to Shopware's integration of the Symfony
-dependency injection container. `Enlight_Bootstrap_InitResource_SERVICE` will be emitted, if the a service with the
+dependency injection container. `Enlight_Bootstrap_InitResource_SERVICE` will be emitted, if the service with the
 name `SERVICE` was requested. In your event subscriber just return an instance of that class.
 `Enlight_Bootstrap_AfterInitResource_SERIVCE` is emitted, when `SERVICE` was just loaded by the DI container. You can
 use this event to decorate / replace that SERVICE with your own one.

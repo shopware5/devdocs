@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Extend an existing plugin via another plugin
-github_link: developers-guide/plugin-extendion-by-plugin/index.md
+github_link: developers-guide/plugin-extension-by-plugin/index.md
 indexed: true
 tags:
   - extend
@@ -36,12 +36,12 @@ On base of the new 5.2 plugin system, we extend the plugin SwagCustomProducts wi
 
 ## Create the plugin basics
 At first create the base structure of the plugin, including plugin.xml, config.xml, services.xml and the SwagExtendCustomProducts.php.
-This files are the base of each plugin. 
+These files are the base of each plugin. 
 
 For more information about <a href="{{ site.url }}/developers-guide/plugin-system/">the 5.2 Plugin system click here</a>
 
 ### SwagExtendCustomProducts/plugin.xml 
-contains the base information about the plugin, the label in englisch and german, the plugin version, the required shopware version and the changelog. 
+contains the base information about the plugin, the label in English and German, the plugin version, the required Shopware version and the changelog. 
 This file is equal to the old plugin.json.
 
 ```xml
@@ -66,9 +66,9 @@ This file is equal to the old plugin.json.
 ### SwagExtendCustomProducts/Resources/config.xml
 describes possible global plugin settings.
 
-In this file you can easy implement a bunch of plugin setting which the customer can use to control the pluign.
-Each element node represent a single plugin setting. 
-Also you can translate the label and the description in your language.
+In this file you can easily implement a bunch of plugin settings which the customer can use to control the plugin.
+Each element node represents a single plugin setting. 
+You can also translate the label and the description in your language.
 
 Possible types for elements are:
 
@@ -179,7 +179,7 @@ Overwrite functions to execute your code here.
  
 For more information about the functions you can use and overwrite take a look into the wiki <a href="{{ site.url }}/developers-guide/plugin-system/">The 5.2 Plugin system</a> or in the class _\Shopware\Components\Plugin_ which you can find in the folder _ /engine/Shopware/Components_.
 
-in our example we overwrite the build and the install methods. 
+In our example we overwrite the build and the install methods. 
  - The build method, to add a new parameter into the dependency container.
 wherever you have the container available you can call the parameter by:
 
@@ -307,12 +307,12 @@ class Verifier
 ```
 
 ## Decorate the WhiteListService
-We decide to decorate the service by the event method because the plugin we want to expand is still based on the old plug system. Thus, the service wasn't injected into the container yet.
+We decide to decorate the service by the event method because the plugin we want to expand is still based on the old plugin system. Thus, the service wasn't injected into the container yet.
 
 
-To add new items into the white list we must to decorate the service. 
-That means, call the original service and create a own service. This contains the original service, implements the same interface and extend the functions. 
-At end set the service to the container instead of the original. 
+To add new items into the white list we must decorate the service. 
+That means, call the original service and create our own service. This contains the original service, implements the same interface and extends the functions. 
+At the end set the service to the container instead of the original. 
 
  - To decorate the WhiteListService of the Custom Product (v2) plugin we need the event name that invokes the Service. _custom_products.file_upload.file_type_whitelist_
  - In combination with the prefix _Enlight_Bootstrap_AfterInitResource_ we create the full event name: **_Enlight_Bootstrap_AfterInitResource_custom_products.file_upload.file_type_whitelist_**
@@ -545,7 +545,7 @@ snippets: {
 
 Create a new directory structure and the file _SwagExtendCustomProducts/Resources/Views/backend/swag_extend_custom_products/swag_custom_products/view/components/type_translator.js_
 
-Its necessary to call **//{$smarty.block.parent}** because other plugins can extend the same Smarty block. 
+It's necessary to call **//{$smarty.block.parent}** because other plugins can extend the same Smarty block. 
 
 ```js
 //{block name="backend/swag_custom_products/components/typeTranslator/snippets"}
@@ -627,7 +627,7 @@ class Backend implements SubscriberInterface
 
 Add the option type in ExtJs. Create **_SwagExtendCustomProducts/Resources/Views/backend/swag_custom_products/view/option/types/custom_type.js_** which extends "Shopware.apps.SwagCustomProducts.view.option.types.AbstractTypeContainer"
 
-The AbstractTypeContainer is a abstract ExtJs class which defines functions and "template functions" you can use or overwrite. 
+The AbstractTypeContainer is an abstract ExtJs class which defines functions and "template functions" you can use or overwrite. 
 
 ```js
 //
@@ -642,7 +642,7 @@ Ext.define('Shopware.apps.SwagCustomProducts.view.option.types.CustomType', {
 //{/block}
 ```
 
-At last create a Template for the frontend to display the new option type. 
+At last create a template for the frontend to display the new option type. 
 **_SwagExtendCustomProducts/Resources/Views/frontend/swag_custom_products/options/customType.tpl_**
 
 ```html

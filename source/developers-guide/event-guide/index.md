@@ -63,8 +63,7 @@ Shopware()->Events()->addListener(
 );
 ```
 
-It will basically tell the Shopware event manager: If an event with the name 'ORDER_FINISHED' occurs, please execute given 
-the callback. There are **more sophisticated** ways to register an event in Shopware - but this is the general mechanism.
+It will basically tell the Shopware event manager: If an event with the name 'ORDER_FINISHED' occurs, please execute the given callback. There are **more sophisticated** ways to register an event in Shopware - but this is the general mechanism.
 Technically this could already be a very simple plugin, that runs some code, when ORDER_FINISHED is emitted. 
 
 #### Emitting the event

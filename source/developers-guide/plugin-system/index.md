@@ -546,7 +546,7 @@ public function install(InstallContext $context)
 ## Plugin Resources
 
 Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
-IDE's like PhpStorm support auto completion by default for these files if schema file location is valid.
+IDEs like PhpStorm support auto completion by default for these files if schema file location is valid.
 
 ```
 SwagSloganOfTheDay

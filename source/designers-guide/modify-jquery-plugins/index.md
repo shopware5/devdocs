@@ -19,7 +19,7 @@ With Shopware 5.0.2, we're providing an easy to use way to override a plugin's b
 ## Override a jQuery plugin
 Modifying a plugin is easier than ever before. We introduced a new method called `$.overridePlugin`, which is bond to the jQuery object. jQuery itself is globally available and therefore can be used anywhere in the storefront.
 
-If you want to override a jQuery plugin, you basically need to know the plugin's name and the name of the method you want to override. In the following example, we will override the `search` plugin, which provides the live suggestion search functionality in the storefront. The source files of the `search` plugin is located in the Responsive theme under ```frontend/_public/src/js/jquery.search.js```.
+If you want to override a jQuery plugin, you basically need to know the plugin's name and the name of the method you want to override. In the following example, we will override the `swSearch` plugin, which provides the live suggestion search functionality in the storefront. The source files of the `swSearch` plugin is located in the Responsive theme under ```frontend/_public/src/js/jquery.search.js```.
 
 We want to modify the animation of the search result. Instead of just showing the result list, we want to have a nice slide down animation.
 
@@ -36,7 +36,7 @@ $.overridePlugin('<pluginName>', {
 Basically, you need to alter the method implementation to change the animation. Therefore, we have to override the whole method and replace it with our own implementation.
 
 ```javascript
-$.overridePlugin('search', {
+$.overridePlugin('swSearch', {
     showResult: function(response) {
         var me = this;
         me.$loader.fadeOut(me.opts.animationSpeed);
@@ -51,7 +51,7 @@ We also added the ability to call the original method and add additional logic t
 You have access to the original plugin implementation using the object property ```superclass```.
 
 ```javascript
-$.overridePlugin('search', {
+$.overridePlugin('swSearch', {
     showResult: function() {
         var me = this;
 
@@ -63,7 +63,7 @@ $.overridePlugin('search', {
 As you can see in the example above, we call the original implementation of the ```showResult``` method. Now we can call the overlay and modify the ```z-index``` property of the search result and the search form to position it over the overlay.
 
 ```javascript
-$.overridePlugin('search', {
+$.overridePlugin('swSearch', {
     showResult: function() {
         var me = this;
 
@@ -80,7 +80,7 @@ $.overridePlugin('search', {
 The last thing we have to do is close the overlay when the search result is closed and reset the ```z-index``` property.
 
 ```javascript
-$.overridePlugin('search', {
+$.overridePlugin('swSearch', {
     showResult: function() {
         var me = this;
 

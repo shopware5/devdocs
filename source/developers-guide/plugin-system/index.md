@@ -612,7 +612,7 @@ Backend plugin configuration can be extended by `Resources/config.xml` file. Thi
 Configuration is accessible by the following code snippet:
 
 ```
-Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan'),
+Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan');
 ```
 
 #### add store values

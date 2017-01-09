@@ -583,7 +583,7 @@ $client->post('articles', $filterTest);
 
 ```
 
-Options (`option`) and values (`value`) can be identified by name (see example above) or by identifier (`id`). Since the values within option and options are unique in groups, it's possible to automatically recognize if a new one has to be added to the shop, or if an existing entry has to be updated. PropertyGroups (`filterGroupID`) have to be added through another resource **[PropertyGroups](../api-resource-property-group)**.
+Options (`option`) and values (`value`) can be identified by name (see example above) or by identifier (`id`). Since the values within option and options are unique in groups, it's possible to automatically recognize if a new one has to be added to the shop, or if an existing entry has to be updated. PropertyGroups (`filterGroupID`) have to be added through another resource **[PropertyGroups](../../api-resource-property-group)**.
 
 ```
 $properties = array(

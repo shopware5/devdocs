@@ -55,35 +55,40 @@ To connect to the REST API, you need a client application. As REST is widely use
 
 ```
 <?php
-class ApiClient {
-    const METHOD_GET    = 'GET';
-    const METHOD_PUT    = 'PUT';
-    const METHOD_POST   = 'POST';
+class ApiClient
+{
+    const METHOD_GET = 'GET';
+    const METHOD_PUT = 'PUT';
+    const METHOD_POST = 'POST';
     const METHOD_DELETE = 'DELETE';
-    protected $validMethods = array(
+    protected $validMethods = [
         self::METHOD_GET,
         self::METHOD_PUT,
         self::METHOD_POST,
-        self::METHOD_DELETE
-    );
+        self::METHOD_DELETE,
+    ];
     protected $apiUrl;
     protected $cURL;
 
-    public function __construct($apiUrl, $username, $apiKey) {
+    public function __construct($apiUrl, $username, $apiKey)
+    {
         $this->apiUrl = rtrim($apiUrl, '/') . '/';
-         //Initializes the cURL instance
+        //Initializes the cURL instance
         $this->cURL = curl_init();
         curl_setopt($this->cURL, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->cURL, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($this->cURL, CURLOPT_USERAGENT, 'Shopware ApiClient');
         curl_setopt($this->cURL, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
         curl_setopt($this->cURL, CURLOPT_USERPWD, $username . ':' . $apiKey);
-        curl_setopt($this->cURL, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json; charset=utf-8',
-        ));
+        curl_setopt(
+            $this->cURL,
+            CURLOPT_HTTPHEADER,
+            ['Content-Type: application/json; charset=utf-8']
+        );
     }
 
-    public function call($url, $method = self::METHOD_GET, $data = array(), $params = array()) {
+    public function call($url, $method = self::METHOD_GET, $data = [], $params = [])
+    {
         if (!in_array($method, $this->validMethods)) {
             throw new Exception('Invalid HTTP-Methode: ' . $method);
         }
@@ -97,59 +102,69 @@ class ApiClient {
         curl_setopt($this->cURL, CURLOPT_URL, $url);
         curl_setopt($this->cURL, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($this->cURL, CURLOPT_POSTFIELDS, $dataString);
-        $result   = curl_exec($this->cURL);
+        $result = curl_exec($this->cURL);
         $httpCode = curl_getinfo($this->cURL, CURLINFO_HTTP_CODE);
+
         return $this->prepareResponse($result, $httpCode);
     }
 
-    public function get($url, $params = array()) {
-        return $this->call($url, self::METHOD_GET, array(), $params);
+    public function get($url, $params = [])
+    {
+        return $this->call($url, self::METHOD_GET, [], $params);
     }
 
-    public function post($url, $data = array(), $params = array()) {
+    public function post($url, $data = [], $params = [])
+    {
         return $this->call($url, self::METHOD_POST, $data, $params);
     }
 
-    public function put($url, $data = array(), $params = array()) {
+    public function put($url, $data = [], $params = [])
+    {
         return $this->call($url, self::METHOD_PUT, $data, $params);
     }
 
-    public function delete($url, $params = array()) {
-        return $this->call($url, self::METHOD_DELETE, array(), $params);
+    public function delete($url, $params = [])
+    {
+        return $this->call($url, self::METHOD_DELETE, [], $params);
     }
 
-    protected function prepareResponse($result, $httpCode) {
+    protected function prepareResponse($result, $httpCode)
+    {
         echo "<h2>HTTP: $httpCode</h2>";
         if (null === $decodedResult = json_decode($result, true)) {
-            $jsonErrors = array(
+            $jsonErrors = [
                 JSON_ERROR_NONE => 'No error occurred',
                 JSON_ERROR_DEPTH => 'The maximum stack depth has been reached',
                 JSON_ERROR_CTRL_CHAR => 'Control character issue, maybe wrong encoded',
                 JSON_ERROR_SYNTAX => 'Syntaxerror',
-            );
-            echo "<h2>Could not decode json</h2>";
-            echo "json_last_error: " . $jsonErrors[json_last_error()];
-            echo "<br>Raw:<br>";
-            echo "<pre>" . print_r($result, true) . "</pre>";
+            ];
+            echo '<h2>Could not decode json</h2>';
+            echo 'json_last_error: ' . $jsonErrors[json_last_error()];
+            echo '<br>Raw:<br>';
+            echo '<pre>' . print_r($result, true) . '</pre>';
+
             return;
         }
         if (!isset($decodedResult['success'])) {
-            echo "Invalid Response";
+            echo 'Invalid Response';
+
             return;
         }
         if (!$decodedResult['success']) {
-            echo "<h2>No Success</h2>";
-            echo "<p>" . $decodedResult['message'] . "</p>";
+            echo '<h2>No Success</h2>';
+            echo '<p>' . $decodedResult['message'] . '</p>';
             if ($decodedResult['errors'] && is_array($decodedResult['errors'])) {
-                echo "<p>" . join("</p><p>", $decodedResult['errors']) . "</p>";
+                echo '<p>' . join('</p><p>', $decodedResult['errors']) . '</p>';
             }
+
             return;
         }
-       echo "<h2>Success</h2>";
+        echo '<h2>Success</h2>';
         if (isset($decodedResult['data'])) {
-            echo "<pre>" . print_r($decodedResult['data'], true) . "</pre>";
+            echo '<pre>' . print_r($decodedResult['data'], true) . '</pre>';
         }
-       return $decodedResult;
+
+        return $decodedResult;
     }
 }
 ```

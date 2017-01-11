@@ -47,7 +47,7 @@ This file is equal to the old plugin.json.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Erweiterung für CustomProducts (v2)</label>
     <label lang="en">Extension for CustomProducts (v2)</label>
     <version>1.0.0</version>
@@ -90,7 +90,7 @@ Possible types for elements are:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+ xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/config.xsd">
 
     <elements>
 

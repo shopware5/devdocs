@@ -306,9 +306,23 @@ There are several methods for nearly any kind of form field. Here is a list of a
                 <li><code>helpTitle</code></li>
                 <li><code>helpText</code></li>
                 <li><code>allowBlank</code></li>
+                <li><code>valueField (since Shopware 5.2.14)</code></li>
             </ul>
         </td>
-        <td><img src="img/screen_mediafield.jpg" alt="media field" /></td>
+        <td>
+            <img src="img/screen_mediafield.jpg" alt="media field" />
+            <br /><br />
+            <p>The <code>valueField</code> allows you to control which property of the MediaModel is returned as value</p>
+            <p><strong>Example:</strong></p>
+            <pre>
+$emotionElement->createMediaField([
+    'name' => 'preview_image',
+    'fieldLabel' => 'The preview image',
+    'valueField' => 'virtualPath'
+]);
+            </pre>
+            <p>You can find possible properties in this file: <code>../themes/Backend/ExtJs/backend/media_manager/model/media.js</code></p>
+        </td>
     </tr>
     <tr>
         <td><h5>Display field</h5><code>createDisplayField()</code></td>

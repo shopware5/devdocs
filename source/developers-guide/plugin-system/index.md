@@ -525,8 +525,8 @@ Since Shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service 
 ```php
 public function install(InstallContext $context)
 {
-	/** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
-	$installer = $this->container->get('shopware.plugin_payment_installer');
+    /** @var \Shopware\Components\Plugin\PaymentInstaller $installer */
+    $installer = $this->container->get('shopware.plugin_payment_installer');
 
     $options = [
         'name' => 'example_payment_invoice',
@@ -621,7 +621,7 @@ As of Shopware 5.2.11 it is possible to define custom config stores directly ins
 A custom config store is defined like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
         <element type="select">
             <name>selectArray</name>
@@ -671,15 +671,15 @@ Example `Resources/menu.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
-	<entries>
-		<entry>
-			<name>SloganOfTheDay</name>
-			<label lang="en">Slogan of the Days</label>
-			<label lang="de">Spruch des Tages</label>
-			<controller>SwagSloganOfTheDay</controller>
-			<action>index</action>
-			<class>sprite-metronome</class>
-			<parent identifiedBy="controller">Marketing</parent>
+    <entries>
+        <entry>
+            <name>SloganOfTheDay</name>
+            <label lang="en">Slogan of the Days</label>
+            <label lang="de">Spruch des Tages</label>
+            <controller>SwagSloganOfTheDay</controller>
+            <action>index</action>
+            <class>sprite-metronome</class>
+            <parent identifiedBy="controller">Marketing</parent>
             <children>
                 <entry>
                     <name>SloganOfTheDayChild</name>
@@ -690,8 +690,8 @@ Example `Resources/menu.xml`:
                     <class>sprite-application-block</class>
                 </entry>
             </children>
-		</entry>
-	</entries>
+        </entry>
+    </entries>
 </menu>
 ```
 

@@ -35,7 +35,16 @@ need to specify options in your `config.php` if you want to override the default
 But keep in mind that most of these options should only be used for __debugging and testing__ 
 and should be removed for your live system.
 
-## Important options
+## Session locking
+As of Shopware 5.2.13 session locking is enabled by default. This prevents unsuspected failures when concurrent ajax requests work with the same session variables. With enabled locking ajax requests are processed one after another.
+
+```
+    'session' => [
+        ...
+        'locking' => true,
+    ],
+```
+## Important options for development
 
 ### CSRF Protection
 default:

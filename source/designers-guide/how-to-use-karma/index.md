@@ -24,7 +24,7 @@ Karma requires [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) 
 Now that all requirements are installed, we can install Karma and its dependencies. First of all, please switch to the directory ```themes/Frontend/Responsive``` and execute the following command:
 
 ```bash
-npm install karma karma-phantomjs-launcher karma-jasmine karma-junit-reporter
+npm install karma karma-phantomjs-launcher karma-jasmine jasmine-core karma-junit-reporter
 ```
 
 ## Running tests using the command line

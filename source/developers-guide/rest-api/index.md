@@ -242,7 +242,141 @@ var string = "2012-06-13T07:32:25.706Z"
 var date = new Date(string);
 ```
 
+### Filter, Sort, Limit, Offset
+
+Every API comes with a set of default parameters which can be used to modify the given result. All parameters can be combined in a single request.
+
+The following examples are snippets for our API client above.
+
+#### Filter
+
+Filtering a results can be done using the `filter` parameter in your request. The available properties can be extracted from the Shopware models below.
+
+Each filter can have the following properties:
+
+* property (Required)
+* value (Required)
+* expression (Default: `LIKE`, available: all MySQL expressions)
+* operator (If set, concats the filter using `OR` instead of `AND`) 
+
+**Example: Active articles with at least 1 pseudo sale**
+
+```
+$params = [
+    'filter' => [
+        [
+            'property' => 'pseudoSales',
+            'expression' => '>=',
+            'value' => 1
+        ],
+        [
+            'property' => 'active',
+            'value' => 1
+        ]
+    ]
+];
+
+$client->get('articles', $params);
+```
+
+**Example: Active articles or articles containing "beach" in their name**
+
+```
+$params = [
+    'filter' => [
+        [
+            'property' => 'name',
+            'value' => '%beach%',
+            'operator' => 1
+        ],
+        [
+            'property' => 'active',
+            'value' => 1
+        ]
+    ]
+];
+
+$client->get('articles', $params);
+```
+
+**Example: Orders from customer which email address is "test@example.com"**
+
+Keep in mind, that the related entity must be joined in the query builder.
+
+```
+$params = [
+    'filter' => [
+        [
+            'property' => 'customer.email',
+            'value' => 'test@example.com'
+        ]
+    ]
+];
+
+$client->get('orders', $params);
+```
+
+#### Sort
+
+The sorting syntax nearly equals to the filter section above. It uses the `sort` parameter in the request.
+
+Each sorting can have the following properties:
+
+* property (Required)
+* direction (Default: `ASC`)
+
+**Example: Sort by article name**
+
+```
+$params = [
+    'sort' => [
+        ['property' => 'name']
+    ]
+];
+
+$client->get('articles', $params);
+```
+
+**Example: First, sort by order time and then by invoice amount in descending order**
+
+```
+$params = [
+    'sort' => [
+        ['property' => 'orderTime'],
+        ['property' => 'invoiceAmount', 'direction' => 'DESC']
+    ]
+];
+
+$client->get('orders', $params);
+```
+
+#### Limit / Offset
+
+By default, Shopware uses a soft limit on the API with a value of `1000`. If you need more than `1000` results, increase it to your needs. The limiting uses the parameter `limit`, the offset `start`.
+
+**Example: Retrieve the first 50 results**
+
+```
+$params = [
+    'limit' => 50
+];
+
+$client->get('orders', $params);
+```
+
+**Example: Retrieve 50 results, skipping the first 20**
+
+```
+$params = [
+    'limit' => 50,
+    'start' => 20
+];
+
+$client->get('orders', $params);
+```
+
 ## Models
 
 You can find a list of all models at the following page:
+
 * **[Models](models/)**

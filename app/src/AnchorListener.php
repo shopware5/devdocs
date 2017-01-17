@@ -47,6 +47,15 @@ class AnchorListener implements EventSubscriberInterface
         if ($source->isRaw()) {
             return;
         }
+        $parts = explode('.', $source->filename());
+
+        if (count($parts) < 2) {
+            return;
+        }
+
+        if (!in_array($parts[1], ['md', 'html'], true)) {
+            return;
+        }
 
         $content = $source->formattedContent();
 

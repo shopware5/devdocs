@@ -202,8 +202,6 @@ class SwagAttribute extends Plugin
 Sometimes it's necessary to rebuild the attribute models after attribute creation, update or deletion.
 
 ```
-$metaDataCache = Shopware()->Models()->getConfiguration()->getMetadataCacheImpl();
-$metaDataCache->deleteAll();
 Shopware()->Models()->generateAttributeModels(['s_articles_attributes']);
 ```
 

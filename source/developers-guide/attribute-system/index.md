@@ -108,6 +108,25 @@ class SwagAttribute extends Plugin
 }
 ```
 
+### Delete an existing attribute
+```
+<?php
+
+namespace SwagAttribute;
+
+use Shopware\Components\Plugin;
+
+class SwagAttribute extends Plugin
+{
+    public function uninstall()
+    {
+        $service = $this->container->get('shopware_attribute.crud_service');
+        $service->delete('s_articles_attributes', 'my_column');
+    }
+}
+```
+Deletes the existing `my_column` attribute.
+
 ### Depending tables
 Some attribute tables have dependencies to other attribute tables. This dependencies defined in the \Shopware\Bundle\AttributeBundle\Service\TableMapping class.
 For example attributes which generated for the `s_user_addresses_attributes` table, should also generated in `s_user_billingaddress_attributes`, `s_user_shippingaddress_attributes`, `s_order_billingaddress_attributes`, `s_order_shippingaddress_attributes`.
@@ -177,6 +196,15 @@ class SwagAttribute extends Plugin
         ]);
     }
 }
+```
+
+### Rebuild attribute models
+Sometimes it's necessary to rebuild the attribute models after attribute creation, update or deletion.
+
+```
+$metaDataCache = Shopware()->Models()->getConfiguration()->getMetadataCacheImpl();
+$metaDataCache->deleteAll();
+Shopware()->Models()->generateAttributeModels(['s_articles_attributes']);
 ```
 
 ## ExtJS extensions

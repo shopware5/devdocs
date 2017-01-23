@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JavaScript coding Style
+title: JavaScript Coding Style
 github_link: designers-guide/javascript-coding-style/index.md
 indexed: true
 group: Frontend Guides
@@ -11,85 +11,241 @@ menu_order: 10
 
 This document explains the basic styles and patterns used in the Shopware JavaScript codebase. New code should try to conform to these standards so that it is as easy to maintain as existing code. Of course every rule has an exception, but it's important to know the rules nonetheless.
 
-The coding styling is heavily inspired by [Mozilla's coding style](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style).
+The coding style is using the sharable eslint configuration "[standard](http://standardjs.com/)" with modifications.
 
-### Naming and formatting code
+## The rules
 
-#### Whitespace
-No tabs. No whitespace at the end of a line. Unix-style linebreaks ```\n```, not Windows-style ```\r\n```.
+### 4 spaces for indention
 
-#### Indention
-Four spaces per logic level. Keep in mind `switch case` labels comsume a logic level as well.
+**Rule:** [`indent`](http://eslint.org/docs/rules/indent)<br>
+**Level:** error
 
-#### Control structures
-Use K&R bracing style: left brace at end of first line, wrap else on both sides. Always brace controlled statements, even a single-line consequence of an `if` or `else`. This is typically redundant, but avoids dangling `else` bugs, so it's safer at scale than fine-tuning.
+We're always using 4 spaces and no tab characters. No whitespace at the end of a line. Unix-style linebreaks `\n`, not Windows-style `\r\n`.
 
 ```
-if (...) {
-} else if (...) {
-} else {
+// ✓ ok 
+function sayHello (name) {
+    console.log('hey', name);
 }
 
-while (...) {
-}
-
-do {
-} while (...);
-
-for (...; ...; ...) {
-}
-
-switch (...) {
-    case 1: {
-        break;
-    }
-    case 2:
-        ...
-        break;
-    default:
-        break;
+// ✗ avoid
+function sayHello (name) {
+ console.log('hey', name);
 }
 ```
 
-#### Function declaration
-In JavaScript, functions should use camelCase but should not capitalize the first letter. Methods should not use the named function expression syntax, because our tools understand method names:
+### Single quotes for strings
+
+**Rule:** [`quotes`](http://eslint.org/docs/rules/quotes)<br>
+**Level:** error
+
+Always use single quotes for string except to avoid escaping.
 
 ```
-doSomething: function (foo, bar) {
-    ...
-}
+// ✓ ok 
+console.log('hello there');
+
+// ✗ avoid
+console.log("hello there");
 ```
 
-In-line functions should have spaces around braces, except before commas or semicolons:
+### Spacing before and after keywords
+
+**Rule:** [`keyword-spacing`](http://eslint.org/docs/rules/keyword-spacing)<br>
+**Level:** warn
 
 ```
-function valueObject(value) { return { value: value }; }
-```
-
-#### Objects
-
-```
-var foo = { prop1: "value1" };
-
-var bar = {
-    prop1: "value1",
-    prop2: "value2"
-};
-```
-
-Constructors for objects should be capitalized and use CamelCase:
-
-```
-function ObjectConstructor() {
-    this.foo = '';
-}
-```
-
-#### Prefixes
-Follow these naming prefix conventions:
-
-* ```_ = member (variable or function)```
-    * e.g. ```_length``` or ```_setType(type)```
-* ```on = event handler```
-    * e.g ```function onLoad()```
+// ✓ ok
+if (condition) { ... }
  
+// ✗ avoid
+if(condition) { ... }
+```
+
+### No padding within blocks
+
+**Rule:** [`padded-blocks`](http://eslint.org/docs/rules/padded-blocks)<br>
+**Level:** warn
+
+```
+// ✓ ok
+if (condition) {
+    console.log('...');
+} else {
+    console.log('...');
+}
+
+// ✗ avoid
+if (condition) {
+    console.log('...');
+    
+} else {
+
+    console.log('...');
+}
+```
+
+### End statement with semicolon
+
+**Rule:** [`semi`](http://eslint.org/docs/rules/semi)<br>
+**Level:** error
+
+```
+// ✓ ok 
+console.log('hello there');
+
+// ✗ avoid
+console.log('hello there')
+```
+
+### No unused variables
+
+**Rule:** [`no-unused-vars`](http://eslint.org/docs/rules/no-unused-vars)<br>
+**Level:** error
+
+```
+// ✗ avoid
+function sayHello (name) {
+    var foo = 'bar';
+    
+    console.log('hey', name);
+}
+```
+
+### Infix operators must be spaced
+
+**Rule:** [`space-infix-ops`](http://eslint.org/docs/rules/space-infix-ops)<br>
+**Level:** error
+
+```
+// ✓ ok 
+var x = 2;
+var message = 'hello, ' + name + '!';
+
+// ✗ avoid 
+var x=2;
+var message = 'hello, '+name+'!';
+```
+
+### Commas should have a space after them
+
+**Rule:** [`comma-spacing`](http://eslint.org/docs/rules/comma-spacing)<br>
+**Level:** error
+
+```
+// ✓ ok 
+var list = [1, 2, 3, 4];
+function greet (name, options) { ... }
+
+// ✗ avoid 
+var list = [1,2,3,4]
+function greet (name,options) { ... }
+```
+
+### Keep else statements on the same line as their curly braces
+
+**Rule:** [`brace-style`](http://eslint.org/docs/rules/brace-style)<br>
+**Level:** error
+
+```
+// ✓ ok 
+if (options.quiet !== true) console.log('done');
+
+// ✗ avoid 
+if (condition) {
+  // ... 
+}
+else {
+  // ... 
+}
+```
+
+### For multi-line if statements, use curly braces
+
+**Rule:** [`curly`](http://eslint.org/docs/rules/curly)<br>
+**Level:** error
+
+```
+// ✓ ok 
+if (options.quiet !== true) console.log('done');
+
+// ✓ ok 
+if (options.quiet !== true) {
+    console.log('done');
+}
+
+// ✗ avoid 
+if (options.quiet !== true)
+    console.log('done');
+```
+
+### Always prefix browser globals
+
+**Rule:** [`no-undef`](http://eslint.org/docs/rules/no-undef)<br>
+**Level:** error
+
+Exceptions are: `document`, `console` and `navigator`.
+
+```
+// ✓ ok
+window.alert('hi');
+
+// ✗ avoid
+alert('hi');
+```
+
+### Multiple blank lines not allowed
+
+**Rule:** [`no-multiple-empty-lines`](http://eslint.org/docs/rules/no-multiple-empty-lines)<br>
+**Level:** error
+
+```
+// ✓ ok 
+var value = 'hello world';
+console.log(value);
+
+// ✗ avoid 
+var value = 'hello world';
+ 
+ 
+console.log(value);
+```
+
+### For the ternary operator in a multi-line setting, place `?` and `:` on their own lines.
+
+**Rule:** [`operator-linebreak`](http://eslint.org/docs/rules/operator-linebreak)<br>
+**Level:** error
+
+```
+// ✓ ok 
+var location = env.development ? 'localhost' : 'www.api.com';
+ 
+// ✓ ok 
+var location = env.development
+    ? 'localhost'
+    : 'www.api.com';
+ 
+// ✗ avoid 
+var location = env.development ?
+    'localhost' :
+    'www.api.com';
+```
+
+### Wrap conditional assignments with additional parentheses
+
+**Rule:** [`no-cond-assign`](http://eslint.org/docs/rules/no-cond-assign)<br>
+**Level:** error
+
+This makes it clear that the expression is intentionally an assignment (=) rather than a typo for equality (===).
+
+```
+// ✓ ok 
+while ((m = text.match(expr))) {
+    // ... 
+}
+ 
+// ✗ avoid 
+while (m = text.match(expr)) {
+    // ... 
+}
+```

@@ -171,7 +171,7 @@ If you want to disable session locking for the database handler, you can configu
 ```
 
 #### Blocking transactions
-By default the session garbage collector will clean up expired session every 100 requests. This is quite frequent
+Until Shopware 5.2.16 the session garbage collector will clean up expired session every 100 requests. This is quite frequent
 and might cause issues with blocked transactions in some situations. For those cases, you can configure the garbage
 collection to a higher value:
 
@@ -184,3 +184,10 @@ collection to a higher value:
 ```
 
 For further information please see [Bejamin Eberlei's blog post regarding session collection](https://tideways.io/profiler/blog/php-session-garbage-collection-the-unknown-performance-bottleneck).
+
+As of Shopware 5.2.17 Shopware will clean up the session every 500 requests (`gc_divisor = 500`). Furthermore Shopware
+5.2.17 introduces a new command to clean up the session manually:
+
+`php bin/console sw:session:cleanup`
+
+This could be used in a cronjob, for example. 

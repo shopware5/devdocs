@@ -1,5 +1,5 @@
 ---
-title: Shopware Guide for Developers now available
+title: Shopware book for developers
 tags:
 - book
 
@@ -8,7 +8,7 @@ categories:
 
 authors: [dn]
 
-github_link: blog/_posts/2017-02-24-shopware-book-interview.md
+github_link: blog/_posts/2017-01-29-shopware-book-interview.md
 ---
 
 <div class="alert alert-warning" role="alert">

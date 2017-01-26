@@ -21,7 +21,7 @@ For all Shopware developers, partners and contributors, there is now comprehensi
  
 Of course, you have to feel somewhat proud when you can see months of work come together in the finished product. Now I’m simply looking forward to the reader’s feedback. I hope the explanations and descriptions both illuminate aspects of working with Shopware and bring a true added-value to the readers.
  
-## Why does somebody need a Shopware Guide when there already extensive Shopware Wikis available as a resource?
+## Why does somebody need a Shopware Guide when extensive Shopware Wikis are already available as a resource?
  
 I believe the Shopware Wikis and book complement one another very well: the book takes the reader more by the hand, step-by-step through development examples. Through several chapters, the book repeatedly addresses a larger project so that both the problems and solutions can be clearly demonstrated. On one hand, this motivates the reader because they can see the complete process of something like writing a plugin for Shopware; on the other, this makes topics more manageable, because the content is explained in a way that the developer can use in their everyday life. For this reason, I can tackle very advanced topics in the book because I’ve already built the foundations with the reader early on. 
  

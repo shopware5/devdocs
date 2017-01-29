@@ -194,7 +194,7 @@ to modify this list and return a modified set with your subscriber:
 public function myEventSubscriber(\Enlight_Event_EventArgs $args)
 {
     $amount = $args->get('categoryId'); 
-    $result = $args->get('return');
+    $result = $args->getReturn();
     
     $result[] = 'sw-abc';
     

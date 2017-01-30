@@ -21,8 +21,6 @@ In this tutorial you will learn how to create your own custom template for categ
 
 ![Custom listing template](example.png)
 
-<div class="toc-list"></div>
-
 ## Preparation
 
 First of all we have to create a new template file inside the `frontend/listing` directory of our own theme. The directory of the file is very important for the inheritance system of Shopware and has to be correct in order to work properly. In this tutorial we'll name the file `custom_listing.tpl`:

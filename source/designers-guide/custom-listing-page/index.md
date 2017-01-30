@@ -90,7 +90,7 @@ The CMS content that can be added to a category in the backend is optional, so i
 
 ### Actual listing
 
-We will overwrite the default listing and include our own customized product box for each article inside the category. This is the block that handles the iteration though the `$sArticles` variable, which contains all articles that are accessible on the current page:
+We will overwrite the default listing and include our own customized product box for each article inside the category. This is the block that handles the iteration through the `$sArticles` variable, which contains all articles that are accessible on the current page:
 
 ```
 {block name="frontend_listing_list_inline"}

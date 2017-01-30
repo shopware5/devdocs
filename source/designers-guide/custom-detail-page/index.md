@@ -21,8 +21,6 @@ In this tutorial you will learn how to create a custom template for detail pages
 
 ![Custom detail page](custom-detail.png)
 
-<div class="toc-list"></div>
-
 ## Preparation
 
 First of all we have to create a new template file in the `frontend/detail` directory of our theme. In this tutorial we'll name the file `custom_detail.tpl`:

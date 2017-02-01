@@ -12,10 +12,12 @@ menu_order: 45
 <div class="toc-list"></div>
 
 ## Introduction
+
 In this guide we will take a closer look at the configuration file `config.php`.
 This file is in the root folder of a shopware installation. Normally it is generated during the
 installation process and filled with your database credentials. 
 It should look like this:
+
 ```
 <?php
 return [
@@ -28,6 +30,7 @@ return [
     ],
 ];
 ```
+
 During this guide you will get to know some important options of the configuration.
 For a complete list of options you can look at the `engine/Shopware/Configs/Default.php` file 
 which holds all possible configuration options and their default values. You only
@@ -35,7 +38,8 @@ need to specify options in your `config.php` if you want to override the default
 But keep in mind that most of these options should only be used for __debugging and testing__ 
 and should be removed for your live system.
 
-## Session locking
+### Session locking
+
 As of Shopware 5.2.13 session locking is enabled by default. This prevents unsuspected failures when concurrent ajax requests work with the same session variables. With enabled locking ajax requests are processed one after another.
 
 ```
@@ -44,22 +48,22 @@ As of Shopware 5.2.13 session locking is enabled by default. This prevents unsus
         'locking' => true,
     ],
 ```
-## Important options for development
 
 ### CSRF Protection
-default:
+
 ```
     'csrfProtection' => [
         'frontend' => true,
         'backend' => true
     ],
 ```
+
 With these options you can activate/deactivate the CSRF attack protection. By default, both options are set 
 to `true`. Deactivating them is for example necessary if you want to run mink tests 
 with behat. For more information take a look at the complete guide: [CSRF Protection](/developers-guide/csrf-protection/)
 
-### PHP settings
-default:
+### PHP runtime settings
+
 ```
     'phpsettings' => [
         'error_reporting' => E_ALL & ~E_USER_DEPRECATED,
@@ -67,13 +71,16 @@ default:
         'date.timezone' => 'Europe/Berlin',
     ],
 ```
-These PHP settings override the defaults of your `php.ini`. `display_errors` is the 
-only important option to change for debugging. Set this to `1` to enable the output
-of low-level php errors.  
+
+These PHP settings override the defaults of your `php.ini`.
+
+`display_errors` is the only important option to change for debugging. Set this to `1` to enable the output
+of low-level php errors.
+
 The default value of `error_reporting` should be sufficient for developing.
 
-### exceptions
-default: 
+### Exceptions
+
 ```
     'front' => [
         ...
@@ -81,12 +88,15 @@ default:
         'showException' => false,
     ],
 ```
-For developing or debugging purposes you should set these options to `true`. This
-prevents the default "Oops! An error has occurred!" message and prints out the real 
-error message.
 
-### template
-default:
+The difference between `throwExceptions` and `showExceptions` is how an exception will be handled.
+
+The option `showException` keeps the Shopware error handler enabled, catches the PHP exception and prints the message instead of showing the generic "Oops! An error has occurred!" message.
+
+In contrast, the option `throwExceptions` skips the Shopware error handler and outputs the pure PHP exception. This is important to understand, because some errors need to be catched by the Shopware error handler for self-healing processes e.g. CSRF Token invalidation.
+
+### Template
+
 ```
     'template' => [
         ...
@@ -94,12 +104,11 @@ default:
         ...
     ],
 ```
-This option controls the smarty template caching. Normally you have to clear your cache after 
-every change on the template, but if you set `forceCompile` to `true` your template will be
-compiled on every reload. This should be an essential option for every developer.
+
+This option controls the smarty template caching. Normally you have to clear your cache after every change on the template, but if you set `forceCompile` to `true` your template will be compiled on every reload. This should be an essential option for every developer. Keep in mind that it does have a great impact and loading times and should never be used in production.
 
 ### HTTP Cache
-default:
+
 ```
     'httpcache' => [
         'enabled' => true,
@@ -107,11 +116,11 @@ default:
         ...
   ],
 ```
-With these options you can set the http-cache base configuration. For debugging we only take a 
-look at the `debug` option and set it to `true`. If you want to learn more about the other options
-you can take a closer look on the complete guide: [HTTP cache](/developers-guide/http-cache/)
 
-## Example for development / debugging
+With these options you can set the HTTP Cache base configuration. For debugging we only take a look at the `debug` option and set it to `true`. If you want to learn more about the other options you can take a closer look on the complete guide: [HTTP cache](/developers-guide/http-cache/)
+
+## Example development config
+
 ```
 <?php
 return [

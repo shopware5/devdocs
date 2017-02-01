@@ -105,7 +105,7 @@ In contrast, the option `throwExceptions` skips the Shopware error handler and o
     ],
 ```
 
-This option controls the smarty template caching. Normally you have to clear your cache after every change on the template, but if you set `forceCompile` to `true` your template will be compiled on every reload. This should be an essential option for every developer. Keep in mind that it does have a great impact and loading times and should never be used in production.
+This option controls the smarty template caching. Normally you have to clear your cache after every change on the template, but if you set `forceCompile` to `true` your template will be compiled on every reload. This should be an essential option for every developer. Keep in mind that it does have a great impact on loading times and should never be used in production.
 
 ### HTTP Cache
 

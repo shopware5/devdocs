@@ -665,7 +665,7 @@ Additionally, the order is fixed. The value tag must be defined before the label
 There must be at least one option tag and inside each option tag there must be at least one value and one label tag. 
 
 #### add buttons
-Since Shopware 5.2.XX it is possible to place buttons on your configuration form.
+Since Shopware 5.2.17 it is possible to place buttons on your configuration form.
 
 Example:
 ```xml

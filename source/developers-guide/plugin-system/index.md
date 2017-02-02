@@ -664,6 +664,35 @@ Additionally, the order is fixed. The value tag must be defined before the label
 
 There must be at least one option tag and inside each option tag there must be at least one value and one label tag. 
 
+#### add buttons
+Since Shopware 5.2.XX it is possible to place buttons on your configuration form.
+
+Example:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element type="button">
+            <name>buttonTest</name>
+            <label lang="de">Test Button</label>
+            <label lang="en">Test Button</label>
+            <options>
+                <handler>
+                    <![CDATA[
+                    function(button) {
+                        alert('Button');
+                    }
+                    ]]>
+                </handler>
+            </options>
+        </element>
+    </elements>
+</config>
+```
+The given `label` is the display name of the button.
+You can define an option `handler` as callback for click events.
+
 ### Backend Menu Items
 
 Example `Resources/menu.xml`:

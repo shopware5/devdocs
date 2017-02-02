@@ -153,7 +153,7 @@ class ApiClient
         if (!$decodedResult['success']) {
             echo '<h2>No Success</h2>';
             echo '<p>' . $decodedResult['message'] . '</p>';
-            if ($decodedResult['errors'] && is_array($decodedResult['errors'])) {
+            if (array_key_exists('errors', $decodedResult) && is_array($decodedResult['errors'])) {
                 echo '<p>' . join('</p><p>', $decodedResult['errors']) . '</p>';
             }
 

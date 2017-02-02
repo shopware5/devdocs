@@ -708,6 +708,26 @@ The menu item won't be displayed if controller and action are missing.
 
 To know which class for which icon take a look at the <a href="/designers-guide/backend-icons/">Backend icon set overview</a>.
 
+### Plugin Cronjob
+
+Example `Resources/cronjob.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<cronjobs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/cronjob.xsd">
+
+    <cronjob>
+        <name>Send birthday email</name>
+        <action>Shopware_CronJob_SendBirthdayMail</action>
+        <active>true</active>
+        <interval>86400</interval>
+        <disableOnError>true</disableOnError>
+    </cronjob>
+
+</cronjobs>
+```
+
 ## Access to other plugins
 
 Other plugins can be accessed via the `getPlugins()` method of the kernel.

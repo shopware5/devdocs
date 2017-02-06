@@ -9,7 +9,7 @@ categories:
 - dev
 
 authors: [stp]
-github_link: blog/_posts/2017-01-30-javascript-currency-formatting.md
+github_link: blog/_posts/2017-02-06-javascript-currency-formatting.md
 
 ---
 
@@ -163,7 +163,7 @@ var toLocaleStringSupportsOptions = function() {
 
 ### Performance matters
 
-After playing around with both approaches, I noticed a quite heavy downside of `Number.toLocaleString(). It became a 
+After playing around with both approaches, I noticed a quite heavy downside of `Number.toLocaleString()`. It became a 
 performance bottleneck with huge data sets. To back up my assumption I've created a benchmark to compare both approaches 
 and get a number about the operations per second.
 

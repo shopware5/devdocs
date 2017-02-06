@@ -157,7 +157,7 @@ It always comes in handy to know how to detect a certain feature you want to use
 
 ```
 var toLocaleStringSupportsOptions = function() {
-    return !!(typeof Intl == 'object' && Intl && typeof Intl.NumberFormat == 'function');
+    return (typeof Intl == 'object' && Intl && typeof Intl.NumberFormat == 'function');
 };
 ```
 

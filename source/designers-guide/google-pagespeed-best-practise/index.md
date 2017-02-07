@@ -1,12 +1,12 @@
 ---
 layout: default
 shopware_version: 5.3.0
-title: Google Pagespeed Best Practise
+title: Google PageSpeed Best Practise
 github_link: designers-guide/google-pagespeed-best-practise/index.md
 indexed: true
 group: Frontend Guides
 subgroup: General Resources
-menu_title: Google Pagespeed
+menu_title: Google PageSpeed
 menu_order: 55
 ---
 
@@ -14,13 +14,13 @@ menu_order: 55
 
 ## Introduction
 
-Google Pagespeed is a great tool to get the best performance for your website. It analysis an url and gives your suggestion to speed up your website.
+Google PageSpeed is a great tool to get the best performance for your website. It analysis an url and gives some suggestions on how to speed up your website.
 
 This guide will cover some key metrics which have a great impact on the score and how to optimize them.
 
 ## Images
 
-The size and implementation of images have a great impact on the Google Pagespeed score. If they are too big in file size or to big in dimensions for the viewport, you'll get an error like `Compressing and resizing xx could save xxKiB (xx% reduction)`.
+The size and implementation of images have a great impact on the Google PageSpeed score. If they are too big in file size or to big in dimensions for the viewport, you'll get an error like `Compressing and resizing xx could save xxKiB (xx% reduction)`.
 
 ### Compression
 
@@ -40,7 +40,7 @@ Talking about thumbnails, you may want more thumbnail sizes to give the browser 
 
 **Example**
 
-An image is shown with a width of `201px` and your thumbnail sizes are `200x200` and `600x600`. The browser will then fetch the bigger `600x600` image, because the `200x200` would be too small, even if it's just 1 pixel. Google Pagespeed then complains about the requested image is too big for the given viewport.
+An image is shown with a width of `201px` and your thumbnail sizes are `200x200` and `600x600`. The browser will then fetch the bigger `600x600` image, because the `200x200` would be too small, even if it's just 1 pixel. Google PageSpeed then complains about the requested image is too big for the given viewport.
 
 For this case, you should add more thumbnail sizes to provide the browser a more granular set of thumbnails to decide from.
 
@@ -53,7 +53,7 @@ Keep in mind, that the more thumbnail sizes you define, the longer it will take 
 
 ### Responsive images
 
-Now that there are more thumbnails to choose from, the browser needs to know, how big the image will be displayed.
+Now that there are more thumbnails to choose from, the browser needs to know, how big the image that will be displayed is.
 
 **Recommendation for the best score**
 
@@ -63,9 +63,9 @@ Please refer to the [Responsive images](/designers-guide/responsive-images/) gui
 
 ## CSS
 
-Shopware delivers all theme styles in a single CSS file which will be loaded on page load. This works well as we only have 1 request to fetch all styles, but for Google Pagespeed, it is a nightmare as you will be faced with the `above-the-fold content` error message.
+Shopware delivers all theme styles in a single CSS file which will be loaded on page load. This works well as we only have 1 request to fetch all styles, but for Google PageSpeed, it is a nightmare as you will be faced with the `above-the-fold content` error message.
 
-Google Pagespeed expects that your site is fully renderable without additional network round trips. That means that your fully rendered site should not differ much from the intial render.
+Google PageSpeed expects that your site is fully renderable without additional network round trips. That means that your fully rendered site should not differ much from the initial render.
 
 **Recommendation for the best score**
 
@@ -76,6 +76,8 @@ Google explains the concept of **Critical CSS** where the smallest needed part o
 
 ## Javascript
 
-async
-nicht auf jQuery dependen da async geladen
-in compiler reinpacken
+Since Shopware is compressing javascript when it compiles its themes you should always add your code to the `$javascript` array inside of the `theme.php` file. If this is for some reason not possible you should load your scripts asynchronously by using the `async` tag:
+```
+<script src="..." async>
+```
+Furthermore you should not load scripts synchronously which depend on jquery since this is loaded at the end of the site.

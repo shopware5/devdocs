@@ -47,6 +47,10 @@ AJAX requests writing to the session cannot be handled parallel anymore: So requ
 the session once request A has finished. In practice this should not be too much of a problem, as Shopware limits the
 number of session writes on most pages.
 
+Sometimes you have the need to do some long running Ajax-request (e.g. one that calls a slow, external API) which blocks
+consequent other Ajax-requests, leading to sluggish user experience. In that case you can close the session early in your
+controller by calling the function `session_write_close()` manually, before doing any long running actions. 
+
 ## Available session adapters
 The following list will explain the session adapters Shopware supports by default
 

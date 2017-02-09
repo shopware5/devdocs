@@ -63,6 +63,10 @@ When you open the front end, a request is made to generate a new token, bound to
 
 If you are not using jQuery in your plugin, you have to manually call `CSRF.updateForms()` after you've created a new form or replaced some parts of a view which contain a form.
 
+If you need to load some data on pageload, there are a few things you need to consider:
+1. If possible, use GET instead of POST, only POST-requests are secured by the token since only POST requests should modify data on the backend. If you only need to load some data, use GET.
+2. If you really need to use a POST request on pageload, wait for the jQuery-event `plugin/swCsrfProtection/init` to be thrown. This ensures that your request uses a valid token.
+
 ## Validating the token
 
 We have introduced a new component called `CSRFTokenValidator`. This component subscribes to the `Enlight_Controller_Action_PreDispatch_Backend`, `Enlight_Controller_Action_PreDispatch_Frontend` and `Enlight_Controller_Action_PreDispatch_Widgets` events and therefore catches every single request made (except for API requests), regardless of whether it's a `GET`, `POST` or `DELETE` request. The validator now checks if there is a `X-CSRF-Token` header or a `__csrf_token` parameter, which indicates that the application is aware of this protection mechanism. The token is then validated against the token saved in your session.

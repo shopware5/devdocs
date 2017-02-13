@@ -10,4 +10,4 @@ eval `ssh-agent -s`
 ssh-add deploy_key
 
 git clone https://github.com/shopware/devdocs.git -b styletile output_prod/styletile
-rsync -avze ssh --rsync-path="sudo rsync" --exclude=".git" --delete --exclude styletile/ output_prod/ shopware@developers.shopware.com:/var/www/developers.shopware.com
+rsync -avze ssh --rsync-path="sudo rsync" --exclude=".git" --delete --exclude styletile/ output_prod/ shopware@developers.shopware.com:/home/shopware/www/developers.shopware.com

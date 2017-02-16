@@ -31,22 +31,22 @@ Single customer group details can be retrieved via the customer group id:
 
 ### Return Value
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Customer\Group     | s_core_customergroups |
 
 | Field                 | Type                  | Original Object                                                             |
 |-----------------------|-----------------------|-----------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                  |
-| key    	            | string				|                     							                              |
-| name                  | string                |       											                          |
-| tax                   | boolean               |             									                              |
-| taxInput              | boolean				| 																			  |
-| mode                  | boolean               | 														                      |
-| discount   		    | integer				| 														                      |
-| minimumOrder 		    | integer				| 														                      |
-| minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**		  						  |
+| id                    | integer (primary key) |                                                                             |
+| key                   | string                |                                                                             |
+| name                  | string                |                                                                             |
+| tax                   | boolean               |                                                                             |
+| taxInput              | boolean               |                                                                             |
+| mode                  | boolean               |                                                                             |
+| discount              | integer               |                                                                             |
+| minimumOrder          | integer               |                                                                             |
+| minimumOrderSurcharge | integer               |                                                                             |
+| discounts             | array                 | **[Surcharge](../models/#group-surcharge)**                                 |
 
 ## GET (List)
 
@@ -58,7 +58,7 @@ To get a list of all customer groups, simply query:
 * **http://my-shop-url/api/customerGroups/**
 
 ### Return Value
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Customer\Group     | s_core_customergroups |
 
@@ -66,43 +66,43 @@ This API call returns an array of elements, one for each customer group. Each of
 
 | Field                 | Type                  | Original Object                                                             |
 |-----------------------|-----------------------|-----------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                  |
-| key    	            | string				|                     							                              |
-| name                  | string                |       											                          |
-| tax                   | boolean               |             									                              |
-| taxInput              | boolean				| 																			  |
-| mode                  | boolean               | 														                      |
-| discount   		    | integer				| 														                      |
-| minimumOrder 		    | integer				| 														                      |
-| minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**	  							  |
+| id                    | integer (primary key) |                                                                             |
+| key                   | string                |                                                                             |
+| name                  | string                |                                                                             |
+| tax                   | boolean               |                                                                             |
+| taxInput              | boolean               |                                                                             |
+| mode                  | boolean               |                                                                             |
+| discount              | integer               |                                                                             |
+| minimumOrder          | integer               |                                                                             |
+| minimumOrderSurcharge | integer               |                                                                             |
+| discounts             | array                 | **[Surcharge](../models/#group-surcharge)**                                 |
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                         |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of customer group resources    |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| total               | integer               | The total number of customer group resources    |
+| success             | boolean               | Indicates if the call was successful or not.    |
 
 ## POST and PUT
 `POST` and `PUT` operations support the following data structure:
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Customer\Group     | s_core_customergroups |
 
 | Field                 | Type                  | Original Object                                                             |
 |-----------------------|-----------------------|-----------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                  |
-| key    	            | string				|                     							                              |
-| name                  | string                |       											                          |
-| tax                   | boolean               |             									                              |
-| taxInput              | boolean				| 																			  |
-| mode                  | boolean               | 														                      |
-| discount   		    | integer				| 														                      |
-| minimumOrder 		    | integer				| 														                      |
-| minimumOrderSurcharge | integer				| 														                      |
-| discounts   		    | array 				| **[Surcharge](../models/#group-surcharge)**		  						  |
+| id                    | integer (primary key) |                                                                               |
+| key                   | string                |                                                                               |
+| name                  | string                |                                                                             |
+| tax                   | boolean               |                                                                               |
+| taxInput              | boolean                |                                                                               |
+| mode                  | boolean               |                                                                               |
+| discount              | integer                |                                                                               |
+| minimumOrder          | integer                |                                                                               |
+| minimumOrderSurcharge | integer                |                                                                               |
+| discounts             | array                 | **[Surcharge](../models/#group-surcharge)**                                    |
 
 ## DELETE
 To delete a customer group, simply call the specified resource with the `DELETE` operation, as the following example shows:

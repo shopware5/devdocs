@@ -42,8 +42,8 @@ I'm really looking forward to this kind of technology. Augmented reality offers 
 
 **Links:**
 <ul>
-	<li><a href="https://www.getameta.com/" target="_blank">Official Meta website</a></li>
-	<li><a href="https://twitter.com/metaglasses" target="_blank">Meta on twitter</a></li>
+    <li><a href="https://www.getameta.com/" target="_blank">Official Meta website</a></li>
+    <li><a href="https://twitter.com/metaglasses" target="_blank">Meta on twitter</a></li>
 </ul>
 
 <br />

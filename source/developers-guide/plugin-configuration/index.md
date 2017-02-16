@@ -606,17 +606,17 @@ is used in all subshops. We´ve mentioned this earlier this article.
 ```
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 {
-	$config = $this->Config();
-	if (empty($config->show)) {
-	    return;
-	}
+    $config = $this->Config();
+    if (empty($config->show)) {
+        return;
+    }
  
-	$controller = $arguments->getSubject();
-	$view = $controller->View();
+    $controller = $arguments->getSubject();
+    $view = $controller->View();
  
-	$view->assign('swagSubshopVisibility', 'Test text.');
+    $view->assign('swagSubshopVisibility', 'Test text.');
  
-	$view->addTemplateDir($this->Path() . 'Views/');
+    $view->addTemplateDir($this->Path() . 'Views/');
 }
 ```
 

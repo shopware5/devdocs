@@ -803,16 +803,16 @@ As a plugin developer, you may have created new tables and established a relatio
 ```php
 public function install()
 {
-	[...]
-	$this->subscribeEvent('Shopware_Collect_MediaPositions', 'onCollect');
-	[...]
+    [...]
+    $this->subscribeEvent('Shopware_Collect_MediaPositions', 'onCollect');
+    [...]
 }
 
 public function onCollect() {
     return new ArrayCollection([
         new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_plugin_table', 'mediaID'),
-		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
-		new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
+        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
+        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
     ]);
 }
 

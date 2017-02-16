@@ -215,7 +215,7 @@ $.subscribe('plugin/some-plugin/onInit.my-plugin', function() {});
 $.unsubscribe('plugin/some-plugin/onInit.my-plugin');
 ```
 
-	
+
 ## The state manager
 The state manager helps you master different behaviors for different screen sizes.
 It provides you with the ability to register different states that are handled

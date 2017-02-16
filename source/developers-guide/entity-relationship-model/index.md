@@ -24,7 +24,7 @@ The various areas of the diagram have been color coded for your convenience.
 In the diagram you can see precisely which tables in Shopware are linked together.
 
 <a href="{{ site.url }}/assets/pdf/erd.pdf" target="_blank">
-	![Entity_relationship_model](img/erd.png)
+    ![Entity_relationship_model](img/erd.png)
 </a>
 
 

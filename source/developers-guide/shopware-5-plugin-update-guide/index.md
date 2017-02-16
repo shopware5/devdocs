@@ -252,7 +252,7 @@ public function addLessFiles(Enlight_Event_EventArgs $args)
 {
     $less = new \Shopware\Components\Theme\LessDefinition(
     //configuration
-	array(),
+    array(),
 
         //less files to compile
         array(
@@ -294,7 +294,7 @@ variables.less | Includes all files in "_variables"
 ##### Example _modules/checkout.less
 ```less
 .yourOwnSelector {
-	width: 100%;
+    width: 100%;
 }
 ```
 
@@ -313,12 +313,12 @@ Our responsive template uses media queries with specific breakpoint, so you can 
 ##### Example usage
 ```less
 .myOwnElement {
-	width: 90%;
+    width: 90%;
 }
 
 @media screen and (min-width: @tabletViewportWidth) {
-	.myOwnElement {
-    	width: 70%;
+    .myOwnElement {
+        width: 70%;
     }
 }
 ```
@@ -331,14 +331,14 @@ E.g. our new "unitize" mixin can be used to calculate __rem__ values, which we u
 ##### Example usage for unitize()
 ```less
 .myOwnElement {
-	//Would output font-size: 0.625rem;
-	//First parameter is your desired px value, in this case 10px.
-	//Second parameter is the base value which, in this case, means the default font-size of 16px.
-	//You won't have to change the second parameter in most of the cases. The .unitize-method now calculates 10/16 = 0.625.
-	//Third parameter is the actual style to be used
-	.unitize(10, 16, font-size);
+    //Would output font-size: 0.625rem;
+    //First parameter is your desired px value, in this case 10px.
+    //Second parameter is the base value which, in this case, means the default font-size of 16px.
+    //You won't have to change the second parameter in most of the cases. The .unitize-method now calculates 10/16 = 0.625.
+    //Third parameter is the actual style to be used
+    .unitize(10, 16, font-size);
 
-	//For more examples of "unitize" mixin usage, please refer to yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_mixins/unitize.less
+    //For more examples of "unitize" mixin usage, please refer to yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_mixins/unitize.less
 }
 ```
 
@@ -423,7 +423,7 @@ $.plugin('yourName', {
        //The default "exampleValue" variable will be overwritten with "value2".
        //This value is then available in this.opts.exampleValue variable
 
-       	this.applyDataAttributes();
+           this.applyDataAttributes();
    },
 
    destroy: function() {
@@ -479,13 +479,13 @@ At first we start by creating a file called __all.less__ inside the __less__ dir
 ```php
 public function install()
 {
-	...
-	// Register your custom Less files, so that they are processed into CSS and included on your template
-	$this->subscribeEvent(
-		'Theme_Compiler_Collect_Plugin_Less',
-		'addLessFiles'
-	);
-	...
+    ...
+    // Register your custom Less files, so that they are processed into CSS and included on your template
+    $this->subscribeEvent(
+        'Theme_Compiler_Collect_Plugin_Less',
+        'addLessFiles'
+    );
+    ...
 }
 ...
 
@@ -494,19 +494,19 @@ public function install()
  */
 public function addLessFiles(Enlight_Event_EventArgs $args)
 {
-	$less = new \Shopware\Components\Theme\LessDefinition(
-	//configuration
-		array(),
-		//less files to compile
-		array(
-			__DIR__ . '/Views/responsive/frontend/_public/src/less/all.less'
-		),
+    $less = new \Shopware\Components\Theme\LessDefinition(
+    //configuration
+        array(),
+        //less files to compile
+        array(
+            __DIR__ . '/Views/responsive/frontend/_public/src/less/all.less'
+        ),
 
-		//import directory
-		__DIR__
-	);
+        //import directory
+        __DIR__
+    );
 
-	return new Doctrine\Common\Collections\ArrayCollection(array($less));
+    return new Doctrine\Common\Collections\ArrayCollection(array($less));
 }
 ```
 
@@ -534,8 +534,8 @@ Let's replace them by using the new class of the img element:
 #### detail.less
 ```less
 .own-topseller--img {
-	width: 50%;
-	display: block;
+    width: 50%;
+    display: block;
 }
 ```
 
@@ -626,18 +626,18 @@ class Shopware_Plugins_Frontend_SwagExample1_Bootstrap extends Shopware_Componen
 #### Views/responsive/frontend/_public/src/less/_modules/detail.less
 ```less
 .own-topseller--img {
-	width: 50%;
-	display: block;
+    width: 50%;
+    display: block;
 }
 
 @media screen and (min-width: @phoneLandscapeViewportWidth) {
     //Styles only being used when the size of the screen is at least 480px.
-	//All the sizes are mentioned in yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_variables/structure.less
+    //All the sizes are mentioned in yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_variables/structure.less
 }
 
 @media screen and (min-width: @desktopViewportWidth) {
-	//Styles only being used when the size of the screen is at least 1260px.
-	//All the sizes are mentioned in yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_variables/structure.less
+    //Styles only being used when the size of the screen is at least 1260px.
+    //All the sizes are mentioned in yourShopSystem/Themes/Frontend/Responsive/frontend/_public/src/less/_variables/structure.less
 }
 ```
 

@@ -52,7 +52,7 @@ The Shopware models are all derived from the `Shopware\Components\Model\ModelEnt
 With `@ORM\Entity` we can define that this class is a Doctrine model. With the optional parameter **repositoryClass="Repository"** we can define that we would like to use our own repository class for this model, which should be named `Repository` (feel free to use a different name if you wish) and created in the same namespace as the model class. To read more about the different Doctrine annotations, please refer to the official [Doctrine documentation](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/annotations-reference.html).
  
 <div class="alert alert-error">
-	<strong>Note:</strong> A repository class should only be concerned with one model class. To avoid potential problems, we recommend that each repository class is not shared by multiple models.
+    <strong>Note:</strong> A repository class should only be concerned with one model class. To avoid potential problems, we recommend that each repository class is not shared by multiple models.
 </div>
 
 ## Associations

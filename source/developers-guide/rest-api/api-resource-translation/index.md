@@ -15,7 +15,7 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                | GET (List)            | PUT                   | PUT (Batch)            | POST                   | DELETE                | DELETE (Batch)        |
 |-----------------------------|--------------------|-----------------------|-----------------------|------------------------|------------------------|-----------------------|-----------------------|
-| /api/translations	          | ![No](../img/no.png)| ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png)  | ![Yes](../img/yes.png)  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |
+| /api/translations              | ![No](../img/no.png)| ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png)  | ![Yes](../img/yes.png)  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -31,18 +31,18 @@ You can retrieve data of translations by providing the specific id
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| type 	         	  | string				  |                                                 |
-| data		      	  | array				  | 		                                        |
-| key				  | integer 			  | 												|
+| type                    | string                  |                                                 |
+| data                    | array                  |                                                 |
+| key                  | integer               |                                                 |
 | shopId              | integer (foreign key) | **[Shop](../models/#shop)**                     |
-| shop			      | object				  | **[Shop](../models/#shop)**                     |
+| shop                  | object                  | **[Shop](../models/#shop)**                     |
 
 *Since this returns a list, the following fields will be added to the array:*
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                            |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of translations                |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| total                  | integer                  | The total number of translations                |
+| success              | boolean                  | Indicates if the call was successful or not.    |
 
 ## POST (create)
 
@@ -50,10 +50,10 @@ To post a translation, you need to identify it by the following parameters
 
 ### Required Parameters
 
-| Identifier			| Parameter			| Database Column			| Example Call                                          |
+| Identifier            | Parameter            | Database Column            | Example Call                                          |
 |-----------------------|-------------------|---------------------------|-------------------------------------------------------|
-| Translation Id		| id				| `s_core_translations.id`  | /api/translations/2									|
-| Element number		| -					| -							| /api/translations/20003?useNumberAsId=true			|
+| Translation Id        | id                | `s_core_translations.id`  | /api/translations/2                                    |
+| Element number        | -                    | -                            | /api/translations/20003?useNumberAsId=true            |
 
 
 ### Data
@@ -62,27 +62,27 @@ You can use this data to add a new translation to the shop
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| id 	         	  | integer (primary key) |                                                 |
-| locale	      	  | string				  | 		                                        |
-| language			  | string  			  | 												|
-| territory	      	  | string				  |                                     			|
-| locale			  | object				  | 												|
-| type 	         	  | string				  |                                                 |
-| data		      	  | array				  | 		                                        |
-| key				  | integer 			  | 												|
-| shopId	      	  | integer (foreign key) | **[Shop](../models/#shop)**                     |
+| id                    | integer (primary key) |                                                 |
+| locale                | string                  |                                                 |
+| language              | string                |                                                 |
+| territory                | string                  |                                                 |
+| locale              | object                  |                                                 |
+| type                    | string                  |                                                 |
+| data                    | array                  |                                                 |
+| key                  | integer               |                                                 |
+| shopId                | integer (foreign key) | **[Shop](../models/#shop)**                     |
 
 You can post or put data by sending the following data to this URL:
 
 * **(POST or PUT) http://my-shop-url/api/translations/id**
 
-| Field               | Type                  | Original Object			                                |
+| Field               | Type                  | Original Object                                            |
 |---------------------|-----------------------|---------------------------------------------------------|
-| id				  | integer (primary key) |															|
-| name				  | string				  |															|
-| position			  | integer				  |															|
-| comparable		  | boolean				  |															|
-| sortMode			  | integer				  |															|
+| id                  | integer (primary key) |                                                            |
+| name                  | string                  |                                                            |
+| position              | integer                  |                                                            |
+| comparable          | boolean                  |                                                            |
+| sortMode              | integer                  |                                                            |
 
 ## DELETE
 To delete a shop, simply call this URL with the `DELETE` request:

@@ -27,7 +27,7 @@ This operation allows you to regenerate the thumbnails of a specific article.
 
 | Identifier     | Parameter   | Column                            | Example call                                         |
 |----------------|-------------|-----------------------------------|------------------------------------------------------|
-| Article Id	 | id		   | s_articles.id  				   | /api/generateArticleImages/2		                  |
-| Article Number | number	   | s_articles_details.ordernumber | /api/generateArticleImages/20003?useNumberAsId=true  |
+| Article Id     | id           | s_articles.id                     | /api/generateArticleImages/2                          |
+| Article Number | number       | s_articles_details.ordernumber | /api/generateArticleImages/20003?useNumberAsId=true  |
 
 You can identify the product by either the ID or the detail number.

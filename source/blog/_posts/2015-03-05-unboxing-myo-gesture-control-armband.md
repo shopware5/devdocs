@@ -35,8 +35,8 @@ This was just my first review of the Myo. We’re looking forward to test the ar
 
 **Links:**
 <ul>
-	<li><a href="https://www.thalmic.com/en/myo/techspecs" target="_blank">Myo Tech Specs</a></li>
-	<li><a href="https://developer.thalmic.com/downloads" target="_blank">Myo SDK Downlaods</a></li>
+    <li><a href="https://www.thalmic.com/en/myo/techspecs" target="_blank">Myo Tech Specs</a></li>
+    <li><a href="https://developer.thalmic.com/downloads" target="_blank">Myo SDK Downlaods</a></li>
 </ul>
 
 

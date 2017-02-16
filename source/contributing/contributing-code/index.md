@@ -50,10 +50,10 @@ Verify the new remote named `upstream`:
 
 ```bash
 git remote -v
-origin	git@github.com:bcremer/shopware.git (fetch)
-origin	git@github.com:bcremer/shopware.git (push)
-upstream	https://github.com/shopware/shopware.git (fetch)
-upstream	https://github.com/shopware/shopware.git (push)
+origin    git@github.com:bcremer/shopware.git (fetch)
+origin    git@github.com:bcremer/shopware.git (push)
+upstream    https://github.com/shopware/shopware.git (fetch)
+upstream    https://github.com/shopware/shopware.git (push)
 ```
 
 Now that you have the shopware source code locally on your machine please follow the [Git Installation Instructions](https://github.com/shopware/shopware#installation-via-git).

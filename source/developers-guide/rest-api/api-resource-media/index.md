@@ -27,22 +27,22 @@ To get information about a specific media, you can simply call the API as shown 
 
 ### Return Value
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Media\Media        | s_media               |
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                    |
-| albumId			    | integer (foreign key) | 									                                            |
-| name   			    | string                |                         														|
-| description			| string                |  										   										|
-| path					| string				| 										      								    |
-| type					| string				| 																		        |
-| extension 			| string				| 																				|
-| userId				| integer (foreign key) |																				|
-| created				| date/time				|																			    |
-| fileSize  			| integer				|																				|
+| id                    | integer (primary key) |                                                                                 |
+| albumId                | integer (foreign key) |                                                                                 |
+| name                   | string                |                                                                                 |
+| description            | string                |                                                                                     |
+| path                    | string                |                                                                                   |
+| type                    | string                |                                                                                 |
+| extension             | string                |                                                                                 |
+| userId                | integer (foreign key) |                                                                                |
+| created                | date/time                |                                                                                |
+| fileSize              | integer                |                                                                                |
 
 ## GET (List)
 
@@ -54,7 +54,7 @@ without providing any id.
 
 ### Return Value
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Media\Media        | s_media               |
 and
@@ -63,44 +63,44 @@ This API call returns an array of elements, one for each media. Each of these el
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                    |
-| albumId			    | integer (foreign key) | 									                                            |
-| name   			    | string                |                         														|
-| description			| string                |  										   										|
-| path					| string				| 										      								    |
-| type					| string				| 																		        |
-| extension 			| string				| 																				|
-| userId				| integer (foreign key) |																				|
-| created				| date/time				|																			    |
-| fileSize  			| integer				|																				|
+| id                    | integer (primary key) |                                                                                 |
+| albumId                | integer (foreign key) |                                                                                 |
+| name                   | string                |                                                                                 |
+| description            | string                |                                                                                     |
+| path                    | string                |                                                                                   |
+| type                    | string                |                                                                                 |
+| extension             | string                |                                                                                 |
+| userId                | integer (foreign key) |                                                                                |
+| created                | date/time                |                                                                                |
+| fileSize              | integer                |                                                                                |
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                            |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of media resources          |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| total                  | integer                  | The total number of media resources          |
+| success              | boolean                  | Indicates if the call was successful or not.    |
 
 ## POST (create)
 If you wish to add new data to the shop's media collection, simply create an array and send it via `POST` request to the API.
 The following keys can be provided in the array:
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Media\Media        | s_media               |
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| album (required)    | integer (foreign key) | 	                                								            |
-| name   			    | string                | Auto generated if not provided    											|
-| file (required)		| string				| Path to the file that should be uploaded										|
-| description (required)| string                |  										   										|
-| path					| string				| Auto generated if not provided		      								    |
-| type					| string				| Auto generated if not provided										        |
-| extension 			| string				| Auto generated if not provided												|
-| userId				| integer (foreign key) |																				|
-| created				| date/time				| Auto generated if not provided											    |
-| fileSize  			| integer				| Auto generated if not provided												|
+| album (required)    | integer (foreign key) |                                                                                 |
+| name                   | string                | Auto generated if not provided                                                |
+| file (required)        | string                | Path to the file that should be uploaded                                        |
+| description (required)| string                |                                                                                     |
+| path                    | string                | Auto generated if not provided                                                  |
+| type                    | string                | Auto generated if not provided                                                |
+| extension             | string                | Auto generated if not provided                                                |
+| userId                | integer (foreign key) |                                                                                |
+| created                | date/time                | Auto generated if not provided                                                |
+| fileSize              | integer                | Auto generated if not provided                                                |
 
 **The most of these values are generated automatically (such as `fileSize` and `created`). It is not recommended to set them manually**
 

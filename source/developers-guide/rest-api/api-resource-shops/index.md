@@ -15,7 +15,7 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)         | POST                  | DELETE                | DELETE (Batch)      |
 |-----------------------------|-----------------------|-----------------------|-----------------------|---------------------|-----------------------|-----------------------|---------------------|
-| /api/shops		          | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| /api/shops                  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -32,24 +32,24 @@ You can retrieve data of a shop by providing the specific id
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| id 	         	  | integer (primary key) |                                                 |
-| mainId	      	  | integer (foreign key) | **[Shop](../models/#shop)**                      |
-| categoryId		  | integer (foreign key) | **[Category](../models/#category)**				|
-| name		      	  | string				  | 		                                        |
-| title				  | string				  | 												|
-| position			  | integer				  | 												|
-| host				  | string				  | 												|
-| basePath			  | string				  | 												|
-| baseUrl			  | string				  | 												|
-| hosts				  | string				  | 												|
-| secure			  | boolean				  | 												|
-| alwaysSecure		  | boolean				  | 												|
-| secureHost		  | string				  | 												|
-| secureBasePath	  | string				  | 												|
-| default			  | boolean				  | 												|
-| active			  | boolean				  | 												|
-| customerScope		  | boolean				  | 												|
-| currency			  | object				  | **[Currency](../models/#currency)**				|
+| id                    | integer (primary key) |                                                 |
+| mainId                | integer (foreign key) | **[Shop](../models/#shop)**                      |
+| categoryId          | integer (foreign key) | **[Category](../models/#category)**                |
+| name                    | string                  |                                                 |
+| title                  | string                  |                                                 |
+| position              | integer                  |                                                 |
+| host                  | string                  |                                                 |
+| basePath              | string                  |                                                 |
+| baseUrl              | string                  |                                                 |
+| hosts                  | string                  |                                                 |
+| secure              | boolean                  |                                                 |
+| alwaysSecure          | boolean                  |                                                 |
+| secureHost          | string                  |                                                 |
+| secureBasePath      | string                  |                                                 |
+| default              | boolean                  |                                                 |
+| active              | boolean                  |                                                 |
+| customerScope          | boolean                  |                                                 |
+| currency              | object                  | **[Currency](../models/#currency)**                |
 
 ## GET (List)
 
@@ -61,43 +61,43 @@ To get more than one shop at once, simply remove the id parameter from the reque
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| id 	         	  | integer (primary key) |                                                 |
-| mainId	      	  | integer (foreign key) | **[Shop](../models/#shop)**                      |
-| categoryId		  | integer (foreign key) | **[Category](../models/#category)**				|
-| name		      	  | string				  | 		                                        |
-| title				  | string				  | 												|
-| position			  | integer				  | 												|
-| host				  | string				  | 												|
-| basePath			  | string				  | 												|
-| baseUrl			  | string				  | 												|
-| hosts				  | string				  | 												|
-| secure			  | boolean				  | 												|
-| alwaysSecure		  | boolean				  | 												|
-| secureHost		  | string				  | 												|
-| secureBasePath	  | string				  | 												|
-| default			  | boolean				  | 												|
-| active			  | boolean				  | 												|
-| customerScope		  | boolean				  | 												|
+| id                    | integer (primary key) |                                                 |
+| mainId                | integer (foreign key) | **[Shop](../models/#shop)**                      |
+| categoryId          | integer (foreign key) | **[Category](../models/#category)**                |
+| name                    | string                  |                                                 |
+| title                  | string                  |                                                 |
+| position              | integer                  |                                                 |
+| host                  | string                  |                                                 |
+| basePath              | string                  |                                                 |
+| baseUrl              | string                  |                                                 |
+| hosts                  | string                  |                                                 |
+| secure              | boolean                  |                                                 |
+| alwaysSecure          | boolean                  |                                                 |
+| secureHost          | string                  |                                                 |
+| secureBasePath      | string                  |                                                 |
+| default              | boolean                  |                                                 |
+| active              | boolean                  |                                                 |
+| customerScope          | boolean                  |                                                 |
 
 *Since this returns a list, the following fields will be added to the array:*
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                            |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of shop resources              |
-| success		      | boolean				  | Indicates if the call was successful or not.    |
+| total                  | integer                  | The total number of shop resources              |
+| success              | boolean                  | Indicates if the call was successful or not.    |
 
 ## POST (create) and PUT (update)
 You can post or put data by sending the following data to this URL:
 
 * **(POST or PUT) http://my-shop-url/api/shops/id**
 
-| Field               | Type                  | Original Object			                                |
+| Field               | Type                  | Original Object                                            |
 |---------------------|-----------------------|---------------------------------------------------------|
-| id				  | integer (primary key) |															|
-| name				  | string				  |															|
-| position			  | integer				  |															|
-| comparable		  | boolean				  |															|
-| sortMode			  | integer				  |															|
+| id                  | integer (primary key) |                                                            |
+| name                  | string                  |                                                            |
+| position              | integer                  |                                                            |
+| comparable          | boolean                  |                                                            |
+| sortMode              | integer                  |                                                            |
 
 ## DELETE
 To delete a shop, simply call this URL with the DELETE request:

@@ -30,41 +30,41 @@ Single category details can be retrieved via the category ID:
 * **http://my-shop-url/api/categories/id**
 
 ### Return Value
-| Model					             | Table			|
+| Model                              | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Category\Category  | s_categories     |
 
 
 | Field               | Type                  | Original Object                                                               |
 |---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				  | integer (primary key) | 							                                                  |
-| parentId            | integer (foreign key) | **[Category](../models/#category)** 											  |
-| streamId            | integer |  											  |
-| name                | string                |       											                              |
-| position            | integer               |             									                              |
-| metaTitle                | string                |       											                              |
-| metaKeywords                | string                |       											                              |
-| metaDescription                | string                |       											                              |
-| cmsHeadline                | string                |       											                              |
-| cmsText                | string                |       											                              |
-| active	          | boolean				  |                     							                              |
-| template	          | string				  |                     							                              |
-| productBoxLayout	          | string				  |                     							                              |
-| blog	          | boolean				  |                     							                              |
-| path	          | string				  |                     							                              |
-| showFilterGroups	          | boolean				  |                     							                              |
-| external	          | boolean				  |                     							                              |
-| hideFilter	          | boolean				  |                     							                              |
-| hideTop	          | boolean				  |                     							                              |
-| changed	          | DateTime				  |                     							                              |
-| added	          | DateTime				  |                     							                              |
-| mediaId	          | integer (foreign key)				  |  **[Media](../models/#media)**                   							                              |
-| attribute       | array               | 														                      |
-| emotions       | array               | 	**[Media](../models/#media)**													                      |
-| media       | Media               | 														                      |
-| customerGroups       | array               | 														                      |
-| childrenCount       | integer               | 														                      |
-| articleCount		  | integer				  | 														                      |
+| id                  | integer (primary key) |                                                                               |
+| parentId            | integer (foreign key) | **[Category](../models/#category)**                                           |
+| streamId            | integer               |                                                                               |
+| name                | string                |                                                                               |
+| position            | integer               |                                                                               |
+| metaTitle           | string                |                                                                               |
+| metaKeywords        | string                |                                                                               |
+| metaDescription     | string                |                                                                               |
+| cmsHeadline         | string                |                                                                               |
+| cmsText             | string                |                                                                               |
+| active              | boolean               |                                                                               |
+| template            | string                |                                                                               |
+| productBoxLayout    | string                |                                                                               |
+| blog                | boolean               |                                                                               |
+| path                | string                |                                                                               |
+| showFilterGroups    | boolean               |                                                                               |
+| external            | boolean               |                                                                               |
+| hideFilter          | boolean               |                                                                               |
+| hideTop             | boolean               |                                                                               |
+| changed             | DateTime              |                                                                               |
+| added               | DateTime              |                                                                               |
+| mediaId             | integer (foreign key) |  **[Media](../models/#media)**                                                |
+| attribute           | array                 |                                                                               |
+| emotions            | array                 |     **[Media](../models/#media)**                                             |
+| media               | Media                 |                                                                               |
+| customerGroups      | array                 |                                                                               |
+| childrenCount       | integer               |                                                                               |
+| articleCount        | integer               |                                                                               |
 
 ## GET (List)
 
@@ -77,7 +77,7 @@ To get a list of all categories, simply query:
 
 ### Return Value
 
-| Model					             | Table			|
+| Model                              | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Category\Category  | s_categories     |
 
@@ -87,53 +87,53 @@ This API call returns an array of elements, one for each category. Each of these
 
 | Field               | Type                  | Original Object                                                               |
 |---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				  | integer (primary key) | 							                                                  |
-| active	          | boolean				  |                     							                              |
-| name                | string                |       											                              |
-| position            | integer               |             									                              |
-| parentId            | integer (foreign key) | **[Category](../models/#category)**											  |
-| childrenCount       | integer               | 														                      |
-| articleCount		  | integer				  | 														                      |
+| id                  | integer (primary key) |                                                                               |
+| active              | boolean               |                                                                               |
+| name                | string                |                                                                               |
+| position            | integer               |                                                                               |
+| parentId            | integer (foreign key) | **[Category](../models/#category)**                                           |
+| childrenCount       | integer               |                                                                               |
+| articleCount        | integer               |                                                                               |
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                         |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of category resources          |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| total               | integer                  | The total number of category resources       |
+| success             | boolean                  | Indicates if the call was successful or not. |
 
 
 ## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
-| Model					             | Table			|
+| Model                                 | Table         |
 |------------------------------------|------------------|
 | Shopware\Models\Category\Category  | s_categories     |
 
 | Field               | Type                  | Comment                                              | Original Object / Database Column                                             |
 |---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| name (required)     | string				  |                                                      |       						                                                 |
-| id     	          | integer (primary key) | If null, a new entity will be created    	         | `s_category.id`     							                                 |
-| parent              | object                | Required if no parentId is provided                  | **[Category](../models/#category)**											 |
-| parentId            | integer               |                                                      | `s_category.id`            									                 |
-| position            | integer               |                                                      | 																			     |
-| metaKeywords        | string                |												         | 														                         |
-| metaDescription	  | string				  |                                                      | 														                         |
-| cmsHeadline    	  | string				  |                                                      | 														                         |
-| cmsText        	  | string				  |                                                      | 														                         |
-| template       	  | string				  |                                                      | 														                         |
-| path          	  | string				  |                                                      | 														                         |
-| active         	  | boolean				  |                                                      | 														                         |
-| blog          	  | boolean				  |                                                		 | 														                         |
-| showFilterGroup	  | boolean				  |                                                      | 														                         |
-| external       	  | string				  |                                                      | 														                         |
-| hideFilter     	  | boolean				  |                                                      | 														                         |
-| hideTop	          | boolean				  |                                                      | 														                         |
-| noViewSelect  	  | boolean				  |                                                      | 														                         |
-| changed       	  | date/time    		  |                                                      | 														                         |
-| added         	  | date/time    		  |                                                      | 														                         |
-| attribute     	  | array				  | Array with optional indexes from 1-6 and its values | 														                         |
-| media          	  | array				  | Array with either `mediaId` or `link` property | 														                         |
+| name (required)     | string                  |                                                      |                                                                                |
+| id                   | integer (primary key) | If null, a new entity will be created                 | `s_category.id`                                                                  |
+| parent              | object                | Required if no parentId is provided                  | **[Category](../models/#category)**                                             |
+| parentId            | integer               |                                                      | `s_category.id`                                                                 |
+| position            | integer               |                                                      |                                                                                  |
+| metaKeywords        | string                |                                                         |                                                                                  |
+| metaDescription      | string                  |                                                      |                                                                                  |
+| cmsHeadline          | string                  |                                                      |                                                                                  |
+| cmsText              | string                  |                                                      |                                                                                  |
+| template             | string                  |                                                      |                                                                                  |
+| path                | string                  |                                                      |                                                                                  |
+| active               | boolean                  |                                                      |                                                                                  |
+| blog                | boolean                  |                                                         |                                                                                  |
+| showFilterGroup      | boolean                  |                                                      |                                                                                  |
+| external             | string                  |                                                      |                                                                                  |
+| hideFilter           | boolean                  |                                                      |                                                                                  |
+| hideTop              | boolean                  |                                                      |                                                                                  |
+| noViewSelect        | boolean                  |                                                      |                                                                                  |
+| changed             | date/time              |                                                      |                                                                                  |
+| added               | date/time              |                                                      |                                                                                  |
+| attribute           | array                  | Array with optional indexes from 1-6 and its values |                                                                                  |
+| media                | array                  | Array with either `mediaId` or `link` property |                                                                                  |
 
 
 ## DELETE

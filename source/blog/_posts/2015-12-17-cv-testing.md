@@ -70,26 +70,26 @@ def get_abs_path(filename):
 cam = Camera(1)
 
 # Prepare logo
-logo = Image(get_abs_path('logo.png'))	
+logo = Image(get_abs_path('logo.png'))    
 
 # Loop to continuously get images
 while True:
-	# Get Image from camera
-	img = cam.getImage()
-	
-	# Find eyes using a haar feature from http://alereimondo.no-ip.org/OpenCV/34
-	eyes = img.findHaarFeatures(get_abs_path('eyes.xml'))
-	
-	if eyes is not None:
-		for eye in eyes:
-			# scale the logo for to dimensions of eye
-			scaledLogo  = logo.scale(eye.width(), eye.height());
-			# render the logo to the eye's position
-			img.dl().blit(scaledLogo, (eye.x - eye.width() / 2, eye.y - eye.height() / 2))		
-	
+    # Get Image from camera
+    img = cam.getImage()
+    
+    # Find eyes using a haar feature from http://alereimondo.no-ip.org/OpenCV/34
+    eyes = img.findHaarFeatures(get_abs_path('eyes.xml'))
+    
+    if eyes is not None:
+        for eye in eyes:
+            # scale the logo for to dimensions of eye
+            scaledLogo  = logo.scale(eye.width(), eye.height());
+            # render the logo to the eye's position
+            img.dl().blit(scaledLogo, (eye.x - eye.width() / 2, eye.y - eye.height() / 2))        
+    
 
-	# Show the image
-	img.show()
+    # Show the image
+    img.show()
 ```
 
 <img src="/blog/img/sikuli-simplecv2.gif" width="300" class="is-float-left" style="width:300px" />

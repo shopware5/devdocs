@@ -384,9 +384,9 @@ The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopw
 
 ```
 {block name="frontend_index_navigation_categories_top_include"}
-	...
-	
-	{$smarty.block.parent}
+    ...
+    
+    {$smarty.block.parent}
 {/block}
 ```
 

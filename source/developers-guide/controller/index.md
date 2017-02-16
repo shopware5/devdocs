@@ -167,6 +167,7 @@ The order of the events is the following:
 * Enlight_Controller_Action_PreDispatch
 * Enlight_Controller_Action_PreDispatch_Frontend
 * Enlight_Controller_Action_PreDispatch_Frontend_Index
+* Enlight_Controller_Action_Frontend_Index
 * actual call to Shopware_Controllers_Frontend::Index::indexAction
 * Enlight_Controller_Action_PostDispatchSecure_Frontend_Index
 * Enlight_Controller_Action_PostDispatchSecure_Frontend

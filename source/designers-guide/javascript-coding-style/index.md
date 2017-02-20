@@ -138,7 +138,7 @@ var list = [1, 2, 3, 4];
 function greet (name, options) { ... }
 
 // ✗ avoid 
-var list = [1,2,3,4]
+var list = [1,2,3,4];
 function greet (name,options) { ... }
 ```
 

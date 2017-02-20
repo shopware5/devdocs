@@ -66,9 +66,9 @@ Once you create a directory like ~/.config/sw-cli-tools/extensions/VENDOR/NAME, 
 ```php
 public function setContainer(ContainerBuilder $container)
 {
-	$container->register('my_service', 'VENDOR\NAME\MY_SERVICE')
+    $container->register('my_service', 'VENDOR\NAME\MY_SERVICE')
                   ->addArgument(new Reference('git_util'))
-		  ->addArgument(new Reference('io_service'));
+          ->addArgument(new Reference('io_service'));
 }
 
 public function getConsoleCommands()

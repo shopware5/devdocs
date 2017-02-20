@@ -34,8 +34,8 @@
     <div class="blog-authors">
         {% for authorhandle in page.authors %}
         {% if site.authors[authorhandle] %}
-		{% include 'author_box.twig' with {'author': site.authors[authorhandle], 'date': page.date} %}
-		{% endif %}
+        {% include 'author_box.twig' with {'author': site.authors[authorhandle], 'date': page.date} %}
+        {% endif %}
         {% endfor %}
     </div>
     {% endif %}

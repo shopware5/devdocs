@@ -193,7 +193,7 @@ class AddressSplittingService
 {
     public static function splitAddress($address)
     {
-      		  $regex = '
+                $regex = '
             /\A\s*
             (?: #########################################################################
                 # Option A: [<Addition to address 1>] <Street name> <House number>      #
@@ -218,34 +218,34 @@ class AddressSplittingService
                 (?P<B_Addition_to_address_2>(?!\s).*?))? # Addition to address 2
             )
             \s*\Z/x';
-        		$result = preg_match($regex, $address, $matches);
-        		if ($result === 0)
-        		{
+                $result = preg_match($regex, $address, $matches);
+                if ($result === 0)
+                {
             throw new Exception('Address \'' . $address . '\' could not be splitted into street name and house number');
-        		}
-        		else if ($result === false)
-        		{
+                }
+                else if ($result === false)
+                {
             throw new Exception('Error occured while trying to split address \'' . $address . '\'');
-        		}
-        		if (!empty($matches['A_Street_name']))
-        		{
+                }
+                if (!empty($matches['A_Street_name']))
+                {
             return array(
-                				'additionToAddress1' => $matches['A_Addition_to_address_1'],
-                				'streetName' => $matches['A_Street_name'],
-                				'houseNumber' => $matches['A_House_number'],
-                				'additionToAddress2' => $matches['A_Addition_to_address_2']
+                                'additionToAddress1' => $matches['A_Addition_to_address_1'],
+                                'streetName' => $matches['A_Street_name'],
+                                'houseNumber' => $matches['A_House_number'],
+                                'additionToAddress2' => $matches['A_Addition_to_address_2']
             );
-        		}
-        		else
-        		{
+                }
+                else
+                {
             return array(
-              				  'additionToAddress1' => $matches['B_Addition_to_address_1'],
-              				  'streetName' => $matches['B_Street_name'],
-              				  'houseNumber' => $matches['B_House_number'],
-              				  'additionToAddress2' => $matches['B_Addition_to_address_2']
+                                'additionToAddress1' => $matches['B_Addition_to_address_1'],
+                                'streetName' => $matches['B_Street_name'],
+                                'houseNumber' => $matches['B_House_number'],
+                                'additionToAddress2' => $matches['B_Addition_to_address_2']
             );
-        		}
-    	}
+                }
+        }
 }
 ```
 

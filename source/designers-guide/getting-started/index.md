@@ -183,7 +183,7 @@ The navigation menu uses `<li>` elements to wrap its entries. In the example bel
 ```
 
 <div class="alert alert-warning"> 
-	<strong>Attention:</strong> It is recommend to not use the smarty block parameter <strong>append</strong> and <strong>prepend</strong>, so other templates or plugins can overwrite the same block without problems.
+    <strong>Attention:</strong> It is recommend to not use the smarty block parameter <strong>append</strong> and <strong>prepend</strong>, so other templates or plugins can overwrite the same block without problems.
 </div>
 
 ## Add Less files

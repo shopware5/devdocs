@@ -16,7 +16,7 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)         | POST                | DELETE               | DELETE (Batch)      |
 |-----------------------------|-----------------------|-----------------------|-----------------------|------------------- -|---------------------|----------------------|---------------------|
-| /api/orders              	  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/no.png) |
+| /api/orders                    | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -37,54 +37,54 @@ This API call requires one of the following parameters to be defined:
 
 ### Return Value
 
-| Model					             | Table			     |
+| Model                                 | Table                 |
 |------------------------------------|-----------------------|
 | Shopware\Models\Customer\Customer  | s_user                |
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				    | integer (primary key) | 							                                                    |
-| number				| string				|																				|
-| customerId			| integer (foreign key) | **[Customer](../api-resource-customer)**										|
-| paymentId				| integer (foreign key)	| **[PaymentData](../models/#payment-data)**										|
-| dispatchId			| integer (foreign key)	| **[Dispatch](../models/#dispatch)**											|
-| partnerId				| integer (foreign key)	|    																			|
-| shopId				| integer (foreign key)	| **[Shop](../models/#shop)**													|
-| invoiceAmount			| double				|																				|
-| invoiceAmountNet		| double				|																				|
-| invoiceShipping		| double				|																				|
-| invoiceShippingNet	| double				|																				|
-| orderTime				| date/time				|																				|
-| transactionId			| string				|																				|
-| comment				| string				|																				|
-| customerComment		| string				|																				|
-| internalComment		| string				|																				|
-| net					| boolean				|																				|
-| taxFree				| boolean				|																				|
-| temporaryId			| string				|																				|
-| referer				| string				|																				|
-| clearedDate			| date/time				|																				|
-| trackingCode			| string				|																				|
-| languageIso			| integer (foreign key)	| **[Locale](../models/#locale)**												|
-| currency				| string				|																				|
-| currencyFactor		| double				|																				|
-| remoteAddress			| string				|																				|
-| deviceType			| string				|																				|
-| details				| array					| **[Detail](../models/#order-detail)**										|
-| documents				| array					| **[Document](../models/#document)**											|
-| payment				| object				| **[Payment](../models/#payment-instance)**										|
-| paymentStatus			| object				| **[PaymentStatus](../models/#payment-status)**									|
-| orderStatus			| object				| **[OrderStatus](../models/#order-status)**										|
-| customer				| object				| **[Customer](../models/#customer)**											|
-| paymentInstances		| array					| **[PaymentInstance](../models/#payment-instance)**								|
-| billing				| object				| **[Billing](../models/#billing)**												|
-| shipping				| object				| **[Shipping](../models/#shipping)**											|
-| shop					| object				| **[Shop](../models/#shop)**													|
-| dispatch				| object				| **[Dispatch](../models/#dispatch)**											|
-| attribute				| object				| **[Attribute](../models/#order-attribute)**									|
-| languageSubShop		| object				| **[Shop](../models/#shop)**													|
-| paymentStatusId   	| integer (foreign key)	| **[Status](../models/#payment-status)**										|
-| orderStatusId			| integer (foreign key) | **[OrderStatus](../models/#order-status)**										|
+| id                    | integer (primary key) |                                                                                 |
+| number                | string                |                                                                                |
+| customerId            | integer (foreign key) | **[Customer](../api-resource-customer)**                                        |
+| paymentId                | integer (foreign key)    | **[PaymentData](../models/#payment-data)**                                        |
+| dispatchId            | integer (foreign key)    | **[Dispatch](../models/#dispatch)**                                            |
+| partnerId                | integer (foreign key)    |                                                                                |
+| shopId                | integer (foreign key)    | **[Shop](../models/#shop)**                                                    |
+| invoiceAmount            | double                |                                                                                |
+| invoiceAmountNet        | double                |                                                                                |
+| invoiceShipping        | double                |                                                                                |
+| invoiceShippingNet    | double                |                                                                                |
+| orderTime                | date/time                |                                                                                |
+| transactionId            | string                |                                                                                |
+| comment                | string                |                                                                                |
+| customerComment        | string                |                                                                                |
+| internalComment        | string                |                                                                                |
+| net                    | boolean                |                                                                                |
+| taxFree                | boolean                |                                                                                |
+| temporaryId            | string                |                                                                                |
+| referer                | string                |                                                                                |
+| clearedDate            | date/time                |                                                                                |
+| trackingCode            | string                |                                                                                |
+| languageIso            | integer (foreign key)    | **[Locale](../models/#locale)**                                                |
+| currency                | string                |                                                                                |
+| currencyFactor        | double                |                                                                                |
+| remoteAddress            | string                |                                                                                |
+| deviceType            | string                |                                                                                |
+| details                | array                    | **[Detail](../models/#order-detail)**                                        |
+| documents                | array                    | **[Document](../models/#document)**                                            |
+| payment                | object                | **[Payment](../models/#payment-instance)**                                        |
+| paymentStatus            | object                | **[PaymentStatus](../models/#payment-status)**                                    |
+| orderStatus            | object                | **[OrderStatus](../models/#order-status)**                                        |
+| customer                | object                | **[Customer](../models/#customer)**                                            |
+| paymentInstances        | array                    | **[PaymentInstance](../models/#payment-instance)**                                |
+| billing                | object                | **[Billing](../models/#billing)**                                                |
+| shipping                | object                | **[Shipping](../models/#shipping)**                                            |
+| shop                    | object                | **[Shop](../models/#shop)**                                                    |
+| dispatch                | object                | **[Dispatch](../models/#dispatch)**                                            |
+| attribute                | object                | **[Attribute](../models/#order-attribute)**                                    |
+| languageSubShop        | object                | **[Shop](../models/#shop)**                                                    |
+| paymentStatusId       | integer (foreign key)    | **[Status](../models/#payment-status)**                                        |
+| orderStatusId            | integer (foreign key) | **[OrderStatus](../models/#order-status)**                                        |
 
 ## PUT (update)
 

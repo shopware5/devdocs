@@ -29,15 +29,15 @@ You can retrieve a property group by using its id
 
 ### Return Value
 
-| Field               | Type                  | Original Object			                                |
+| Field               | Type                  | Original Object                                            |
 |---------------------|-----------------------|---------------------------------------------------------|
-| id				  | integer (primary key) |															|
-| name				  | string				  |															|
-| position			  | integer				  |															|
-| comparable		  | boolean				  |															|
-| sortMode			  | integer				  |															|
-| options			  | array				  | **[Option](../models/#property-group-option)**			|
-| attribute			  | array				  | **[Attribute](../models/#property-group-attribute)**		|
+| id                  | integer (primary key) |                                                            |
+| name                  | string                  |                                                            |
+| position              | integer                  |                                                            |
+| comparable          | boolean                  |                                                            |
+| sortMode              | integer                  |                                                            |
+| options              | array                  | **[Option](../models/#property-group-option)**            |
+| attribute              | array                  | **[Attribute](../models/#property-group-attribute)**        |
 
 ## GET (List)
 
@@ -49,10 +49,10 @@ To get more than one property group at once, simply remove the id parameter from
 
 *Since this returns a list, the following fields will be added to the array:*
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                            |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of cache resources             |
-| success		      | boolean				  | Indicates if the call was successful or not.    |
+| total                  | integer                  | The total number of cache resources             |
+| success              | boolean                  | Indicates if the call was successful or not.    |
 
 ## POST (create) and PUT (update)
 
@@ -60,13 +60,13 @@ You can post or put data by querying the following URL:
 
 * **(POST or PUT) http://my-shop-url/api/propertyGroups/id**
 
-| Field               | Type                  | Original Object			                                |
+| Field               | Type                  | Original Object                                            |
 |---------------------|-----------------------|---------------------------------------------------------|
-| id				  | integer (primary key) |															|
-| name				  | string				  |															|
-| position			  | integer				  |															|
-| comparable		  | boolean				  |															|
-| sortMode			  | integer				  |															|
+| id                  | integer (primary key) |                                                            |
+| name                  | string                  |                                                            |
+| position              | integer                  |                                                            |
+| comparable          | boolean                  |                                                            |
+| sortMode              | integer                  |                                                            |
 
 ## DELETE
 To delete a property group, simply query this URL with a `DELETE` request:

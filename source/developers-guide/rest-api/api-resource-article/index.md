@@ -61,48 +61,48 @@ This call will return an array of the model **Shopware\Models\Article\Article** 
 
 The following table shows the fields, types and original objects of this array.
 
-| Field               | Type                  | Original object                                  |
-|---------------------|-----------------------|--------------------------------------------------|
-| id				  | integer (primary key) |                                                  |
-| mainDetailId        | integer (foreign key) | **[Detail](../models/#article-detail)**           |
-| supplierId          | integer (foreign key) | **[Supplier](../models/#supplier)**               |
-| taxId               | integer (foreign key) | **[Tax](./models/tax)**                          |
-| priceGroupId        | integer (foreign key) | **[PriceGroup](../models/#price-group)**          |
-| filterGroupId       | integer (foreign key) | **[ConfiguratorSet](../models/#property-group)**  |
-| configuratorSetId   | integer (foreign key) | **[ConfiguratorSet](../models/#configurator-set)**|
-| name                | string                |                                                  |
-| description         | string                |                                                  |
-| descriptionLong     | string                |                                                  |
-| added               | date/time             |                                                  |
-| active              | boolean               |                                                  |
-| pseudoSales         | integer               |                                                  |
-| highlight           | boolean               |                                                  |
-| keywords            | string                |                                                  |
-| metaTitle           | string                |                                                  |
-| changed             | date/time             |                                                  |
-| priceGroupActive    | boolean               |                                                  |
-| lastStock           | boolean               |                                                  |
-| crossBundleLook     | boolean               |                                                  |
-| notification        | boolean               |                                                  |
-| template            | string                |                                                  |
-| mode                | integer               |                                                  |
-| availableFrom       | date/time             |                                                  |
-| availableTo         | date/time             |                                                  |
-| mainDetail          | object                | **[Detail](../models/#article-detail)**           |
-| tax                 | object                | **[Tax](../models/#tax)**                         |
-| propertyValue       | object                | **[PropertyValue](../models/#property-value)**    |
-| supplier            | object                | **[Supplier](../models/#supplier)**               |
-| propertyGroup       | object                | **[PropertyGroup](../models/#property-group)**    |
-| customerGroups      | object array          | **[CustomerGroup](../models/#customer-group)**    |
-| images              | object array          | **[Image](../models/#image)**                     |
-| configuratorSet     | object                | **[ConfiguratorSet](../models/#configurator-set)**|
-| links               | object array          | **[Link](../models/#link)**                       |
-| downloads           | object array          | **[Download](../models/#download)**               |
-| categories          | object array          | **[Category](../models/#category)**               |
-| similar             | object array          | **[Similar](../models/#similar)**                 |
-| related             | object array          | **[Related](../models/#related)**                 |
-| details             | object array          | **[Detail](../models/#article-detail)**           |
-| translations        | object array          | **[Translation](../models/#translation)**         |
+| Field               | Type                  | Original object                                    |
+|---------------------|-----------------------|----------------------------------------------------|
+| id                  | integer (primary key) |                                                    |
+| mainDetailId        | integer (foreign key) | **[Detail](../models/#article-detail)**            |
+| supplierId          | integer (foreign key) | **[Supplier](../models/#supplier)**                |
+| taxId               | integer (foreign key) | **[Tax](./models/tax)**                            |
+| priceGroupId        | integer (foreign key) | **[PriceGroup](../models/#price-group)**           |
+| filterGroupId       | integer (foreign key) | **[ConfiguratorSet](../models/#property-group)**   |
+| configuratorSetId   | integer (foreign key) | **[ConfiguratorSet](../models/#configurator-set)** |
+| name                | string                |                                                    |
+| description         | string                |                                                    |
+| descriptionLong     | string                |                                                    |
+| added               | date/time             |                                                    |
+| active              | boolean               |                                                    |
+| pseudoSales         | integer               |                                                    |
+| highlight           | boolean               |                                                    |
+| keywords            | string                |                                                    |
+| metaTitle           | string                |                                                    |
+| changed             | date/time             |                                                    |
+| priceGroupActive    | boolean               |                                                    |
+| lastStock           | boolean               |                                                    |
+| crossBundleLook     | boolean               |                                                    |
+| notification        | boolean               |                                                    |
+| template            | string                |                                                    |
+| mode                | integer               |                                                    |
+| availableFrom       | date/time             |                                                    |
+| availableTo         | date/time             |                                                    |
+| mainDetail          | object                | **[Detail](../models/#article-detail)**            |
+| tax                 | object                | **[Tax](../models/#tax)**                          |
+| propertyValue       | object                | **[PropertyValue](../models/#property-value)**     |
+| supplier            | object                | **[Supplier](../models/#supplier)**                |
+| propertyGroup       | object                | **[PropertyGroup](../models/#property-group)**     |
+| customerGroups      | object array          | **[CustomerGroup](../models/#customer-group)**     |
+| images              | object array          | **[Image](../models/#image)**                      |
+| configuratorSet     | object                | **[ConfiguratorSet](../models/#configurator-set)** |
+| links               | object array          | **[Link](../models/#link)**                        |
+| downloads           | object array          | **[Download](../models/#download)**                |
+| categories          | object array          | **[Category](../models/#category)**                |
+| similar             | object array          | **[Similar](../models/#similar)**                  |
+| related             | object array          | **[Related](../models/#related)**                  |
+| details             | object array          | **[Detail](../models/#article-detail)**            |
+| translations        | object array          | **[Translation](../models/#translation)**          |
 
 ### GET (List)
 
@@ -127,7 +127,7 @@ Here is an example of a parametrized URL:
 
 | Field               | Type                  | Original object                                  |
 |---------------------|-----------------------|--------------------------------------------------|
-| id				  | integer (primary key) |                                                  |
+| id                  | integer (primary key) |                                                  |
 | mainDetailId        | integer (foreign key) | **[Detail](../models/#article-detail)**           |
 | supplierId          | integer (foreign key) | **[Supplier](../models/#supplier)**               |
 | taxId               | integer (foreign key) | **[Tax](../models/#tax)**                         |
@@ -160,11 +160,11 @@ Here is an example of a parametrized URL:
 | name (required)       | string                |                                                                               |                                                    |
 | taxId (required)      | integer (foreign key) | Required if no tax object provided                                            |  `s_core_tax.id`                                   |
 | tax (required)        | object                |                                                                               |  **[Tax](../models/#tax)**                          |
-| mainDetail (required) | object                |                            													|  **[Detail](../models/#article-detail)**            |
+| mainDetail (required) | object                |                                                                                |  **[Detail](../models/#article-detail)**            |
 | supplierId (required) | integer (foreign key) | Required if no supplier object provided                                       |  `s_articles_supplier.id`                          |
-| supplier (required)   | object                | Will be created if it does not exist       					                |  **[Supplier](../models/#supplier)**                |
-| priceGroupId          | integer (foreign key) | 																				|  `s_core_pricegroups.id`          				 |
-| filterGroupId         | integer (foreign key) | 																				|  `s_filter.id`                                     |
+| supplier (required)   | object                | Will be created if it does not exist                                           |  **[Supplier](../models/#supplier)**                |
+| priceGroupId          | integer (foreign key) |                                                                                 |  `s_core_pricegroups.id`                           |
+| filterGroupId         | integer (foreign key) |                                                                                 |  `s_filter.id`                                     |
 | description           | string                |                                                                               |                                                    |
 | descriptionLong       | string                |                                                                               |                                                    |
 | added                 | date/time             |                                                                               |                                                    |

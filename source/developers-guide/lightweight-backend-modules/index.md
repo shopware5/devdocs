@@ -40,10 +40,10 @@ As mentioned above, we're using [JSON-RPC 2.0](http://www.jsonrpc.org/specificat
 
 ```js
 {
-	"jsonrpc": "2.0",
-	"method": "substract",
-	"params": [42, 23],
-	"id": 1
+    "jsonrpc": "2.0",
+    "method": "substract",
+    "params": [42, 23],
+    "id": 1
 }
 ```
 
@@ -51,14 +51,14 @@ Our modification of the Request objects contains additional information about th
 
 ```js
 {
-	"jsonrpc": "2.0",
-	"method": "createSubWindow",
-	"params": { "name": "Custom window" },
-	"target": "Shopware.ModuleManager",
-	"component": "main",
-	"instance": "550e8400-e29b-11d4-a716-446655440000",
-	"async": true,
-	"id": 1
+    "jsonrpc": "2.0",
+    "method": "createSubWindow",
+    "params": { "name": "Custom window" },
+    "target": "Shopware.ModuleManager",
+    "component": "main",
+    "instance": "550e8400-e29b-11d4-a716-446655440000",
+    "async": true,
+    "id": 1
 }
 ```
 
@@ -66,12 +66,12 @@ The Response object contains the result of the called method and has the followi
 
 ```js
 {
-	"jsonrpc": "2.0",
-	"result": [ "some": "data" ],
-	"error": null,
-	"component": "main",
-	"instance": "550e8400-e29b-11d4-a716-446655440000",
-	"id": 1
+    "jsonrpc": "2.0",
+    "result": [ "some": "data" ],
+    "error": null,
+    "component": "main",
+    "instance": "550e8400-e29b-11d4-a716-446655440000",
+    "id": 1
 }
 ```
 
@@ -119,10 +119,10 @@ below, we do that in the `registerBackendController()` method by calling `regist
 ```php
 function registerBackendController()
 {
-	$this->registerController(
-	    'Backend',
-	    'ExampleModulePlainHtml'
-	);
+    $this->registerController(
+        'Backend',
+        'ExampleModulePlainHtml'
+    );
 }
 ```
 
@@ -179,7 +179,7 @@ As you can see there's a file called `_base/layout.tpl`. It's best practice to c
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	{block name="content/navigation"}{/block}
+    {block name="content/navigation"}{/block}
 </nav>
 
 <div class="container theme-showcase" role="main">

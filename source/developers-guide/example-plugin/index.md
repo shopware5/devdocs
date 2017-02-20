@@ -447,8 +447,8 @@ The plugin extends two templates of the responsive template.
 {extends file="parent:frontend/detail/actions.tpl"}
 
 {block name='frontend_detail_actions_voucher'}
-	{$smarty.block.parent}
-	
+    {$smarty.block.parent}
+    
     {if $sArticle.attributes.swag_plugin_system}
         {$swagSeoAttribute = $sArticle.attributes.swag_plugin_system}
         {include file="frontend/swag_plugin_system/detail-link.tpl" seoCategory=$swagSeoAttribute->get('category')}
@@ -463,7 +463,7 @@ The plugin extends two templates of the responsive template.
 {extends file="parent:frontend/listing/product-box/product-badges.tpl"}
 
 {block name="frontend_listing_box_article_new"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
     {if $sArticle.attributes.swag_plugin_system}
         {$swagSeoAttribute = $sArticle.attributes.swag_plugin_system}

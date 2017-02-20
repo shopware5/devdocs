@@ -257,19 +257,19 @@ might be interested in:
 ```
 class Pdo
 {
-	/**
-	 * Executes an SQL statement, returning a result set as a PDOStatement object
-	 */
-	public function query ($statement, $mode = PDO::ATTR_DEFAULT_FETCH_MODE, $arg3 = null) {}
+    /**
+     * Executes an SQL statement, returning a result set as a PDOStatement object
+     */
+    public function query ($statement, $mode = PDO::ATTR_DEFAULT_FETCH_MODE, $arg3 = null) {}
 
-	/**
-	 * Execute an SQL statement and return the number of affected rows
-	 */
-	public function exec ($statement) {}
+    /**
+     * Execute an SQL statement and return the number of affected rows
+     */
+    public function exec ($statement) {}
 
-	/**
-	 * Prepares a statement for execution and returns a statement object
-	 */
+    /**
+     * Prepares a statement for execution and returns a statement object
+     */
     public function prepare ($statement, array $driver_options = array()) {}
 }
 ```

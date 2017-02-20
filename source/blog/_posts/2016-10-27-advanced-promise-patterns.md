@@ -23,16 +23,16 @@ Let's assume we have a function named `fetchPost` which fetches data from an API
 
 ```
 function fetchPost(id) {
-	id = id || 1;
+    id = id || 1;
 
-	return $.ajax({
-		'url': 'https://jsonplaceholder.typicode.com/posts/' + id
-	});
+    return $.ajax({
+        'url': 'https://jsonplaceholder.typicode.com/posts/' + id
+    });
 }
 
 // Call the function and output the response
 fetchPost(1).done(function(response) {
-	alert(JSON.stringfy(response));
+    alert(JSON.stringfy(response));
 });
 ```
 
@@ -46,17 +46,17 @@ You can overcome this issue using `Promise.resolve()`, which lets you transform 
 
 ```
 function fetchPost(id) {
-	id = id || 1;
+    id = id || 1;
     
-	var jQueryPromise = $.ajax({
-    	'url': 'https://jsonplaceholder.typicode.com/posts/' + id
-	});
+    var jQueryPromise = $.ajax({
+        'url': 'https://jsonplaceholder.typicode.com/posts/' + id
+    });
     
     return Promise.resolve(jQueryPromise);
 }
 
 fetchPost(1).then(function(response) {
-	alert(JSON.stringify(response));
+    alert(JSON.stringify(response));
 });
 ```
 
@@ -73,18 +73,18 @@ Let's assume we're working with a lot of numbers, our application uses promises 
 
 ```
 function getNumber(num) {
-	// We don't know if num is a promise or not, so we're calling Promise.resolve() to always return a new promise object.
-	return Promise.resolve(num);
+    // We don't know if num is a promise or not, so we're calling Promise.resolve() to always return a new promise object.
+    return Promise.resolve(num);
 }
 
 // Our given value IS NOT a promise
 getNumber(10).then(function(num) {
-	alert('The number is: ' + num);
+    alert('The number is: ' + num);
 });
 
 // Our given value IS a promise
 getNumber(Promise.resolve(10)).then(function() {
-	alert('The number is: ' + num);
+    alert('The number is: ' + num);
 });
 ```
 
@@ -98,7 +98,7 @@ If you want a little more control and want to terminate if a value is a promise 
 
 ```
 function isPromise(obj) {
-	return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
+    return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 ```
 
@@ -114,7 +114,7 @@ Let's take a look on a parallel operation first. In the following example we're 
 var postIds = [ 2, 4, 7, 42 ];
 
 Promise.all(items.map(fetchPost)).then(function(results) {
-	console.log(results);
+    console.log(results);
 });
 ```
 
@@ -130,15 +130,15 @@ Running a collection of asynchronous operations in sequence takes a little more 
 var postIds = [ 2, 4, 7, 42 ];
 
 var sequencePromise = postIds.reduce(function(promise, item) {
-	return promise.then(function(results) {
-    	return fetchPost(item)
-        	.then(results.push.bind(results))
-        	.then(function() { return results; });
+    return promise.then(function(results) {
+        return fetchPost(item)
+            .then(results.push.bind(results))
+            .then(function() { return results; });
     });
 }, Promise.resolve([]));
     
 sequencePromise.then(function(results) {
-	console.log(results);
+    console.log(results);
 });
 ```
 
@@ -157,11 +157,11 @@ One of the most useful features of promises is the automatic propagation of erro
 
 ```
 function random() {
-	return new Promise(function(fulfill, reject) {
-    	if (Math.random() > 0.5) {
-        	fulfill('Yeah');
+    return new Promise(function(fulfill, reject) {
+        if (Math.random() > 0.5) {
+            fulfill('Yeah');
         } else {
-        	throw new Error('Oh no something went wrong');
+            throw new Error('Oh no something went wrong');
         }
     });
 }
@@ -179,11 +179,11 @@ As you can see in the above code and playing around with the example, the error 
 
 ```
 function random() {
-	return new Promise(function(fulfill, reject) {
-    	if (Math.random() > 0.5) {
-        	fulfill('Yeah');
+    return new Promise(function(fulfill, reject) {
+        if (Math.random() > 0.5) {
+            fulfill('Yeah');
         } else {
-        	reject(new Error('Oh no something went wrong'));
+            reject(new Error('Oh no something went wrong'));
         }
     });
 }
@@ -191,7 +191,7 @@ function random() {
 random().then(function(results) {
     alert('Success');
 }).catch(function(err) {
-	 alert('Error');
+     alert('Error');
 });
 ```
 
@@ -220,25 +220,25 @@ Again, we're using our `fetchPost()` function to fetch the post from the endpoin
 
 ```
 function fetchPost(id) {
-	 id = id || 1;
+     id = id || 1;
     return Promise.resolve($.ajax({
-    	'url': 'https://jsonplaceholder.typicode.com/posts/' + id
-	}));
+        'url': 'https://jsonplaceholder.typicode.com/posts/' + id
+    }));
 }
 
 function fetchAuthor(id) {
-	 id = id || 1;
+     id = id || 1;
     return Promise.resolve($.ajax({
-    	'url': 'https://jsonplaceholder.typicode.com/users/' + id
-	}));
+        'url': 'https://jsonplaceholder.typicode.com/users/' + id
+    }));
 }
 
 fetchPost(1).then(function(post) {
-	return Promise.all([ post, fetchAuthor(post.userId) ]);
+    return Promise.all([ post, fetchAuthor(post.userId) ]);
 }).then(function(results) {
-	var data = {
-		'post': results[0],
-		'user': results[1]
+    var data = {
+        'post': results[0],
+        'user': results[1]
     };
     
     // Do something with the data...
@@ -260,23 +260,23 @@ Calling `Promise.all()` returns a promise with the post and the author. The prom
 
 ```
 function delay(time) {
-	return new Promise(function (fulfill) {
-		setTimeout(fulfill, time);
-	});
+    return new Promise(function (fulfill) {
+        setTimeout(fulfill, time);
+    });
 }
 
 function timeout(promise, time) {
-	return Promise.race([
-    	promise,
+    return Promise.race([
+        promise,
         delay(time).then(function () {
-        	// When the delay promise will be settled first, we're throwing an exception.
-    		throw new Error('Operation timed out');
-  		});
-  	]);
+            // When the delay promise will be settled first, we're throwing an exception.
+            throw new Error('Operation timed out');
+          });
+      ]);
 }
 
 timeout(fetchPost(1), 500).then(function(post) {
-	console.log(post);
+    console.log(post);
 });
 ```
 

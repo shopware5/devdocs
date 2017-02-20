@@ -111,7 +111,7 @@ final class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Co
         $view = $action->View();
 
         // ...
-	}
+    }
 
     public function checkLicense($throwException = true)
     {
@@ -147,7 +147,7 @@ final class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Co
         if ($this->checkIfDependenciesAreMet($throwException)) {
             return $this->checkLicense($throwException);
         }
-	}
+    }
 
     public function checkIfDependenciesAreMet($throwException = true)
     {

@@ -30,30 +30,30 @@ Single address details can be retrieved via the address ID:
 * **http://my-shop-url/api/address/id**
 
 ### Return Value
-| Model					             | Table			|
+| Model                                 | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Customer\Address   | s_user_addresses |
 
 
 | Field                    | Type                  | Original Object                                          |
 |--------------------------|-----------------------|----------------------------------------------------------|
-| id				               | integer (primary key) | 							                                            |
-| customer				         | integer (primary key) | **[Customer](../models/#customer)**                      |
-| company                  | string                |       											                              |
-| department               | string                |       											                              |
-| salutation               | string                |       											                              |
-| firstname                | string                |       											                              |
-| lastname                 | string                |       											                              |
-| street                   | string                |       											                              |
-| zipcode                  | string                |       											                              |
-| city                     | string                |       											                              |
-| phone                    | string                |       											                              |
-| vatId                    | string                |       											                              |
-| additionalAddressLine1   | string                |       											                              |
-| additionalAddressLine2   | string                |       											                              |
-| country	                 | int (foreign key)	   | **[Country](../models/#country)**                                            |
-| state	                   | int (foreign key)	   |                                                                              |
-| attribute                | array                 | 														                      |
+| id                       | integer (primary key) |                                                          |
+| customer                 | integer (primary key) | **[Customer](../models/#customer)**                      |
+| company                  | string                |                                                          |
+| department               | string                |                                                          |
+| salutation               | string                |                                                          |
+| firstname                | string                |                                                          |
+| lastname                 | string                |                                                          |
+| street                   | string                |                                                          |
+| zipcode                  | string                |                                                          |
+| city                     | string                |                                                          |
+| phone                    | string                |                                                          |
+| vatId                    | string                |                                                          |
+| additionalAddressLine1   | string                |                                                          |
+| additionalAddressLine2   | string                |                                                          |
+| country                  | int (foreign key)     | **[Country](../models/#country)**                        |
+| state                    | int (foreign key)     |                                                          |
+| attribute                | array                 |                                                          |
 
 ## GET (List)
 
@@ -66,7 +66,7 @@ To get a list of all addresses, simply query:
 
 ### Return Value
 
-| Model					             | Table			|
+| Model                                 | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Customer\Address   | s_user_addresses     |
 
@@ -75,37 +75,37 @@ This API call returns an array of elements, one for each address. Each of these 
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment			                                |
-|---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of address resources          |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| Field               | Type                  | Comment                                           |
+|---------------------|-----------------------|---------------------------------------------------|
+| total               | integer               | The total number of address resources             |
+| success             | boolean               | Indicates if the call was successful or not.      |
 
 
 ## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
-| Model					             | Table			|
+| Model                              | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Customer\Address   | s_user_addresses |
 
 | Field                    | Type                  | Comment                                              |
 |--------------------------|-----------------------|------------------------------------------------------|
-| id     	               | integer (primary key) | If null, a new entity will be created    	          |
-| company                  | string                |       											      |
-| department               | string                |       											      |
-| salutation (required)    | string                |       											      |
-| firstname (required)     | string                |       											      |
-| lastname (required)      | string                |       											      |
-| street (required)        | string                |       											      |
-| zipcode (required)       | string                |       											      |
-| city (required)          | string                |       											      |
-| phone                    | string                |       											      |
-| vatId                    | string                |       											      |
-| additionalAddressLine1   | string                |       											      |
-| additionalAddressLine2   | string                |       											      |
-| country (required)	   | int (foreign key)	   | **[Country](../models/#country)**                    |
-| state	                   | int (foreign key)	   |                                                      |
-| attribute     	       | array				   |                                                      |
+| id                       | integer (primary key) | If null, a new entity will be created                |
+| company                  | string                |                                                      |
+| department               | string                |                                                      |
+| salutation (required)    | string                |                                                      |
+| firstname (required)     | string                |                                                      |
+| lastname (required)      | string                |                                                      |
+| street (required)        | string                |                                                      |
+| zipcode (required)       | string                |                                                      |
+| city (required)          | string                |                                                      |
+| phone                    | string                |                                                      |
+| vatId                    | string                |                                                      |
+| additionalAddressLine1   | string                |                                                      |
+| additionalAddressLine2   | string                |                                                      |
+| country (required)       | int (foreign key)     | **[Country](../models/#country)**                    |
+| state                    | int (foreign key)     |                                                      |
+| attribute                | array                 |                                                      |
 
 
 ## DELETE

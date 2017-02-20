@@ -31,22 +31,22 @@ Single manufacturer details can be retrieved via the manufacturer ID:
 * **http://my-shop-url/api/manufacturers/id**
 
 ### Return Value
-| Model					             | Table			|
+| Model                                 | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Article\Supplier  | s_articles_supplier     |
 
 
 | Field               | Type                  | Original Object                                                               |
 |---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				  | integer (primary key) | 							                                                  |
-| name                | string                |       											                              |
-| image	          | string (foreign key, path)				  | **[Media](../models/#media)**                          |
-| link	          | string				  |                     							                              |
-| description	          | string				  |                     							                              |
-| metaTitle                | string                |       											                              |
-| metaKeywords                | string                |       											                              |
-| metaDescription                | string                |       											                              |
-| attribute       | array               | 														                      |
+| id                  | integer (primary key) |                                                                               |
+| name                | string                |                                                                                 |
+| image              | string (foreign key, path)                  | **[Media](../models/#media)**                          |
+| link              | string                  |                                                                               |
+| description              | string                  |                                                                               |
+| metaTitle                | string                |                                                                                 |
+| metaKeywords                | string                |                                                                                 |
+| metaDescription                | string                |                                                                                 |
+| attribute       | array               |                                                                               |
 
 ## GET (List)
 
@@ -59,7 +59,7 @@ To get a list of all manufacturers, simply query:
 
 ### Return Value
 
-| Model					             | Table			|
+| Model                                 | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Article\Supplier  | s_articles_supplier     |
 
@@ -69,42 +69,42 @@ This API call returns an array of elements, one for each manufacturer. Each of t
 
 | Field               | Type                  | Original Object                                                               |
 |---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id				  | integer (primary key) | 							                                                  |
-| name                | string                |       											                              |
-| image               | string                |       											                              |
-| link                | string                |       											                              |
-| description         | string                |       											                              |
-| metaTitle                | string                |       											                              |
-| metaKeywords                | string                |       											                              |
-| metaDescription                | string                |       											                              |
+| id                  | integer (primary key) |                                                                               |
+| name                | string                |                                                                                 |
+| image               | string                |                                                                                 |
+| link                | string                |                                                                                 |
+| description         | string                |                                                                                 |
+| metaTitle                | string                |                                                                                 |
+| metaKeywords                | string                |                                                                                 |
+| metaDescription                | string                |                                                                                 |
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment			                                |
+| Field               | Type                  | Comment                                            |
 |---------------------|-----------------------|-------------------------------------------------|
-| total				  | integer				  | The total number of manufacturer resources          |
-| success		      | boolean				  | Indicates if the call was successful or not.	|
+| total                  | integer                  | The total number of manufacturer resources          |
+| success              | boolean                  | Indicates if the call was successful or not.    |
 
 
 ## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
-| Model					             | Table			|
+| Model                                 | Table            |
 |------------------------------------|------------------|
 | Shopware\Models\Article\Supplier  | s_articles_supplier     |
 
 | Field               | Type                  | Comment                                              | Original Object / Database Column                                             |
 |---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| name (required)     | string				  |                                                      |       						                                                 |
-| id     	          | integer (primary key) | If null, a new entity will be created    	         | `s_articles_supplier.id`     							                                 |
-| image          	  | array				  | Array with either `mediaId` or `link` property | 														                         |
-| link    	  | string				  |                                                      | 														                         |
-| description        	  | string				  |                                                      | 														                         |
-| metaTitle                | string                |       											                              | |
-| metaKeywords                | string                |       											                              | |
-| metaDescription                | string                |       											                              | |
-| changed       	  | date/time    		  |                                                      | 														                         |
-| attribute     	  | array				  | Array with optional indexes from 1-6 and its values | 														                         |
+| name (required)     | string                  |                                                      |                                                                                |
+| id                   | integer (primary key) | If null, a new entity will be created                 | `s_articles_supplier.id`                                                                  |
+| image                | array                  | Array with either `mediaId` or `link` property |                                                                                  |
+| link          | string                  |                                                      |                                                                                  |
+| description              | string                  |                                                      |                                                                                  |
+| metaTitle                | string                |                                                                                 | |
+| metaKeywords                | string                |                                                                                 | |
+| metaDescription                | string                |                                                                                 | |
+| changed             | date/time              |                                                      |                                                                                  |
+| attribute           | array                  | Array with optional indexes from 1-6 and its values |                                                                                  |
 
 
 ## DELETE

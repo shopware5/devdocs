@@ -200,14 +200,14 @@ $client->post('customers',  array(
     'lastname' => 'Meier',
     'salutation' => 'mr',
     'billing' => array(
-	    'firstname' => 'Max',
-	    'lastname' => 'Meier',
-	    'salutation' => 'mr',
-    	'street' => 'Musterstrasse',
+        'firstname' => 'Max',
+        'lastname' => 'Meier',
+        'salutation' => 'mr',
+        'street' => 'Musterstrasse',
         'streetNumber' => '92',
-    	'city' => 'Sch\u00f6ppingen',
-    	'zipcode' => '48624',
-    	'country' => 2
+        'city' => 'Sch\u00f6ppingen',
+        'zipcode' => '48624',
+        'country' => 2
     )
 ));
 ```

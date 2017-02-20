@@ -25,8 +25,8 @@ If you want to access this resource, simply query the following URL:
 
 This resource supports only the `GET` operation, which retrieves a simple array, containing details about your current Shopware installation's version:
 
-| Field				| Type						| Description 									   |
+| Field                | Type                        | Description                                        |
 |-------------------|---------------------------|--------------------------------------------------|
-| version			| string					| The actual shopware version (e.g 5.0) 		   |
-| revision			| string					| The release date by standard (e.g 201504010102)  |
-| success			| boolean					| A value indicating if the request was successful |
+| version            | string                    | The actual shopware version (e.g 5.0)            |
+| revision            | string                    | The release date by standard (e.g 201504010102)  |
+| success            | boolean                    | A value indicating if the request was successful |

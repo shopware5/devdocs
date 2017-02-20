@@ -254,7 +254,7 @@ As the template file `backend/swag_extend_customer/app.js` just needs to include
 
 ```
 //{block name="backend/customer/application"}
-// 		{$smarty.block.parent}
+//      {$smarty.block.parent}
 //      {include file="backend/swag_extend_customer/view/detail/my_own_tab.js"}
 //{/block}
 ```

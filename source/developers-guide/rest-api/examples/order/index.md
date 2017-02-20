@@ -16,7 +16,7 @@ subgroup: REST API
 In this article you can read more about using the orders resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
 Please read **[Orders](/developers-guide/rest-api/api-resource-orders/)** if you did not yet, to get more information about the orders resource and the data it provides.
-Also we are using the API client of the following document **[API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-a)**.
+Also we are using the API client of the following document **[API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
 
 ## Example 1 - Load all orders
 This example shows you how to get all orders of the shop. You may also limit the result count by providing a limit parameter.

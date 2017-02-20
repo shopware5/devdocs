@@ -113,7 +113,7 @@ $api->post('translations', [
         'type' => 'propertyvalue',
         'shopId' => 2,         # s_core_shops.id
         'data' => [
-            'optionName' => 'Dummy translation',
+            'optionValue' => 'Dummy translation',
         ]
 ]);
 ```
@@ -130,5 +130,3 @@ $api->post('translations/166', [ # s_filter_values.id
         ]
 ]);
 ```
-
-

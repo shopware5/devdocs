@@ -403,7 +403,7 @@ If you want to access this resource, simply query the following URL:
 * http://my-shop-url/api/banner
 
 The following examples assume you are using the provided
-**[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-a)**. One of its advantages is that, 
+**[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**. One of its advantages is that, 
 instead of providing query arguments directly in the URL, you can do so by means of method argument.
 The client application will, internally, handle the full URL generation. You can also place variables using
 this technique.

@@ -15,7 +15,7 @@ subgroup: REST API
 In this article you can read more about using the translation resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
 Please read **[Translation](/developers-guide/rest-api/api-resource-translation/)** if you did not yet, to get more information about the translation resource and the data it provides.
-Also we are using the API client of the following document **[API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-a)**.
+Also we are using the API client of the following document **[API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
 
 ## Example 1 - Creating a new translation
 

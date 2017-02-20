@@ -561,7 +561,6 @@ subgroup: REST API
 | description      	  | string				  | 		                                        |
 | position			  | integer				  | 												|
 | group		      	  | string				  | 		                                        |
-| sendMail			  | boolean				  | 												|
 
 ## Payment Data
 

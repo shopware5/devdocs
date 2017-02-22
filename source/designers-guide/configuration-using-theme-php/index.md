@@ -251,6 +251,30 @@ Now you can either override the default unique names like e.g. `brand-primary` o
 Every existing field which is not overwritten in your <code>Theme.php</code> will use the default value of your parent theme.
 </div>
 
+## Create a theme info tab
+
+In order to create a new tab containing information about your theme, create a new sub-directory in your theme directory called info. Add HTML files named like the language ISO you want support.
+
+![Configuration set](info-directory.jpg)
+
+If the current backend language ISO is not found, Shopware uses the fallback en_GB.html. 
+
+Use HTML and CSS in your file to style and describe the information as you want.
+
+```html
+<style type="text/css">
+    .yourBodyContainer {
+        ...
+    }
+</style>
+
+<div class="yourBodyContainer">
+    ...
+</div>
+```
+ 
+![Configuration set](theme-info-tab.jpg)
+
 ## Configuration sets
 
 With every theme configuration you have the ability to create custom configuration sets. Inside those configuration sets you can apply a specific value to each configuration field using the `setValues()` method. In this example the color field gets a hex value for red and the font size field gets an increased value of 20px:

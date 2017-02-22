@@ -253,7 +253,7 @@ Every existing field which is not overwritten in your <code>Theme.php</code> wil
 
 ## Create a theme info tab
 
-In order to create a new tab containing information about your theme, create a new sub-directory in your theme directory called info. Add HTML files named like the language ISO you want support.
+In order to create a new tab containing information about your theme, create a new sub-directory in your theme directory called **info**. Add HTML files named like the language ISO you want support.
 
 ![Configuration set](info-directory.jpg)
 

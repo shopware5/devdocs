@@ -93,11 +93,11 @@ You can post or put data by sending the following data to this URL:
 
 | Field               | Type                  | Original Object                                            |
 |---------------------|-----------------------|---------------------------------------------------------|
-| id                  | integer (primary key) |                                                            |
 | name                  | string                  |                                                            |
-| position              | integer                  |                                                            |
-| comparable          | boolean                  |                                                            |
-| sortMode              | integer                  |                                                            |
+| categoryId              | integer                  |                                                            |
+| localeId          | integer                  |                                                            |
+| currencyId              | integer                  |                                                            |
+| customerGroupId              | integer                  |                                                            |
 
 ## DELETE
 To delete a shop, simply call this URL with the DELETE request:

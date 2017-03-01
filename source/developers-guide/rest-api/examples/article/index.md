@@ -33,7 +33,7 @@ $client->post('articles', array(
 These example show you how to obtain information about a single article, by using either its ID or article number. The API calls look, respectively, like this:
 ```
 $client->get('articles/3');
-$client->get('articles/SW10003?useNumberAsId=true);
+$client->get('articles/SW10003?useNumberAsId=true');
 ```
 
 ### Result:
@@ -694,7 +694,7 @@ $client->put('articles/205', $updateVariantInStock);
 $configuratorArticle = array(
     'name' => 'ConfiguratorTest',
     'description' => 'A test article',
-    'descriptionLong' => '<p>I'm a <b>test article</b></p>',
+    'descriptionLong' => '<p>I\'m a <b>test article</b></p>',
     'active' => true,
     'taxId' => 1,
     'supplierId' => 2,

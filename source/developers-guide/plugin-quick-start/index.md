@@ -176,7 +176,13 @@ Now we add the first methods to the Bootstrap class:
     }
 ```
 
-The `getVersion` method just needs to return your plugin version as a string. If you later upload your plugin to the store, Shopware will be able to offer customers updates of your plugin depending on the version.
+The `getVersion` method just needs to return your plugin version as a string. If you later upload your plugin to the store, Shopware will be able to offer customers updates of your plugin depending on the version. 
+
+<div class="alert alert-info">
+<strong>Use a valid version</strong>
+
+The returned version has to be compatible with the [php version_compare](http://php.net/version_compare) function, otherwise, Shopware cannot detect any possible updates.
+</div>
 
 `getLabel` should return the name of your plugin in a human readable way - `SwagSloganOfTheDay` might be a bit technical, so we choose `Slogan of the day`.
 

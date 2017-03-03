@@ -118,7 +118,7 @@ use Shopware\Components\Plugin;
 
 class SwagAttribute extends Plugin
 {
-    public function uninstall()
+    public function uninstall(UninstallContext $context)
     {
         $service = $this->container->get('shopware_attribute.crud_service');
         $service->delete('s_articles_attributes', 'my_column');

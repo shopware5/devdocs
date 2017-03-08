@@ -551,14 +551,12 @@ $client->get('orders/2002?useNumberAsId=true');
 **Currently, it's only possible to update the following fields of an order:**
 
 ```
-
 paymentStatusId
 orderStatusId
 trackingCode
 comment
 transactionId
 clearedDate
-
 ```
 
 This example shows you how to update those fields:
@@ -576,6 +574,7 @@ $client->put('orders/15',  array(
     'clearedDate' => $date
 ));
 ```
+
 ### Result
 
 ```
@@ -585,6 +584,114 @@ $client->put('orders/15',  array(
 )
 
 ```
+
+## Example 4 - Creating an order
+
+This example shows you how to create an order. Currently all referenced entities like customers need to be referenced by their id, no creation of sub-entities is currently done.
+
+<div class="alert alert-danger">Please be aware: When an Order is created using the API no calculations for tax, shipping cost, etc. are done. Also no checks regarding validity of the values provided will be executed.</div>
+
+If some field is missing from the request or some id provided does not exist, an exception is returned accordingly.
+
+```
+$client->post('orders', [
+    "customerId" => 1,
+    "paymentId" => 4,
+    "dispatchId" => 9,
+    "partnerId" => "",
+    "shopId" => 1,
+    "invoiceAmount" => 201.86,
+    "invoiceAmountNet" => 169.63,
+    "invoiceShipping" => 0,
+    "invoiceShippingNet" => 0,
+    "orderTime" => "2012-08-31 08:51:46",
+    "net" => 0,
+    "taxFree" => 0,
+    "languageIso" => "1",
+    "currency" => "EUR",
+    "currencyFactor" => 1,
+    "remoteAddress" => "217.86.205.141",
+    "details" => [[
+        "articleId" => 220,
+        "taxId" => 1,
+        "taxRate" => 19,
+        "statusId" => 0,
+        "articleNumber" => "SW10001",
+        "price" => 35.99,
+        "quantity" => 1,
+        "articleName" => "Versandkostenfreier Artikel",
+        "shipped" => 0,
+        "shippedGroup" => 0,
+        "mode" => 0,
+        "esdArticle" => 0,
+    ], [
+        "articleId" => 219,
+        "taxId" => 1,
+        "taxRate" => 19,
+        "statusId" => 0,
+        "articleNumber" => "SW10185",
+        "price" => 54.9,
+        "quantity" => 1,
+        "articleName" => "Express Versand",
+        "shipped" => 0,
+        "shippedGroup" => 0,
+        "mode" => 0,
+        "esdArticle" => 0,
+    ], [
+        "articleId" => 197,
+        "taxId" => 1,
+        "taxRate" => 19,
+        "statusId" => 0,
+        "articleNumber" => "SW10196",
+        "price" => 34.99,
+        "quantity" => 2,
+        "articleName" => "ESD Download Artikel",
+        "shipped" => 0,
+        "shippedGroup" => 0,
+        "mode" => 0,
+        "esdArticle" => 1,
+    ]],
+    "documents" => [],
+    "billing" => [
+        "id" => 2,
+        "customerId" => 1,
+        "countryId" => 2,
+        "stateId" => 3,
+        "company" => "shopware AG",
+        "salutation" => "mr",
+        "firstName" => "Max",
+        "lastName" => "Mustermann",
+        "street" => "Mustermannstra\u00dfe 92",
+        "zipCode" => "48624",
+        "city" => "Sch\u00f6ppingen",
+    ],
+    "shipping" => [
+        "id" => 2,
+        "countryId" => 2,
+        "stateId" => 3,
+        "customerId" => 1,
+        "company" => "shopware AG",
+        "salutation" => "mr",
+        "firstName" => "Max",
+        "lastName" => "Mustermann",
+        "street" => "Mustermannstra\u00dfe 92",
+        "zipCode" => "48624",
+        "city" => "Sch\u00f6ppingen"
+    ],
+    "paymentStatusId" => 17,
+    "orderStatusId" => 0
+]);
+```
+
+### Result
+
+```
+(
+    [id] => 60
+    [location] => http://www.yourdomain.com/api/orders/60
+)
+```
+
 ## Further examples
 
 ```

@@ -80,7 +80,7 @@ From the context menu `Mark directory as` -> `Excluded`
 - `media`
 - `recovery`
 - `snippets`
-- `var/` (you can leave directory "var/cache/production_DATE/doctrine" included to allow PhpStorm to autocomplete getter and setter of attributes. E.g. $article->getAttribute()->getAttr4())
+- `var/` (Do not exclude directory `var/cache/production_DATE/doctrine` to allow PhpStorm to autocomplete getter and setter of attributes. E.g. $article->getAttribute()->getAttr4())
 - `web/cache/`
 
 ### Configure Source Directories

@@ -569,6 +569,8 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
 
 ### Plugin Metadata 
  
+Entires can be separated with semicolons when documenting multiple changes in the changelog.
+
 Example `plugin.xml`:
  
 ```xml
@@ -583,8 +585,8 @@ Example `plugin.xml`:
     <compatibility minVersion="5.2.0" />
 
     <changelog version="1.0.0">
-        <changes lang="de">Veröffentlichung</changes>
-        <changes lang="en">Release</changes>
+        <changes lang="de">Farbe geändert; Schriftgröße geändert;</changes>
+        <changes lang="en">changed color; changed font-size;</changes>
     </changelog>
 </plugin>
 ```

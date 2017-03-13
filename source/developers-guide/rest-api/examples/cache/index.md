@@ -97,7 +97,7 @@ These examples assume you are using the provided **[demo API client](/developers
             GET api/caches/template
         </td>
         <td colspan="1">
-            <div>Gets the template cache indformations</div>
+            <div>Gets the template cache informations</div>
         </td>
     </tr>
     </tbody>

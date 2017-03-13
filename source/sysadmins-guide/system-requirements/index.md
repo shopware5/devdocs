@@ -39,7 +39,7 @@ menu_order: 10
 
 ### PHP OPcache
 
-It's strongly recommend that you verify the <a href="https://secure.php.net/manual/en/book.opcache.php" target="_blank">PHP OPCache</a> is enabled for performance reasons.
+It's strongly recommended that you verify the <a href="https://secure.php.net/manual/en/book.opcache.php" target="_blank">PHP OPCache</a> is enabled for performance reasons.
 
 ### PHP settings:
 

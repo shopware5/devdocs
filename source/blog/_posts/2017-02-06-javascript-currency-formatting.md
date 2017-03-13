@@ -67,7 +67,7 @@ and we want a solution which can cover all available currency formats. So let us
 
 **tl;dr**
 
-- Dealing with currency formatting on your own is a pain and not recommend
+- Dealing with currency formatting on your own is a pain and not recommended 
 - You have to support a bunch of formats and currencies (~ 270 currencies) 
 - Workarounds are necessary to get a somewhat working solution with limitations
 - The code isn't tested in-depth in different browsers with all the available currency formats

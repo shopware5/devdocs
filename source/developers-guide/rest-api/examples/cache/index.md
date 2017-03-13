@@ -75,7 +75,7 @@ These examples assume you are using the provided **[demo API client](/developers
             GET api/caches/
         </td>
         <td colspan="1">
-            <div>Gets the cache informatinos</div>
+            <div>Gets the cache information</div>
         </td>
     </tr>
     <tr>
@@ -86,7 +86,7 @@ These examples assume you are using the provided **[demo API client](/developers
             GET api/caches/http
         </td>
         <td colspan="1">
-            <div>Gets the HTTP cache informations</div>
+            <div>Gets the HTTP cache information</div>
         </td>
     </tr>
     <tr>
@@ -97,7 +97,7 @@ These examples assume you are using the provided **[demo API client](/developers
             GET api/caches/template
         </td>
         <td colspan="1">
-            <div>Gets the template cache informations</div>
+            <div>Gets the template cache information</div>
         </td>
     </tr>
     </tbody>

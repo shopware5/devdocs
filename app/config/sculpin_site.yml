@@ -4,6 +4,12 @@ github_enabled: true
 default_date_format: "F jS, Y"
 
 authors:
+  nd:
+      name: Niklas Dzösch
+      title: Developer / Developer Evangelist
+      twitter: http://twitter.com/ndzoesch
+      github: https://github.com/ndzoesch
+      bio: I am the shopware developer evangelist as of 2017 and a core developer at shopware.
   bc:
       name: Benjamin Cremer
       title: Developer && Developer Advocate

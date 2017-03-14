@@ -18,11 +18,15 @@ PageSpeed is a tool by Google to indicate the performance of a website. It check
 
 This guide will cover some key metrics which have a great impact on the score and how to optimize them.
 
+## Enable compression
+
+Shopware is configured out-of-the box to enable on-the-fly deflate compression for text based content like HTML, CSS or Javascript. If for some reason Pagespeed tells you to enable compression to reduce transfer sizes of CSS or Javascript files, please check the configuration of your server. 
+
 ## Images
 
 The size and implementation of images have a great impact on the Google PageSpeed score. If they are too big in file size or to big in dimensions for the viewport, you'll get an error like `Compressing and resizing xx could save xxKiB (xx% reduction)`.
 
-### Compression
+### Optimization
 
 Like the error already says, your images should be compressed either using external services or with the built-in image compression and optimization in Shopware. 
 
@@ -93,6 +97,7 @@ In case you can't add your files to the compile process, you should include your
 
 ## Further Resources
 
+* [Enable Compression](https://developers.google.com/speed/docs/insights/EnableCompression)
 * [Responsive Images](/designers-guide/responsive-images/)
 * [PageSpeed Rules and Recommendations](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/page-speed-rules-and-recommendations)
 * [Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)

@@ -40,23 +40,6 @@ If your server has tools available like `optipng` or `jpegtran`, they already op
 * Install `jpegtran` on your server
 * *Optional:* Run `sw:media:optimize` to optimize all existing images in the Shopware media folder
 
-### Thumbnails
-
-Talking about thumbnails, you may want more thumbnail sizes to give the browser more options to decide from. 
-
-**Example**
-
-An image is shown with a width of `201px` and your thumbnail sizes are `200x200` and `600x600`. The browser will then fetch the bigger `600x600` image, because the `200x200` would be too small, even if it's just 1 pixel. Google PageSpeed then complains about the requested image is too big for the given viewport.
-
-For this case, you should add more thumbnail sizes to provide the browser a more granular set of thumbnails to decide from.
-
-Keep in mind, that the more thumbnail sizes you define, the longer it will take to upload a picture to the media manager. In addition, an uploaded image requires more disk space since more thumbnail files will be generated.
-
-**Recommendation for the best score**
-
-* Generate thumbnails every 100px - 150px. `100x100`, `200x200`, `300x300`, `400x400`, ... 
-* All available thumbnail sizes are automatically provided in the view, so there is no need to modify template files. 
-
 ### Responsive images
 
 Most images in Shopware provide the full range of the defined thumbnail sizes so the browser can choose which one to display. But to select the suitablein addition, the browser needs to know, how big the image that will be displayed is.

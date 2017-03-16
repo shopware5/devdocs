@@ -88,7 +88,7 @@ Previously, whenever you wanted to load article information, you would iterate o
 
 In Shopware 5, a completely new article loading mechanism was introduced. The existing methods to load articles were maintained, but their implementation was refactored to use the new services, so you will always get the best performance possible, even if your plugins were not specifically designed for the new service system.
 
-Whether you directly use the DIC's services or the old core methods, article loading is now done in batch mode, meaning that, no mather how many articles you are loading, the number of queries executed is always the same. Also, the data loading approach has been refactored: depending on exactly what data you require, different services work together to build one or multiple queries, that will load the necessary data from the database and populate the necessary structs, giving your plugins access to data in a consistent and easily to handle format.
+Whether you directly use the DIC's services or the old core methods, article loading is now done in batch mode, meaning that, no matter how many articles you are loading, the number of queries executed is always the same. Also, the data loading approach has been refactored: depending on exactly what data you require, different services work together to build one or multiple queries, that will load the necessary data from the database and populate the necessary structs, giving your plugins access to data in a consistent and easily to handle format.
 
 The queries built by the article loading system have also been changed to improve performance: one-to-many and many-to-many database relations are not loaded in one single query, as this results in a performance penalty. Instead, the new article loading system handles each of these dimensions separately, in individual queries, and the data is then merged by PHP in memory, a much faster process. Again, batch queries are used, meaning that loading more articles do not result in more queries to the database.
 
@@ -108,7 +108,7 @@ Each of these aggregated data can have an own strategy when the data has to be b
 - Cronjob  > executed together with other Shopware's cron tasks
 - Manual > only generated over the backend or using your own implementation
 
-We recommend using the "Cronjob" strategy. Don't forget to configure you system to execute Shopware's cron tasks periodically.
+We recommend using the "Cronjob" strategy. Don't forget to configure your system to execute Shopware's cron tasks periodically.
 
 
 

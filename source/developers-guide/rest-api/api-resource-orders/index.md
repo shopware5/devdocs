@@ -99,6 +99,8 @@ The data structure used is similar to the one returned in the `GET` request.
 
 ## POST (create)
 
+<div class="alert alert-danger">Please be aware: When an order is created using the API, no calculations for tax, shipping cost, etc. are done. Also no checks regarding validity of the provided values will be executed.</div>
+
 Orders can be created using the following fields:
 
 | Field                         | Type                  |  Original Object / Database table                  |

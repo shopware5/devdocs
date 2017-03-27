@@ -17,7 +17,7 @@ This tutorial is part of a series that covers the Shopware Backend Components. I
 
 This tutorial will teach you how to implement batch processing for large data sets.
 
-The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductAssociations.zip](/exampleplugins/SwagProductAssociations.zip)
+The following plugin will be the basis for this tutorial. If you don't have it already, you can download it here: [SwagProductAssoc.zip](/exampleplugins/SwagProductAssoc.zip)
 
 <div class="is-center">
 

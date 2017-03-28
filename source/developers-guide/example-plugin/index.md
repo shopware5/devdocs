@@ -26,7 +26,7 @@ This example gives answers to the following questions:
 * How to register a custom service inside the DI container?
 * How to decorate existing Shopware services, to enrich products with additional data?
 * How to structure my plugin templates, so that they can be overwritten by local themes or other plugins?
-* Hot to override plugin templates inside my custom theme?
+* How to override plugin templates inside my custom theme?
 
 ## Bootstrap
 

@@ -86,7 +86,7 @@ npm install
 ### Start file watch
 We have installed everything that we need to start working with Grunt. The default task will call the LESS compiler, concatenate all necessary files together and start watching your files. The `watch` command will track changes in your files as you save them and automatically process them.
 
-<div class="alert alert-warning"><strong>Note:</strong> When you use Grunt task, `Disable compiler cache` must be disabled.
+<div class="alert alert-warning"><strong>Note:</strong> When you use Grunt task, it's recommended to uncheck *Disable compiler cache* in your theme settings.
 </div>
 
 ```bash
@@ -137,10 +137,10 @@ Sometimes things get stucked and the Grunt setup needs a fresh start:
   * Delete all files in /web/cache beside .gitkeep
   * [Clear the cache](#clearing-caches)
   * Make sure your [Theme settings](#theme-settings) match
-  *
   * Restart the grunt-task
 
 **I'm not sure if grunt or php compile my files**
 
 * Pageloads 15 seconds and above are a hin that the php-compiler is responsible
 * The Grunt task compiles the css sourcemap *inside* the \*.css the php-compiler generate a \*.map file
+* Compile with Grunt, generate a hash for e.g. web/cache/\*.css , reload the page, generate a file hash again, compare both hashes - if they don't match the php-compiler

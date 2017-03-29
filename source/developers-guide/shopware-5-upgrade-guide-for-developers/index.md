@@ -92,7 +92,7 @@ The account section and registration have been refactored to continue the refact
     * Uses the new service `shopware_account.register_service`
     * Methods of core class `\sAdmin` regarding the registration have been removed without substitution.
     * Templates may have been rewritten
-        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE.md).
+        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
 
 ### Address management
 
@@ -110,7 +110,7 @@ The address management allows a customer to manage more than only one address wh
 * Selecting another address in the checkout results in a change of the session key `checkoutBillingAddressId` or `checkoutShippingAddressId` with the corresponding address id. After the order has been saved, the session keys will be reset.
 * The customer api endpoint now uses the structure of the address model, instead of the billing or shipping model
 * The checkout templates have been rewritten which results in changed and removed blocks.
-    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE.md).
+    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
 
 To learn more about the new address service, refer to the [Address Management Guide](/developers-guide/address-management-guide).
 

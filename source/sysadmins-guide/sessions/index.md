@@ -165,7 +165,7 @@ The database session handler is Shopware's default session handler.
 ```
 
 #### Disable locking
-If you want to disable session locking for the database handler, you can configure it like this:
+As of Shopware 5.2.13 you can configure it like this, if you want to disable session locking for the database handler:
 
 ```php
 'session' => array(

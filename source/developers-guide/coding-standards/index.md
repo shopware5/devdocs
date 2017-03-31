@@ -4,6 +4,7 @@ title: Coding Standards
 github_link: developers-guide/coding-standards/index.md
 indexed: true
 menu_title: Coding Standards
+menu_order: 30
 group: Contributing
 ---
 

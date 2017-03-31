@@ -346,7 +346,7 @@ Following this, the event listener on __SwagRedis__ is called to decorate the __
 
 The above examples show how you can use service decoration to use a data source other than __MySql__ in Shopware. And, as we also showed before, you can even replace the __MySql__ access altogether with a completely different data source, provided that your service implements the expected interface and behaviour.
 
-However, you can use service decoration for other tasks other than this.
+However, you can use service decoration for tasks other than this.
 
 ```php
 <?php

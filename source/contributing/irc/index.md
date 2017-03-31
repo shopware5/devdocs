@@ -4,6 +4,7 @@ title: Shopware IRC Channel
 github_link: contributing/irc/index.md
 indexed: true
 menu_title: IRC Channel
+menu_order: 40
 group: Contributing
 ---
 

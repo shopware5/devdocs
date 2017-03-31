@@ -142,7 +142,6 @@ subgroup: REST API
 | firstName              | string                  |                                                    |
 | lastName              | string                  |                                                    |
 | street              | string                  |                                                    |
-| streetNumber          | string                  |                                                    |
 | zipCode              | string                  |                                                    |
 | city                  | string                  |                                                    |
 | phone                  | string                  |                                                    |
@@ -722,7 +721,6 @@ subgroup: REST API
 | firstName              | string                  |                                                    |
 | lastName              | string                  |                                                    |
 | street              | string                  |                                                    |
-| streetNumber          | string                  |                                                    |
 | zipCode              | string                  |                                                    |
 | city                  | string                  |                                                    |
 | attribute              | object                  |    **[SippingAttribute](#shipping-attribute)**        |

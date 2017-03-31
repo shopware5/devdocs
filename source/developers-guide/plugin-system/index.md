@@ -611,11 +611,16 @@ Backend plugin configuration can be extended by `Resources/config.xml` file. Thi
 </config>
 ```
 
-Configuration is accessible by the following code snippet:
+To read out the configuration of your plugin use this code snippet in your base plugin class:
 
+```php
+$config = $this->container->get('shopware.plugin.config_reader')->getByPluginName($this->getName());
 ```
-Shopware()->Config()->getByNamespace('SwagSloganOfTheDay', 'slogan');
+Use it like this in other places:
+```php
+$config = Shopware()->Container()->get('shopware.plugin.config_reader')->getByPluginName('SwagSloganOfTheDay');
 ```
+The config reader service will return an array with the config element names as keys.
 
 #### add store values
 As of Shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.

@@ -433,7 +433,7 @@ After all (sub)requests are handled, the event `Enlight_Controller_Front_Dispatc
 
 #### Controller dispatching:
 Controller dispatching will happen between the `Enlight_Controller_Front_PreDispatch` and `Enlight_Controller_Front_PostDispatch`
-events. As the controller dispatching is all about calling controller actions to handle a certain request (e.g. checkout/cart)
+events. As the controller dispatching is all about calling controller actions to handle a certain request (e.g. `\Shopware_Controllers_Frontend_Checkout::cartAction`)
 it is very useful to modify request parameters, view variables or even the view itself.
 
 Before actually calling a controller action (e.g. checkout::cartAction), Shopware will automatically emit three
@@ -441,13 +441,18 @@ PreDispatch events for that controller: `Enlight_Controller_Action_PreDispatch` 
 so it is available for any request. `Enlight_Controller_Action_PreDispatch_MODULE` does contain the module name, e.g. `frontend`,
 `backend`, `widgets` or `api`. It can be used to only subscribe to the PreDispatch event of a certain module. Finally
 `Enlight_Controller_Action_PreDispatch_MODULE_CONTROLLER` will contain the module name as well as the controller name,
-e.g. `Enlight_Controller_Action_PreDispatch_Backend_Article` - it can be used to subscribe to a specific controller in a specific module.
+e.g. `Enlight_Controller_Action_PreDispatch_Frontend_Checkout` - it can be used to subscribe to a specific controller in a specific module.
 
 After the last PreDispatch event was emitted, Shopware will call the actual `preDispatch` method of the controller that was figured out by
 the routing. In this case it would be `\Shopware_Controllers_Frontend_Checkout::preDispatch`. If the method is not implemented
-by that controller, the base method of the base controller will be run. Now finally the `\Shopware_Controllers_Frontend_Checkout::cartAction`
-from the example above would be called: From that controller method Shopware will usually call various methods
-of the business logic and assign variables to the template.
+by that controller, the base method of the base controller will be run.
+
+Before the action itself is called, the event `Shopware_Controllers_MODULE_FRONTEND_CONTROLLER_ACTION`, e.g.
+`Shopware_Controllers_Frontend_Checkout_Cart` is emitted. This is a `notifyUntil` event, that means it is possible to replace the action itself
+with own logic or only replace the action under certain conditions. It is also possible to add new actions via this event. In this case the event has to return `true` such that
+the core action method is not executed. Otherwise an error would occur since the method is not available. If this event on the other hand returns `null` the core action, e.g.
+`\Shopware_Controllers_Frontend_Checkout::cartAction` is executed. From that controller method Shopware will usually call various methods of the business logic
+and assign variables to the template.
 
 After the actual controller method was run, the `postDispatch` method of the controller will be called, in this case
 `\Shopware_Controllers_Frontend_Checkout::postDispatch`. Again: If the method is not implemented by the controller, the

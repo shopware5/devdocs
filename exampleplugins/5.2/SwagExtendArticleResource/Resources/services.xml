@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="swag_extend_article_resource.article_resource"
+                 class="SwagExtendArticleResource\Components\Api\Resource\Article"
+                 decorates="shopware.api.article"
+                 public="false"
+                 shared="false">
+        </service>
+    </services>
+</container>

@@ -41,7 +41,7 @@ To get information about a specific media, you can simply call the API as shown 
 | type                    | string                |                                                                                 |
 | extension             | string                |                                                                                 |
 | userId                | integer (foreign key) |                                                                                |
-| created                | date/time                |                                                                                |
+| created                | date                     |                                                                                |
 | fileSize              | integer                |                                                                                |
 
 ## GET (List)
@@ -71,7 +71,7 @@ This API call returns an array of elements, one for each media. Each of these el
 | type                    | string                |                                                                                 |
 | extension             | string                |                                                                                 |
 | userId                | integer (foreign key) |                                                                                |
-| created                | date/time                |                                                                                |
+| created                | date                     |                                                                                |
 | fileSize              | integer                |                                                                                |
 
 Appended to the above mentioned list, you will also find the following data:
@@ -99,7 +99,7 @@ The following keys can be provided in the array:
 | type                    | string                | Auto generated if not provided                                                |
 | extension             | string                | Auto generated if not provided                                                |
 | userId                | integer (foreign key) |                                                                                |
-| created                | date/time                | Auto generated if not provided                                                |
+| created                | date                     | Auto generated if not provided                                                |
 | fileSize              | integer                | Auto generated if not provided                                                |
 
 **The most of these values are generated automatically (such as `fileSize` and `created`). It is not recommended to set them manually**

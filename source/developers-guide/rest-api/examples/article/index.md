@@ -416,6 +416,7 @@ $minimalTestArticle = array(
     ),
     'mainDetail' => array(
         'number' => 'turn',
+        'active' => true,
         'prices' => array(
             array(
                 'customerGroupKey' => 'EK',

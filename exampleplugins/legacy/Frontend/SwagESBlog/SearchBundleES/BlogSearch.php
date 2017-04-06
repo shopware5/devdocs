@@ -10,7 +10,7 @@ use Shopware\Bundle\SearchBundle\Condition\SearchTermCondition;
 use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\ProductSearchInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
-use ShopwarePlugins\SwagElasticSearch\BlogExtension\ESIndexingBundle\Struct\Blog;
+use ShopwarePlugins\SwagESBlog\ESIndexingBundle\Struct\Blog;
 
 class BlogSearch implements ProductSearchInterface
 {

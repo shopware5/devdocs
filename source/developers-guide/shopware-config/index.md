@@ -107,6 +107,26 @@ In contrast, the option `throwExceptions` skips the Shopware error handler and o
 
 This option controls the smarty template caching. Normally you have to clear your cache after every change on the template, but if you set `forceCompile` to `true` your template will be compiled on every reload. This should be an essential option for every developer. Keep in mind that it does have a great impact on loading times and should never be used in production.
 
+### Cache
+
+```
+    'cache' => [
+        'backend' => 'auto',
+        'backendOptions' => [
+            ...
+        ],
+        'frontendOptions' => [
+            ...
+        ]
+    ],
+```
+
+These settings configure the caching implementation to be used inside of Shopware as well as everything necessary to set up that implementation. The `backend` option defines which cache implementation the cache should use, the available implementations can be found in `engine/Library/Zend/Cache/Backend`.
+
+The `backendOptions` configure the settings for the selected cache implementation. A list of available settings can be found at the `$_options` member of the main class `Zend_Cache_Backend` and the respective backend class.
+
+The `frontendOptions` work similar to the `backendOptions`, you can find the available settings in the classes in `engine/Library/Zend/Cache/Frontend`.
+
 ### HTTP Cache
 
 ```

@@ -40,7 +40,7 @@ So whenever an user requests a page, the web application (e.g. Shopware) will cr
 
 The reverse proxy sits between user and web application and will take care of any request to the web application. If a user requests a page that has been requested before, chances are, that the reverse proxy just can hand out the same result as before - so the web application will not even been asked.
 
-So a reverse proxy is basically a thin layer between user and web application that will try to avoid load on the web application by caching the results. Whenever the the web application generates a response for a request, the reverse proxy will save the request and the response to a `cache storage`. Next time the same requests comes in, the response will most probably be the same.
+So a reverse proxy is basically a thin layer between user and web application that will try to avoid load on the web application by caching the results. Whenever the web application generates a response for a request, the reverse proxy will save the request and the response to a `cache storage`. Next time the same requests comes in, the response will most probably be the same.
 
 
 ## How does it work?

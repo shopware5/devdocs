@@ -14,7 +14,7 @@ Shopware features an automatic static code analyses tool called [ESLint](http://
 In this guide we'll talking a look on how you as a Shopware plugin developer can use the benefits of ESLint in your own plugin.
 
 ### Installation
-ESLint has Node.js and NPM as an dependency you have to install beforehand. If you haven't installed them, please go ahead and install it using the provided [download methods](https://nodejs.org/en/download/current/).
+ESLint has Node.js and NPM as dependencies you have to install beforehand. If you haven't installed them, please go ahead and install it using the provided [download methods](https://nodejs.org/en/download/current/).
 
 #### Installing the dependencies globally
 Next we're installing ESLint and it's dependencies globally on your system. You have to install them once and be ready for every other plugin you'll write.
@@ -26,7 +26,7 @@ npm install -g eslint eslint-config-standard eslint-plugin-import eslint-plugin-
 ```
 
 #### Installating the dependencies per plugin
-If you're not feeling comfortable installing the dependencies globally, you can also create a `package.json` file in your plugin directory (e.g. `SwagBundle` for example). You can create this file using the command `npm init`.
+If you're not feeling comfortable installing the dependencies globally, you can also create a `package.json` file in your plugin directory (e.g. `SwagBundle`). You can create this file using the command `npm init`.
 
 After the file was successfully created, run the following command to install the dependencies as `devDependencies`:
 
@@ -35,7 +35,7 @@ npm install --save-dev eslint eslint-config-standard eslint-plugin-import eslint
 ```
 
 ### Running ESLint
-Starting with [Shopware 5.2](http://community.shopware.com/Downloads_cat_448.html) we provided you a ESLint configuration file which can be found under `themes/.eslintrc.js`. We're using this file for our plugins as well to provide a consistent coding styling through the application.
+Starting with [Shopware 5.2.15](http://community.shopware.com/Downloads_cat_448.html) we provided you a ESLint configuration file which can be found under `themes/.eslintrc.js`. We're using this file for our plugins as well to provide a consistent coding styling through the application.
 
 To run ESLint for your plugin, switch to the root of your Shopware installation and run the following command:
 

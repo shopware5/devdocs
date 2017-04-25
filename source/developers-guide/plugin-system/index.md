@@ -397,11 +397,10 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
 {
     public function preDispatch()
     {
-        /** @var \Shopware\Components\Plugin $plugin */
-        $plugin = $this->get('kernel')->getPlugins()['SwagControllerExample'];
+        $pluginPath = $this->container->getParameter('swag_controller_example.plugin_dir');
         
-        $this->get('template')->addTemplateDir($plugin->getPath() . '/Resources/views/');
-        $this->get('snippets')->addConfigDir($plugin->getPath() . '/Resources/snippets/');
+        $this->get('template')->addTemplateDir($pluginPath . '/Resources/views/');
+        $this->get('snippets')->addConfigDir($pluginPath . '/Resources/snippets/');
     }
 }
 ```

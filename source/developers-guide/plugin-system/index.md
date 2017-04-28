@@ -600,11 +600,12 @@ Backend plugin configuration can be extended by `Resources/config.xml` file. Thi
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
-        <element required="true" type="text">
+        <element required="true" type="text" scope="locale">
             <name>slogan</name>
             <label lang="de">Dein Slogan</label>
             <label lang="en">Your slogan</label>
             <value>XML is fun!</value>
+            <description>This slogan will be shown on the storefront</description>
         </element>
     </elements>
 </config>

@@ -18,7 +18,7 @@ Dependency Injection Tags are little strings that can be applied to a service to
 Below is information about all of the tags available inside Shopware.
 
 | Tag Name | Usage |
-|------------------|
+|------------------|------------------|
 | [attribute_search_repository](#attribute_search_repository)           | Add a custom entity repository |
 | [shopware_media.adapter](#shopware_media.adapter) | Add a media adapter |
 | [shopware_media.optimizer](#shopware_media.optimizer) | Add a media optimizer |

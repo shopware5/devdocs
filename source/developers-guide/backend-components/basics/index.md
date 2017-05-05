@@ -545,7 +545,7 @@ The only required property here is the `controller` property, but only if this i
 
 In case you want to do CRUD operations on your others models, you may set the `controller` property in those too. You will then be able to perform operations like `create`, `update` and `delete`.
 
-The property `controller` expects the individual name of you `Shopware_Controllers_Backend_Application` controller. Given that your controller is called `Shopware_Controllers_Backend_SwagProduct`, the individual name would be `SwagProduct`.
+The property `controller` expects the individual name of your `Shopware_Controllers_Backend_Application` controller. Given that your controller is called `Shopware_Controllers_Backend_SwagProduct`, the individual name would be `SwagProduct`.
 
 ### The Data Store - `swag_product/store/product.js`
 Finally, we have to define the `Shopware.store.Listing` store, which will be used for the `Shopware.grid.Panel`. For this, we implement the following code in `swag_product/store/product.js`:

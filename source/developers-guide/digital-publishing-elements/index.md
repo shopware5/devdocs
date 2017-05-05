@@ -22,10 +22,10 @@ Digital Publishing is introduced in Shopware 5.1.0 as a new advanced feature. Th
 
 <img src="img/file_structure.jpg" class="is-float-right" />
 
-We will not describe the hole plugin development in this article, but only the important parts to get started with the custom element. To get more details about developing plugins for Shopware, see the <a href="{{ site.url }}/developers-guide/plugin-quick-start/" target="_blank">quick start guide</a>. In our example we create a plugin called `SwagDigitalPublishingSample`. This is just an example name for our plugin and will be used for some directory and file names. When you create your own plugin, just replace the corresponding parts with the name of your own plugin. 
+In this article we'll be focusing on the important parts to get started with the development of custom digital publishing elements.
+If you want to get more information about developing plugins for Shopware in general, please head over to the [plugin quick start guide](/developers-guide/plugin-quick-start).
 
-<br />
-<br />
+
 
 To add a new element to the Digital Publishing module we will need the following components:
 
@@ -70,8 +70,6 @@ public function registerSubscriber()
 To complete this step we have to create the corresponding file in the `Subscriber` directory of our plugin. In our example, we will use a single subscriber called  `Resources`. In most cases, you would create several subscribers, to split the tasks between backend and frontend, for example. But, for this little example, we will just use a single subscriber for all events. So let's take a look at our `Resources.php` file.
 
 ```php
-<?php
-
 namespace Shopware\SwagDigitalPublishingSample\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
@@ -333,7 +331,7 @@ To style the element we already added a new LESS file called `all.less` in the s
 The YouTube element doesn't need much styling. We're using a combination of `width` and `max-width: 100%;` to let the YouTube frame not become bigger than the design layer. So, in a responsive layout, the frame would shrink accordingly when there is not enough space.
 
 
-## Data handling ##
+## Data handling with plugin version < 1.2.0 ##
 
 Not every element has a simple structure like the YouTube sample. Sometimes you want to manipulate the data of the element before it gets passed to the frontend. Therefore, we added a special event you can subscribe to. You could use another subscriber to do so.
 
@@ -357,10 +355,113 @@ public function onContentBannerFilter(\Enlight_Event_EventArgs $args)
 
 Via the event `$args` you can get the return value with `$args->getReturn()`. The return value contains the hole banner data with all layers and elements. You can do some data manipulation and return the data afterwards. For example, you could load some media data, if the user can select media files in your element.
 
+## Data handling with plugin version >= 1.2.0 ##
+Starting with the "SwagDigitalPublishing" version 1.2.0 we introduced a new way to handle your custom elements and their related data.
+<br />
+Each element has to be handled by a so-called `ElementHandler` now.
+<br />
+Those element handlers come in handy when you're trying to provide additional data to your own element without manipulating the original banner.
+<br />
+In case you're using a custom element without a matching `ElementHandler`, you'll face a new error saying `Handler for element <name> not found`.
+
+In order to register a new `ElementHandler` for our custom element, we'll have to add a new subscriber to our plugin:
+```php
+use Shopware\SwagDigitalPublishingSample\Subscriber\ElementHandler;
+
+[...]
+
+public function registerSubscriber()
+{
+    [...]
+    $this->Application()->Events()->addSubscriber(new ElementHandler());
+}
+```
+
+Now we'll have to create the new subscriber `ElementHandler`, which has to subscribe on a new event called `Shopware_DigitalPublishing_Collect_ElementHandler`.
+<br />
+This event is necessary to register our new `ElementHandler`, so our custom element `YouTube` can be properly handled.
+
+```php
+namespace Shopware\SwagDigitalPublishingSample\Subscriber;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Enlight\Event\SubscriberInterface;
+use Shopware\SwagDigitalPublishingSample\Components\YouTubeHandler;
+
+class ElementHandler implements SubscriberInterface
+{
+    /**
+     * @return array
+     */
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'Shopware_DigitalPublishing_Collect_ElementHandler' => 'collectElementHandler'
+        );
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function collectElementHandler()
+    {
+        return new ArrayCollection(
+            array(new YouTubeHandler())
+        );
+    }
+}
+```
+
+Since this is a <a href="{{ site.url }}/developers-guide/event-guide/#collect" target="_blank">collect event</a>, we need to return an `ArrayCollection` containing our custom handler.
+In this case we call it `YouTubeHandler`, since its only purpose is to handle the YouTube element.
+
+Lastly, we need to implement the `YouTubeHandler` itself.
+We will define the handler as a component, so it's placed in the following directory: <br />
+`Components/YouTubeHandler.php`
+
+Our custom handler has to implement the interface `PopulateElementHandlerInterface` in order to be properly recognized.
+<br />
+The interface requires the two methods `handle` and `canHandle`.
+The `handle` method provides additional data to our element, while the `canHandle` method decides if the given element is supported by this handler.
+
+```php
+namespace Shopware\SwagDigitalPublishingSample\Components;
+
+use Shopware\SwagDigitalPublishing\Components\ElementHandler\PopulateElementHandlerInterface;
+
+class YouTubeHandler implements PopulateElementHandlerInterface
+{
+    /**
+     * Check if the given element can be handled by our ElementHandler.
+     *
+     * @param array $element
+     *
+     * @return boolean
+     */
+    public function canHandle(array $element)
+    {
+        return $element['name'] === 'youtube';
+    }
+
+    /**
+     * @param array $element
+     *
+     * @return array
+     */
+    public function handle(array $element)
+    {
+        return $element;
+    }
+}
+```
+
+There's no need to provide additional data to our element in this case, so the `handle`-method will just return the element again.
+
 ## Conclusion ##
 In this article we learned how to create custom elements for the Digital Publishing module. All that we need is to add a new ExtJS handler and a frontend template. I hope you enjoyed the tutorial and that you will create amazing elements for this new kind of module. Feel free to give us some feedback in the forum.
 
 
 ## Download ##
 
-**Sample Plugin**: <a href="{{ site.url }}/exampleplugins/SwagDigitalPublishingSample.zip">Download</a>.
+**Sample Plugin > 1.2.0**: <a href="{{ site.url }}/exampleplugins/SwagDigitalPublishingSample120.zip">Download</a>. <br />
+**Sample Plugin < 1.2.0**: <a href="{{ site.url }}/exampleplugins/SwagDigitalPublishingSample.zip">Download</a>.

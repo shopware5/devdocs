@@ -165,7 +165,7 @@ The database session handler is Shopware's default session handler.
 ```
 
 #### Disable locking
-If you want to disable session locking for the database handler, you can configure it like this:
+As of Shopware 5.2.13, you can disable the session locking for the database handler:
 
 ```php
 'session' => array(
@@ -189,7 +189,7 @@ collection to a higher value:
 
 For further information please see [Bejamin Eberlei's blog post regarding session collection](https://tideways.io/profiler/blog/php-session-garbage-collection-the-unknown-performance-bottleneck).
 
-As of Shopware 5.2.17 Shopware will clean up the session every 500 requests (`gc_divisor = 500`). Furthermore Shopware
+As of Shopware 5.2.17 Shopware will clean up the session every 200 requests (`gc_divisor = 200`). Furthermore Shopware
 5.2.17 introduces a new command to clean up the session manually:
 
 `php bin/console sw:session:cleanup`

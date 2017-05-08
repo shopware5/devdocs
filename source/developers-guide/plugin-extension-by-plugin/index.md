@@ -115,7 +115,7 @@ Possible types for elements are:
 </config>
 ```
 
-### SwagExtendCustomProducts/Resources/service.xml
+### SwagExtendCustomProducts/Resources/services.xml
 
 defines in this case Subscribers which react to certain events. 
 Make sure that Subscriber-Services implement the tag. 
@@ -225,7 +225,7 @@ class SwagExtendCustomProducts extends Plugin
 }
 ```
 
-### SwagExtendCustomProducts/Installer.php
+### SwagExtendCustomProducts/Setup/Installer.php
 To keep track of the code, swap out the installation code in this extra file. 
 In this example it checks if the plugin "Custom Products (v2)" is installed, but you can add other code here if necessary for your installation.
 

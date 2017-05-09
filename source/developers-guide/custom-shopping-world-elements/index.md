@@ -434,14 +434,11 @@ Because the event is called for every element we have to do a check before proce
 
 ## Adding a custom component handler for export
 <img src="img/screen_component_handler.jpg" class="is-float-right" alt="backend emotion component handler directory structure" />
-Since Showare 5.3 it is possible to export and import shopping worlds including all settings and
+Since Shopware 5.3 it is possible to export and import shopping worlds including all settings and
 assets. Shopware delivers component handlers for all standard shopping world elements which use assets. 
 
 Due to the fact every element is storing its assets slightly different, it is required
 to have component handlers which "know" their component and know where to extract assets from and where to put back data on import.
-
-The Shopware emotion component handlers are located at namespace `Shopware\Components\Emotion\Preset\ComponentHandler` and defined in the `services.xml`
-at `Shopware\Components\DependencyInjection`.
 
 The component handlers are using a special service tag to be registered by the `PresetDataSynchronizer` Service which is used to prepare the export and
 process the import for single elements.
@@ -459,50 +456,18 @@ process the import for single elements.
 If you want to register your own component handler you have to add the tag `shopware.emotion.preset_component_handler` to it, to assure that your handler
 will be recognized by the import and export process.
 
-Your handler should implement the `ComponentHandlerInterface` from the above mentioned namespace. Please take care of the
+Your handler should implement the `ComponentHandlerInterface`. Please take care of the
 namespace because there is another ComponentHandlerInterface available via the `EmotionBundle` which differs.
 
-Your component handler then needs to implement three methods as defined in the interface:
-
-```php
-namespace Shopware\Components\Emotion\Preset\ComponentHandler;
-
-use Symfony\Component\HttpFoundation\ParameterBag;
-
-interface ComponentHandlerInterface
-{
-    /**
-     * @param string $componentType
-     *
-     * @return bool
-     */
-    public function supports($componentType);
-
-    /**
-     * @param array        $element
-     * @param ParameterBag $syncData
-     *
-     * @return array
-     */
-    public function import(array $element, ParameterBag $syncData);
-
-    /**
-     * @param array        $element
-     * @param ParameterBag $syncData
-     *
-     * @return array
-     */
-    public function export(array $element, ParameterBag $syncData);
-}
-```
+The interface requires three methods to be implemented. The `supports` method needs to return a boolean
+to give a signal if the handler can handle the current component. The `import` and `export` methods are responsible for the business logic of the import and
+export process. The `import` and `export` methods have to return the processed element at the end.
 
 During export and import processing, the `PresetDataSynchronizer` loops through
 all elements of a shopping world and checks if there is a handler which can handle
 the component.
 
-The `import` and `export`methods have to return the processed element at the end.
-
-Please have look at the Shopware component handlers like the `BannerComponentHandler` under above mentioned namespace. The purpose of a handler is to identify assets used in the component
+Please have look at the Shopware component handlers like the `BannerComponentHandler`. The purpose of a handler is to identify assets used in the component
 and to store information about them in the `$syncData ParameterBag`. 
 
 The handler creates an `md5hash` of the media
@@ -582,7 +547,7 @@ class BannerComponentHandler extends AbstractComponentHandler
                     $media = $this->doAssetImport($assetPath); // Import new/unknown asset
                     $importedAssets[$elementData['value']] = $media->getId();
                 } else {
-                    $media = $this->getMediaById($importedAssets[$elementData['value']]); // Gather info about alread imported asset
+                    $media = $this->getMediaById($importedAssets[$elementData['value']]); // Gather info about already imported asset
                 }
 
                 $elementData['value'] = $media->getPath(); // Set the asset path as value on element data

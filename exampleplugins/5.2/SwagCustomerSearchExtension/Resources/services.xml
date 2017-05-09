@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_customer_search_extension.active_condition_handler"
+                 class="SwagCustomerSearchExtension\Bundle\CustomerSearchBundleDBAL\ActiveConditionHandler">
+
+            <tag name="customer_search.condition_handler"/>
+        </service>
+
+        <service id="swag_customer_search_extension.search_indexer"
+                 class="SwagCustomerSearchExtension\Bundle\CustomerSearchBundleDBAL\SearchIndexer"
+                 decorates="customer_search.dbal.indexing.indexer">
+
+            <argument id="swag_customer_search_extension.search_indexer.inner" type="service"/>
+            <argument id="dbal_connection" type="service"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,608 @@
+{
+  "showListing": false,
+  "templateId": 1,
+  "active": false,
+  "name": "Meine Startseite",
+  "position": 1,
+  "device": "0,1,2,3,4",
+  "fullscreen": 0,
+  "isLandingPage": 0,
+  "seoTitle": "",
+  "seoKeywords": "",
+  "seoDescription": "",
+  "rows": 22,
+  "cols": 4,
+  "cellSpacing": 10,
+  "cellHeight": 185,
+  "articleHeight": 2,
+  "mode": "fluid",
+  "customerStreamIds": null,
+  "replacement": null,
+  "elements": [
+    {
+      "componentId": "emotion-components-banner",
+      "startRow": 1,
+      "startCol": 4,
+      "endRow": 3,
+      "endCol": 4,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 5,
+          "startCol": 3,
+          "endRow": 6,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 5,
+          "startCol": 3,
+          "endRow": 6,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 5,
+          "startCol": 3,
+          "endRow": 6,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 1,
+          "startCol": 4,
+          "endRow": 3,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 1,
+          "startCol": 4,
+          "endRow": 3,
+          "endCol": 4,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "file",
+          "value": "8b16ebc056e613024c057be590b542eb",
+          "key": "file",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "bannerMapping",
+          "value": "[{\"x\":\"0\",\"y\":\"356\",\"width\":\"251\",\"height\":\"198\",\"link\":\"SW10211\",\"resizerIndex\":0,\"path\":\"\"},{\"x\":\"0\",\"y\":\"184\",\"width\":\"251\",\"height\":\"176\",\"link\":\"SW10170\",\"resizerIndex\":1,\"path\":\"\"},{\"x\":\"0\",\"y\":\"0\",\"width\":\"251\",\"height\":\"188\",\"link\":\"SW10178\",\"resizerIndex\":2,\"path\":\"\"}]",
+          "key": "bannerMapping",
+          "valueType": "json"
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "link",
+          "value": "",
+          "key": "link",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503dd45.94762137"
+    },
+    {
+      "componentId": "emotion-components-banner",
+      "startRow": 4,
+      "startCol": 1,
+      "endRow": 4,
+      "endCol": 2,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 4,
+          "startCol": 1,
+          "endRow": 4,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 4,
+          "startCol": 1,
+          "endRow": 4,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 4,
+          "startCol": 1,
+          "endRow": 4,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 4,
+          "startCol": 1,
+          "endRow": 4,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 4,
+          "startCol": 1,
+          "endRow": 4,
+          "endCol": 2,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "file",
+          "value": "1728efbda81692282ba642aafd57be3a",
+          "key": "file",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "bannerMapping",
+          "value": "null",
+          "key": "bannerMapping",
+          "valueType": "json"
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "link",
+          "value": "/Campaign/index/emotionId/6",
+          "key": "link",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503df18.17545344"
+    },
+    {
+      "componentId": "emotion-components-banner",
+      "startRow": 4,
+      "startCol": 3,
+      "endRow": 4,
+      "endCol": 3,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 5,
+          "startCol": 1,
+          "endRow": 5,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 5,
+          "startCol": 1,
+          "endRow": 5,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 5,
+          "startCol": 1,
+          "endRow": 5,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 4,
+          "startCol": 3,
+          "endRow": 4,
+          "endCol": 3,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 4,
+          "startCol": 3,
+          "endRow": 4,
+          "endCol": 3,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "file",
+          "value": "db85e2590b6109813dafa101ceb2faeb",
+          "key": "file",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "bannerMapping",
+          "value": "null",
+          "key": "bannerMapping",
+          "valueType": "json"
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "link",
+          "value": "",
+          "key": "link",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503e040.42536946"
+    },
+    {
+      "componentId": "emotion-components-banner",
+      "startRow": 4,
+      "startCol": 4,
+      "endRow": 4,
+      "endCol": 4,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 6,
+          "startCol": 1,
+          "endRow": 6,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 6,
+          "startCol": 1,
+          "endRow": 6,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 6,
+          "startCol": 1,
+          "endRow": 6,
+          "endCol": 2,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 4,
+          "startCol": 4,
+          "endRow": 4,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 4,
+          "startCol": 4,
+          "endRow": 4,
+          "endCol": 4,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "file",
+          "value": "99c5e07b4d5de9d18c350cdf64c5aa3d",
+          "key": "file",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "bannerMapping",
+          "value": "null",
+          "key": "bannerMapping",
+          "valueType": "json"
+        },
+        {
+          "componentId": "emotion-components-banner",
+          "fieldId": "link",
+          "value": "",
+          "key": "link",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503e172.68706708"
+    },
+    {
+      "componentId": "emotion-components-blog",
+      "startRow": 6,
+      "startCol": 1,
+      "endRow": 6,
+      "endCol": 4,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 8,
+          "startCol": 1,
+          "endRow": 9,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 8,
+          "startCol": 1,
+          "endRow": 9,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 8,
+          "startCol": 1,
+          "endRow": 9,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 6,
+          "startCol": 1,
+          "endRow": 7,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 6,
+          "startCol": 1,
+          "endRow": 7,
+          "endCol": 4,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-blog",
+          "fieldId": "entry_amount",
+          "value": "3",
+          "key": "entry_amount",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-blog",
+          "fieldId": "blog_entry_selection",
+          "value": "17",
+          "key": "blog_entry_selection",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503e263.58237470"
+    },
+    {
+      "componentId": "emotion-components-banner-slider",
+      "startRow": 1,
+      "startCol": 1,
+      "endRow": 3,
+      "endCol": 3,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 1,
+          "startCol": 1,
+          "endRow": 3,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 1,
+          "startCol": 1,
+          "endRow": 3,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 1,
+          "startCol": 1,
+          "endRow": 3,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 1,
+          "startCol": 1,
+          "endRow": 3,
+          "endCol": 3,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 1,
+          "startCol": 1,
+          "endRow": 3,
+          "endCol": 3,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_title",
+          "value": "",
+          "key": "banner_slider_title",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_arrows",
+          "value": "1",
+          "key": "banner_slider_arrows",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_numbers",
+          "value": "1",
+          "key": "banner_slider_numbers",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_scrollspeed",
+          "value": "500",
+          "key": "banner_slider_scrollspeed",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_rotation",
+          "value": "1",
+          "key": "banner_slider_rotation",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider_rotatespeed",
+          "value": "5000",
+          "key": "banner_slider_rotatespeed",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-banner-slider",
+          "fieldId": "banner_slider",
+          "value": "[{\"position\":0,\"path\":\"e995f98d56967d946471af29d7bf99f1\",\"mediaId\":734,\"link\":\"\"},{\"position\":1,\"path\":\"6cd67d9b6f0150c77bda2eda01ae484c\",\"mediaId\":735,\"link\":\"\"},{\"position\":2,\"path\":\"6bc24fc1ab650b25b4114e93a98f1eba\",\"mediaId\":736,\"link\":\"\"}]",
+          "key": "banner_slider",
+          "valueType": "json"
+        }
+      ],
+      "syncKey": "preset-element-5911b84503e3c1.53722051"
+    },
+    {
+      "componentId": "emotion-components-manufacturer-slider",
+      "startRow": 5,
+      "startCol": 1,
+      "endRow": 5,
+      "endCol": 4,
+      "cssClass": null,
+      "viewports": [
+        {
+          "alias": "xs",
+          "startRow": 7,
+          "startCol": 1,
+          "endRow": 7,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "s",
+          "startRow": 7,
+          "startCol": 1,
+          "endRow": 7,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "m",
+          "startRow": 7,
+          "startCol": 1,
+          "endRow": 7,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "l",
+          "startRow": 5,
+          "startCol": 1,
+          "endRow": 5,
+          "endCol": 4,
+          "visible": true
+        },
+        {
+          "alias": "xl",
+          "startRow": 5,
+          "startCol": 1,
+          "endRow": 5,
+          "endCol": 4,
+          "visible": true
+        }
+      ],
+      "data": [
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_type",
+          "value": "selected_manufacturers",
+          "key": "manufacturer_type",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_category",
+          "value": "3",
+          "key": "manufacturer_category",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "selected_manufacturers",
+          "value": "[{\"position\":0,\"name\":\"The Deli Garage\",\"supplierId\":4,\"path\":\"\"},{\"position\":1,\"name\":\"stop the water while using me\",\"supplierId\":15,\"path\":\"\"},{\"position\":2,\"name\":\"Das blaue Haus\",\"supplierId\":8,\"path\":\"\"},{\"position\":3,\"name\":\"Teapavilion\",\"supplierId\":3,\"path\":\"\"},{\"position\":4,\"name\":\"Feinbrennerei Sasse\",\"supplierId\":2,\"path\":\"\"},{\"position\":5,\"name\":\"Vintage Driver\",\"supplierId\":7,\"path\":\"\"},{\"position\":6,\"name\":\"Access Oires Sisters\",\"supplierId\":5,\"path\":\"\"},{\"position\":7,\"name\":\"Beachdreams Clothes\",\"supplierId\":12,\"path\":\"\"},{\"position\":8,\"name\":\"Sonnenschirm Versand\",\"supplierId\":11,\"path\":\"\"},{\"position\":9,\"name\":\"Sun Smile and Protect\",\"supplierId\":13,\"path\":\"\"}]",
+          "key": "selected_manufacturers",
+          "valueType": "json"
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_slider_title",
+          "value": "Unsere Top-Marken",
+          "key": "manufacturer_slider_title",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_slider_arrows",
+          "value": "",
+          "key": "manufacturer_slider_arrows",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_slider_scrollspeed",
+          "value": "500",
+          "key": "manufacturer_slider_scrollspeed",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_slider_rotation",
+          "value": "",
+          "key": "manufacturer_slider_rotation",
+          "valueType": ""
+        },
+        {
+          "componentId": "emotion-components-manufacturer-slider",
+          "fieldId": "manufacturer_slider_rotatespeed",
+          "value": "5000",
+          "key": "manufacturer_slider_rotatespeed",
+          "valueType": ""
+        }
+      ],
+      "syncKey": "preset-element-5911b84503e568.08219710"
+    }
+  ],
+  "syncData": {
+    "assets": {
+      "8b16ebc056e613024c057be590b542eb": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/beach_teaser5038874e87338.jpg",
+      "1728efbda81692282ba642aafd57be3a": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/deli_teaser503886c2336e3.jpg",
+      "db85e2590b6109813dafa101ceb2faeb": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/flip_teaser503886e4dd480.jpg",
+      "99c5e07b4d5de9d18c350cdf64c5aa3d": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/bienen_teaser.jpg",
+      "e995f98d56967d946471af29d7bf99f1": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/beach1503f8532d4648.jpg",
+      "6cd67d9b6f0150c77bda2eda01ae484c": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/beach2503f8535275aa.jpg",
+      "6bc24fc1ab650b25b4114e93a98f1eba": "file:\/\/___ASSETPATH___\/media\/MyCustomPreset\/beach3503f853820fa7.jpg"
+    }
+  }
+}

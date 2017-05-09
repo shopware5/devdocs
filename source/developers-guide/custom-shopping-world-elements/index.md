@@ -432,6 +432,207 @@ public function onEmotionAddElement(Enlight_Event_EventArgs $args)
 
 Because the event is called for every element we have to do a check before processing the data. You can get the element info from the event arguments with `$args->get('element')`. To test for a specific element we can validate the defined `xType`. When the element is the right one we can get the data of the configuration form with `$args->getReturn()`. After processing the data we have to set the new output for the frontend with `$args->setReturn($data)`.
 
+## Adding a custom component handler for export
+<img src="img/screen_component_handler.jpg" class="is-float-right" alt="backend emotion component handler directory structure" />
+Since Showare 5.3 it is possible to export and import shopping worlds including all settings and
+assets. Shopware delivers component handlers for all standard shopping world elements which use assets. 
+
+Due to the fact every element is storing its assets slightly different, it is required
+to have component handlers which "know" their component and know where to extract assets from and where to put back data on import.
+
+The Shopware emotion component handlers are located at namespace `Shopware\Components\Emotion\Preset\ComponentHandler` and defined in the `services.xml`
+at `Shopware\Components\DependencyInjection`.
+
+The component handlers are using a special service tag to be registered by the `PresetDataSynchronizer` Service which is used to prepare the export and
+process the import for single elements.
+
+```xml
+<service id="shopware.emotion.preset_banner_component_handler" class="Shopware\Components\Emotion\Preset\ComponentHandler\BannerComponentHandler">
+    <argument type="service" id="shopware_media.media_service" />
+    <argument type="service" id="shopware.api.media" />
+    <argument type="service" id="service_container" />
+
+    <tag name="shopware.emotion.preset_component_handler" />
+</service>
+```
+
+If you want to register your own component handler you have to add the tag `shopware.emotion.preset_component_handler` to it, to assure that your handler
+will be recognized by the import and export process.
+
+Your handler should implement the `ComponentHandlerInterface` from the above mentioned namespace. Please take care of the
+namespace because there is another ComponentHandlerInterface available via the `EmotionBundle` which differs.
+
+Your component handler then needs to implement three methods as defined in the interface:
+
+```php
+namespace Shopware\Components\Emotion\Preset\ComponentHandler;
+
+use Symfony\Component\HttpFoundation\ParameterBag;
+
+interface ComponentHandlerInterface
+{
+    /**
+     * @param string $componentType
+     *
+     * @return bool
+     */
+    public function supports($componentType);
+
+    /**
+     * @param array        $element
+     * @param ParameterBag $syncData
+     *
+     * @return array
+     */
+    public function import(array $element, ParameterBag $syncData);
+
+    /**
+     * @param array        $element
+     * @param ParameterBag $syncData
+     *
+     * @return array
+     */
+    public function export(array $element, ParameterBag $syncData);
+}
+```
+
+During export and import processing, the `PresetDataSynchronizer` loops through
+all elements of a shopping world and checks if there is a handler which can handle
+the component.
+
+The `import` and `export`methods have to return the processed element at the end.
+
+Please have look at the Shopware component handlers like the `BannerComponentHandler` under above mentioned namespace. The purpose of a handler is to identify assets used in the component
+and to store information about them in the `$syncData ParameterBag`. 
+
+The handler creates an `md5hash` of the media
+id which is used to identify double assets inside one shopping world. During the
+import process and after importing one asset the information of the imported asset is
+also stored in the `ParameterBag` and stored in the preset data, because element import is
+handled as a single process for each element, but the elements need information about
+already imported assets if they are using the same. 
+
+So if an element is using an already imported
+asset, it can gather the information from the `ParameterBag` or otherwise has to store new information after import.
+
+```php
+namespace Shopware\Components\Emotion\Preset\ComponentHandler;
+
+use Symfony\Component\HttpFoundation\ParameterBag;
+
+class BannerComponentHandler extends AbstractComponentHandler
+{
+    
+    const COMPONENT_TYPE = 'emotion-components-banner'; // Components unique name
+
+    const ELEMENT_DATA_KEY = 'file'; // Data field with the asset information
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($componentType)
+    {
+        return $componentType === self::COMPONENT_TYPE; // Is the passed componentType the one this handler can handle?
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function import(array $element, ParameterBag $syncData)
+    {
+        if (!isset($element['data'])) {
+            return $element;
+        }
+
+        return $this->processElementData($element, $syncData);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function export(array $element, ParameterBag $syncData)
+    {
+        if (!isset($element['data'])) {
+            return $element;
+        }
+
+        return $this->prepareElementExport($element, $syncData);
+    }
+
+    /**
+     * @param array        $element
+     * @param ParameterBag $syncData
+     *
+     * @return array
+     */
+    private function processElementData(array $element, ParameterBag $syncData)
+    {
+        $data = $element['data'];
+        $assets = $syncData->get('assets', []); // Contains info about the assets like actual path
+        $importedAssets = $syncData->get('importedAssets', []); // Contains info about already imported assets
+
+        foreach ($data as &$elementData) {
+            if ($elementData['key'] === self::ELEMENT_DATA_KEY) {
+                if (!array_key_exists($elementData['value'], $assets)) {
+                    break;
+                }
+                if (!array_key_exists($elementData['value'], $importedAssets)) { // Already imported?
+                    $assetPath = $assets[$elementData['value']];
+
+                    $media = $this->doAssetImport($assetPath); // Import new/unknown asset
+                    $importedAssets[$elementData['value']] = $media->getId();
+                } else {
+                    $media = $this->getMediaById($importedAssets[$elementData['value']]); // Gather info about alread imported asset
+                }
+
+                $elementData['value'] = $media->getPath(); // Set the asset path as value on element data
+
+                break;
+            }
+        }
+        unset($elementData);
+
+        $syncData->set('importedAssets', $importedAssets); // Store info about handled asset imports
+        $element['data'] = $data;
+
+        return $element; // Return processed element
+    }
+
+    /**
+     * @param array        $element
+     * @param ParameterBag $syncData
+     *
+     * @return array
+     */
+    private function prepareElementExport(array $element, ParameterBag $syncData)
+    {
+        $assets = $syncData->get('assets', []);
+        $data = $element['data'];
+
+        foreach ($data as &$elementData) {
+            if ($elementData['key'] === self::ELEMENT_DATA_KEY) {
+                $assetPath = $elementData['value'];
+                $media = $this->getMediaByPath($assetPath);
+
+                if ($media) {
+                    $assetHash = md5($media->getId()); // Create hash as unique identifier
+                    $assets[$assetHash] = $this->mediaService->getUrl($assetPath);
+                    $elementData['value'] = $assetHash; // Save hash as value
+
+                    break;
+                }
+            }
+        }
+        unset($elementData);
+
+        $syncData->set('assets', $assets); // Store asset info globally
+        $element['data'] = $data;
+
+        return $element;
+    }
+}
+```
+
 ## Advanced: Adding a custom emotion component in ExtJS ##
 <img src="img/screen_component_structure.jpg" class="is-float-right" alt="backend component directory structure" />
 If you want to go a little further by creating custom configuration fields for your element you have the possibility to create your own ExtJS component for the element. Here you have full access to the configuration form in ExtJS. You can manipulate existing fields or add new fields which are more complex than the standard form elements.

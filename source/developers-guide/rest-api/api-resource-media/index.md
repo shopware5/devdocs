@@ -17,13 +17,15 @@ This resource supports the following operations:
 
 |  Access URL                 | GET                   | GET (List)            | PUT                  | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
 |-----------------------------|-----------------------|-----------------------|----------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/media                  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| /api/media                  | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 ## GET
 
 To get information about a specific media, you can simply call the API as shown in this example:
 
-* **http://my-shop-url/api/media/id**
+```
+GET http://my-shop-url/api/media/{id}
+```
 
 ### Return Value
 
@@ -46,11 +48,11 @@ To get information about a specific media, you can simply call the API as shown 
 
 ## GET (List)
 
-To get list list of media, simply call
+To get list list of media, simply call the url without providing any id:
 
-* **http://my-shop-url/api/media/**
-
-without providing any id.
+```
+GET http://my-shop-url/api/media
+```
 
 ### Return Value
 
@@ -82,8 +84,12 @@ Appended to the above mentioned list, you will also find the following data:
 | success              | boolean                  | Indicates if the call was successful or not.    |
 
 ## POST (create)
+
 If you wish to add new data to the shop's media collection, simply create an array and send it via `POST` request to the API.
-The following keys can be provided in the array:
+
+```
+POST http://my-shop-url/api/media
+```
 
 | Model                                 | Table                 |
 |------------------------------------|-----------------------|
@@ -104,10 +110,26 @@ The following keys can be provided in the array:
 
 **The most of these values are generated automatically (such as `fileSize` and `created`). It is not recommended to set them manually**
 
+## PUT (update)
+
+As of Shopware 5.3, you can replace a media file by providing a dataURI or link to fetch a resource from.
+
+```
+PUT http://my-shop-url/api/media/{id}
+```
+
+Replace the `id` with the specific media id.
+
+| Field           | Type   | Description          |
+|-----------------|--------|----------------------|
+| file (required) | string | Path / URL / dataURI |
+
 ## DELETE
 
 In order to delete a specific media, simply call the following URL using the `DELETE` operation:
 
-* **(DELETE) http://my-shop-url/api/media/id**
+```
+DELETE http://my-shop-url/api/media/{id}
+```
 
 Replace the `id` with the specific media id.

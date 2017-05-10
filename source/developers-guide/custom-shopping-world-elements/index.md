@@ -401,7 +401,65 @@ The name of the file has to match the definition in your `createEmotionComponent
 ```
 
 ## Process the element data before output ##
+
 When you have to process the saved element data before it is passed to the frontend, you have the possibility to register to the `Shopware_Controllers_Widgets_Emotion_AddElement` controller event. Here you get the original data to manipulate the output.
+
+### Shopware 5.3 and above
+
+Create a new component handler class for your element and implement the `ComponentHandlerInterface`.
+
+```php
+class VimeoComponentHandler implements ComponentHandlerInterface
+{
+    public function supports(Element $element)
+    {
+        return $element->getComponent()->getType() === 'emotion-components-vimeo';
+    }
+
+    public function prepare(PrepareDataCollection $collection, Element $element, ShopContextInterface $context)
+    {
+        // do some prepare logic, e.g. requesting articles for rendering
+    }
+
+    public function handle(ResolvedDataCollection $collection, Element $element, ShopContextInterface $context)
+    {
+        // do some handle logic and fill the element data, which will be available in your template
+        $element->getData()->set('key', 'value');
+    }
+}
+```
+
+Now register it in the dependency injection container to make it available when rendering the component.
+
+```
+<service id="swag_vimeo_element.vimeo_component_handler" class="SwagVimeoElement\ComponentHandler\VimeoComponentHandler">
+    <tag name="shopware_emotion.component_handler"/>
+</service>
+```
+
+<div class="alert alert-info"><b>Hint</b>: Existing plugins using the old method below will still work in Shopware 5.3.</div>
+
+#### Requesting items in ComponentHandler
+
+To make use of the performance improvement, you have to split your logic into a prepare step and handle step. The prepare step collects product numbers or criteria objects which will be resolved across all elements at once. The handle step provides a collection with resolved products and can be filled into your element.
+
+```php
+public function prepare(PrepareDataCollection $collection, Element $element, ShopContextInterface $context)
+{
+    $productNumber = $element->getConfig()->get('selected_product_number');
+    $collection->getBatchRequest()->setProductNumbers('my-unique-request', [$productNumber]);
+}
+
+public function handle(ResolvedDataCollection $collection, Element $element, ShopContextInterface $context)
+{
+    $product = current($collection->getBatchResult()->get('my-unique-request'));
+    $element->getData()->set('product', $product);
+}
+```
+
+Keep in mind to use a unique key for requesting and getting products. For best practise, use the element's id in your key (`$element->getId()`).
+
+### Shopware 5.2 and below
 
 ```php
 public function install()

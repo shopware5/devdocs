@@ -86,14 +86,13 @@ And registered in the DIC:
 
 **Purpose**: Add a media adapter
 
-foo bar
-
+For details on registering a new media adapter, read [Media Service - Build your own adapter](/developers-guide/shopware-5-media-service/#build-your-own-adapter).
 
 ## shopware_media.optimizer
 
 **Purpose**: Add a media optimizer
 
-foo bar
+For details on registering a new media optimizer, read [Media Optimizer - Create optimizer using a HTTP API](/developers-guide/media-optimizer/#example:-create-optimizer-using-a-http-api).
 
 ## shopware_elastic_search.data_indexer
 
@@ -154,9 +153,9 @@ foo bar
 
 ## console.command
 
-**Purpose**: Add a command
+**Purpose**: Add a command to the application
 
-foo bar
+For details on registering your own commands in the service container, read [How to Define Commands as Services](https://symfony.com/doc/current/console/commands_as_services.html).
 
 ## shopware.event_subscriber
 

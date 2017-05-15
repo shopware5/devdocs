@@ -382,6 +382,33 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
 
 The configuration of the filter fields is similar to the column of the `Shopware.grid.Panel` and form fields of the `Shopware.model.Container`.
 
+#### Configure SQL comparsion
+
+Since Shopware 5.3.0 it is possible to define your own SQL query 
+expression for comparision. This configuration option is available when 
+using the `Shopware.listing.FilterPanel`. An implementation for the `>=` 
+operator could look like this:
+
+```php
+Ext.define('Shopware.apps.Vote.view.list.extensions.Filter', {
+    extend: 'Shopware.listing.FilterPanel',
+    alias:  'widget.vote-listing-filter-panel',
+    configure: function() {
+        return {
+            controller: 'Vote',
+            model: 'Shopware.apps.Vote.model.Vote',
+            fields: {
+                points: {
+                    expression: '>=',
+                }
+            }
+        };
+    }
+});
+```
+
+The default expression is `=`.
+
 ## Plugin Download - [SwagProductListingExtension.zip](/exampleplugins/SwagProductListingExtension.zip)
 
 <div class="is-center">

@@ -231,3 +231,85 @@ In most cases, only a list of product numbers is not enough for the store front.
 The `Shopware\Bundle\SearchBundle\ProductSearch` class is a decorator, which allows the execution of a product number search, whose result sets contains a list of `Shopware\Bundle\StoreFrontBundle\Struct\ListProduct` structs.
 A `ListProduct` struct contains all required data for a product to be display in the store front listings.
 Internally, this decorator first executes the `ProductNumberSearch` and then converts the result using the configured `Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface` from the DI container.
+
+## Shopware 5.3 changes
+With Shopware 5.3, a new interface implemented to handle facets: `\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface`. Each facet handler had to revert the provided criteria by their own to remove customer conditions. This behaviour is now handled in the `\Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch::createFacets`
+
+Old implementation:
+```
+/**
+ * @param FacetInterface $facet
+ * @param Criteria $criteria
+ * @param ShopContextInterface $context
+ * @return BooleanFacetResult
+ */
+public function generateFacet(
+    FacetInterface $facet,
+    Criteria $criteria,
+    ShopContextInterface $context
+) {
+    $reverted = clone $criteria;
+    $reverted->resetConditions();
+    $reverted->resetSorting();
+
+    $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+    //...
+}
+```
+
+New implementation gets the "reverted" criteria as function parameter. This allows to switch between different filter modes.
+
+```
+public function generatePartialFacet(
+    FacetInterface $facet,
+    Criteria $reverted,
+    Criteria $criteria,
+    ShopContextInterface $context
+) {
+    $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+    //...
+```
+
+To support Shopware 5.3 and older versions inside the same plugin version, the following check has to be added at the top of the facet handler class:
+```
+<?php
+
+namespace Shopware\Bundle\SearchBundleDBAL;
+
+if (!interface_exists('\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface')) {
+    interface PartialFacetHandlerInterface
+    {
+    }
+}
+
+class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function generateFacet(
+        FacetInterface $facet,
+        Criteria $criteria,
+        Struct\ShopContextInterface $context
+    ) {
+        $reverted = clone $criteria;
+        $reverted->resetConditions();
+        $reverted->resetSorting();
+
+        return $this->generatePartialFacet($facet, $reverted, $criteria, $context);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function generatePartialFacet(
+        FacetInterface $facet,
+        Criteria $reverted,
+        Criteria $criteria,
+        ShopContextInterface $context
+    ) {
+        $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+        //...
+    }
+}
+```

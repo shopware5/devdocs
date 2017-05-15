@@ -175,3 +175,27 @@ return [
     ]
 ];
 ```
+
+## Redis configuration
+With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adapter:
+
+```
+'model' => [
+    'redisHost' => '127.0.0.1',
+    'redisPort' => 6379,
+    'redisDbIndex' => 0,
+    'cacheProvider' => 'redis'
+],
+'cache' => [
+    'backend' => 'redis', // e.G auto, apcu, xcache
+    'backendOptions' => [
+        'servers' => array(
+            array(
+                'host' => '127.0.0.1',
+                'port' => 6379,
+                'dbindex' => 0
+            ),
+        ),
+    ],
+]
+```

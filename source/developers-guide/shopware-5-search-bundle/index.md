@@ -307,3 +307,48 @@ class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterf
     }
 }
 ```
+
+## Optimized Batch Search
+
+As of Shopware 5.3, it is possible to search for multiple critera objects at once. In addition, the fetch process for products will be minimized by fetching a product number only once. An optimization service will then try to optimize the search request by combining identical criteria objects into one. So there will be less search requests for identical criterias.
+
+Another advantage is that you won't get the same results with identical searches.
+
+### Example: Emotion Component Handler
+
+The emotion component handler make use of this service to increase the performance of loading a shopping world. Imagine you have three product boxes configured with topseller products of a category. Prior to 5.3, you will get the same product for each product box. As of 5.3, you will get different topseller products.
+
+### Usage
+
+You will still be working with criteria objects, but before sending the search request, you have to add them to a `Shopware\Bundle\SearchBundle\BatchProductSearchRequest`.
+
+```php
+$criteria = new Critera();
+$criteria->addCondition(new CategoryCondition([3]));
+$criteria->limit(3);
+
+$anotherCriteria = new Critera();
+$anotherCriteria->addCondition(new CategoryCondition([3]));
+$anotherCriteria->limit(5);
+
+$request = new BatchProductNumberSearchRequest();
+$request->setProductNumbers('numbers-1', ['SW10004', 'SW10006']);
+$request->setCriteria('criteria-1', $criteria);
+$request->setCriteria('criteria-2', $anotherCriteria);
+
+$result = $this->container->get('shopware_search.batch_product_search')->search($request, $context);
+```
+
+In this case, there are two identical criteria objects which can be merged easily by adding the limit and work with the offset when returning the results.
+
+Every criteria object should be added with a unique key for the request. This is necessary to identify every search request and return the correct products.
+
+```php
+$result->get('numbers-1'); // ['SW10004' => ListProduct, 'SW10006' => ListProduct]
+$result->get('criteria-1'); // ['SW10006' => ListProduct, 'SW10007' => ListProduct, 'SW10008' => ListProduct]
+$result->get('criteria-2'); // ['SW10009' => ListProduct, 'SW10010' => ListProduct, 'SW10011' => ListProduct, 'SW10012' => ListProduct, 'SW10013' => ListProduct]
+```
+
+The batch search will return a `Shopware\Bundle\SearchBundle\BatchProductSearchResult` which contains the results for every request.
+
+<div class="alert alert-info"><b>Hint!</b> The batch product search is also available as batch product number search to only return found product numbers.</div>

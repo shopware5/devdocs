@@ -20,20 +20,25 @@ Below is information about all of the tags available inside Shopware.
 | Tag Name | Usage |
 |------------------|------------------|
 | [attribute_search_repository](#attribute_search_repository)           | Add a custom entity repository |
-| [shopware_media.adapter](#shopware_media.adapter) | Add a media adapter |
-| [shopware_media.optimizer](#shopware_media.optimizer) | Add a media optimizer |
-| [shopware_elastic_search.data_indexer](#shopware_elastic_search.data_indexer)  | Add an elasticsearch indexer |
-| [shopware_elastic_search.mapping](#shopware_elastic_search.mapping) | Add an elasticsearch field mapping |
-| [shopware_elastic_search.settings](#shopware_elastic_search.settings) | Create elasticsearch index settings |
-| [shopware_elastic_search.synchronizer](#shopware_elastic_search.synchronizer) | Create an elasticsearch index synchronizer |
-| [shopware_search_es.search_handler](#shopware_search_es.search_handler) | Add an elasticsearch handler for a condition |
-| [criteria_request_handler](#criteria_request_handler) | Add a criteria request handler modify the search |
-| [facet_handler_dbal](#facet_handler_dbal) | Add handler for a facet |
 | [condition_handler_dbal](#condition_handler_dbal) | Add SQL handler for a condition |
-| [sorting_handler_dbal](#sorting_handler_dbal) | Add SQL handler for a sorting |
 | [console.command](#console.command) | Add a command |
+| [criteria_request_handler](#criteria_request_handler) | Add a criteria request handler modify the search |
+| [customer_search.condition_handler](#customer_search.condition_handler) | Add a SQL handler for a customer condition |
+| [customer_search.sorting_handler](#customer_search.sorting_handler) | Add a SQL handler for a customer sorting |
+| [facet_handler_dbal](#facet_handler_dbal) | Add handler for a facet |
+| [shopware.captcha](#shopware.captcha) | Add a captcha mechanism |
+| [shopware_emotion.component_handler](#shopware_emotion.component_handler) | Process data for an emotion element |
+| [shopware.emotion.preset_data_synchronizer](#shopware.emotion.preset_data_synchronizer) | Process element data on import / export |
 | [shopware.event_subscriber](#shopware.event_subscriber) | To subscribe to a set of different events/hooks in Shopware |
 | [shopware.event_listener](#shopware.event_listener) | Listen to different events/hooks in Shopware |
+| [shopware_elastic_search.data_indexer](#shopware_elastic_search.data_indexer)  | Add an Elasticsearch indexer |
+| [shopware_elastic_search.mapping](#shopware_elastic_search.mapping) | Add an Elasticsearch field mapping |
+| [shopware_elastic_search.settings](#shopware_elastic_search.settings) | Create Elasticsearch index settings |
+| [shopware_elastic_search.synchronizer](#shopware_elastic_search.synchronizer) | Create an Elasticsearch index synchronizer |
+| [shopware_search_es.search_handler](#shopware_search_es.search_handler) | Add an Elasticsearch handler for a condition |
+| [shopware_media.adapter](#shopware_media.adapter) | Add a media adapter |
+| [shopware_media.optimizer](#shopware_media.optimizer) | Add a media optimizer |
+| [sorting_handler_dbal](#sorting_handler_dbal) | Add SQL handler for a sorting |
 
 ## attribute_search_repository
 
@@ -96,60 +101,83 @@ For details on registering a new media optimizer, read [Media Optimizer - Create
 
 ## shopware_elastic_search.data_indexer
 
-**Purpose**: Add an elasticsearch indexer
+**Purpose**: Add an Elasticsearch indexer
 
-foo bar
+After the data mapping is defined, the data can be indexed using the `Shopware\Bundle\ESIndexingBundle\DataIndexerInterface` interface. The `populate` method is responsible for loading all relevant data entries into Elasticsearch for the provided shop.
+
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
 
 ## shopware_elastic_search.mapping
 
-**Purpose**: Add an elasticsearch field mapping
+**Purpose**: Add an Elasticsearch field mapping
 
-foo bar
+The entity properties must be mapped to Elasticsearch fields using the `Shopware\Bundle\ESIndexingBundle\MappingInterface` interface.
 
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
 
 ## shopware_elastic_search.settings
 
-**Purpose**: Create elasticsearch index settings
-
-foo bar
-
+**Purpose**: Add custom Elasticsearch anaylzers
+ 
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
 
 ## shopware_elastic_search.synchronizer
 
-**Purpose**: Create an elasticsearch index synchronizer
+**Purpose**: Create an Elasticsearch index synchronizer
 
-foo bar
+Handles backlog queue to synchronize entities which are added by the `ORMBacklogSubscriber`.
 
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
 
 ## shopware_search_es.search_handler
 
-**Purpose**: Add an elasticsearch handler for a condition
+**Purpose**: Add an Elasticsearch handler for a condition
 
-foo bar
+Analog to the DBAL condition handlers, you have to translate the abstract condition to an Elasticsearch query.
+
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
 
 ## criteria_request_handler
 
 **Purpose**: Add a criteria request handler modify the search
 
-foo bar
+To add conditions to the product listing search request, if a specific parameter is set.
 
 ## facet_handler_dbal
 
-**Purpose**: Add handler for a facet
+**Purpose**: Add handler for a product facet
 
-foo bar
+Generates the facet data for the passed query, criteria and context object. For details on facets, read [SearchBundle - Concept Facets](/developers-guide/shopware-5-search-bundle/#concept-facets).
 
 ## condition_handler_dbal
 
-**Purpose**: Add SQL handler for a condition
+**Purpose**: Add SQL handler for a product condition
 
-foo bar
+Your handler must implement the `Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface` interface and be registered in your `services.xml`.
+
+```php
+<service id="swag_plugin.foo_condition_handler" class="SwagPlugin\FooConditionHandler">
+    <tag name="condition_handler_dbal" />
+</service>
+```
+
+For understanding the concept of conditions for products and customers, read [SearchBundle - Full implementation with condition](/developers-guide/shopware-5-search-bundle/#full-implementation-with-condition-(with-dbal))
 
 ## sorting_handler_dbal
 
-**Purpose**: Add SQL handler for a sorting
+**Purpose**: Add SQL handler for a product sorting
 
-foo bar
+Each sorting class can be used for ascending or descending sorting. The direction is specified in the class constructor. Your handler must implement the `Shopware\Bundle\SearchBundleDBAL\SortingHandlerInterface` interface and be registered in your `services.xml`.
+
+You should use `addOrderBy()` on the query to prevent overwriting of other sortings.
+
+```php
+<service id="swag_plugin.foo_sorting_handler" class="SwagPlugin\FooSortingHandler">
+    <tag name="sorting_handler_dbal" />
+</service>
+```
+
+For understanding the concept of sortings for products and customers, read [SearchBundle - List of conditions and sortings](/developers-guide/shopware-5-search-bundle/#list-of-conditions-and-sortings)
 
 ## console.command
 
@@ -161,10 +189,72 @@ For details on registering your own commands in the service container, read [How
 
 **Purpose**: To subscribe to a set of different events/hooks in Shopware
 
-foo bar
+To enable a custom subscriber, add it as a regular service in your `services.xml` file and tag it with `shopware.event_subscriber`:
+
+```xml
+<service id="swag_plugin.custom_subscriber" class="SwagPlugin\CustomSubscriber">
+    <tag name="shopware.event_subscriber" />
+</service>
+```
+
+<div class="alert alert-info"><b>Hint!</b> Your service must implement the <code>EventSubscriberInterface</code> interface.</div>
 
 ## shopware.event_listener
 
 **Purpose**: Listen to different events/hooks in Shopware
 
-foo bar
+During the execution of Shopware, different events are triggered and you can also dispatch custom events. This tag allows you to hook your own classes into any of those events.
+
+For a full example of this listener, read the [Shopware Events](https://developers.shopware.com/developers-guide/event-guide/) guide.
+
+## shopware.captcha
+
+**Purpose**: Add a captcha mechanism
+
+For details on creating a custom captcha mechanism, read [Implementing your own captcha](/developers-guide/implementing-your-own-captcha).
+
+## customer_search.sorting_handler
+
+**Purpose**: Add a SQL handler for a customer sorting
+
+Each sorting class can be used for ascending or descending sorting. The direction is specified in the class constructor. Your handler must implement the `Shopware\Bundle\CustomerSearchBundleDBAL\SortingHandlerInterface` interface and be registered in your `services.xml`.
+
+You should use `addOrderBy()` on the query to prevent overwriting of other sortings.
+
+```php
+<service id="swag_plugin.foo_sorting_handler" class="SwagPlugin\FooSortingHandler">
+    <tag name="customer_search.sorting_handler" />
+</service>
+```
+
+For understanding the concept of sortings for products and customers, read [SearchBundle - List of conditions and sortings](/developers-guide/shopware-5-search-bundle/#list-of-conditions-and-sortings)
+
+## customer_search.condition_handler
+
+**Purpose**: Add a SQL handler for a customer condition
+
+Your handler must implement the `Shopware\Bundle\CustomerSearchBundleDBAL\ConditionHandlerInterface` interface and be registered in your `services.xml`.
+
+```php
+<service id="swag_plugin.foo_condition_handler" class="SwagPlugin\FooConditionHandler">
+    <tag name="customer_search.condition_handler" />
+</service>
+```
+
+For understanding the concept of conditions for products and customers, read [SearchBundle - Full implementation with condition](/developers-guide/shopware-5-search-bundle/#full-implementation-with-condition-(with-dbal))
+
+## shopware_emotion.component_handler
+
+**Purpose**: Process data for an emotion element
+
+The prepare step collects product numbers or criteria objects which will be resolved across all elements at once. The handle step provides a collection with resolved products and can be filled into your element for later usage.
+
+For details on creating your own emotion component handler, read [Custom shopping world elements](/developers-guide/custom-shopping-world-elements/#process-the-element-data-before-output).
+
+## shopware.emotion.preset_data_synchronizer
+
+**Purpose**: Process element data on import / export
+
+During export and import processing, the `PresetDataSynchronizer` loops through all elements of a shopping world and checks if there is a handler which can handle the component.
+
+For details on creating your own preset handler, read [Custom shopping world elements](/developers-guide/custom-shopping-world-elements/#adding-a-custom-component-handler-for-export).

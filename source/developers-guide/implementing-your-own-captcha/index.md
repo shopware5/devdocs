@@ -275,10 +275,10 @@ To achieve this, create a new file `services.xml` in the `Resources` folder with
         <service id="shopware.captcha.recaptcha" class="SwagReCaptcha\ReCaptcha">
             <argument type="service" id="guzzle_http_client_factory"/>
             <argument type="service" id="config"/>
-            <tag name="captcha"/>
+            <tag name="shopware.captcha"/>
         </service>
     </services>
 </container>
 ```
 
-Notice the `<tag name="captcha"/>` tag, it causes shopware to recognize the service as captcha implementation.
+Notice the `<tag name="shopware.captcha"/>` tag, it causes shopware to recognize the service as captcha implementation.

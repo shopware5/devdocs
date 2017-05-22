@@ -233,7 +233,7 @@ A `ListProduct` struct contains all required data for a product to be display in
 Internally, this decorator first executes the `ProductNumberSearch` and then converts the result using the configured `Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface` from the DI container.
 
 ## Shopware 5.3 changes
-With Shopware 5.3, a new interface implemented to handle facets: `\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface`. Each facet handler had to revert the provided criteria by their own to remove customer conditions. This behaviour is now handled in the `\Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch::createFacets`
+Shopware 5.3 implements a new interface to handle facets: `\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface`. Each facet handler had to revert the provided criteria by their own to remove customer conditions. This behaviour is now handled in the `\Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch::createFacets`
 
 Old implementation:
 ```
@@ -284,9 +284,6 @@ if (!interface_exists('\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInte
 
 class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function generateFacet(
         FacetInterface $facet,
         Criteria $criteria,
@@ -299,9 +296,6 @@ class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterf
         return $this->generatePartialFacet($facet, $reverted, $criteria, $context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generatePartialFacet(
         FacetInterface $facet,
         Criteria $reverted,

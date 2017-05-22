@@ -857,13 +857,13 @@ Plugin Download: [SwagAttribute.zip](/exampleplugins/SwagAttribute.zip)
 ### Attribute label translations
 
 With Shopware 5.3 it is possible to translate the different labels for an attribute (help, support, label) via snippets.
-For example, if you create a new attribute in table `s_articles_attributes` which named `attr1` you can specify three translations:
+For example, if you create a new attribute in table `s_articles_attributes` named `attr1`, you can specify three translations:
 
 | ExtJS field | Snippet name |
 |-------|--------------|
-| field `label`        |  s_articles_attributes_attr1_label |
-| field `support text` |  s_articles_attributes_attr1_supportText |
-| field `help text`    |  s_articles_attributes_attr1_helpText |
+| `label`        |  s_articles_attributes_attr1_label |
+| `support text` |  s_articles_attributes_attr1_supportText |
+| `help text`    |  s_articles_attributes_attr1_helpText |
 
 ### Example: Translation for `s_article_attributes.my_column`
 ```

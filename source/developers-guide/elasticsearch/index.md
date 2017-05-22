@@ -1914,9 +1914,6 @@ A new filter behaviour was implemented with shopware 5.3, now filters are only d
 In the elastic search implementation the filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by other filters.
 This behavior is checked via the `Criteria->hasBaseCondition` statement:
 ```
-/**
- * @inheritdoc
- */
 public function handle(
     CriteriaPartInterface $criteriaPart,
     Criteria $criteria,

@@ -116,9 +116,14 @@ In some cases, you might want to disable the protection for the backend or front
 ...
 ```
 
-## Plugin compatibility for older versions
+### Plugin compatibility for older versions
 
-Since Shopware 5.2, your plugin needs to whitelist an action in order to e.g. transfer files or show a page within a window or iframe. For Shopware versions prior to 5.2, the interface `CSRFWhitelistAware` isn't available and you'll receive an exception. In this case, you have to create a dummy interface which will only be loaded if the original one does not exist.
+Since Shopware 5.2, your plugin needs to whitelist an action in order to
+e.g. transfer files or show a page within a window or iframe. 
+For Shopware versions prior to 5.2, the interface `CSRFWhitelistAware` 
+isn't available and you'll receive an exception. In this case, you have to
+create a dummy interface which will only be loaded if the original one does
+not exist.
 
 #### 1. Create a new file `Components/CSRFWhitelistAware.php`
 
@@ -137,3 +142,63 @@ if (!interface_exists('\Shopware\Components\CSRFWhitelistAware')) {
 ```
 require_once __DIR__ . '/Components/CSRFWhitelistAware.php';
 ```
+
+The same approach is applicable if you have a plugin which relies on 
+the `CSRFGetProtectionAware` interface which was introduced in 5.2.22:
+
+## Protect GET requests via CSRF tokens
+
+Since Shopware 5.2.22 you are able to protect your AJAX JSONP requests via CSRF tokens. There are two main steps to enable CSRF support for your Shopware Plugin. 
+
+The first step is to implement the `CSRFGetProtectionAware` interface for the controller which contains the action you want to protect via CSRF. The interface requires a method called `getCSRFProtectedActions` which returns all actions that will be validated. Your controller should now look like this:
+
+```php
+<?php
+
+use Shopware\Components\CSRFGetProtectionAware;
+
+class Shopware_Controllers_Backend_MyPlugin extends Shopware_Controllers_Backend_ExtJs implements CSRFGetProtectionAware
+{
+    public function getProtectedActions()
+    {
+        return [
+            'saveConfidentialData'
+        ];
+    }
+}
+```
+
+The second step is to ensure that your AJAX request contains the flag appendCSRFToken and its set to true. An implementation could look like this:
+
+```js
+$.ajax({
+    url: '{url controller="MyPlugin" action="saveConfidentialData"}',
+  'appendCSRFToken': true,
+  'dataType': 'jsonp'
+});
+```
+ 
+ ### Plugin compatibility for older versions
+
+For Shopware versions prior to 5.2.22, the interface `CSRFGetProtectionAware` 
+isn't available and you'll receive an exception. In this case, you have to
+create a dummy interface which will only be loaded if the original one does
+not exist.
+ 
+ #### 1. Create a new file `Components/CSRFGetProtectionAware.php`
+ 
+ ```
+ <?php
+ 
+ namespace Shopware\Components;
+ 
+ if (!interface_exists('\Shopware\Components\CSRFGetProtectionAware')) {
+     interface CSRFGetProtectionAware {}
+ }
+ ```
+ 
+ #### 2. Require this file above your class definition in your `Bootstrap.php`
+ 
+ ```
+ require_once __DIR__ . '/Components/CSRFGetProtectionAware.php';
+ ```

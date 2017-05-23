@@ -73,6 +73,8 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
+<div class="alert alert-danger">Note: You will have to make sure that there is a space between the curly bracket and `name` due to the way Smarty is parsed. Smarty parses everything starting with a curly bracket and any character following, e.g: `{name:` is parsed as Smarty, so this means that Shopware interprets this as Smarty code and not ExtJS code!</div>
+
 ![Product listing](img/listing_0.png)
 
 #### Limit displayed fields

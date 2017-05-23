@@ -276,3 +276,84 @@ $result->get('criteria-2'); // ['SW10009' => ListProduct, 'SW10010' => ListProdu
 The batch search will return a `Shopware\Bundle\SearchBundle\BatchProductSearchResult` which contains the results for every request.
 
 <div class="alert alert-info"><b>Hint!</b> The batch product search is also available as batch product number search to only return found product numbers.</div>
+
+## Shopware 5.3 changes
+
+Shopware 5.3 implements a new interface to handle facets: `Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface`. Each facet handler had to revert the provided criteria by their own to remove customer conditions. This behaviour is now handled in the `Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch::createFacets`
+
+**Before**
+
+```
+/**
+ * @param FacetInterface $facet
+ * @param Criteria $criteria
+ * @param ShopContextInterface $context
+ * @return BooleanFacetResult
+ */
+public function generateFacet(
+    FacetInterface $facet,
+    Criteria $criteria,
+    ShopContextInterface $context
+) {
+    $reverted = clone $criteria;
+    $reverted->resetConditions();
+    $reverted->resetSorting();
+
+    $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+    //...
+}
+```
+
+**After**
+
+The new implementation gets a "reverted" criteria as parameter. This allows to switch between different filter modes.
+
+```
+public function generatePartialFacet(
+    FacetInterface $facet,
+    Criteria $reverted,
+    Criteria $criteria,
+    ShopContextInterface $context
+) {
+    $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+    //...
+```
+
+To support both 5.3 and older versions inside the same plugin version, the following check has to be added at the top of the facet handler class:
+
+```
+<?php
+
+namespace Shopware\Bundle\SearchBundleDBAL;
+
+if (!interface_exists('\Shopware\Bundle\SearchBundleDBAL\PartialFacetHandlerInterface')) {
+    interface PartialFacetHandlerInterface
+    {
+    }
+}
+
+class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterface
+{
+    public function generateFacet(
+        FacetInterface $facet,
+        Criteria $criteria,
+        Struct\ShopContextInterface $context
+    ) {
+        $reverted = clone $criteria;
+        $reverted->resetConditions();
+        $reverted->resetSorting();
+
+        return $this->generatePartialFacet($facet, $reverted, $criteria, $context);
+    }
+
+    public function generatePartialFacet(
+        FacetInterface $facet,
+        Criteria $reverted,
+        Criteria $criteria,
+        ShopContextInterface $context
+    ) {
+        $query = $this->queryBuilderFactory->createQuery($reverted, $context);
+        //...
+    }
+}
+```

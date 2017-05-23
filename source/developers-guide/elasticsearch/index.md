@@ -1908,3 +1908,76 @@ class SalesSortingHandler implements HandlerInterface
 
 Like the other handlers, the `SalesSortingHandler` handles a `CriteriaPart`, so it implements the `Shopware\Bundle\SearchBundleES\HandlerInterface`.
 To sort the search result, the `ONGR\ElasticsearchDSL\Sort\Sort` class can be added to the provided `ONGR\ElasticsearchDSL\Search`.
+
+## Shopware 5.3 changes
+A new filter behaviour was implemented with shopware 5.3, now filters are only displayed if they can be combined with the user conditions that are currently in effect.
+In the elastic search implementation the filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by other filters.
+This behavior is checked via the `Criteria->hasBaseCondition` statement:
+```
+public function handle(
+    CriteriaPartInterface $criteriaPart,
+    Criteria $criteria,
+    Search $search,
+    ShopContextInterface $context
+) {
+    if ($criteria->hasBaseCondition($criteriaPart->getName())) {
+        $search->addFilter(new TermQuery('active', 1));
+    } else {
+        $search->addPostFilter(new TermQuery('active', 1));
+    }
+}
+
+```
+This behavior is now controlled in the `\Shopware\Bundle\SearchBundleES\ProductNumberSearch`. To support the new filter mode, each condition handler has to implement the `\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface`.
+It is possible to implement this interface alongside the original `\Shopware\Bundle\SearchBundleES\HandlerInterface`.
+```
+namespace Shopware\Bundle\SearchBundleES;
+if (!interface_exists('\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface')) {
+    interface PartialConditionHandlerInterface { }
+}
+
+namespace Shopware\SwagBonusSystem\Bundle\SearchBundleES;
+
+class BonusConditionHandler implements HandlerInterface, PartialConditionHandlerInterface
+{
+    const ES_FIELD = 'attributes.bonus_system.has_bonus';
+
+    public function supports(CriteriaPartInterface $criteriaPart)
+    {
+        return ($criteriaPart instanceof BonusCondition);
+    }
+
+    public function handleFilter(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $search->addFilter(
+            new TermQuery(self::ES_FIELD, 1)
+        );
+    }
+
+    public function handlePostFilter(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $search->addPostFilter(new TermQuery(self::ES_FIELD, 1));
+    }
+
+    public function handle(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        if ($criteria->hasBaseCondition($criteriaPart->getName())) {
+            $this->handleFilter($criteriaPart, $criteria, $search, $context);
+        } else {
+            $this->handlePostFilter($criteriaPart, $criteria, $search, $context);
+        }
+    }
+}
+```

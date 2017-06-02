@@ -28,7 +28,7 @@ Below is information about all of the tags available inside Shopware.
 | [facet_handler_dbal](#facet_handler_dbal) | Add handler for a facet |
 | [shopware.captcha](#shopware.captcha) | Add a captcha mechanism |
 | [shopware_emotion.component_handler](#shopware_emotion.component_handler) | Process data for an emotion element |
-| [shopware.emotion.preset_data_synchronizer](#shopware.emotion.preset_data_synchronizer) | Process element data on import / export |
+| [shopware.emotion.preset_component_handler](#shopware.emotion.preset_component_handler) | Process element data on import / export |
 | [shopware.event_subscriber](#shopware.event_subscriber) | To subscribe to a set of different events/hooks in Shopware |
 | [shopware.event_listener](#shopware.event_listener) | Listen to different events/hooks in Shopware |
 | [shopware_elastic_search.data_indexer](#shopware_elastic_search.data_indexer)  | Add an Elasticsearch indexer |
@@ -251,7 +251,7 @@ The prepare step collects product numbers or criteria objects which will be reso
 
 For details on creating your own emotion component handler, read [Custom shopping world elements](/developers-guide/custom-shopping-world-elements/#process-the-element-data-before-output).
 
-## shopware.emotion.preset_data_synchronizer
+## shopware.emotion.preset_component_handler
 
 **Purpose**: Process element data on import / export
 

@@ -92,8 +92,8 @@ Orders can be identified using the following:
 
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
-| Article Id    | id        | s_articles.id          | /api/articles/2                          |
-| Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
+| Order Id      | id        | s_order.id             | /api/orders/2                            |
+| Order Number  | number    | s_order.number         | /api/orders/20003?useNumberAsId=true     |
 
 The data structure used is similar to the one returned in the `GET` request.
 

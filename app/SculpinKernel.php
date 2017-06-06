@@ -4,6 +4,7 @@ use Bcremer\Sculpin\Bundle\LessBundle\SculpinLessBundle;
 use Janbuecker\Sculpin\Bundle\MetaNavigationBundle\SculpinMetaNavigationBundle;
 use Mavimo\Sculpin\Bundle\RedirectBundle\SculpinRedirectBundle;
 use Sculpin\Bundle\SculpinBundle\HttpKernel\AbstractKernel;
+use Shopware\Devdocs\GitHistoryBundle\SculpinGitHistoryBundle;
 
 class SculpinKernel extends AbstractKernel
 {
@@ -13,7 +14,8 @@ class SculpinKernel extends AbstractKernel
             SculpinRedirectBundle::class,
             SculpinLessBundle::class,
             SculpinCommonMarkBundle::class,
-            SculpinMetaNavigationBundle::class
+            SculpinMetaNavigationBundle::class,
+            SculpinGitHistoryBundle::class
         ];
     }
 }

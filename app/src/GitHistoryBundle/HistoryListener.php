@@ -21,6 +21,13 @@ class HistoryListener implements EventSubscriberInterface
     private $permalinkFactory;
 
     /**
+     * @var array
+     */
+    private static $blacklist = [
+        'source/index.html'
+    ];
+
+    /**
      * @param string $projectDir
      * @param SourcePermalinkFactoryInterface $permalinkFactory
      */
@@ -135,11 +142,15 @@ class HistoryListener implements EventSubscriberInterface
             $changedFiles = array_filter(
                 explode(PHP_EOL, $getFilesProcess->getOutput()),
                 function ($file) {
-                    if (preg_match('#source/.*\.(md|html)#i', $file)) {
+                    if (preg_match('#source/.*\.(md|html)#i', $file) && !in_array($file, self::$blacklist, true)) {
                         return true;
                     }
                 }
             );
+
+            if (empty($changedFiles)) {
+                continue;
+            }
 
             $commitDateProcess = new Process(sprintf('git show --pretty=%%ct %s', $commit), $this->projectDir);
             $commitDateProcess->run();

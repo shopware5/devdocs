@@ -853,3 +853,53 @@ Attributes are loaded automatically with the entity they belong to. To display t
 
 
 Plugin Download: [SwagAttribute.zip](/exampleplugins/SwagAttribute.zip)
+
+### Attribute label translations
+
+With Shopware 5.3 it is possible to translate the different labels for an attribute (help, support, label) via snippets.
+For example, if you create a new attribute in table `s_articles_attributes` named `attr1`, you can specify three translations:
+
+| ExtJS field | Snippet name |
+|-------|--------------|
+| `label`        |  s_articles_attributes_attr1_label |
+| `support text` |  s_articles_attributes_attr1_supportText |
+| `help text`    |  s_articles_attributes_attr1_helpText |
+
+### Example: Translation for `s_article_attributes.my_column`
+```
+<?php
+
+namespace SwagAttribute;
+
+use Shopware\Bundle\AttributeBundle\Service\TypeMapping;
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\InstallContext;
+
+class SwagAttribute extends Plugin
+{
+    public function install(InstallContext $context)
+    {
+        $service = $this->container->get('shopware_attribute.crud_service');
+
+        $service->update('s_articles_attributes', 'my_column', TypeMapping::TYPE_STRING, [
+            'displayInBackend' => true,
+            'label' => 'My column default label',
+            'supportText' => 'My column default support text',
+            'helpText' => 'My column default help text'
+        ]);
+    }
+}
+```
+
+The snippets are stored in `SwagAttribute/Resources/snippets/backend/attribute_columns.ini`:
+```
+[en_GB]
+s_articles_attributes_my_column_label = "English label"
+s_articles_attributes_my_column_supportText = "English support text"
+s_articles_attributes_my_column_helpText = "English help text"
+
+[de_DE]
+s_articles_attributes_my_column_label = "Deutsches label"
+s_articles_attributes_my_column_supportText = "Deutscher support text"
+s_articles_attributes_my_column_helpText = "Deutscher help text"
+```

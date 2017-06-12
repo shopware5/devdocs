@@ -123,6 +123,17 @@ Redis can now be used as a cache provider for the backend and model caches. Here
     ],
 ```
 
+### Asynchronous JavaScript
+The concatenated main JavaScript file is now loaded asynchronously. This improves the first rendering of the page also known as page speed. If you are adding your files via the theme compiler you should not worry about a thing, because your script is loaded together with all other Shopware scripts.
+
+If there is a reason for you to implement your script in a different way, please be aware of possible race conditions that could occur. When you need some parts from the main script as a dependency (for example jQuery) there is a new callback method which you can use to wait for the main script to load.
+
+```javascript
+document.asyncReady(function() {
+    // do your magic here  
+});
+```
+
 ### Select field replacement
 
 The replacement of the select field elements via JavaScript is deprecated and will be removed in a future release. You can create a styled select field with a simple CSS-only solution by adding a wrapper element.

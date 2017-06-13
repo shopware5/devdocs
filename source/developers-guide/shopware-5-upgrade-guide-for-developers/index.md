@@ -51,7 +51,7 @@ https://gls-group.eu/DE/de/paketverfolgung?match={$offerPosition.trackingcode}
 
 ### Attribute label translations
 
-Translations for different fields (help, support, label) can be configured via snippets.
+Translations for different fields (help, support, label) may be configured via snippets.
 
 **Example: `s_articles_attributes.attr1`**
 
@@ -64,7 +64,7 @@ Translations for different fields (help, support, label) can be configured via s
 
 ### Backend Components
 
-You can now define the expression for the comparison in SQL. For example `>=` cab defined like seen below:
+You may now define the expression for the comparison in SQL. For example `>=` can be defined like seen below:
 
 ```javascript
 Ext.define('Shopware.apps.Vote.view.list.extensions.Filter', {
@@ -99,7 +99,7 @@ Captchas are now configurable via backend and can be added using the `shopware.c
 For more information, please refer to our [Captcha Documentation](https://developers.shopware.com/developers-guide/implementing-your-own-captcha/).
 
 ### Redis backend and doctrine cache
-Redis can now be used as a cache provider for the backend and model caches. Here is an example:
+Redis may now be used as a cache provider for the backend and model caches. Here is an example:
 
 ```
     'model' => [
@@ -124,7 +124,7 @@ Redis can now be used as a cache provider for the backend and model caches. Here
 ```
 
 ### Asynchronous JavaScript
-The concatenated main JavaScript file is now loaded asynchronously. This improves the first rendering of the page also known as page speed. If you are adding your files via the theme compiler you should not worry about a thing, because your script is loaded together with all other Shopware scripts.
+The concatenated main JavaScript file is now loaded asynchronously. This improves the first rendering of the page also known as page speed. If you are adding your files via the theme compiler you should not worry about a thing. Your script is loaded together with all other Shopware scripts.
 
 If there is a reason for you to implement your script in a different way, please be aware of possible race conditions that could occur. When you need some parts from the main script as a dependency (for example jQuery) there is a new callback method which you can use to wait for the main script to load.
 
@@ -136,7 +136,7 @@ document.asyncReady(function() {
 
 ### Select field replacement
 
-The replacement of the select field elements via JavaScript is deprecated and will be removed in a future release. You can create a styled select field with a simple CSS-only solution by adding a wrapper element.
+The replacement of the select field elements via JavaScript is deprecated and will be removed in a future release. You may create a styled select field with a simple CSS-only solution by adding a wrapper element.
 
 ```
 <div class="select-field">

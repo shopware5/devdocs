@@ -23,6 +23,18 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 The minimum PHP version still is **PHP 5.6.4 or higher**.
 
+### Internet Explorer 10 support
+
+Version 5.3 does not support IE10 anymore.
+
+### New basket signature
+
+Improvements in basket on security and query manipulation as described in [5.3 signature](developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
+
+### Product votes
+
+Added opportunity to display product votes only in sub shop where they posted. This behavior can be configured over the backend configuration module.
+
 ### Smarty Rendering
 
 #### Form module in the backend
@@ -296,7 +308,12 @@ We implement a basic cookie permission hint ***(see migration 910)***. If you wa
 ### Shopping worlds
 
 Shopping worlds have been technically refactored from the ground up to improve the overall performance when adding several elements to a shopping world. It is now possible to export and import shopping worlds via the backend.
-You can also convert shopping worlds to presets for reusability of configured shopping worlds. Please look at the Developer Docs article for further information.
+You can also convert shopping worlds to presets for reusability of configured shopping worlds. Please look at the "[Create custom emotion preset plugin](/developers-guide/emotion-preset-plugin/)" article for further information.
+
+#### Removed escaped_fragments
+
+In previous versions it was possible to request shopping worlds with parameter ```?_escaped_fragment_=1```. This provided direct loading of shopping worlds instead of ajax loading. This
+parameter does not work anymore.
 
 #### ComponentHandler
 
@@ -356,6 +373,18 @@ Keep in mind to use a unique key for requesting and getting products. For best p
 
 ### Grunt LiveReload mode & Modularized Grunt tasks
 We worked on our Grunt integration and added two new features. The first one is a LiveReload mode which speeds up your theme development. The next big step forward is modularizing our Grunt tasks into separate files. Learn more on how to use these new features in our article on ["Using Grunt for theme development"](/designers-guide/best-practice-theme-development/).
+
+#### Import & Export of shopping worlds
+It is now possible to import and export shopping worlds. To realize export of media for your own custom shopping world element, you can register custom handlers.
+How to create such a handler is described in "[Adding a custom component handler for export](/developers-guide/custom-shopping-world-elements/#adding-a-custom-component-handler-for-export)" article.
+
+### Import / export module
+The core import & export module got removed. It is replaced by the free [SwagImportExport](http://store.shopware.com/swagef36a3f0ee25/shopware-import/export.html) plugin which is is available in our community store. Installation
+is also integrated via the backend.
+
+### New table for saving user settings
+
+A new table ```s_core_auth_config``` is added for storing MediaManager settings of an individual user. This table can also be used by third party plugins for storing other user related module configurations.
 
 ### Library updates
 
@@ -437,6 +466,12 @@ The follwing methods have been removed:
 * Field `attributes.search.cheapest_price` from DBAL search query
 * Field `attributes.search.average` from DBAL search query
 * `__country_shippingfree` field in `Shopware\Bundle\StoreFrontBundle\Gateway\DBAL\FieldHelper::getCountryFields`
+
+#### Database tables
+* `s_core_auth_config`
+    * `user_id`
+    * `name`
+    * `config`    
 
 #### Database columns
 * `s_emarketing_lastarticles`

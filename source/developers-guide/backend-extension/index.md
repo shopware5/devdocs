@@ -95,8 +95,8 @@ Ext.define('Shopware.apps.Customer', {
 //{/block}
 ```
 
-This `app.js` is basically a definition of dependencies, as you can see in the `view`, `controllers`, `stores` and `models`
-array.  The `app.js` is then executed by the JavaScript framework and will lazy load the dependencies.
+This `app.js` is basically a definition of dependencies, as you can see in the `views`, `controllers`, `stores` and `models`
+arrays.  The `app.js` is then executed by the JavaScript framework and will lazy load the dependencies.
 
 ### Loading dependencies
 This is done by performing another Ajax request to the configured controller. As Shopware uses some minification here, usually

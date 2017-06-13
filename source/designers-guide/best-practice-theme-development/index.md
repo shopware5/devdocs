@@ -86,9 +86,61 @@ npm install
 ### Start file watch
 We have installed everything that we need to start working with Grunt. The default task will call the LESS compiler, concatenate all necessary files together and start watching your files. The `watch` command will track changes in your files as you save them and automatically process them.
 
+<div class="alert alert-warning"><strong>Note:</strong> When you use Grunt task, it's recommended to uncheck *Disable compiler cache* in your theme settings.
+</div>
+
 ```bash
 grunt
 grunt --shopId 1 # optionally specify shopId
 ```
 
 ![Grunt Screenshot](grunt-screenshot.png)
+
+## Additional and troubleshooting
+
+### Template inheritance
+
+To make sure your theme variables / settings don't get overwritten by theme settings through the backend, set the ```$inhertianceConfig``` flag in your theme.php
+
+```php
+protected $inheritanceConfig = false;
+```
+
+### less variable overwrite / inheritance
+
+The default grunt task does not behave like the build in php-less compiler. [(see SW-15963)](https://issues.shopware.com/issues/SW-15963)
+To work around this: overwrite your grunt file with [this unsupported grunt-file](https://gist.github.com/Phil23/77b9438741e4325899adcc5ccfe77930)
+
+### Theme settings
+
+To make sure the build in php-less compiler do not compile your files keep following theme settings:
+
+![Grunt Theme Settings](grunt-theme-settings.png)
+
+### Troubleshooting
+
+**Theme config changes**
+
+Theme-Config changes needs a recompile of the theme_configuration. To perform this properly, stop the Grunt task, [dump the config](#dump-theme-configuration) and restart the Grunt task.
+
+**The grunt watcher compiles but my changes are missing**
+
+* Clear your browser cache / use dev-toolbar with "do not cache"
+
+**The grunt task compiles, but the php-compiler takes over on every request**
+
+Sometimes things get stucked and the Grunt setup needs a fresh start:
+
+* Stop the Grunt task if running
+* Switch to /web/cache
+* Are there more than one \*.css and \*.js ?
+  * Delete all files in /web/cache beside .gitkeep
+  * [Clear the cache](#clearing-caches)
+  * Make sure your [Theme settings](#theme-settings) match
+  * Restart the grunt-task
+
+**I'm not sure if grunt or php compile my files**
+
+* Pageloads 15 seconds and above are a hin that the php-compiler is responsible
+* The Grunt task compiles the css sourcemap *inside* the \*.css the php-compiler generate a \*.map file
+* Compile with Grunt, generate a hash for e.g. web/cache/\*.css , reload the page, generate a file hash again, compare both hashes - if they don't match the php-compiler

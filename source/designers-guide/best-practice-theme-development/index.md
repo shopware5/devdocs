@@ -92,3 +92,57 @@ grunt --shopId 1 # optionally specify shopId
 ```
 
 ![Grunt Screenshot](grunt-screenshot.png)
+
+## New in Shopware 5.3 - LiveReload & modularized grunt tasks
+
+In Shopware 5.3 we added a couple of new features to our Grunt integration. First of all we've added a LiveReload mode which automatically reloads your browser when the Grunt compilation is successful which should speed up your workflow quite a bit.
+We changed the structure of our Grunt tasks too. We're now auto-loading the grunt plugins and it's now possible to add your own configurations & tasks without changing our core files.
+
+### LiveReload mode
+
+The Grunt `watch` command now supports live reloading of your browser. Here's how you can use the feature:
+
+#### Requirements
+
+Please install the Chrome Add-On called ["LiveReload"](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei). It will provide you with a simple button in your browser chrome, we need it later on.
+
+#### How to use it
+
+1. Start up Grunt as usual using the command `grunt` in your "themes" directory.
+2. When the process is done you'll see the message "Waiting for changes..." popping up in your terminal.
+3. Now press the LiveReload button in your browser chrome and start working and changing your LESS styles for example.
+4. After you save your changes, the LiveReload plugin automatically requests the compiled file and injects it into your shop.
+
+### Modularized Grunt tasks
+The next big improve are the modularized Grunt tasks. We're using auto-loading for Grunt plugins and a JIT (Just in Time) plugin loader which allows us to separate the different tasks and configurations into separate files. 
+
+![Grunt Screenshot](grunt-modularized.png)
+
+The advantage of this approach is that you as a third party developer are able to register your own tasks and add new plugins like a FTP deployment for example without changing the core `Gruntfile.js`.
+
+
+#### Adding your own tasks
+Adding a new task is easy now. You just have to install the Grunt plugin you want using `npm / yarn` and create a new configuration for the tasks in the `grunt-tasks/config` directory. Please keep in mind the file has to be named along the task name. For example if you're installing the plugin [`grunt-contrib-clean`](https://github.com/gruntjs/grunt-contrib-clean) you create a new file `clean.js` in the `config` folder.
+
+Inside the file you're exporting the configuration of the plugin. To stick to our example the configuration would look like this:
+
+```
+module.exports = {
+    build: {
+        src: ['path/to/dir/one', 'path/to/dir/two']
+    }
+};
+```
+
+Now it's possible to run the task using:
+```
+grunt clean:build
+```
+
+Usually you want to run multiple tasks at the same time like clearing cache folders, compiling your LESS code, compressing your JavaScript and start watching your working directories for further changes. To do so, you just have to create your own task. Head over to the `grunt-config/tasks` and create a new JavaScript file with the name of the task you want. In our example we name the file `debug.js`. The content of the file can look like this:
+
+```
+module.exports = (grunt) => {
+    grunt.registerTask('debug', [ 'clean:build', 'less:development', 'uglify:development', 'chokidar' ]);
+};
+```

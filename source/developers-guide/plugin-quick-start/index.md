@@ -357,7 +357,7 @@ If you want to read more about plugin configuration start reading [Plugin config
 
 So far we have set up the bootstrap - but where does the actual template extension come from?
 
-We already registered the `View` directory and can now create the template in the `Views/frontend/index/index.tpl` template. This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
+We already registered the `Views` directory and can now create the template in the `Views/frontend/index/index.tpl` template. This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
 
 Now our plugin's `index.tpl` might look like this:
 

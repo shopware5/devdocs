@@ -354,6 +354,9 @@ public function handle(ResolvedDataCollection $collection, Element $element, Sho
 
 Keep in mind to use a unique key for requesting and getting products. For best practise, use the element's id in your key (`$element->getId()`).
 
+### Grunt LiveReload mode & Modularized Grunt tasks
+We worked on our Grunt integration and added two new features. The first one is a LiveReload mode which speeds up your theme development. The next big step forward is modularizing our Grunt tasks into separate files. Learn more on how to use these new features in our article on ["Using Grunt for theme development"](/designers-guide/best-practice-theme-development/).
+
 ### Library updates
 
 * Updated `FPDF` to 1.8.1

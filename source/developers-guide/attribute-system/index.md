@@ -903,3 +903,99 @@ s_articles_attributes_my_column_label = "Deutsches label"
 s_articles_attributes_my_column_supportText = "Deutscher support text"
 s_articles_attributes_my_column_helpText = "Deutscher help text"
 ```
+
+## Product slider based on attributes
+__As of Shopware 5.3__ it is easily possible to create product slider with the help of attributes and the listing widgets:
+* `Shopware/Controllers/Widgets/Listing.php` - `streamSliderAction`
+* `Shopware/Controllers/Widgets/Listing.php` - `productSliderAction`
+
+These can be used to create individual product slider. For example individual product slider for customers which will be shown in their account section. Here are two screenshots which illustrate that scenario:
+
+<img src="img/customer.jpg" alt="customer details" class="image-border" width="800px" />
+
+Choose a product stream and some variants for the customer with the help of attribute fields.
+
+<img src="img/account.jpg" alt="customer account" class="image-border" width="800px" />
+
+Use these information to create recommendations in the customers account section.  
+The following example plugin demonstrates how this works.
+### Bootstrap
+`SwagAttributeSlider/SwagAttributeSlider.php`:
+```
+<?php
+
+namespace SwagAttributeSlider;
+
+use Shopware\Bundle\AttributeBundle\Service\CrudService;
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\InstallContext;
+
+class SwagAttributeSlider extends Plugin
+{
+    /**
+     * @param InstallContext $context
+     */
+    public function install(InstallContext $context)
+    {
+        /** @var CrudService $crud */
+        $crud = $this->container->get('shopware_attribute.crud_service');
+
+        $crud->update('s_user_attributes', 'recommendedVariants', 'multi_selection', [
+            'displayInBackend' => true,
+            'label' => 'Recommended variants',
+            'entity' => 'Shopware\Models\Article\Detail',
+        ]);
+        $crud->update('s_user_attributes', 'recommendedStream', 'single_selection', [
+            'displayInBackend' => true,
+            'label' => 'Recommended stream',
+            'entity' => 'Shopware\Models\ProductStream\ProductStream',
+        ]);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatch_Frontend_Account' => 'onPostDispatchAccount',
+        ];
+    }
+
+    /**
+     * @param \Enlight_Event_EventArgs $args
+     */
+    public function onPostDispatchAccount(\Enlight_Event_EventArgs $args)
+    {
+        /** @var $controller \Shopware_Controllers_Frontend_Account */
+        $controller = $args->get('subject');
+        $controller->View()->addTemplateDir($this->getPath() . '/Resources/views');
+    }
+}
+```
+Create new attributes in the `s_user_attributes` table:
+* `single_selection` column is mapped to the `Shopware\Models\ProductStream\ProductStream` entity for the product stream slider
+* `multi_selection` column is mapped to the `Shopware\Models\Article\Detail` entity for product variant slider
+
+Subscribe to the `Enlight_Controller_Action_PostDispatch_Frontend_Account` event to register your template.
+### Template extension
+`SwagAttributeSlider/Resources/views/frontend/account/index.tpl`
+```
+{extends file="parent:frontend/account/index.tpl"}
+{block name="frontend_account_index_welcome"}
+	{$smarty.block.parent}
+
+	{$data = $sUserData.additional.user}
+
+	<h2>Recommended variants for you</h2>
+
+	{action module=widgets controller=listing action=productSlider numbers=$data.recommendedvariants}
+
+	<h2>Recommended stream</h2>
+
+	{action module=widgets controller=listing action=streamSlider streamId=$data.recommendedstream}
+
+{/block}
+```
+Within the template file the widgets actions are called with the given customer attribute data. 
+Thats it. Now choose individual products or streams which will be shown to the customer.
+
+### Download plugin
+The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagAttributeSlider.zip">here</a>.

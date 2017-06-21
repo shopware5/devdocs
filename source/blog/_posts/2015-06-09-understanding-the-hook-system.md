@@ -57,7 +57,7 @@ extensibility come in?
 The proxies can be found in `cache/production____YOUR_REVISION___/proxies`. When you subscribe to a hook using
 
 ```php
-$this->subscribeEvent('sArticles::sGetArticleById::before', 'myCallback);
+$this->subscribeEvent('sArticles::sGetArticleById::before', 'myCallback');
 ```
 
 in your plugin's bootstrap, Shopware will regenerate those proxies and create a file like this:

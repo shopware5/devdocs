@@ -285,7 +285,7 @@ The default breakpoints can be extended using the ```registerBreakpoint()``` met
 ```javascript
 StateManager.registerBreakpoint({
     state: 'xxl',
-    enter: 78.75  // = 1260px
+    enter: 78.75,  // = 1260px
     exit: 90      // = 1440px
 });
 ```

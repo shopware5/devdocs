@@ -93,7 +93,7 @@ The difference between `throwExceptions` and `showExceptions` is how an exceptio
 
 The option `showException` keeps the Shopware error handler enabled, catches the PHP exception and prints the message instead of showing the generic "Oops! An error has occurred!" message.
 
-In contrast, the option `throwExceptions` skips the Shopware error handler and outputs the pure PHP exception. This is important to understand, because some errors need to be catched by the Shopware error handler for self-healing processes e.g. CSRF Token invalidation.
+In contrast, the option `throwExceptions` skips the Shopware error handler and outputs the pure PHP exception. This is important to understand, because some errors need to be caught by the Shopware error handler for self-healing processes e.g. CSRF Token invalidation.
 
 ### Template
 

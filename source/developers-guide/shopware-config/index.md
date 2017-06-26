@@ -107,6 +107,16 @@ In contrast, the option `throwExceptions` skips the Shopware error handler and o
 
 This option controls the smarty template caching. Normally you have to clear your cache after every change on the template, but if you set `forceCompile` to `true` your template will be compiled on every reload. This should be an essential option for every developer. Keep in mind that it does have a great impact on loading times and should never be used in production.
 
+### Template security
+
+```
+    'template_security' => [
+        'php_modifiers' => ['shell_exec', 'strpos'],
+        'php_functions' => ['shell_exec', 'strpos'],
+    ],
+```
+This option is available since version 5.2.26 and controls the smarty security configuration. Normally shopware has a whitelist of allowed php modifiers and functions for smarty template, but if you need additional php function in your template, you can extend the whitelist by this configuration.
+
 ### Cache
 
 ```

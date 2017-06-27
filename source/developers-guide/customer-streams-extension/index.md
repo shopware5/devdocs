@@ -9,11 +9,52 @@ menu_title: Customer - Search & Streams
 menu_order: 500
 ---
 
-This article describes how to extend the customer stream and customer search module in shopware. In most cases, the purpose of a plugin is to provide more conditions or to add data to the search. You find simple examples which describe how this is archived below.
+This article explains how Customer Streams work and how to extend the
+customer stream and customer search module in Shopware. In most cases,
+the purpose of a plugin is to provide more conditions or add additional data to
+the search. The examples below describe how to achieve this.
+
+Shopware 5.3 introduced a new feature called Customer Streams.
+Customer Streams are similar to Product Streams and
+allow you to create a subgroup of customers by using a combination of over 20
+default filters (more can be added with plugins).
+Customer Streams can be used for:
+ 
+* Newsletters: Define the newsletter recipients
+* Shopping worlds: Only display shopping worlds if the user is part of the
+specified Customer Stream
+* Vouchers
+* Exports
+* Advanced Promotions Suite
+
+## Introduction
+In order to create a new Customer Stream, all customers need to be analysed
+before. This process is required to ensure high performance.
+During the analysis, all data which is required for the filters is collected and 
+saved into the `s_customer_search_index` database table.
+
+If you create a new Customer Stream based on some filters, the module will
+check which of the previously analysed customers match these filters and adds
+them to your Customer Stream.
+
+The mapping between customers and Customer Streams is saved
+in the `s_customer_streams_mapping` table. The stream definition
+(e.g. name, filters) is saved in the database table `s_customer_streams`.
+To improve the performance even further, only new customers are analysed.
+
+While the process described above is very efficient, you have to keep in mind,
+that the customer related data can change (e.g. an order gets canceled).
+All theses changes are not reflected immediately since all the Customer Stream
+data is basically cached. Therefore you can not rely on a Customer Stream if you
+need to be sure that the data is still up to date.
+
 
 ## Add own condition
 
-Since the customer search is based on the same functions as the product search, the way of extending the search is pretty similar. The customer search is given a criteria object in which the different search conditions are summarized. The first step is to define your own condition:
+Since the customer search is based on the same functions as the product search,
+the way of extending the search is pretty similar. The customer search gets a 
+criteria object in which the different search conditions are summarized.
+The first step is to define your own condition:
 
 ```
 <?php
@@ -49,7 +90,12 @@ class ActiveCondition implements ConditionInterface
 }
 ```
 
-The condition above only describes on an abstract level what is to be searched for. The actual processing of the condition happens in the corresponding implementation of the search. Currently the customer search in Shopware is only executed in SQL. The concept is based on SearchBundleDBAL and SearchBundleES. An actual handler class which handles this condition in SQL could look like this:
+The condition above only describes on an abstract level
+what is to be searched for. The actual processing of the condition happens
+in the corresponding implementation of the search. Currently the customer search
+in Shopware is only executed in SQL. The concept is based on SearchBundleDBAL
+and SearchBundleES. An actual handler class which handles this condition
+in SQL could look like this:
 
 ```
 <?php
@@ -78,7 +124,8 @@ class ActiveConditionHandler implements ConditionHandlerInterface
 }
 ```
 
-The handler can be registered with a compiler tag, named `customer_search.condition_handler`:
+The handler can be registered with a compiler tag,
+named `customer_search.condition_handler`:
 
 ```
 <?xml version="1.0" ?>
@@ -100,7 +147,9 @@ The handler can be registered with a compiler tag, named `customer_search.condit
 
 ## Backend Module extension
 
-To support the condition in the backend, it is necessary to extend the customer module via ExtJS. The module can be extended over the PostDispatch event of the backend customer controller:
+To support the condition in the backend, it is necessary to extend the
+customer module via ExtJS. The module can be extended over the
+PostDispatch event of the backend customer controller:
 
 ```
 <?php
@@ -130,7 +179,8 @@ class SwagCustomerSearchExtension extends Plugin
 }
 ```
 
-The extended `swag_customer_stream_extension.js` contains all overrides for the backend module:
+The extended `swag_customer_stream_extension.js` contains all overrides for the
+backend module:
 
 ```
 // {block name="backend/customer/view/customer_stream/condition_panel"}
@@ -191,7 +241,9 @@ Ext.define('Shopware.apps.Customer.swag_customer_stream_extension.ActiveConditio
 // {/block}
 ```
 
-The first part hooks into the customer stream condition panel and registers the plugin condition. The second part contains the whole logic to handle the condition for load and create actions. 
+The first part hooks into the customer stream condition panel and registers the
+plugin condition. The second part contains the whole logic to handle the condition
+for load and create actions. 
 
 The create and load function have to return an object with the following data:
 
@@ -201,7 +253,11 @@ The create and load function have to return an object with the following data:
 
 ## Search Indexing
 
-The `CustomerSearchBundleDBAL` uses an aggregated table which allows fast filtering and sorting, even on large data sets. This table is generated by the `Shopware\Bundle\CustomerSearchBundleDBAL\Indexing\SearchIndexer` class.  If a plugin wants to filter and sort additional aggregated data, it can hook into the indexing process to collect additional data.
+The `CustomerSearchBundleDBAL` uses an aggregated table which allows fast filtering
+and sorting, even on large data sets. This table is generated by
+the `Shopware\Bundle\CustomerSearchBundleDBAL\Indexing\SearchIndexer` class. 
+If a plugin wants to filter and sort additional aggregated data, it can hook into
+the indexing process to collect additional data.
 The following `services.xml` shows how to decorate the `customer_search.dbal.indexing.indexer`.
 
 ```
@@ -223,7 +279,8 @@ The following `services.xml` shows how to decorate the `customer_search.dbal.ind
 </container>
 ```
 
-Shopware expects that a class is found under this service name, which implements the interface `SearchIndexerInterface`:
+Shopware expects that a class is found under this service name, which
+implements the interface `SearchIndexerInterface`:
 
 ```
 <?php
@@ -284,5 +341,14 @@ class SearchIndexer implements SearchIndexerInterface
 }
 ```
 
-The best way to index additional data is to aggregate the data beforehand and save it into a separate table, which is in a 1:1 relation to the original search_index table. The condition handler can access these indexed data quickly to allow a fluent expierence.
-You download the example plugin above <a href="{{ site.url }}/exampleplugins/SwagCustomerSearchExtension.zip">here</a>.
+The best way to index additional data is to aggregate the data beforehand
+and save it into a separate table, which is in a 1:1 relation to the
+original search_index table. The condition handler can access these
+indexed data quickly to allow a fluent experience.
+You download the example plugin above
+<a href="{{ site.url }}/exampleplugins/SwagCustomerSearchExtension.zip">here</a>.
+
+
+## REST API
+We also offer a complete REST API for Customer Streams.
+For a detailed documentation click **[here](developers-guide/rest-api/customer-streams/)**.

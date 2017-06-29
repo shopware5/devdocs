@@ -91,6 +91,7 @@ Appended to the above mentioned list, you will also find the following data:
 | Field                    | Type                  | Comment                                              |
 |--------------------------|-----------------------|------------------------------------------------------|
 | id                       | integer (primary key) | If null, a new entity will be created                |
+| customer (required)      | integer (foreign key) |
 | company                  | string                |                                                      |
 | department               | string                |                                                      |
 | salutation (required)    | string                |                                                      |

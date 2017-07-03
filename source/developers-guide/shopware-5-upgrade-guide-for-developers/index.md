@@ -19,27 +19,6 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ## Shopware 5.3 RC 2
 
-### Smarty security mode
-We have activated the Smarty security mode globally with 5.3:
-[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56)
-
-This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
-[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php)
-
-This can be extended via the config.php as follows:
-```
-<?php
-return [
-    'db' => [
-        //....
-    ],
-    'template_security' => [
-        'php_modifiers' => ['dirname'],
-        'php_functions' => ['dirname', 'shell_exec'],
-    ]
-];
-```
-
 ### Additions
 
 * Added `selecttree` and `combotree` config elements for plugins
@@ -79,6 +58,65 @@ return [
 #### Template engine 
 
 * Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
+
+### Smarty security mode
+We have activated the Smarty security mode globally with 5.3:
+[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56)
+
+This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
+[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php)
+
+This can be extended via the config.php as follows:
+```
+<?php
+return [
+    'db' => [
+        //....
+    ],
+    'template_security' => [
+        'php_modifiers' => ['dirname'],
+        'php_functions' => ['dirname', 'shell_exec'],
+    ]
+];
+```
+
+#### Disable template loading
+To disable the automatic template loading, the loadTemplate function was often used without parameters. 
+This does not work with version 5.3 anymore. To disable the automatic loading of templates, only the setNoRender function can be used:
+```
+<?php
+
+class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+        //wrong way: exception with shopware 5.3
+        $this->View()->loadTemplate('');
+
+        //right way: no template loaded
+        $this->container->get('front')->Plugins()->ViewRenderer()->setNoRender();
+    }
+}
+```
+
+#### Load templates from non-registered directories
+In security mode, it is only possible to load templates from registered directories
+```
+<?php
+
+class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+        //wrong way: exception with shopware 5.3
+        $this->View()->loadTemplate(__DIR__ . '/../Views/frontend/test.tpl');
+
+        //right way
+        $this->View()->addTemplateDir(__DIR__ . '/../Views/')
+        $this->View()->loadTemplate('frontend/test.tpl');
+    }
+}
+```
 
 
 ## Shopware 5.3 RC 1

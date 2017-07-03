@@ -21,10 +21,10 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ### Smarty security mode
 We have activated the Smarty security mode globally with 5.3:
-https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56
+[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56)
 
 This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
-https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php
+[https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/4990222630e03044550e34d27d5b3cdd7d74dbb1/engine/Shopware/Configs/smarty_functions.php)
 
 This can be extended via the config.php as follows:
 ```
@@ -40,8 +40,48 @@ return [
 ];
 ```
 
+### Additions
 
-## Shopware 5.3
+* Added `selecttree` and `combotree` config elements for plugins
+* Added backend configuration option for the newsletter to configure if a captcha is required to subscribe to the newsletter
+* Added two new Smarty blocks for menu and menu item overwrite possibility to the account sidebar
+* Added LiveReload mode for the default grunt which reloads your browser window automatically after the grunt compilation was successful
+* Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
+* Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
+* Added new search builder class `Shopware\Components\Model\SearchBuilder`
+* Added new search builder as __construct parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
+* Added new `FunctionNode` for IF-ELSE statements in ORM query builder
+* Added `/address` to robots.txt 
+* Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
+* Added `Shopware\Components\Template\Security` class for all requests.
+* Added whitelist for allowed php functions and php modifiers in smarty
+    * `template_security.php_modifiers`
+    * `template_security.php_functions`
+
+### Changes
+
+* Changed return values so the array keys are now the respective country/state IDs in `\Shopware\Bundle\StoreFrontBundle\Service\Core\LocationService::getCountries`
+* Moved the removal of the whole cache folder after the removal of the `.js` and `.css` files for better handling of huge caches in the `clear_cache.sh` script
+* Changed `Shopware_Controllers_Widgets_Listing::streamSliderAction` to `Shopware_Controllers_Widgets_Listing::streamAction`
+* Changed `Shopware_Controllers_Widgets_Listing::productSliderAction` to `Shopware_Controllers_Widgets_Listing::productsAction`
+* Changed snippet `DetailBuyActionAdd` in `snippets/frontend/detail/buy.ini`, it now contains <span> tags
+* Changed snippet `ListingBuyActionAdd` in `snippets/frontend/listing/box_article.ini`, it now contains another <span> tag
+* Merged `account/sidebar.tpl` and `account/sidebar_personal.tpl`
+* Moved snippets from `account/sidebar_personal.ini` to `account/sidebar.ini`
+* Changed `Enlight_Hook_ProxyFactory` to use [ocramius/proxy-manager](https://github.com/Ocramius/ProxyManager) for generating proxy classes
+
+### Removals
+
+#### Events
+
+* Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
+
+#### Template engine 
+
+* Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
+
+
+## Shopware 5.3 RC 1
 
 ### System requirements changes
 

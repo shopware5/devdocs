@@ -17,6 +17,30 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.3 RC 2
+
+### Smarty security mode
+We have activated the Smarty security mode globally with 5.3:
+https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L56
+
+This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
+https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php
+
+This can be extended via the config.php as follows:
+```
+<?php
+return [
+    'db' => [
+        //....
+    ],
+    'template_security' => [
+        'php_modifiers' => ['dirname'],
+        'php_functions' => ['dirname', 'shell_exec'],
+    ]
+];
+```
+
+
 ## Shopware 5.3
 
 ### System requirements changes

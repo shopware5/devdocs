@@ -115,7 +115,7 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
         // Register the template directory to not have to provide it
         // in the controller every time
         $this->Application()->Template()->addTemplateDir(
-            $this->Path() . 'Views/'
+            $this->Path() . '/Views/'
         );
 
         // Register the models to have access to them in the controller

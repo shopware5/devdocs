@@ -24,7 +24,13 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 ### SSL Encryption
 
 The mixed SSL encryption mode in the shop configuration has been deprecated in 5.3 in favour of a stronger 
-security policy. As of 5.4, the SSL encryption can only be enabled or disabled globally.
+security policy.
+
+As of 5.4, the SSL encryption can only be enabled or disabled globally. Shops using the mixed SSL encryption
+setting will automatically be upgraded to full SSL encryption. We advise you to enable the full SSL encryption
+for your shops as soon as possible to prevent negative future side-effects.
+
+To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
 
 </div>
 

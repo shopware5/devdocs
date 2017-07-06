@@ -19,6 +19,80 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ## Shopware 5.3 RC 2
 
+<div class="alert alert-info">
+
+### SSL Encryption
+
+The mixed SSL encryption mode in the shop configuration has been deprecated in 5.3 in favour of a stronger 
+security policy. As of 5.4, the SSL encryption can only be enabled or disabled globally.
+
+</div>
+
+### Smarty security mode
+
+We have activated the Smarty security mode globally with 5.3:
+[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
+
+This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
+[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php)
+
+This can be extended via the config.php as follows:
+
+```
+<?php
+return [
+    'db' => [
+        //....
+    ],
+    'template_security' => [
+        'php_modifiers' => ['dirname'],
+        'php_functions' => ['dirname', 'shell_exec'],
+    ]
+];
+```
+
+#### Disable template loading
+
+To disable the automatic template loading, the loadTemplate function was often used without parameters. 
+This does not work with version 5.3 anymore. To disable the automatic loading of templates, only the setNoRender function can be used:
+
+```
+<?php
+
+class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+        //wrong way: exception with shopware 5.3
+        $this->View()->loadTemplate('');
+
+        //right way: no template loaded
+        $this->container->get('front')->Plugins()->ViewRenderer()->setNoRender();
+    }
+}
+```
+
+#### Load templates from non-registered directories
+
+In security mode, it is only possible to load templates from registered directories
+
+```
+<?php
+
+class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+        //wrong way: exception with shopware 5.3
+        $this->View()->loadTemplate(__DIR__ . '/../Views/frontend/test.tpl');
+
+        //right way
+        $this->View()->addTemplateDir(__DIR__ . '/../Views/')
+        $this->View()->loadTemplate('frontend/test.tpl');
+    }
+}
+```
+
 ### Additions
 
 * Added `selecttree` and `combotree` config elements for plugins
@@ -28,7 +102,7 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 * Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
 * Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
 * Added new search builder class `Shopware\Components\Model\SearchBuilder`
-* Added new search builder as __construct parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
+* Added new search builder as `__construct` parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
 * Added new `FunctionNode` for IF-ELSE statements in ORM query builder
 * Added `/address` to robots.txt 
 * Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
@@ -51,73 +125,8 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ### Removals
 
-#### Events
-
 * Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
-
-#### Template engine 
-
 * Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
-
-### Smarty security mode
-We have activated the Smarty security mode globally with 5.3:
-[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
-
-This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
-[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php)
-
-This can be extended via the config.php as follows:
-```
-<?php
-return [
-    'db' => [
-        //....
-    ],
-    'template_security' => [
-        'php_modifiers' => ['dirname'],
-        'php_functions' => ['dirname', 'shell_exec'],
-    ]
-];
-```
-
-#### Disable template loading
-To disable the automatic template loading, the loadTemplate function was often used without parameters. 
-This does not work with version 5.3 anymore. To disable the automatic loading of templates, only the setNoRender function can be used:
-```
-<?php
-
-class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
-{
-    public function indexAction()
-    {
-        //wrong way: exception with shopware 5.3
-        $this->View()->loadTemplate('');
-
-        //right way: no template loaded
-        $this->container->get('front')->Plugins()->ViewRenderer()->setNoRender();
-    }
-}
-```
-
-#### Load templates from non-registered directories
-In security mode, it is only possible to load templates from registered directories
-```
-<?php
-
-class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
-{
-    public function indexAction()
-    {
-        //wrong way: exception with shopware 5.3
-        $this->View()->loadTemplate(__DIR__ . '/../Views/frontend/test.tpl');
-
-        //right way
-        $this->View()->addTemplateDir(__DIR__ . '/../Views/')
-        $this->View()->loadTemplate('frontend/test.tpl');
-    }
-}
-```
-
 
 ## Shopware 5.3 RC 1
 

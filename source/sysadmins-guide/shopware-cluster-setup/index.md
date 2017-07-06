@@ -230,7 +230,7 @@ The following directories, however, need special treatment:
 
 ## Additional resources
 * [Shopware system requirements](/sysadmins-guide/system-requirements/)
-* [Performance tipps for sysadmins](/sysadmins-guide/shopware-5-performance-for-sysadmins/)
+* [Performance tips for sysadmins](/sysadmins-guide/shopware-5-performance-for-sysadmins/)
 * [Elasticsearch configuration](/sysadmins-guide/elasticsearch-setup/)
 * [Varnish configuration](/sysadmins-guide/varnish-setup/)
 * [Memcached configuration](/sysadmins-guide/memcached-as-session-handler/)

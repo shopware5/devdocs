@@ -1,14 +1,13 @@
 ---
 layout: default
 title: Cart Concept
-github_link: developers-guide/concept-cart-bundle/index.md
+github_link: labs/concept-cart-bundle/index.md
 shopware_version: X
 indexed: true
 tags:
   - cart
   - refactoring
-group: Developer Guides
-subgroup: General Resources
+group: Labs
 menu_title: Cart Concept
 menu_order: 400
 ---

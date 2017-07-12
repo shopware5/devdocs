@@ -5,7 +5,7 @@ github_link: labs/shopping-cart-and-ordering-processes/index.md
 shopware_version: X
 indexed: true
 group: Labs
-menu_title: Shopping Cart
+menu_title: Shopping Cart & ordering processes
 menu_order: 100
 ---
 

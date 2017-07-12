@@ -1,20 +1,19 @@
 ---
-layout: default
-title: Cart Concept
-github_link: developers-guide/concept-cart-bundle/index.md
+layout: labs
+title: Shopping cart & ordering processes
+github_link: labs/shopping-cart-and-ordering-processes/index.md
 shopware_version: X
 indexed: true
 tags:
   - cart
   - refactoring
-group: Developer Guides
-subgroup: General Resources
-menu_title: Cart Concept
-menu_order: 400
+group: Labs
+menu_title: Shopping Cart & ordering processes
+menu_order: 100
 ---
 
-## 2016/12/09 - First concept
-Today we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
+## First concept
+On September 12th of 2016, we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
 This article documents the current implementation and how it can be used. At the moment, the cart bundle isn't implemented in Shopware's frontend, rather it is only used for testing different calculations and processes.
 
 ## Usage

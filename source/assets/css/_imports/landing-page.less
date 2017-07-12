@@ -1,0 +1,152 @@
+.landingpage--content {
+    text-align: center;
+    padding: 50px 0;
+    margin-bottom: 130px;
+
+    &.bg--github {
+        background: url('../../img/bg--github.jpg') no-repeat;
+        background-size: cover;
+        margin-bottom: 0;
+    }
+
+    &.bg--github {
+        color: #000;
+        padding-bottom: 100px;
+    }
+
+    &.content--dark {
+        background-color: #002e4c;
+        background-image: linear-gradient(to bottom, #002e4c 0%, #041a2c 100%);
+        color: #fff;
+
+        .landingpage--headline {
+            color: #fff;
+        }
+    }
+
+    .hero--text {
+        max-width: 900px;
+        margin: 0 auto;
+        font-size: 21px;
+    }
+
+    &.bg--hello-human {
+        background-image: url('../../img/rd-hellohuman-bg.png'), linear-gradient(to bottom, #002e4c 0%, #041a2c 100%);
+        background-repeat: no-repeat;
+        background-position: top center;
+        margin-bottom: 50px;
+        background-size: 100%;
+    }
+
+    .inner-container {
+        max-width: 1220px;
+        margin: 0 auto;
+    }
+
+    .landingpage--headline {
+        font-size: 58px;
+        margin-bottom: 20px;
+        line-height: 61px;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+    }
+
+    .flag-content--headline {
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 31px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        border-bottom: 0 none;
+    }
+}
+
+.landingpage--btn {
+    border: 2px solid #189eff;
+    border-radius: 5px;
+    color: #189eff;
+    display: inline-block;
+    margin-top: 50px;
+    padding: 11px 20px;
+    font-weight: bold;
+    transition: all 0.2s ease-out;
+    font-size: 18px;
+
+    &:hover {
+        color: #fff;
+        background: #189eff;
+    }
+}
+
+.landingpage {
+    .clearfix();
+    margin-top: 90px;
+    margin-bottom: -160px;
+
+    .hero--unit {
+        margin-bottom: 50px;
+    }
+
+    .landingpage--headline {
+        font-size: 58px;
+        margin-bottom: 20px;
+        line-height: 61px;
+        text-transform: uppercase;
+        border-bottom: 0 none;
+    }
+
+    .flag-content {
+        .clearfix();
+        max-width: 1220px;
+        margin: 0 auto 50px;
+        text-align: center;
+
+        .flag-content--content {
+            font-size: 18px;
+            line-height: 31px;
+        }
+
+        .flag-content--media img {
+            max-width: 100%;
+            box-shadow: 0 6px 60px rgba(35,62,82,0.28);
+        }
+    }
+
+    .flag-content--left {
+        .flag-content--content, .flag-content--media {
+            float: left;
+            text-align: left;
+        }
+        .flag-content--content {
+            width: 35%;
+            margin-right: 5%;
+        }
+        .flag-content--media {
+            width: 60%;
+        }
+    }
+
+    .flag-content--right {
+        .flag-content--content, .flag-content--media {
+            float: left;
+            text-align: left;
+        }
+        .flag-content--content {
+            width: 35%;
+            margin-left: 5%;
+        }
+        .flag-content--media {
+            width: 60%;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        margin-left: 350px;
+        margin-top: 0;
+    }
+}
+
+.bg--github.github--labs-section {
+    margin-bottom: -140px;
+    margin-left: 280px;
+}

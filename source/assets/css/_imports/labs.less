@@ -1,0 +1,157 @@
+@text-color: #677c8a;
+@bg-color: #f1f5f8;
+@highlight-color-green: #7DD181;
+@highlight-color-turquoise: #F7A072;
+@highlight-color-yellow: #FFD23F;
+@highlight-color-blue: #2F97C1;
+@highlight-color-red: #E32D76;
+@highlight-color-light-blue: #54C6EB;
+
+.topic--overview {
+    .clearfix();
+    width: 100%;
+    margin: 100px auto;
+    max-width: 1220px;
+
+    &::after {
+        clear: both;
+    }
+
+    .topic {
+        display: block;
+        float: left;
+        width: 15.6%;
+        min-height: 220px;
+        margin-left: 1%;
+        background: @bg-color;
+        border-bottom: 4px solid;
+        text-align: center;
+        padding: 30px 15px;
+        color: @text-color;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+            color: #fff;
+
+            .topic--icon svg {
+                fill: #fff;
+            }
+        }
+    }
+
+    .topic--label {
+        display: inline-block;
+        vertical-align: center;
+    }
+
+    .topic--icon {
+        display: block;
+        max-width: 64px;
+        margin: 0 auto 15px;
+
+        svg {
+            fill: @text-color;
+        }
+    }
+
+    .topic--3d-product-viewer {
+        border-color: @highlight-color-light-blue;
+
+        &:hover {
+            background: @highlight-color-light-blue;
+        }
+    }
+
+    .topic--shopping-cart {
+        border-color: @highlight-color-green;
+
+        &:hover {
+            background: @highlight-color-green;
+        }
+    }
+
+    .topic--backend {
+        border-color: @highlight-color-turquoise;
+
+        &:hover {
+            background: @highlight-color-turquoise;
+        }
+    }
+
+    .topic--internationalization {
+        border-color: @highlight-color-yellow;
+
+        &:hover {
+            background: @highlight-color-yellow;
+        }
+    }
+
+    .topic--api {
+        border-color: @highlight-color-blue;
+
+        &:hover {
+            background: @highlight-color-blue;
+        }
+    }
+
+    .topic--housekeeping {
+        border-color: @highlight-color-red;
+
+        &:hover {
+            background: @highlight-color-red;
+        }
+    }
+}
+
+.btn--github {
+    border: 2px solid #000;
+    border-radius: 3px;
+    margin: 50px 0 0;
+    padding: 20px 20px 20px 65px;
+    color: #000;
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    transition: all 0.2s ease-out;
+
+    .github--logo-path {
+        transition: all 0.2s ease-out;
+    }
+
+    &:hover {
+        color: #fff;
+        border-color: #fff;
+
+        .github--logo-path {
+            fill: #fff;
+        }
+    }
+
+    span {
+        font-weight: bold;
+        display: block;
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+    .github--logo {
+        display: block;
+        position: absolute;
+        height: 64px;
+        width: 64px;
+        left: 4px;
+        top: 12px;
+    }
+
+
+    .github--top-part {
+        text-transform: uppercase;
+    }
+
+    .github--bottom-part {
+        font-size: 32px;
+    }
+
+}

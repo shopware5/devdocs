@@ -91,6 +91,7 @@
         </div>
     </nav>
 
+    {% block content_main %}
     <div class="devdocs content">
 
         <section id="search-results" style="display: none;">
@@ -148,17 +149,20 @@
 
         <div class="clearfix"></div>
     </div>
+    {% endblock %}
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer--container">
-            <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
-            <div class="footer--links">
-                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
-                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+    {% block footer_main %}
+        <footer class="main-footer">
+            <div class="footer--container">
+                <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    {% endblock %}
 </div>
 
 <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>

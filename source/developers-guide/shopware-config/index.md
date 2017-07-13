@@ -209,3 +209,4 @@ With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adap
     ],
 ]
 ```
+Be aware, that for Zend_Cache::CLEANING_MODE_ALL the cache implementation will issue "FLUSHDB" and therefore clear the current redis db index. For that reason, the db index for the cache should not be used for persistent data. 

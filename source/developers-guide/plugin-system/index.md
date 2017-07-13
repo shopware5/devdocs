@@ -671,6 +671,29 @@ Additionally, the order is fixed. The value tag must be defined before the label
 
 There must be at least one option tag and inside each option tag there must be at least one value and one label tag. 
 
+#### add additional options
+
+With the `options` element you are able to customize your input field for your plugin configuration. 
+
+Example:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element type="text">
+            <name>readOnlyText</name>
+            <label lang="en">Read only text</label>
+            <label lang="de">Text nur zum Lesen</label>
+            <value>Dieser Text ist nur zum Lesen</value>
+            <options>
+                <readOnly>true</readOnly>
+            </options>
+        </element>
+    </elements>
+</config>
+```
+
 #### add buttons
 Since Shopware 5.2.17 it is possible to place buttons on your configuration form.
 

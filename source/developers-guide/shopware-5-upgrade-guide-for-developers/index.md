@@ -146,7 +146,7 @@ Version 5.3 does not support IE10 anymore.
 
 ### New basket signature
 
-Improvements in basket on security and query manipulation as described in [5.3 signature](developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
+Improvements in basket on security and query manipulation as described in [5.3 signature](/developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
 
 ### Product votes
 

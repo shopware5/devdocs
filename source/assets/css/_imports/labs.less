@@ -1,17 +1,7 @@
-@text-color: #677c8a;
-@bg-color: #f1f5f8;
-@highlight-color-green: #7DD181;
-@highlight-color-turquoise: #F7A072;
-@highlight-color-yellow: #FFD23F;
-@highlight-color-blue: #2F97C1;
-@highlight-color-red: #E32D76;
-@highlight-color-light-blue: #54C6EB;
-
 .topic--overview {
     .clearfix();
     width: 100%;
-    margin: 100px auto;
-    max-width: 1220px;
+    margin: 25px auto;
 
     &::after {
         clear: both;
@@ -19,10 +9,9 @@
 
     .topic {
         display: block;
-        float: left;
-        width: 15.6%;
-        min-height: 220px;
-        margin-left: 1%;
+        max-width: 320px;
+        min-height: 120px;
+        margin: 0 20px 10px;
         background: @bg-color;
         border-bottom: 4px solid;
         text-align: center;
@@ -43,7 +32,7 @@
 
     .topic--label {
         display: inline-block;
-        vertical-align: center;
+        vertical-align: middle;
     }
 
     .topic--icon {
@@ -105,53 +94,43 @@
     }
 }
 
-.btn--github {
-    border: 2px solid #000;
-    border-radius: 3px;
-    margin: 50px 0 0;
-    padding: 20px 20px 20px 65px;
-    color: #000;
-    position: relative;
-    display: inline-block;
-    text-align: left;
-    transition: all 0.2s ease-out;
+@media screen and (min-width: @viewport-s) {
+    .topic--overview .topic {
+        float: left;
+        width: 48%;
+        margin-left: 1%;
+        margin-right: 1%;
+        max-width: none;
+        min-height: 200px;
+    }
+}
 
-    .github--logo-path {
-        transition: all 0.2s ease-out;
+@media screen and (min-width: @viewport-m) {
+    .landingpage .hero--text {
+        margin: 0 auto;
     }
 
-    &:hover {
-        color: #fff;
-        border-color: #fff;
-
-        .github--logo-path {
-            fill: #fff;
-        }
+    .topic--overview .topic {
+        width: 31.1%;
     }
+}
 
-    span {
-        font-weight: bold;
-        display: block;
-        font-size: 18px;
-        line-height: 21px;
+@media screen and (min-width: @viewport-l) {
+    .landingpage--headline {
+        font-size: 58px;
+        line-height: 61px;
     }
+}
 
-    .github--logo {
-        display: block;
-        position: absolute;
-        height: 64px;
-        width: 64px;
-        left: 4px;
-        top: 12px;
+@media screen and (min-width: @viewport-xl) {
+    .topic--overview {
+        max-width: (@viewport-xl - 20);
     }
+}
 
-
-    .github--top-part {
-        text-transform: uppercase;
+@media screen and (min-width: @viewport-xxl) {
+    .topic--overview .topic {
+        width: 14.6%;
+        min-height: 220px;
     }
-
-    .github--bottom-part {
-        font-size: 32px;
-    }
-
 }

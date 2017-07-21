@@ -14,8 +14,8 @@
 @import "_imports/video.less";
 @import "_imports/overlay.less";
 @import "_imports/icon-search.less";
-@import "_imports/labs.less";
 @import "_imports/landing-page.less";
+@import "_imports/labs.less";
 
 /**
  * — Minor Section Heading —
@@ -682,9 +682,10 @@ input#search-query {
         color: #677c8a;
 
         @media screen and (min-width: 480px) {
-            width: 32%;
+            width: 23.5%;
             margin-right: 2%;
             margin-bottom: 0;
+            min-height: 195px;
 
             &:last-child {
                 margin-right: 0;
@@ -715,6 +716,14 @@ input#search-query {
             }
         }
 
+        &.teaser--labs {
+            border-color: @gray04;
+
+            &:hover {
+                background: @gray04;
+            }
+        }
+
         .icon--sys {
             background: url("../img/icon_sys.png") center center no-repeat;
         }
@@ -725,6 +734,10 @@ input#search-query {
 
         .icon--design {
             background: url("../img/icon_design.png") center center no-repeat;
+        }
+
+        .icon--labs {
+            background: url("../img/icon_labs.png") center center no-repeat;
         }
 
         &:hover {
@@ -740,6 +753,10 @@ input#search-query {
 
             .icon--design {
                 background: url("../img/icon_design_hover.png") center center no-repeat;
+            }
+
+            .icon--labs {
+                background: url("../img/icon_labs_hover.png") center center no-repeat;
             }
         }
     }

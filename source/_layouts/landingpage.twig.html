@@ -11,3 +11,9 @@
     {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
 </div>
 {% endblock %}
+
+{% block footer_main %}
+    {% include 'github_footer.twig' %}
+
+    {{ parent() }}
+{% endblock %}

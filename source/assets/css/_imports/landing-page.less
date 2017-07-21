@@ -1,7 +1,6 @@
 .landingpage--content {
     text-align: center;
-    padding: 50px 0;
-    margin-bottom: 130px;
+    padding-top: 50px;
 
     &.bg--github {
         background: url('../../img/bg--github.jpg') no-repeat;
@@ -24,31 +23,14 @@
         }
     }
 
-    .hero--text {
-        max-width: 900px;
-        margin: 0 auto;
-        font-size: 21px;
-    }
-
     &.bg--hello-human {
-        background-image: url('../../img/rd-hellohuman-bg.png'), linear-gradient(to bottom, #002e4c 0%, #041a2c 100%);
-        background-repeat: no-repeat;
-        background-position: top center;
-        margin-bottom: 50px;
+        background: url('../../img/rd-hellohuman-bg.png'), linear-gradient(to bottom, #002e4c 0%, #041a2c 100%) no-repeat top center;
         background-size: 100%;
     }
 
     .inner-container {
         max-width: 1220px;
         margin: 0 auto;
-    }
-
-    .landingpage--headline {
-        font-size: 58px;
-        margin-bottom: 20px;
-        line-height: 61px;
-        text-transform: uppercase;
-        border-bottom: 0 none;
     }
 
     .flag-content--headline {
@@ -61,38 +43,27 @@
     }
 }
 
-.landingpage--btn {
-    border: 2px solid #189eff;
-    border-radius: 5px;
-    color: #189eff;
-    display: inline-block;
-    margin-top: 50px;
-    padding: 11px 20px;
-    font-weight: bold;
-    transition: all 0.2s ease-out;
-    font-size: 18px;
-
-    &:hover {
-        color: #fff;
-        background: #189eff;
-    }
-}
-
 .landingpage {
     .clearfix();
     margin-top: 90px;
-    margin-bottom: -160px;
 
     .hero--unit {
         margin-bottom: 50px;
     }
 
     .landingpage--headline {
-        font-size: 58px;
         margin-bottom: 20px;
-        line-height: 61px;
         text-transform: uppercase;
         border-bottom: 0 none;
+    }
+
+    .hero--text {
+        max-width: 900px;
+        margin: 0 20px;
+    }
+
+    .content--history h2 {
+        margin-top: 0;
     }
 
     .flag-content {
@@ -139,14 +110,29 @@
             width: 60%;
         }
     }
-
-    @media screen and (min-width: 1200px) {
-        margin-left: 350px;
-        margin-top: 0;
-    }
 }
 
 .bg--github.github--labs-section {
     margin-bottom: -140px;
     margin-left: 280px;
+}
+
+@media screen and (min-width: @viewport-m) {
+    .landingpage .hero--text {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: @viewport-l) {
+    .landingpage--headline {
+        font-size: 58px;
+        line-height: 61px;
+    }
+}
+
+@media screen and (min-width: (@viewport-xl - 20)) {
+    .landingpage {
+        margin-left: 350px;
+        margin-top: 0;
+    }
 }

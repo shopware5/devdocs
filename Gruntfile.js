@@ -3,7 +3,8 @@ module.exports = (grunt) => {
         less: {
             development: {
                 options: {
-                    compress: true
+                    compress: true,
+                    sourceMapFileInline: true
                 },
                 files: {
                     'output_dev/assets/css/basic.css': 'source/assets/css/basic.less'

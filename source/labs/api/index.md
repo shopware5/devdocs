@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: labs
 title: API
 github_link: labs/api/index.md
 shopware_version: X

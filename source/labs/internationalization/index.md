@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: labs
 title: Internationalization
 github_link: labs/internationalization/index.md
 shopware_version: X

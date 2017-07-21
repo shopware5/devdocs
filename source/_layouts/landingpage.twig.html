@@ -1,0 +1,13 @@
+{% extends "default.twig.html" %}
+
+{% block content_main %}
+<section id="search-results" style="display: none;">
+    <h2 class="search-results--headline">Search results</h2>
+
+    <div class="entries"></div>
+</section>
+
+<div class="landingpage">
+    {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Shopping cart and ordering processes
+layout: labs
+title: Shopping cart & ordering processes
 github_link: labs/shopping-cart-and-ordering-processes/index.md
 shopware_version: X
 indexed: true

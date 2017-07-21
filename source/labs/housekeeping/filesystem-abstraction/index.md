@@ -3,7 +3,7 @@ layout: default
 title: Filesystem Abstraction
 github_link: labs/filesystem-abstraction/index.md
 indexed: true
-group: Labs
+group: Housekeeping
 menu_order: 500
 shopware_version: X
 menu_title: Filesystem Abstraction

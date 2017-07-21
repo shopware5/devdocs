@@ -7,6 +7,7 @@ indexed: true
 tags:
   - cart
   - refactoring
+subgroup: Shopping Cart & ordering processes
 group: Labs
 menu_title: Cart Concept
 menu_order: 400

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: labs
 title: Housekeeping
 github_link: labs/housekeeping/index.md
 shopware_version: X

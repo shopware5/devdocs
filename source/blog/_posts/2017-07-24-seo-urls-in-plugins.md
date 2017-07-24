@@ -8,7 +8,7 @@ categories:
 - dev
 
 authors: [ps]
-github_link: blog/_posts/2017-07-04-seo-urls-in-plugins.md
+github_link: blog/_posts/2017-07-24-seo-urls-in-plugins.md
 
 ---
 

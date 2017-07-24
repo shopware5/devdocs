@@ -25,7 +25,7 @@ is to have a function like this in place:
 
 ```
 function formatCurrency (val) {
-    return val.toString.replace('.', ',') + ' €';
+    return val.toString().replace('.', ',') + ' €';
 }
 ```
 *Very simple example for a currency formatter function*

@@ -413,7 +413,7 @@ Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_
 * `custom/plugins/SwagResource/Resources/frontend/js/**.js`
 * `custom/plugins/SwagResource/Resources/frontend/less/all.less`
 
-The `css` and `js` directories may contain arbitrary sub directories. `@import`s in `all.less` will not be resolved,  unfortunately.
+The `css` and `js` directories may contain arbitrary sub directories. `@import`s in `all.less` will be resolved.
 
 ```
 SwagResource

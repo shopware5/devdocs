@@ -552,12 +552,14 @@ SwagSloganOfTheDay
 ├──plugin.xml
 ├── Resources
 │   ├── config.xml
+│   ├── cronjob.xml
 │   └── menu.xml
 └──SwagSloganOfTheDay.php
 ```
 
 You can find the schema of the xml files in `engine/Shopware/Components/Plugin/schema`.
  - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
+ - **cronjob.xml:** Defines cronjobs installed with the plugin.
  - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
  - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
  

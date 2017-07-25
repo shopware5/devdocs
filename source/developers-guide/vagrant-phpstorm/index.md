@@ -234,6 +234,8 @@ Download the test images and extract them into your Shopware's root directory.
 $ cd ..
 $ wget -O test_images.zip http://releases.s3.shopware.com/test_images.zip
 $ unzip test_images.zip
+$ php bin/console sw:media:migrate
+$ php bin/console sw:thumbnail:generate
 ```
 
 Your Shopware installation is now complete and can be accessed at [http://192.168.33.10/shopware](http://192.168.33.10/shopware).

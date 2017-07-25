@@ -48,8 +48,7 @@ class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Component
     public function install()
     {
         $this->subscribeEvent(
-            'Shopware_Console_Add_Command',
-            'onAddConsoleCommand'
+            'Shopware_Console_Add_Command' => 'onAddConsoleCommand'
         );
 
         return true;

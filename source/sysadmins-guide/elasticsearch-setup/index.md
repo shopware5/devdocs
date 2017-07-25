@@ -45,7 +45,6 @@ The current Shopware 5 integration is designed to work with the out-of-the-box c
 By default, Elasticsearch integration is disabled in Shopware, as most shops won't benefit from it. Like mentioned before, Elasticsearch should only be used in shops containing a large set of items.
 
 To enable Elasticsearch (provided it's already installed, configured and running), edit your `config.php` file, adding the following array:
-
 ```
 ...
     'es' => [
@@ -63,7 +62,6 @@ To enable Elasticsearch (provided it's already installed, configured and running
 ```
 
 Your config.php should look like this now:
-
 ```
 <?php
 return [
@@ -73,7 +71,7 @@ return [
         'dbname' => 'dbname',
         'host' => 'localhost',
         'port' => '3306',  
-],
+    ],
     'es' => [
         'enabled' => true,
         'number_of_replicas' => null,
@@ -84,10 +82,9 @@ return [
             ]
         ]
     ],
-
+    // Other configuration settings...
 ];
 ```
-
 
 Shopware 5 communicates with Elasticsearch using the latter's REST API. The `hosts` array accepts multiple address syntaxes, about which you can read more [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/_configuration.html#_host_configuration). The `number_of_shards` and `number_of_replicas` parameter provided to the generated index. A `null` configuration allows to use the elastic search server configuration of this parameters.
 

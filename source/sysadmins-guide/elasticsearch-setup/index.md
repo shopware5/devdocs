@@ -67,7 +67,7 @@ Your config.php should look like this now:
 return [
     'db' => [
         'username' => 'dbuser',
-        'password' => 'dbpw,
+        'password' => 'dbpw',
         'dbname' => 'dbname',
         'host' => 'localhost',
         'port' => '3306',  

@@ -266,7 +266,11 @@ sub vcl_hash {
 
 sub vcl_hit {
     if (obj.http.X-Shopware-Allow-Nocache && req.http.cookie ~ "nocache=") {
-        set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1");
+        if (obj.http.X-Shopware-Allow-Nocache && req.http.cookie ~ "slt=") {
+            set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1, slt");
+        } else {
+            set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1");
+        }
         if (std.strstr(req.http.X-Cookie-Nocache, obj.http.X-Shopware-Allow-Nocache)) {
             return (pass);
         }

@@ -17,7 +17,7 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
-## Shopware 5.3 RC 2
+## Shopware 5.3
 
 <div class="alert alert-info">
 
@@ -33,6 +33,14 @@ for your shops as soon as possible to prevent negative future side-effects.
 To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
 
 </div>
+
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**.
+
+### Internet Explorer 10 support
+
+Version 5.3 does not support IE10 anymore.
 
 ### Smarty security mode
 
@@ -98,51 +106,6 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
     }
 }
 ```
-
-### Additions
-
-* Added `selecttree` and `combotree` config elements for plugins
-* Added backend configuration option for the newsletter to configure if a captcha is required to subscribe to the newsletter
-* Added two new Smarty blocks for menu and menu item overwrite possibility to the account sidebar
-* Added LiveReload mode for the default grunt which reloads your browser window automatically after the grunt compilation was successful
-* Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
-* Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
-* Added new search builder class `Shopware\Components\Model\SearchBuilder`
-* Added new search builder as `__construct` parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
-* Added new `FunctionNode` for IF-ELSE statements in ORM query builder
-* Added `/address` to robots.txt 
-* Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
-* Added `Shopware\Components\Template\Security` class for all requests.
-* Added whitelist for allowed php functions and php modifiers in smarty
-    * `template_security.php_modifiers`
-    * `template_security.php_functions`
-
-### Changes
-
-* Changed return values so the array keys are now the respective country/state IDs in `\Shopware\Bundle\StoreFrontBundle\Service\Core\LocationService::getCountries`
-* Moved the removal of the whole cache folder after the removal of the `.js` and `.css` files for better handling of huge caches in the `clear_cache.sh` script
-* Changed `Shopware_Controllers_Widgets_Listing::streamSliderAction` to `Shopware_Controllers_Widgets_Listing::streamAction`
-* Changed `Shopware_Controllers_Widgets_Listing::productSliderAction` to `Shopware_Controllers_Widgets_Listing::productsAction`
-* Changed snippet `DetailBuyActionAdd` in `snippets/frontend/detail/buy.ini`, it now contains <span> tags
-* Changed snippet `ListingBuyActionAdd` in `snippets/frontend/listing/box_article.ini`, it now contains another <span> tag
-* Merged `account/sidebar.tpl` and `account/sidebar_personal.tpl`
-* Moved snippets from `account/sidebar_personal.ini` to `account/sidebar.ini`
-* Changed `Enlight_Hook_ProxyFactory` to use [ocramius/proxy-manager](https://github.com/Ocramius/ProxyManager) for generating proxy classes
-
-### Removals
-
-* Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
-* Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
-
-## Shopware 5.3 RC 1
-
-### System requirements changes
-
-The minimum PHP version still is **PHP 5.6.4 or higher**.
-
-### Internet Explorer 10 support
-
-Version 5.3 does not support IE10 anymore.
 
 ### New basket signature
 
@@ -340,7 +303,8 @@ public function generatePartialFacet(
     //...
 ```
 
-#### Elastic search
+#### Elasticsearch
+
 In the elastic search implementation the current filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by this filter.
 This behavior is checked using the the `Criteria->hasBaseCondition` statement:
 ```
@@ -796,6 +760,24 @@ The follwing methods have been removed:
 * Added `Shopware\Bundle\SearchBundleDBAL\VariantHelper` which joins all variants for dbal search
 * Added smarty blocks `frontend_checkout_shipping_payment_core_button_top` and `frontend_checkout_shipping_payment_core_button_top` for shipping
 * Added new Interface for facet result template switch `Shopware\Bundle\SearchBundle\TemplateSwitchable`
+* Added `selecttree` and `combotree` config elements for plugins
+* Added backend configuration option for the newsletter to configure if a captcha is required to subscribe to the newsletter
+* Added two new Smarty blocks for menu and menu item overwrite possibility to the account sidebar
+* Added LiveReload mode for the default grunt which reloads your browser window automatically after the grunt compilation was successful
+* Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
+* Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
+* Added new search builder class `Shopware\Components\Model\SearchBuilder`
+* Added new search builder as `__construct` parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
+* Added new `FunctionNode` for IF-ELSE statements in ORM query builder
+* Added `/address` to robots.txt 
+* Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
+* Added `Shopware\Components\Template\Security` class for all requests.
+* Added whitelist for allowed php functions and php modifiers in smarty
+    * `template_security.php_modifiers`
+    * `template_security.php_functions`
+* Added new column `do_not_split` to table `s_search_fields`. Activate to store the values of this field as given into the search index. If not active, the default behaviour is used
+* Added new service `shopware_storefront.price_calculator` which calculates the product price. Was formerly a private method in `shopware_storefront.price_calculation_service`
+* Added service `shopware_media.extension_mapping` to provide a customizable whitelist for media file extensions and their type mapping
 * Changed theme path for new plugins from `/resources` into `/Resources`
 * Changed sorting of `Shopware.listing.FilterPanel` fields
 * Changed database column `s_articles_vote`.`answer_date` to allow `NULL` values
@@ -833,6 +815,15 @@ The follwing methods have been removed:
 * Changed behavior of the tracking url rendering. See below for more information
 * Changed text color and height of `.filter--active` in `themes/Frontend/Responsive/frontend/_public/src/less/_components/filter-panel.less`
 * Changed database column `s_articles_details.instock` to allow `NULL` values and default to `0`
+* Changed return values so the array keys are now the respective country/state IDs in `\Shopware\Bundle\StoreFrontBundle\Service\Core\LocationService::getCountries`
+* Moved the removal of the whole cache folder after the removal of the `.js` and `.css` files for better handling of huge caches in the `clear_cache.sh` script
+* Changed `Shopware_Controllers_Widgets_Listing::streamSliderAction` to `Shopware_Controllers_Widgets_Listing::streamAction`
+* Changed `Shopware_Controllers_Widgets_Listing::productSliderAction` to `Shopware_Controllers_Widgets_Listing::productsAction`
+* Changed snippet `DetailBuyActionAdd` in `snippets/frontend/detail/buy.ini`, it now contains <span> tags
+* Changed snippet `ListingBuyActionAdd` in `snippets/frontend/listing/box_article.ini`, it now contains another <span> tag
+* Merged `account/sidebar.tpl` and `account/sidebar_personal.tpl`
+* Moved snippets from `account/sidebar_personal.ini` to `account/sidebar.ini`
+* Changed `Enlight_Hook_ProxyFactory` to use [ocramius/proxy-manager](https://github.com/Ocramius/ProxyManager) for generating proxy classes
 * Backend customer listing is now loaded in `Shopware_Controllers_Backend_CustomerQuickView`
 * Refactored backend customer module. Please take a look into the different template files to see what has changed.
 * Removed import / export module
@@ -849,6 +840,9 @@ The follwing methods have been removed:
     * `SORTING_SEARCH_RANKING`
 * Removed route `/backend/performance/listingSortings`
 * Removed route `/backend/customer/getList`
+* Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
+* Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
+* Removed cleanupPlugins from `Shopware\Bundle\PluginInstallerBundle\Service`
 
 ## Shopware 5.2
 

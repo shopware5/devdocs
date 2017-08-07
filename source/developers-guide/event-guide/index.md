@@ -464,8 +464,8 @@ After the actual controller method was run, the `postDispatch` method of the con
 Basically the same mechanics as for the `PreDispatch` event apply (so there is a MODULE_CONTROLLER and a MODULE suffix)
 as well as a "global" PostDispatch event without suffix. Notice that there are two types of PostDispatch event:
 `Enlight_Controller_Action_PostDispatchSecure*` will only be emitted, if a *template* is available and *no exception*
-occured before; the `Enlight_Controller_Action_PostDispatch` event (without *secure* as suffix) will also be emitted
-when an exception occured or no template was rendered for some reason. Usually the `Enlight_Controller_Action_PostDispatchSecure*`
+occurred before; the `Enlight_Controller_Action_PostDispatch` event (without *secure* as suffix) will also be emitted
+when an exception occurred or no template was rendered for some reason. Usually the `Enlight_Controller_Action_PostDispatchSecure*`
 events are recommended - if you are not using them, you need to perform the checks by yourself.
 
 ### Container events

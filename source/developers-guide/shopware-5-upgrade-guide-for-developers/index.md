@@ -500,7 +500,7 @@ A new table ```s_core_auth_config``` is added for storing MediaManager settings 
 * Join on `s_core_tax` in `Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch`
 
 #### Methods
-The follwing methods have been removed:
+The following methods have been removed:
 
 * `Shopware\Models\Order\Repository::getBackendOrdersQueryBuilder()`
 * `Shopware\Models\Order\Repository::getBackendOrdersQuery()`
@@ -1756,7 +1756,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `Shopware\Models\Article\Configurator\PriceSurcharged` replaced by `Shopware\Models\Article\Configurator\PriceVariation`
 * The new Shopware core selects all required data for `sGetArticleById`, `sGetPromotionById` and `sGetArticlesByCategory`. Several internal methods and events are no longer used by those functions.
 * Moved `engine/core/class/*` to `engine/Shopware/Core/*`
-* Renamed `ENV` to `SHOPWARE_ENV` to avoid accidentally set `ENV` variable, please update your .htaccess if you use a custom envirenment or you are using the staging plugin
+* Renamed `ENV` to `SHOPWARE_ENV` to avoid accidentally set `ENV` variable, please update your .htaccess if you use a custom environment or you are using the staging plugin
 * All downloaded dummy plugins are now installed in the engine/Shopware/Plugins/Community directory.
 * Replaced `orderbydefault` configuration by `defaultListingSorting`. The `orderbydefault` configuration worked with a plain sql input which is no longer possible. The `defaultListingSorting` contains now one of the default `sSort` parameters of a listing. If you want to reintegrate your old statement you can simple create a small plugin. You can find more information [here.](/developers-guide/shopware-5-search-bundle/)
 

@@ -7,7 +7,7 @@ indexed: true
 tags:
   - ERD
   - ERM
-  - diagramm
+  - diagram
   - entity
   - model
 group: Developer Guides

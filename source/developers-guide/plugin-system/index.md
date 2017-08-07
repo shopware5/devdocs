@@ -407,7 +407,7 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
 
 ### Frontend resources auto-registration
 
-Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_Compiler_Collect_Plugin_*` events. Since Shopware 5.2.13 the registration will be done automatically. Just place the resources into the following directorties:
+Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_Compiler_Collect_Plugin_*` events. Since Shopware 5.2.13 the registration will be done automatically. Just place the resources into the following directories:
 
 * `custom/plugins/SwagResource/Resources/frontend/css/**.css`
 * `custom/plugins/SwagResource/Resources/frontend/js/**.js`

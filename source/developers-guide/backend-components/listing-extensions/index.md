@@ -382,7 +382,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
 
 The configuration of the filter fields is similar to the column of the `Shopware.grid.Panel` and form fields of the `Shopware.model.Container`.
 
-#### Configure SQL comparsion
+#### Configure SQL comparison
 
 Since Shopware 5.3.0 it is possible to define your own SQL query 
 expression for comparision. This configuration option is available when 

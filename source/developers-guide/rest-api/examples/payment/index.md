@@ -19,7 +19,7 @@ These examples assume you are using the provided **[demo API client](/developers
 
 ## Usage
 
-The Rest API calls for customer data ('''/api/customers''' und '''/api/customers/{id}''') supports payment informations.
+The Rest API calls for customer data ('''/api/customers''' und '''/api/customers/{id}''') supports payment information.
 This means you can list, create or update the payment data for customers.
 
 Calls for order details ('''/api/orders/{id}''') covers the payment instances.

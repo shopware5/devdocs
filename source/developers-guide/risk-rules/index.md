@@ -14,7 +14,7 @@ Shopware 5.1.2 introduced a new event to provide custom risk rules: `Shopware_Mo
 
 <div class="toc-list"></div>
 
-## Extend Risk Managment Backend Module
+## Extend Risk Management Backend Module
 
 To add a new risk rule to the ExtJS store used by the backend module
 we use the smarty block `backend/risk_management/store/risk/data`

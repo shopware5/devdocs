@@ -710,7 +710,7 @@ Now we can use the plugin that extends the plugin **Custom Products (v2)**
  - We can upload files with a new mime type 
  - We can use our own custom type to configure a product
 
-The full Plugin is available to download it here: <a href="./SwagExtendCustomProducts.zip">Example plugin here</a>. 
+The full Plugin is available to download it here: <a href="{{ site.url }}/SwagExtendCustomProducts.zip">Example plugin here</a>. 
  
 ## General
 
@@ -728,7 +728,7 @@ $customProducts = Shopware()->Plugins()->Frontend()->SwagCustomProducts();
 ```
 
 ### Decorate services by using the new plugin system.
-To decorade a service you only add a new service to the .../.../Resources/services.xml and inject the old service as parameter
+To decorate a service you only add a new service to the .../.../Resources/services.xml and inject the old service as parameter
 
 ```xml
 <services>

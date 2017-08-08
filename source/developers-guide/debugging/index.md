@@ -67,6 +67,14 @@ This might be very useful, as Xdebug might reduce the overall performance of you
 
 If you are debugging a CLI command, you can also use Xdebug. Use `export XDEBUG_CONFIG="idekey=PHPSTORM"` prior to running your PHP CLI command and make sure that PhpStorm is listening for Xdebug connections. Again, this feature is not exclusive to PhpStorm, and might be supported in other IDEs.
 
+### Xdebug and IonCube Loader
+
+Please note, that Xdebug and IonCube Loader has some issues. With PHP 5.x, both extensions won't work at the same time, as long as encrypted plugins are activated. The debugger won't stop at your breakpoints and/or the whole request may crash. Disabling all encrypted plugins will solve the problem.
+
+However, since PHP 7.0 the compatiblity has improved. You're able to use Xdebug, IonCube Loader and encrypted plugins all together. Xdebug will stop at your breakpoints and everything is fine. You're not able to debug encrypted source code, of course. All encrypted code will just be skipped.
+
+It's imported that the IonCube Loader extension is loaded BEFORE the Xdebug extension in your `php.ini`. For more troubleshooting consider the [PHPStorm manual](https://confluence.jetbrains.com/display/PhpStorm/Troubleshooting+PhpStorm+debugging#TroubleshootingPhpStormdebugging-DebuggingwithionCubeinstalled).
+
 ### Monolog
 
 Shopware makes use of the Monolog logger, which allows you to log into files, databases, emails or FirePHP. By default a `CoreLogger` and a `PluginLogger` are set up for usage:

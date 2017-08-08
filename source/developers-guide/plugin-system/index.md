@@ -603,7 +603,8 @@ Example `plugin.xml`:
  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Slogan des Tages</label>
     <label lang="en">Slogan of the day</label>
 
@@ -619,6 +620,22 @@ Example `plugin.xml`:
 </plugin>
 ```
 
+#### Require other plugins
+If you need other plugins to be installed, then you are able to define them in your plugin.xml file like this
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    ...
+    <changelog version="1.0.0">
+        ...
+    </changelog>
+    <requiredPlugins>
+        <requiredPlugin pluginName="SwagRequiredPlugin" minVersion="1.2.0" maxVersion="3.5.2"/>
+    </requiredPlugins>
+</plugin>
+```
+
 ### Plugin Configuration / Forms
 
 
@@ -627,7 +644,8 @@ Backend plugin configuration can be extended by `Resources/config.xml` file. Thi
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
         <element required="true" type="text" scope="locale">
             <name>slogan</name>
@@ -657,7 +675,8 @@ As of Shopware 5.2.11 it is possible to define custom config stores directly ins
 A custom config store is defined like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
         <element type="select">
             <name>selectArray</name>
@@ -758,7 +777,8 @@ Example `Resources/menu.xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/menu.xsd">
     <entries>
         <entry>
             <name>SloganOfTheDay</name>
@@ -803,7 +823,7 @@ Example `Resources/cronjob.xml`:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <cronjobs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/cronjob.xsd">
+          xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Components/Plugin/schema/cronjob.xsd">
 
     <cronjob>
         <name>Send birthday email</name>

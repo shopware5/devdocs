@@ -1,0 +1,37 @@
+---
+layout: default
+title: REST API - Frequently Asked Questions
+github_link: developers-guide/rest-api/faq/index.md
+shopware_version: 
+indexed: true
+tags:
+  - api
+  - rest
+  - faq
+  - problems
+group: Developer Guides
+subgroup: REST API
+menu_title: REST API FAQ
+menu_order: 150
+---
+
+<div class="toc-list"></div>
+
+## Introduction
+This article is a summary of some problems that are reported frequently and the solutions to those problems. 
+
+## Errors are shown in HTML instead of JSON
+If you receive errors with HTML instead of JSON (usually with a complete stacktrace) like this:
+
+```
+<br />
+<b>Fatal error</b>:  Uncaught Shopware\Components\Api\Exception\NotFoundException: Article by id 23213213 not found in /engine/Shopware/Components/Api/Resource/Article.php:155
+Stack trace:
+#0 /engine/Shopware/Controllers/Api/Articles.php(75): Shopware\Components\Api\Resource\Article-&gt;getOne('23213213', Array)
+#1 /engine/Library/Enlight/Controller/Action.php(159): Shopware_Controllers_Api_Articles-&gt;getAction()
+#2 /engine/Library/Enlight/Controller/Dispatcher/Default.php(523): Enlight_Controller_Action-&gt;dispatch('getAction')
+#3 /engine/Library/Enlight/Controller/Front.php(223): Enlight_Controller_Dispatcher_Default-&gt;dispatch(Object(Enlight_Controller_Request_RequestHttp), Object(Enlight_Controller_Response_ResponseHttp))
+#4 /engine/Shopware/Kernel.php(182): Enlight_Controller_Front-&gt;dispatch()
+#5 / in <b>2/engine/Shopware/Components/Api/Resource/Article.php</b> on line <b>155</b><br />
+```
+This is a sign that the `throwExceptions` config switch in the `config.php` is set to `true`. Removing this entry or setting it to `false` should resolve this issue. 

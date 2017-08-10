@@ -18,9 +18,9 @@ menu_order: 150
 <div class="toc-list"></div>
 
 ## Introduction
-This article is a summary of some problems that are reported frequently and the solutions to those problems. 
+This article is a summary of problems that are reported frequently and the solutions to those problems. 
 
-## Errors are shown in HTML instead of JSON
+## Why do I get HTML errors instead of JSON?
 If you receive errors with HTML instead of JSON (usually with a complete stacktrace) like this:
 
 ```
@@ -35,3 +35,22 @@ Stack trace:
 #5 / in <b>2/engine/Shopware/Components/Api/Resource/Article.php</b> on line <b>155</b><br />
 ```
 This is a sign that the `throwExceptions` config switch in the `config.php` is set to `true`. Removing this entry or setting it to `false` should resolve this issue. 
+
+## How can I access the API if my shop is protected with a `.htaccess` file?
+You need to add an exception for the API route. Here is an example for the `.htaccess` file:
+```
+SetEnvIf Request_URI "(.*\/api((\/?$)|(\/.*$)))" ALLOW
+Order Allow,Deny
+Authtype Basic
+AuthName "Shopware Testshop"
+AuthUserFile /path/to/.htpasswd
+
+require valid-user
+Allow from env=ALLOW
+Allow from env=REDIRECT_ALLOW
+Satisfy any
+
+# Rest of the shopware .htaccess
+...
+
+```

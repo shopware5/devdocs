@@ -54,3 +54,14 @@ Satisfy any
 ...
 
 ```
+
+## How do I configure API development tools like Postman to use them with the Shopware API?
+
+There are two ways to allow API dev tools to authenticate with the Shopware API:
+
+* API tools like Postman support the following URL schema: 
+http://username:apikey@mydemoshop.com/api/ (if you experience any issues with
+Postman, try the Google Chrome version instead of the standalone version)
+* Use the HTTP Basic authentication (introduced with Shopware 5.3.2)
+
+To transmit a data to the API, select JSON (application/json) as Content-Type.

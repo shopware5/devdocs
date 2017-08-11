@@ -14,19 +14,35 @@ subgroup: REST API
 
 ## Introduction
 
-The following page of the devdocs covers the REST API. By using the REST API, shop owners can grant access to almost all data stored
-in their shop to 3rd party applications. It also allows direct manipulation of the shop data, regardless of the application or system used.
+The following page of the devdocs covers the REST API.
+By using the REST API, shop owners can grant access to almost all data stored
+in their shop to 3rd party applications.
+It also allows direct manipulation of the shop data,
+regardless of the application or system used.
 
 ## Basic Settings
 
-To enable access to the REST API, the shop owner must authorize one (or more) users in the Shopware backend. Simply open the Shopware backend and open the `User Administration` window, under `Settings`.
-From the list of existing users displayed on this window, select `Edit` for the desired user and mark the `enabled` checkbox in the `API Access` section.
-You will get a randomly generated API access key, which needs to be included in your API requests for authentication. After clicking `Save`, the changes will take effect.
-If the edited user is currently logged in, you might need to empty the backend cache, and then log out an log in for your changes to take effect.
+To enable access to the REST API, the shop owner must authorize one
+(or more) users in the Shopware backend.
+
+Simply open the Shopware backend and open the
+`User Administration` window, under `Settings`.
+From the list of existing users displayed on this window,
+select `Edit` for the desired user and mark the `enabled` checkbox
+in the `API Access` section.
+
+You will get a randomly generated API access key,
+which needs to be included in your API requests for authentication.
+After clicking `Save`, the changes will take effect.
+If the edited user is currently logged in, you might need to clear
+the backend cache, and then log out an log in for your changes to take effect.
 
 ## List of API Resources
 
-The API has multiple resources, each responsible for managing a specific data type. These resources can be found in the `engine/Shopware/Controllers/Api/` directory of your Shopware installation. Each resource has a correspondent URI, and supports a different set of operations.
+The API has multiple resources, each responsible for managing
+a specific data type. These resources can be found in the
+`engine/Shopware/Controllers/Api/` directory of your Shopware installation.
+Each resource has a correspondent URI and supports a different set of operations.
 
 To get more details about the data provided by each specified resource, click on its name.
 
@@ -49,9 +65,26 @@ To get more details about the data provided by each specified resource, click on
 | **[Variants](api-resource-variants/)**                            |  /api/variants              |  ![Yes](img/yes.png)   | ![No](img/no.png)   | ![Yes](img/yes.png) | ![Yes](img/yes.png)  | ![Yes](img/yes.png)  | ![Yes](img/yes.png) | ![Yes](img/yes.png) |
 | **[Version](api-resource-version/)**                              |  /api/version               |  ![Yes](img/yes.png)   | ![No](img/no.png)   | ![No](img/no.png)   | ![No](img/no.png)    | ![No](img/no.png)    | ![No](img/no.png)   | ![No](img/no.png)   |
 
+## Authentication
+
+We currently support two authentication mechanisms:
+
+* Digest access authentication
+* HTTP Basic authentication (introduced with Shopware 5.3.2)
+
+Please be aware that the Basic authorisation provides no
+confidentiality protection for the transmitted credentials.
+Therefore you should **always** use HTTPS when using Basic authentication.
+
 ## Using the REST API in your own application
 
-To connect to the REST API, you need a client application. As REST is widely used as an inter-application communication protocol, several client applications and integration libraries already exist, both free and commercially, for different platforms and languages. The following class illustrates a fully functional (yet basic) implementation of a REST client. Note that this example code is not maintained, and it's highly recommended that you don't use it in production environments.
+To connect to the REST API, you need a client application.
+As REST is widely used as an inter-application communication protocol,
+several client applications and integration libraries already exist,
+both free and commercially, for different platforms and languages.
+The following class illustrates a fully functional (yet basic)
+implementation of a REST client. Note that this example code is not maintained,
+and it's highly recommended that you don't use it in production environments.
 
 ```
 <?php
@@ -170,7 +203,8 @@ class ApiClient
 ```
 
 ### Creating the API client
-To successfully use this client, we need to initialize it. When creating it, we give the client an API URL, an user name and the API key.
+To successfully use this client, we need to initialize it.
+When creating it, we give the client an API URL, an user name and the API key.
 
 ```
 $client = new ApiClient(
@@ -184,7 +218,11 @@ $client = new ApiClient(
 ```
 
 ### Triggering a call with the API client
-The newly created client now gives us the ability to call all resources. The first parameter describes the resource that should be queried. As the client already knows the resource's URL, we don't need to provide that information again. and can use only the resource's URI.
+The newly created client now gives us the ability to call all resources.
+The first parameter describes the resource that should be queried.
+As the client already knows the resource's URL,
+we don't need to provide that information again and can use only
+the resource's URI.
 
 So, for example, the article with the ID `3` can be queried like so:
 
@@ -192,13 +230,16 @@ So, for example, the article with the ID `3` can be queried like so:
 $client->get('articles/3');
 ```
 
-When creating or updating data, a second parameter needs to be given to these calls. This parameter must be an array containing the data which should be changed or created.
+When creating or updating data, a second parameter needs to be given
+to these calls. This parameter must be an array containing the data
+which should be changed or created.
 
 ## Communicating with the API
 
 ### Query encoding
 
-It is important that, when communicating with the Shopware API, all transmitted queries are UTF8-encoded.
+It is important that, when communicating with the Shopware API,
+all transmitted queries are UTF8-encoded.
 The date must be in ISO 8601 format.
 
 More info about ISO can be found here:
@@ -244,13 +285,15 @@ var date = new Date(string);
 
 ### Filter, Sort, Limit, Offset
 
-Every API comes with a set of default parameters which can be used to modify the given result. All parameters can be combined in a single request.
+Every API comes with a set of default parameters which can be used
+to modify the given result. All parameters can be combined in a single request.
 
 The following examples are snippets for our API client above.
 
 #### Filter
 
-Filtering a results can be done using the `filter` parameter in your request. The available properties can be extracted from the Shopware models below.
+Filtering a results can be done using the `filter` parameter in your request.
+The available properties can be extracted from the Shopware models below.
 
 Each filter can have the following properties:
 
@@ -318,7 +361,8 @@ $client->get('orders', $params);
 
 #### Sort
 
-The sorting syntax nearly equals to the filter section above. It uses the `sort` parameter in the request.
+The sorting syntax nearly equals to the filter section above.
+It uses the `sort` parameter in the request.
 
 Each sorting can have the following properties:
 
@@ -352,7 +396,9 @@ $client->get('orders', $params);
 
 #### Limit / Offset
 
-By default, Shopware uses a soft limit on the API with a value of `1000`. If you need more than `1000` results, increase it to your needs. The limiting uses the parameter `limit`, the offset `start`.
+By default, Shopware uses a soft limit on the API with a value of `1000`.
+If you need more than `1000` results, increase it to your needs.
+The limiting uses the parameter `limit`, the offset `start`.
 
 **Example: Retrieve the first 50 results**
 

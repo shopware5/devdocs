@@ -405,6 +405,51 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
 }
 ```
 
+### Controller registration using namespaces
+
+The controller registration with namespaces is available in Shopware 5.3.2 or above.
+
+plugin base class:
+
+```php
+<?php
+
+namespace Test;
+
+use Shopware\Components\Plugin;
+
+class Test extends Plugin
+{
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Help' => 'onControllerHelp'
+        ];
+    }
+
+    public function onControllerHelp(\Enlight_Event_EventArgs $args)
+    {
+        return \Test\Controllers\Help::class;
+    }
+}
+```
+
+Controller:
+```php
+<?php
+
+
+namespace Test\Controllers;
+
+class Help extends \Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+    }
+}
+```
+
+
 ### Frontend resources auto-registration
 
 Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_Compiler_Collect_Plugin_*` events. Since Shopware 5.2.13 the registration will be done automatically. Just place the resources into the following directories:

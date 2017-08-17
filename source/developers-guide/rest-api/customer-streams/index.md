@@ -61,7 +61,7 @@ Define a new dynamic stream.
 | Argument            | Type         | Required            | Description                                                             |
 |---------------------|--------------|---------------------|-------------------------------------------------------------------------|
 | name                | string       | Yes                 | Name of the Customer Stream                                             |
-| type                | string       |                     | Type of the Customer Stream (static/dynamic)                            |
+| static              | boolean      | Yes                 | Stream type (true=static stream/false=dynamic stream)                   |
 | description         | string       |                     | Description of the Customer Stream                                      |
 | conditions          | string       | Yes                 | List of conditions (be aware of the format and escaping)                |
 | indexStream         | boolean      |                     | Stream will be index if set to true                                     |
@@ -70,7 +70,7 @@ Define a new dynamic stream.
 ```php
 $client->post('customer_streams', [
     'name' => 'Dynamic api stream',
-    'type' => 'dynamic',
+    'static' => false,
     'description' => 'Stream created over the api which will be indexed immediately',
     'conditions' => '{"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition":{"operator":"=","minimumOrderCount":1}}',
     'indexStream' => true
@@ -92,19 +92,20 @@ Define a new static stream and assign customers to it.
 
 *Available arguments:*
 
-| Argument            | Type         | Required            | Description                                                             |
-|---------------------|--------------|---------------------|-------------------------------------------------------------------------|
-| name                | string       | Yes                 | Name of the Customer Stream                                             |
-| type                | string       |                     | Type of the Customer Stream (static/dynamic)                            |
-| description         | string       |                     | Description of the Customer Stream                                      |
-| customers           | int array    |                     | List of customer which will be assigned to the stream                   |
+| Argument            | Type         | Required            | Description                                                                                                                                                |
+|---------------------|--------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name                | string       | Yes                 | Name of the Customer Stream                                                                                                                                |
+| static              | boolean      | Yes                 | Stream type (true=static stream/false=dynamic stream)                                                                                                      |
+| description         | string       |                     | Description of the Customer Stream                                                                                                                         |
+| customers           | int array    |                     | List of customer which will be assigned to the stream                                                                                                      |
+| freezeUp            | string       |                     | Date/Time until the stream is static (will be processed by DateTime). [Here](http://php.net/manual/de/datetime.formats.php) is a list of supported formats.  |
 
 
 *Example code:*
 ```php
 $client->post('customer_streams', [
     'name' => 'Static api stream',
-    'type' => 'static',
+    'static' => true,
     'description' => 'Static stream created over the api',
     'customers' => [1,2]
 ]);
@@ -223,7 +224,7 @@ $client->get('customer_streams/');
             "name": "Example stream",
             "description": "Example description",
             "conditions": "{\"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasTotalOrderAmountCondition\":{\"operator\":\">=\",\"minimumOrderAmount\":150}}",
-            "type": "dynamic",
+            "static": false,
             "freezeUp": null,
             "attribute": null,
             "customer_count": "2",
@@ -234,8 +235,8 @@ $client->get('customer_streams/');
             "name": "Static stream example",
             "description": "Example description",
             "conditions": "{\"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition\":{\"operator\":\"=\",\"minimumOrderCount\":1}}",
-            "type": "static",
-            "freezeUp": "2017-06-29T00:00:00+0200",
+            "static": true,
+            "freezeUp": "2017-08-24T07:45:00+0200",
             "attribute": null,
             "customer_count": "1",
             "newsletter_count": "0"

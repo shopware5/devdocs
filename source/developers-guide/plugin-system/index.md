@@ -405,11 +405,11 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
 }
 ```
 
-### Controller registartion using namespaces
+### Controller registration using namespaces
 
-The controller registartion with namespaces is available in Shopware 5.3.2 or above.
+The controller registration with namespaces is available in Shopware 5.3.2 or above.
 
-Bootstrap:
+plugin base class:
 
 ```php
 <?php
@@ -423,13 +423,13 @@ class Test extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Test' => 'onTest'
+            'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Help' => 'onControllerHelp'
         ];
     }
 
-    public function onTest(\Enlight_Event_EventArgs $args)
+    public function onControllerHelp(\Enlight_Event_EventArgs $args)
     {
-        return \Test\Controllers\Test::class;
+        return \Test\Controllers\Help::class;
     }
 }
 ```
@@ -441,7 +441,7 @@ Controller:
 
 namespace Test\Controllers;
 
-class Test extends \Enlight_Controller_Action
+class Help extends \Enlight_Controller_Action
 {
     public function indexAction()
     {

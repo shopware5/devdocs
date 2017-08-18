@@ -1,0 +1,13 @@
+<h2>{% if title %}{{ title }}{% else %}Latest changes{% endif %}</h2>
+
+{% for historyDate, historyArticles in page.docHistory %}
+    <div class="history-item" style="margin-bottom: 30px">
+        <h4 class="history-item--date">{{ historyDate|date("F jS Y") }}</h4>
+
+        <ul class="history-item--articles">
+            {% for articleTitle, articleLink in historyArticles %}
+                <li class="history-item--article"><a href="{{ articleLink }}">{{ articleTitle }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}

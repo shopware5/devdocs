@@ -300,7 +300,7 @@ With the optional `limit` parameter, it's possible to specify how many articles 
 
 ```
 $client->get('articles');
-$client->get('articles?limit=2);
+$client->get('articles?limit=2');
 ```
 
 ### Result

@@ -72,4 +72,7 @@ The following example will store all `public` files on AWS S3:
             'type' => 'amazon-s3',
             'config' => [
                 'bucket' => 'your-s3-bucket-name',
-                'region' => 'your-bucket-reg
+                'region' => 'your-bucket-reg'
+            ]
+        ]
+    ]

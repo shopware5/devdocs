@@ -9,7 +9,7 @@ menu_title: New backend
 menu_order: 200
 ---
 
-The new Shopware backend for the next Shopware version is another very interesting topic we're researching right now. In this article we would like to cover some of the topics we're working on.
+The new backend for the next Shopware version is another very interesting topic we're researching right now. In this article we would like to cover some of the topics we're working on.
 
 ### User level
 Third party developers are having different skill levels. To provide every user level with the ability to modify & extend the backend, we'll introduce multiple user levels. These user levels are providing different tools & classes to work with the backend.

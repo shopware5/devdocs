@@ -86,6 +86,54 @@ This API call requires one of the following parameters to be defined:
 | paymentStatusId       | integer (foreign key) | **[Status](../models/#payment-status)**                                       |
 | orderStatusId         | integer (foreign key) | **[OrderStatus](../models/#order-status)**                                    |
 
+## GET (List)
+
+#### Required Parameters
+
+For this operation, no parameters are required. To get a list of all orders, simply query:
+* **http://my-shop-url/api/orders**
+
+### Return Value
+
+| Model                              | Table                 |
+|------------------------------------|-----------------------|
+| Customer  | s_user                |
+
+| Field                 | Type                  | Original Object                                                               |
+|-----------------------|-----------------------|-------------------------------------------------------------------------------|
+| id                    | integer (primary key) |                                                                               |
+| number                | string                |                                                                               |
+| customerId            | integer (foreign key) | **[Customer](../api-resource-customer)**                                      |
+| paymentId             | integer (foreign key) | **[PaymentData](../models/#payment-data)**                                    |
+| dispatchId            | integer (foreign key) | **[Dispatch](../models/#dispatch)**                                           |
+| partnerId             | integer (foreign key) |                                                                               |
+| shopId                | integer (foreign key) | **[Shop](../models/#shop)**                                                   |
+| invoiceAmount         | double                |                                                                               |
+| invoiceAmountNet      | double                |                                                                               |
+| invoiceShipping       | double                |                                                                               |
+| invoiceShippingNet    | double                |                                                                               |
+| orderTime             | date/time             |                                                                               |
+| transactionId         | string                |                                                                               |
+| comment               | string                |                                                                               |
+| customerComment       | string                |                                                                               |
+| internalComment       | string                |                                                                               |
+| net                   | boolean               |                                                                               |
+| taxFree               | boolean               |                                                                               |
+| temporaryId           | string                |                                                                               |
+| referer               | string                |                                                                               |
+| clearedDate           | date/time             |                                                                               |
+| trackingCode          | string                |                                                                               |
+| languageIso           | integer (foreign key) | **[Locale](../models/#locale)**                                               |
+| currency              | string                |                                                                               |
+| currencyFactor        | double                |                                                                               |
+| remoteAddress         | string                |                                                                               |
+| deviceType            | string                |                                                                               |
+| attribute               | object              | 
+|
+| customer             | object                 | **[Customer](../models/#costumer)**                                           |
+| paymentStatusId       | integer (foreign key) | **[Status](../models/#payment-status)**                                       |
+| orderStatusId         | integer (foreign key) | **[OrderStatus](../models/#order-status)**                                    |
+
 ## PUT (update)
 
 Orders can be identified using the following:

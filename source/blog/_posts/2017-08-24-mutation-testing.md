@@ -17,11 +17,11 @@ github_link: blog/_posts/2017-08-24-mutation-testing.md
 Anyone who is just searching for the example source code and does not want to read the complete blog post, <a href="https://github.com/teiling88/mutation-testing">here it is.</a>
 </div>
 
-In this blog post I want to present the concept of mutation testing and a simple example with [humbug](https://github.com/humbug/humbug) for you. For a few months we have reached the 100 % code coverage goal in our actual project the [b2b-suite](https://docs.enterprise.shopware.com/b2b-suite/). But what does this number stand for? Yes it ***only*** says you created enough unit-tests to execute every single line of code in your application. Nothing more. In the following sections I will create an simple class which is completely covered with unit tests. After that we will improve the tests and show how mutation testing can support us there. 
+In this blog post I want to present the concept of mutation testing and a simple example with [humbug](https://github.com/humbug/humbug) for you. A few months ago, we have reached the 100 % code coverage goal in our actual project, the [b2b-suite](https://docs.enterprise.shopware.com/b2b-suite/). But what does this number stand for? Yes it ***only*** says you created enough unit-tests to execute every single line of code in your application. Nothing more. In the following sections I will create a simple class which is completely covered with unit tests. After that we will improve the tests and show how mutation testing can support us there. 
 
 ## Create an example class and unit tests
 
-Let us have a look on this simple comparison class as example:
+Let us have a look on this simple comparison example class:
 ```php
 <?php declare(strict_types=1);
 
@@ -39,7 +39,7 @@ class Comparison
 }
 ```
 
-To create an unit-test to reach 100 % coverage is very simple. See the example below: 
+To create a unit-test to reach 100 % coverage is very simple. See the example below: 
 
 ```php
 <?php declare(strict_types=1);
@@ -64,7 +64,7 @@ class ComparisonTest extends PHPUnit\Framework\TestCase
     }
 }
 ```     
-The execution of this unit tests creates the following output:
+The execution of these unit tests creates the following output:
 ```
 OK (2 tests, 2 assertions)
 
@@ -101,11 +101,11 @@ class Comparison
 }
 ```
 
-And the result of our unit test is the same like above. Every test passed. But now false positive results are possible . If we use the method `isGreaterThan` with the parameters `$x = 5; $y = 5;` we get true as return value instead of the supposed false value.
+And the result of our unit test is the same like above. Every test passed. But now false positive results are possible . If we use the method `isGreaterThan` with the parameters `$x = 5; $y = 5;` we will get true as return value instead of the supposed false value.
 
-So what happened? At the moment we only test the happy execution path of this methods and didn't observe of the threshold values. For every developer it is obviously that 5 is greater than 3 and 3 is smaller than 5. So we create this kind of test. But how do we have to improve our test to cover oll existing threshold values?
+So what happened? At the moment we only test the happy execution path of these methods and don't observe of the threshold values. For every developer it is obviously that 5 is greater than 3 and 3 is smaller than 5. So we create this kind of test. But how we have to improve our test to cover oll existing threshold values?
 
-First, we should test the nearest combination of parameters which causes an false return value. In our example methods we can easily use the equal number for `$x` and `$y`. After that we should test the farthest combination which causes an true return value. For this we can easily use the PHP constants `PHP_INT_MAX` and `PHP_INT_MIN`. The new created test can you see below:
+First, we should test the nearest combination of parameters which causes an false return value. In our example methods we can easily use the equal number for `$x` and `$y`. After that we should test the farthest combination which causes a true return value. For this we can easily use the PHP constants `PHP_INT_MAX` and `PHP_INT_MIN`. The new created test can be seen below:
 
 ```php
 <?php declare(strict_types=1);
@@ -132,15 +132,15 @@ class ComparisonTest extends PHPUnit\Framework\TestCase
 
 ## Mutation Testing
 
-In this small example it is very easy to find the needed test range and threshold values. But how works this in bigger Applications with hundred of classes and thousand lines of code? I guess in the most cases only the happy path will be tested. So how can mutation testing help us to create better tests?
+In this small example it is very easy to find the needed test range and threshold values. But how does it work in bigger applications with hundred of classes and thousand lines of code? I guess in the most cases only the happy path will be tested. So how can mutation testing help us to create better tests?
 
-The basic concept of mutation testing sounds very easy. You change comparison statements as an example from `===` to `!==` or changes return values of methods like `return true;` to `return false;`. This new versions of your application are called "mutants". After your change you execute the test suite. If the suite fails your tests "killed the mutant". This means your tests detects the wrong behaviour.  
+The basic concept of mutation testing sounds very easy. You change comparison statements as an example from `===` to `!==` or changes return values of methods like `return true;` to `return false;`. This new versions of your application are called "mutants". After your change you execute the test suite. If the suite fails your tests "killed the mutant". This means your tests detected the wrong behaviour.  
 
 Mutation testing introduces a new quality score the so-called "Mutation Score Indicator". This score is the ratio of the number of Dead Mutants over all created Mutants. Usually this score is calculated like the code coverage in percent.
 
 In order to make this kind of testing automatically we can use [humbug](https://github.com/humbug/humbug) for that. Humbug has a wide range of mutators like the described mutations above. A good overview can be found [here](https://github.com/humbug/humbug#mutators). 
 
-So let us revert the new assertions and execute humbug for the first time. Humbug executes phpunit in the first place. After that it will create the mutants and executes the test suite again for every created mutant. To improve the execution time humbug only uses those test classes which cover the specific file and line on which the mutation was inserted.
+So let us revert the new assertions and execute humbug for the first time. Humbug executes phpunit in the first place. After that it will create the mutants and execute the test suite again for every created mutant. To improve the execution time humbug only uses those test classes which cover the specific file and line on which the mutation was inserted.
 
 Humbug creates the following output: 
 ```
@@ -167,7 +167,7 @@ Metrics:
     Covered Code MSI: 50%
 ```
 
-As we can see, humbug created 4 mutations, 2 mutants were killed and 2 mutants was not detected. So let us have a look at the generated mutations which are not detected:
+As we can see, humbug created 4 mutations, 2 mutants were killed and 2 mutants were not detected. So let us have a look at the generated mutations which are not detected:
 
 ```php
     public function isGreaterThan(int $x, int $y): bool
@@ -181,7 +181,7 @@ As we can see, humbug created 4 mutations, 2 mutants were killed and 2 mutants w
     }    
 ```
 
-Humbug detects automatically the same issues which we found above manually. If we add the new assertions which we already created above we should reach an Mutation Score Indicator of 100%. The created output stands below:
+Humbug automatically detects the same issues which we found above manually. If we add the new assertions which we already created above we should reach an Mutation Score Indicator of 100%. The created output stands below:
 ```
 Humbug has completed the initial test run successfully.
 Tests: 2 Line Coverage: 100.00%
@@ -207,6 +207,6 @@ Metrics:
 ```
 
 ## Conclusion
-Mutation Testing especially humbug is a powerful tool to rate the quality of your unit tests. It checks the hole test suite and give you the safety that your created tests are useful. Our b2b-suite has at the moment a Mutation Score Indicator of 79%. So I think there is some place left for improvements ;-). 
+Mutation Testing especially humbug is a powerful tool to rate the quality of your unit tests. It checks the hole test suite and gives you the safety that your created tests are useful. Our b2b-suite has at the moment a Mutation Score Indicator of 79%. So I think there is some space left for improvements ;-). 
 
 If you are interested in the source code, it can be found [here](https://github.com/teiling88/mutation-testing). 

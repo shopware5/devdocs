@@ -82,7 +82,7 @@ Comparison
 
 ```
 
-So we created a class with two methods which are covered by tests. We could think this class is bullet proof and every invalid change will be discovered from our test. But really? What if some developer adds a small equal sign to our methods? Our new Comparison class looks like this:
+So we created a class with two methods which are covered by tests. We could think this class is bullet proof and every invalid change will be discovered from our test. But really? What if some developer adds a small equal sign to our methods? Our new `Comparison` class looks like this:
 
 ```php
 <?php declare(strict_types=1);

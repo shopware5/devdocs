@@ -13,7 +13,7 @@ menu_order: 80
 
 ## Unit tests
 If you want to start writing a new plugin keep in mind that unit testing helps you to deliver higher quality plugins.
-With help of the __cli tools__ you can easily start with plugin skeleton which has all relevant snippets to start directly with
+With help of the __[cli tools](https://github.com/shopwareLabs/sw-cli-tools)__ you can easily start with plugin skeleton which has all relevant snippets to start directly with
 testing. One of the first things that is important for testing is a `phpunit.xml[.dist]`. It could look like this:
 
 ```xml

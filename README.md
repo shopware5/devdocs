@@ -10,7 +10,7 @@ This can be done via the `init.sh` shell script in the project root.
 ./init.sh
 ```
 
-This will download sculping and install the required dependencies.
+This will download sculpin and install the required dependencies.
 
 ## Running the website locally
 

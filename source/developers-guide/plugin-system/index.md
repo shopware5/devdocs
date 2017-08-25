@@ -710,9 +710,9 @@ $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPl
 ```
 Use it like this in other places:
 ```php
-$config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName('SwagSloganOfTheDay');
+$config = Shopware()->Container()->get('shopware.plugin.cached_config_reader')->getByPluginName('SwagSloganOfTheDay');
 ```
-The config reader service will return an array with the config element names as keys. If you are using scoped configuration elements, don't forget to pass the shop service `$this->container->get('Shop')` as a second parameter to `getByPluginName()` method. Without the shop context, the method will fall back to the main shop context.
+The config reader service will return an array with the config element names as keys. If you are using scoped configuration elements, don't forget to pass the shop service `$this->container->get('Shop')` or `Shopware()->Shop() as a second parameter to `getByPluginName()` method. Without the shop context, the method will fall back to the main shop context.
 
 #### add store values
 As of Shopware 5.2.11 it is possible to define custom config stores directly inside your `config.xml`.

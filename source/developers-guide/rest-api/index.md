@@ -72,9 +72,41 @@ We currently support two authentication mechanisms:
 * Digest access authentication
 * HTTP Basic authentication (introduced with Shopware 5.3.2)
 
+### Digest access authentication
+
+The Digest access authentication is based on a simple
+challenge-response paradigm. The Digest scheme challenges
+using a nonce value. A valid response contains a checksum 
+(by default MD5) of the username, the password, 
+the given nonce value, the HTTP method, and the requested URI.
+
+This ensures, that the password is never sent as plain text.
+
+You can find a detailed explanation of the digest access authentication 
+[here](https://tools.ietf.org/html/rfc2617#page-6)
+and [here](https://en.wikipedia.org/wiki/Digest_access_authentication).
+
+
+### HTTP Basic authentication
+
+To use the HTTP Basic authentication, you just have to set
+an Authorization header which looks like this:
+
+Authorization: Basic c2hvcDp3YXJl
+
+The Authorization header has to follow this scheme:
+1. Combine username and password with a single colon (:).
+2. Encode the string into an octet sequence ([more info](https://tools.ietf.org/id/draft-reschke-basicauth-enc-00.html)).
+3. Encode the string with Base64.
+4. Prepend the authorization method and a space to the encoded string.
+
 Please be aware that the Basic authorisation provides no
 confidentiality protection for the transmitted credentials.
 Therefore you should **always** use HTTPS when using Basic authentication.
+
+
+The authentication methods are not exclusive, you can use
+both of them simultaneously!
 
 ## Using the REST API in your own application
 

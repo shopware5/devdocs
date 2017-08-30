@@ -109,6 +109,13 @@ Appended to the above mentioned list, you will also find the following data:
 | attribute                | array                 |                                                      |
 
 
+## PUT (update)
+
+<div class="alert alert-warning">
+<strong>Note:</strong> Changing a customer id on addresses is not supported, you can leave the customer id out of the
+request, or just set the same customer id which owns the address.
+</div>
+
 ## DELETE
 To delete an address, simply call the specified resource with the `DELETE` operation as the following example shows:
 

@@ -3,7 +3,7 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
-rm -rv ./output_*
+rm -rf ./output_*
 
 sculpinBin="./vendor/bin/sculpin"
 

@@ -29,6 +29,7 @@ $api->post('translations', [
         'shopId' => 2,           # s_core_shops.id
         'data' => [
                 'name' => 'Dummy translation',
+                '__attribute_attr1' => 'Dummy attribute translation'
         ...
     ]
 ]);
@@ -44,6 +45,7 @@ $client->put('translations/200', [ #  s_articles.id
         'shopId' => 2,             # s_core_shops.id
         'data' => [
                 'name' => 'Dummy translation',
+                '__attribute_attr1' => 'Dummy attribute translation'
         ...
     ]
 ]);

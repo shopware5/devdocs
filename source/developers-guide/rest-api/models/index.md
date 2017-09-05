@@ -564,8 +564,8 @@ subgroup: REST API
 
 ## Payment
 
-* **Model:** Shopware\Models\Customer\Payment
-* **Table:** s_core_payment
+* **Model:** Shopware\Models\Payment\Payment
+* **Table:** s_core_paymentmeans
 
 ### Structure
 

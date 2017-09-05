@@ -72,6 +72,10 @@ In the `install()` method of our plugin we register a new element and save it in
     </tr>
 </table>
 
+### Registering component in new plugin system
+In the new plugin system since 5.2 it is required to register the `Shopware\Components\Emotion\EmotionComponentViewSubscriber`. You can find all information
+about registering the subscriber [here](/developers-guide/plugin-system/#add-backend-emotion-components/).
+
 ## Adding configuration fields to the element ##
 After registering the new element we can add different form fields to the element which can be filled by the user to configure the element. For each type of field there is a helper function which can be called on the newly registered component. We will add some configuration fields to our example element for the different embed options the Vimeo platform offers. 
 

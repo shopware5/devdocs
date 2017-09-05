@@ -72,7 +72,8 @@ This API call requires one of the following parameters to be defined:
 | deviceType            | string                |                                                                               |
 | details               | array                 | **[Detail](../models/#order-detail)**                                         |
 | documents             | array                 | **[Document](../models/#document)**                                           |
-| payment               | object                | **[Payment](../models/#payment-instance)**                                    |
+| payment               | object                | **[Payment](../models/#payment)**
+|
 | paymentStatus         | object                | **[PaymentStatus](../models/#payment-status)**                                |
 | orderStatus           | object                | **[OrderStatus](../models/#order-status)**                                    |
 | customer              | object                | **[Customer](../models/#customer)**                                           |

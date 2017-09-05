@@ -53,7 +53,7 @@ Single category details can be retrieved via the category ID:
 | blog                | boolean               |                                                                               |
 | path                | string                |                                                                               |
 | showFilterGroups    | boolean               |                                                                               |
-| external            | boolean               |                                                                               |
+| external            | string                |                                                                               |
 | hideFilter          | boolean               |                                                                               |
 | hideTop             | boolean               |                                                                               |
 | changed             | DateTime              |                                                                               |

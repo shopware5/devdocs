@@ -39,7 +39,7 @@ This API call requires one of the following parameters to be defined:
 
 | Model                              | Table                 |
 |------------------------------------|-----------------------|
-| Shopware\Models\Customer\Customer  | s_user                |
+| Shopware\Models\Order\Order        | s_order               |
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
@@ -97,7 +97,7 @@ For this operation, no parameters are required. To get a list of all orders, sim
 
 | Model                              | Table                 |
 |------------------------------------|-----------------------|
-| Customer  | s_user                |
+| Shopware\Models\Order\Order        | s_order               |
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|

@@ -562,6 +562,30 @@ subgroup: REST API
 | group                    | string                  |                                                 |
 | sendMail              | boolean                  |                                                 |
 
+## Payment
+
+* **Model:** Shopware\Models\Payment\Payment
+* **Table:** s_core_paymentmeans
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| name          | string |                                                 |
+| description      | string                  |                                                    |
+| template              | string                  |                                                    |
+| hide                  | boolean                  |                                                    |
+| additionalDescription                  | string                  |                                                    |
+| debitPercent          | float                  |                                                    |
+| surcharge              | integer                  |                                                    |
+| surchargeString          | string                  |                                                    |
+| position              | integer              |                                                    |
+| active              | boolean              |                                                    |
+| esdActive              | boolean              |                                                    |
+| mobileInactive              | boolean              |                                                    |
+| pluginId              | integer              |                                                    |
+
 ## Payment Data
 
 * **Model:** Shopware\Models\Customer\PaymentData

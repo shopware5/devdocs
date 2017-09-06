@@ -73,7 +73,6 @@ This API call requires one of the following parameters to be defined:
 | details               | array                 | **[Detail](../models/#order-detail)**                                         |
 | documents             | array                 | **[Document](../models/#document)**                                           |
 | payment               | object                | **[Payment](../models/#payment)**
-|
 | paymentStatus         | object                | **[PaymentStatus](../models/#payment-status)**                                |
 | orderStatus           | object                | **[OrderStatus](../models/#order-status)**                                    |
 | customer              | object                | **[Customer](../models/#customer)**                                           |
@@ -129,9 +128,8 @@ For this operation, no parameters are required. To get a list of all orders, sim
 | currencyFactor        | double                |                                                                               |
 | remoteAddress         | string                |                                                                               |
 | deviceType            | string                |                                                                               |
-| attribute               | object              | 
-|
-| customer             | object                 | **[Customer](../models/#costumer)**                                           |
+| attribute             | object                | 
+| customer              | object                | **[Customer](../models/#costumer)**                                           |
 | paymentStatusId       | integer (foreign key) | **[Status](../models/#payment-status)**                                       |
 | orderStatusId         | integer (foreign key) | **[OrderStatus](../models/#order-status)**                                    |
 

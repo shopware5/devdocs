@@ -133,7 +133,7 @@ subgroup: REST API
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
 | customerId             | integer (foreign key) |                                                 |
-| countryId             | integer (foreign key) | **[Country](#country)**                         |
+| country             | object | **[Country](#country)**                         |
 | stateId             | integer (foreign key) |                                                 |
 | company              | string                  |                                                    |
 | department          | string                  |                                                    |

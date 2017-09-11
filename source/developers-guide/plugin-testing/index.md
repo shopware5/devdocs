@@ -65,8 +65,7 @@ you could initialize the __shop context__ to make currencies available. To prepa
      }
  }
  ```
-You can run this test from your plugin folder by typing `phpunit` if you have installed phpunit globally. Otherwise you could use the onboard
-phpunit version shopware comes with.
+You can run this test from your "tests" folder in your plugin directory by typing `phpunit` if you have installed phpunit globally. Otherwise you could use the onboard phpunit version shopware comes with.
 
 With help of the `$ensureLoadedPlugins` static you can assure that your plugin is installed and activated and you can even configure it. It is not required
 to assure that and the less your test needs the __Shopware stack__, the better the test is written.

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-        backupGlobals="false"
-        backupStaticAttributes="false"
-        bootstrap="./Tests/Functional/Bootstrap.php"
->
+<phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="./Tests/Functional/Bootstrap.php">
     <testsuite name="SwagExampleTest Test Suite">
         <directory>./Tests</directory>
     </testsuite>

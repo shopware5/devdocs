@@ -10,5 +10,5 @@
     <license>proprietary</license>
     <link>http://store.shopware.com</link>
     <author>shopware AG</author>
-    <compatibility minVersion="5.2.0" />
+    <compatibility minVersion="5.2.0"/>
 </plugin>

@@ -21,7 +21,7 @@ class TestExampleService
 
     /**
      * @param ListProductService $listProductService
-     * @param ContextService $contextService
+     * @param ContextService     $contextService
      */
     public function __construct(ListProductService $listProductService, ContextService $contextService)
     {

@@ -81,16 +81,7 @@ Since `Shopware 5.2.17` the last part is not necessary anymore. You can simply u
 <!-- Register new resource as service -->
 <service id="shopware.api.example" class="SwagBannerApi\Components\Api\Resource\Example"/>
 ```
-You even have the possibility to decorate existing resources
-```xml
-<!-- Replace existing resource service-->
-<service id="swag_example_plugin.article_api"
-         class="SwagBannerApi\Components\Api\Resource\Article"
-         decorates="shopware.api.article"
-         public="false"
-         shared="false">
-</service>
-``` 
+You even have the possibility to decorate existing resources. For more information about that, have a look here: [Extend API resource](/developers-guide/rest-api/extend-api-resource/)
 
 ### Components/Api/Resource/Banner.php
 The resource gets called by our controller. Every controller action relies on one method of our resource. 

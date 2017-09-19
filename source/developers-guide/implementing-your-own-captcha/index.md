@@ -218,9 +218,9 @@ The interface you are implementing defines three methods:
 In the case of ReCaptcha we need to make a call to Google from php, so `Guzzle` is injected into the constructor,
 as well as `Shopware_Components_Config` since it needs the ReCaptcha sitekey and secret.
 
-## Creating a backend menu
+## Creating the plugin configuration
 
-With the new plugin system, creating a backend config is fairly simple: Inside the `Resources` folder create a new file `config.xml` with the following content.
+With the new plugin system, creating a plugin configuration is fairly simple: Inside the `Resources` folder create a new file `config.xml` with the following content.
  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

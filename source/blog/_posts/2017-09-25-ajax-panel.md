@@ -20,14 +20,17 @@ In the B2B-Suite we had to develop a backend user interface inside the shopware 
 We evaluated different frameworks to achieve this target. AngularJS and Vue.JS were possible frameworks which allows
 two way data binding and statefull frontend access.
 
+<img src="/blog/img/ajax-panel-abstract.svg" alt="image">
+
+The small controller actions doesn't respond with the full page dom tree anymore. Each controller is only responsible for a
+specific panel content.
+
 Our target was also to use most of the already existing dependencies instead of adding new frameworks just for
 the B2B-Suite. As you maybe already know jQuery is a base dependency of Shopware 5.
 
-We decided to develop our own lightweight frontend framework which allows asynchronous HTTP requests for our frontend.
-The main target of this framework is to execute the asynchronous call and render the response in a given DOM element.
-
-This approach allows us to build front pages with one dom element. An additional feature is that we can still work
-under the http cache and be able to ignore the shopware cache ids.
+We decided to develop our own lightweight frontend framework on top of jQuery which allows asynchronous HTTP requests for our frontend.
+The main target of this framework is to execute the asynchronous call and render the response in a given and zoned DOM element by using event.
+The behaviour is very similar to angular's [zone.js](https://github.com/angular/zone.js).
 
 ## Code Example
 The base structure of our ajax panel look like this:
@@ -35,9 +38,22 @@ The base structure of our ajax panel look like this:
 <div class="ajax-panel" data-url="http://domain.tld/ajax-panel-controller" data-id="example"></div>
 ```
 
-On page load our jQuery ajax panel plugin will search for the attribute `data-url`. If this attribute contains a valid
-url the jQuery plugin will perform an asynchronous http request on the attribute url. If the response is signed with 
-a HTTP Status Code of 200 the response will be rendered back in the original div with the data-id `example`.
+On page load our jQuery ajax panel plugin will search for the class `ajax-panel` and use the data attribute `data-url`. 
+If this attribute contains a valid url the jQuery plugin will perform an asynchronous http request on the attribute url. 
+If the response is signed with a HTTP Status Code of 200 the response will be rendered back in the original zoned div with the data-id `example`.
+
+## Response Example
+
+The ajax panel controller action responds with the content of the ajax panel element and moves the dom structure inside the given element.
+The ajax panel could look like the following:
+
+```html
+<div class="ajax-panel" data-url="http://domain.tld/ajax-panel-controller" data-id="example">
+
+    <span>Example Ajax Content</span>
+
+</div>
+```
 
 ## Ajax Panel Plugins
 After we build our first views we run in several problems. The biggest problem was, that we want to use jQuery in the 
@@ -88,5 +104,6 @@ With the ajax panel we build a lightweight frontend framework which only depends
 Responsive theme, so we don't need to require any addional component. Awesome, isn't it?
 
 ## Conclusion
-Our Ajax Panel is a complete lightweight framework with many possibilities and jQuery as a single dependency. 
+Our Ajax Panel is a complete flexible and lightweight framework with many possibilities and jQuery as a single dependency. 
 The panel can be handled with simple data attributes and additional plugins allows to use JavaScript plugins.
+We use this technology in our B2B-Suite in each module very succesfully.

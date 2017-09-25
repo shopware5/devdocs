@@ -17,6 +17,21 @@ github_link: blog/_posts/2017-09-25-ajax-panel.md
 
 In this blog post I want to present the concept of our ajax based panel system which we use in our B2B-Suite.
 In the B2B-Suite we had to develop a backend user interface inside the shopware frontend. 
+
+On a single page in a typical backend view you may find:
+* list of entities
+* form to enter new data
+* list of related entities
+* some statistics
+
+Serving all this data from a single controller action may already be hard, now imagine the sheer number of parameters you may 
+have to exchange with this single action when you want to enable pagination, validation and search on this single page, 
+through this single action.
+
+This is pretty much the reason why stateless services and statefull frontends are a important topic in todays web development. 
+And it is exactly the reason why we created the ajax panel. It provides us with the means to load local state from the 
+server and create a rich ui.
+
 We evaluated different frameworks to achieve this target. AngularJS and Vue.JS were possible frameworks which allows
 two way data binding and statefull frontend access.
 

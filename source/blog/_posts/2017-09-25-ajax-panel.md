@@ -33,7 +33,7 @@ The main target of this framework is to execute the asynchronous call and render
 The behaviour is very similar to angular's [zone.js](https://github.com/angular/zone.js).
 
 ## Code Example
-The base structure of our ajax panel look like this:
+The base structure of our ajax panel index action look like this:
 ```html
 <div class="ajax-panel" data-url="http://domain.tld/ajax-panel-controller" data-id="example"></div>
 ```
@@ -45,7 +45,13 @@ If the response is signed with a HTTP Status Code of 200 the response will be re
 ## Response Example
 
 The ajax panel controller action responds with the content of the ajax panel element and moves the dom structure inside the given element.
-The ajax panel could look like the following:
+The response could be like:
+
+```html
+<span>Example Ajax Content</span>
+```
+
+After the response is rendered in the parent Ajax Panel `div` the full dom structure will look like this:
 
 ```html
 <div class="ajax-panel" data-url="http://domain.tld/ajax-panel-controller" data-id="example">

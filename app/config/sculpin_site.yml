@@ -102,3 +102,11 @@ authors:
       github: https://github.com/teiling88
       url: http://thomas-eiling.de
       bio: I am a Developer in the Enterprise-Team. I'm interested in code quality, testing and to automatize everything which is possible.
+
+  lh:
+      name: Linus Holtstiege
+      title: Enterprise Developer
+      twitter: https://twitter.com/linushstge
+      github: https://github.com/linushstge
+      url: https://hstge.me
+      bio: I am a software developer in the Enterprise team. I'm interested in frontend development, continous delivery and build processing.

@@ -16,7 +16,7 @@ github_link: blog/_posts/2017-09-25-ajax-panel.md
 ---
 
 In this blog post I want to present the concept of our ajax based panel system which we use in our B2B-Suite.
-In the B2B-Suite we had to develop a backend user interface inside the shopware frontend. 
+In the B2B-Suite we had to develop a backend user interface inside the Shopware frontend. 
 
 On a single page in a typical backend view you may find:
 * list of entities
@@ -25,11 +25,11 @@ On a single page in a typical backend view you may find:
 * some statistics
 
 Serving all this data from a single controller action may already be hard, now imagine the sheer number of parameters you may 
-have to exchange with this single action when you want to enable pagination, validation and search on this single page, 
+have to exchange with this single action when you want to enable pagination, validation and searching on this single page, 
 through this single action.
 
-This is pretty much the reason why stateless services and statefull frontends are a important topic in todays web development. 
-And it is exactly the reason why we created the ajax panel. It provides us with the means to load local state from the 
+This is pretty much the reason why stateless services and statefull frontends are an important topic in todays web development. 
+And it is exactly the reason why we created the ajax panel. It provides us with the means to load local states from the 
 server and create a rich ui.
 
 We evaluated different frameworks to achieve this target. AngularJS and Vue.JS were possible frameworks which allows
@@ -37,18 +37,18 @@ two way data binding and statefull frontend access.
 
 <img src="/blog/img/ajax-panel-abstract.svg" alt="image">
 
-The small controller actions doesn't respond with the full page dom tree anymore. Each controller is only responsible for a
+The small controller actions don't respond with the full page dom tree anymore. Each controller is only responsible for a
 specific panel content.
 
-Our target was also to use most of the already existing dependencies instead of adding new frameworks just for
-the B2B-Suite. As you maybe already know jQuery is a base dependency of Shopware 5.
+One ouf our targets was also to use most of the already existing dependencies instead of adding new frameworks just for
+the B2B-Suite. We use jQuery because it is a base dependency of Shopware 5.
 
 We decided to develop our own lightweight frontend framework on top of jQuery which allows asynchronous HTTP requests for our frontend.
-The main target of this framework is to execute the asynchronous call and render the response in a given and zoned DOM element by using event.
+The main target of this framework is to execute asynchronous calls and render the response in a given and zoned DOM element by using an event.
 The behaviour is very similar to angular's [zone.js](https://github.com/angular/zone.js).
 
 ## Code Example
-The base structure of our ajax panel index action look like this:
+The base structure of our ajax panel index action looks like this:
 ```html
 <div class="ajax-panel" data-url="http://domain.tld/ajax-panel-controller" data-id="example"></div>
 ```
@@ -78,8 +78,8 @@ After the response is rendered in the parent Ajax Panel `div` the full dom struc
 
 ## Ajax Panel Plugins
 After we build our first views we run in several problems. The biggest problem was, that we want to use jQuery in the 
-response rendered content. We decided to develop an own plugin loader for our ajax panel which loads automatically
-JavaScript plugins after the panel load. We throw many events for third party plugins that deveopers can use for their 
+response's rendered content. We decided to develop an own plugin loader for our ajax panel which loads automatically
+JavaScript plugins after the panel load. We throw many events for third party plugins that developers can use for their 
 own plugin. Also the shopware default plugins can be registered in the ajax panel.
 
 To achieve this approach we added an optional `data-plugins` attribute which can contain multiple JavaScript plugins:

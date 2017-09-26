@@ -42,7 +42,9 @@ The minimum PHP version still is **PHP 5.6.4 or higher**.
 
 Version 5.3 does not support IE10 anymore.
 
-### Smarty security mode
+### Smarty
+
+#### Security mode
 
 We have activated the Smarty security mode globally with 5.3:
 [https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
@@ -65,7 +67,7 @@ return [
 ];
 ```
 
-#### Disable template loading
+##### Disable template loading
 
 To disable the automatic template loading, the loadTemplate function was often used without parameters. 
 This does not work with version 5.3 anymore. To disable the automatic loading of templates, only the setNoRender function can be used:
@@ -86,7 +88,7 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 }
 ```
 
-#### Load templates from non-registered directories
+##### Load templates from non-registered directories
 
 In security mode, it is only possible to load templates from registered directories
 
@@ -107,21 +109,13 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 }
 ```
 
-### New basket signature
+#### Rendering
 
-Improvements in basket on security and query manipulation as described in [5.3 signature](/developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
-
-### Product votes
-
-Added opportunity to display product votes only in sub shop where they posted. This behavior can be configured over the backend configuration module.
-
-### Smarty Rendering
-
-#### Form module in the backend
+##### Form module in the backend
 
 Smarty functions in form templates have been disabled. Also no new variables can be added to the template.
 
-##### Example
+**Example**
 
 ```
 {sElement.name} // works
@@ -131,7 +125,7 @@ Smarty functions in form templates have been disabled. Also no new variables can
 {sElement.value[$key]|currency} // does not work
 ```
 
-#### Tracking Code
+##### Tracking Code
 
 Smarty rendering has been disabled for this section. All variables have been removed with one exception. The variable `{$offerPosition.trackingcode}` is a placeholder now. To generate tracking urls, use the following pattern:
 
@@ -140,6 +134,36 @@ https://gls-group.eu/DE/de/paketverfolgung?match={$offerPosition.trackingcode}
 
 <a href="https://gls-group.eu/DE/de/paketverfolgung?match={$offerPosition.trackingcode}" onclick="return !window.open(this.href, 'popup', 'width=500,height=600,left=20,top=20');" target="_blank">{$offerPosition.trackingcode}</a>
 ```
+
+##### Extending listing templates
+
+We've changed the way when product listing templates will be loaded. In order to respond with a JSON object, the template must be rendered even before the response will be sent. Therefore you have to subscribe to the `PreDispatch` event to register your templates in time. In case you are used to `extendsTemplate`, you have to update your plugin as this won't work anymore. Learn more on how to extends templates <a href="{{site.url}}/developers-guide/shopware-5-plugin-update-guide/#template-extensions">here</a>.
+
+**Example Plugin**
+
+```php
+<?php
+public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Action_PreDispatch_Frontend' => 'onListing',
+        'Enlight_Controller_Action_PreDispatch_Widgets' => 'onListing',
+    ];
+}
+
+public function onListing(\Enlight_Event_EventArgs $args)
+{
+    $this->container->get('template')->addTemplateDir(__DIR__ . '/Resources/views');
+}
+```
+
+### New basket signature
+
+Improvements in basket on security and query manipulation as described in [5.3 signature](/developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
+
+### Product votes
+
+Added opportunity to display product votes only in sub shop where they posted. This behavior can be configured over the backend configuration module.
 
 ### Attribute label translations
 

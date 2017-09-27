@@ -25,6 +25,8 @@ To avoid that your pull request gets rejected, you should always check that you 
 - Is your implementation missing some important parts? For example translations, downward compatibility, compatibility to important plugins, etc.
 - Did you provide the necessary tests for your implementation?
 - Is there already an existing pull request tackling the same issue?
+- Write your commit messages in English, have them short and descriptive and squash your commits meaningfully.
+- Follow the [coding standards](/developers-guide/coding-standards/).
 
 Pull requests which do not fulfill these requirements will never be accepted by our team. To avoid that your changes go through unnecessary workflow cycles make sure to check this list with every pull request.
 

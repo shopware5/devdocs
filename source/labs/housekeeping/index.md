@@ -16,6 +16,8 @@ As we have announced on the last Shopware Community Day in June 2017, we are goi
 the shopware backend. Additionally, the Zend framework will go and give place to a more tightly integrated, full-stack Symfony 3 based approach.
 The technology stack will be based on PHP 7.1 and MySQL database schema fully integrated with foreign key constraints where sensible.
 
+# Changelog
+
 ## Update from 2017-09-27
 
 We've restored out testing environment to make sure that ported components still work in the new environment.

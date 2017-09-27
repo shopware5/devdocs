@@ -64,6 +64,21 @@ Each time you want to work on a patch, create a feature branch:
 The first command will fetch the latest updates from the upstream project (shopware).
 The second will create a new branch named `my-new-feature`, that is based off the `5.3`-branch of the `upstream` remote.
 
+## Running Tests
+
+### Database
+For most tests a configured database connection is required.
+
+### Running the tests
+The tests are located in the `tests/` directory
+You can run the entire test suite with the following command:
+
+    vendor/bin/phpunit -c tests
+
+If you want to test a single component, add its path after the phpunit command, e.g.:
+
+    vendor/bin/phpunit -c tests tests/Functional/Components/Api/
+
 ## Submit your pull request
 
 Push your branch to your github fork:

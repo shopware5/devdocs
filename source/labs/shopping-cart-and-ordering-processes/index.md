@@ -12,9 +12,13 @@ menu_title: Shopping Cart & ordering processes
 menu_order: 100
 ---
 
+## Update from 2017-09-27
+The basic functions of the cart bundle are now implemented in Shopware's frontend. You can add products to the cart, change their quantity, remove them from the cart and finish the order process. The order will be persisted and is visible in the backend. The cart widget in the top right corner now shows how many positions are in the cart and the total value. An order confirm page displays all cart items as well as the calculated seperate deliveries depending on product stocks and delivery times.
+
+
 ## First concept
 On September 12th of 2016, we released a first concept for a new cart bundle. You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues. The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
-This article documents the current implementation and how it can be used. At the moment, the cart bundle isn't implemented in Shopware's frontend, rather it is only used for testing different calculations and processes.
+This article documents the current implementation and how it can be used. 
 
 ## Usage
 

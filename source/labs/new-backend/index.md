@@ -11,6 +11,13 @@ menu_order: 200
 
 The new backend for the next Shopware version is another very interesting topic we're researching right now. In this article we would like to cover some of the topics we're working on.
 
+# Changelog
+
+## Update from 2017-09-27
+Currently we are working on a concept for the data handling on the client side. We want the data logic to be completely seperated from the view layer. On the other hand the data handling has also to fit the usability so that the user has a good understanding of when data is saved etc.
+
+# Description
+
 ### User level
 Third party developers are having different skill levels. To provide every user level with the ability to modify & extend the backend, we'll introduce multiple user levels. These user levels are providing different tools & classes to work with the backend.
 

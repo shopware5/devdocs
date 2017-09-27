@@ -59,10 +59,10 @@ Each time you want to work on a patch, create a feature branch:
 
 ```git fetch upstream```
 
-```git checkout -b my-new-feature upstream/5.2```
+```git checkout -b my-new-feature upstream/5.3```
 
 The first command will fetch the latest updates from the upstream project (shopware).
-The second will create a new branch named `my-new-feature`, that is based off the `5.2`-branch of the `upstream` remote.
+The second will create a new branch named `my-new-feature`, that is based off the `5.3`-branch of the `upstream` remote.
 
 ## Submit your pull request
 

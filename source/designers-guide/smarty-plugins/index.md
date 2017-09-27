@@ -3,6 +3,10 @@ layout: default
 title: Smarty Plugins
 github_link: designers-guide/smarty-plugins/index.md
 indexed: true
+group: Frontend Guides
+subgroup: General Resources
+menu_title: Smarty Plugins
+menu_order: 55
 ---
 
 <div class="toc-list"></div>
@@ -47,7 +51,7 @@ The following positions are available in the menu:
 
 ## Config plugin ##
 
-The config plugin is grants you the ability to access and read the various features in the backend.
+The config plugin grants you the ability to access and read the various features in the backend.
 
 To do so, use the following syntax:
  
@@ -72,7 +76,7 @@ Example: *normal style sheet call*
 ```
 
 
-By using the link plugin, you no longer need to specify an exact path, merely to go through the selected template.
+By using the link plugin you only have to define the path relative to your own theme directory.
 
 Example: *Calling a style sheet via link plugin*
 ```
@@ -238,7 +242,7 @@ http://myshop.de/examples_cat_32.html
  
 ## Action plugin ##
 
-The action plugin is one of Shopware 4's new features. The plugin uses widgets to embed templates. Widgets are self-contained parts of the frontend, such as the new shopping worlds.
+The plugin uses widgets to embed templates. Widgets are self-contained parts of the frontend, such as the shopping worlds.
  
 ``` 
 {* Syntax *}
@@ -249,3 +253,5 @@ The action plugin is one of Shopware 4's new features. The plugin uses widgets t
 ``` 
  
 In this case, an HTTP request is triggered internally within the system, resulting in widgets being completely dynamic elements which are not cached.
+
+For further information read this blog: https://developers.shopware.com/blog/2016/07/11/on-action-tags/

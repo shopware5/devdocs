@@ -253,6 +253,7 @@ The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService`
         <service id="swag_example.list_product_service"
                  class="SwagExample\Bundle\StoreFrontBundle\ListProductService"
                  decorates="shopware_storefront.list_product_service"
+                 decoration-inner-name="swag_example.list_product_service.inner"
                  public="false">
 
             <argument type="service" id="swag_example.list_product_service.inner"/>

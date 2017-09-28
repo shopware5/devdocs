@@ -793,3 +793,24 @@ $configuratorArticle = array(
 
 $client->post('articles', $configuratorArticle);
 ```
+
+Update SEO category of an product
+
+```
+$updateSeoCategory = array(
+    'seoCategories' => array(
+        array(
+            'shopId'      => 1,
+            'categoryId' => 15,
+        ),
+    ),
+    'categories' => array(
+        array(
+            'id' => 15
+        )
+    )
+);
+$client->put('articles/SW10239?useNumberAsId=true', $updateSeoCategory);
+
+If you just want to add another seo category, you have to add the value: '__options_seoCategories' => false
+```

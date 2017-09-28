@@ -144,7 +144,7 @@ The syntax of the url plugin is as follows:
 Example: *Syntax url plugin*
 ``` 
 {* Syntax *}
-{url controller='[CONTROLLERNAME]' action='[ACTIONNAME]' [MORE PARAMETERS='PARAMETERVALUE']}
+{url controller='[CONTROLLERNAME]' action='[ACTIONNAME]' [module='[FRONTEND/WIDGETS]'] [MORE PARAMETERS='PARAMETERVALUE']}
 ``` 
  
 The plugin also automatically builds up the SEO links if the corresponding plugin is installed.
@@ -156,7 +156,7 @@ The date plugin is used to format date and time information. To this end, you ha
 Example: *date plugin syntax*
 ``` 
 {* Syntax *}
-{[WERT]|date:[FORMAT]:[TYP]}
+{[VALUE]|date:[FORMAT]:[TYPE]}
 ``` 
  
 The plugin has the following format types, which are based on the Zend Framework:
@@ -200,45 +200,6 @@ The following types can be defined for the plugin:
 
 - ISO - ISO format for date formatting
 - PHP - PHP's date() function for date formatting
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-## Rewrite plugin ##
-
-The rewrite plugin is used to rewrite old URLs that are known from previous versions of Shopware. One example is the URL for the category list in the category examples. In this case, the shop is running on the domain http://meinshop.de and the Examples category has the ID 32:
-
-<div class="alert alert-info">
-	Note: This plugin is only intended to rewrite links which still have the old URL format of Shopware. All other URLs are rewritten with the urn plugin and do not need to be processed by the rewrite plugin.
-</div>
- 
-Example: *call to a category list without a plugin*
-``` 
-http://myshop.com/shopware.php?sViewport=cat&sCategory=32
-``` 
- 
-Using this Smarty plugin, the URL of the category list would be rewritten as follows:
-
-Example: *call to a category listing with a plugin*
-``` 
-http://myshop.de/examples
-``` 
- 
-As an additional parameter a title can be specified for the Smarty plugin, which is then displayed with the old SEO links in the URL.
- 
- 
-Example: *plugin call with a set parameter*
-``` 
-{* Syntax *}
-{"shopware.php?sViewport=cat&sCategory=32"|rewrite:"examples"}
- 
-{* Output *}
-http://myshop.de/examples_cat_32.html
-``` 
->>>>>>> [FEATURE] Added smarty plugins page to designers guide
-=======
->>>>>>> [FEATURE] Removed rewrite plugin from smarty plugins page
  
 ## Action plugin ##
 

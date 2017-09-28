@@ -144,7 +144,7 @@ The syntax of the url plugin is as follows:
 Example: *Syntax url plugin*
 ``` 
 {* Syntax *}
-{url [module='[FRONTEND/WIDGETS]' controller='[CONTROLLERNAME]' action='[ACTIONNAME]' [MORE PARAMETERS='PARAMETERVALUE']}
+{url module='[FRONTEND/WIDGETS]' controller='[CONTROLLERNAME]' action='[ACTIONNAME]' [MORE PARAMETERS='PARAMETERVALUE']}
 ``` 
  
 The plugin also automatically builds up the SEO links if the corresponding plugin is installed.

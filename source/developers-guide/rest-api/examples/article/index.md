@@ -14,7 +14,7 @@ subgroup: REST API
 
 ## Introduction
 
-In this article, you will find examples of the article resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
+In this article, you will find examples of the `article` resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
 Please read the page covering the **[article API resource](/developers-guide/rest-api/api-resource-article/)** if you haven't yet, to get more information about the article resource and the data it provides.
 
 These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**. One of its advantages is that, instead of providing query arguments directly in the URL, you can do so by means of method argument. The client application will, internally, handle the full URL generation. You can also place variables using this technique. An example call would look like this:
@@ -30,7 +30,7 @@ $client->post('articles', array(
 ```
 
 ## Example 1 - GET
-These example show you how to obtain information about a single article, by using either its ID or article number. The API calls look, respectively, like this:
+These example show you how to obtain information about a single product, by using either its ID or product number. The API calls look, respectively, like this:
 ```
 $client->get('articles/3');
 $client->get('articles/SW10003?useNumberAsId=true');
@@ -295,8 +295,8 @@ $client->get('articles/SW10003?useNumberAsId=true');
 ```
 
 ## Example 2 - GET (List)
-This example shows you how to obtain information about a single article.
-With the optional `limit` parameter, it's possible to specify how many articles you wish the API call to return.
+This example shows you how to obtain information about a product list.
+With the optional `limit` parameter, it's possible to specify how many products you wish the API call to return.
 
 ```
 $client->get('articles');
@@ -367,9 +367,9 @@ $client->get('articles?limit=2');
 }
 ```
 
-## Example 3 - Update article data
-To update an article it's always required to provide the id of the article to update.
-In this example, we will update the name of the article with the id 3
+## Example 3 - Update product data
+To update a product it's always required to provide the id of the product to update.
+In this example, we will update the name of the product with the id 3
 ```
 $client->put('articles/3', array(
     'name' => 'NewName'
@@ -386,8 +386,8 @@ $client->put('articles/3', array(
 }
 ```
 
-## Example 4 - Delete an article
-To delete an article, it's always required to provide the id of the article to delete. If the number is provided, an error will be returned with the response code 500.
+## Example 4 - Delete a product
+To delete a product, it's always required to provide the id of the product to delete. If the number is provided, an error will be returned with the response code 500.
 
 **Attention, this action can not be undone**
 
@@ -402,9 +402,9 @@ $client->delete('articles/3');
 }
 ```
 
-## Example 5 - Article configuration / variation
+## Example 5 - Product configuration / variation
 
-### Step 1 - Create a new article
+### Step 1 - Create a new product
 ```
 $minimalTestArticle = array(
     'name' => 'Sport Shoes',
@@ -432,7 +432,7 @@ $client->post('articles', $minimalTestArticle);
 ```
 
 
-### Step 2 - Update the created article
+### Step 2 - Update the created product
 ```
 $updateArticle = array(
    'configuratorSet' => array(
@@ -540,9 +540,9 @@ $client->put('articles/193', $updateArticle);
 }
 ```
 
-## Example 6 - Article Properties
+## Example 6 - Product Properties
 
-It's also possible to add article properties using the article resource.
+It's also possible to add product properties using the `article` resource.
 In order to perform this action, an array like this is required:
 
 ```
@@ -792,4 +792,25 @@ $configuratorArticle = array(
 );
 
 $client->post('articles', $configuratorArticle);
+```
+
+Update SEO category of a product
+
+```
+$updateSeoCategory = array(
+    'seoCategories' => array(
+        array(
+            'shopId'      => 1,
+            'categoryId' => 15,
+        ),
+    ),
+    'categories' => array(
+        array(
+            'id' => 15
+        )
+    )
+);
+$client->put('articles/SW10239?useNumberAsId=true', $updateSeoCategory);
+
+If you just want to add another seo category, you have to add the value: '__options_seoCategories' => false
 ```

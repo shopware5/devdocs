@@ -278,6 +278,12 @@ More info about ISO can be found here:
 
 * [ISO_8601](http://en.wikipedia.org/wiki/ISO_8601)
 
+### Third party libraries
+There are several third party libraries which let you easily use the Shopware API.
+
+#### PHP
+* [Shopware PHP Rest-API SDK](https://github.com/LeadCommerceDE/shopware-sdk)
+
 ### Date formatting in PHP
 ```
 //Generate valid ISO-8601

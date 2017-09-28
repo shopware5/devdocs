@@ -26,7 +26,7 @@ This configuration requires at least version 4.0 of Varnish and at least version
 The PHP based reverse proxy has to be disabled, which can be done by adding the following section to your `config.php`:
 
 ```
-'httpCache' => array(
+'httpcache' => array(
     'enabled' => false,
 ),
 ```

@@ -54,9 +54,9 @@ controller by calling the function `session_write_close()` manually, before doin
 ## Available session adapters
 The following list will explain the session adapters Shopware supports by default
 
-### Memcache
-Memcache is a popular cache server, that also can be used for sessions. As it supports session locking as well, we
-recommend Memcache for bigger setups with high traffic.
+### Memcached
+Memcached is a popular cache server, that also can be used for sessions. As it supports session locking as well, we
+recommend Memcached for bigger setups with high traffic.
 
 #### Install
 

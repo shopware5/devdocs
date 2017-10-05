@@ -59,6 +59,18 @@ While snippets are mostly used to translate plain text, they are flexible enough
 {s name="frontend/checkout/cart/separate_dispatch"}<strong>bold example text</strong>{/s}
 ```
 
+### Using dynamic snippets
+
+You can create snippets, that use dynamic snippet names. This can be of use, when you only have a value/name stored in a variable, but want a translation of this value/name.
+
+This will work with following smarty code:
+```
+{$name = "SnippetName"|cat:$sArticle.attr1}
+{$namespace = "frontend/detail/box_details"}
+{sArticle.attr1|snippet:$name:$namespace}
+```
+
+
 ### Understanding snippet handling
 
 Snippet handling is configurable, so you can decide exactly how snippets are loaded and saved by Shopware. This can be changed in your `config.php` file, inside the `snippet` section:

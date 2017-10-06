@@ -61,14 +61,34 @@ While snippets are mostly used to translate plain text, they are flexible enough
 
 ### Using dynamic snippets
 
-You can create snippets, that use dynamic snippet names. This can be of use, when you only have a value/name stored in a variable, but want a translation of this value/name.
+You are able to create snippets which use dynamic snippet names. This could be useful if you only have a value/name stored in variable, but you need a translation of that value/name.
 
-This will work with following smarty code:
+Example: You have an attribute on your product (attr1, combobox) with the following contents selectable (value => content):
+* light => Light
+* medium => Medium
+* hard => Hard
+
+But those values in the combobox are not translatable. For this purpose you can generate dynamic snippets depending on the value of your attribute.
+
+The following smarty code shows how it works.
 ```
-{$name = "SnippetName"|cat:$sArticle.attr1}
-{$namespace = "frontend/detail/box_details"}
-{sArticle.attr1|snippet:$name:$namespace}
+{$name = "DetailDataHardness"|cat:$sArticle.attr1}
+{$namespace = "frontend/detail/data"}
+{$sArticle.attr1|snippet:$name:$namespace}
 ```
+
+DetailDataHardness is the name of the snippet in your snippet manager and will be concatinated with the value of your attribute and will be stored as variable in `$name`.
+
+In our example we will get three new snippets called:
+* DetailDataHardnesslight
+* DetailDataHardnessmedium
+* DetailDataHardnesshard
+
+As with every snippet, we need to select the namespace, stored in `$namespace`.
+
+After this we use the smarty modifier `snippet` and set the `$name` and `$namespace`.
+
+In your snippet manager you can now edit the translations of the dynamically generated snippets.
 
 
 ### Understanding snippet handling

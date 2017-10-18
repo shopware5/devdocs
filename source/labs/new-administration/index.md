@@ -1,15 +1,15 @@
  ---
 layout: labs
-title: New backend
-github_link: labs/new-backend/index.md
+title: New administration
+github_link: labs/new-administration/index.md
 shopware_version: X
 indexed: true
 group: Labs
-menu_title: New backend
+menu_title: New administration
 menu_order: 200
 ---
 
-The new backend for the next Shopware version is another very interesting topic we're researching right now. In this article we would like to cover some of the topics we're working on.
+The new administration for the next Shopware version is another very interesting topic we're researching right now. In this article we would like to cover some of the topics we're working on.
 
 # Changelog
 
@@ -19,11 +19,11 @@ Currently we are working on a concept for the data handling on the client side. 
 # Description
 
 ### User level
-Third party developers are having different skill levels. To provide every user level with the ability to modify & extend the backend, we'll introduce multiple user levels. These user levels are providing different tools & classes to work with the backend.
+Third party developers are having different skill levels. To provide every user level with the ability to modify & extend the administration, we'll introduce multiple user levels. These user levels are providing different tools & classes to work with the administration.
 
 ## Architecture
 ### Thin layer
-For the new backend one of our goals is that we want to be independent from the libraries and frameworks we're using. We're planning to create a thin layer between the libaries layer and the application layer. We're creating this layer with the purpose to abstract the library calls. This is important to get frequent library upgrades without modifiying the application to get it working again.
+For the new administration one of our goals is that we want to be independent from the libraries and frameworks we're using. We're planning to create a thin layer between the libaries layer and the application layer. We're creating this layer with the purpose to abstract the library calls. This is important to get frequent library upgrades without modifiying the application to get it working again.
 
 ![Thin layer illustration](illustration--thin-layer.png)
 

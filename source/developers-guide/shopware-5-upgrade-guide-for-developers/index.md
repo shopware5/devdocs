@@ -109,6 +109,22 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 }
 ```
 
+###### Unknown {s} tag error
+In the past, this error has occurred on some systems and results to an 500 internal server error. This is based on the problem that template files included, which are not inside a registered directory. In a production environment shopware prevents the exceptions to be displayed (config.php), which results that the rendering process are not aborted.
+The following scenarios can occur:
+
+1. Default config 
+No exceptions no errors should be displayed. This results to an apache error log entry with the unknown {s} tag error
+
+2. phpsettings.display_errors = 1
+The {s} tag error will be displayed in the store front
+
+3. front.throwExceptions = true
+The original exception with the unsecure template directory will be displayed:
+```
+Uncaught SmartyException: directory 'custom/plugins/.../Views/test_index.tpl' not allowed by security setting
+```
+
 #### Rendering
 
 ##### Form module in the backend

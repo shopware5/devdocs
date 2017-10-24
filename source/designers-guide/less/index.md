@@ -119,6 +119,10 @@ We already created several mixins for CSS3 cross-browser support and some other 
 - hyphens.less
 - cursor.less
 
+### Third Party mixins
+- [shopware-missing-mixins](https://github.com/screeny05/shopware-missing-mixins)
+- [LESS Hat](http://lesshat.madebysource.com/)
+
 ## LESS variables in Shopware
 Here you get an overview about all defined LESS variables in the Shopware Responsive theme.
 ```less

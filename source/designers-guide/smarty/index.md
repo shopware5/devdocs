@@ -100,6 +100,9 @@ The loop starts with a `{foreach}` tag and also ends with a closing `{/foreach}`
 ### Official documentation
 Of course there are many other things you can do with Smarty, but these basic features are the most common tools you will use in your everyday work. If you want to go a little further you can read the full Smarty 3 documentation [here](http://www.smarty.net/documentation "Smarty 3 documentation").
 
+### Community provided Libraries
+- [shopware-missing-includes](https://github.com/screeny05/shopware-missing-includes)
+
 ## Template inheritance
 To edit an existing template file in Shopware you do not have to copy the whole file or overwrite the core files. With the template inheritance system, you only have to edit the parts you really want to change. This has many advantages:
 

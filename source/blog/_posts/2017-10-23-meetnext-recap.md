@@ -32,7 +32,7 @@ Münster, Germany
 
 The participants were informed about the current state of the Shopware research.
 
-So, what is the `Next` in &#35;MeetNext about? In a nutshell, it is the next big thing. The next big release of Shopware, although it will be a different product and 5.x (and possibly 6.x) will be developed simultaneously. They will both receive patches and new features. Which leads us to the next question:
+So, what is the `Next` in &#35;MeetNext about? In a nutshell, it is the next big thing. A completely new product different to 5.x which will be developed simultaneously to Shopware 5. They will both receive patches and new features. Which leads us to the next question:
 
 ## Why
 

@@ -837,6 +837,9 @@ In the component we can extend the base class of the designer elements `Shopware
     </tr>
 </table>
 
+## Removing a custom element ##
+There's no need to delete your custom element in the plugin's uninstall method on your own. Shopware will remove your element and all the occurrences in emotion worlds on the uninstallation process for you. 
+
 ## Downloads ##
 You can download the complete example plugin with documented code here:
 

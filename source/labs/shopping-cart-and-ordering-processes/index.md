@@ -15,42 +15,28 @@ menu_order: 100
 # Changelog
 
 ## Update (2017-10-25)
-We updated the article and our code eamples to match
-the current Shopware version. We also created a plugin which shows
-how to extend the administration interface, the frontend
-and the cart process. When the plugin is installed,
-you can define a percental discount in the administration interface.
+We updated the article and our code examples to match the current Shopware version.
+We also created a plugin which shows how to extend the administration interface, the frontend and the cart process. When the plugin is installed, you can define a percental discount in the administration interface.
 For every discounted product a badge will the be shown in the frontend.
-When you add an discounted product to the cart,
-a voucher (representating the discount) will be added to the cart.
+When you add an discounted product to the cart, a voucher (representing the discount) will be added to the cart.
 You can download the plugin
 [here](https://github.com/shopwareLabs/SwagProductDiscount)
 
-If you want to learn more about the cart architecture
-and the different pattern, take a look at our [documentation](https://github.com/shopware/shopware/tree/labs/docs).
+If you want to learn more about the cart architecture and the different pattern, take a look at our [documentation](https://github.com/shopware/shopware/tree/labs/docs).
 
 ## Update (2017-09-27)
-The basic functions of the cart bundle are now implemented
-in Shopware's frontend. You can add products to the cart,
-change their quantity, remove them from the cart and
-finish the order process. The order will be persisted
-and is visible in the backend. The cart widget in the
-top right corner now shows how many positions are in the cart
-and the total value. An order confirm page shows all cart items
-as well as the calculated (separate) deliveries which depend
-on product stocks and delivery times.
-
+The basic functions of the cart bundle are now implemented in Shopware's frontend.
+You can add products to the cart, change their quantity, remove them from the cart and finish the order process.
+The order will be persisted and is visible in the backend.
+The cart widget in the top right corner now shows how many positions are in the cart and the total value.
+An order confirm page shows all cart items as well as the calculated (separate) deliveries which depend on product stocks and delivery times.
 
 # Description
 
 ## First concept
-On September 12th of 2016, we released a first concept
-for a new cart bundle. You can see the development process
-on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>,
-where we created a new repository which allows the community
-to create pull requests and issues. The new repository contains
-a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains
-a first proof of concept for a new cart process.
+On September 12th of 2016, we released a first concept for a new cart bundle.
+You can see the development process on <a href="https://github.com/shopware/shopware-cart-poc">Github</a>, where we created a new repository which allows the community to create pull requests and issues.
+The new repository contains a new bundle in `/engine/Shopware/Bundle/CartBundle` which contains a first proof of concept for a new cart process.
 This article documents the current implementation and how it can be used. 
 
 ## Usage
@@ -78,10 +64,8 @@ public function addProductAction()
 }
 ```
 
-
 ### Remove a line item
-Next we remove this item again using the cart identifier
-(see above `SW10239`)
+Next we remove this item again using the cart identifier (see above `SW10239`)
 ```
 use Shopware\CartBridge\Service\StoreFrontCartService;
 
@@ -95,9 +79,7 @@ public function removeAction()
 ```
 
 ### Get line items
-To get access of all line items in cart,
-the `StoreFrontCartService` allows access on the calculated cart
-over `getCalculated()`.
+To get access of all line items in cart, the `StoreFrontCartService` allows access on the calculated cart over `getCalculated()`.
 
 ```
 use Shopware\Cart\Cart\CalculatedCart;
@@ -147,8 +129,7 @@ public function showLineItemsAction()
 ```
 
 ### Get cart amount
-The cart amount is stored inside the `CalculatedCart`
-and can be accessed over `getPrice()`.
+The cart amount is stored inside the `CalculatedCart` and can be accessed over `getPrice()`.
 
 ```php
 use Shopware\Cart\Cart\CalculatedCart;
@@ -192,8 +173,7 @@ public function showAmountAction()
 ```
 
 ### Get deliveries
-Each cart contains a collection of deliveries,
-in case that the customer is logged in (requires a delivery address).
+Each cart contains a collection of deliveries, in case that the customer is logged in (requires a delivery address).
 This deliveries can be accessed over `getDeliveries()`. 
 
 ```
@@ -258,37 +238,28 @@ public function showDeliveriesAction()
 
 ## Architecture
 
-
 ### Cart layers
-The cart passes through different states during the
-calculation process. In order to provide a valid state for each
-service layer, the states are reflected in different classes:
+The cart passes through different states during the calculation process.
+In order to provide a valid state for each service layer, the states are reflected in different classes:
 
 * `Shopware\Cart\Cart\CartContainer`
     * Defines which line items have to be calculated inside the process
 * `Shopware\Cart\Cart\ProcessorCart`
-    * Defines which line items have already been calculated and
-    which deliveries have been generated 
+    * Defines which line items have already been calculated and which deliveries have been generated 
 * `Shopware\Cart\Cart\CalculatedCart`
     * Contains a list of all calculated line items 
     * Contains a collection of all deliveries
-    * Has a calculated price with total tax amounts, tax rules
-    and net or gross prices
+    * Has a calculated price with total tax amounts, tax rules and net or gross prices
     
 <img src="img/img.003.png" width="40%"/>
-
 
 ### Processor concept 
 The following diagram shows the architecture behind the cart process for product calculation:   
 
 ![image](img/img.001.png)
 
-The cart calculation is done in the
-`Shopware\Cart\Cart\CartCalculator` class.  
-This class contains a list of
-`Shopware\Cart\Cart\CartProcessorInterface`, which are the
-access points for the Shopware core and third party
-developers in the cart process. 
+The cart calculation is done in the `Shopware\Cart\Cart\CartCalculator` class.  
+This class contains a list of `Shopware\Cart\Cart\CartProcessorInterface`, which are the access points for the Shopware core and third party developers in the cart process. 
 
 ```php
 use Shopware\Context\Struct\ShopContext;
@@ -307,16 +278,11 @@ interface CartProcessorInterface
 ```
 
 ### Domain and Infrastructure layers
-For the architecture design, we took great care to
-separate business logic from the database and Shopware dependencies.
+For the architecture design, we took great care to separate business logic from the database and Shopware dependencies.
 
-That means all Shopware-specific operations such as database access,
-delivery information or price selections
-(with graduated prices or price groups) are separated into
-individual gateways that can be replaced with other data sources.
+That means all Shopware-specific operations such as database access, delivery information or price selections (with graduated prices or price groups) are separated into individual gateways that can be replaced with other data sources.
 
-These layers are named **Cart** and **CartBridge** which are placed
-on the first level of the `src` folder.
+These layers are named **Cart** and **CartBridge** which are placed on the first level of the `src` folder.
 The Cart layer should not have any dependencies to the Shopware core.
 That's the infrastructure layer.
 Interactions with Shopware are defined in the CartBridge.
@@ -456,7 +422,8 @@ The first two conditions validate if a customer is logged in and if the customer
 After the validation passes that the customer is a new customer, the processor first collects all calculated goods in the cart `$goods = $processorCart->getCalculatedLineItems()->filterGoods();`.
 To calculate the percentage discount for the `new customer discount` the processor uses the Shopware core calculator `\Shopware\Cart\Price\PercentagePriceCalculator`.
 
-The processor has to be registered over the `cart_processor` container tag. The priority defines at which position the calculator has to be executed (after product calculation, before voucher, ...).
+The processor has to be registered over the `cart_processor` container tag.
+ The priority defines at which position the calculator has to be executed (after product calculation, before voucher, ...).
 ```
 <service id="swag_cart_extension.new_customer_discount_processor" class="SwagCartExtension\Cart\NewCustomerDiscountProcessor">
     <argument type="service" id="dbal_connection" />
@@ -513,4 +480,5 @@ The service is registered as follow:
     <tag name="cart.processor" priority="1001" />
 </service>
 ```
-Using a high priority defines an early position inside the cart calculation for this processor. The `\Shopware\Cart\Product\ProductProcessor` is registered with priority 1000, which means it is executed after this blacklist processor.
+Using a high priority defines an early position inside the cart calculation for this processor.
+The `\Shopware\Cart\Product\ProductProcessor` is registered with priority 1000, which means it is executed after this blacklist processor.

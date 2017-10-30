@@ -123,7 +123,7 @@ The original exception with the `unsecure template directory` will be displayed:
 Uncaught SmartyException: directory 'custom/plugins/.../Views/test_index.tpl' not allowed by security setting
 ```
 
-To see all configurable options see [config.php settings documentation](https://developers.shopware.com/developers-guide/shopware-config/#search-results) 
+To see all configurable options see [config.php settings documentation](https://developers.shopware.com/developers-guide/shopware-config/) 
 
 #### Rendering
 

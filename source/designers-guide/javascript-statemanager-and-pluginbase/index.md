@@ -382,28 +382,28 @@ An object which inherits from the EventEmitter exposes the functionality of subs
 ### Class methods
 * ```on()```
     * **Arguments**
-        * ```eventName : String``` - The name of the event which to listen to
-        * ```callback : Function``` - The function which should be called, when the event is triggered
-        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
+        * ```eventName : String``` - The name of the event which to listen to
+        * ```callback : Function``` - The function which should be called, when the event is triggered
+        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
     * Add an event listener
     * Chainable
 * ```once()```
     * **Arguments**
-        * ```eventName : String``` - The name of the event which to listen to
-        * ```callback : Function``` - The function which should be called, when the event is triggered
-        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
+        * ```eventName : String``` - The name of the event which to listen to
+        * ```callback : Function``` - The function which should be called, when the event is triggered
+        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
     * Behaves exactly like on, expect that the listener gets removed after the callback has been called once
     * Chainable
 * ```off()```
     * **Arguments**
-        * ```eventName : String``` - Optional, the name used for subscribing
-        * ```callback : Function``` - Optional, the callback used for subscribing
-        * ```context : Any``` - Optional, the context used for subscribing
+        * ```eventName : String``` - Optional, the name used for subscribing
+        * ```callback : Function``` - Optional, the callback used for subscribing
+        * ```context : Any``` - Optional, the context used for subscribing
     * Removes an event listener. It tries to find the listener you added by the parameters you've given. E.g. if there's a listener matching the `eventName` and the `callback` you've given, but not the `context` (if you've given one) the listener won't be removed. If you only supply the eventName, all listeners of that event will be removed. If you supply no parameters all event listeners will be removed.
     * Chainable
 * ```trigger()```
     * **Arguments**
-        * ```eventName : String``` - The name of the event to trigger
+        * ```eventName : String``` - The name of the event to trigger
     * Triggers an event.
     * Chainable
 * ```destroy()```

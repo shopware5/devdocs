@@ -70,7 +70,7 @@ As part of the restructuring of the theme, we updated the list of browsers which
 * Firefox version 29 or above
 * Safari, Mac OS X only. Support for the windows version has been discontinued
 * Opera version 15 with Blink engine or above
-* Internet Explorer version 9 or above
+* Internet Explorer version 9 or above (with Shopware 5.3 Internet Explorer version 11)
 
 Please keep in mind that older browsers don't support all available HTML5 and CSS3 features.
 

@@ -28,7 +28,7 @@ Have a look here for a <a href="http://community.shopware.com/files/downloads/te
 
 ### Disable Smarty Rendering
 ```php
-$this->Front()->Plugins()->ViewRenderer()->setNoRender(true);
+$this->Front()->Plugins()->ViewRenderer()->setNoRender();
 ```
 
 ## Events and hooks

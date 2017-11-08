@@ -26,6 +26,11 @@ This list is not complete. If you miss something important, feel free to open a 
 ## Templating
 Have a look here for a <a href="http://community.shopware.com/files/downloads/templatecheatsheeten-12249471.pdf" target="_blank">Smarty Cheat-Sheet</a>
 
+### Disable Smarty Rendering
+```php
+$this->Front()->Plugins()->ViewRenderer()->setNoRender(true);
+```
+
 ## Events and hooks
 Use your main plugin class or a subscriber class which implements the `\Enlight\Event\SubscriberInterface` to register new events or hooks
 

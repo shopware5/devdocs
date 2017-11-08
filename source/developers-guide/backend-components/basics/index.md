@@ -45,16 +45,22 @@ These tutorials are built upon each other and you will find a zip file with the 
 To do so, you can add the following configuration to your `config.php`:
 
 ```php
-'front' => array( 'throwExceptions' => true ),
-'template' => array( 'forceCompile' => true ),
-'model' => array( 'cacheProvider' => 'Array' ),
-'cache' => array(
+'front' => [
+    'throwExceptions' => true 
+    ],
+'template' => [
+    'forceCompile' => true
+    ],
+'model' => [
+    'cacheProvider' => 'Array'
+    ],
+'cache' => [
     'backend' => 'Black-Hole',
-    'backendOptions' => array(),
-    'frontendOptions' => array(
+    'backendOptions' => [],
+    'frontendOptions' => [
         'write_control' => false
-    ),
-),
+    ]
+],
 ```
 
 **Important: This configuration should *not* be used in production.**
@@ -69,75 +75,68 @@ The backend contains some Shopware specific components, which are based on diffe
 We will start by writing our own small backend application with standard components. First we have to create a plugin which provides us with some basic features. They are:
 
 * A menu item in the backend
-* Your own backend controller
 * Your own Doctrine model
+* Your own backend controller
 
 To speed things up, our plugin is expected to create a new product list to cover all sections of our backend components. Since the doctrine models are an essential part of the backend development and modules, this tutorial will rebuild and explain some parts of the `Shopware\Models\Article` namespace.
 
-### The Plugin Bootstrap - `Bootstrap.php`
-First, you have to create a directory called `SwagProduct` with a new file called `Bootstrap.php` in it. The following features will be implemented in the bootstrap class:
+### The Plugin Base File
+First, you have to create a directory in `..\custom\plugins` called `SwagProductBasic` with a new file called `SwagProductBasic.php` in it. The following features will be implemented in the plugin file class:
 
-* Register your own backend controller
 * Create a backend menu item which calls the controller
 
 ```php
 <?php
 
-class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+namespace SwagProductBasic;
+
+use Shopware\Components\Plugin;
+
+class SwagProductBasic extends Plugin
 {
-    public function getInfo() 
+    /**
+     * {@inheritdoc}
+     */
+    public function install(InstallContext $installContext)
     {
-        return array(
-            'label' => 'Shopware Product Overview'
-        );
+        parent::install($installContext);
     }
-
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Controller_Dispatcher_ControllerPath_Backend_SwagProduct',
-            'getBackendController'
-        );
-
-        $this->createMenuItem(array(
-            'label' => 'Shopware Product overview',
-            'controller' => 'SwagProduct',
-            'class' => 'sprite-application-block',
-            'action' => 'Index',
-            'active' => 1,
-            'parent' => $this->Menu()->findOneBy(['label' => 'Marketing'])
-        ));
-        return true;
-    }
-
-    public function getBackendController(Enlight_Event_EventArgs $args)
-    {
-        // Register the template directory to not have to provide it
-        // in the controller every time
-        $this->Application()->Template()->addTemplateDir(
-            $this->Path() . '/Views/'
-        );
-
-        // Register the models to have access to them in the controller
-        $this->registerCustomModels();
-
-        return $this->Path() . '/Controllers/Backend/SwagProduct.php';
-    }
+}
 ```
 
-### The Doctrine Model - `Models/Product/Product.php`
+### Create a menu item in the backend
+Create a `/../SwagProductBasic/Resources/menu.xml` file. 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
 
-Afterwards we create a new product model in `Models/Product/Product.php`.
+    <entries>
+        <entry>
+            <name>SwagBasicProduct</name>
+            <label lang="en">Swag basic product</label>
+            <label lang="de">Swag Basis Produkt</label>
+            <controller>SwagProductBasic</controller>
+            <action>index</action>
+            <class>sprite-application-block</class>
+            <parent identifiedBy="controller">Article</parent>
+        </entry>
+    </entries>
+</menu>
+
+```
+
+### The Doctrine Model - `/Models/Product.php`
+
+Afterwards we create a new product model in `/Models/Product.php`.
 
 ```php
 <?php
 
-namespace Shopware\CustomModels\Product;
+namespace SwagProductBasic\Models;
 
 use Shopware\Components\Model\ModelEntity;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -203,6 +202,7 @@ class Product extends ModelEntity
     {
         return $this->id;
     }
+
 
     /**
      * @param int $active
@@ -300,9 +300,10 @@ class Product extends ModelEntity
         return $this->lastStock;
     }
 }
+
 ```
 
-The product model shown above contains just a fraction of the original Shopware article model, but is sufficient for our purpose. Please notice the namespace at the top. The `Shopware\CustomModels` namespace is used exclusively for plugin models. To create the associated database table, you should use Doctrine's schema tool, which can be found in `\Doctrine\ORM\Tools\SchemaTool`. The following features will now be implemented in the plugin bootstrap:
+The product model shown above contains just a fraction of the original Shopware article model, but is sufficient for our purpose. Please notice the namespace at the top. The `PluginNameSpace/Models namespace is used exclusively for plugin models. To create the associated database table, you should use Doctrine's schema tool, which can be found in `\Doctrine\ORM\Tools\SchemaTool`. The following features will now be implemented in the plugin base file:
 
 * Create the database tables in the `install()` method
 * Add demo data to the new database table
@@ -311,65 +312,71 @@ The product model shown above contains just a fraction of the original Shopware 
 ```php
 <?php
 
-class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+namespace SwagProductBasic;
+
+use Doctrine\ORM\Tools\SchemaTool;
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\ActivateContext;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
+use SwagProductBasic\Models\Product;
+
+class SwagProductBasic extends Plugin
 {
-    public function getBackendController(Enlight_Event_EventArgs $args) { ... }
-
-    public function getInfo() { ... }
-
-    public function install()
+    /**
+     * {@inheritdoc}
+     */
+    public function install(InstallContext $installContext)
     {
-        $this->subscribeEvent( ... );
-
-        $this->createMenuItem( ... );
-
-        $this->updateSchema();
-
-        return true;
-    }
-
-    protected function updateSchema()
-    {
-        $this->registerCustomModels();
-
-        $em = $this->Application()->Models();
-        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-
-        $classes = array(
-            $em->getClassMetadata('Shopware\CustomModels\Product\Product')
-        );
-
-        try {
-            $tool->dropSchema($classes);
-        } catch (Exception $e) {
-            //ignore
-        }
-        $tool->createSchema($classes);
+        $this->createDatabase();
 
         $this->addDemoData();
     }
 
-    public function uninstall()
+    /**
+     * {@inheritdoc}
+     */
+    public function activate(ActivateContext $activateContext)
     {
-        $this->registerCustomModels();
-
-        $em = $this->Application()->Models();
-        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-
-        $classes = array(
-            $em->getClassMetadata('Shopware\CustomModels\Product\Product')
-        );
-        $tool->dropSchema($classes);
-
-        return true;
+        $activateContext->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 
-    protected function addDemoData()
+    public function uninstall(UninstallContext $uninstallContext)
+    {
+        if (!$uninstallContext->keepUserData()) {
+            $this->removeDatabase();
+        }
+    }
+
+    private function createDatabase()
+    {
+        $modelManager = $this->container->get('models');
+        $tool = new SchemaTool($modelManager);
+
+        $classes = [
+            $modelManager->getClassMetadata(Product::class)
+        ];
+
+        $tool->updateSchema($classes, true); // make sure to use the save mode
+    }
+
+    private function removeDatabase()
+    {
+        $modelManager = $this->container->get('models');
+        $tool = new SchemaTool($modelManager);
+
+        $classes = [
+            $modelManager->getClassMetadata(Product::class)
+        ];
+
+        $tool->dropSchema($classes);
+    }
+
+    private function addDemoData()
     {
         $sql = "
-            INSERT IGNORE INTO s_product (id, name, active, description, descriptionLong, lastStock, createDate)
+            INSERT IGNORE INTO s_product (`name`, active, description, descriptionLong, lastStock, createDate)
             SELECT
-                a.id,
                 a.name,
                 a.active,
                 a.description,
@@ -378,7 +385,8 @@ class Shopware_Plugins_Backend_SwagProduct_Bootstrap extends Shopware_Components
                 a.datum as createDate
             FROM s_articles a
         ";
-        Shopware()->Db()->query($sql);
+
+        $this->container->get('dbal_connection')->exec($sql);
     }
 }
 ```
@@ -392,15 +400,15 @@ Finally, we implement our own PHP controller in `Controllers/Backend/SwagProduct
 ```php
 <?php
 
-class Shopware_Controllers_Backend_SwagProduct 
+class Shopware_Controllers_Backend_SwagProductBasic 
     extends Shopware_Controllers_Backend_Application
 {
-    protected $model = 'Shopware\CustomModels\Product\Product';
+    protected $model = Product::class;
     protected $alias = 'product';
 }
 ```
 
-Different from previous backend controllers, the `SwagProduct` controller derives from `Shopware_Controllers_Backend_Application` instead of `Shopware_Controllers_Backend_ExtJs`. This controller has been exclusively designed to include different CRUD operations in every controller. The only requirements are the properties `$model` and `$alias`. The property `$model` must be the complete name of the model, including the namespace, as it will be used for the Doctrine queries and CRUD operations later on. If the property `$model` is not configured properly, you will get the following error message:
+Different from previous backend controllers, the `SwagProductBasic` controller derives from `Shopware_Controllers_Backend_Application` instead of `Shopware_Controllers_Backend_ExtJs`. This controller has been exclusively designed to include different CRUD operations in every controller. The only requirements are the properties `$model` and `$alias`. The property `$model` must be the complete name of the model, including the namespace, as it will be used for the Doctrine queries and CRUD operations later on. If the property `$model` is not configured properly, you will get the following error message:
 
 <div class="alert alert-danger">The `model` property of your PHP controller is not configured!</div>
 
@@ -417,14 +425,14 @@ Now, we go on to the proper usage of the backend components. First, we implement
 * `swag_product/view/list/product.js`
 
 
-### The Subapplication - `swag_product/app.js`
-To start, we define the starting point of our backend application in `swag_product/app.js`.
+### The Subapplication - `swag_product_basic/app.js`
+To start, we define the starting point of our backend application in `swag_product_basic/app.js`.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct', {
+Ext.define('Shopware.apps.SwagProductBasic', {
     extend: 'Enlight.app.SubApplication',
 
-    name:'Shopware.apps.SwagProduct',
+    name:'Shopware.apps.SwagProductBasic',
 
     loadPath: '{url action=load}',
     bulkLoad: true,
@@ -455,7 +463,7 @@ The `launch()` method will instantiate the main controller and return its `mainW
 The main controller is responsible for starting the application by creating and displaying the listing window:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductBasic.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {
@@ -471,7 +479,7 @@ There is not much to say about the main controller. The only important thing is 
 The listing window derives from the `Shopware.window.Listing` component and will be the first backend component that will be used in our application.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
+Ext.define('Shopware.apps.SwagProductBasic.view.list.Window', {
     extend: 'Shopware.window.Listing',
     alias: 'widget.product-list-window',
     height: 450,
@@ -479,8 +487,8 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
     configure: function() {
         return {
-            listingGrid: 'Shopware.apps.SwagProduct.view.list.Product',
-            listingStore: 'Shopware.apps.SwagProduct.store.Product'
+            listingGrid: 'Shopware.apps.SwagProductBasic.view.list.Product',
+            listingStore: 'Shopware.apps.SwagProductBasic.store.Product'
         };
     }
 });
@@ -488,7 +496,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
 The `Shopware.window.Listing` component has 2 requirements, which have to be met in the `configure()` method. The `configure()` method is meant to be your starting point to set Shopware related configurations. This method is available in every Shopware backend component.
 
-* `listingGrid` - Should be the class name of the `Shopware.grid.Panel` which will be displayed inside the window. We'll define that class in `swag_product/view/list/product.js` file in the next step.
+* `listingGrid` - Should be the class name of the `Shopware.grid.Panel` which will be displayed inside the window. We'll define that class in `swag_product_basic/view/list/product.js` file in the next step.
 * `listingStore` - Should be the class name of the `Shopware.store.Listing` which will be loaded when starting the application. This store will be the store used in the `Shopware.grid.Panel`.
 
 It is important to set property `alias`, otherwise all component events can't be determined by the ExtJS Component Query.
@@ -501,7 +509,7 @@ This tutorial already contains some of the Shopware configuration options. You'l
 Next, we implement the `Shopware.grid.Panel` in `swag_product/view/list/product.js`.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center'
@@ -514,13 +522,13 @@ Keep in mind that you still have to provide an alias for the component.
 
 Since the `Shopware.grid.Panel` can be used everywhere, you have to define `region: 'center'` in the `Shopware.window.Listing` because a border layout has been applied to the panel.
 
-### The Data Model - `swag_product/model/product.js`
+### The Data Model - `swag_product_basic/model/product.js`
 Next, we implement the `Shopware.data.Model` which reflects the data structure of `Shopware\CustomModels\Product\Product`.
 
-For this, we implement the following code in `swag_product/model/product.js`:
+For this, we implement the following code in `swag_product_basic/model/product.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.model.Product', {
     extend: 'Shopware.data.Model',
 
     configure: function() {
@@ -545,13 +553,13 @@ The only required property here is the `controller` property, but only if this i
 
 In case you want to do CRUD operations on your others models, you may set the `controller` property in those too. You will then be able to perform operations like `create`, `update` and `delete`.
 
-The property `controller` expects the individual name of your `Shopware_Controllers_Backend_Application` controller. Given that your controller is called `Shopware_Controllers_Backend_SwagProduct`, the individual name would be `SwagProduct`.
+The property `controller` expects the individual name of your `Shopware_Controllers_Backend_Application` controller. Given that your controller is called `Shopware_Controllers_Backend_SwagProductBasic`, the individual name would be `SwagProductBasic`.
 
-### The Data Store - `swag_product/store/product.js`
-Finally, we have to define the `Shopware.store.Listing` store, which will be used for the `Shopware.grid.Panel`. For this, we implement the following code in `swag_product/store/product.js`:
+### The Data Store - `swag_product_basic/store/product.js`
+Finally, we have to define the `Shopware.store.Listing` store, which will be used for the `Shopware.grid.Panel`. For this, we implement the following code in `swag_product_basic/store/product.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.store.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.store.Product', {
     extend:'Shopware.store.Listing',
 
     configure: function() {
@@ -559,7 +567,7 @@ Ext.define('Shopware.apps.SwagProduct.store.Product', {
             controller: 'SwagProduct'
         };
     },
-    model: 'Shopware.apps.SwagProduct.model.Product'
+    model: 'Shopware.apps.SwagProductBasic.model.Product'
 });
 ```
 
@@ -579,19 +587,19 @@ The application now supports the following operations:
 ## The last 25% to complete our application
 Until now, we have implemented 75% of the whole application. What's still missing is the detail window. This should be opened by clicking the pencil icon at the end of a line. Right now you'll get the following error message in the debug console:
 
-<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProduct.view.list.Product: Component requires the `detailWindow` property in the `configure()` function </div>
+<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProductBasic.view.list.Product: Component requires the `detailWindow` property in the `configure()` function </div>
 
 To make the application complete, we have to implement the following components:
 
-* `swag_product/view/detail/window.js`
-* `swag_product/view/detail/product.js`
+* `swag_product_basic/view/detail/window.js`
+* `swag_product_basic/view/detail/product.js`
 
 
-### The Detail Window - `swag_product/view/detail/window.js`
-Here, you have two tasks to do. First, implement a new `Shopware.window.Detail` component and second, declare it in our `Shopware.grid.Panel`. But first, implement the detail window by putting the following code in `swag_product/view/detail/window.js`:
+### The Detail Window - `swag_product_basic/view/detail/window.js`
+Here, you have two tasks to do. First, implement a new `Shopware.window.Detail` component and second, declare it in our `Shopware.grid.Panel`. But first, implement the detail window by putting the following code in `swag_product_basic/view/detail/window.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
+Ext.define('Shopware.apps.SwagProductBasic.view.detail.Window', {
     extend: 'Shopware.window.Detail',
     alias: 'widget.product-detail-window',
     title : '{s name=title}Product details{/s}',
@@ -604,9 +612,9 @@ The only requirement for this component is that you have to provide a property n
 
 We now have to define the detail window at two places.
 
-1. **Define the component in our app in `swag_product/app.js`:**
+1. **Define the component in our app in `swag_product_basic/app.js`:**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct', {
+Ext.define('Shopware.apps.SwagProductBasic', {
     extend: 'Enlight.app.SubApplication',
     views: [
         ...
@@ -621,25 +629,25 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-2. **Define the `detailWindow` in our `Shopware.grid.Panel` (`swag_product/view/list/product.js`) to let the application know which component should be called by clicking on the pencil:**
+2. **Define the `detailWindow` in our `Shopware.grid.Panel` (`swag_product_basic/view/list/product.js`) to let the application know which component should be called by clicking on the pencil:**
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     ...
     configure: function() {
         return {
-            detailWindow: 'Shopware.apps.SwagProduct.view.detail.Window'
+            detailWindow: 'Shopware.apps.SwagProductBasic.view.detail.Window'
         };
     }
 });
 ```
 
-### The Product Detail Window - `swag_product/view/detail/product.js`
-The last thing to do is implement the `Shopware.model.Container` which can be used for the representation of a model. The following code needs to be implemented in `swag_product/view/detail/product.js`:
+### The Product Detail Window - `swag_product_basic/view/detail/product.js`
+The last thing to do is implement the `Shopware.model.Container` which can be used for the representation of a model. The following code needs to be implemented in `swag_product_basic/view/detail/product.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.view.detail.Product', {
     extend: 'Shopware.model.Container',
     padding: 20,
 
@@ -656,7 +664,7 @@ The `Shopware.model.Container` has two requirements. A proper configured `contro
 Like above, you have to register your component in your `app.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct', {
+Ext.define('Shopware.apps.SwagProductBasic', {
     extend: 'Enlight.app.SubApplication',
     views: [
         ...
@@ -670,16 +678,16 @@ Ext.define('Shopware.apps.SwagProduct', {
 });
 ```
 
-In addition, you have to update your `Shopware.data.Model` to make it know about your detail window. For that, add the following code to `swag_product/model/product.js`:
+In addition, you have to update your `Shopware.data.Model` to make it know about your detail window. For that, add the following code to `swag_product_basic/model/product.js`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductBasic.model.Product', {
     extend: 'Shopware.data.Model',
 
     configure: function() {
         return {
             controller: 'SwagProduct',
-            detail: 'Shopware.apps.SwagProduct.view.detail.Product'
+            detail: 'Shopware.apps.SwagProductBasic.view.detail.Product'
         };
     },
     fields: [
@@ -689,7 +697,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 });
 ```
 
-The Shopware configuration property `detail` defines which component should be created when the detail window for `Shopware.apps.SwagProduct.model.Product` is requested. Now, the detail window will always look the same in the whole backend.
+The Shopware configuration property `detail` defines which component should be created when the detail window for `Shopware.apps.SwagProductBasic.model.Product` is requested. Now, the detail window will always look the same in the whole backend.
 
 ## Plugin Download - [SwagProductBasics.zip](/exampleplugins/SwagProductBasics.zip)
 

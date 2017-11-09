@@ -1,6 +1,6 @@
 
 
-Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
     extend: 'Shopware.model.Container',
     alias: 'widget.product-detail-container',
 
@@ -13,7 +13,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
     configure: function() {
         return {
-            controller: 'SwagProduct',
+            controller: 'SwagProductDetail',
             fieldSets: [{
                 title: 'Product data',
                 fields: {

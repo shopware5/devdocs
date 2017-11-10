@@ -8,6 +8,7 @@ use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
 use SwagProductListing\Models\Product;
+use Shopware\Components\Model\ModelManager;
 
 class SwagProductListing extends Plugin
 {
@@ -29,6 +30,9 @@ class SwagProductListing extends Plugin
         $activateContext->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function uninstall(UninstallContext $uninstallContext)
     {
         if (!$uninstallContext->keepUserData()) {
@@ -41,9 +45,7 @@ class SwagProductListing extends Plugin
         $modelManager = $this->container->get('models');
         $tool = new SchemaTool($modelManager);
 
-        $classes = [
-            $modelManager->getClassMetadata(Product::class)
-        ];
+        $classes = $this->getClasses($modelManager);
 
         $tool->updateSchema($classes, true); // make sure to use the save mode
     }
@@ -53,11 +55,20 @@ class SwagProductListing extends Plugin
         $modelManager = $this->container->get('models');
         $tool = new SchemaTool($modelManager);
 
-        $classes = [
-            $modelManager->getClassMetadata(Product::class)
-        ];
+        $classes = $classes = $this->getClasses($modelManager);
 
         $tool->dropSchema($classes);
+    }
+
+    /**
+     * @param ModelManager $modelManager
+     * @return array
+     */
+    private function getClasses(ModelManager $modelManager)
+    {
+        return [
+            $modelManager->getClassMetadata(Product::class)
+        ];
     }
 
     private function addDemoData()

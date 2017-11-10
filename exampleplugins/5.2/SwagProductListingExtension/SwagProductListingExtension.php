@@ -1,6 +1,6 @@
 <?php
 
-namespace SwagProductAssoc;
+namespace SwagProductListingExtension;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Tools\SchemaTool;
@@ -9,11 +9,11 @@ use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\ActivateContext;
 use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
-use SwagProductAssoc\Models\Attribute;
-use SwagProductAssoc\Models\Product;
-use SwagProductAssoc\Models\Variant;
+use SwagProductListingExtension\Models\Attribute;
+use SwagProductListingExtension\Models\Product;
+use SwagProductListingExtension\Models\Variant;
 
-class SwagProductAssoc extends Plugin
+class SwagProductListingExtension extends Plugin
 {
     /**
      * {@inheritdoc}

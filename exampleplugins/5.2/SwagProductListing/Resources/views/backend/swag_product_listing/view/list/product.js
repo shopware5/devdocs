@@ -1,13 +1,13 @@
 
 
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center',
 
     configure: function() {
         return {
-            detailWindow: 'Shopware.apps.SwagProduct.view.detail.Window',
+            detailWindow: 'Shopware.apps.SwagProductListing.view.detail.Window',
             columns: {
                 name: { header: 'Product name' },
                 description: { flex: 3 },

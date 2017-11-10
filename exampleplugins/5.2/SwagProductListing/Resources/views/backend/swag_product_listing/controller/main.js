@@ -1,5 +1,5 @@
 
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductListing.controller.Main', {
     extend: 'Enlight.app.Controller',
     init: function() {
         var me = this;

@@ -1,5 +1,5 @@
 
-Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Window', {
     extend: 'Shopware.window.Listing',
     alias: 'widget.product-list-window',
     height: 340,
@@ -8,8 +8,8 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
     configure: function() {
         return {
-            listingGrid: 'Shopware.apps.SwagProduct.view.list.Product',
-            listingStore: 'Shopware.apps.SwagProduct.store.Product'
+            listingGrid: 'Shopware.apps.SwagProductListing.view.list.Product',
+            listingStore: 'Shopware.apps.SwagProductListing.store.Product'
         };
     }
 });

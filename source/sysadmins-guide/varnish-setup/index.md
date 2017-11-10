@@ -351,4 +351,8 @@ The proxy is not recognized as a "[trusted proxy](https://developers.shopware.co
 
 ### Error message "Reverse proxy returned invalid status code"
 This message appears when automatic cache invalidation fails. A proxy (mostly the SSL Proxy) didn't forward the BAN or PURGE request to the cache. Storing the cache proxy's IP (e.g. http://127.0.01/) should solve the problem. [Backend configuration](/developers-guide/http-cache/#backend)
-If the problem still persists, investigate on the actual status code the proxy returns. Code 405 indicates, that the appserver is not permitted to purge the cache, code 404 indicates, that the proxy's IP is wrong or not accessible by the appserver. 
+If the problem still persists, investigate on the actual status code the proxy returns. Code 405 indicates, that the appserver is not permitted to purge the cache, code 404 indicates, that the proxy's IP is wrong or not accessible by the appserver.
+
+### Varnish has no hits when using HTTP Authenticate or Authorization
+
+If you are using any kind of HTTP authentication or authorisation please be aware, that by default our Varnish configuration ignores these request and does not cache them! If you want to use Varnish combined with HTTP authentication, you can use a webserver which handles the authentication beforehand and unsets the corresponding headers ("Authenticate" and "Authorization").

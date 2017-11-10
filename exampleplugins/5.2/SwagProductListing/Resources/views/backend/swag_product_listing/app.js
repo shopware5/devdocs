@@ -1,8 +1,8 @@
 
-Ext.define('Shopware.apps.SwagProduct', {
+Ext.define('Shopware.apps.SwagProductListing', {
     extend: 'Enlight.app.SubApplication',
 
-    name:'Shopware.apps.SwagProduct',
+    name:'Shopware.apps.SwagProductListing',
 
     loadPath: '{url action=load}',
     bulkLoad: true,

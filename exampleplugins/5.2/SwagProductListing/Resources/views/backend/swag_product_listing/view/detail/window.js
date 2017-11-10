@@ -1,6 +1,6 @@
 
 
-Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
+Ext.define('Shopware.apps.SwagProductListing.view.detail.Window', {
     extend: 'Shopware.window.Detail',
     alias: 'widget.product-detail-window',
     title : '{s name=title}Product details{/s}',

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd">
+
+    <entries>
+        <entry>
+            <name>SwagProductListing</name>
+            <label lang="en">Swag product listing</label>
+            <label lang="de">Swag Produkt-Listing</label>
+            <controller>SwagProductListing</controller>
+            <action>index</action>
+            <class>sprite-application-block</class>
+            <parent identifiedBy="controller">Article</parent>
+        </entry>
+    </entries>
+</menu>

@@ -1,11 +1,11 @@
 
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductListing.model.Product', {
     extend: 'Shopware.data.Model',
 
     configure: function() {
         return {
-            controller: 'SwagProduct',
-            detail: 'Shopware.apps.SwagProduct.view.detail.Product'
+            controller: 'SwagProductListing',
+            detail: 'Shopware.apps.SwagProductListing.view.detail.Product'
         };
     },
 

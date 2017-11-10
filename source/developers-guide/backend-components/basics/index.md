@@ -353,9 +353,7 @@ class SwagProductBasic extends Plugin
         $modelManager = $this->container->get('models');
         $tool = new SchemaTool($modelManager);
 
-        $classes = [
-            $modelManager->getClassMetadata(Product::class)
-        ];
+        $classes = $this->getClasses($modelManager);
 
         $tool->updateSchema($classes, true); // make sure to use the save mode
     }
@@ -365,11 +363,20 @@ class SwagProductBasic extends Plugin
         $modelManager = $this->container->get('models');
         $tool = new SchemaTool($modelManager);
 
-        $classes = [
-            $modelManager->getClassMetadata(Product::class)
-        ];
+        $classes = $this->getClasses($modelManager);
 
         $tool->dropSchema($classes);
+    }
+    
+    /**
+     * @param ModelManager $modelManager
+     * @return array
+     */
+    private function getClasses(ModelManager $modelManager)
+    {
+        return [
+            $modelManager->getClassMetadata(Product::class)
+        ];
     }
 
     private function addDemoData()

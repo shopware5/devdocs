@@ -160,7 +160,7 @@ budget of the customer. For that reason there are a lot of variations in the set
 
 ### Caching on the appserver
 In some cases you might want to consider moving the cache layer to the appservers themselves. In that case the
-appserver would include varnish, apache and the Shopware application. This will keep the overal infrastructure
+appserver would include varnish, apache and the Shopware application. This will keep the overall infrastructure
 smaller, but will force you to optimize the appserver for varnish *and* the webserver / application.
 
 As an alternative you could also remove the varnish cache entirely and only rely on Shopware's built in HTTP cache.
@@ -182,7 +182,7 @@ and the sourcecode itself.
 
 ### Invalidating caches
 Since Shopware 5.2.0 you are able to configure multiple HTTP reverse proxies (e.g. varnish). So whenever the HTTP cache
-is cleared or certain pages needs to be invalidated, Shopware will distribute this BAN and PURGE requests to all configured
+is cleared or certain pages need to be invalidated, Shopware will distribute this BAN and PURGE requests to all configured
 caches.
 
 This does not yet apply for clearing caches like attribute cache, proxy caches, object caches etc. You can clear those caches
@@ -210,7 +210,7 @@ After deploying Shopware from VCS, installing plugins or generating themes from 
 admin server should be synced to all the appservers. `rsync` is a commonly used tool for this kind of task -
 but you could also consider using [lsyncd](https://github.com/axkibe/lsyncd), which is an extension to `rsync` and
 watches and syncs directories automatically.
-As most shop setups are quite individual and will include custom plugins, there is no finite list of directories that needs
+As most shop setups are quite individual and will include custom plugins, there is no finite list of directories that need
 to be synced. Generally all files / directories of the Shopware setup should be synced across the appservers.
 The following directories, however, need special treatment:
 

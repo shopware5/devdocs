@@ -31,6 +31,13 @@ Have a look here for a <a href="http://community.shopware.com/files/downloads/te
 $this->Front()->Plugins()->ViewRenderer()->setNoRender();
 ```
 
+### Add json Rendering
+Useful for ajax calls
+```php
+$this->Front()->Plugins()->ViewRenderer()->setNoRender();
+$this->Front()->Plugins()->Json()->setRenderer();
+```
+
 ## Events and hooks
 Use your main plugin class or a subscriber class which implements the `\Enlight\Event\SubscriberInterface` to register new events or hooks
 
@@ -81,7 +88,7 @@ $attributeCrudService->update(
 ### Delete existing attribute
 ```php
 $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
-$attributeCrudService->update('s_articles_attributes', 'swag_test_attribute');
+$attributeCrudService->delete('s_articles_attributes', 'swag_test_attribute');
 ```
 ### Translate label, help text, support text
 create `SwagTest\Resources\snippets\backend\attribute_columns.ini`

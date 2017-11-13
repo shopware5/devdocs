@@ -481,7 +481,7 @@ $updateArticle = array(
             'isMain' => false,
             'number' => 'turn.1',
             'inStock' => 15,
-            'additionnaltext' => 'S / Black',
+            'additionaltext' => 'S / Black',
             'configuratorOptions' => array(
                 array('group' => 'Size', 'option' => 'S'),
                 array('group' => 'Color', 'option' => 'Black'),
@@ -497,7 +497,7 @@ $updateArticle = array(
             'isMain' => false,
             'number' => 'turn.2',
             'inStock' => 15,
-            'additionnaltext' => 'S / Red',
+            'additionaltext' => 'S / Red',
             'configuratorOptions' => array(
                 array('group' => 'Size', 'option' => 'S'),
                 array('group' => 'Color', 'option' => 'Red'),
@@ -513,7 +513,7 @@ $updateArticle = array(
             'isMain' => false,
             'number' => 'turn.3',
             'inStock' => 15,
-            'additionnaltext' => 'XL / Red',
+            'additionaltext' => 'XL / Red',
             'configuratorOptions' => array(
                 array('group' => 'Size', 'option' => 'XL'),
                 array('group' => 'Color', 'option' => 'Red'),

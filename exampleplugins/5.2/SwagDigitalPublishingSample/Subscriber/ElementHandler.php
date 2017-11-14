@@ -1,10 +1,10 @@
 <?php
 
-namespace Shopware\SwagDigitalPublishingSample120\Subscriber;
+namespace SwagDigitalPublishingSample\Subscriber;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Enlight\Event\SubscriberInterface;
-use Shopware\SwagDigitalPublishingSample120\Components\YouTubeHandler;
+use SwagDigitalPublishingSample\Components\YouTubeHandler;
 
 class ElementHandler implements SubscriberInterface
 {

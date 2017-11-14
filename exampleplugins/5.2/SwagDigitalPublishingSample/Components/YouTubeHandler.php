@@ -1,8 +1,9 @@
 <?php
 
-namespace Shopware\SwagDigitalPublishingSample120\Components;
+namespace SwagDigitalPublishingSample\Components;
 
-use Shopware\SwagDigitalPublishing\Components\ElementHandler\PopulateElementHandlerInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+use SwagDigitalPublishing\Components\ElementHandler\PopulateElementHandlerInterface;
 
 class YouTubeHandler implements PopulateElementHandlerInterface
 {
@@ -20,10 +21,11 @@ class YouTubeHandler implements PopulateElementHandlerInterface
 
     /**
      * @param array $element
+     * @param ShopContextInterface $context
      *
      * @return array
      */
-    public function handle(array $element)
+    public function handle(array $element, ShopContextInterface $context)
     {
         return $element;
     }

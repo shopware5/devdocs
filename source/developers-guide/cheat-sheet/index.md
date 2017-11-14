@@ -38,6 +38,11 @@ $this->Front()->Plugins()->ViewRenderer()->setNoRender();
 $this->Front()->Plugins()->Json()->setRenderer();
 ```
 
+### Dynamic snippet names / namespaces
+```smarty
+{"Snippet Content"|snippet:$dynamicName:$dynamicNamespace}
+```
+
 ## Events and hooks
 Use your main plugin class or a subscriber class which implements the `\Enlight\Event\SubscriberInterface` to register new events or hooks
 

@@ -36,10 +36,10 @@ controller action.
 ### Module
 A module is actually a namespace for a controller. Controllers are automatically registered under `PluginDirectory/Controllers/{Frontend|Backend|Api|Widgets}` like below:
 
-* `frontend`: Namespace for controllers related to the store front - e.g. cart, account, listing...
-* `widgets`: Namespace for widgets, i.e. reusable, cache compatible `{action}` blocks that will render ESI tags
-* `backend`: Namespace for backend controllers, usually protected by the Shopware backend authentication system
-* `api`: Namespace for REST API related controllers. Usually protected by the API authentication
+* `Frontend`: Namespace for controllers related to the store front - e.g. cart, account, listing...
+* `Widgets`: Namespace for widgets, i.e. reusable, cache compatible `{action}` blocks that will render ESI tags
+* `Backend`: Namespace for backend controllers, usually protected by the Shopware backend authentication system
+* `Api`: Namespace for REST API related controllers. Usually protected by the API authentication
 
 Each namespace can be found in `engine/Shopware/Controllers/{Frontend|Backend|Api|Widgets}`.
 
@@ -77,7 +77,7 @@ This makes it easy for you to tell apart public available endpoints from methods
 
 ## Plugin controllers
 Creating controllers from a plugin is quite easy: 
-Create the controller in the correct directory `PluginDirectory/Controllers/{frontend|backend|api|widgets}` and the controller will automatically registered.
+Create the controller in the correct directory `PluginDirectory/Controllers/{Frontend|Backend|Api|Widgets}` and the controller will automatically registered.
 
 For this to work, you must put a file called `Test.php` in the path `Controllers/Frontend` of your plugin directory. Shopware
 will do the rest for you automatically.

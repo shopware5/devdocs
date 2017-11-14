@@ -20,18 +20,24 @@ The shopping worlds are one highlight feature of Shopware. Here you can edit var
 <div class="toc-list"></div>
 
 ## Registering a new element ##
-For creating custom shopping world elements Shopware provides some helper functions which can be used in the `Bootstrap.php` of a [Shopware plugin](/developers-guide/plugin-quick-start/). So all you have to do is to create a simple plugin where you can register one ore more elements via the `createEmotionComponent()` method. As an example for this tutorial we will create a Vimeo element for adding videos to the shopping world.
+For creating custom shopping world elements Shopware provides some helper functions which can be used where the DependencyInjectionContainer is available. So all you have to do is to get the `shopware.emotion_component_installer` service in a simple plugin where you can register one ore more elements via the `createOrUpdate()` method. As an example for this tutorial we will create a Vimeo element for adding videos to the shopping world.
 
 ```php
-$vimeoElement = $this->createEmotionComponent([
-    'name' => 'Vimeo Video',
-    'xtype' => 'emotion-components-vimeo',
-    'template' => 'emotion_vimeo',
-    'cls' => 'emotion-vimeo-element',
-    'description' => 'A simple vimeo video element for the shopping worlds.'
-]);
+$this->emotionComponentInstaller = $this->container->get('shopware.emotion_component_installer');
+
+$vimeoElement = $this->emotionComponentInstaller->createOrUpdate(
+    $this->pluginName,
+    'SwagVimeoElement',
+    [
+        'name' => 'Vimeo Video',
+        'xtype' => 'emotion-components-vimeo',
+        'template' => 'emotion_vimeo',
+        'cls' => 'emotion-vimeo-element',
+        'description' => 'A simple vimeo video element for the shopping worlds.'
+    ]
+);
 ```
-In the `install()` method of our plugin we register a new element and save it in the variable `$vimeoElement` for later use. The `createEmotionComponent()` method expects a configuration array with the following properties:
+In the `install()` you use a helper class in the install method which creates the new element. The `createOrUpdate()` method expects the plugin name, a element name and a configuration array with the following properties:
 
 <table cellpadding="0" cellspacing="0" width="100%">
     <tr>
@@ -71,10 +77,6 @@ In the `install()` method of our plugin we register a new element and save it in
         <td>A short description which will be shown for your element in the shopping world module.</td>
     </tr>
 </table>
-
-### Registering component in new plugin system
-In the new plugin system since 5.2 it is required to register the `Shopware\Components\Emotion\EmotionComponentViewSubscriber`. You can find all information
-about registering the subscriber [here](/developers-guide/plugin-system/#add-backend-emotion-components/).
 
 ## Adding configuration fields to the element ##
 After registering the new element we can add different form fields to the element which can be filled by the user to configure the element. For each type of field there is a helper function which can be called on the newly registered component. We will add some configuration fields to our example element for the different embed options the Vimeo platform offers. 
@@ -363,10 +365,10 @@ $emotionElement->createMediaField([
 </table>
 
 ## Creating a frontend template for the element ##
-<img src="img/screen_template_structure.jpg" class="is-float-right" alt="template directory structure" />
-After registering the element and creating all the configuration fields we already see a full functional shopping world element in the backend module which can be placed on the design canvas. All we have to do now is to provide a frontend template to define the layout in the store. In the `Views` directory of our plugin we create the necessary directory structure to the file. Template files for shopping world elements can automatically be added by creating the hierarchy structure in the special directory called `emotion_components`. The full path to the template file would be `Views/emotion_components/widgets/emotion/components/{name}.tpl`.
+<img src="img/screen_template_structure.png" class="is-float-right" alt="template directory structure" />
+After registering the element and creating all the configuration fields we already see a full functional shopping world element in the backend module which can be placed on the design canvas. All we have to do now is to provide a frontend template to define the layout in the store. In the `Resources/views` directory of our plugin we create the necessary directory structure to the file. Template files for shopping world elements can automatically be added by creating the hierarchy structure in the special directory called `emotion_components`. The full path to the template file would be `Resources/views/emotion_components/widgets/emotion/components/{name}.tpl`.
  
-The name of the file has to match the definition in your `createEmotionComponent()` method. You can access your configuration fields inside the template file as properties of the `$Data` smarty variable. Let's create the embed code for displaying the Vimeo video.
+The name of the file has to match the definition in the `createOrUpdate()` method. You can access your configuration fields inside the template file as properties of the `$Data` smarty variable. Let's create the embed code for displaying the Vimeo video.
 
 ```
 {block name="widgets_emotion_components_vimeo_element"}
@@ -463,32 +465,59 @@ public function handle(ResolvedDataCollection $collection, Element $element, Sho
 
 Keep in mind to use a unique key for requesting and getting products. For best practise, use the element's id in your key (`$element->getId()`).
 
-### Shopware 5.2 and below
+```xml
+<!-- Add TemplateRegistration subscriber to the service.xml-->
+<service id="swag_vimeo_element.subscriber.templates" class="SwagVimeoElement\Subscriber\TemplateRegistration">
+    <argument>%swag_vimeo_element.plugin_dir%</argument>
+    <tag name="shopware.event_subscriber"/>
+</service>
+```
 
 ```php
-public function install()
-{
-    // ...
-    
-    $this->subscribeEvent(
-        'Shopware_Controllers_Widgets_Emotion_AddElement',
-        'onEmotionAddElement'
-    );
-}
+<?php
 
-public function onEmotionAddElement(Enlight_Event_EventArgs $args)
-{
-    $element = $args->get('element');
+namespace SwagVimeoElement\Subscriber;
 
-    if ($element['component']['xType'] !== 'emotion-components-vimeo') {
-        return;
+use Enlight\Event\SubscriberInterface;
+use Enlight_Controller_ActionEventArgs;
+
+class TemplateRegistration implements SubscriberInterface
+{
+    /**
+     * @var string
+     */
+    private $pluginDirectory;
+
+    /**
+     * @param $pluginDirectory
+     */
+    public function __construct($pluginDirectory)
+    {
+        $this->pluginDirectory = $pluginDirectory;
     }
 
-    $data = $args->getReturn();
-    
-    // Do some stuff with the element data
-    
-    $args->setReturn($data);
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion' => 'onPostDispatchBackendEmotion'
+        ];
+    }
+
+    /**
+     * @param Enlight_Controller_ActionEventArgs $args
+     */
+    public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
+    {
+        /** @var \Shopware_Controllers_Backend_Emotion $controller */
+        $controller = $args->getSubject();
+        $view = $controller->View();
+
+        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
+        $view->extendsTemplate('backend/emotion/swag_vimeo_element/view/detail/elements/vimeo_video.js');
+    }
 }
 ```
 
@@ -664,7 +693,7 @@ class BannerComponentHandler extends AbstractComponentHandler
 <img src="img/screen_component_structure.jpg" class="is-float-right" alt="backend component directory structure" />
 If you want to go a little further by creating custom configuration fields for your element you have the possibility to create your own ExtJS component for the element. Here you have full access to the configuration form in ExtJS. You can manipulate existing fields or add new fields which are more complex than the standard form elements.
 
-The file for the component is also located in the `emotion_components` directory, so it will be detected automatically. The complete path to the file is `Views/emotion_components/backend/{name}.js`.
+The file for the component is also located in the `emotion_components` directory, so it will be detected automatically. The complete path to the file is `Resources/views/emotion_components/backend/{name}.js`.
 
 For the Vimeo example we use the custom ExtJS component to make a call to the Vimeo api for receiving information about the preview image of the video and save it in the hidden input we already created via the helper functions.
 
@@ -731,26 +760,59 @@ Since Shopware 5.2 you are able to create a custom ExtJS component for the desig
 
 For extending the designer components we have to do a classic template extension of the backend files. So we create a new file in the necessary template hierarchy `Views/backend/emotion/{pluginName}/view/detail/elements`. 
 
-Otherwise than the custom emotion component we have to register the template manually by extending the template inheritance system with our new file. We can subscribe to the `PostDispatch` event of the emotion module in the `install()` method of our plugin to do so.
-
+Otherwise than the custom emotion component we have to register the template manually by extending the template inheritance system with our new file. We can subscribe to the `PostDispatch` event of the emotion module.
+```xml
+<!-- Add TemplateRegistration subscriber to the service.xml -->
+    <service id="swag_vimeo_element.subscriber.templates" class="SwagVimeoElement\Subscriber\TemplateRegistration">
+        <argument>%swag_vimeo_element.plugin_dir%</argument>
+        <tag name="shopware.event_subscriber"/>
+    </service>
+```
 ```php
-public function install()
-{
-    // ...
-    
-    $this->subscribeEvent(
-        'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion',
-        'onPostDispatchBackendEmotion'
-    );
-}
+<?php
 
-public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
-{
-    $controller = $args->getSubject();
-    $view = $controller->View();
+namespace SwagVimeoElement\Subscriber;
 
-    $view->addTemplateDir($this->Path() . 'Views/');
-    $view->extendsTemplate('backend/emotion/vimeo_element/view/detail/elements/vimeo_video.js');
+use Enlight\Event\SubscriberInterface;
+use Enlight_Controller_ActionEventArgs;
+
+class TemplateRegistration implements SubscriberInterface
+{
+    /**
+     * @var string
+     */
+    private $pluginDirectory;
+
+    /**
+     * @param $pluginDirectory
+     */
+    public function __construct($pluginDirectory)
+    {
+        $this->pluginDirectory = $pluginDirectory;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion' => 'onPostDispatchBackendEmotion'
+        ];
+    }
+
+    /**
+     * @param Enlight_Controller_ActionEventArgs $args
+     */
+    public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
+    {
+        /** @var \Shopware_Controllers_Backend_Emotion $controller */
+        $controller = $args->getSubject();
+        $view = $controller->View();
+
+        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
+        $view->extendsTemplate('backend/emotion/swag_vimeo_element/view/detail/elements/vimeo_video.js');
+    }
 }
 ```
 

@@ -34,15 +34,14 @@ For that reason, the calls "http://my-shop.com/" and "http://my-shop.com/fronten
 controller action.
 
 ### Module
-A module is actually a namespace for a controller. Technically it does not matter where you create your controller, but
-it should be quite easy to decide:
+A module is actually a namespace for a controller. Controllers are automatically registered under `PluginDirectory/Controllers/{Frontend|Backend|Api|Widgets}` like below:
 
-* `frontend`: Namespace for controllers related to the store front - e.g. cart, account, listing...
-* `widgets`: Namespace for widgets, i.e. reusable, cache compatible `{action}` blocks that will render ESI tags
-* `backend`: Namespace for backend controllers, usually protected by the Shopware backend authentication system
-* `api`: Namespace for REST API related controllers. Usually protected by the API authentication
+* `Frontend`: Namespace for controllers related to the store front - e.g. cart, account, listing...
+* `Widgets`: Namespace for widgets, i.e. reusable, cache compatible `{action}` blocks that will render ESI tags
+* `Backend`: Namespace for backend controllers, usually protected by the Shopware backend authentication system
+* `Api`: Namespace for REST API related controllers. Usually protected by the API authentication
 
-Each namespace can be found in `engine/Shopware/Controllers/{frontend|backend|api|widgets}`.
+Each namespace can be found in `engine/Shopware/Controllers/{Frontend|Backend|Api|Widgets}`.
 
 ### Controller
 A controller is a specific class within one of the controller namespaces (see above). It will usually take care of one specific
@@ -54,10 +53,10 @@ output (headers, cookies, session, template).
 
 Depending on the namespace of the controller, it will usually have another class name and another base class:
 
-* `frontend`: `class Shopware_Controllers_Frontend_NAME extends Enlight_Controller_Action`
-* `backend`: `class Shopware_Controllers_Backend_NAME extends Shopware_Controllers_Backend_Application`
-* `widgets`: `class Shopware_Controllers_Widgets_NAME extends Enlight_Controller_Action`
-* `api`: `class Shopware_Controllers_Api_NAME extends Shopware_Controllers_Api_Rest`
+* `Frontend`: `class Shopware_Controllers_Frontend_NAME extends Enlight_Controller_Action`
+* `Backend`: `class Shopware_Controllers_Backend_NAME extends Shopware_Controllers_Backend_Application`
+* `Widgets`: `class Shopware_Controllers_Widgets_NAME extends Enlight_Controller_Action`
+* `Api`: `class Shopware_Controllers_Api_NAME extends Shopware_Controllers_Api_Rest`
 
 This is not as cumbersome as it might look: `Enlight_Controller_Action` is the generic base controller, while
 `Shopware_Backend_Application` and `Shopware_Controllers_Api_Rest` add authentication, JSON and input parameter handling.
@@ -77,14 +76,8 @@ public function indexAction()
 This makes it easy for you to tell apart public available endpoints from methods that should not be callable by URL.
 
 ## Plugin controllers
-Creating controllers from a plugin is quite easy: Starting from Shopware 4.2.0 there is a `registerController` convenience method you can use in your `install` method:
-
-```php
-public function install()
-{
-    $this->registerController('frontend', 'test');
-}
-```
+Creating controllers from a plugin is quite easy: 
+Create the controller in the correct directory `PluginDirectory/Controllers/{Frontend|Backend|Api|Widgets}` and the controller will automatically registered.
 
 For this to work, you must put a file called `Test.php` in the path `Controllers/Frontend` of your plugin directory. Shopware
 will do the rest for you automatically.
@@ -128,11 +121,11 @@ Shopware with a "Hello World" message in the main context section.
 You can access the Shopware DI container from every controller:
 
 ```php
-$this->get('db');
+$this->get('dbal_connection');
 $this->get('templatemail');
 ```
 
-These two lines will return an instance of the Shopware PDO object (1) and the Shopware template mailer service (2).
+These two lines will return an instance of the DBAL\Connection object (1) and the Shopware template mailer service (2).
 
 #### $this->Request()
 The request object will give you access to all kind of request related variables as:
@@ -180,29 +173,47 @@ event. The same applies to the `PostDispatchSecure` events.
 In the callback method of your event, you have complete access to the original controller, so that you can e.g. modify
 the view or some input parameters:
 
+Add the subscriber to the services.xml
 
+```xml
+    <service id="swag_extend_listing.subscriber.templates" class="SwagExtendListing\Subscriber\ExtendListing">
+        <tag name="shopware.event_subscriber"/>
+    </service>
+```
+
+Create the subscriber *.php file
 ```php
-/**
- *  The install method of your plugin bootstrap
- */
-public function install()
-{
-    $this->subscribeEvent(
-        'Enlight_Controller_Action_PostDispatchSecure_Listing_Index',
-        'onListingIndex'
-    );
-}
+<?php
 
-/**
- * Event callback for the event registered above
- */
-public function onListingIndex(\Enlight_Event_EventArgs $args)
+namespace SwagExtendListing\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+
+class ExtendListing implements SubscriberInterface 
 {
-    /** @var $controller \Enlight_Controller_Action
-    $controller = $args->getSubject();
-    $request = $controller->Request();
-    $view = $controller->View();
-    $response = $controller->Response();
+    /**
+     *  The install method of your plugin base file
+     */
+    public function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Listing_Index' => 'onListingIndex'
+        ];
+    }
+    
+    /**
+     * Event callback for the event registered above
+     */
+    public function onListingIndex(\Enlight_Event_EventArgs $args)
+    {
+        /** @var $controller \Enlight_Controller_Action */
+        $controller = $args->getSubject();
+        $request = $controller->Request();
+        $view = $controller->View();
+        $response = $controller->Response();
+        
+        // DO SOMETHING
+    }
 }
 ```
 

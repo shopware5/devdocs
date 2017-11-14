@@ -185,6 +185,12 @@ public function addTemplateDir()
 Registers the plugin's `Views` directory as a template directory for Shopware.
 Attention: This event listener listens to the global frontend and widgets post dispatch secure event. The plugin shouldn't do some performance sensitive tasks here, otherwise each post dispatch event in the store front will be slowed down.
 
+<div class="alert alert-info">
+<strong>Always register your template directory first</strong>
+<br>
+The plugin template directory should always be registered, even if it's not used in the current controller context. If your registration of the template depends on certain conditions, a Smarty Security error may occur. This could be confusing and annoying for other third-party developers, because it's not obvious where the error came from in the first place.
+</div>
+
 ### Theme_Compiler_Collect_Plugin_Less
 ```php
 public function onCollectLessFiles()

@@ -43,6 +43,8 @@ As a plugin developer, you can create your own custom CLI commands. To do so, yo
 ```php
 <?php
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
 {
     public function install()

@@ -78,55 +78,32 @@ The Response object contains the result of the called method and has the followi
 A response will always be sent from the Server to the Client which sent the Request object. The `result` member can be `null` if an error occurred on the Server and the value of this member should have been determined by the method invoked on the Server. Please keep in mind that the entire inter-process communication is asynchronous, therefore the processing of the Response object has to be handled in a callback method.
 
 ## How to create a simple backend module?
-Creating a new backend module using the lightweight backend module is super easy. Basically you just have to create a new menu entry in the Shopware administration and register a backend controller to get it working. Let's start with the menu entry. In our plugin install method we call the method `$this->createMenuItem()` to add the new entry:
+Creating a new backend module using the lightweight backend module is super easy. 
+Basically you just have to create a new menu entry in the Shopware administration and register a backend controller to get it working. Let's start with the menu entry. 
 
-```php
-public function install()
-{
-    try {
-        $this->registerBackendController();
-        $this->createMenu();
-        return array(
-            'success' => true,
-            'invalidateCache' => array('backend')
-        );
-
-    } catch (Exception $e) {
-        return array('success' => false, 'message' => $e->getMessage());
-    }
-}
-```
-
-Now let's implement the actual menu entry:
-
-```php
-$this->createMenuItem(array(
-    'label' => 'PlainHTML Modul',
-    'onclick' => 'createSimpleModule("ExampleModulePlainHtml", { "title": "Plain HTML Module" })',
-    'class' => 'sprite-star',
-    'active' => 1,
-    'parent' => $this->Menu()->findOneBy(['label' => 'Einstellungen'])
-));
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/menu.xsd"
+>
+    <entries>
+        <entry>
+            <name>SwagLightweightModule</name>
+            <label lang="en">SwagLightweightModule</label>
+            <label lang="de">SwagLightweightModule</label>
+            <controller>ExampleModulePlainHtml</controller>
+            <action>index</action>
+            <class>sprite-application-block</class>
+            <parent identifiedBy="controller">Marketing</parent>
+            <onclick>Shopware.ModuleManager.createSimplifiedModule("ExampleModulePlainHtml", { "title": "Lightweight Backend Module" })</onclick>
+        </entry>
+    </entries>
+</menu>
 ```
 
 Please note that we call the `createSimpleModule()` JavaScript method in the `onclick` property of the menu entry, which means that, when the user clicks on the menu entry, the `onclick` method will be called and the backend module will be create. The first argument of the `createSimpleModule()` is the name of the backend controller and the second argument is an object to customize the appearance of the window. You can set the title, width and / or height of the window.
 
-### Registering a custom backend controller
-
-The next step is to register the new backend controller in the `Bootstrap.php` file of your plugin. In the example 
-below, we do that in the `registerBackendController()` method by calling `registerController()`:
-
-```php
-function registerBackendController()
-{
-    $this->registerController(
-        'Backend',
-        'ExampleModulePlainHtml'
-    );
-}
-```
-
-Okay, our custom backend controller is registered in the application, now we can implement the controller. Please note we already registered our template directory in the `onGetBackendController()` event handler method.
+Now we can implement the controller. Please note we already registered our template directory in the `onGetBackendController()` event handler method.
 
 The minimum requirement for the controller is that it extends from `Enlight_Controller_Action` and has the `indexAction` method implemented. The actual function body of the method can be left empty.
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
+namespace SwagPluginSystem\Bundle\StoreFrontBundle;
 
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;

@@ -1,10 +1,9 @@
 <?php
 
-namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
+namespace SwagPluginSystem\Bundle\StoreFrontBundle;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Bundle\StoreFrontBundle\Service\CategoryServiceInterface;
-use Shopware\Bundle\StoreFrontBundle\Service\Core\CategoryService;
 use Shopware\Bundle\StoreFrontBundle\Struct\Category;
 use Shopware\Bundle\StoreFrontBundle\Struct\ListProduct;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
@@ -62,6 +61,7 @@ class SeoCategoryService
     /**
      * @param $ids
      * @param $context
+     * @return array
      */
     private function getCategoryIds($ids, ShopContextInterface $context)
     {

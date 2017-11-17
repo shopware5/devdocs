@@ -16,7 +16,6 @@ This guide shows how the full plugin system of Shopware 5 works. As part of this
 
 The plugin modifies the following parts of Shopware:
 
-* Extends the `ListProductService` to append additional product data in listings or sliders.
 * Create a custom service, which is then injected into the DI container.
 * Extends the Shopware responsive template with custom plugin templates.
 * Implements a custom theme which overrides the plugin templates.
@@ -28,187 +27,201 @@ This example gives answers to the following questions:
 * How to structure my plugin templates, so that they can be overwritten by local themes or other plugins?
 * How to override plugin templates inside my custom theme?
 
-## Bootstrap
-
-```php
-
-<?php
-
-use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\ListProductService;
-use ShopwarePlugins\SwagPluginSystem\StoreFrontBundle\SeoCategoryService;
-
-class Shopware_Plugins_Frontend_SwagPluginSystem_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
-{
-    public function getLabel()
-    {
-        return 'Shopware 5 - Big picture of the plugin system';
-    }
-
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Bootstrap_InitResource_shopware_storefront.seo_category_service',
-            'registerSeoCategoryService'
-        );
-
-        $this->subscribeEvent(
-            'Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service',
-            'registerListProductService'
-        );
-
-        $this->subscribeEvent(
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend',
-            'addTemplateDir'
-        );
-
-        $this->subscribeEvent(
-            'Enlight_Controller_Action_PostDispatchSecure_Widgets',
-            'addTemplateDir'
-        );
-
-        $this->subscribeEvent(
-            'Theme_Compiler_Collect_Plugin_Less',
-            'onCollectLessFiles'
-        );
-
-        return true;
-    }
-
-    public function afterInit()
-    {
-        $this->get('Loader')->registerNamespace(
-            'ShopwarePlugins\SwagPluginSystem',
-            $this->Path()
-        );
-    }
-
-    /**
-     * @return \Shopware\Components\Theme\LessDefinition
-     */
-    public function onCollectLessFiles()
-    {
-        return new \Shopware\Components\Theme\LessDefinition(
-            [],
-            [__DIR__ . '/Views/frontend/_public/src/less/all.less']
-        );
-    }
-
-    public function addTemplateDir()
-    {
-        Shopware()->Container()->get('template')->addTemplateDir($this->Path() . 'Views/');
-    }
-
-    public function registerSeoCategoryService()
-    {
-        $seoCategoryService = new SeoCategoryService(
-            Shopware()->Container()->get('dbal_connection'),
-            Shopware()->Container()->get('shopware_storefront.category_service')
-        );
-        Shopware()->Container()->set('shopware_storefront.seo_category_service', $seoCategoryService);
-    }
-
-    public function registerListProductService()
-    {
-        Shopware()->Container()->set(
-            'shopware_storefront.list_product_service',
-            new ListProductService(
-                Shopware()->Container()->get('shopware_storefront.list_product_service'),
-                Shopware()->Container()->get('shopware_storefront.seo_category_service')
-            )
-        );
-    }
-}
-
-```
-
-## Events
-The plugin bootstrap registers the following events:
-
-* `Enlight_Bootstrap_InitResource_shopware_storefront.seo_category_service`
-    * The `Enlight_Bootstrap_InitResource_*` event fired when the suffixed service has to be initialized by the DI container.
-    * Because the `shopware_storefront.seo_category_service` is defined in this plugin, the plugin bootstrap has to handle the initialization of the service.
-* `Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service`
-    * The `Enlight_Bootstrap_AfterInitResource_*` event is fired after the suffixed service was initialized by the DI container.
-    * The plugin wants to decorate the original `list_product_service`, so it needs to use the `AfterInitResource` event instead of the `InitResource` event, like in the `seo_category_service`.
-* `Enlight_Controller_Action_PostDispatchSecure_Frontend`
-* `Enlight_Controller_Action_PostDispatchSecure_Widgets`
-    * The `PostDispatchSecure_Frontend` and `PostDispatchSecure_Widgets` events are used to register the plugin `views` directory as a frontend and widgets template directory.
-* `Theme_Compiler_Collect_Plugin_Less`
-    * The `Theme_Compiler_Collect_Plugin_Less` event is fired when Shopware compiles theme and plugin LESS files into one CSS file
-    * This event is used to add the plugin's LESS files to the compilation process.
-
-Notice: The usage of the `Enlight_Bootstrap_InitResource` and `Enlight_Bootstrap_AfterInitResource` events has many benefits over other events, like `PreDispatch` or `Enlight_Controller_Front_StartDispatch`:
-
-* These events are only fired if the corresponding service is really required and used in the system.
-* These events are also fired in console commands.
-
-
-## The event listener
-The event listener contains the following sources:
-
-### Enlight_Bootstrap_InitResource_shopware_storefront.seo_category_service
-```php
-public function registerSeoCategoryService()
-{
-    $seoCategoryService = new SeoCategoryService(
-        Shopware()->Container()->get('dbal_connection'),
-        Shopware()->Container()->get('shopware_storefront.category_service')
-    );
-    Shopware()->Container()->set('shopware_storefront.seo_category_service', $seoCategoryService);
-}
-```
-Creates a new instance of the `SeoCategoryService` class, which is defined inside the plugin. As constructor parameters, the DBAL connection and the category service of Shopware are provided to the new service instance. The category service is a central service that loads category data identified by its id. After the service is initialized, it is set into the DI container via `Shopware()->Container()->set()`.
-
-### Enlight_Bootstrap_AfterInitResource_shopware_storefront.list_product_service
-```php
-public function registerListProductService()
-{
-    Shopware()->Container()->set(
-        'shopware_storefront.list_product_service',
-        new ListProductService(
-            Shopware()->Container()->get('shopware_storefront.list_product_service'),
-            Shopware()->Container()->get('shopware_storefront.seo_category_service')
-        )
-    );
-}
-```
-This event listener also creates a new instance of the `ListProductService`, which is also defined inside the plugin. In contrast with the previous event listener, this event listener is called after the original initialisation of a service. This means that the original `shopware_storefront.list_product_service` is already initialized, and can be loaded via `Shopware()->Container()->get()`. The new service expects the original `shopware_storefront.list_product_service` service and the `shopware_storefront.seo_category_service` as constructor parameters.
-
-### Enlight_Controller_Action_PostDispatchSecure_Frontend/Widgets
-```php
-public function addTemplateDir()
-{
-    Shopware()->Container()->get('template')->addTemplateDir($this->Path() . 'Views/');
-}
-```
-Registers the plugin's `Views` directory as a template directory for Shopware.
-Attention: This event listener listens to the global frontend and widgets post dispatch secure event. The plugin shouldn't do some performance sensitive tasks here, otherwise each post dispatch event in the store front will be slowed down.
+## Register template first
 
 <div class="alert alert-info">
-<strong>Always register your template directory first</strong>
+<strong>Always register your template directory first to prevent smarty security exceptions</strong>
 <br>
 The plugin template directory should always be registered, even if it's not used in the current controller context. If your registration of the template depends on certain conditions, a Smarty Security error may occur. This could be confusing and annoying for other third-party developers, because it's not obvious where the error came from in the first place.
 </div>
 
-### Theme_Compiler_Collect_Plugin_Less
-```php
-public function onCollectLessFiles()
-{
-    return new \Shopware\Components\Theme\LessDefinition(
-        [],
-        [__DIR__ . '/Views/frontend/_public/src/less/all.less']
-    );
-}
-```
-Adds the plugin `all.less` file to the Shopware LESS compiling step. This allows the plugin to implement custom frontend styling via LESS.
+First register a new subscriber class for this.
 
-## Plugin ListProductService
+```xml
+<!-- Register TemplateRegistration subscriber -->
+<service id="swag_plugin_system.subscriber.template_registration" class="SwagPluginSystem\Subscriber\TemplateRegistration">
+    <argument>%swag_plugin_system.plugin_dir%</argument>
+    <argument type="service" id="template"/>
+    <tag name="shopware.event_subscriber"/>
+</service>
+```
+The Subscriber class requires two parameter in the constructor. 
+1. The Plugin base path like `../shopware/custom/plugins/SwagPluginSystem`.
+2. The Enlight_Template_Manager from the service container
+
+Last but not least we add the `shopware.event_subscriber` tag. 
+With this tag it is pointed out that the class implements the Subscriber interface and could be handled by Shopware to register new handler for certain events.
 
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
+namespace SwagPluginSystem\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+
+class TemplateRegistration implements SubscriberInterface
+{
+    /**
+     * @var string
+     */
+    private $pluginDirectory;
+
+    /**
+     * @var \Enlight_Template_Manager
+     */
+    private $templateManager;
+
+    /**
+     * @param $pluginDirectory
+     * @param \Enlight_Template_Manager $templateManager
+     */
+    public function __construct($pluginDirectory, \Enlight_Template_Manager $templateManager)
+    {
+        $this->pluginDirectory = $pluginDirectory;
+        $this->templateManager = $templateManager;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PreDispatch' => 'onPreDispatch'
+        ];
+    }
+
+    public function onPreDispatch()
+    {
+        $this->templateManager->addTemplateDir($this->pluginDirectory . '/Resources/views');
+    }
+}
+```
+
+The handler `onPreDispatch` registers the plugin's `/Resources/views` directory as a template directory for Shopware.
+Attention: This event listener listens to the global pre dispatch event. The plugin shouldn't do some performance sensitive tasks here, otherwise each request will be slowed down.
+
+## Register a service in your plugin
+
+```xml
+<!-- register the seo category service -->
+<service id="shopware_storefront.seo_category_service"
+         class="SwagPluginSystem\Bundle\StoreFrontBundle\SeoCategoryService">
+    <argument type="service" id="dbal_connection"/>
+    <argument type="service" id="shopware_storefront.category_service"/>
+</service>
+```
+
+```php
+<?php
+
+namespace SwagPluginSystem\Bundle\StoreFrontBundle;
+
+use Doctrine\DBAL\Connection;
+use Shopware\Bundle\StoreFrontBundle\Service\CategoryServiceInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Category;
+use Shopware\Bundle\StoreFrontBundle\Struct\ListProduct;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+
+class SeoCategoryService
+{
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
+     * @var CategoryServiceInterface
+     */
+    private $categoryService;
+
+    /**
+     * @param Connection $connection
+     * @param CategoryServiceInterface $categoryService
+     */
+    public function __construct(Connection $connection, CategoryServiceInterface $categoryService)
+    {
+        $this->connection = $connection;
+        $this->categoryService = $categoryService;
+    }
+
+    /**
+     * @param ListProduct[] $listProducts
+     * @param ShopContextInterface $context
+     * @return Category[] indexed by product id
+     */
+    public function getList($listProducts, ShopContextInterface $context)
+    {
+        $ids = array_map(function (ListProduct $product) {
+            return $product->getId();
+        }, $listProducts);
+
+        //select all seo category ids, indexed by product id
+        $ids = $this->getCategoryIds($ids, $context);
+
+        //now select all category data for the selected ids
+        $categories = $this->categoryService->getList($ids, $context);
+
+        $result = [];
+        foreach ($ids as $productId => $categoryId) {
+            if (!isset($categories[$categoryId])) {
+                continue;
+            }
+            $result[$productId] = $categories[$categoryId];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param $ids
+     * @param $context
+     * @return array
+     */
+    private function getCategoryIds($ids, ShopContextInterface $context)
+    {
+        $query = $this->connection->createQueryBuilder();
+        $query->select(['seoCategories.article_id', 'seoCategories.category_id'])
+            ->from('s_articles_categories_seo', 'seoCategories')
+            ->andWhere('seoCategories.article_id IN (:productIds)')
+            ->andWhere('seoCategories.shop_id = :shopId')
+            ->setParameter(':shopId', $context->getShop()->getId())
+            ->setParameter(':productIds', $ids, Connection::PARAM_INT_ARRAY);
+
+        return $query->execute()->fetchAll(\PDO::FETCH_KEY_PAIR);
+    }
+}
+```
+
+After plugin installation the service is available in the service container:
+For example:
+
+```php
+$seoService = $this->container->get('shopware_storefront.seo_category_service');
+```
+
+## Theme_Compiler_Collect_Plugin_Less
+
+Add the `all.less` file to the `Resources/views/frontend/less` directory. 
+If the plugin is installed and active, Shopware loads this file automatically
+
+## Plugin ListProductService (Service Decoration) 
+
+```xml
+<!-- Decorate the list product service -->
+<service id="shopware_storefront.list_product_service_decorator"
+         class="SwagPluginSystem\Bundle\StoreFrontBundle\ListProductService"
+         decorates="shopware_storefront.list_product_service"
+         public="false">
+    <argument type="service" id="shopware_storefront.list_product_service_decorator.inner"/>
+    <argument type="service" id="shopware_storefront.seo_category_service"/>
+</service>
+```
+
+```php
+<?php
+
+namespace SwagPluginSystem\Bundle\StoreFrontBundle;
 
 use Shopware\Bundle\StoreFrontBundle\Service\ListProductServiceInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
@@ -307,11 +320,10 @@ The `addAttribute` function expects as first parameter an unique key for the att
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagPluginSystem\StoreFrontBundle;
+namespace SwagPluginSystem\Bundle\StoreFrontBundle;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Bundle\StoreFrontBundle\Service\CategoryServiceInterface;
-use Shopware\Bundle\StoreFrontBundle\Service\Core\CategoryService;
 use Shopware\Bundle\StoreFrontBundle\Struct\Category;
 use Shopware\Bundle\StoreFrontBundle\Struct\ListProduct;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
@@ -349,7 +361,7 @@ class SeoCategoryService
             return $product->getId();
         }, $listProducts);
 
-        //select all SEO category ids, indexed by product id
+        //select all seo category ids, indexed by product id
         $ids = $this->getCategoryIds($ids, $context);
 
         //now select all category data for the selected ids
@@ -369,6 +381,7 @@ class SeoCategoryService
     /**
      * @param $ids
      * @param $context
+     * @return array
      */
     private function getCategoryIds($ids, ShopContextInterface $context)
     {

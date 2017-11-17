@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_service_plugin.tax_calculator" class="SwagService\Components\TaxCalculator">
+            <argument type="service" id="corelogger"/>
+        </service>
+
+        <service id="swag_service.subscriber.frontend" class="SwagService\Subscriber\Frontend">
+            <argument type="service" id="swag_service_plugin.tax_calculator"/>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+
+</container>

@@ -55,7 +55,7 @@ In most cases, however, custom services want to extend the default behaviour, ra
 </container>
 ```
 
-The plugins __SwagExample\Bundle\StoreFrontBundle\ListProductService__ gets the existing implementation as a constructor argument, and can use it internally in its own logic. Another great advantage of using a decorator pattern over a full service replacement is that multiple implementations can provide their only logic on top of the previously existing service, regardless of it being the core service itself or an already decorated version/replacement of it.
+The plugins __SwagExample\Bundle\StoreFrontBundle\ListProductService__ gets the existing implementation as a constructor argument, and can use it internally in its own logic. Another great advantage of using a decorator pattern over a full service replacement is that multiple implementations can provide their own logic on top of the previously existing service, regardless of it being the core service itself or an already decorated version/replacement of it.
 
 In the next paragraphs we will further explain how and why you should implement each of these approaches, and provide demo code that you can use as a base for your own implementation.
 

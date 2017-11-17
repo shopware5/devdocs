@@ -238,7 +238,7 @@ I have color coded the application diagram to show you how we interpreted the di
 
 By applying this simple ruleset we still have a one to one parity of test classes to production classes. This means that for each bug or feature there is an easy entry point in our test suite. And the test suite is therefore useful for developers and gets actively supported. If bugs are introduced during development there is usually a test that shows it immediately. If a contract between objects is changed this change is immediately available in the suite and in many cases even leads to a failing test. (depending on the test quality: see [Mutation Testing by my colleague Thomas Eiling](https://developers.shopware.com/blog/2017/08/24/mutation-testing/)).
 
-So now lets take a look at our `MyServiceTest` the way it looks like in integration testing:
+So now let's take a look at our `MyServiceTest` the way it looks like in integration testing:
 
 <img src="/blog/img/advantages-of-integration-testing/my-service-integration-test.svg" />
 

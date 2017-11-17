@@ -39,71 +39,27 @@ Instead of creating the `TaxCalculator` class everywhere you need it, you can ma
 This way the same instance of this class can be accessed everywhere in Shopware - even by other plugins.
 
 ## Registering the service
-First of all, you should register the namespace of your plugin in your plugin's bootstrap:
+To register a service, you can add it to your plugins `services.xml` like this:
 
-```php
-<?php
+```xml
+<?xml version="1.0" ?>
 
-class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
-{
-    public function afterInit()
-    {
-        $this->get('Loader')->registerNamespace(
-            'ShopwarePlugins\SwagService',
-            $this->Path()
-        );
-    }
-}
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_service_plugin.tax_calculator" class="SwagServicePlugin\Components\TaxCalculator" />
+    </services>
+
+</container>
 ```
-
-Now the actual service can be registered using an event:
-
-```php
-<?php
-
-class Shopware_Plugins_Frontend_SwagServicePlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
-{
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Bootstrap_InitResource_swag_service_plugin.tax_calculator',
-            'onInitTaxCalculator'
-        );
-
-        return true;
-    }
-}
-```
-
-The event name `Enlight_Bootstrap_InitResource_swag_service_plugin.tax_calculator` consists of two parts:
-
-* `Enlight_Bootstrap_InitResource_`: The base event name, which is emitted by the DI container when a service is looked up
-* `swag_service_plugin.tax_calculator`: The unique service name. It is best practice to have the plugin name `swag_service_plugin`
-and the service name `tax_calculator` in it.
-
-The event callback now just needs to return an instance of the requested service:
-
-```php
-public function onInitTaxCalculator()
-{
-    return new \ShopwarePlugins\SwagService\Component\TaxCalculator();
-}
-```
-
-Be aware that the event will only be emitted (and thus the callback will only be called) when the service is actually requested.
 
 ## Calling the service
-The new `TaxCalculator` can now be requested using the Shopware DI container:
+The new `TaxCalculator` can now be requested from e.g. a controller using the Shopware DI container:
 
 ```php
-$this->get('swag_service_plugin.tax_calculator');
-```
-
-This will work e.g. from controllers or plugin bootstraps. You can also use the global Shopware container singleton, if needed:
-
-
-```php
-Shopware()->Container()->get('swag_service_plugin.tax_calculator');
+$this->container->get('swag_service_plugin.tax_calculator');
 ```
 
 Keep in mind that any subsequent calls will return the same instance of the object - the container will keep a reference to the
@@ -116,17 +72,30 @@ In many cases, your services might depend on other services. Usually you will in
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagService\Component;
+namespace SwagServicePlugin\Components;
+
+use Shopware\Components\Logger;
 
 class TaxCalculator
 {
+    /**
+     * @var $logger Logger
+     */
     private $logger;
-
-    public function __construct(\Shopware\Components\Logger $logger)
+    
+    /**
+     * @param $logger Logger
+     */
+    public function __construct(Logger $logger)
     {
         $this->logger = $logger;
     }
-
+    
+    /**
+     * @param $netPrice float
+     * @param $tax float
+     * @return float
+     */
     public function calculate($netPrice, $tax)
     {
         $this->logger->debug('Calculating price for tax: ' . $tax);
@@ -135,15 +104,20 @@ class TaxCalculator
 }
 ```
 
-In order to inject this dependency, a simple update of the event callback is needed:
+```xml
+<?xml version="1.0" ?>
 
-```php
-public function onInitTaxCalculator()
-{
-    return new \SwagServicePlugin\Components\TaxCalculator(
-        $this->get('pluginlogger')
-    );
-}
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_service_plugin.tax_calculator" class="SwagServicePlugin\Components\TaxCalculator">
+            <argument type="service" id="corelogger"/>
+        </service>
+    </services>
+
+</container>
 ```
 
 ## Download

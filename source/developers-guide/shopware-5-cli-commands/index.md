@@ -50,13 +50,12 @@ use Shopware\Components\Console\Application;
 
 use SwagCommandExample\Commands\ImportCommand;
 
-class SwagCommandExample extends Plugin {
-
+class SwagCommandExample extends Plugin
+{
     public function registerCommands(Application $application)
     {
         $application->add(new ImportCommand());
     }
-
 }
 ```
 

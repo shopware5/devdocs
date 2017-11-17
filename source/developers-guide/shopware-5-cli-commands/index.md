@@ -36,55 +36,59 @@ php bin/console <command> --help
 This will provide you with a description of the command's functionality, along with a detailed explanation of each of the command's arguments and options.
 
 
-## Creating custom Shopware's CLI commands
+## Creating custom Shopware CLI commands
 
-As a plugin developer, you can create your own custom CLI commands. To do so, your plugin's `Bootstrap.php` must first register the command itself:
+As a plugin developer, you can create your own custom CLI commands. To do so, you can register the commands in your plugins base file like this:
 
 ```php
 <?php
 
-use Doctrine\Common\Collections\ArrayCollection;
+namespace SwagCommandExample;
 
-class Shopware_Plugins_Frontend_SwagExample_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+use Shopware\Components\Plugin;
+use Shopware\Components\Console\Application;
+
+use SwagCommandExample\Commands\ImportCommand;
+
+class SwagCommandExample extends Plugin
 {
-    public function install()
+    public function registerCommands(Application $application)
     {
-        $this->subscribeEvent(
-            'Shopware_Console_Add_Command',
-            'onAddConsoleCommand'
-        );
-
-        return true;
-    }
-
-    public function afterInit()
-    {
-        $this->get('Loader')->registerNamespace(
-            'ShopwarePlugins\\SwagExample',
-            __DIR__ . '/'
-        );
-    }
-
-    public function onAddConsoleCommand(Enlight_Event_EventArgs $args)
-    {
-        return new ArrayCollection(array(
-            new \ShopwarePlugins\SwagExample\Commands\ImportCommand(),
-            new \ShopwarePlugins\SwagExample\Commands\ListCommand(),
-        ));
+        $application->add(new ImportCommand());
     }
 }
 ```
 
-The above example registers 2 commands, `import` and `list`. You now need to implement these commands.
+You may also register commands as services and tag them with `console.command` in your plugins `services.xml` file:
 
-Shopware's CLI commands are based on the Symfony 2 Console Component, which documentation you can find [here](http://symfony.com/doc/current/components/console/introduction.html).
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service
+            id="swag_command_example.commands.import_command"
+            class="SwagCommandExample\Commands\ImportCommand">
+            <tag name="console.command"/>
+        </service>
+    </services>
+</container>
+```
+
+The above example registers the `import` command. You now need to implement that command.
+
+Shopware's CLI commands are based on the Symfony 2 Console Component, the documentation of which you can find [here](http://symfony.com/doc/current/components/console/introduction.html).
 
 ```php
 <?php
 
-namespace Shopware\Commands;
+namespace SwagCommandExample\Commands;
 
 use Shopware\Commands\ShopwareCommand;
+
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -97,7 +101,7 @@ class ImportCommand extends ShopwareCommand
     protected function configure()
     {
         $this
-            ->setName('swagexample:import')
+            ->setName('swagcommandexample:import')
             ->setDescription('Import data from file.')
             ->addArgument(
                 'filepath',

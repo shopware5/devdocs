@@ -1,8 +1,8 @@
 <?php
 
-namespace   Shopware\CustomModels\SwagModelPlugin;
+namespace SwagModel\Models;
 
-use         Shopware\Components\Model\ModelEntity;
+use Shopware\Components\Model\ModelEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

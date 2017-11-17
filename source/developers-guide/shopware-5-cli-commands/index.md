@@ -59,7 +59,7 @@ class SwagCommandExample extends Plugin
 }
 ```
 
-Since Shopware 5.2.2 you may also register commands as services and tag them with `console.command` in your plugins `services.xml` file:
+You may also register commands as services and tag them with `console.command` in your plugins `services.xml` file:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>

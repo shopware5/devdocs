@@ -36,7 +36,7 @@ public function checkLicense($throwException = true)
 }
 ```
 
-This method validates if the current shop has a valid license for your plugin. It should be placed inside your plugin's Bootstrap class, and used whenever you want to ensure that the current shop has a valid license for your plugin (for example, during plugin installation).
+This method validates if the current shop has a valid license for your plugin. It should be placed inside your plugin base class, services, subscribers, or whenever you want to ensure that the current shop has a valid license (for example, during plugin installation).
 
 ## Executing the license check
 
@@ -46,92 +46,51 @@ The checkLicense has an optional `throwException` parameter which, when set to f
 
 ## Example
 
-```
+```php
 <?php
 
-final class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+namespace YourPlugin;
+
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UpdateContext;
+
+class YourPlugin extends Plugin
 {
-    public function getVersion()
+    public function install(InstallContext $installContext)
     {
-        return '1.0.0';
-    }
-
-    public function getLabel()
-    {
-        return 'My Plugin';
-    }
-
-    public function getInfo()
-    {
-        return array(
-            'version' => $this->getVersion(),
-            'label' => $this->getLabel()
-        );
-    }
-
-    public function update($oldVersion)
-    {
-        // If no license is available, an exception is thrown
         $this->checkLicense();
-
-        return true;
-    }
-
-
-    public function install()
-    {
-        // If no license is available, an exception is thrown
-        $this->checkLicense();
-
-        $this->subscribeEvent('Enlight_Controller_Dispatcher_ControllerPath_Backend_MyPlugin', 'onGetControllerPath');
-        $this->subscribeEvent('Enlight_Controller_Action_PostDispatch_Frontend_Listing', 'onPostDispatchFrontendListing');
-
-        // ...
-
-        return true;
-    }
-
-    public function onGetControllerPath(\Enlight_Event_EventArgs $args)
-    {
-        // an exception occurs, if no license is available
-        // this is ok for e.g. backend controllers
-        $this->checkLicense();
-        return __DIR__ . '/Controllers/Backend/MyPlugin.php';
-    }
-
-    public function onPostDispatchFrontendListing(\Enlight_Event_EventArgs $args)
-    {
-        // If no license is available, the method gracefully exits
-        if (!$this->checkLicense(false)) {
-            return;
-        }
-
-        /** @var $action \Enlight_Controller_Action */
-        $action = $args->getSubject();
-        $view = $action->View();
 
         // ...
     }
 
-    public function checkLicense($throwException = true)
+    public function update(UpdateContext $updateContext)
+    {
+        $this->checkLicense();
+
+        // ...
+    }
+
+    private function checkLicense($throwException = true)
     {
         // license check code available on your Shopware account
     }
 }
 ```
 
-In this example, you can see that the `checkLicense` method is called during installation and update. In the `onGetControllerPath` method, it is being called without an argument, meaning it will throw an exception in case the validation fails. This would display a visible, informative message to the shop owner, warning him about this failure.
-
-In the `onPostDispatchFrontendListing` method, the validation will not throw an exception, but instead make the method prematurely return, causing the plugin to not perform its expected action, but also not informing the frontend user of this validation issue.
+In this example, you can see that the `checkLicense` method is called during installation and update.
+If you use the checkLicense method in the frontend, set the `$ throwException` parameter to false to prevent the validation from throwing an exception, but instead make the method prematurely return, causing the plugin to not perform its expected action, but also not informing the frontend user of this validation issue.
 
 ## Custom validation
 
 While you are free to customize the `checkLicense` method, we highly recommend that you don't. Should you require any additional checks besides the license check provided by us, you should create a wrapper method to implement your own logic
 
-```
+```php
 <?php
 
-final class Shopware_Plugins_Frontend_SwagMyPlugin_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+namespace YourPlugin;
+
+class YourPlugin extends Plugin
 {
     public function install()
     {

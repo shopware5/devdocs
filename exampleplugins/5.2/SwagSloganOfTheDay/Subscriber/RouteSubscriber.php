@@ -34,12 +34,12 @@ class RouteSubscriber implements SubscriberInterface
 
         $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
 
-        $view->assign('fontSize', $this->config['fontSize']);
-        $view->assign('italic', $this->config['italic']);
-        $view->assign('slogan', $this->config['slogan']);
+        $view->assign('swagSloganFontSize', $this->config['swagSloganFontSize']);
+        $view->assign('swagSloganItalic', $this->config['swagSloganItalic']);
+        $view->assign('swagSloganContent', $this->config['swagSloganContent']);
 
-        if (!$this->config['slogan']) {
-            $view->assign('slogan', $this->sloganPrinter->getSlogan());
+        if (!$this->config['swagSloganContent']) {
+            $view->assign('swagSloganContent', $this->sloganPrinter->getSlogan());
         }
     }
 }

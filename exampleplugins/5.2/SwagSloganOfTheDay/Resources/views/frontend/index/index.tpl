@@ -8,14 +8,14 @@
             text-align:center;
         }
         .slogan {
-            {if $italic}font-style:italic;{/if}
-            font-size:{$fontSize}px;
+            {if $swagSloganItalic}font-style:italic;{/if}
+            font-size:{$swagSloganFontSize}px;
         }
     </style>
 
 
     <div class="slogan-box">
-        <span class="slogan">{$slogan}</span>
+        <span class="slogan">{$swagSloganContent}</span>
     </div>
     {$smarty.block.parent}
 {/block}

@@ -20,25 +20,37 @@ the configuration options for plugins. Shopware delivers a big amount of helper 
 configuration fields in backend.
 
 ## Creating forms
-To create a simple plugin configuration we can use the function `Form()`
+A plugin configuration can be created with a Resources/config.xml file.
 
-```
-$form = $this->Form();
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+
+    </elements>
+</config>
 ```
 
-Now we can use this instance of `Shopware\Models\Config\Form` in `$form` to add elements to it via `setElement().
-```
-$form->setElement(type : String, name : String, [options : array | null= null]);
-```
+Now add elements in the elements tag.
+
 A textfield would be defined as followed:
 
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField');
-}
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element required="true" type="text" scope="locale">
+            <name>simpleTextField</name>
+            <label lang="de">Text</label>
+            <label lang="en">Text</label>
+            <value>preselection</value>
+            <description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+            <description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+        </element>
+    </elements>
+</config>
 ```
 
 Which would lead to a simple textfield.
@@ -50,53 +62,35 @@ The options parameter of the `setElement` function allows to set several configu
 
 ### Label
 The label parameter allows to create a simple descriptional label for the form element.
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField', 
-        array('label' => 'Text')
-    );
-}
+```xml
+<label lang="de">Dein Label</label>
+<label lang="en">Your label</label>
 ```
 
 <img src="img/textfield_label.png" alt="Textfield with label" class="image-border" />
 
 ### Value
 The value parameter stands for the default value of the field if this hasn´t been edited yet. It will directly be shown in the configuration element.
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField', 
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl'
-        )
-    );
-}
+```xml
+<value>preselection</value>
 ```
 
 <img src="img/default_value.png" alt="Textfield with default value" class="image-border" />
 
+### Required
+The required attribute specifies whether the configuration item is mandatory or not.
+```
+<element required="true" ... >
+```
+
+
+<img src="img/required.png" alt="Textfield marked as required" class="image-border" />
+
 ### Scope
 With help of the scope parameter it is possible to generate subshop specific configurations. Leaving this option out results in a configuration option
 that applies for all subshops.
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField', 
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
-        )
-    );
-}
+```xml
+ <element ... scope="locale">
 ```
 
 <img src="img/scope.png" alt="Configuration with scope" class="image-border" />
@@ -105,251 +99,142 @@ You can read more on subshop specific configuration at the end of this article r
 
 ### Description
 The description parameter allows to provide a more detailed description of the configuration element.
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField', 
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-            'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut'
-        )
-    );
-}
+
+```xml
+<description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+<description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
 ```
 
 <img src="img/description.png" alt="Textfield with description" class="image-border" />
-
-### Required
-The required parameter specifies whether the configuration item is mandatory or not.
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField',
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-            'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut',
-            'required' => true
-        )
-    ); 
-}
-```
-
-<img src="img/required.png" alt="Textfield marked as required" class="image-border" />
 
 ## Element Types
 Below all supported configuration elements including their design and source code are described again.
 
 ### Colorpicker
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('color', 'myColorfield', 
-        array(
-            'label' => 'Color', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="color">
+    ...
+</element>
 ```
 
 <img src="img/colorpicker.png" alt="Colorpicker" class="image-border" />
 
 ### Datefield
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('date', 'myDatefield', 
-        array(
-            'label' => 'Date', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="date">
+    ...
+</element>
 ```
 
 <img src="img/datefield.png" alt="Datefield" class="image-border" />
 
 ### Datetime field
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('datetime', 'myDatetimefield', 
-        array(
-            'label' => 'Date-Time', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="datetime">
+    ...
+</element>
 ```
 
 <img src="img/datetimefield.png" alt="Datetime field" class="image-border" />
 
 ### HTML editor
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('html', 'myHtmlfield', 
-        array(
-            'label' => 'HTML', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="html">
+    ...
+</element>
 ```
 
 <img src="img/htmleditor.png" alt="HTML editor" class="image-border" />
 
 
 ### Time interval
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('interval', 'myIntervalfield',
-        array(
-            'label' => 'Interval', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="interval">
+    ...
+</element>
 ```
 
 <img src="img/timeinterval.png" alt="Time interval" class="image-border" />
 
 ### Mediaselection
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('mediaselection','myMediaselectionfield',
-        array(
-            'label' => 'Media',
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="mediaselection">
+    ...
+</element>
 ```
 
 <img src="img/mediaselection.png" alt="Mediaselection" class="image-border" />
 
 ### Numberfield
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('number', 'myNumberfield', 
-        array(
-            'label' => 'Number', 
-            'minValue' => 0
-        )
-    );
-}
+```xml
+<element required="true" type="number">
+    ...
+</element>
 ```
 
 <img src="img/numberfield.png" alt="Numberfield" class="image-border" />
 
 ### Selectionfield / combobox
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('select', 'mySelectionfield', 
-        array('label' => 'Select', 
-            'store' => array(
-                array(1, 'Testvariable 1'), 
-                array(2, 'Testvariable 2'), 
-                array(3, 'Testvariable 3')
-            )
-        )
-    );
-}
+```xml
+<element required="true" type="select" >
+    <store>
+        <option>
+            <value>1</value>
+            <label lang="de">DE 1</label>
+            <label lang="en">EN 1</label>
+        </option>
+        <option>
+            <value>TWO</value>
+            <label lang="de">DE 2</label>
+            <label lang="en">EN 2</label>
+        </option>
+        <option>
+            <value>3</value>
+            <label>Test</label>
+        </option>
+        <option>
+            <value>4</value>
+            <label>Test default</label>
+            <label lang="de">Test</label>
+        </option>
+    </store>
+</element>
 ```
 
 <img src="img/combobox.png" alt="Combobox" class="image-border" />
 
 ### Selectionfield / remote combobox
+```xml
+<element required="true" type="combo">
+    ...
+    <store>Shopware.apps.Base.store.CustomerGroup</store>
+</element>
 ```
-public function createConfiguration()
-{
-        $form->setElement('combo', 'myCombo', 
-            array(
-                'label'=>'Backend-User','value'=>'Please select',
-                'store' => 'base.CustomerGroup',
-                'scope' => \Shopware\Models\Config\Element::SCOPE_SHOP
-            )
-        );
-}
-```
-
 <img src="img/remotecombo.png" alt="Remotecombobox" class="image-border" />
 
 ### Textfield
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField', 
-        array(
-            'label' => 'Text', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="text">
+    ...
+</element>
 ```
 
 <img src="img/textfield.png" alt="Textfield" class="image-border" />
 
 ### Textarea
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('textarea', 'myTextareafield',
-        array(
-            'label' => 'Text-Area', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="textarea">
+    ...
+</element>
 ```
 
 <img src="img/textarea.png" alt="Textarea" class="image-border" />
 
 ### Timefield
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('time', 'myTimefield', 
-        array(
-            'label' => 'Time', 
-            'value' => NULL
-        )
-    );
-}
+```xml
+<element required="true" type="time">
+    ...
+</element>
 ```
 
 <img src="img/timefield.png" alt="Timefield" class="image-border" />
@@ -357,256 +242,51 @@ public function createConfiguration()
 ## Configure basic settings
 The plugin configurations of the various plugins are automatically 
 reachable via the basic settings under the "Additional settings" entry:
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField',
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-            'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut',
-            'required' => true
-        )
-    );
-}
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element required="true" type="text" scope="locale">
+            <name>simpleTextField</name>
+            <label lang="de">Text</label>
+            <label lang="en">Text</label>
+            <value>preselection</value>
+            <description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+            <description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+        </element>
+    </elements>
+</config>
 ```
 
 <img src="img/configuration.png" alt="Plugin configuration in base settigns" class="image-border" />
-
-If you think they are better off under another entry, you can move your configuration entry to another submenu in the settings:
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField',
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-            'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-            'required' => true
-        )
-    );
- 
-    $repository = Shopware()->Models()->getRepository('Shopware\Models\Config\Form');
-    $form->setParent(
-        $repository->findOneBy(array('name' => 'Interface'))
-    );
-}
-```
-
-<img src="img/configuration_2.png" alt="Plugin configuration in base settigns other position" class="image-border" />
-
-## Translation of configurations
-The Shopware backend is fully translatable. To translate the custom plugin configurations you can use following code:
-```
-public function createConfiguration()
-{
-    $form = $this->Form();
- 
-    $form->setElement('text', 'simpleTextField',
-        array(
-            'label' => 'Text',
-            'value' => 'Vorauswahl',
-            'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-            'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
-            'required' => true
-        )
-    );
- 
-    //contains all translations
-    $translations = array(
-        'en_GB' => array(
-            'myTextField' => 'Text input',
-        ),
-        'es_ES' => array(
-            'myTextField' => 'introducción de texto',
-        ),
-        'fr_FR' => array(
-            'myTextField' => 'La saisie de texte',
-        ),
-        //...
-    );
- 
-    $this->addFormTranslations($translations);
-}
-```
-It is also possible to create translated options for the selection element like this:
-```
-    /**
-     * Creates the plugin configuration
-     */
-    private function createPluginConfig()
-    {
-        $store = [
-            ['normal', ['de_DE' => 'Nicht anders darstellen', 'en_GB' => "Don't change displaying"]],
-            ['pseudo', ['de_DE' => 'Alten Preis als neuen Pseudopreis setzen', 'en_GB' => 'Set old price as new pseudo price']],
-            ['price', ['de_DE' => 'Nur neuen Preis hervorheben', 'en_GB' => 'Only highlight new price']]
-        ];
-
-        $form = $this->Form();
-        $form->setElement(
-            'select',
-            'promotionPriceDisplaying',
-            [
-                'label' => 'Preisdarstellung',
-                'description' => 'Durch bestimmte Promotions kann sich der Preise eines Aritkels ändern. Hier können Sie definieren, wie der Preis auf der Detailseite dargestellt werden soll.',
-                'store' => $store,
-                'value' => 'normal',
-                'scope' => Element::SCOPE_SHOP,
-            ]
-        );
-
-        $translation = [
-            'en_GB' => [
-                'promotionPriceDisplaying' => [
-                    'label' => 'Price displaying',
-                    'description' => 'The price of a product could be changed by particular promotions. Define here, how the price should be displayed on the detail page.'
-                ]
-            ]
-        ];
-
-        $this->addFormTranslations($translation);
-    }
-```
-
-
-<img src="img/config_translation.png" alt="Translate your configuration" class="image-border" />
-
-Let´s have a look what we did here:
-```
-$form = $this->Form();
-$form->setElement('text', 'simpleTextField',
-    array(
-        'label' => 'Text',
-        'value' => 'Vorauswahl',
-        'scope' => Shopware\Models\Config\Element::SCOPE_SHOP,
-        'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-        'required' => true
-    )
-);
-```
-
-We created a new configuration textfield. Now we define our translations. We create an array with all the translations as key values inside:
-```
-//contains all translations
-$translations = array(
-    'en_GB' => array(
-        'myTextField' => 'Text input',
-    ),
-    'es_ES' => array(
-        'myTextField' => 'introducción de texto',
-    ),
-    'fr_FR' => array(
-        'myTextField' => 'La saisie de texte',
-    ),
-    //...
-);
-```
-The first-level keys define the language of the translation. The second-level keys define the translatable element. The value of the second-level key is
-the translation itself.
-
-After defining the translations it is now possible to add them to the related element using the helper function `addFormTranslations($translations)`.
-
-In the __Basic Settings__ our field in English backend now looks like this:
-
-<img src="img/configuration_english.png" alt="Configuration in English backend" class="image-border" />
 
 ## Subshop specific plugin configuration
 In this chapter we want to show how to make your configurations subshop specific. To demonstrate this
 we write a little plugin which replaces the Shopware logo with random text.
 
-### Bootstrap
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element required="false" type="boolean" scope="shop">
+            <name>show</name>
+            <label lang="de">Anzeigen</label>
+            <label lang="en">Show</label>
+            <description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+            <description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+        </element>
+    </elements>
+</config>
 ```
-<?php
-     ...
- 
-class Shopware_Plugins_Frontend_SwagSubshopVisibility_Bootstrap extends  Shopware_Components_Plugin_Bootstrap
-{
-    public function getLabel()
-    {
-        return 'Plugin Sichtbarkeit';
-    }
- 
-    public function getInfo()
-    {
-        return array(
-            'label' => $this->getLabel(),
-            'version' => $this->getVersion(),
-            'link' => 'http://www.shopware.de'
-        );
-    }
- 
-    public function getVersion()
-    {
-        return '1.0.0';
-    }
- 
-    public function install()
-    {
-        $this->subscribeEvent(
-                'Enlight_Controller_Action_PostDispatch',
-                'onPostDispatch'
-        );
- 
-        $form = $this->Form();
-        $parent = $this->Forms()->findOneBy(array('name' => 'Frontend'));
-        $form->setParent($parent);
-        $form->setElement(
-            'checkbox', 
-            'show', 
-            array(
-                'label' => 'Plugin Anzeigen',
-                'value' => true,
-                'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
-            )
-        );
- 
-        return true;
-    }
- 
-    public function onPostDispatch(Enlight_Event_EventArgs $arguments)
-    {
-        $config = $this->Config();
-        if (empty($config->show)) {
-            return;
-        }
- 
-        $controller = $arguments->getSubject();
-        $view = $controller->View();
- 
-        $view->assign('swagSubshopVisibility', 'Test text.');
- 
-        $view->addTemplateDir($this->Path() . 'Views/');
-    }
-}
-```
-First we register to the `PostDispatch` event by using the `install()` method. The `postDispatch` event
-gets triggered after the __PostDispatch__ and will trigger the actual process. Next we add the plugin
-configuration via the `Form()` method like described earlier in this article. Later we will change the
-visibility of these configuration options related to subshops.
-```
-$form = $this->Form();
-```
-Now we have an instance of `Shopware\Models\Config\Form` in the variable `$form`. We can then assign elements with
-help of the `setElement()` method.
-```
-$form->setElement('checkbox', 'show', array(
-    'label' => 'Plugin Anzeigen',
-    'value' => true,
-    'scope' => Shopware\Models\Config\Element::SCOPE_SHOP
-));
-```
-With the help of the __scope__ parameter we can assign configurations per subshop. Without the scope parameter the configuration
-is used in all subshops. We´ve mentioned this earlier this article.
-```
+
+With the help of the scope parameter we can assign configurations per subshop. Without the scope parameter the configuration is used in all subshops. We´ve mentioned this earlier this article.
+
+```php
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 {
-    $config = $this->Config();
+    $config = $this->container->get('shopware.plugin.config_reader')->getByPluginName('PluginName');
     if (empty($config->show)) {
         return;
     }
@@ -616,14 +296,14 @@ public function onPostDispatch(Enlight_Event_EventArgs $arguments)
  
     $view->assign('swagSubshopVisibility', 'Test text.');
  
-    $view->addTemplateDir($this->Path() . 'Views/');
+    $view->addTemplateDir($this->pluginBasePath . '/Resources/views/');
 }
+
 ```
 
-Within the `postDispatch()` method we create an instance of the configuration. Afterwards we test for the just created __show__ attribute. If
-this attribute is empty the method ends and the plugin will not be executed or shown any further. If __show__ is set the template is loaded and 
-assigned via __smarty__.
-```
+Within the onPostDispatch() method in a subscriber read the configuration with help of the service. Afterwards we test for the just created `show` attribute. If this attribute is empty the method ends and the plugin will not be executed or shown any further. If `show` is set the template is loaded and assigned via smarty.
+
+```smarty
 {extends file="parent:frontend/index/logo-container.tpl"}
 {block name="frontend_index_logo"}
     <div style="padding-top: 10px">
@@ -632,7 +312,6 @@ assigned via __smarty__.
 {/block}
 ```
 
-Our new template extends the parent __logo-container.tpl__ and overwrites the __frontend_index_logo__ block and sets the text we used in the `bootstrap.php`. Now we can open the plugin configuration via
-Plugin Manager and configure it differently for every subshop.
+Our new template extends the parent `logo-container.tpl` and overwrites the `frontend_index_logo` block and sets the text. Now we can open the plugin configuration via Plugin Manager and configure it differently for every subshop.
 
 What's next? Continue reading about the new [Shopware 5.2 Plugin System](/developers-guide/plugin-system).

@@ -9,7 +9,7 @@
         }
         .slogan {
             {if $italic}font-style:italic;{/if}
-            font-size:{$sloganSize}px;
+            font-size:{$fontSize}px;
         }
     </style>
 

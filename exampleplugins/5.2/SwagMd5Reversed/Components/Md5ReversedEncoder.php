@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopware\SwagMd5Reversed;
+namespace SwagMd5Reversed\Components;
 
 use Shopware\Components\Password\Encoder\PasswordEncoderInterface;
 

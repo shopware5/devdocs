@@ -1,5 +1,6 @@
 <?php
 
+namespace SwagMd5Reversed\tests;
 
 /**
  * @backupGlobals disabled
@@ -9,7 +10,7 @@ class Md5ReversedTest extends Shopware\Components\Test\Plugin\TestCase
 {
     public function testHashEncoder()
     {
-        $encoder = new \Shopware\SwagMd5Reversed\Md5ReversedEncoder();
+        $encoder = new SwagMd5Reversed\Components\Md5ReversedEncoder();
         $hash = $encoder->encodePassword('secret');
 
         $this->assertEquals($hash, 'a7e86e2302d08ea6d3ff635f856468f4');
@@ -17,7 +18,7 @@ class Md5ReversedTest extends Shopware\Components\Test\Plugin\TestCase
 
     public function testIsValid()
     {
-        $encoder = new \Shopware\SwagMd5Reversed\Md5ReversedEncoder();
+        $encoder = new SwagMd5Reversed\Components\Md5ReversedEncoder();
         $isValid = $encoder->isPasswordValid('secret', 'a7e86e2302d08ea6d3ff635f856468f4');
 
         $this->assertTrue($isValid);
@@ -25,7 +26,7 @@ class Md5ReversedTest extends Shopware\Components\Test\Plugin\TestCase
 
     public function testInvalidPassword()
     {
-        $encoder = new \Shopware\SwagMd5Reversed\Md5ReversedEncoder();
+        $encoder = new SwagMd5Reversed\Components\Md5ReversedEncoder();
         $isValid = $encoder->isPasswordValid('secret', 'some random hash');
 
         $this->assertFalse($isValid);

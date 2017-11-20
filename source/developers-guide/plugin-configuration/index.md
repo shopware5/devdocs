@@ -301,7 +301,7 @@ public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 
 ```
 
-Within the onPostDispatch() method in a subscriber we create an instance of the configuration. Afterwards we test for the just created show attribute. If this attribute is empty the method ends and the plugin will not be executed or shown any further. If show is set the template is loaded and assigned via smarty.
+Within the onPostDispatch() method in a subscriber read the configuration with help of the service. Afterwards we test for the just created `show` attribute. If this attribute is empty the method ends and the plugin will not be executed or shown any further. If `show` is set the template is loaded and assigned via smarty.
 
 ```smarty
 {extends file="parent:frontend/index/logo-container.tpl"}
@@ -312,6 +312,6 @@ Within the onPostDispatch() method in a subscriber we create an instance of the 
 {/block}
 ```
 
-Our new template extends the parent logo-container.tpl and overwrites the frontend_index_logo block and sets the text. Now we can open the plugin configuration via Plugin Manager and configure it differently for every subshop.
+Our new template extends the parent `logo-container.tpl` and overwrites the `frontend_index_logo` block and sets the text. Now we can open the plugin configuration via Plugin Manager and configure it differently for every subshop.
 
 What's next? Continue reading about the new [Shopware 5.2 Plugin System](/developers-guide/plugin-system).

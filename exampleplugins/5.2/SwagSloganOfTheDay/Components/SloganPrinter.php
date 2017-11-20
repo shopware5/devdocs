@@ -2,7 +2,8 @@
 
 namespace SwagSloganOfTheDay\Components;
 
-class SloganPrinter {
+class SloganPrinter
+{
     public function getSlogan()
     {
         $slogans = [

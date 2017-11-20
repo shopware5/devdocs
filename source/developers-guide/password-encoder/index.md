@@ -55,10 +55,12 @@ Let's say a user wants to log in with his email / password combination:
 
 ```
 function isValidLogin($email, $plaintext) {
-    $result = Shopware()->Db()->fetchRow(
+
+    $result = $this->container->get('dbal_connection')->fetch(
         'SELECT hash, encoder FROM s_user WHERE email = ?',
-        array($email)
+        [$email]
     );
+    
     if (!$result) {
         return false;
     }
@@ -70,53 +72,66 @@ function isValidLogin($email, $plaintext) {
 First of all we will read the hashed password `hash` as well as the used hash algorithm `encoder` from database. 
 Then the method `isPasswordValid` of the password manager is used, to check if `$result['hash']` and `$plaintext` match for the given encoder name.
 
-
 ### Implementing own password encoders
 
 The following example shows how to create a custom password encoder. Imagine you are importing user data from a shop system *FancyShop* where the passwords hashes are stored by reversing and md5 hashing the password strings (which is not a very good idea). The following example will show how to create a new password encoder "Md5Reversed", which will allow the customers to log in with their password and automatically store a new, more secure bcrypt hash.
  
 ### Register the encoder
 
-In order to register the new encoder with Shopware, a plugin needs to subscribe to the `Shopware_Components_Password_Manager_AddEncoder` event and add an instance of the new encoder to the password encoder collection: In the `onAddEncoder` callback method the plugin's namespace is registered by calling the `registerMyComponents` method. Furthermore, the encoder collection is extracted using `$hashes = $args->getReturn();`. Finally, a new element is added and the collection of password encoders is returned.
+In order to register the new encoder with Shopware, a plugin needs to subscribe to the `Shopware_Components_Password_Manager_AddEncoder` event and add an instance of the new encoder to the password encoder collection: Furthermore, the encoder collection is extracted using `$hashes = $args->getReturn();`. Finally, a new element is added and the collection of password encoders is returned.
 
+```xml
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <services>
+
+        <service id="swag_md5_reversed_encoder.subscriber.add_encoder_subscriber"
+                 class="SwagMd5Reversed\Subscriber\AddEncoderSubscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+        
+        <!-- .... -->
+    </services>
+
+</container>
 ```
-class Shopware_Plugins_Frontend_SwagMd5Reversed_Bootstrap extends Shopware_Components_Plugin_Bootstrap
+
+```php
+<?php
+
+namespace SwagMd5Reversed\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+use Enlight_Event_EventArgs;
+use SwagMd5Reversed\Components\Md5ReversedEncoder;
+
+class AddEncoderSubscriber implements SubscriberInterface
 {
-    public function getVersion() { … }
-
-    public function getLabel() { … }
-
-    public function install()
+    /**
+     * @return array
+     */
+    public static function getSubscribedEvents()
     {
-        // this event collects all password encoders
-        $this->subscribeEvent(
-            'Shopware_Components_Password_Manager_AddEncoder',
-            'onAddEncoder'
-        );
-
-        return true;
+        return [
+            'Shopware_Components_Password_Manager_AddEncoder' => 'onAddEncoder'
+        ];
     }
 
+    /**
+     * Add the encoder to the internal encoder collection
+     *
+     * @param Enlight_Event_EventArgs $args
+     * @return array
+     */
     public function onAddEncoder(Enlight_Event_EventArgs $args)
     {
-        $this->registerMyComponents();
+        $passwordHashHandler = $args->getReturn();
 
-        $hashes = $args->getReturn();
+        $passwordHashHandler[] = new Md5ReversedEncoder();
 
-        $hashes[] = new \Shopware\SwagMd5Reversed\Md5ReversedEncoder();
-
-        return $hashes;
-
-
-    }
-
-    public function registerMyComponents()
-    {
-        $this->Application()->Loader()->registerNamespace(
-            'Shopware\SwagMd5Reversed',
-            $this->Path()
-        );
+        return $passwordHashHandler;
     }
 }
 ```
@@ -135,10 +150,10 @@ A valid password encoder must implement the `PasswordEncoderInterface`. It defin
 
 
 ### Example implementation:
-```
+```php
 <?php
 
-namespace Shopware\SwagMd5Reversed;
+namespace SwagMd5Reversed\Components;
 
 use Shopware\Components\Password\Encoder\PasswordEncoderInterface;
 
@@ -163,7 +178,6 @@ class Md5ReversedEncoder implements PasswordEncoderInterface
     {
         return false;
     }
-
 }
 ```
 

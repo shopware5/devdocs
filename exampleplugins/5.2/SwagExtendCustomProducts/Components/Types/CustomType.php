@@ -2,7 +2,7 @@
 
 namespace SwagExtendCustomProducts\Components\Types;
 
-use ShopwarePlugins\SwagCustomProducts\Components\Types\TypeInterface;
+use SwagCustomProducts\Components\Types\TypeInterface;
 
 class CustomType implements TypeInterface
 {

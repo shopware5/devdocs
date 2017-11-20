@@ -18,6 +18,6 @@
     </changelog>
 
     <requiredPlugins>
-        <requiredPlugin pluginName="SwagCustomProducts"/>
+        <requiredPlugin pluginName="SwagCustomProducts" minVersion="4.0.0"/>
     </requiredPlugins>
 </plugin>

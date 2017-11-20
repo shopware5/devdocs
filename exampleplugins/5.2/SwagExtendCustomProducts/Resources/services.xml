@@ -5,23 +5,28 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="swag_extend_custom_products.subscriber.backend" class="SwagExtendCustomProducts\Subscriber\Backend">
+        <service id="swag_extend_custom_products.subscriber.backend"
+                 class="SwagExtendCustomProducts\Subscriber\Backend">
             <argument>%swag_extend_custom_products.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.frontend" class="SwagExtendCustomProducts\Subscriber\Frontend">
+        <service id="swag_extend_custom_products.subscriber.frontend"
+                 class="SwagExtendCustomProducts\Subscriber\Frontend">
             <argument>%swag_extend_custom_products.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.type_factory" class="SwagExtendCustomProducts\Subscriber\TypeFactory">
+        <service id="swag_extend_custom_products.subscriber.type_factory"
+                 class="SwagExtendCustomProducts\Subscriber\TypeFactory">
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.file_type_decorator" class="SwagExtendCustomProducts\Subscriber\FileTypeDecorator">
-            <argument type="service" id="service_container"/>
-            <tag name="shopware.event_subscriber"/>
+        <service id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator"
+                 class="SwagExtendCustomProducts\Decorators\FileTypeWhiteListDecorator"
+                 decorates="custom_products.file_upload.file_type_whitelist"
+                 public="false">
+            <argument type="service" id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator.inner"/>
         </service>
     </services>
 </container>

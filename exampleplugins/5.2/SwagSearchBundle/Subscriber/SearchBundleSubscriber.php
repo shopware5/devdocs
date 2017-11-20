@@ -1,13 +1,13 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\Subscribers;
+namespace SwagSearchBundle\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Shopware\Components\DependencyInjection\Container;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Condition\EsdConditionHandler;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\CriteriaRequestHandler;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Sorting\RandomSortingHandler;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Facet\EsdFacetHandler;
+use SwagSearchBundle\SearchBundleDBAL\Condition\EsdConditionHandler;
+use SwagSearchBundle\SearchBundleDBAL\CriteriaRequestHandler;
+use SwagSearchBundle\SearchBundleDBAL\Sorting\RandomSortingHandler;
+use SwagSearchBundle\SearchBundleDBAL\Facet\EsdFacetHandler;
 
 class SearchBundleSubscriber implements SubscriberInterface
 {
@@ -43,8 +43,6 @@ class SearchBundleSubscriber implements SubscriberInterface
             'Shopware_SearchBundleDBAL_Collect_Sorting_Handlers' => 'registerSortingHandler',
             'Shopware_SearchBundleDBAL_Collect_Condition_Handlers' => 'registerConditionHandler',
 
-
-
             'Enlight_Controller_Action_PostDispatchSecure_Frontend_Listing' => 'extendListingTemplate'
         ];
     }
@@ -74,8 +72,8 @@ class SearchBundleSubscriber implements SubscriberInterface
 
     public function extendListingTemplate(\Enlight_Event_EventArgs $args)
     {
-        $args->getSubject()->View()->addTemplateDir(
-            $this->pluginDir . '/Views/'
+        $args->get('subject')->View()->addTemplateDir(
+            $this->pluginDir . '/Resources/views'
         );
     }
 }

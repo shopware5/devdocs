@@ -1,14 +1,14 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL;
+namespace SwagSearchBundle\SearchBundleDBAL;
 
 use Enlight_Controller_Request_RequestHttp as Request;
 use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\CriteriaRequestHandlerInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Condition\EsdCondition;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Facet\EsdFacet;
-use ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Sorting\RandomSorting;
+use SwagSearchBundle\SearchBundleDBAL\Condition\EsdCondition;
+use SwagSearchBundle\SearchBundleDBAL\Facet\EsdFacet;
+use SwagSearchBundle\SearchBundleDBAL\Sorting\RandomSorting;
 
 class CriteriaRequestHandler implements CriteriaRequestHandlerInterface
 {

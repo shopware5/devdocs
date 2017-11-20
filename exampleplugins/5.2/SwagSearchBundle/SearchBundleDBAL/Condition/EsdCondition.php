@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Condition;
+namespace SwagSearchBundle\SearchBundleDBAL\Condition;
 
 use Shopware\Bundle\SearchBundle\ConditionInterface;
 

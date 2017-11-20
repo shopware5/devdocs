@@ -1,10 +1,10 @@
 <?php
 
-namespace ShopwarePlugins\SwagAttributeFilter\Subscribers;
+namespace SwagAttributeFilter\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Shopware\Components\DependencyInjection\Container;
-use ShopwarePlugins\SwagAttributeFilter\CriteriaRequestHandler;
+use SwagAttributeFilter\Components\CriteriaRequestHandler;
 
 class AttributeFilterSubscriber implements SubscriberInterface
 {
@@ -36,9 +36,18 @@ class AttributeFilterSubscriber implements SubscriberInterface
         return [
             'Shopware_SearchBundleDBAL_Collect_Facet_Handlers' => 'registerFacetHandler',
             'Shopware_SearchBundle_Collect_Criteria_Request_Handlers' => 'registerRequestHandler',
-
             'Shopware_SearchBundleDBAL_Collect_Condition_Handlers' => 'registerConditionHandler',
         ];
+    }
+
+    public function registerConditionHandler(\Enlight_Event_EventArgs $args)
+    {
+        return;
+    }
+
+    public function registerFacetHandler(\Enlight_Event_EventArgs $args)
+    {
+        return;
     }
 
     public function registerRequestHandler()

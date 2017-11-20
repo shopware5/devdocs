@@ -39,7 +39,7 @@ This small example shows how the product number search can be used.
 
 ## Reference to SearchBundleDBAL
 As already described, the `Shopware\Bundle\SearchBundle` defines only how product lists are selected and which conditions and sorting criteria are used to restrict or modify the result set.
-The `SearchBundle` contains no specify search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
+The `SearchBundle` contains no search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
 As default for the `ProductNumberSearch`, Shopware uses `Shopware\Bundle\SearchBundleDBAL`, which implements the interfaces required by `Shopware\Bundle\SearchBundle` to use it as product search implementation.
 The `Shopware\Bundle\SearchBundleDBAL` is based on the `Doctrine\DBAL\Query\Builder`.
 
@@ -76,7 +76,7 @@ Shopware contains the following core conditions:
 - `CustomerGroupCondition` - *Products which are not blocked for the provided customer group*
 - `HasPriceCondition` - *Products which have a defined default customer group price*
 - `ImmediateDeliveryCondition` - *Products which are available for immediate delivery*
-- `ManufacturerCondition` - *Products from one of the provided manufactures *
+- `ManufacturerCondition` - *Products from one of the provided manufactures*
 - `PriceCondition` - *Products whose price is within the provided price range*
 - `ProductAttributeCondition` - *Dynamic condition which can be used to restrict the result by specify product attribute*
 - `PropertyCondition` - *Products which have one of the provided product property values*
@@ -140,13 +140,24 @@ Each `ConditionHandler` must implement the `Shopware\Bundle\SearchBundleDBAL\Con
 The `Shopware_SearchBundleDBAL_Collect_Condition_Handlers` event can be used to register a condition handler class:
 
 ```php
+<?php
 //register condition handlers for dbal search implementation
-Shopware()->Events()->addListener(
-   'Shopware_SearchBundleDBAL_Collect_Condition_Handlers',
-   function() {
-      return new CategoryConditionHandler();
-   }
-);
+
+namespace YourPlugin;
+
+class YourPlugin extends \Shopware\Components\Plugin
+{
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Shopware_SearchBundleDBAL_Collect_Condition_Handlers' => 'onCollectConditionHandlers'
+        ];
+    }
+
+    public function onCollectConditionHandlers() {
+        return new CategoryConditionHandler();
+    }
+}
 ```
 
 Each condition handler has to implement two methods:
@@ -154,6 +165,19 @@ Each condition handler has to implement two methods:
 2. `generateCondition` - Handles the condition and extends the provided query
 
 ```php
+<?php
+
+namespace YourPlugin;
+
+use Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface;
+use Shopware\Bundle\SearchBundleDBAL\QueryBuilder;
+
+use Shopware\Bundle\SearchBundle\ConditionInterface;
+use Shopware\Bundle\SearchBundle\Condition\CategoryCondition;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+
+use Doctrine\DBAL\Connection;
+
 class CategoryConditionHandler implements ConditionHandlerInterface
 {
     public function supportsCondition(ConditionInterface $condition)

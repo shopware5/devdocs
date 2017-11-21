@@ -3,7 +3,7 @@
 {block name='frontend_listing_box_article_content'}
 
     <div class="box--content is--rounded">
-        <a class="box-custom--info" href="{$sArticle.linkDetails|rewrite:$sArticle.articleName}">
+        <a class="box-custom--info" href="{$sArticle.linkDetails}">
             <div class="info--wrapper">
             <span class="info--name">
                 {$sArticle.articleName|escape}

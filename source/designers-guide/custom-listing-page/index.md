@@ -290,3 +290,17 @@ In the last step we will add styling to the product box itself, add the hover ef
 If you want to take a closer look at all the code we have written in this tutorial you can download this plugin:
 
 <strong><a href="{{ site.url }}/exampleplugins/SwagCustomListingTheme.zip">Plugin download</a></strong>
+
+The theme is packed inside a plugin. This is a requirement to distribute themes via our store.
+The structure of the theme is exactly the same as before, it is just placed a few layers deeper in the directory hierarchy:
+
+```
+SwagCustomListingTheme
+└── Resources
+    └── Themes
+        └── Frontend
+            └── *The theme folder*
+```
+
+In addition, the root directory of the plugin contains a plugin base file and a `plugin.xml` with meta information.
+For more information on the Shopware plugin system, please head over to our [developer documentation](https://developers.shopware.com/plugin-guide/).

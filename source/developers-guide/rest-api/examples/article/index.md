@@ -645,7 +645,7 @@ $testArticle = array(
     ),
 
     'images' => array(
-        array('link' => 'http://lorempixel.com/640/480/food/'),     // allowed link options http,https,file,ftp
+        array('link' => 'http://lorempixel.com/640/480/food/'),     // allowed link options http, https, file, ftp
         array('link' => 'http://lorempixel.com/640/480/food/'),     // e.g. file:///var/www/shopware/media/upload/test.jpg
     ),
 

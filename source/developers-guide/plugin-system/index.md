@@ -142,14 +142,13 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 {
     public function install(InstallContext $context)
     {
-        if($this->someChecks()) {
+        if ($this->someChecks()) {
             parent::install();
             // notify user on success
             $context->scheduleMessage('Have fun with this awesome plugin!');
             // caches you want to flush
             $context->scheduleClearCache(InstallContext::CACHE_LIST_FRONTEND);
-        }
-        else {
+        } else {
             // notify user on error
             throw new \Exception('Something went wrong!');
         }
@@ -178,7 +177,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 
     public function uninstall(UninstallContext $context)
     {
-        if(!$context->keepUserData()) {
+        if (!$context->keepUserData()) {
             $this->removeModels()
         }
         // UninstallContext features the same functionality as InstallContext. See install() method.

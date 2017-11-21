@@ -118,7 +118,15 @@ For example the class `\SwagSloganOfTheDay\Log\Writer` will be loaded from file 
 
 ## Plugin Install / Update
 
-During plugin installation / deinstallation / update / activate / deactivate a method on the plugin bootstrap is called that can optionally be overwritten.
+During plugin installation / deinstallation / update / activate / deactivate a method on the plugin bootstrap is called that can optionally be overwritten. You can do a lot of things with the provided context, e.g.:
+
+- stop process by throwing an exception and notify user with a message
+- notify user on success with a message
+- flush specified caches
+- within update(), addtionally: get currently installed version number of your plugin
+- wihtin uninstall(), addtionally: keep user generated data, if he wishes so
+
+Checkout the examples:
 
 ```php
 <?php
@@ -134,22 +142,46 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 {
     public function install(InstallContext $context)
     {
+        if ($this->someChecks()) {
+            parent::install();
+            // notify user on success
+            $context->scheduleMessage('Have fun with this awesome plugin!');
+            // caches you want to flush
+            $context->scheduleClearCache(InstallContext::CACHE_LIST_FRONTEND);
+        } else {
+            // notify user on error
+            throw new \Exception('Something went wrong!');
+        }
     }
 
     public function update(UpdateContext $context)
     {
+        // UpdateContext features the same functionality as InstallContext. See install() method.
+        parent::update();
+        // Addtionally, your're provided with the currently installed version of your plugin.
+        // @see https://developers.shopware.com/blog/2015/11/11/best-practices-of-shopware-plugin-development/#plugin-updates
+        $currentlyInstalledVersion = $context->getUpdateVersion()
     }
 
     public function activate(ActivateContext $context)
     {
+        // ActivateContext features the same functionality as InstallContext. See install() method.
+        parent::activate();
     }
 
     public function deactivate(DeactivateContext $context)
     {
+        // DeactivateContext features the same functionality as InstallContext. See install() method.
+        parent::deactivate();
     }
 
     public function uninstall(UninstallContext $context)
     {
+        if (!$context->keepUserData()) {
+            $this->removeModels()
+        }
+        // UninstallContext features the same functionality as InstallContext. See install() method.
+        parent::uninstall();
     }
 }
 ```

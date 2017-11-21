@@ -2,8 +2,6 @@
 
 namespace Shopware\Themes\CustomDetail;
 
-use Shopware\Components\Form as Form;
-
 class Theme extends \Shopware\Components\Theme
 {
     // Meta data
@@ -14,11 +12,5 @@ class Theme extends \Shopware\Components\Theme
     protected $license = 'MIT';
 
     // Additional javascript
-    protected $javascript = array(
-        'src/js/jquery.custom-detail.js'
-    );
-
-    public function createConfig(Form\Container\TabContainer $container)
-    {
-    }
+    protected $javascript = ['src/js/jquery.custom-detail.js'];
 }

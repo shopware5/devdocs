@@ -37,7 +37,7 @@ This function is copied from the article image array. The image URL can be a loc
 
 <b>Types:</b>
 http, https, file, ftp
-Example for file on server file:///var/www/shopware/media/upload/test.jpg
+Example for file on server `file:///var/www/shopware/media/upload/test.jpg`
 
 Both configurations automatically create the child data sets in <code>s_articles_img</code> and the relation for the backend configuration.
 

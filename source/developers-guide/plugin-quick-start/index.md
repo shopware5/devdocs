@@ -24,11 +24,13 @@ On the left you can see Shopware's default directory structure, as you will find
 
 **build**: (Not in release packages) Contains our ant-based build engine with various scripts to e.g. install dependencies, reset the database etc. When installing Shopware from GitHub you want to run `ant build-unit` first. If you use the install package, you can just use our web-based installer
 
+**custom/plugins** This directory contains all plugins based on the plugin system introduced with Shopware 5.2.
+
 **cache**: Contains various caches and generated files like smarty compile cache, proxy caches, HTML cache etc.
 
 **engine/Library**: Some libraries / dependencies which are not available in composer.
 
-**engine/Shopware**: The actual Shopware application with subdirectories for our bundles, services, models and plugins.
+**engine/Shopware**: The actual Shopware application with subdirectories for our bundles, services and models.
 
 **files**: Files for ESD products or generated documents are stored here
 
@@ -97,11 +99,33 @@ Some global events are very powerful when it comes to extending Shopware's behav
 
 These events will be emitted whenever a controller action is about to be called ("PreDispatch") or **after** the controller action was called ("PostDispatch"). This way it is very easy to get notified any time a certain controller is executed to perform some extensions:
 
+```xml
+<container xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="swag_slogan_of_the_day.subscriber.frontend" 
+            class="SwagSloganOfTheDay\Subscriber\FrontendSubscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+</container>
 ```
-$this->subscribeEvent(
-    'Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail',
-    'myDetailCallback'
-)
+
+```php
+<?php
+class FrontendSubscriber implements SubscriberInterface
+{
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail' => 'myDetailCallback'
+        ];
+    }
+
+    public function myDetailCallback(\Enlight_Controller_ActionEventArgs $args)
+    {
+        // Do some action
+    }
+}
 ```
 
 This snippet will call the callback function `myDetailCallback` any time the detail controller (and therefore: the detail page) was requested. In your callback you could now load template extensions or modify view assignments.
@@ -117,66 +141,38 @@ In many cases you might want to modify the template. Shopware makes use of the S
 
 A smarty block will usually look like this:
 
+```smarty
+{block name="Shopware_frontend_checkout_cart"}
+    <div>
+        Some HTML content
+    </div>
+{/block}
 ```
-    {block name="Shopware_frontend_checkout_cart"}
-        <div>
-            Some HTML content
-        </div>
-    {/block}
-```
-
-
 
 # Writing our first little plugin
 The following example will show how to write a very simple plugin, which extends the frontend and adds a little "slogan" to the page.
 
-## The plugin Bootstrap
-The main entry point of every plugin is the `Bootstrap.php` file in your plugin directory. This is placed in `engine\Shopware\Plugins\Local\Frontend\SwagSloganOfTheDay`.
-
-We recommend developing plugins in the `Local` directory. There is no functional difference between this and the `Community` directory, so you could also place it there. The `Frontend` part of the path could also be `Backend` or `Core` - again there is no functional difference, its just for sorting and orientation. As we want to write a plugin which mainly extends the frontend, we will put it to the `Frontend` directory. `SwagSloganOfTheDay` finally is your plugin - the name needs to have at least a developer prefix (`Swag`) and a name (`SloganOfTheDay`).
-
- In the `Bootstrap.php` file, we create a simple class:
-
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+   <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+       <label lang="de">Slogan des Tages</label>
+       <label lang="en">Slogan of the day</label>
+   
+       <version>1.0.0</version>
+       <copyright>(c) by shopware AG</copyright>
+       <license>MIT</license>
+       <link>http://store.shopware.com</link>
+       <author>shopware AG</author>
+       <compatibility minVersion="5.3.0"/>
+   
+       <changelog version="1.0.0">
+           <changes lang="de">Erstveröffentlichung</changes>
+           <changes lang="en">First release</changes>
+       </changelog>
+   </plugin>
 ```
- <?php
-
- class Shopware_Plugins_Frontend_SwagSloganOfTheDay_Bootstrap extends Shopware_Components_Plugin_Bootstrap
- {
-
- }
-```
-
-As you can see, the path of your Bootstrap file is reflected in the class name `Shopware_Plugins_Frontend_SwagSloganOfTheDay_Bootstrap`. Only the `Local` and `engine` subdirectory are not in the class name, anything else is included.
-
-It's important to extend the `Shopware_Components_Plugin_Bootstrap` class, as it holds a lot of helper functions you will need for plugin development.
-
-Now we add the first methods to the Bootstrap class:
-
-```
-    public function getVersion()
-    {
-        return '1.0.0';
-    }
-
-    public function getLabel()
-    {
-        return 'Slogan of the day';
-    }
-
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend',
-            'onFrontendPostDispatch'
-        );
-
-        $this->createConfig();
-
-        return true;
-    }
-```
-
-The `getVersion` method just needs to return your plugin version as a string. If you later upload your plugin to the store, Shopware will be able to offer customers updates of your plugin depending on the version. 
+These are only "metadata" and optional.
 
 <div class="alert alert-info">
 <strong>Use a valid version</strong>
@@ -184,128 +180,80 @@ The `getVersion` method just needs to return your plugin version as a string. If
 The returned version has to be compatible with the [php version_compare](http://php.net/version_compare) function, otherwise, Shopware cannot detect any possible updates.
 </div>
 
-`getLabel` should return the name of your plugin in a human readable way - `SwagSloganOfTheDay` might be a bit technical, so we choose `Slogan of the day`.
+## The plugin base file
+The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed in `custom/plugins/SwagSloganOfTheDay`.
 
-These are the only "metadata" methods your actually should implement, everything else is optional.
-
-### The install method
-
-As we want our plugin to actually do something, we should add the `install` method in the next step. This method will be executed once during installation:
-
-```
- public function install()
- {
-     $this->subscribeEvent(
-         'Enlight_Controller_Action_PostDispatchSecure_Frontend',
-         'onFrontendPostDispatch'
-     );
-
-     $this->createConfig();
-
-     return true;
- }
-```
-
-3 things happen here:
- * we subscribe to an event
- * we call the createConfig method
- * we return a success flag
-
-In order to subscribe to an event, we use the `$this->subscribeEvent` helper method from the bootstrap base class. The first parameter is the event to subscribe to, in this case `Enlight_Controller_Action_PostDispatchSecure_Frontend`. As mentioned above, this event will be triggered every time **after** a controller in the frontend was executed. The second parameter is the callback function that should be called - `onFrontendPostDispatch`
-
-The `createConfig` method will create the configuration for our plugin. We will have a look at it later.
-
-Finally `return true;` will tell Shopware that everything went fine and no problems occurred. If you return `false` or just nothing, Shopware will not finish the plugin installation.
-
-### The update method
-It is necessary to explain that __files__, removed in update versions, __will not be automatically removed__ from file system while updating. This can cause problems with __templates__ and rendering smarty. So if a template file is removed
-in a newer plugin version, it is necessary to remove the deleted template during the update process manually.
-
-A working example could be like what we did in our __SwagBundle__ plugin.
+ In the `SwagSloganOfTheDay.php` file, we create a simple class:
 
 ```php
-/**
-     * Update function of the bundle plugin
-     *
-     * @param string $oldVersion
-     * @return bool|void
-     * @throws Exception
-     */
-    public function update($oldVersion)
-    {
-        ...
-
-        // 5.2+ specific: manually delete old files, which are not included in this version anymore.
-        if (version_compare($oldVersion, '3.2.0', '<')) {
-            $this->unlinkOldFiles($oldVersion);
-        }
-
-       ...
-    }
-
-    /**
-     * Unlinks old files which are not available for this version anymore.
-     * @param string $oldVersion
-     */
-    private function unlinkOldFiles($oldVersion)
-    {
-        $filesToDelete = [];
-
-        //Initial version for the 5.2 Plugin version.
-        if (version_compare($oldVersion, '3.2.0', '<')) {
-            $filesToDelete[] = __DIR__ . '/Subscriber/ControllerPath.php';
-            $filesToDelete[] = __DIR__ . '/Views/responsive';
-            $filesToDelete[] = __DIR__ . '/Views/emotion';
-        }
-
-        //Iterate through all provided file paths and unlink every file.
-        foreach ($filesToDelete as $filePath) {
-            if (!file_exists($filePath)) {
-                continue;
-            }
-
-            //Delete file from filesystem.
-            unlink($filePath);
-        }
-    }
-```
-
-### Event callback
-
-Now the event callback function should be implemented:
-
-```
-public function onFrontendPostDispatch(Enlight_Event_EventArgs $args)
-{
-    /** @var \Enlight_Controller_Action $controller */
-    $controller = $args->get('subject');
-    $view = $controller->View();
-
-    $view->addTemplateDir(
-        __DIR__ . '/Views'
-    );
-
-    $view->assign('slogan', $this->getSlogan());
-    $view->assign('sloganSize', $this->Config()->get('font-size'));
-    $view->assign('italic', $this->Config()->get('italic'));
-
-}
-
-public function getSlogan()
+ <?php
+ 
+ namespace SwagSloganOfTheDay;
+ 
+ use Shopware\Components\Plugin;
+ 
+ class SwagSloganOfTheDay extends Plugin
  {
-     return array_rand(
-         array_flip(
-             array(
-                 'An apple a day keeps the doctor away',
-                 'Let’s get ready to rumble',
-                 'A rolling stone gathers no moss',
-             )
-         )
-     );
+ 
  }
 ```
 
-As defined in `$this->subscribeEvent` the callback is called `onFrontendPostDispatch`. It takes an `Enlight_Event_EventArgs` object as parameter, which holds context about the event - in this case the context of the controller that has been executed.
+It's important to extend the `Shopware\Components\Plugin` class.
+
+Now we add the first event subscriber to the SwagSloganOfTheDay plugin.
+For this we add a folder Subscriber in which we create a new PHP class `RouteSubscriber.php`, and add this subscriber to the services.xml.
+
+## Subscriber classes
+
+```php
+<?php
+namespace SwagSloganOfTheDay\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+use Shopware\Components\Plugin\ConfigReader;
+use SwagSloganOfTheDay\Components\SloganPrinter;
+
+class RouteSubscriber implements SubscriberInterface
+{
+   private $pluginDirectory;
+   private $sloganPrinter;
+   private $config;
+
+   public static function getSubscribedEvents()
+   {
+       return [
+           'Enlight_Controller_Action_PostDispatchSecure_Frontend' => 'onPostDispatch'
+       ];
+   }
+
+   public function __construct($pluginName, $pluginDirectory, SloganPrinter $sloganPrinter, ConfigReader $configReader)
+   {
+       $this->pluginDirectory = $pluginDirectory;
+       $this->sloganPrinter = $sloganPrinter;
+
+       $this->config = $configReader->getByPluginName($pluginName);
+   }
+
+   public function onPostDispatch(\Enlight_Controller_ActionEventArgs $args)
+   {
+       /** @var \Enlight_Controller_Action $controller */
+       $controller = $args->get('subject');
+       $view = $controller->View();
+
+       $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
+
+       $view->assign('swagSloganFontSize', $this->config['swagSloganFontSize']);
+       $view->assign('swagSloganItalic', $this->config['swagSloganItalic']);
+       $view->assign('swagSloganContent', $this->config['swagSloganContent']);
+
+       if (!$this->config['swagSloganContent']) {
+           $view->assign('swagSloganContent', $this->sloganPrinter->getSlogan());
+       }
+   }
+}
+```
+
+As defined in `getSubscribedEvents` the callback is called `onFrontendPostDispatch`. It takes an `Enlight_Controller_ActionEventArgs` object as parameter, which holds context about the event - in this case the context of the controller that has been executed.
 
 First of all we can extract the reference of the executed frontend controller using `$controller = $args->get('subject');`. Using this controller we can get a reference of the view instance: `$view = $controller->View()`.
 
@@ -315,37 +263,76 @@ Finally we want to assign some configuration to the template - in this case a sl
 
 The slogan itself is randomly selected in the `getSlogan` method. This could easily be moved to a plugin configuration text field, so that the shop owner can enter his slogans line by line. But as seen above, we already picked the best ones.
 
+Subscriber classes implements the SubscriberInterface
+
+A Subscriber class is registered as a service in the services.xml and are identified for Shopware via the Subscriber tag. 
+```xml
+<tag name="shopware.event_subscriber" />
+```
+
+```xml
+<service id="swag_slogan_of_the_day.subscriber.route" class="SwagSloganOfTheDay\Subscriber\RouteSubscriber">
+    <argument>%swag_slogan_of_the_day.plugin_name%</argument>
+    <argument>%swag_slogan_of_the_day.plugin_dir%</argument>
+
+    <argument type="service" id="swag_slogan_of_the_day.slogan_printer" />
+    <argument type="service" id="shopware.plugin.cached_config_reader" />
+
+    <tag name="shopware.event_subscriber" />
+</service>
+
+```
+
 ### The configuration
 
-The calls to `$this->Config()->get('name')` will return our plugin configuration value for 'name'. In order to create the configuration, we will need to implement the `createConfig` method we called in the `install` method:
+In order to create the plugin configuration, we will need to implement the `Resources/config.xml`.
 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element type="text" scope="locale">
+            <name>swagSloganContent</name>
+            <label lang="de">Dein Slogan</label>
+            <label lang="en">Your slogan</label>
+            <description lang="de">Dieser Slogan wird in in der Storefront angezeigt</description>
+            <description lang="en">This slogan will be shown on the storefront</description>
+        </element>
+        <element type="select" scope="locale">
+            <name>swagSloganFontSize</name>
+            <label lang="de">Schriftgröße</label>
+            <label lang="en">Font size</label>
+            <value>12</value>
+            <store>
+                <option>
+                    <value>12</value>
+                    <label>12px</label>
+                </option>
+                <option>
+                    <value>18</value>
+                    <label>18px</label>
+                </option>
+                <option>
+                    <value>24</value>
+                    <label>24px</label>
+                </option>
+            </store>
+        </element>
+        <element type="boolean" scope="locale">
+            <name>swagSloganItalic</name>
+            <label lang="de">Kursiv</label>
+            <label lang="en">Italic</label>
+            <value>false</value>
+        </element>
+    </elements>
+</config>
 ```
-private function createConfig()
-{
-    $this->Form()->setElement(
-        'select',
-        'font-size',
-        array(
-            'label' => 'Font size',
-            'store' => array(
-                array(12, '12px'),
-                array(18, '18px'),
-                array(25, '25px')
-            ),
-            'value' => 12
-        )
-    );
 
-    $this->Form()->setElement('boolean', 'italic', array(
-        'value' => true,
-        'label' => 'Italic'
-    ));
-}
-```
+In this case two config elements are added - a `select` element with the name "swagSloganFontSize" which will draw a combobox in the plugin configuration. The content of the combobox is defined in the "store" element. 
+Additionally we ar able to define a label for the configuration using the "label" property and a default value using the "value" property.
 
-In this case two config elements are added - a `select` element with the name "font-size" which will draw a combobox in the plugin configuration. The content of the combobox is defined in the "store" array element. Additionally we are able to have a label for the configuration using the "label" key and a default value using the "value" key.
-
-As a second config element we add a `boolean` element. It is called "italic", enabled by default and has the label "Italic".
+As a second config element we add a `boolean` element. It is called "swagSloganItalic", enabled by default and has the label "Italic".
 
 This will result in a configuration form like this:
 
@@ -355,13 +342,14 @@ If you want to read more about plugin configuration start reading [Plugin config
 
 ### Template extension
 
-So far we have set up the bootstrap - but where does the actual template extension come from?
+So far we have set up the plugin - but where does the actual template extension come from?
 
-We already registered the `Views` directory and can now create the template in the `Views/frontend/index/index.tpl` template. This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
+We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Views/frontend/index/index.tpl` template. 
+This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
 
 Now our plugin's `index.tpl` might look like this:
 
-```
+```smarty
 {extends file="parent:frontend/index/index.tpl"}
 
 {block name="frontend_index_navigation_categories_top_include"}
@@ -388,7 +376,7 @@ Now our plugin's `index.tpl` might look like this:
 
 The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopware to not completely replace the default index.tpl file - but to extend from it. Now we can overwrite single or multiple blocks in the default index.tpl using the `block` directive:
 
-```
+```smarty
 {block name="frontend_index_navigation_categories_top_include"}
     ...
     
@@ -400,7 +388,7 @@ This tells Smarty to prepend the content of our block to the default content of 
 
 Within the block we can use default Smarty / HTML. In the example above, we define some style sheets first:
 
-```
+```html
 <style>
    .slogan-box {
        width:100%;
@@ -417,7 +405,7 @@ As you can see, we use Smarty syntax here to change the style dynamically corres
 
 Now the only thing left to do is show the slogan:
 
-```
+```html
 <div class="slogan-box">
     <span class="slogan">{$slogan}</span>
 </div>
@@ -431,3 +419,109 @@ After clearing the cache, your frontend might look like this:
 ![Slogan of the day in the frontend](img/result.png)
 
 You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagSloganOfTheDay.zip">here</a>.
+
+
+### The plugin base file methods
+In the next case we create a simple plugin that extends the s_articles_attributes table using the attribute crud service. 
+
+```php
+ <?php
+ 
+ namespace SwagQuickStart;
+ 
+ use Shopware\Components\Plugin;
+ use Shopware\Components\Plugin\Context\ActivateContext;
+ use Shopware\Components\Plugin\Context\DeactivateContext;
+ use Shopware\Components\Plugin\Context\InstallContext;
+ use Shopware\Components\Plugin\Context\UninstallContext;
+ use Shopware\Components\Plugin\Context\UpdateContext;
+ use Shopware\Bundle\AttributeBundle\Service\TypeMapping;
+ 
+ class SwagQuickStart extends Plugin
+ {
+     public function install(InstallContext $installContext)
+     {
+         // create a new attribute using the attribute crud service
+         $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+         $attributeCrudService->update(
+            's_articles_attributes',
+            'quick_start',
+            // possible types you can find in: /.../engine/Shopware/Bundle/AttributeBundle/Service/TypeMapping.php
+            TypeMapping::TYPE_STRING
+         );
+         
+         // this attribute is implemented in a later version of the plugin
+         // so we have to implement the update method. See below.
+         $attributeCrudService->update(
+            's_articles_attributes',
+            'quick_start_guid',
+            TypeMapping::TYPE_STRING
+        );
+     }
+ 
+     public function uninstall(UninstallContext $uninstallContext)
+     {
+         // If the user wants to keep his data we will not delete it while uninstalling the plugin
+         if ($uninstallContext->keepUserData()) {
+             return;
+         }
+ 
+         $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+ 
+         $attributeCrudService->delete('s_articles_attributes', 'quick_start_guid');
+         $attributeCrudService->delete('s_articles_attributes', 'quick_start');
+ 
+         // clear cache
+         $uninstallContext->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
+     }
+ 
+     public function update(UpdateContext $updateContext)
+     {
+         $currentVersion = $updateContext->getCurrentVersion();
+         $updateVersion = $updateContext->getUpdateVersion();
+ 
+         if (version_compare($currentVersion, '1.0.2', '<=')) {
+             $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+             $attributeCrudService->update(
+                 's_articles_attributes',
+                 'quick_start_guid',
+                 'string'
+             );
+         }
+ 
+         if (version_compare($currentVersion, '1.0.5', '<=')) {
+             // do update for version
+         }
+     }
+ 
+     public function activate(ActivateContext $activateContext)
+     {
+         // on plugin activation clear the cache
+         $activateContext->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);         
+     }
+ 
+     public function deactivate(DeactivateContext $deactivateContext)
+     {
+         // on plugin deactivation clear the cache
+         $deactivateContext->scheduleClearCache(DeactivateContext::CACHE_LIST_ALL);
+     }
+ }
+```
+
+Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin. 
+Like:`->scheduleClearCache()`, `->getCurrentVersion()`, `->getUpdateVersion()`, or `->keepUserData()`.
+
+### The clear cache method. 
+```php
+$context->scheduleClearCache(...Context::CACHE_LIST_ALL);
+```
+Possible settings for the parameter `caches` contains each context as constant.
+`...Context::CACHE_LIST_DEFAULT`
+`...Context::CACHE_LIST_ALL`
+`...Context::CACHE_LIST_FRONTEND`
+`...Context::CACHE_TAG_CONFIG`
+`...Context::CACHE_TAG_HTTP`
+`...Context::CACHE_TAG_PROXY`
+`...Context::CACHE_TAG_ROUTER`
+`...Context::CACHE_TAG_TEMPLATE`
+`...Context::CACHE_TAG_THEME`

@@ -710,7 +710,7 @@ The Shopware configuration property `detail` defines which component should be c
 
 Congratulations! You have just created your first backend application used the Shopware backend components. The application is completely usable and provides you with all features you can see in other backend applications. You are now able to create and edit records, too.
 
-You can download this plugin here: <a href="{{ site.url }}/exampleplugins/SwagProductBasic.zip">SwagProductBasic.zip</a> 
+You can download the plugin here: <a href="{{ site.url }}/exampleplugins/SwagProductBasic.zip">SwagProductBasic.zip</a> 
 
 ![Product detail](img/backend_1.png)
 

@@ -697,13 +697,20 @@ The file for the component is also located in the `emotion_components` directory
 
 For the Vimeo example we use the custom ExtJS component to make a call to the Vimeo api for receiving information about the preview image of the video and save it in the hidden input we already created via the helper functions.
 
-```
+```js
 //{block name="emotion_components/backend/vimeo_video"}
 Ext.define('Shopware.apps.Emotion.view.components.VimeoVideo', {
 
     extend: 'Shopware.apps.Emotion.view.components.Base',
 
     alias: 'widget.emotion-components-vimeo',
+
+    snippets: {
+        'vimeo_interface_color': {
+            'fieldLabel': '{s name=interfaceColorFieldLabel}{/s}',
+            'supportText': '{s name=interfaceColorSupportText}{/s}'
+        }
+    },
 
     initComponent: function () {
         var me = this;
@@ -753,6 +760,8 @@ Ext.define('Shopware.apps.Emotion.view.components.VimeoVideo', {
 The component always has to extend the base class `Shopware.apps.Emotion.view.components.Base`. In the `alias` property it is important to set the `xtype` we already defined during the creation of the element.
 
 In the component you can get access to the fields which you already created by using the `findField()` method on the `form` object which can be received by `this.getForm()`.
+
+If you want to translate the field label, support and help texts, just add the property `snippets`. Using the name which which was set in the emotion component installer, define every input field which you want to translate. 
 
 ## Advanced: Adding a custom designer component in ExtJS ##
 <img src="img/screen_grid_elements.jpg" class="is-float-right" alt="grid elements" />

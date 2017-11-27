@@ -1,3 +1,4 @@
+// {namespace name="backend/emotion/swag_vimeo_element"}
 //{block name="emotion_components/backend/vimeo_video"}
 Ext.define('Shopware.apps.Emotion.view.components.VimeoVideo', {
 
@@ -11,6 +12,17 @@ Ext.define('Shopware.apps.Emotion.view.components.VimeoVideo', {
      * The pattern is always 'widget.' + xtype
      */
     alias: 'widget.emotion-components-vimeo',
+
+    /**
+     * Contains the translations of each input field which was created with the EmotionComponentInstaller.
+     * Use the name of the field as identifier
+     */
+    snippets: {
+        'vimeo_interface_color': {
+            'fieldLabel': '{s name=interfaceColorFieldLabel}{/s}',
+            'supportText': '{s name=interfaceColorSupportText}{/s}'
+        }
+    },
 
     /**
      * The constructor method of each component.

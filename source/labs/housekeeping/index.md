@@ -91,8 +91,8 @@ A domain bundle contains the abstraction of the domain itself, data layers, api 
 Doctrine ORM has been removed entirely as it does not fit in our concept for a highly performance optimized eCommerce project. That means, that we don't have objects with database mappings and relations anymore. But, we still use objects and objects as simple value objects and provide typed collections as PHP lacks of generics.
 
 - **Struct**, a value object which contains the database fields including the relations. It is separated into two different definitions:
-	- **BasicStruct**, database data + 1:1 relations + n:1 relations
-	- **DetailStruct**, based on the BasicStruct + 1:n relations + n:m relations and other complex data
+    - **BasicStruct**, database data + 1:1 relations + n:1 relations
+    - **DetailStruct**, based on the BasicStruct + 1:n relations + n:m relations and other complex data
 - **Collection**, an object containing a typed list of structs (TaxBasicStruct => TaxBasicStructCollection)
 
 ## Searching
@@ -139,8 +139,8 @@ Here is a list of the default MySQL mappings of the queries:
 - TermsQuery: `field IN (value1, value2, ...)`
 - MatchQuery: `field LIKE %value%`
 - RangeQuery:
-	- `field > value` (or `field >= value`)
-	- `field < value` (or `field <= value`)
+    - `field > value` (or `field >= value`)
+    - `field < value` (or `field <= value`)
 - NestedQuery: `(WHERE1 AND WHERE2 AND ...)`
 - NotQuery: `!(WHERE1 AND WHERE2 AND ...)`
 

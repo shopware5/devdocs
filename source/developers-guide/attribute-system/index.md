@@ -939,17 +939,17 @@ To display the data in the account section, add the following source code to a t
 ```
 {extends file="parent:frontend/account/index.tpl"}
 {block name="frontend_account_index_welcome"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
-	{$data = $sUserData.additional.user}
+    {$data = $sUserData.additional.user}
 
-	<h2>Recommended variants for you</h2>
+    <h2>Recommended variants for you</h2>
 
-	{action module=widgets controller=listing action=products numbers=$data.recommendedvariants type=slider}
+    {action module=widgets controller=listing action=products numbers=$data.recommendedvariants type=slider}
 
-	<h2>Recommended stream</h2>
+    <h2>Recommended stream</h2>
 
-	{action module=widgets controller=listing action=stream streamId=$data.recommendedstream type=slider} 
+    {action module=widgets controller=listing action=stream streamId=$data.recommendedstream type=slider} 
 
 {/block}
 ```
@@ -958,17 +958,17 @@ To display a list of product boxes, the `type=slider` property has to be removed
 ```
 {extends file="parent:frontend/account/index.tpl"}
 {block name="frontend_account_index_welcome"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
-	{$data = $sUserData.additional.user}
+    {$data = $sUserData.additional.user}
 
-	<h2>Recommended variants for you</h2>
+    <h2>Recommended variants for you</h2>
 
-	{action module=widgets controller=listing action=products numbers=$data.recommendedvariants productBoxLayout='list'}
+    {action module=widgets controller=listing action=products numbers=$data.recommendedvariants productBoxLayout='list'}
 
-	<h2>Recommended stream</h2>
+    <h2>Recommended stream</h2>
 
-	{action module=widgets controller=listing action=stream streamId=$data.recommendedstream productBoxLayout='image'} 
+    {action module=widgets controller=listing action=stream streamId=$data.recommendedstream productBoxLayout='image'} 
 {/block}
 ```
 

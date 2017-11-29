@@ -1,3 +1,53 @@
+;(function($) {
+    'use strict';
+
+    $.fn.stylesInliner = function() {
+        var $template;
+        var downloadStyles = function(link) {
+            return $.ajax({
+                url: link
+            });
+        };
+
+        var createStyleCache = function(response) {
+            var deferred = $.Deferred();
+
+            $template = $('<template>', {
+                'class': 'inline-styles',
+                'html': response
+            });
+
+            $template.appendTo($('body'));
+            return deferred.promise();
+        };
+
+        var inlineStylesIntoIframe = function() {
+            $('iframe').each(function() {
+                var $iframe = $(this.contentDocument),
+                    $head = $iframe.find('style'),
+                    $styles;
+
+                $styles = $('<style>', {
+                    'type': 'text/css',
+                    'html': $template.html()
+                });
+
+                $styles.insertBefore($head.get(0));
+                $(this).css('display', 'block');
+            });
+        };
+
+        return this.each(function() {
+            var $item = $(this);
+            downloadStyles($item.attr('data-href'))
+                .done(createStyleCache)
+                .done(inlineStylesIntoIframe);
+        });
+    };
+
+    $('[data-iframe="true"]').stylesInliner();
+})(jQuery);
+
 $(document).ready(function() {
 
     var $id = $('section[id]'),
@@ -17,7 +67,9 @@ $(document).ready(function() {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $(href).offset().top
-        }, 500);
+        }, 500, function() {
+            location.hash = href;
+        });
         $this.addClass('active');
         $this.parent().siblings().children('a').removeClass('active');
         scrolling = true;

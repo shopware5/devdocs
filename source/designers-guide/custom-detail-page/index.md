@@ -204,7 +204,7 @@ Using the Shopware default components, you should get the following button appea
 ## Styling
 
 <div class="alert alert-info" role="alert">
-Need help with LESS? Have a look at our <a href="https://developers.shopware.com/designers-guide/less/">Getting started with LESS</a> guide.
+Need help with LESS? Have a look at our <a href="{{ site.url }}/designers-guide/less/">Getting started with LESS</a> guide.
 </div>
 
 Because of the changes we made to the structure, we need to adjust the styling. To keep things organized, we will create a new file named `custom-detail.less`:

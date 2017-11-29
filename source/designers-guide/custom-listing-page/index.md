@@ -147,7 +147,7 @@ After defining the block we are ready to add some markup to our template file. W
 The structural changes that we added require a styling adjustment in the frontend in order to work and look correctly. We will add two new `less` files to our theme, first the required `all.less` file and a `custom-listing.less` which will contain our style adjustments. The `all.less` file is automatically recognized by Shopware and all we need to do is import our new created file.
 
 <div class="alert alert-info" role="alert">
-Need help with LESS? Have a look at our <a href="https://developers.shopware.com/designers-guide/less/">Getting started with LESS</a> guide.
+Need help with LESS? Have a look at our <a href="{{ site.url }}/designers-guide/less/">Getting started with LESS</a> guide.
 </div>
 
 ```

@@ -64,7 +64,7 @@ Creates a webfont icon.
 <i class="icon--basket"></i>
 ```
 
-The Shopware 5 Responsive theme provides you with a large amount of webfont icons. You can find a list of all Icons in our [Shopware UI components overview](https://developers.shopware.com/styletile/_components-icon-set.html).
+The Shopware 5 Responsive theme provides you with a large amount of webfont icons. You can find a list of all Icons in our [Shopware UI components overview](https://developers.shopware.com/styletile/components.html#icon-set).
 
 You can also use icons within buttons by adding the positioning classes from the [Buttons example](#buttons):
 

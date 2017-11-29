@@ -205,7 +205,7 @@ The following types can be defined for the plugin:
 
 The plugin uses widgets to embed templates. Widgets are self-contained parts of the frontend, such as the shopping worlds.
  
-``` 
+``` smarty
 {* Syntax *}
 {action module=widgets controller=[CONTROLLERNAME] action=[ACTIONNAME] [[MORE PARAMETER]]}
  
@@ -215,4 +215,4 @@ The plugin uses widgets to embed templates. Widgets are self-contained parts of 
  
 In this case, an HTTP request is triggered internally within the system, resulting in widgets being completely dynamic elements which are not cached.
 
-For further information read this blog: https://developers.shopware.com/blog/2016/07/11/on-action-tags/
+For further information read this blog: <a href="{{ site.url }}/blog/2016/07/11/on-action-tags/">On action tags</a>

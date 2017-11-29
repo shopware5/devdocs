@@ -1,0 +1,71 @@
+// @import "_mixins/animation";
+@import "_mixins/appearance";
+// @import "_mixins/backface-visibility";
+@import "_mixins/border-radius";
+@import "_mixins/box-shadow";
+@import "_mixins/box-sizing";
+// @import "_mixins/clear-button-style";
+@import "_mixins/clearfix";
+// @import "_mixins/column-count";
+// @import "_mixins/cursor";
+@import "_mixins/flexbox";
+@import "_mixins/hyphens";
+@import "_mixins/icon-element";
+// @import "_mixins/keyframes";
+// @import "_mixins/linear-gradient";
+// @import "_mixins/opacity";
+// @import "_mixins/rotate";
+// @import "_mixins/scale";
+@import "_mixins/shopware";
+// @import "_mixins/tap-highlight-color";
+@import "_mixins/touch-callout";
+@import "_mixins/transform";
+//@import "_mixins/transform-origin";
+//@import "_mixins/transform-style";
+@import "_mixins/transition";
+@import "_mixins/translate";
+// @import "_mixins/unitize";
+@import "_mixins/user-select";
+// @import "_mixins/visibility-helper";
+
+// Easings
+
+@cubic: cubic-bezier(0.25, 0.2, 0.45, 1);
+@bounce: cubic-bezier(.7, -.55, .265, 1.55);
+@mild-ease: cubic-bezier(0.60, 0, 0.50, 0.95);
+@strong-ease: cubic-bezier(0.80, 0, 0.50, 0.95);
+
+// Mixins
+
+.transition(@transition: all 0.3s ease-out) {
+  transition: @transition;
+}
+
+.cubic(@type: all, @timing: .3s, @cubic: @cubic) {
+  transition: @type @timing @cubic;
+}
+
+// escape multiple like ".ease(e('width, transform'))";
+.ease(@type: all, @timing: .5s, @easing: @strong-ease) {
+  -webkit-transition-property: @type;
+  -webkit-transition-duration: @timing;
+  -webkit-transition-timing-function: @easing;
+
+  transition-property: @type;
+  transition-duration: @timing;
+  transition-timing-function: @easing;
+  will-change: @type;
+}
+
+// Pre-Prepared
+
+.appear(@timing: .3s, @cubic: @cubic) {
+  transition: opacity @timing @cubic, transform @timing @cubic;
+  will-change: opacity, transform;
+}
+
+// Box-Shadow
+
+.soft-box-shadow(@x: 0, @y: .5rem, @blur: 1rem, @overflow: -.25rem, @color: fade(@blue, 33)) {
+  box-shadow: @arguments;
+}

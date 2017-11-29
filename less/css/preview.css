@@ -1,0 +1,12 @@
+body.preview iframe {
+  margin-top: 1rem !important;
+  margin-bottom: -3rem;
+}
+@media (min-width: 1921px) {
+  body.preview .page-wrap {
+    padding-right: 0;
+  }
+  body.preview section.container {
+    padding-right: 350px;
+  }
+}

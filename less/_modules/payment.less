@@ -1,0 +1,21 @@
+// payment.less
+
+.payment--form-group {
+  .unitize-margin(10, 0);
+
+  .payment--field {
+    .unitize(margin-bottom, 10);
+    display: block;
+    width: 100%;
+  }
+
+  .register--required-info {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+  .payment--form-group .payment--field {
+    width: 85%;
+  }
+}

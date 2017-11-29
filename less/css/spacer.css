@@ -1,0 +1,118 @@
+.spacer {
+  margin-top: 2rem !important;
+}
+.spacer--large {
+  margin-top: 4rem !important;
+}
+.spacer--small {
+  margin-top: 1rem !important;
+}
+.spacer-bottom {
+  margin-bottom: 2rem !important;
+}
+.spacer-bottom--large {
+  margin-bottom: 4rem !important;
+}
+.spacer-bottom--small {
+  margin-bottom: 1rem !important;
+}
+@media screen and (max-width: 29.9375em) {
+  .spacer-xs {
+    margin-top: 2rem !important;
+  }
+  .spacer--large-xs {
+    margin-top: 4rem !important;
+  }
+  .spacer--small-xs {
+    margin-top: 1rem !important;
+  }
+  .spacer-bottom-xs {
+    margin-bottom: 2rem !important;
+  }
+  .spacer-bottom--large-xs {
+    margin-bottom: 4rem !important;
+  }
+  .spacer-bottom--small-xs {
+    margin-bottom: 1rem !important;
+  }
+}
+@media screen and (max-width: 47.9375em) and (min-width: 30em) {
+  .spacer-s {
+    margin-top: 2rem !important;
+  }
+  .spacer--large-s {
+    margin-top: 4rem !important;
+  }
+  .spacer--small-s {
+    margin-top: 1rem !important;
+  }
+  .spacer-bottom-s {
+    margin-bottom: 2rem !important;
+  }
+  .spacer-bottom--large-s {
+    margin-bottom: 4rem !important;
+  }
+  .spacer-bottom--small-s {
+    margin-bottom: 1rem !important;
+  }
+}
+@media screen and (max-width: 59.9375em) and (min-width: 48em) {
+  .spacer-m {
+    margin-top: 2rem !important;
+  }
+  .spacer--large-m {
+    margin-top: 4rem !important;
+  }
+  .spacer--small-m {
+    margin-top: 1rem !important;
+  }
+  .spacer-bottom-m {
+    margin-bottom: 2rem !important;
+  }
+  .spacer-bottom--large-m {
+    margin-bottom: 4rem !important;
+  }
+  .spacer-bottom--small-m {
+    margin-bottom: 1rem !important;
+  }
+}
+@media screen and (max-width: 63.9375em) and (min-width: 60em) {
+  .spacer-l {
+    margin-top: 2rem !important;
+  }
+  .spacer--large-l {
+    margin-top: 4rem !important;
+  }
+  .spacer--small-l {
+    margin-top: 1rem !important;
+  }
+  .spacer-bottom-l {
+    margin-bottom: 2rem !important;
+  }
+  .spacer-bottom--large-l {
+    margin-bottom: 4rem !important;
+  }
+  .spacer-bottom--small-l {
+    margin-bottom: 1rem !important;
+  }
+}
+@media screen and (max-width: 78.6875em) and (min-width: 64em) {
+  .spacer-xl {
+    margin-top: 2rem !important;
+  }
+  .spacer--large-xl {
+    margin-top: 4rem !important;
+  }
+  .spacer--small-xl {
+    margin-top: 1rem !important;
+  }
+  .spacer-bottom-xl {
+    margin-bottom: 2rem !important;
+  }
+  .spacer-bottom--large-xl {
+    margin-bottom: 4rem !important;
+  }
+  .spacer-bottom--small-xl {
+    margin-bottom: 1rem !important;
+  }
+}

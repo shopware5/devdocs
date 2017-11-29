@@ -1,0 +1,13 @@
+.flex-display {
+  display: -webkit-flex !important;
+  display: -moz-flex !important;
+  display: -ms-flexbox !important;
+  display: -ms-flex !important;
+  display: flex !important;
+}
+.flex-wrap {
+  -webkit-flex-wrap: wrap !important;
+  -moz-flex-wrap: wrap !important;
+  -ms-flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
+}

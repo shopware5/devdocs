@@ -1,0 +1,105 @@
+.colour-palette {
+  margin: 0 -30px;
+  padding-top: 0 !important;
+}
+.colour-palette .colour-field {
+  width: calc(25% - 37.5px);
+  float: left;
+  margin: 0 0 30px 30px;
+}
+.colour-palette .colour-field .colour {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+  overflow: hidden;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  transition: padding 0.3s cubic-bezier(0.25, 0.2, 0.45, 1);
+}
+.colour-palette .colour-field .colour .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  width: 100%;
+  color: #fff;
+  z-index: 2;
+  pointer-events: none;
+  font-size: 22px;
+  font-weight: 500;
+}
+.colour-palette .colour-field .colour .full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  z-index: 1;
+}
+.colour-palette .colour-field .colour .shade {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  color: #fff;
+  height: 0;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.2, 0.45, 1);
+}
+.colour-palette .colour-field .colour ~ div {
+  margin-top: 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+  clear: both;
+}
+.colour-palette .colour-field .colour ~ div > span {
+  float: left;
+  text-align: left;
+  display: inline-block;
+  color: rgba(96, 113, 130, 0.4);
+  min-width: 60px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.has--shades .colour-field .colour {
+  padding-top: 40%;
+}
+.has--shades .colour-field .colour .shade {
+  display: block;
+  height: 48px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2;
+  opacity: 1;
+}
+@media (max-width: 1200px) {
+  .colour-palette .colour-field {
+    width: calc(33.33% - 40px);
+  }
+}
+@media (max-width: 768px) {
+  .colour-palette {
+    margin: 0;
+  }
+  .colour-palette .colour-field {
+    width: 100%;
+    margin: 0;
+  }
+  .colour-palette .colour-field + .colour-field {
+    margin-top: 30px;
+  }
+}

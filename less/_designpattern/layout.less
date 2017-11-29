@@ -1,0 +1,30 @@
+@import (reference) '../all.less';
+
+@sectionPadding: 3rem;
+@sectionWidth: 760px;
+
+body.noscroll {
+  overflow-y: hidden;
+  position: relative;
+}
+
+.dp--wrapper {
+  .section--inner {
+    max-width: @sectionWidth;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 ~'calc(var(--gutter, 10px) * 4)';
+    position: relative;
+    transition: all 0.5s @strong-ease;
+
+    // 1024px (64em)
+    @media screen and (min-width: @tabletLandscapeViewportWidth) {
+      padding: 0 var(--gutter, 15px);
+    }
+
+    // 1260px (78.75em)
+    @media screen and (min-width: @desktopViewportWidth) {
+      max-width: @sectionWidth + 200px;
+    }
+  }
+}

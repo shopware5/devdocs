@@ -1,0 +1,90 @@
+.label--old,
+.label--new {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 1.1rem;
+  border-radius: 3px;
+}
+.label--old + div,
+.label--new + div {
+  border-top: 1px solid #eee;
+}
+.label--old ~ div,
+.label--new ~ div,
+.label--old ~ form,
+.label--new ~ form,
+.label--old ~ section > div,
+.label--new ~ section > div,
+.label--old ~ section > form,
+.label--new ~ section > form {
+  font-size: 1.0625rem;
+  line-height: 1.75rem;
+  letter-spacing: .015625rem;
+  padding-top: 2rem;
+}
+.label--old ~ h4:not(.new),
+.label--new ~ h4:not(.new) {
+  margin: 1.25rem auto .325em;
+}
+.label--old {
+  color: #607182 !important;
+  background-color: #f4f7fa;
+}
+.label--new {
+  color: #fff !important;
+  background-color: #189eff;
+}
+.label--introduced {
+  position: relative;
+  margin-right: 14px;
+  padding: 3px 8px;
+  font-size: .8rem;
+  font-weight: 500;
+  border-radius: 3px;
+  top: -2px;
+  color: #fff;
+  background-color: #de294c;
+}
+[class*="label--tooltip"] {
+  display: inline-block;
+  position: relative;
+  left: 20px;
+  padding: 7px 12px;
+  font-size: .8rem;
+  font-weight: 500;
+  border-radius: 3px;
+  color: #607182;
+  background-color: #f4f7fa;
+}
+[class*="label--tooltip"] + [class*="label--tooltip"] {
+  margin-left: 5px;
+}
+[class*="label--tooltip"].after-block {
+  left: 0;
+  margin-bottom: 20px;
+}
+.label--tooltip-xs {
+  top: -2px;
+  padding: 0 12px;
+}
+.col[class*="--border"] [class*="label--tooltip"] {
+  top: -2px;
+}
+.col.has--border-blue [class*="label--tooltip"],
+.col.has--border-success [class*="label--tooltip"] {
+  color: rgba(20, 36, 50, 0.5);
+  background-color: rgba(20, 36, 50, 0.05);
+}
+.page-wrap section.container > .content--wrapper.is--dark-bg .label--old,
+.page-wrap section.container > .content--wrapper.is--dark-bg [class*="label--tooltip"] {
+  color: #fff !important;
+  background-color: rgba(244, 247, 250, 0.08);
+}
+.page-wrap section.container > .content--wrapper.is--dark-bg .label--old + div,
+.page-wrap section.container > .content--wrapper.is--dark-bg .label--new + div {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+.new .label--new ~ section > div,
+.new .label--new ~ section > form {
+  padding-top: 1rem;
+}

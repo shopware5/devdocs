@@ -1,0 +1,27 @@
+/*
+Unitize mixin
+================================================
+The unitize mixins converts values from px-units to the relative rem-units, providing all the benefits of units like em and rem, without you having to do any calculations yourself.
+
+######Syntax:
+`@property` = the property that should be unitized.<br/>
+`@value` = pixel-value<br/>
+`@baseValue` (optional) = default browser font-size (@remScaleFactor in most cases)<br/>
+
+######Example Unitize mixin with custom property
+`.unitize(@property, @value);`<br/>
+`.unitize(font-size, 16);`
+
+######Specific built-in functions
+In addition to the general `.unitize()` mixin, Shopware contains specific mixins to quickly calculate values which (for example) have more than one property.<br/>
+<br/>
+
+`.unitize-height(@value)`<br/>
+`.unitize-width(@value)`<br/>
+`.unitize-max-height(@value)`<br/>
+`.unitize-max-width(@value)`<br/>
+`.unitize-min-width(@value)`<br/>
+`.unitize-padding(@topValue, @rightValue, @bottomValue: @topValue, @leftValue: @rightValue)`<br/>
+`.unitize-margin(@topValue, @rightValue, @bottomValue: @topValue, @leftValue: @rightValue)`<br/>
+`.unitize-variable(@value)`<br/>
+*/

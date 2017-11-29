@@ -1,0 +1,85 @@
+.section--fail,
+.section--pass {
+  position: relative;
+  border: 1px dashed;
+  padding: .5rem 1.5rem 1.5rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
+}
+.section--fail .sign,
+.section--pass .sign {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  padding: 0;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.section--fail {
+  border-color: #de294c;
+  background-color: rgba(222, 41, 76, 0.1);
+  /*
+  &:hover {
+    border-color: fade(@highlight-error, 30);
+    background-color: transparent;
+  }
+  */
+}
+.section--fail .sign {
+  background-color: #de294c;
+}
+.section--fail .sign:before,
+.section--fail .sign:after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  position: absolute;
+  background-color: #fff;
+  top: 14px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: rotate(45deg);
+}
+.section--fail .sign:after {
+  transform: rotate(-45deg);
+}
+.section--pass {
+  border-color: #37d046;
+  background-color: rgba(55, 208, 70, 0.1);
+  /*
+  &:hover {
+    border-color: fade(@highlight-success, 30);
+    background-color: transparent;
+  }
+  */
+}
+.section--pass .label--introduced {
+  background-color: #37d046;
+}
+.section--pass .sign {
+  background-color: #37d046;
+}
+.section--pass .sign:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 12px;
+  height: 5px;
+  border: solid #fff;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-52deg);
+}
+.new .section--fail,
+.new .section--pass {
+  padding-top: 1.5rem;
+}

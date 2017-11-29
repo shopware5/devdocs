@@ -1,0 +1,115 @@
+@import (reference) '../all.less';
+
+.dp--wrapper {
+  .tip {
+    // CSS CP
+    --label-margin: 10;
+    --label-bg: @highlight-error;
+
+    display: inline-block;
+    position: relative;
+    margin: ~'calc(var(--label-margin ) * 1px)';
+    margin-left: 0;
+    line-height: normal;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: @white;
+    background: var(--label-bg);
+    font-size: 12px;
+    padding: 2px 7px;
+    .border-radius(3px);
+    .background-clip(padding-box);
+    .no-select();
+
+    // Display
+    &.is--right {
+      float: none;
+      margin-right: 0;
+      margin-left: ~'calc(var(--label-margin ) * 1px)';
+    }
+    &.is--left {
+      float: none;
+    }
+    &.is--inline {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    // Colours
+    &.is--info {
+      --label-bg: @blue;
+    }
+    &.is--success {
+      --label-bg: @highlight-success;
+    }
+    &.is--flag {
+      --label-bg: @gray-light;
+      color: @gray-mid;
+
+      &.on--dark {
+        --label-bg: fade(@gray-light, 8);
+        color: @white;
+      }
+    }
+    &.is--white {
+      --label-bg: @white;
+      color: @gray-dark;
+    }
+  }
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  h6, .h6 {
+    > .tip {
+      display: inline;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  h1, .h1 {
+    > .tip {
+      --label-margin: 16;
+
+      top: -12px;
+      font-size: 18px;
+    }
+  }
+  h2, .h2 {
+    > .tip {
+      --label-margin: 14;
+
+      top: -4px;
+      font-size: 16px;
+    }
+  }
+  h3, .h3 {
+    > .tip {
+      --label-margin: 12;
+
+      top: -4px;
+      font-size: 14px;
+    }
+  }
+  h4, .h4 {
+    > .tip {
+      top: -3px;
+      font-size: 12px;
+    }
+  }
+  h5, .h5 {
+    > .tip {
+      top: -2px;
+      font-size: 12px;
+    }
+  }
+  h6, .h6 {
+    > .tip {
+      --label-margin: 8;
+
+      top: -2px;
+      font-size: 11px;
+    }
+  }
+}

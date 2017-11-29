@@ -1,0 +1,263 @@
+.company-h1 {
+  margin-bottom: 3vw;
+  font-size: 8vw;
+  line-height: 1.1;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.company-h2 {
+  margin-bottom: 2vw;
+  font-size: 4.5vw;
+  line-height: 1.25;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+}
+.new h1,
+.dp--wrapper h1,
+.new h2,
+.dp--wrapper h2,
+.new h3,
+.dp--wrapper h3,
+.new h4,
+.dp--wrapper h4,
+.new h5,
+.dp--wrapper h5,
+.new h6,
+.dp--wrapper h6,
+.new .h1,
+.dp--wrapper .h1,
+.new .h2,
+.dp--wrapper .h2,
+.new .h3,
+.dp--wrapper .h3,
+.new .h4,
+.dp--wrapper .h4,
+.new .h5,
+.dp--wrapper .h5,
+.new .h6,
+.dp--wrapper .h6 {
+  color: #142432;
+  margin-top: 0;
+  max-width: none;
+}
+.new h1,
+.dp--wrapper h1,
+.new h2,
+.dp--wrapper h2,
+.new h3,
+.dp--wrapper h3,
+.new h4,
+.dp--wrapper h4,
+.new .h1,
+.dp--wrapper .h1,
+.new .h2,
+.dp--wrapper .h2,
+.new .h3,
+.dp--wrapper .h3,
+.new .h4,
+.dp--wrapper .h4 {
+  margin-bottom: 20px;
+}
+.new h5,
+.dp--wrapper h5,
+.new .h5,
+.dp--wrapper .h5 {
+  margin-bottom: 10px;
+}
+.new h6,
+.dp--wrapper h6,
+.new .h6,
+.dp--wrapper .h6 {
+  margin-bottom: 5px;
+}
+.new h2,
+.dp--wrapper h2,
+.new .h2,
+.dp--wrapper .h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.new h1.is--company,
+.dp--wrapper h1.is--company,
+.new .h1.is--company,
+.dp--wrapper .h1.is--company {
+  margin-bottom: 3vw;
+  font-size: 8vw;
+  line-height: 1.1;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.new h2.is--company,
+.dp--wrapper h2.is--company,
+.new .h2.is--company,
+.dp--wrapper .h2.is--company {
+  margin-bottom: 2vw;
+  font-size: 4.5vw;
+  line-height: 1.25;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+}
+.new .quote,
+.dp--wrapper .quote {
+  width: 100%;
+  max-width: 800px;
+  margin: 6rem auto 3rem;
+  padding: 3rem 4.5rem 3rem;
+  box-shadow: 0 0 2rem -0.25rem rgba(20, 36, 50, 0.05);
+}
+.new .quote blockquote,
+.dp--wrapper .quote blockquote {
+  top: auto;
+  left: auto;
+  padding: 1rem 0 0;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 48px;
+  letter-spacing: .8px;
+  color: #142432;
+}
+.new .quote blockquote:before,
+.dp--wrapper .quote blockquote:before {
+  content: '„';
+  position: absolute;
+  top: -1.5rem;
+  right: 0;
+  left: 0;
+  margin: auto;
+  line-height: 0;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Merriweather', serif;
+}
+.new .quote .author-avatar,
+.dp--wrapper .quote .author-avatar {
+  margin-top: -3rem;
+  transform: translateY(-50%);
+}
+.new .quote .author-avatar img,
+.dp--wrapper .quote .author-avatar img {
+  width: 90px;
+}
+.new .quote .author-desc,
+.dp--wrapper .quote .author-desc {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+.new .quote .author-desc:before,
+.dp--wrapper .quote .author-desc:before {
+  content: "";
+  display: block;
+  width: 60px;
+  margin: 1.5rem auto;
+  border-top: 1px solid #eaeef1;
+}
+.new .quote .author-desc b,
+.dp--wrapper .quote .author-desc b,
+.new .quote .author-desc strong,
+.dp--wrapper .quote .author-desc strong {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 21px;
+}
+.new .quote .author-desc span,
+.dp--wrapper .quote .author-desc span,
+.new .quote .author-desc p,
+.dp--wrapper .quote .author-desc p {
+  display: block;
+  font-size: 1rem;
+  padding-top: 4px;
+  color: rgba(57, 84, 103, 0.66);
+}
+.dp--wrapper h1,
+.dp--wrapper .h1 {
+  margin-bottom: 3vw;
+  font-size: 8vw;
+  line-height: 1.1;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.dp--wrapper h2,
+.dp--wrapper .h2 {
+  margin-bottom: 2vw;
+  font-size: 4.5vw;
+  line-height: 1.25;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-align: center;
+}
+@media (min-width: 30em) {
+  .new h1.is--company,
+  .new .h1.is--company {
+    margin-bottom: 2vw;
+    font-size: 6vw;
+    line-height: 1.1;
+  }
+  .new h2.is--company,
+  .new .h2.is--company {
+    margin-bottom: 1.375vw;
+    font-size: 3.3vw;
+    line-height: 1.25;
+  }
+  .dp--wrapper h1,
+  .dp--wrapper .h1 {
+    margin-bottom: 2vw;
+    font-size: 6vw;
+    line-height: 1.1;
+  }
+  .dp--wrapper h2,
+  .dp--wrapper .h2 {
+    margin-bottom: 1.375vw;
+    font-size: 3.3vw;
+    line-height: 1.25;
+  }
+}
+@media (min-width: 64em) {
+  .new h1.is--company,
+  .new .h1.is--company {
+    margin-bottom: 20px;
+    font-size: 58px;
+    font-size: 3.625rem;
+    letter-spacing: 10px;
+    letter-spacing: .625rem;
+    line-height: 1.1;
+  }
+  .new h2.is--company,
+  .new .h2.is--company {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+  .dp--wrapper h1,
+  .dp--wrapper .h1 {
+    margin-bottom: 20px;
+    font-size: 58px;
+    font-size: 3.625rem;
+    letter-spacing: 10px;
+    letter-spacing: .625rem;
+    line-height: 1.1;
+  }
+  .dp--wrapper h2,
+  .dp--wrapper .h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}

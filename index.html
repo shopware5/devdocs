@@ -1,16 +1,420 @@
-<!DOCTYPE html><html><head><title>Shopware 5 documentation
-</title><meta charset="utf-8"><style>*{-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0}body{padding:60px 0 40px;background-color:#e3e6e8;color:#494d50}.container{max-width:1300px;margin:0 auto;padding:0 20px}.section{position:relative;margin-bottom:20px}.docs{position:relative;z-index:2;width:68%;min-height:200px;background-color:#fff;background-clip:padding-box;border:1px solid rgba(12,13,13,.1);border-radius:5px;box-shadow:0 0 3px rgba(12,13,13,.1)}.code{position:absolute;top:5px;bottom:5px;right:0;z-index:1;width:33%;padding:10px 10px 10px 20px;border-radius:0 5px 5px 0;border:1px solid rgba(20,26,31,.1);background-color:rgba(240,243,245,.9);background-clip:padding-box;opacity:.5;-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s}.code:hover{opacity:1}.preview{background:#fff;border-top:1px solid #eef3f6;position:relative;z-index:1}.preview-code+.preview{margin-top:0;border-top:0}.preview iframe{display:block;width:100%;height:100%;overflow:hidden}.preview-code{position:relative;z-index:2;display:block;width:100%;color:#565f67;max-height:200px;padding:10px 20px;overflow-y:auto;background:#eef3f6;border:1px solid #cddae4;box-shadow:inset 0 1px 2px rgba(18,26,33,.1);line-height:1.1!important;resize:none}.preview-code:focus{outline:0;background:#f5f8fa;box-shadow:inset 0 1px 2px rgba(18,26,33,.1),0 0 5px rgba(143,196,239,.9)}.preview-code:last-child{border-bottom:0;border-radius:0 0 5px 5px}.resizeable{padding:15px;overflow:auto;background:#fff;box-shadow:0 0 2px rgba(46,52,56,.2);resize:both}.preview-code,pre{white-space:pre-wrap;word-wrap:break-word;overflow-y:auto}.code pre{height:100%;margin-top:0}.bar{position:fixed;left:0;right:0;z-index:1010;min-height:40px;line-height:40px;background-image:-webkit-linear-gradient(rgba(80,90,98,.97),rgba(61,64,67,.92));background-image:-moz-linear-gradient(rgba(80,90,98,.97),rgba(61,64,67,.92));background-image:-o-linear-gradient(rgba(80,90,98,.97),rgba(61,64,67,.92));background-image:linear-gradient(rgba(80,90,98,.97),rgba(61,64,67,.92))}.bar.top{top:0;box-shadow:0 1px 2px rgba(0,0,0,.2)}.bar.bottom{bottom:0;box-shadow:0 -1px 2px rgba(0,0,0,.2)}.bar ul{margin:0!important}.bar li{display:block;list-style:none}.bar .icon path{fill:rgba(198,191,185,.75)}.docs .icon path{fill:rgba(185,192,198,.5)}.docs .permalink:hover .icon path{fill:#b9c0c6}.bar button{color:rgba(198,191,185,.75)}.bar button:hover .icon path,.bar button.is-active .icon path{fill:#ddd8d5}.bar button:hover,.bar button.is-active{color:#ddd8d5}.bar .icon{vertical-align:middle;display:inline-block}.bar,.bar a,.bar a:visited{color:#ddd8d5;text-shadow:1px 1px 0 rgba(0,0,0,.5)}.bar a:hover,.bar a.is-active{color:#f4f2f1;text-shadow:1px 1px 0 #000;text-decoration:none}.brand{float:left;margin-right:20px;font-weight:700;font-size:16px;text-decoration:none}.brand,a.brand,a.brand:visited{color:#0d0d0c;text-shadow:1px 1px 0 rgba(255,255,255,.2)}.brand:hover,a.brand:hover{color:#000;text-shadow:1px 1px 0 rgba(255,255,255,.3);text-decoration:none}.menu{font-size:12px}.menu>li{float:left;position:relative}.menu a{display:block;margin-right:15px}.dropdown-toggle{position:relative;padding-right:15px}.dropdown-toggle:after{display:block;position:absolute;right:0;top:18px;content:'';border:4px solid;border-left-color:transparent;border-right-color:transparent;border-bottom-color:transparent}.nav-results,.dropdown{position:absolute;z-index:1020;top:32px;left:-16px;width:175px;max-height:500px;padding:10px 0;overflow-y:auto;word-wrap:break-word;font-size:11px;line-height:20px;background-color:rgba(57,64,70,.97);border:1px solid rgba(175,179,182,.3);border-radius:3px;box-shadow:0 0 3px rgba(0,0,0,.2)}.toc-list{width:200px}.nav-results{right:0;width:200px;left:auto;padding:5px 0}.nav-results-filename{display:block;font-size:10px;opacity:.75}.nav-results a{display:block;line-height:15px;padding:5px 10px}.nav-results li:not([hidden])~li a{border-top:1px solid rgba(232,229,227,.1)}.dropdown a{padding:0 15px}.dropdown li:hover{background-color:#32393e}.nav{float:right;position:relative}.nav input[type="search"]{padding:2px 4px;color:#fff;width:150px;border:1px solid rgba(0,0,0,.3);background:rgba(90,103,114,.9);box-shadow:inset 1px 1px 3px rgba(0,0,0,.05),1px 1px 0 rgba(255,255,255,.05);border-radius:10px;-webkit-appearance:textfield}.nav input[type="search"]:focus{outline:0;background:rgba(107,116,123,.9)}.settings{text-align:center}.bar button{display:inline-block;vertical-align:middle;padding:0 5px;margin:0 3px;background:transparent}.bar button:first-child{margin-left:0}.settings .auto{line-height:32px;font-size:11px;font-weight:700;letter-spacing:-1px;text-shadow:none;text-transform:uppercase}body{font-family:sans-serif;font-size:14px;line-height:1.618}.docs pre,p,ol,ul,dl,figure,blockquote,table{margin-left:20px;margin-right:20px}.preview,.docs pre,p,ol,ul,dl,figure,blockquote,table{margin-top:10px}ul ul,ol ol,ul ol,ol ul,blockquote p:last-child{margin-top:0}ul,ol{padding-left:1.5em}p:last-child,ol:last-child,ul:last-child,dl:last-child{margin-bottom:20px}hr,h1,h2,h3,h4,h5,h6{margin:1em 20px .5em}h1:first-of-type{margin-top:20px}h1,h2,h3,h4,h5,h6{line-height:1.2;color:#73818c}h1 a,h1 a:hover,h1 a:visited{color:inherit;text-decoration:inherit}h1{font-size:3.052em;font-weight:400;color:#67747e}h2{font-size:1.953em}h3{font-size:1.536em}h1,h2,h3{letter-spacing:-.025em}h4{font-size:1.25em}h5{font-size:1em;text-transform:uppercase}h6{font-size:1em}.permalink{position:absolute;top:15px;right:15px}a{color:#0d8bf2;text-decoration:none}a:hover{color:#0570c7;text-decoration:underline}a:visited{color:#0062b3}.preview-code,pre,code,var{font-style:normal;font-family:"Ubuntu Mono","Andale Mono","DejaVu Sans Mono","Monaco","Bitstream Vera Sans Mono","Consolas","Lucida Console",monospace;font-size:12px}.docs pre,code,var{padding:.1em 3px;background:rgba(0,0,0,.025);border:1px solid rgba(0,0,0,.05);border-radius:3px}.code pre{line-height:1.1!important}pre code{padding:0;background:transparent;border:0}.cf:before,.cf:after{content:'';display:table}.cf:after{clear:both}[unselectable="on"]{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}[hidden]{display:none!important}small{font-size:85%;opacity:.9}html,body{background-color:#ebf0f3;height:auto;padding:40px 0 50px 0;margin:0;font-family:'Open Sans',sans-serif;line-height:26px}*{box-sizing:border-box}h1,h2,h3,h4,h5,h6{color:#52606b;margin-top:30px;margin-left:0}h1{margin-bottom:15px}h1:first-of-type{font-weight:400;font-size:32px;border-bottom:2px solid #cad9e0;margin-bottom:20px;padding-bottom:10px;margin-top:30px}.container{width:1280px;margin:0 auto;padding:0}.container::after{content:"";display:table;clear:both}::-webkit-scrollbar{width:6px;height:0;border-bottom:1px solid #eee;border-top:1px solid #eee;background-color:rgba(0,0,0,.1)}::-webkit-scrollbar-thumb{border-radius:8px;background-color:rgba(0,0,0,.2)}.docs pre,p,ol,ul,dl,figure,blockquote,table{margin-left:0;margin-right:0}hr{margin-top:30px;margin-left:0}.preview,.docs pre,p,ol,ul,dl,figure,blockquote,table{margin-top:0}.bar.top{background:#26556f;box-shadow:none}.bar.top .container{padding:0}.bar.top a:link,.bar.top a:visited{text-shadow:none;color:#fff}.bar.top a:hover,.bar.top a.is-active{color:#cddae4;text-shadow:none;text-decoration:none}.highlight{margin:0 15px}.permalink{top:5px}.nav{margin-top:8px}.nav input[type="search"]{padding:0 22px;color:#5f5f5f;display:inline-block;height:35px;width:270px;border:1px solid #5e8093;border-radius:28px;-moz-border-radius:28px;-webkit-border-radius:28px;-webkit-appearance:textfield;background:#fff;box-shadow:unset}.nav input[type="search"]:focus{background-color:#fff}a.dropdown-toggle.is-active::before{content:'';display:inline-block;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #ccc;border-bottom-color:#fff;position:absolute;top:46px;z-index:9999;left:5px}a.dropdown-toggle{margin-right:8px}a.dropdown-toggle:link,a.dropdown-toggle:visited{color:#fff;padding-right:0;text-shadow:none}a.dropdown-toggle:hover,a.dropdown-toggle:focus,a.dropdown-toggle:active{color:#1fb3fb;text-shadow:none}a.dropdown-toggle::after{right:-15px;top:19px}.dropdown{background-color:#fff;border:1px solid #cddae4;border-radius:0;box-shadow:0 5px 10px rgba(0,0,0,.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,.2);-webkit-box-shadow:0 5px 10px rgba(0,0,0,.2);font-size:11px;left:2px;line-height:20px;max-height:500px;overflow-y:auto;padding:0;position:absolute;top:61px;width:175px;word-wrap:break-word;z-index:1020}.dropdown li{padding:0!important;border-bottom:1px solid #e9f8ff}.dropdown li::before,.dropdown li::after{content:none!important}.dropdown li a{margin:0;padding:5px 15px;font-size:13px}.dropdown li a:link,.dropdown li a:visited{color:#0e384f!important}.dropdown li:hover,.dropdown li:focus,.dropdown li:active{background-color:#f4f2f1}.dropdown li:hover a,.dropdown li:focus a,.dropdown li:active a{color:#0e384f!important;background-color:#f4f2f1}.nav-results{right:1px;width:268px;left:auto;margin-top:3px!important;padding:5px 0;position:absolute;z-index:1020;top:41px;max-height:500px;overflow-y:auto;word-wrap:break-word;font-size:11px;line-height:20px;background-color:#fff;border:1px solid rgba(175,179,182,.3);border-radius:0;box-shadow:unset}.nav-results li a{color:#26556f!important}.nav-results a:hover,.nav-results a.is-active{color:#f4f2f1;background-color:#f8f9fa;text-shadow:unset;text-decoration:none}ul.menu{float:left;padding-left:80px;font-size:14px}ul.menu li{padding:9px 25px;margin:0}ul.menu li:last-child::after{content:"";display:inline-block;position:absolute;height:30px;border-left:1px solid rgba(95,152,184,.37);top:16px;margin-left:-23px;right:0}ul.menu li::before{content:"";display:inline-block;position:absolute;height:30px;border-left:1px solid rgba(95,152,184,.37);top:16px;margin-left:-23px}a.logo{float:left;margin-top:4px;text-shadow:none}a.logo:hover{text-shadow:none}a.logo img{height:32px;margin-top:8px;margin-right:13px;float:left}a.logo .brand{color:#fff;font-weight:400;margin-top:4px;text-shadow:unset;margin-right:0}a.logo .brand:hover{text-shadow:none}.main{background:#fff;padding:0 46px 20px 46px;-webkit-box-shadow:0 2px 2px rgba(202,217,224,.4);-moz-box-shadow:0 2px 2px rgba(202,217,224,.4);box-shadow:0 2px 2px rgba(202,217,224,.4);border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;border:1px solid #f8f9fa;margin-bottom:70px}.section{margin-bottom:60px}.docs{background-color:#fff;border:0;border-radius:0;box-shadow:none;min-height:200px;position:relative;width:68%;z-index:2}.docs strong{display:inline-block;margin-top:15px}.docs code{background-color:#f0f3f5;border:1px solid rgba(36,82,106,.13)}.docs .preview{background:#fff;border-top:0;margin-top:15px;position:relative;z-index:1}.docs .preview .resizeable{background:#e9e9f0;border:1px solid #cddae4;box-shadow:unset;overflow:auto;padding:0 30px;resize:both}.docs .preview-code{background:inherit;border:1px solid #cddae4;border-top:0;border-radius:unset;box-shadow:none;color:#565f67;display:block;line-height:1.1!important;margin-bottom:30px;max-height:200px;overflow-y:auto;padding:15px;position:relative;resize:none;width:100%;z-index:2}.docs .preview-code:focus{outline:0;background:inherit;box-shadow:unset}.docs .preview-code:last-child{border-bottom:1px solid #cddae4;border-radius:unset}.code{position:absolute;top:5px;bottom:0;right:0;z-index:1;width:30%;padding:5px 10px 1px 15px;border-radius:unset;border:1px solid #cddae4;background-color:rgba(240,243,245,.9);background-clip:padding-box;opacity:.5;-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s}</style><link href="vendors/styles.css" type="text/preview"><style></style><script type="text/preview">var lastSeenProductsConfig = lastSeenProductsConfig || {
-'baseUrl': '/aa-shopware',
-'shopId': '1',
-'noPicture': '/aa-shopware/themes/Frontend/Responsive/frontend/_public/src/img/no-picture.jpg',
-'productLimit': ~~('5'),
-'currentArticle': {}
-};
-</script><link href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400,300" rel="stylesheet"><link rel="icon" href="src/favicon.ico"></head><body><nav class="bar top cf"><div class="container"><a href="index.html" class="logo"><img src="src/icon.png" alt="shopware"><span class="brand">Shopware 5 documentation</span></a><ul class="menu"><li><a href="#" data-toggle="dropdown-1" unselectable="on" class="dropdown-toggle">_components</a><ul id="dropdown-1" hidden class="dropdown"><li><a href="_components-alert.html">alert</a></li><li><a href="_components-badge.html">badge</a></li><li><a href="_components-buttons.html">buttons</a></li><li><a href="_components-checkbox.html">checkbox</a></li><li><a href="_components-collapse-cart.html">collapse-cart</a></li><li><a href="_components-collapse.html">collapse</a></li><li><a href="_components-container.html">container</a></li><li><a href="_components-datepicker.html">datepicker</a></li><li><a href="_components-delivery-information.html">delivery-information</a></li><li><a href="_components-emotions.html">emotions</a></li><li><a href="_components-fields.html">fields</a></li><li><a href="_components-filter-panel.html">filter-panel</a></li><li><a href="_components-flags.html">flags</a></li><li><a href="_components-form.html">form</a></li><li><a href="_components-icon-set.html">icon-set</a></li><li><a href="_components-image-gallery.html">image-gallery</a></li><li><a href="_components-image-slider.html">image-slider</a></li><li><a href="_components-image-zoom.html">image-zoom</a></li><li><a href="_components-label.html">label</a></li><li><a href="_components-last-seen-products.html">last-seen-products</a></li><li><a href="_components-lightbox.html">lightbox</a></li><li><a href="_components-lists.html">lists</a></li><li><a href="_components-loading-indicator.html">loading-indicator</a></li><li><a href="_components-menu-scroller.html">menu-scroller</a></li><li><a href="_components-modal.html">modal</a></li><li><a href="_components-navigation-list.html">navigation-list</a></li><li><a href="_components-offcanvas-button.html">offcanvas-button</a></li><li><a href="_components-offcanvas-menu.html">offcanvas-menu</a></li><li><a href="_components-overlay.html">overlay</a></li><li><a href="_components-panel.html">panel</a></li><li><a href="_components-product-quick-view.html">product-quick-view</a></li><li><a href="_components-product-slider.html">product-slider</a></li><li><a href="_components-range-slider.html">range-slider</a></li><li><a href="_components-ribbon.html">ribbon</a></li><li><a href="_components-tab-menu.html">tab-menu</a></li><li><a href="_components-tables.html">tables</a></li><li><a href="_components-tag-cloud.html">tag-cloud</a></li></ul></li><li><a href="#" data-toggle="dropdown-2" unselectable="on" class="dropdown-toggle">_mixins</a><ul id="dropdown-2" hidden class="dropdown"><li><a href="_mixins-animation.html">animation</a></li><li><a href="_mixins-appearance.html">appearance</a></li><li><a href="_mixins-backface-visibility.html">backface-visibility</a></li><li><a href="_mixins-border-radius.html">border-radius</a></li><li><a href="_mixins-box-shadow.html">box-shadow</a></li><li><a href="_mixins-box-sizing.html">box-sizing</a></li><li><a href="_mixins-clearfix.html">clearfix</a></li><li><a href="_mixins-column-count.html">column-count</a></li><li><a href="_mixins-cursor.html">cursor</a></li><li><a href="_mixins-hyphens.html">hyphens</a></li><li><a href="_mixins-icon-element.html">icon-element</a></li><li><a href="_mixins-keyframes.html">keyframes</a></li><li><a href="_mixins-linear-gradient.html">linear-gradient</a></li><li><a href="_mixins-opacity.html">opacity</a></li><li><a href="_mixins-rotate.html">rotate</a></li><li><a href="_mixins-scale.html">scale</a></li><li><a href="_mixins-tap-highlight-color.html">tap-highlight-color</a></li><li><a href="_mixins-touch-callout.html">touch-callout</a></li><li><a href="_mixins-transform-origin.html">transform-origin</a></li><li><a href="_mixins-transform-style.html">transform-style</a></li><li><a href="_mixins-transform.html">transform</a></li><li><a href="_mixins-transition.html">transition</a></li><li><a href="_mixins-translate.html">translate</a></li><li><a href="_mixins-unitize.html">unitize</a></li><li><a href="_mixins-user-select.html">user-select</a></li></ul></li><li><a href="#" data-toggle="dropdown-3" unselectable="on" class="dropdown-toggle">_modules</a><ul id="dropdown-3" hidden class="dropdown"><li><a href="_modules-account.html">account</a></li><li><a href="_modules-blog.html">blog</a></li><li><a href="_modules-breadcrumb.html">breadcrumb</a></li><li><a href="_modules-cart.html">cart</a></li><li><a href="_modules-compare.html">compare</a></li><li><a href="_modules-configurator.html">configurator</a></li><li><a href="_modules-confirm.html">confirm</a></li><li><a href="_modules-custom.html">custom</a></li><li><a href="_modules-detail.html">detail</a></li><li><a href="_modules-devices.html">devices</a></li><li><a href="_modules-finish.html">finish</a></li><li><a href="_modules-footer.html">footer</a></li><li><a href="_modules-forms.html">forms</a></li><li><a href="_modules-global.html">global</a></li><li><a href="_modules-header.html">header</a></li><li><a href="_modules-home.html">home</a></li><li><a href="_modules-last-viewed.html">last-viewed</a></li><li><a href="_modules-listing.html">listing</a></li><li><a href="_modules-main-navigation.html">main-navigation</a></li><li><a href="_modules-newsletter.html">newsletter</a></li><li><a href="_modules-note.html">note</a></li><li><a href="_modules-payment.html">payment</a></li><li><a href="_modules-product-box.html">product-box</a></li><li><a href="_modules-register.html">register</a></li><li><a href="_modules-search.html">search</a></li><li><a href="_modules-sidebar.html">sidebar</a></li><li><a href="_modules-sitemap.html">sitemap</a></li><li><a href="_modules-tell-a-friend.html">tell-a-friend</a></li><li><a href="_modules-top-seller.html">top-seller</a></li></ul></li><li><a href="#" data-toggle="dropdown-4" unselectable="on" class="dropdown-toggle">_variables</a><ul id="dropdown-4" hidden class="dropdown"><li><a href="_variables-structure.html">structure</a></li><li><a href="_variables-typography.html">typography</a></li><li><a href="_variables-zindex.html">zindex</a></li></ul></li><li><a href="#" data-toggle="dropdown-5" unselectable="on" class="dropdown-toggle">less</a><ul id="dropdown-5" hidden class="dropdown"><li><a href="all.html">all</a></li><li><a href="components.html">components</a></li><li><a href="hacks.html">hacks</a></li><li><a href="ie.html">ie</a></li><li><a href="mixins.html">mixins</a></li><li><a href="modules.html">modules</a></li><li><a href="variables.html">variables</a></li></ul></li></ul><div class="nav"><input type="search" placeholder="Search" class="search"></div></div></nav><section class="container main"><article id="styledocco-generator-for-shopware" class="section"><div class="docs"><a href="#styledocco-generator-for-shopware" class="permalink"><svg viewBox="0 0 512 512" height="32" width="32" class="icon"><path d="M156.2,199.7c7.5-7.5,15.9-13.8,24.8-18.7c49.6-27.3,113.1-12.8,145,35.5l-38.5,38.5c-11.1-25.2-38.5-39.6-65.8-33.5c-10.3,2.3-20.1,7.4-28,15.4l-73.9,73.9c-22.4,22.4-22.4,58.9,0,81.4c22.4,22.4,58.9,22.4,81.4,0l22.8-22.8c20.7,8.2,42.9,11.5,64.9,9.9l-50.3,50.3c-43.1,43.1-113,43.1-156.1,0c-43.1-43.1-43.1-113-0-156.1L156.2,199.7z M273.6,82.3l-50.3,50.3c21.9-1.6,44.2,1.6,64.9,9.9l22.8-22.8c22.4-22.4,58.9-22.4,81.4,0c22.4,22.4,22.4,58.9,0,81.4l-73.9,73.9c-22.5,22.5-59.1,22.3-81.4,0c-5.2-5.2-9.7-11.7-12.5-18l-38.5,38.5c4,6.1,8.3,11.5,13.7,16.9c13.9,13.9,31.7,24.3,52.1,29.3c26.5,6.4,54.8,2.8,79.2-10.6c8.9-4.9,17.3-11.1,24.8-18.7l73.9-73.9c43.1-43.1,43.1-113,0-156.1C386.6,39.2,316.7,39.2,273.6,82.3z"></path></svg></a><h1 id="styledocco-generator-for-shopware">Styledocco Generator for Shopware</h1>
-<p>The styledocco generator creates a library of HTML files from the shopware projects .less files to provide a slim and useful documentation for users and developers.</p>
-<p>The shopware .less files contain documentation and examples inside comments that are generated into HTML files by the styledocco generator. The result contains the source code, the less styles and (if possible) a working example of the specific elements.</p>
-<h3 id="less-files">LESS Files</h3>
-<p>The shopware <code>.less</code> files are split into different parts:</p>
-<p><code>all.less</code> - includes all other less files<br><code>components.less</code> - includes the shopware components folder<br><code>hacks.less</code> - contains hacks and fixes<br><code>ie.less</code> - contains internet explorer fixes<br><code>mixins.less</code> - includes shopware the less mixin folder<br><code>modules.less</code> - includes the shopware modules folder<br><code>variables.less</code> - includes the shopware less variables folder  </p>
-<p><code>_components/</code> - shopware component files<br><code>_mixins/</code> - shopware less mixin function files<br><code>_modules/</code> - shopware module files<br><code>_variables/</code> - shopware variables files  </p>
-</div></article></section><div class="bar bottom"><div hidden class="settings container"><!-- Icons from http://iconmonstr.com--><button title="Desktop (1280)" data-width='1280'><svg viewBox="0 0 412 386" height="24" width="26" class="icon"><path d="m147.6,343.9c-4.5,15.9-26.2,37.6-42.1,42.1h201c-15.3,-4-38.1,-26.8-42.1,-42.1H147.6zM387,0.5H25c-13.8,0-25,11.2-25,25V294c0,13.8 11.2,25 25,25h362c13.8,0 25,-11.2 25,-25V25.5C412,11.7 400.8,0.5 387,0.5zM369.9,238.2H42.1L42.1,42.6 369.9,42.6V238.2z"></path></svg></button><button title="Laptop (1024)" data-width='1024'><svg viewBox="0 0 384 312" height="23" width="28" class="icon"><path d="m349.2,20.5c0,-11-9,-20-20,-20H53.6c-11,0-20,9-20,20v194H349.2v-194zm-27,167H60.6V27.5H322.2v160zm28,42H32.6L2.6,282.1c-3.5,6.2-3.5,13.8 0.1,19.9 3.6,6.2 10.2,9.9 17.3,9.9H363.1c7.1,0 13.7,-3.8 17.3,-10 3.6,-6.2 3.6,-13.8 0,-20l-30.2,-52.5zm-196.9,54 8,-23.5h60.5l8,23.5h-76.5z"></path></svg></button><button title="Tablet (768)" data-width='768'><svg viewBox="0 0 317 412" height="24" width="18" class="icon"><path d="M 316.5,380 V 32 c 0,-17.7 -14.3,-32 -32,-32 H 32 C 14.3,0 0,14.3 0,32 v 348 c 0,17.7 14.3,32 32,32 h 252.5 c 17.7,0 32,-14.3 32,-32 z M 40,367 V 45 H 276.5 V 367 H 40 z m 109.8,22.7 c 0,-4.7 3.8,-8.5 8.5,-8.5 4.7,0 8.5,3.8 8.5,8.5 0,4.7 -3.8,8.5 -8.5,8.5 -4.7,0 -8.5,-3.8 -8.5,-8.5 z"></path></svg></button><button title="Smart phone (320)" data-width='320'><svg viewBox="0 0 224 412" height="24" width="13" class="icon"><path d="M 190.7,0 H 33 C 14.8,0 0,14.8 0,33 v 346 c 0,18.2 14.8,33 33,33 h 157.7 c 18.2,0 33,-14.8 33,-33 V 33 c 0,-18.2 -14.8,-33 -33,-33 z M 94.3,30.2 h 37 c 2.2,0 4,1.8 4,4 0,2.2 -1.8,4 -4,4 h -37 c -2.2,0 -4,-1.8 -4,-4 0,-2.2 1.8,-4 4,-4 z m 18.5,362.8 c -8.8,0 -16,-7.2 -16,-16 0,-8.8 7.2,-16 16,-16 8.8,0 16,7.2 16,16 0,8.8 -7.2,16 -16,16 z M 198.6,343.8 H 25.1 V 68.2 h 173.5 v 275.5 z"></path></svg></button><button title="Feature phone (240)" data-width='240'><svg viewBox="0 0 201 412" height="24" width="12" class="icon"><path d="M 165.5,0.2 V 45 H 25 c -13.8,0 -25,11.2 -25,25 V 387 c 0,13.8 11.2,25 25,25 h 150.5 c 13.8,0 25,-11.2 25,-25 V 0.2 h -35 z M 65.2,366.5 H 34.2 v -24.5 h 31 v 24.5 z m 0,-44.3 H 34.2 v -24.5 h 31 v 24.5 z m 50.5,44.3 H 84.7 v -24.5 h 31 v 24.5 z m 0,-44.3 H 84.7 v -24.5 h 31 v 24.5 z m 50.5,44.3 h -31 v -24.5 h 31 v 24.5 z m 0,-44.3 h -31 v -24.5 h 31 v 24.5 z m 0,-59.3 h -132 V 95.4 h 132 V 262.9 z"></path></svg></button><button title="Auto (100%)" data-width="auto" class="auto is-active">Auto</button></div></div><script>(function(){var a=[{title:"alert",filename:"_components/alert",url:"_components-alert.html"},{title:"Alerts",filename:"_components/alert",url:"_components-alert.html#alerts"},{title:"badge",filename:"_components/badge",url:"_components-badge.html"},{title:"Counter Badges",filename:"_components/badge",url:"_components-badge.html#counter-badges"},{title:"buttons",filename:"_components/buttons",url:"_components-buttons.html"},{title:"Buttons",filename:"_components/buttons",url:"_components-buttons.html#buttons"},{title:"checkbox",filename:"_components/checkbox",url:"_components-checkbox.html"},{title:"Checkboxes",filename:"_components/checkbox",url:"_components-checkbox.html#checkboxes"},{title:"collapse-cart",filename:"_components/collapse-cart",url:"_components-collapse-cart.html"},{title:"Collapse cart",filename:"_components/collapse-cart",url:"_components-collapse-cart.html#collapse-cart"},{title:"collapse",filename:"_components/collapse",url:"_components-collapse.html"},{title:"Collapse Box",filename:"_components/collapse",url:"_components-collapse.html#collapse-box"},{title:"container",filename:"_components/container",url:"_components-container.html"},{title:"Basic layout container",filename:"_components/container",url:"_components-container.html#basic-layout-container"},{title:"datepicker",filename:"_components/datepicker",url:"_components-datepicker.html"},{title:"Datepicker",filename:"_components/datepicker",url:"_components-datepicker.html#datepicker"},{title:"delivery-information",filename:"_components/delivery-information",url:"_components-delivery-information.html"},{title:"Delivery information",filename:"_components/delivery-information",url:"_components-delivery-information.html#delivery-information"},{title:"emotions",filename:"_components/emotions",url:"_components-emotions.html"},{title:"Emotions",filename:"_components/emotions",url:"_components-emotions.html#emotions"},{title:"fields",filename:"_components/fields",url:"_components-fields.html"},{title:"Input Types",filename:"_components/fields",url:"_components-fields.html#input-types"},{title:"Selectbox",filename:"_components/fields",url:"_components-fields.html#selectbox"},{title:"filter-panel",filename:"_components/filter-panel",url:"_components-filter-panel.html"},{title:"Filter Panel",filename:"_components/filter-panel",url:"_components-filter-panel.html#filter-panel"},{title:"flags",filename:"_components/flags",url:"_components-flags.html"},{title:"Language Flags",filename:"_components/flags",url:"_components-flags.html#language-flags"},{title:"form",filename:"_components/form",url:"_components-form.html"},{title:"Form",filename:"_components/form",url:"_components-form.html#form"},{title:"icon-set",filename:"_components/icon-set",url:"_components-icon-set.html"},{title:"Icon set",filename:"_components/icon-set",url:"_components-icon-set.html#icon-set"},{title:"image-gallery",filename:"_components/image-gallery",url:"_components-image-gallery.html"},{title:"Image gallery element",filename:"_components/image-gallery",url:"_components-image-gallery.html#image-gallery-element"},{title:"image-slider",filename:"_components/image-slider",url:"_components-image-slider.html"},{title:"Image slider element",filename:"_components/image-slider",url:"_components-image-slider.html#image-slider-element"},{title:"image-zoom",filename:"_components/image-zoom",url:"_components-image-zoom.html"},{title:"Image-zoom",filename:"_components/image-zoom",url:"_components-image-zoom.html#imagezoom"},{title:"label",filename:"_components/label",url:"_components-label.html"},{title:"Labels",filename:"_components/label",url:"_components-label.html#labels"},{title:"last-seen-products",filename:"_components/last-seen-products",url:"_components-last-seen-products.html"},{title:"Last-seen products element",filename:"_components/last-seen-products",url:"_components-last-seen-products.html#lastseen-products-element"},{title:"lightbox",filename:"_components/lightbox",url:"_components-lightbox.html"},{title:"Lightbox",filename:"_components/lightbox",url:"_components-lightbox.html#lightbox"},{title:"lists",filename:"_components/lists",url:"_components-lists.html"},{title:"Lists",filename:"_components/lists",url:"_components-lists.html#lists"},{title:"loading-indicator",filename:"_components/loading-indicator",url:"_components-loading-indicator.html"},{title:"Loading indicator",filename:"_components/loading-indicator",url:"_components-loading-indicator.html#loading-indicator"},{title:"menu-scroller",filename:"_components/menu-scroller",url:"_components-menu-scroller.html"},{title:"Menu scroller",filename:"_components/menu-scroller",url:"_components-menu-scroller.html#menu-scroller"},{title:"modal",filename:"_components/modal",url:"_components-modal.html"},{title:"Modalbox",filename:"_components/modal",url:"_components-modal.html#modalbox"},{title:"navigation-list",filename:"_components/navigation-list",url:"_components-navigation-list.html"},{title:"Navigation list styling",filename:"_components/navigation-list",url:"_components-navigation-list.html#navigation-list-styling"},{title:"offcanvas-button",filename:"_components/offcanvas-button",url:"_components-offcanvas-button.html"},{title:"Off-canvas menu button",filename:"_components/offcanvas-button",url:"_components-offcanvas-button.html#offcanvas-menu-button"},{title:"offcanvas-menu",filename:"_components/offcanvas-menu",url:"_components-offcanvas-menu.html"},{title:"Off-canvas menu",filename:"_components/offcanvas-menu",url:"_components-offcanvas-menu.html#offcanvas-menu"},{title:"overlay",filename:"_components/overlay",url:"_components-overlay.html"},{title:"Overlay",filename:"_components/overlay",url:"_components-overlay.html#overlay"},{title:"panel",filename:"_components/panel",url:"_components-panel.html"},{title:"Panels",filename:"_components/panel",url:"_components-panel.html#panels"},{title:"product-quick-view",filename:"_components/product-quick-view",url:"_components-product-quick-view.html"},{title:"Product quick-view",filename:"_components/product-quick-view",url:"_components-product-quick-view.html#product-quickview"},{title:"product-slider",filename:"_components/product-slider",url:"_components-product-slider.html"},{title:"Product Slider",filename:"_components/product-slider",url:"_components-product-slider.html#product-slider"},{title:"range-slider",filename:"_components/range-slider",url:"_components-range-slider.html"},{title:"Range Slider",filename:"_components/range-slider",url:"_components-range-slider.html#range-slider"},{title:"ribbon",filename:"_components/ribbon",url:"_components-ribbon.html"},{title:"Ribbons",filename:"_components/ribbon",url:"_components-ribbon.html#ribbons"},{title:"tab-menu",filename:"_components/tab-menu",url:"_components-tab-menu.html"},{title:"Tab-menu",filename:"_components/tab-menu",url:"_components-tab-menu.html#tabmenu"},{title:"tables",filename:"_components/tables",url:"_components-tables.html"},{title:"Table",filename:"_components/tables",url:"_components-tables.html#table"},{title:"tag-cloud",filename:"_components/tag-cloud",url:"_components-tag-cloud.html"},{title:"Tagcloud",filename:"_components/tag-cloud",url:"_components-tag-cloud.html#tagcloud"},{title:"animation",filename:"_mixins/animation",url:"_mixins-animation.html"},{title:"Animations mixin",filename:"_mixins/animation",url:"_mixins-animation.html#animations-mixin"},{title:"appearance",filename:"_mixins/appearance",url:"_mixins-appearance.html"},{title:"Appearance mixin",filename:"_mixins/appearance",url:"_mixins-appearance.html#appearance-mixin"},{title:"backface-visibility",filename:"_mixins/backface-visibility",url:"_mixins-backface-visibility.html"},{title:"Backface visibility mixin",filename:"_mixins/backface-visibility",url:"_mixins-backface-visibility.html#backface-visibility-mixin"},{title:"border-radius",filename:"_mixins/border-radius",url:"_mixins-border-radius.html"},{title:"Border-radius mixin",filename:"_mixins/border-radius",url:"_mixins-border-radius.html#borderradius-mixin"},{title:"box-shadow",filename:"_mixins/box-shadow",url:"_mixins-box-shadow.html"},{title:"Box shadow mixin",filename:"_mixins/box-shadow",url:"_mixins-box-shadow.html#box-shadow-mixin"},{title:"box-sizing",filename:"_mixins/box-sizing",url:"_mixins-box-sizing.html"},{title:"Box-sizing mixin",filename:"_mixins/box-sizing",url:"_mixins-box-sizing.html#boxsizing-mixin"},{title:"clearfix",filename:"_mixins/clearfix",url:"_mixins-clearfix.html"},{title:"Clearfix mixin",filename:"_mixins/clearfix",url:"_mixins-clearfix.html#clearfix-mixin"},{title:"column-count",filename:"_mixins/column-count",url:"_mixins-column-count.html"},{title:"Column count mixin",filename:"_mixins/column-count",url:"_mixins-column-count.html#column-count-mixin"},{title:"cursor",filename:"_mixins/cursor",url:"_mixins-cursor.html"},{title:"Grabbing cursor",filename:"_mixins/cursor",url:"_mixins-cursor.html#grabbing-cursor"},{title:"hyphens",filename:"_mixins/hyphens",url:"_mixins-hyphens.html"},{title:"Hypheration mixin",filename:"_mixins/hyphens",url:"_mixins-hyphens.html#hypheration-mixin"},{title:"icon-element",filename:"_mixins/icon-element",url:"_mixins-icon-element.html"},{title:"Icon-element mixin",filename:"_mixins/icon-element",url:"_mixins-icon-element.html#iconelement-mixin"},{title:"keyframes",filename:"_mixins/keyframes",url:"_mixins-keyframes.html"},{title:"Keyframe mixin",filename:"_mixins/keyframes",url:"_mixins-keyframes.html#keyframe-mixin"},{title:"linear-gradient",filename:"_mixins/linear-gradient",url:"_mixins-linear-gradient.html"},{title:"Gradient mixin",filename:"_mixins/linear-gradient",url:"_mixins-linear-gradient.html#gradient-mixin"},{title:"opacity",filename:"_mixins/opacity",url:"_mixins-opacity.html"},{title:"Opacity",filename:"_mixins/opacity",url:"_mixins-opacity.html#opacity"},{title:"rotate",filename:"_mixins/rotate",url:"_mixins-rotate.html"},{title:"Rotate mixin",filename:"_mixins/rotate",url:"_mixins-rotate.html#rotate-mixin"},{title:"scale",filename:"_mixins/scale",url:"_mixins-scale.html"},{title:"Scale mixin",filename:"_mixins/scale",url:"_mixins-scale.html#scale-mixin"},{title:"tap-highlight-color",filename:"_mixins/tap-highlight-color",url:"_mixins-tap-highlight-color.html"},{title:"Tab highlighting mixin",filename:"_mixins/tap-highlight-color",url:"_mixins-tap-highlight-color.html#tab-highlighting-mixin"},{title:"touch-callout",filename:"_mixins/touch-callout",url:"_mixins-touch-callout.html"},{title:"Touch callout mixin",filename:"_mixins/touch-callout",url:"_mixins-touch-callout.html#touch-callout-mixin"},{title:"transform-origin",filename:"_mixins/transform-origin",url:"_mixins-transform-origin.html"},{title:"Transform origin mixin",filename:"_mixins/transform-origin",url:"_mixins-transform-origin.html#transform-origin-mixin"},{title:"transform-style",filename:"_mixins/transform-style",url:"_mixins-transform-style.html"},{title:"Transform style mixin",filename:"_mixins/transform-style",url:"_mixins-transform-style.html#transform-style-mixin"},{title:"transform",filename:"_mixins/transform",url:"_mixins-transform.html"},{title:"Transform mixin",filename:"_mixins/transform",url:"_mixins-transform.html#transform-mixin"},{title:"transition",filename:"_mixins/transition",url:"_mixins-transition.html"},{title:"Transition mixin",filename:"_mixins/transition",url:"_mixins-transition.html#transition-mixin"},{title:"translate",filename:"_mixins/translate",url:"_mixins-translate.html"},{title:"Translate mixin",filename:"_mixins/translate",url:"_mixins-translate.html#translate-mixin"},{title:"unitize",filename:"_mixins/unitize",url:"_mixins-unitize.html"},{title:"Unitize mixin",filename:"_mixins/unitize",url:"_mixins-unitize.html#unitize-mixin"},{title:"user-select",filename:"_mixins/user-select",url:"_mixins-user-select.html"},{title:"User-select mixin",filename:"_mixins/user-select",url:"_mixins-user-select.html#userselect-mixin"},{title:"account",filename:"_modules/account",url:"_modules-account.html"},{title:"Account",filename:"_modules/account",url:"_modules-account.html#account"},{title:"blog",filename:"_modules/blog",url:"_modules-blog.html"},{title:"Blog",filename:"_modules/blog",url:"_modules-blog.html#blog"},{title:"breadcrumb",filename:"_modules/breadcrumb",url:"_modules-breadcrumb.html"},{title:"Breadcrumb",filename:"_modules/breadcrumb",url:"_modules-breadcrumb.html#breadcrumb"},{title:"cart",filename:"_modules/cart",url:"_modules-cart.html"},{title:"Shopping cart",filename:"_modules/cart",url:"_modules-cart.html#shopping-cart"},{title:"compare",filename:"_modules/compare",url:"_modules-compare.html"},{title:"Compare",filename:"_modules/compare",url:"_modules-compare.html#compare"},{title:"configurator",filename:"_modules/configurator",url:"_modules-configurator.html"},{title:"Configurator",filename:"_modules/configurator",url:"_modules-configurator.html#configurator"},{title:"confirm",filename:"_modules/confirm",url:"_modules-confirm.html"},{title:"Confirm",filename:"_modules/confirm",url:"_modules-confirm.html#confirm"},{title:"custom",filename:"_modules/custom",url:"_modules-custom.html"},{title:"Custom pages",filename:"_modules/custom",url:"_modules-custom.html#custom-pages"},{title:"detail",filename:"_modules/detail",url:"_modules-detail.html"},{title:"Detail",filename:"_modules/detail",url:"_modules-detail.html#detail"},{title:"devices",filename:"_modules/devices",url:"_modules-devices.html"},{title:"Devices",filename:"_modules/devices",url:"_modules-devices.html#devices"},{title:"finish",filename:"_modules/finish",url:"_modules-finish.html"},{title:"Checkout finish",filename:"_modules/finish",url:"_modules-finish.html#checkout-finish"},{title:"footer",filename:"_modules/footer",url:"_modules-footer.html"},{title:"Footer",filename:"_modules/footer",url:"_modules-footer.html#footer"},{title:"forms",filename:"_modules/forms",url:"_modules-forms.html"},{title:"Forms",filename:"_modules/forms",url:"_modules-forms.html#forms"},{title:"global",filename:"_modules/global",url:"_modules-global.html"},{title:"Global",filename:"_modules/global",url:"_modules-global.html#global"},{title:"header",filename:"_modules/header",url:"_modules-header.html"},{title:"Header",filename:"_modules/header",url:"_modules-header.html#header"},{title:"home",filename:"_modules/home",url:"_modules-home.html"},{title:"Home",filename:"_modules/home",url:"_modules-home.html#home"},{title:"last-viewed",filename:"_modules/last-viewed",url:"_modules-last-viewed.html"},{title:"Last-viewed",filename:"_modules/last-viewed",url:"_modules-last-viewed.html#lastviewed"},{title:"listing",filename:"_modules/listing",url:"_modules-listing.html"},{title:"Listing",filename:"_modules/listing",url:"_modules-listing.html#listing"},{title:"main-navigation",filename:"_modules/main-navigation",url:"_modules-main-navigation.html"},{title:"Main navigation",filename:"_modules/main-navigation",url:"_modules-main-navigation.html#main-navigation"},{title:"newsletter",filename:"_modules/newsletter",url:"_modules-newsletter.html"},{title:"Newsletter",filename:"_modules/newsletter",url:"_modules-newsletter.html#newsletter"},{title:"note",filename:"_modules/note",url:"_modules-note.html"},{title:"Note",filename:"_modules/note",url:"_modules-note.html#note"},{title:"payment",filename:"_modules/payment",url:"_modules-payment.html"},{title:"Payment",filename:"_modules/payment",url:"_modules-payment.html#payment"},{title:"product-box",filename:"_modules/product-box",url:"_modules-product-box.html"},{title:"Product-box",filename:"_modules/product-box",url:"_modules-product-box.html#productbox"},{title:"Product Badges",filename:"_modules/product-box",url:"_modules-product-box.html#product-badges"},{title:"register",filename:"_modules/register",url:"_modules-register.html"},{title:"Register",filename:"_modules/register",url:"_modules-register.html#register"},{title:"search",filename:"_modules/search",url:"_modules-search.html"},{title:"Search",filename:"_modules/search",url:"_modules-search.html#search"},{title:"sidebar",filename:"_modules/sidebar",url:"_modules-sidebar.html"},{title:"Sidebar",filename:"_modules/sidebar",url:"_modules-sidebar.html#sidebar"},{title:"sitemap",filename:"_modules/sitemap",url:"_modules-sitemap.html"},{title:"Sitemap",filename:"_modules/sitemap",url:"_modules-sitemap.html#sitemap"},{title:"tell-a-friend",filename:"_modules/tell-a-friend",url:"_modules-tell-a-friend.html"},{title:"Tell-a-friend",filename:"_modules/tell-a-friend",url:"_modules-tell-a-friend.html#tellafriend"},{title:"top-seller",filename:"_modules/top-seller",url:"_modules-top-seller.html"},{title:"Topseller",filename:"_modules/top-seller",url:"_modules-top-seller.html#topseller"},{title:"structure",filename:"_variables/structure",url:"_variables-structure.html"},{title:"Structure",filename:"_variables/structure",url:"_variables-structure.html#structure"},{title:"typography",filename:"_variables/typography",url:"_variables-typography.html"},{title:"Typography",filename:"_variables/typography",url:"_variables-typography.html#typography"},{title:"zindex",filename:"_variables/zindex",url:"_variables-zindex.html"},{title:"Z-Index",filename:"_variables/zindex",url:"_variables-zindex.html#zindex"},{title:"all",filename:"all",url:"all.html"},{title:"All.less",filename:"all",url:"all.html#allless"},{title:"components",filename:"components",url:"components.html"},{title:"Components",filename:"components",url:"components.html#components"},{title:"hacks",filename:"hacks",url:"hacks.html"},{title:"Hacks",filename:"hacks",url:"hacks.html#hacks"},{title:"ie",filename:"ie",url:"ie.html"},{title:"Internet Explorer fixes",filename:"ie",url:"ie.html#internet-explorer-fixes"},{title:"mixins",filename:"mixins",url:"mixins.html"},{title:"",filename:"mixins",url:"mixins.html#"},{title:"modules",filename:"modules",url:"modules.html"},{title:"Modules",filename:"modules",url:"modules.html#modules"},{title:"variables",filename:"variables",url:"variables.html"},{title:"Variables",filename:"variables",url:"variables.html#variables"}];(function(){"use strict";var b=function(a,b){return Array.prototype.indexOf.call(a,b)!==-1},c=function(a,b){return Array.prototype.filter.call(a,b)},d=function(a,b){return Array.prototype.forEach.call(a,b)},e=document.getElementsByTagName("body")[0];e.addEventListener("click",function(a){var b=a.target;b.tagName.toLowerCase()==="svg"&&(b=b.parentNode);var c=!1;b.dataset.toggle!=null&&(a.preventDefault(),b.classList.contains("is-active")||(c=!0)),d(e.querySelectorAll("[data-toggle]"),function(a){a.classList.remove("is-active"),document.getElementById(a.dataset.toggle).hidden=!0}),c&&(b.classList.add("is-active"),document.getElementById(b.dataset.toggle).hidden=!1)}),function(){var f=e.getElementsByClassName("nav")[0];if(!f)return;var g=document.createElement("ul");g.className="nav-results",g.id="nav-search",g.hidden=!0,d(a,function(a){var b,c,d;b=document.createElement("li"),b._title=a.title.toLowerCase(),b.hidden=!0,b.appendChild(c=document.createElement("a")),c.href=a.url,c.innerHTML=a.title,c.appendChild(d=document.createElement("span")),d.innerHTML=a.filename,d.className="nav-results-filename",g.appendChild(b)}),f.appendChild(g);var h=g.children,i=function(a){d(h,function(a){a.hidden=!0});var b=this.value.toLowerCase(),e=[];b!==""&&(e=c(h,function(a){return a._title.indexOf(b)!==-1})),e.length>0?(d(e,function(a){a.hidden=!1}),g.hidden=!1):g.hidden=!0},j=f.querySelector('input[type="search"]');j.addEventListener("keyup",i),j.addEventListener("focus",i),e.addEventListener("click",function(a){if(a.target.classList&&a.target.classList.contains("search"))return;g.hidden=!0}),g.addEventListener("click",function(a){j.value=""});var k=document.createElement("ul");k.id="nav-toc",k.hidden=!0,k.className="nav-results toc-list",c(e.getElementsByTagName("*"),function(a){return b(["h1","h2","h3"],a.tagName.toLowerCase())}).map(function(a){var b=document.createElement("li"),c=document.createElement("a"),d=a.tagName.toLowerCase()[1];c.classList.add("level-"+d),b.appendChild(c),c.href="#"+a.id,c.innerHTML=a.innerHTML,k.appendChild(b)}),f.appendChild(k)}()})(),function(){"use strict";if(location.hash==="#__preview__"||location.protocol==="data:")return;var a=function(a,b){return Array.prototype.forEach.call(a,b)};NodeList.prototype.toArray=function(){for(var a=[],b=this.length;b--;a[b]=this[b]);return a};var b=function(a,b){var e=Array.prototype.slice.call(arguments,2);return d(a,function(a){return(c(b)?b||a:a[b]).apply(a,e)})},c=function(a){return Object.prototype.toString.call(a)==="[object Function]"},d=function(a,b){return Array.prototype.map.call(a,b)},e=function(a,b){return d(a,function(a){return a[b]})},f=function(a){var b={},c=a.split(";");for(var d=0;c.length>d;d++){var e=c[d].trim().split("=");b[e[0]]=e[1]}return b},g=function(a,c){return b(e(a,"classList"),"remove",c)},h=function(a,b){a.contentDocument.defaultView.postMessage(b,"*")},i=document.getElementsByTagName("head")[0],j=document.getElementsByTagName("body")[0],k=e(i.querySelectorAll('style[type="text/preview"]'),"innerHTML").join(""),l=e(i.querySelectorAll('script[type="text/preview"]'),"innerHTML").join(""),m=i.querySelectorAll('link[type="text/preview"]').toArray().map(function(a){return a.href}),n=i.querySelectorAll('script[type="text/external"]').toArray().map(function(a){return a.src}),o=location.href.split("#")[0]+"#__preview__",p=document.createElement("iframe");p.src="data:text/html,",j.appendChild(p),p.addEventListener("load",function(){var b={sameOriginDataUri:!0};try{this.contentDocument,this.contentDocument||(b.sameOriginDataUri=!1)}catch(c){b.sameOriginDataUri=!1}this.parentNode.removeChild(this),a(j.getElementsByTagName("textarea"),function(a,c){q(a,b,c),s(),r(a)})});var q=function(a,b,c){var d,e,f;d=document.createElement("div"),d.appendChild(e=document.createElement("div")),d.className="preview",e.appendChild(f=document.createElement("iframe")),e.className="resizeable",f.setAttribute("scrolling","no"),f.name="iframe"+c++,f.addEventListener("load",function(){var c,d,e,f,g,i,j;j=this.contentDocument;if(!b.sameOriginDataUri&&this.src!==o)return;this.src===o&&(c=j.createElement("html"),c.appendChild(j.createElement("head")),c.appendChild(d=j.createElement("body")),d.innerHTML=a.textContent,j.replaceChild(c,j.documentElement)),g=j.createElement("head"),m.forEach(function(a){var b=j.createElement("link");b.rel="stylesheet",b.type="text/css",b.href=a,g.appendChild(b)}),g.appendChild(f=j.createElement("style")),g.appendChild(e=j.createElement("script")),e.textContent=l,f.textContent=k,n.forEach(function(a){var b=j.createElement("script");b.type="text/javascript",b.src=a,g.appendChild(b)}),i=j.getElementsByTagName("head")[0],i.parentNode.replaceChild(g,i),h(this,"getHeight")});var g;b.sameOriginDataUri?g="data:text/html;charset=utf-8,"+encodeURIComponent("<!doctype html><html><head></head></body>"+a.textContent):g=o,f.setAttribute("src",g);var i=function(){f.contentDocument.body.innerHTML=this.value,h(f,"getHeight")};a.addEventListener("keypress",i),a.addEventListener("keyup",i),a.parentNode.insertBefore(d,a)},r=function(a){var b=document.createElement("div");b.className="preview-code",b.style.position="absolute",b.style.left="-9999px",j.appendChild(b);var c=parseInt(window.getComputedStyle(a).getPropertyValue("max-height"),10),d=function(a){b.textContent=this.value+"\n";var d=b.offsetHeight+2;d>=c?this.style.overflow="auto":this.style.overflow="hidden",this.style.height=b.offsetHeight+2+"px"};a.addEventListener("keypress",d),a.addEventListener("keyup",d),d.call(a)},s=function(){var b=j.getElementsByClassName("settings")[0],c=j.getElementsByClassName("resizeable"),d=30,e=function(b){document.cookie="preview-width="+b,a(c,function(a){b==="auto"&&(b=a.parentNode.offsetWidth),a.style.width=b+"px",h(a.getElementsByTagName("iframe")[0],"getHeight")})},i=f(document.cookie)["preview-width"];if(i){e(i),g(b.getElementsByClassName("is-active"),"is-active");var k=b.querySelector('button[data-width="'+i+'"]');k&&k.classList.add("is-active")}window.addEventListener("message",function(a){if(a.data==null||!a.source)return;var b=a.data,c=document.getElementsByName(a.source.name)[0];b.height!=null&&c&&(c.parentNode.style.height=b.height+d+"px")},!1),b&&c.length>0&&(b.hidden=!1,b.addEventListener("click",function(a){var c=a.target.tagName.toLowerCase(),d;if(c==="button")d=a.target;else{if(c!=="svg")return;d=a.target.parentNode}a.preventDefault(),g(b.getElementsByClassName("is-active"),"is-active"),d.classList.add("is-active");var f=d.dataset.width;e(f)}))}}()})()</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="shopware">
+    <meta name="robots" content="index,follow">
+    <meta name="revisit-after" content="28 days">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#142432">
+    <meta name="application-name" content="Shopware Styletile Documentation">
+    <meta name="msapplication-window" content="width=1024;height=768">
+    <meta name="msapplication-TileImage" content="images/windows-kachel-icon.png">
+    <meta name="msapplication-navbutton-color" content="#142432">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#142432">
+    <meta itemprop="copyrightHolder" content="Shopware Styletile Documentation">
+    <meta itemprop="copyrightYear" content="2017">
+    <meta itemprop="isFamilyFriendly" content="True">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Shopware Styletile Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="none">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <!-- Styles -->
+    <link href="css/font.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/all.min.css" media="all" rel="stylesheet" type="text/css">
+
+    <title itemprop="name">
+        Shopware 5.3 Styletile Documentation – Explore all the stylish aspects of the Shopware Responsive Theme
+    </title>
+</head>
+
+<body class="has--banner">
+    <div class="page-wrap">
+        <div class="open-menu" data-toggle="opened">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <aside class="new">
+            <div class="logo">
+                <a href="index.html" class="desktop"><img src="images/shopware_developers_styletile_logo_white.svg" width="120" height="120" /></a>
+                <a href="index.html" class="mobile"><img src="images/shopware_developers_styletile_logo_horizontal_white.svg" height="44" /></a>
+            </div>
+            <div class="search">
+                <input type="search" class="search" placeholder="Search the navigation">
+            </div>
+
+            <!-- Nav -->
+            <nav class="scroll">
+                <div class="h6">Overview</div>
+                <ul>
+                    <li>
+                        <a class="folder preview" href="preview.html">Preview</a>
+                    </li>
+                    <li>
+                        <a class="folder cheatsheet" href="cheatsheet.html">Cheatsheet</a>
+                        <ul>
+                            <li><a href="cheatsheet.html#components">Components</a></li>
+                            <li><a href="cheatsheet.html#mixins">Mixins</a></li>
+                            <li><a href="cheatsheet.html#variables">Variables</a></li>
+                            <li><a href="cheatsheet.html#icons">Icons</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="h6">Documentation</div>
+                <ul>
+                    <li>
+                        <a class="folder components" href="components.html">_components</a>
+                        <ul>
+                            <li><a href="components.html#alert">alert</a></li>
+                            <li><a href="components.html#badge">badge</a></li>
+                            <li><a href="components.html#button">button</a></li>
+                            <li><a href="components.html#checkbox">checkbox</a></li>
+                            <li><a href="components.html#collapse">collapse</a></li>
+                            <li><a href="components.html#collapse-cart">collapse-cart</a></li>
+                            <li><a href="components.html#container">container</a></li>
+                            <li><a href="components.html#datepicker">datepicker</a></li>
+                            <li><a href="components.html#delivery-information">delivery-information</a></li>
+                            <li><a href="components.html#emotions">emotions</a></li>
+                            <li><a href="components.html#fields">fields</a></li>
+                            <li><a href="components.html#filter-panel">filter-panel</a></li>
+                            <li><a href="components.html#flags">flags</a></li>
+                            <li><a href="components.html#form">form</a></li>
+                            <li><a href="components.html#icon-set">icon-set</a></li>
+                            <li><a href="components.html#image-gallery">image-gallery</a></li>
+                            <li><a href="components.html#image-slider">image-slider</a></li>
+                            <li><a href="components.html#image-zoom">image-zoom</a></li>
+                            <li><a href="components.html#labels">labels</a></li>
+                            <li><a href="components.html#last-seen-products">last-seen-products</a></li>
+                            <li><a href="components.html#lightbox">lightbox</a></li>
+                            <li><a href="components.html#lists">lists</a></li>
+                            <li><a href="components.html#loading-indicator">loading-indicator</a></li>
+                            <li><a href="components.html#menu-scroller">menu-scroller</a></li>
+                            <li><a href="components.html#modal">modal</a></li>
+                            <li><a href="components.html#navigation-list">navigation-list</a></li>
+                            <li><a href="components.html#offcanvas-button">offcanvas-button</a></li>
+                            <li><a href="components.html#offcanvas-menu">offcanvas-menu</a></li>
+                            <li><a href="components.html#overlay">overlay</a></li>
+                            <li><a href="components.html#panel">panel</a></li>
+                            <li><a href="components.html#product-quick-view">product-quick-view</a></li>
+                            <li><a href="components.html#product-slider">product-slider</a></li>
+                            <li><a href="components.html#range-slider">range-slider</a></li>
+                            <li><a href="components.html#ribbon">ribbon</a></li>
+                            <li><a href="components.html#tab-menu">tab-menu</a></li>
+                            <li><a href="components.html#tables">tables</a></li>
+                            <li><a href="components.html#tag-cloud">tag-cloud</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder mixins" href="mixins.html">_mixins</a>
+                        <ul>
+                            <li><a href="mixins.html#unitize">unitize</a></li>
+                            <li><a href="mixins.html#animation">animation</a></li>
+                            <li><a href="mixins.html#appearance">appearance</a></li>
+                            <li><a href="mixins.html#backface-visibility">backface-visibility</a></li>
+                            <li><a href="mixins.html#border-radius">border-radius</a></li>
+                            <li><a href="mixins.html#box-shadow">box-shadow</a></li>
+                            <li><a href="mixins.html#box-sizing">box-sizing</a></li>
+                            <li><a href="mixins.html#clear-button-style">clear-button-style</a></li>
+                            <li><a href="mixins.html#clearfix">clearfix</a></li>
+                            <li><a href="mixins.html#column-count">column-count</a></li>
+                            <li><a href="mixins.html#cursor">cursor</a></li>
+                            <li><a href="mixins.html#hyphens">hyphens</a></li>
+                            <li><a href="mixins.html#icon-element">icon-element</a></li>
+                            <li><a href="mixins.html#keyframes">keyframes</a></li>
+                            <li><a href="mixins.html#linear-gradient">linear-gradient</a></li>
+                            <li><a href="mixins.html#opacity">opacity</a></li>
+                            <li><a href="mixins.html#rotate">rotate</a></li>
+                            <li><a href="mixins.html#scale">scale</a></li>
+                            <li><a href="mixins.html#tap-highlight-color">tap-highlight-color</a></li>
+                            <li><a href="mixins.html#touch-callout">touch-callout</a></li>
+                            <li><a href="mixins.html#transform-origin">transform-origin</a></li>
+                            <li><a href="mixins.html#transform-style">transform-style</a></li>
+                            <li><a href="mixins.html#transform">transform</a></li>
+                            <li><a href="mixins.html#transition">transition</a></li>
+                            <li><a href="mixins.html#translate">translate</a></li>
+                            <li><a href="mixins.html#user-select">user-select</a></li>
+                            <li><a href="mixins.html#vertical-align">vertical-align</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder modules" href="modules.html">_modules</a>
+                        <ul>
+                            <li><a href="module.php#account">account</a></li>
+                            <li><a href="module.php#blog">blog</a></li>
+                            <li><a href="module.php#breadcrumb">breadcrumb</a></li>
+                            <li><a href="module.php#cart">cart</a></li>
+                            <li><a href="module.php#compare">compare</a></li>
+                            <li><a href="module.php#configurator">configurator</a></li>
+                            <li><a href="module.php#confirm">confirm</a></li>
+                            <li><a href="module.php#custom">custom</a></li>
+                            <li><a href="module.php#detail">detail</a></li>
+                            <li><a href="module.php#finish">finish</a></li>
+                            <li><a href="module.php#footer">footer</a></li>
+                            <li><a href="module.php#forms">forms</a></li>
+                            <li><a href="module.php#global">global</a></li>
+                            <li><a href="module.php#header">header</a></li>
+                            <li><a href="module.php#home">home</a></li>
+                            <li><a href="module.php#last-viewed">last-viewed</a></li>
+                            <li><a href="module.php#listing">listing</a></li>
+                            <li><a href="module.php#main-navigation">main-navigation</a></li>
+                            <li><a href="module.php#newsletter">newsletter</a></li>
+                            <li><a href="module.php#note">note</a></li>
+                            <li><a href="module.php#payment">payment</a></li>
+                            <li><a href="module.php#product-box">product-box</a></li>
+                            <li><a href="module.php#register">register</a></li>
+                            <li><a href="module.php#search">search</a></li>
+                            <li><a href="module.php#sidebar">sidebar</a></li>
+                            <li><a href="module.php#sitemap">sitemap</a></li>
+                            <li><a href="module.php#tell-a-friend">tell-a-friend</a></li>
+                            <li><a href="module.php#top-seller">top-seller</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder variables" href="variables.html">_variables</a>
+                        <ul>
+                            <li><a href="variables.html#structure">structure</a></li>
+                            <li><a href="variables.html#typography">typography</a></li>
+                            <li><a href="variables.html#zindex">zindex</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="help">
+                <a href="https://developers.shopware.com/"><i class="icon--arrow-left"></i> Developer Documentation</a>
+            </div>
+        </aside>
+
+        <!-- Banner -->
+        <section class="banner container dp--wrapper intro large">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h1 class="h2">Your guide for the Shopware Responsive Theme</h1>
+                        <p class="is--xl spacer hidden-s">
+                            With our brand new styletile it has never been easier to start with Shopware.<br>
+                            This documentation is meant to be a guide for theme designers and developers who need the big and complete picture. Here you'll find of preview of the components, the files of our theme, usage-guides and many more.
+                        </p>
+                        <div class="search hidden-xs">
+                            <input type="search" class="search" placeholder="Search the navigation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gradient"></div>
+            <div class="bridge"></div>
+        </section>
+
+        <!-- Intro -->
+        <section class="container dp--wrapper equal screenshot">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <img src="images/styletile-preview-alert.png" data-parallax="1.5" data-disable-parallax="768" />
+                        <img src="images/styletile-preview-buttons.png" data-parallax="2" data-disable-parallax="768" />
+                        <img src="images/styletile-preview-typography.png" data-parallax="1" data-disable-parallax="768" />
+                        <img src="images/styletile-preview-input.png" data-parallax="0.5" data-disable-parallax="768" />
+                    </div>
+                </div>
+                <div class="row visible-s">
+                    <div class="col col-12 spacer">
+                        <h4>Create themes on your own</h4>
+                        <p class="is--xl">
+                            With our brand new styletile it has never been easier to start with Shopware.<br>
+                            This documentation is meant to be a guide for theme designers and developers who need the big and complete picture. Here you'll find of preview of the components, the files of our theme, usage-guides and many more.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Overview -->
+        <section class="dp--wrapper container equal">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Overview</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/preview.svg" /></i>
+                            <div>
+                                <h6>Preview</h6>
+                                <p class="is--xs">Get a quick and visual overview of every component that Shopware introduces.</p>
+                            </div>
+                            <a href="preview.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/cheatsheet.svg" /></i>
+                            <div>
+                                <h6>Cheatsheet</h6>
+                                <p class="is--xs">View all the regular classes and variables that Shopware introduces on one page.</p>
+                            </div>
+                            <a href="cheatsheet.html"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row spacer--large">
+                    <div class="col col-12">
+                        <h3>Documentation</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/components.svg" /></i>
+                            <div>
+                                <h6>_components</h6>
+                                <p class="is--xs">The _components directory contains all styled component-elements of Shopware.</p>
+                            </div>
+                            <a href="components.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/mixins.svg" /></i>
+                            <div>
+                                <h6>_mixins</h6>
+                                <p class="is--xs">The _mixins directory contains various standardised LESS mixins, quick to use.</p>
+                            </div>
+                            <a href="mixins.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/modules.svg" /></i>
+                            <div>
+                                <h6>_modules</h6>
+                                <p class="is--xs">Within the _modules directory you’ll find the seperate modules, like the cart.</p>
+                            </div>
+                            <a href="modules.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box">
+                            <i class="icon-left"><img src="images/system/variables.svg" /></i>
+                            <div>
+                                <h6>_variables</h6>
+                                <p class="is--xs">If you need to adjust variables or create your own – here’s your place to be.</p>
+                            </div>
+                            <a href="variables.html"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 spacer">
+                        <h4>What's in "Overview"?</h4>
+                        <p class="is--xl">
+                            In these categories you'll find visual guidance of the content that Shopware 5.3 introduces and uses.<br/>
+                            Single elements (here called <b>components</b>) are quickly introduced in the Preview area.<br/>
+                            The Cheatsheet helps you to find the right variable, mixin or class name to find what's there.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 spacer">
+                        <h4>What's in "Documentation"?</h4>
+                        <p class="is--xl">
+                            This documentation will lead you through every .less file in the less directory of your Shopware installation and should pave your path of becoming a theme designer. Notice that the categories are named after the directory and the sections like the file. This enable you to find what you really need.
+                            <br/><br/>
+                            It's especially useful for designers, frontend developers but also for people that usually don't interact with code.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End -->
+        <section class="dp--wrapper container step last--step">
+            <div class="section--inner">
+                <div class="row hidden-xs animate animate--late">
+                    <div class="col col-12 col-m-6 is--text-centered">
+                        <span class="h3">Designers<span class="light--gray"> start here</span></span>
+                    </div>
+                    <div class="col col-12 col-m-6 is--text-centered">
+                        <span class="h3">Developers<span class="light--gray"> start here</span></span>
+                    </div>
+                    <div class="col col-12 col-m-6">
+                        <div class="highlight-box spacer--small">
+                            <i class="icon-left"><img src="images/system/preview.svg" /></i>
+                            <div>
+                                <h6>Preview</h6>
+                                <p class="is--xs">Get a quick and visual overview of every component that Shopware introduces.</p>
+                            </div>
+                            <a href="preview.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-m-6">
+                        <div class="highlight-box spacer--small">
+                            <i class="icon-left"><img src="images/system/components.svg" /></i>
+                            <div>
+                                <h6>_components</h6>
+                                <p class="is--xs">The _components directory contains all styled component-elements of Shopware.</p>
+                            </div>
+                            <a href="components.html"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row visible-xs animate animate--late">
+                    <div class="col col-12 is--text-centered">
+                        <span class="h3">Designers<span class="light--gray"> start here</span></span>
+                    </div>
+                    <div class="col col-12">
+                        <div class="highlight-box spacer--small">
+                            <i class="icon-left"><img src="images/system/preview.svg" /></i>
+                            <div>
+                                <h6>Preview</h6>
+                                <p class="is--xs">Get a quick and visual overview of every component that Shopware introduces.</p>
+                            </div>
+                            <a href="preview.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 is--text-centered spacer">
+                        <span class="h3">Developers<span class="light--gray"> start here</span></span>
+                    </div>
+                    <div class="col col-12">
+                        <div class="highlight-box spacer--small">
+                            <i class="icon-left"><img src="images/system/components.svg" /></i>
+                            <div>
+                                <h6>_components</h6>
+                                <p class="is--xs">The _components directory contains all styled component-elements of Shopware.</p>
+                            </div>
+                            <a href="components.html"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer--container">
+            <div class="copyright">2017 © shopware AG - All rights reserved</div>
+            <div class="footer--links">
+                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a>
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                <a href="https://github.com/shopware/shopware" target="_blank" title="Find Shopware on GitHub">GitHub</a>
+                <a href="https://de.shopware.com/" target="_blank" title="Visit our homepage and download Shopware for free">Shopware.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/designpattern.min.js"></script>
+    <script src="js/docs.min.js"></script>
+</body>
+</html>

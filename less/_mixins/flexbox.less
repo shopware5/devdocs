@@ -1,0 +1,28 @@
+// flexbox.less
+
+// Flexbox display: flex or inline-flex
+.flex-display(@display: flex) {
+  display: ~"-webkit-@{display}";
+  display: ~"-moz-@{display}";
+  display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+  display: ~"-ms-@{display}"; // IE11
+  display: @display;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+.flex-wrap(@wrap: wrap) {
+  -webkit-flex-wrap: @wrap;
+  -moz-flex-wrap: @wrap;
+  -ms-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+.flex-display {
+  .flex-display() !important;
+}
+
+.flex-wrap {
+  .flex-wrap() !important;
+}

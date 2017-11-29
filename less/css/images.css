@@ -1,0 +1,72 @@
+.full--background {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.new img + .caption,
+.dp--wrapper img + .caption {
+  position: relative;
+  display: block;
+  padding: 1rem;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(96, 113, 130, 0.6);
+}
+.new img + .caption:before,
+.dp--wrapper img + .caption:before {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(100%, -50%) rotate(45deg);
+}
+.new img:hover + .caption,
+.dp--wrapper img:hover + .caption {
+  color: rgba(96, 113, 130, 0.8);
+}
+.new .screen--holder,
+.dp--wrapper .screen--holder {
+  position: relative;
+  overflow: hidden;
+}
+.new .screen--holder > img,
+.dp--wrapper .screen--holder > img {
+  position: relative;
+  width: 100%;
+}
+.new .screen--holder .overlay:after,
+.dp--wrapper .screen--holder .overlay:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #142432;
+  opacity: 0;
+  z-index: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.2, 0.45, 1);
+}
+.new .screen--holder:hover .overlay:after,
+.dp--wrapper .screen--holder:hover .overlay:after {
+  opacity: .33;
+}
+.new section.column--image-section > picture source,
+.dp--wrapper section.column--image-section > picture source,
+.new section.column--image-section picture.full--image source,
+.dp--wrapper section.column--image-section picture.full--image source,
+.new section.column--image-section > picture img,
+.dp--wrapper section.column--image-section > picture img,
+.new section.column--image-section picture.full--image img,
+.dp--wrapper section.column--image-section picture.full--image img {
+  width: 100%;
+  margin-top: -3rem;
+  margin-bottom: 1.5rem;
+}

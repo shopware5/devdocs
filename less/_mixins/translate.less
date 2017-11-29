@@ -1,0 +1,10 @@
+// translate.less
+
+.translate(@x: 0, @y: 0, @z: -1) when (@z > -1) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}
+.translate(@x: 0, @y: 0, @z: -1) when (@z < 0) {
+  -webkit-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}

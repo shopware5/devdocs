@@ -4,7 +4,8 @@ module.exports = (grunt) => {
             development: {
                 options: {
                     compress: true,
-                    sourceMapFileInline: true
+                    sourceMapFileInline: true,
+                    rootpath: 'assets/'
                 },
                 files: {
                     'output_dev/assets/css/basic.css': 'source/assets/css/basic.less'
@@ -14,7 +15,7 @@ module.exports = (grunt) => {
 
         watch: {
             styles: {
-                files: 'source/assets/css/*/**.less',
+                files: ['source/assets/css/*/**.less', 'source/assets/css/*.less'],
                 tasks: ['less:development'],
                 options: {
                     livereload: true

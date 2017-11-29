@@ -1,0 +1,105 @@
+// alert.less
+
+.alert {
+  .unitize(font-size, 14);
+  .unitize(line-height, 24);
+  .clearfix();
+  position: relative;
+  overflow: hidden; // Necessary for faux columns
+  border: 1px solid;
+  .border-radius(5px);
+  .unitize-padding(0, 15, 0, 15);
+
+  // State: Success
+  &.is--success {
+    color: darken(@highlight-success, 15%);
+    background: desaturate(lighten(@highlight-success, 42%),20%);
+
+    .alert--icon {
+      background: @highlight-success;
+    }
+  }
+
+  // State: Info
+  &.is--info {
+    color: darken(@highlight-info, 15%);
+    background: desaturate(lighten(@highlight-info, 36%),20%);
+    border-color: desaturate(lighten(@highlight-info, 26%),15%);
+
+    .alert--icon {
+      background: @highlight-info;
+    }
+  }
+
+  // State: Notice
+  &.is--warning {
+    color: darken(@highlight-notice, 14%);
+    background: desaturate(lighten(@highlight-notice, 42%),10%);
+
+    .alert--icon {
+      background: @highlight-notice;
+    }
+  }
+
+  // State: Error
+  &.is--error {
+    color: @highlight-error;
+    background: desaturate(lighten(@highlight-error, 38%),20%);
+
+    .alert--icon {
+      background: @highlight-error;
+    }
+  }
+
+  .icon--element {
+    position: absolute;
+    top: 50%; left: 0;
+    width: 15%;
+    margin-top: -9px;
+  }
+
+  // Layout
+  .alert--icon {display: none;}
+  .alert--content {
+    .unitize-padding(10, 10);
+
+    p { .unitize(margin-bottom, 0) }
+  }
+
+  // Icon column
+  .alert--icon {
+    .unitize(font-size, 18);
+    .unitize(line-height, 26);
+    width: 15%;
+    text-align: center;
+    font-weight: @font-bold-weight;
+    color: #fff;
+
+    // Simple faux column technique
+    padding-bottom: 9999em;
+    margin-bottom: -9999em;
+
+  }
+  .alert--content {
+    &.is--strong {
+      font-weight: @font-bold-weight;
+    }
+  }
+
+  // List styling
+  .alert--list {
+    list-style: none;
+  }
+
+  .list--entry {
+    display: block;
+  }
+}
+
+@media screen and (min-width: @tabletViewportWidth) {
+  .alert {
+    .alert--icon, .icon--element {
+      width: 8%;
+    }
+  }
+}

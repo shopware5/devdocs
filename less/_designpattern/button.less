@@ -1,0 +1,278 @@
+@import (reference) '../all.less';
+
+.animated--border(@height: 100%) {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: @height;
+  transform: scaleX(0);
+  transform-origin: 100% 0;
+  left: 0;
+  z-index: -1;
+  transition: transform .25s @cubic, background .25s @cubic;
+}
+
+.dp--wrapper {
+  .btn {
+    border: 2px solid transparent;
+    padding: .6875rem 1.3rem .6875rem 1.3rem;
+    .border-radius(0.01px); // Fix for weird button rendering
+    .no-select();
+    .cubic();
+
+    &:hover {
+      .transform(translateY(-3px));
+    }
+    &:active {
+      .transform(translateY(0));
+    }
+
+    // Primary
+    &.is--primary {
+      border-color: @blue;
+
+      &:hover {
+        border-color: @blue--dark;
+        .soft-box-shadow();
+      }
+      &:active {
+        border-color: darken(@blue--dark, 5%);
+        .soft-box-shadow(@color: transparent);
+      }
+    }
+
+    // Secondary
+    &.is--secondary {
+      border-color: @gray-mid;
+      background-color: @gray-mid;
+      border-width: 0;
+
+      &:hover {
+        border-color: @gray;
+        background-color: @gray;
+        .soft-box-shadow(@color: fade(@gray, 33));
+      }
+      &:active {
+        border-color: darken(@gray, 5%);
+        background-color: darken(@gray, 5%);
+        .soft-box-shadow(@color: transparent);
+      }
+    }
+
+    // Success
+
+    // Gray
+    &.is--gray {
+      color: @gray-mid;
+      border-color: @border-color;
+      background-color: @border-color;
+
+      &:hover {
+        border-color: darken(@border-color, 5%);
+        background-color: darken(@border-color, 5%);
+        .soft-box-shadow(@color: fade(@border-color, 33));
+      }
+      &:active {
+        border-color: darken(@border-color, 10%);
+        background-color: darken(@border-color, 10%);
+        .soft-box-shadow(@color: transparent);
+      }
+    }
+
+    // Enterprise
+
+    // System
+    &.is--mixin {
+      border-color: @mixins-light;
+      background-color: @mixins;
+
+      &:hover {
+        border-color: darken(@mixins-light, 5%);
+        background-color: darken(@mixins, 5%);
+        .soft-box-shadow(@color: fade(@mixins, 33));
+      }
+      &:active {
+        border-color: darken(@mixins-light, 10%);
+        background-color: darken(@mixins, 10%);
+        .soft-box-shadow(@color: transparent);
+      }
+    }
+
+    // Auf dunklem Hintergrund
+    &.on--dark {
+      color: @white;
+      background-color: fade(@white, 5);
+
+      &:hover {
+        transform: translateY(0);
+        background-color: fade(@white, 10);
+      }
+      &:active {
+        background-color: fade(@white, 15);
+      }
+      &:not(.is--border) {
+        border-width: 0;
+      }
+    }
+
+    // Border
+    &.is--border {
+      border: 2px solid;
+      background: none !important;
+      overflow: hidden;
+      z-index: 1;
+
+      &:before {
+        .animated--border();
+        top: 0;
+      }
+      &:hover,
+      &.is--active {
+        transform: none;
+        .reset-box-shadow();
+        background-color: transparent;
+
+        &:before {
+          transform: scaleX(1);
+          transform-origin: 0 0;
+        }
+      }
+      &:active {
+        transform: none;
+        .reset-box-shadow();
+      }
+
+      // Regular Border
+      & {
+        color: @gray;
+        border-color: @border-color;
+
+        &:before {
+          background-color: @border-color;
+        }
+        &:hover,
+        &.is--active {
+          color: @gray;
+        }
+        &:active {
+          border-color: darken(@border-color, 5%);
+
+          &:before {
+            background-color: darken(@border-color, 5%);
+          }
+        }
+      }
+
+      // Primary Border
+      &.is--primary {
+        color: @blue;
+        border-color: @blue;
+
+        &:before {
+          background-color: @blue;
+        }
+        &:hover,
+        &.is--active {
+          color: @white;
+        }
+        &:active {
+          border-color: @blue--dark;
+
+          &:before {
+            background-color: @blue--dark;
+          }
+        }
+      }
+
+      // Secondary Border
+      &.is--secondary {
+        color: @gray-mid;
+        border-color: @gray-mid;
+
+        &:before {
+          background-color: @gray-mid;
+        }
+        &:hover,
+        &.is--active {
+          color: @white;
+        }
+        &:active {
+          border-color: @gray;
+
+          &:before {
+            background-color: @gray;
+          }
+        }
+      }
+
+      // White Border
+      &.on--dark {
+        color: @white;
+        border-color: @white;
+
+        &:before {
+          background-color: @white;
+        }
+        &:hover,
+        &.is--active {
+          color: @gray-dark;
+        }
+        &:active {
+          border-color: fade(@white, 80);
+
+          &:before {
+            background-color: fade(@white, 80);
+          }
+        }
+      }
+    }
+
+    // Sizes
+    &.is--xl {
+      font-size: 18px;
+      padding: 1rem 1.5rem 1rem 1.5rem;
+    }
+    &.is--s {
+      font-size: 14px;
+      padding: .5625rem 1rem .5625rem 1rem;
+    }
+    &.is--xs {
+      font-size: 14px;
+      padding: .3125rem .75rem .3125rem .75rem;
+    }
+
+    // Abrundungen
+    &.rounded-1 {
+      .border-radius();
+    }
+    &.rounded-2 {
+      .border-radius(8px);
+    }
+    &.rounded-3 {
+      .border-radius(30px);
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+    }
+
+    // Variants
+    &.is--block {
+      display: block;
+      width: 100%;
+
+      &.is--border {
+        .cubic(@timing: .4s);
+
+        &:before {
+          transition: transform .4s @cubic, background .4s @cubic;
+        }
+      }
+    }
+
+    &.no--float {
+      &:hover {
+        .transform(translateY(0));
+        .box-shadow(0 0 0 transparent);
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "mixins";
+@import "variables";
+@import "designpattern";
+@import "docs";
+
+.standardized--order {
+
+  // Variables
+  --custom-property: 0;
+
+  // Beforehand
+  content: "";
+  .box-sizing();
+  .background-clip(padding-box);
+
+  // Position
+  display: inherit;
+  position: inherit;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  // Flex
+  .flex-display();
+  .flex-wrap();
+
+  // Box
+  float: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  // Size
+  width: 0;
+  min-width: 0;
+  max-width: 0;
+  height: 0;
+  min-height: 0;
+  max-height: 0;
+
+  // Font
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 0;
+  font-weight: 500;
+  line-height: 0;
+  letter-spacing: 0;
+  text-align: inherit;
+  text-transform: inherit;
+  .text-shadow();
+
+  // Color
+  color: inherit;
+  background: inherit;
+
+  // Transformation
+  .border-radius(0);
+  .box-shadow(0);
+  .transform(none);
+  overflow: inherit;
+
+  // Transition
+  transition: inherit;
+  animation: inherit;
+
+  // User
+  cursor: default;
+  pointer-events: none;
+  .user-select();
+  .touch-callout();
+
+  // Other
+  .appearance();
+  .hyphens();
+  opacity: 0;
+  z-index: 0;
+
+  .filter(none);
+  .backdrop-filter(none);
+}

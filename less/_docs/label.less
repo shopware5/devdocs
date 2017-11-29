@@ -1,0 +1,117 @@
+@import (reference) '../all.less';
+
+.label--old,
+.label--new {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 1.1rem;
+  border-radius: 3px;
+
+  + div {
+    border-top: 1px solid #eee;
+  }
+  ~ div,
+  ~ form,
+  ~ section > div,
+  ~ section > form {
+    font-size: 1.0625rem;
+    line-height: 1.75rem;
+    letter-spacing: .015625rem;
+    padding-top: @spacer;
+  }
+  ~ h4:not(.new) {
+    margin: 1.25rem auto .325em; // fix
+  }
+}
+
+.label--old {
+  color: @gray-mid !important;
+  background-color: @gray-light;
+}
+
+.label--new {
+  color: @white !important;
+  background-color: @blue;
+}
+
+.label--introduced {
+  position: relative;
+  margin-right: 14px;
+  padding: 3px 8px;
+  font-size: .8rem;
+  font-weight: 500;
+  border-radius: 3px;
+  top: -2px;
+  color: @white;
+  background-color: @highlight-error;
+}
+
+// Label for Explanation
+
+[class*="label--tooltip"] {
+  display: inline-block;
+  position: relative;
+  left: 20px;
+  padding: 7px 12px;
+  font-size: .8rem;
+  font-weight: 500;
+  border-radius: 3px;
+  color: @gray-mid;
+  background-color: @gray-light;
+
+  + [class*="label--tooltip"] {
+    margin-left: 5px;
+  }
+  &.after-block {
+    left: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.label--tooltip-xs {
+  top: -2px;
+  padding: 0 12px;
+}
+
+.col[class*="--border"] {
+  [class*="label--tooltip"] {
+    top: -2px;
+  }
+}
+
+// Colourful Background
+
+.col.has--border-blue,
+.col.has--border-success {
+  [class*="label--tooltip"] {
+    color: fade(@gray-dark, 50);
+    background-color: fade(@gray-dark, 5);
+  }
+}
+
+// Dark mode
+
+.page-wrap section.container > .content--wrapper.is--dark-bg {
+  .label--old,
+  [class*="label--tooltip"] {
+    color: @white !important;
+    background-color: fade(@gray-light, 8);
+  }
+  .label--old,
+  .label--new {
+    + div {
+      border-top-color: fade(@white, 20);
+    }
+  }
+}
+
+// New
+
+.new {
+  .label--new {
+    ~ section > div,
+    ~ section > form {
+      padding-top: @spacer--small;
+    }
+  }
+}

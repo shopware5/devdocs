@@ -1,0 +1,32 @@
+// tag-cloud.less
+
+.tagcloud {
+  a {
+    color: @text-color;
+    .unitize-margin(0, 10, 0, 0);
+
+    &:hover { color: @link-color; }
+  }
+
+  .tag0 {
+    .unitize(font-size, 21);
+    .unitize(line-height, 21);
+  }
+
+  .tag1 {
+    .unitize(font-size, 16);
+    .unitize(line-height, 16);
+    font-weight: @font-bold-weight;
+  }
+
+  .tag2 {
+    .unitize(font-size, 14);
+    .unitize(line-height, 14);
+  }
+
+  .tag3 {
+    .unitize(font-size, 12);
+    .unitize(line-height, 12);
+    font-weight: @font-bold-weight;
+  }
+}

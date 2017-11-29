@@ -1,0 +1,22 @@
+body.noscroll {
+  overflow-y: hidden;
+  position: relative;
+}
+.dp--wrapper .section--inner {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 calc(var(--gutter, 10px) * 4);
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.8, 0, 0.5, 0.95);
+}
+@media screen and (min-width: 64em) {
+  .dp--wrapper .section--inner {
+    padding: 0 var(--gutter, 15px);
+  }
+}
+@media screen and (min-width: 78.75em) {
+  .dp--wrapper .section--inner {
+    max-width: 960px;
+  }
+}

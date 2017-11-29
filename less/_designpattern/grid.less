@@ -1,0 +1,421 @@
+@import (reference) '../all.less';
+
+@grid-1:  100% / 12;
+@grid-2:  100% / 12 * 2;
+@grid-3:  100% / 12 * 3;
+@grid-4:  100% / 12 * 4;
+@grid-5:  100% / 12 * 5;
+@grid-6:  100% / 12 * 6;
+@grid-7:  100% / 12 * 7;
+@grid-8:  100% / 12 * 8;
+@grid-9:  100% / 12 * 9;
+@grid-10: 100% / 12 * 10;
+@grid-11: 100% / 12 * 11;
+@grid-12: 100%;
+
+:root {
+  --gutter: 5px;
+  --gutter-padding: 20px;
+  --gutter-inner: ~'calc(100% - 10px)';
+  --gutter-outer: ~'calc(100% + 10px)';
+}
+
+// Mixin
+.col-center {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  clear: both;
+  overflow: auto;
+}
+
+.col-center-v {
+  position: relative;
+
+  > .col-inner {
+    position: absolute;
+    top: 50%;
+    .transform(translateY(-50%));
+    width: ~'calc(100% - 30px)'; // IE Fallback
+    width: var(--gutter-inner);
+  }
+}
+
+.col-full-height {
+  > .col-inner {
+    height: ~'calc(100% - 30px)'; // IE Fallback
+    height: var(--gutter-inner);
+  }
+}
+
+.new,
+.dp--wrapper {
+  .clearfix {
+    clear: both;
+    float: left;
+  }
+
+  // Hidden
+  .hidden {
+    display: none;
+  }
+  .visible-s {
+    display: none !important;
+  }
+  .visible-xs {
+    display: none !important;
+  }
+
+  // Spalten
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    float: none;
+
+    &.is--extended {
+      margin-left: ~'calc(var(--gutter) * -1)';
+      margin-right: ~'calc(var(--gutter) * -1)';
+      width: var(--gutter-outer);
+    }
+  }
+
+  [class*="col-"] {
+    width: 100%;
+    transition: padding 0.5s @strong-ease;
+
+    &[class*="--border"] {
+      --gutter: 10px;
+      padding: 10px; // IE Fallback
+      padding: var(--gutter);
+
+      &:not(.col) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      > .col-inner {
+        hr {
+          margin-left: ~'calc(var(--gutter-padding) * -1)';
+          margin-right: ~'calc(var(--gutter-padding) * -1)';
+        }
+        > p {
+          &:first-child { padding-top: 0; }
+          &:last-child { padding-bottom: 0; }
+        }
+      }
+    }
+    .col-inner {
+      padding: 20px; // IE Fallback
+      padding: var(--gutter-padding);
+
+      hr {
+        margin: 1.25rem 0;
+      }
+    }
+  }
+
+  // Box Styles
+  [class*="--border"] {
+    > .col-inner {
+      border: 1px solid @border-color;
+    }
+  }
+  .has--border-dashed {
+    > .col-inner {
+      &, hr {
+        border-style: dashed;
+      }
+    }
+  }
+  .has--border-gray {
+    > .col-inner {
+      background-color: fade(@gray-light, 40);
+    }
+  }
+  .has--border-blue {
+    > .col-inner {
+      background-color: fade(@blue, 5);
+
+      &, hr {
+        border-color: @blue;
+      }
+    }
+  }
+  .has--border-success {
+    > .col-inner {
+      background-color: @highlight-success-light;
+
+      &, hr {
+        border-color: @highlight-success;
+      }
+    }
+  }
+  .has--border--xs {
+    p {
+      font-size: 14px;
+    }
+    > .col-inner {
+      padding: 20px 20px 10px 20px;
+
+      hr {
+        margin: .75rem -20px;
+      }
+    }
+  }
+
+  // Fixes
+  .col--icon {
+    float: none;
+
+    .icon--image {
+      img {
+        min-width: 0;
+        max-width: none;
+        width: 38px;
+      }
+    }
+  }
+
+  // Options
+  .col {
+    padding: 15px; // IE Fallback
+    padding: var(--gutter);
+  }
+  .col-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+  .col-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+  .col-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+  .col-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+  .col-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+  .col-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+  .col-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+  .col-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+  .col-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+  .col-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+  .col-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+  .col-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+}
+
+// 480px (30em)
+@media screen and (max-width: @phoneLandscapeViewportWidthMax) {
+  .new,
+  .dp--wrapper {
+    .hidden-xs {
+      display: none;
+    }
+    .visible-xs {
+      display: block !important;
+    }
+  }
+}
+@media screen and (min-width: @phoneLandscapeViewportWidth) {
+
+  :root {
+    --gutter: 10px;
+    --gutter-inner: ~'calc(100% - 20px)';
+    --gutter-outer: ~'calc(100% + 20px)';
+  }
+
+  .new,
+  .dp--wrapper {
+    .col-xs-center {
+      .col-center();
+    }
+    .col-xs-center-v {
+      .col-center-v();
+    }
+    .col-xs-full-height {
+      .col-full-height();
+    }
+    .col-xs-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+    .col-xs-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+    .col-xs-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+    .col-xs-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+    .col-xs-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+    .col-xs-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+    .col-xs-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+    .col-xs-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+    .col-xs-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+    .col-xs-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+    .col-xs-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+    .col-xs-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+  }
+}
+
+// 768px (48em)
+@media screen and (max-width: @tabletViewportWidthMax) {
+  .new,
+  .dp--wrapper {
+    .hidden-s {
+      display: none;
+    }
+    .visible-s {
+      display: block !important;
+    }
+  }
+}
+@media screen and (min-width: @tabletViewportWidth) {
+  .new,
+  .dp--wrapper {
+    .col-s-center {
+      .col-center();
+    }
+    .col-s-center-v {
+      .col-center-v();
+    }
+    .col-s-full-height {
+      .col-full-height();
+    }
+    .col-s-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+    .col-s-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+    .col-s-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+    .col-s-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+    .col-s-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+    .col-s-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+    .col-s-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+    .col-s-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+    .col-s-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+    .col-s-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+    .col-s-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+    .col-s-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+  }
+}
+
+// 960px (60em)
+@media screen and (max-width: @gridViewportWidthMax) {
+  .new,
+  .dp--wrapper {
+    .hidden-m {
+      display: none;
+    }
+  }
+}
+@media screen and (min-width: @gridViewportWidth) {
+  .new,
+  .dp--wrapper {
+    .col-m-center {
+      .col-center();
+    }
+    .col-m-center-v {
+      .col-center-v();
+    }
+    .col-m-full-height {
+      .col-full-height();
+    }
+    .col-m-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+    .col-m-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+    .col-m-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+    .col-m-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+    .col-m-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+    .col-m-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+    .col-m-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+    .col-m-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+    .col-m-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+    .col-m-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+    .col-m-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+    .col-m-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+
+    [class*="col-"] {
+      &[class*="--border"] {
+        --gutter: 15px;
+        --gutter-padding: 30px;
+        --gutter-inner: ~'calc(100% - 30px)';
+
+        > .col-inner {
+          padding: var(--gutter-padding);
+        }
+      }
+    }
+
+    // Sizes
+    .has--border--xs {
+      > .col-inner {
+        padding-left: 25px;
+        padding-right: 25px;
+
+        hr {
+          margin: 1.25rem -25px;
+        }
+      }
+    }
+  }
+}
+
+// 1024px (64em)
+@media screen and (max-width: @tabletLandscapeViewportWidthMax) {
+  .new,
+  .dp--wrapper {
+    .hidden-l {
+      display: none;
+    }
+  }
+}
+@media screen and (min-width: @tabletLandscapeViewportWidth) {
+  .new,
+  .dp--wrapper {
+    .col-l-center {
+      .col-center();
+    }
+    .col-l-center-v {
+      .col-center-v();
+    }
+    .col-l-full-height {
+      .col-full-height();
+    }
+    .col-l-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+    .col-l-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+    .col-l-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+    .col-l-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+    .col-l-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+    .col-l-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+    .col-l-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+    .col-l-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+    .col-l-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+    .col-l-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+    .col-l-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+    .col-l-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+  }
+}
+
+// 1260px (78.75em)
+@media screen and (max-width: @desktopViewportWidthMax) {
+  .new,
+  .dp--wrapper {
+    .hidden-xl {
+      display: none;
+    }
+  }
+}
+@media screen and (min-width: @desktopViewportWidth) {
+
+  :root {
+    --gutter: 15px;
+    --gutter-inner: ~'calc(100% - 30px)';
+    --gutter-outer: ~'calc(100% + 30px)';
+  }
+
+  .new,
+  .dp--wrapper {
+    .col-xl-center {
+      .col-center();
+    }
+    .col-xl-center-v {
+      .col-center-v();
+    }
+    .col-xl-full-height {
+      .col-full-height();
+    }
+    .col-xl-1  { flex: 0 0 @grid-1; max-width: @grid-1; }
+    .col-xl-2  { flex: 0 0 @grid-2; max-width: @grid-2; }
+    .col-xl-3  { flex: 0 0 @grid-3; max-width: @grid-3; }
+    .col-xl-4  { flex: 0 0 @grid-4; max-width: @grid-4; }
+    .col-xl-5  { flex: 0 0 @grid-5; max-width: @grid-5; }
+    .col-xl-6  { flex: 0 0 @grid-6; max-width: @grid-6; }
+    .col-xl-7  { flex: 0 0 @grid-7; max-width: @grid-7; }
+    .col-xl-8  { flex: 0 0 @grid-8; max-width: @grid-8; }
+    .col-xl-9  { flex: 0 0 @grid-9; max-width: @grid-9; }
+    .col-xl-10 { flex: 0 0 @grid-10; max-width: @grid-10; }
+    .col-xl-11 { flex: 0 0 @grid-11; max-width: @grid-11; }
+    .col-xl-12 { flex: 0 0 @grid-12; max-width: @grid-12; }
+  }
+}

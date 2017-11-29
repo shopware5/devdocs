@@ -1,0 +1,151 @@
+// buttons.less
+
+.btn {
+  .unitize-padding(2, 10);
+  .unitize(line-height, 32);
+  .border-radius(3px);
+  .appearance();
+  .unitize(@btn-font-size, 16, font-size);
+  .linear-gradient(@btn-default-top-bg, @btn-default-bottom-bg);
+  -webkit-font-smoothing: inherit;
+  display: inline-block;
+  position: relative;
+  font-weight: @font-bold-weight;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid @btn-default-border-color;
+  color: @btn-default-text-color;
+
+  /** Button icon font size */
+  [class^="icon--"] {
+    .unitize(@btn-icon-size, 16, font-size);
+  }
+
+  /** Larger icon */
+  .is--large {
+    @largeFontSize: @btn-font-size + 2;
+    .unitize(@largeFontSize, 16, font-size);
+  }
+
+  /** State: Button with icon right */
+  &.is--icon-right {
+     .unitize(padding-right, 36);
+
+     [class^="icon--"] {
+       .unitize-height(16);
+       .unitize(line-height, 32);
+       .unitize-margin(-16, 0, 0, 0);
+       .unitize(right, 12);
+       font-weight: @font-base-weight;
+       display: block;
+       position: absolute;
+       top: 50%;
+     }
+  }
+
+  /** State: Button with icon left */
+  &.is--icon-left {
+    .unitize(padding-left, 36);
+
+    [class^="icon--"] {
+      .unitize-height(16);
+      .unitize(line-height, 32);
+      .unitize-margin(-16, 0, 0, 0);
+      .unitize(left, 12);
+      font-weight: @font-base-weight;
+      display: block;
+      position: absolute;
+      top: 50%;
+    }
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &.is--disabled,
+  &.is--disabled:hover {
+    .opacity(0.5);
+    .linear-gradient(@btn-default-top-bg, @btn-default-bottom-bg);
+    border: 1px solid @btn-default-border-color;
+    color: @btn-default-text-color;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background: @btn-default-hover-bg;
+    color: @btn-default-hover-text-color;
+    border-color: @btn-default-hover-border-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  /** State: Small button */
+  &.is--small {
+    .unitize(line-height, 28);
+  }
+
+  /** State: Large button */
+  &.is--large {
+    .unitize(line-height, 36);
+  }
+
+  /** State: Button with 100% width */
+  &.is--full {
+    display: block;
+  }
+
+  /** State: Button with text align center */
+  &.is--center {
+    text-align: center;
+  }
+}
+
+/** Type: Primary button or other element */
+.is--primary {
+  .unitize-padding(2, 12);
+  .unitize(line-height, 34);
+  .linear-gradient(@btn-primary-top-bg, @btn-primary-bottom-bg);
+  border: 0 none;
+  color: @btn-primary-text-color;
+
+  &:hover {
+    background: @btn-primary-hover-bg;
+    color: @btn-primary-hover-text-color;
+  }
+
+  /** State: Small button */
+  &.is--small {
+    .unitize(line-height, 30);
+  }
+
+  /** State: Large button */
+  &.is--large {
+    .unitize(line-height, 38);
+  }
+}
+
+/** Type: Secondary or other element */
+.is--secondary {
+  .unitize-padding(2, 12);
+  .unitize(line-height, 34);
+  .linear-gradient(@btn-secondary-top-bg, @btn-secondary-bottom-bg);
+  border: 0 none;
+  color: @btn-secondary-text-color;
+
+  &:hover {
+    background: @btn-secondary-hover-bg;
+    color: @btn-secondary-hover-text-color;
+  }
+
+  /** State: Small button */
+  &.is--small {
+    .unitize(line-height, 30);
+  }
+
+  /** State: Large button */
+  &.is--large {
+    .unitize(line-height, 38);
+  }
+}

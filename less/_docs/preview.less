@@ -1,0 +1,17 @@
+@import (reference) '../all.less';
+
+body.preview {
+  iframe {
+    .spacer--small();
+    margin-bottom: -3rem;
+  }
+
+  @media(min-width: 1921px) {
+    .page-wrap {
+      padding-right: 0;
+    }
+    section.container {
+      padding-right: @sidebarWidth;
+    }
+  }
+}

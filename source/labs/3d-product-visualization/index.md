@@ -21,16 +21,16 @@ The 3D product visualization using our [SwagThreeSixty product viewer](https://g
 The [SwagThreeSixty plugin](https://github.com/shopwareLabs/SwagThreeSixtyViewer) provides you with a full-featured 3D scene editor inside your Shopware backend. The editor is built on top of [babylon.js](https://www.babylonjs.com/). Here's an overview of the features:
 
 - Import your own models (`*.obj`, `*.dae` & `*.babylon` are supported)
-	- Exports from [Unity](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Unity%205), [Blender](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Blender), [Maya](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Maya/Tools), [3ds Max](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) are available
-	- A [command line tool](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/FBX) for converting `*.fbx` to `*.babylon` is also available
+    - Exports from [Unity](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Unity%205), [Blender](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Blender), [Maya](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Maya/Tools), [3ds Max](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) are available
+    - A [command line tool](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/FBX) for converting `*.fbx` to `*.babylon` is also available
 - Dynamic shadows generator
 - Supports different types of lights
-	- Point light, Spot light & Hemisperic light
+    - Point light, Spot light & Hemisperic light
 - Supports basic shapes
-	- Cyclinder, Box & Ground Plane
+    - Cyclinder, Box & Ground Plane
 - Supports different materials for basic shapes
-	- Diffuse, Specular & Ambient color / texture
-	- Bump map support
+    - Diffuse, Specular & Ambient color / texture
+    - Bump map support
 - Positioning, Scaling & Rotation of objects
 - Scene Fog with different modes
 - Highlight model on selection
@@ -279,8 +279,8 @@ The bump texture simulates bumps and dents using an image texture that is also k
 We talked a lot about basic geometry and your own 3D models in the scene but we haven't covered on how to use your own models. First of all, I would like to cover which formats can you use with our editor:
 
 - `*.obj`, `*.dae` & `*.babylon` are supported
-	- Export from [Unity](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Unity%205), [Blender](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Blender), [Maya](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Maya/Tools), [3ds Max](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) are available
-	- A [command line tool](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/FBX) for converting `*.fbx` to `*.babylon` is also available
+    - Export from [Unity](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Unity%205), [Blender](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Blender), [Maya](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Maya/Tools), [3ds Max](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) are available
+    - A [command line tool](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/FBX) for converting `*.fbx` to `*.babylon` is also available
 
 ### Preparing your model
 
@@ -291,7 +291,7 @@ When you're satisfied with the file size of your model and associated texture, w
 In the following video I'm demonstrating how you can normalize a model in [blender](https://www.blender.org/):
 
 <video controls style="max-width: 100%">
-	<source src="http://assets.shopware.com/devdocs/blender-adjust-model.mp4">
+    <source src="http://assets.shopware.com/devdocs/blender-adjust-model.mp4">
 </video>
 
 *Video on how to normalize a 3D model in Blender*
@@ -324,5 +324,5 @@ To get you a jump start for the 3D product viewer we're providing you with a fre
 - **Tris**: 363,512
 
 <a href="http://assets.shopware.com/devdocs/swag-shoe-scan.zip" class="landingpage--btn">
-	Download 3D shoe model (23.5 MB)
+    Download 3D shoe model (23.5 MB)
 </a>

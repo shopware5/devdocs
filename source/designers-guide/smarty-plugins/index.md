@@ -44,9 +44,9 @@ The following positions are available in the menu:
 - standard - displays the currency symbol in the default location, which is on the right e.g., 49,95 USD
 
 <div class="alert alert-info">
-	Note: Shopware, by default, formats prices in the frontend as follows:
-	{$sArticle.price|currency:use_symbol:right}.
-	If you wish to have certain areas of your shop in a different format, this plugin will allow you to change the format.
+    Note: Shopware, by default, formats prices in the frontend as follows:
+    {$sArticle.price|currency:use_symbol:right}.
+    If you wish to have certain areas of your shop in a different format, this plugin will allow you to change the format.
 </div>
 
 ## Config plugin ##
@@ -114,7 +114,7 @@ Example: *example of a call to the wish list*
 ``` 
 {* A link to notes *}
 <a href="{url controller='note'}" title="Show notes">
-	Show notes
+    Show notes
 </a>
 ``` 
  
@@ -124,7 +124,7 @@ Example: *example of a call to instant downloads*
 ``` 
 {* A link to instant downloads *}
 <a href="{url controller='account' action='downloads'}" title="Open instant downloads">
-	Open instant downloads
+    Open instant downloads
 </a>
 ``` 
  
@@ -134,7 +134,7 @@ Exmaple: *call to instant download with parameter*
 ``` 
 {* A link to instant downloads *}
 <a href="{url controller='account' action='downloads' sParam='test'}" title="Open instant downloads with parameter">
-	Open instant downloads with parameter
+    Open instant downloads with parameter
 </a>
 ``` 
  
@@ -162,7 +162,7 @@ Example: *date plugin syntax*
 The plugin has the following format types, which are based on the Zend Framework:
 
 <div class="alert alert-info">
-	Note: Due to localization, the following date formats may differ slightly from the examples given.
+    Note: Due to localization, the following date formats may differ slightly from the examples given.
 </div>
 
 Date:

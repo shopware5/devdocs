@@ -25,31 +25,31 @@ The `Shopware_Modules_Export_ExportResult_Filter_Fixed` event can be used to mod
 ```php
 public static function getSubscribedEvents()
 {
-	return [
-		'Shopware_Modules_Export_ExportResult_Filter_Fixed' => 'onFilterExportResult',
-	];
+    return [
+        'Shopware_Modules_Export_ExportResult_Filter_Fixed' => 'onFilterExportResult',
+    ];
 }
 
 public function onFilterExportResult(\Enlight_Event_EventArgs $args)
 {
-	$products = $args->getReturn();
-	/** This is the id of the feed being exported */
-	$feedId = $args->get('feedId');
-	/** @var \sExport $sExport */
-	$sExport = $args->get('subject');
-	
-	/**
-	 * Here is the instance of the sExport class which can be used to add new variables to smarty for example
-	 */
-	$sExport->sSmarty->assign('newVariable', ['custom' => 'This is a custom variable available in the export template']);
-	
-	/**
-	 * in $products are all the products as array which can be modified here
-	 */
-	foreach($products as &$product) {
-		$product['randomNumber'] = random_int(1, 100);
-	}
-	
-	return $products;
+    $products = $args->getReturn();
+    /** This is the id of the feed being exported */
+    $feedId = $args->get('feedId');
+    /** @var \sExport $sExport */
+    $sExport = $args->get('subject');
+    
+    /**
+     * Here is the instance of the sExport class which can be used to add new variables to smarty for example
+     */
+    $sExport->sSmarty->assign('newVariable', ['custom' => 'This is a custom variable available in the export template']);
+    
+    /**
+     * in $products are all the products as array which can be modified here
+     */
+    foreach($products as &$product) {
+        $product['randomNumber'] = random_int(1, 100);
+    }
+    
+    return $products;
 }
 ```

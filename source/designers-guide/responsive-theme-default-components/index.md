@@ -14,7 +14,7 @@ menu_order: 60
 ## Introduction
 Within the new Shopware 5 Responsive Theme we provide you with many reusable components for easier template and plugin development. With our default components you can create buttons, panels, alert messages and other UI elements by using simple HTML code snippets. You can use these snippets within your smarty template `*.tpl` files.
 
-We implemented a parent child class naming in our [LESS](../less) structure that helps you to identify template components. A quick example: The `panel` class is a parent class and all related child classes are prefixed with a `panel--` e.g. `panel--title` or `panel--body`. If you are already familiar with frontend frameworks like Bootstrap you will understand Shopware's components even more easily. This guide gives you a quick overview of the usage of the most important components. If you want further information take a look at our [Shopware UI components overview](https://developers.shopware.com/styletile/).
+We implemented a parent child class naming in our [LESS](../less) structure that helps you to identify template components. A quick example: The `panel` class is a parent class and all related child classes are prefixed with a `panel--` e.g. `panel--title` or `panel--body`. If you are already familiar with frontend frameworks like Bootstrap you will understand Shopware's components even more easily. This guide gives you a quick overview of the usage of the most important components. If you want further information take a look at our [Shopware UI components overview]({{ site.url }}/styletile/).
 
 ## Quick examples
 
@@ -64,7 +64,7 @@ Creates a webfont icon.
 <i class="icon--basket"></i>
 ```
 
-The Shopware 5 Responsive theme provides you with a large amount of webfont icons. You can find a list of all Icons in our [Shopware UI components overview](https://developers.shopware.com/styletile/_components-icon-set.html).
+The Shopware 5 Responsive theme provides you with a large amount of webfont icons. You can find a list of all Icons in our [Shopware UI components overview]({{ site.url }}/styletile/components.html#icon-set).
 
 You can also use icons within buttons by adding the positioning classes from the [Buttons example](#buttons):
 
@@ -196,4 +196,4 @@ The product slider can be both oriented in horizontal and vertical display mode 
 Note: The jQuery plugin which actually slides the product boxes is called by the `data-product-slider="true"` attribute. For further modifications like e.g. animation speed take a look at the options in the `jquery.product-slider.js` jQuery Plugin.
 
 ## Complete component overview
-You can find the complete overview of the Responsive theme components in the [Shopware UI components overview](https://developers.shopware.com/styletile/).
+You can find the complete overview of the Responsive theme components in the [Shopware UI components overview]({{ site.url }}/styletile/).

@@ -1,90 +1,108 @@
-.label--old,
-.label--new {
+.dp--wrapper .tip {
+  --label-margin: 10;
+  --label-bg: #de294c;
   display: inline-block;
-  padding: 6px 12px;
-  font-size: 1.1rem;
-  border-radius: 3px;
-}
-.label--old + div,
-.label--new + div {
-  border-top: 1px solid #eee;
-}
-.label--old ~ div,
-.label--new ~ div,
-.label--old ~ form,
-.label--new ~ form,
-.label--old ~ section > div,
-.label--new ~ section > div,
-.label--old ~ section > form,
-.label--new ~ section > form {
-  font-size: 1.0625rem;
-  line-height: 1.75rem;
-  letter-spacing: .015625rem;
-  padding-top: 2rem;
-}
-.label--old ~ h4:not(.new),
-.label--new ~ h4:not(.new) {
-  margin: 1.25rem auto .325em;
-}
-.label--old {
-  color: #607182 !important;
-  background-color: #f4f7fa;
-}
-.label--new {
-  color: #fff !important;
-  background-color: #189eff;
-}
-.label--introduced {
   position: relative;
-  margin-right: 14px;
-  padding: 3px 8px;
-  font-size: .8rem;
-  font-weight: 500;
-  border-radius: 3px;
-  top: -2px;
+  margin: calc(var(--label-margin ) * 1px);
+  margin-left: 0;
+  line-height: normal;
+  text-transform: uppercase;
+  font-weight: 600;
   color: #fff;
-  background-color: #de294c;
-}
-[class*="label--tooltip"] {
-  display: inline-block;
-  position: relative;
-  left: 20px;
-  padding: 7px 12px;
-  font-size: .8rem;
-  font-weight: 500;
+  background: var(--label-bg);
+  font-size: 12px;
+  padding: 2px 7px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
   border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.dp--wrapper .tip.is--right {
+  float: none;
+  margin-right: 0;
+  margin-left: calc(var(--label-margin ) * 1px);
+}
+.dp--wrapper .tip.is--left {
+  float: none;
+}
+.dp--wrapper .tip.is--inline {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dp--wrapper .tip.is--info {
+  --label-bg: #189eff;
+}
+.dp--wrapper .tip.is--success {
+  --label-bg: #37d046;
+}
+.dp--wrapper .tip.is--flag {
+  --label-bg: #f4f7fa;
   color: #607182;
-  background-color: #f4f7fa;
 }
-[class*="label--tooltip"] + [class*="label--tooltip"] {
-  margin-left: 5px;
+.dp--wrapper .tip.is--flag.on--dark {
+  --label-bg: rgba(244, 247, 250, 0.08);
+  color: #fff;
 }
-[class*="label--tooltip"].after-block {
-  left: 0;
-  margin-bottom: 20px;
+.dp--wrapper .tip.is--white {
+  --label-bg: #fff;
+  color: #142432;
 }
-.label--tooltip-xs {
+.dp--wrapper h1 > .tip,
+.dp--wrapper .h1 > .tip,
+.dp--wrapper h2 > .tip,
+.dp--wrapper .h2 > .tip,
+.dp--wrapper h3 > .tip,
+.dp--wrapper .h3 > .tip,
+.dp--wrapper h4 > .tip,
+.dp--wrapper .h4 > .tip,
+.dp--wrapper h5 > .tip,
+.dp--wrapper .h5 > .tip,
+.dp--wrapper h6 > .tip,
+.dp--wrapper .h6 > .tip {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dp--wrapper h1 > .tip,
+.dp--wrapper .h1 > .tip {
+  --label-margin: 16;
+  top: -12px;
+  font-size: 18px;
+}
+.dp--wrapper h2 > .tip,
+.dp--wrapper .h2 > .tip {
+  --label-margin: 14;
+  top: -4px;
+  font-size: 16px;
+}
+.dp--wrapper h3 > .tip,
+.dp--wrapper .h3 > .tip {
+  --label-margin: 12;
+  top: -4px;
+  font-size: 14px;
+}
+.dp--wrapper h4 > .tip,
+.dp--wrapper .h4 > .tip {
+  top: -3px;
+  font-size: 12px;
+}
+.dp--wrapper h5 > .tip,
+.dp--wrapper .h5 > .tip {
   top: -2px;
-  padding: 0 12px;
+  font-size: 12px;
 }
-.col[class*="--border"] [class*="label--tooltip"] {
+.dp--wrapper h6 > .tip,
+.dp--wrapper .h6 > .tip {
+  --label-margin: 8;
   top: -2px;
-}
-.col.has--border-blue [class*="label--tooltip"],
-.col.has--border-success [class*="label--tooltip"] {
-  color: rgba(20, 36, 50, 0.5);
-  background-color: rgba(20, 36, 50, 0.05);
-}
-.page-wrap section.container > .content--wrapper.is--dark-bg .label--old,
-.page-wrap section.container > .content--wrapper.is--dark-bg [class*="label--tooltip"] {
-  color: #fff !important;
-  background-color: rgba(244, 247, 250, 0.08);
-}
-.page-wrap section.container > .content--wrapper.is--dark-bg .label--old + div,
-.page-wrap section.container > .content--wrapper.is--dark-bg .label--new + div {
-  border-top-color: rgba(255, 255, 255, 0.2);
-}
-.new .label--new ~ section > div,
-.new .label--new ~ section > form {
-  padding-top: 1rem;
+  font-size: 11px;
 }

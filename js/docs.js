@@ -34,6 +34,7 @@
 
                 $styles.insertBefore($head.get(0));
                 $(this).css('display', 'block');
+                $(this).parent().addClass('done');
             });
         };
 

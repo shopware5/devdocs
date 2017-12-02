@@ -101,7 +101,7 @@ Basically you just have to create a new menu entry in the Shopware administratio
 </menu>
 ```
 
-Please note that we call the `createSimpleModule()` JavaScript method in the `onclick` property of the menu entry, which means that, when the user clicks on the menu entry, the `onclick` method will be called and the backend module will be create. The first argument of the `createSimpleModule()` is the name of the backend controller and the second argument is an object to customize the appearance of the window. You can set the title, width and / or height of the window.
+Please note that we call the `createSimplifiedModule()` JavaScript method in the `onclick` property of the menu entry, which means that, when the user clicks on the menu entry, the `onclick` method will be called and the backend module will be create. The first argument of the `createSimplifiedModule()` is the name of the backend controller and the second argument is an object to customize the appearance of the window. You can set the title, width and / or height of the window.
 
 Now we can implement the controller. Please note we already registered our template directory in the `onGetBackendController()` event handler method.
 

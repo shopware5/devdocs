@@ -3,10 +3,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="swag_attribute_filter.attribute_filter_subscriber" class="SwagAttributeFilter\Subscriber\AttributeFilterSubscriber">
-            <argument type="service" id="service_container" />
-            <argument>%swag_attribute_filter.plugin_dir%</argument>
-            <tag name="shopware.event_subscriber"/>
+        <service id="swag_attribute_filter.components.criteria_request_handler" class="SwagAttributeFilter\Components\CriteriaRequestHandler">
+            <tag name="criteria_request_handler"/>
         </service>
     </services>
 </container>

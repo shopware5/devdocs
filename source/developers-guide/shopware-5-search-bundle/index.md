@@ -39,7 +39,7 @@ This small example shows how the product number search can be used.
 
 ## Reference to SearchBundleDBAL
 As already described, the `Shopware\Bundle\SearchBundle` defines only how product lists are selected and which conditions and sorting criteria are used to restrict or modify the result set.
-The `SearchBundle` contains no search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
+The `SearchBundle` contains no specific search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
 As default for the `ProductNumberSearch`, Shopware uses `Shopware\Bundle\SearchBundleDBAL`, which implements the interfaces required by `Shopware\Bundle\SearchBundle` to use it as product search implementation.
 The `Shopware\Bundle\SearchBundleDBAL` is based on the `Doctrine\DBAL\Query\Builder`.
 

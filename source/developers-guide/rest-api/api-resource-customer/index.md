@@ -66,9 +66,9 @@ It is required to parametrize this API call. The following parameters are availa
 | failedLogins          | integer                |                                                                                |
 | lockedUntil           | date/time                |                                                                                |
 | attribute             | object                | **[CustomerAttribute](../models/#customer-attribute)**                            |
-| billing               | object                | **[Billing](../models/#billing)**                                                |
+| billing               | object                | **[Billing](../models/#address)**                                                |
 | paymentData           | array                    | **[PaymentData](../models/#payment-data)**                                        |
-| shipping              | object                | **[Shipping](../models/#shipping)**                                            |
+| shipping              | object                | **[Shipping](../models/#address)**                                            |
 | debit                 | object                | **[Debit](../models/#debit)**                                                    |
 
 ## GET (List)

@@ -137,27 +137,15 @@ You can find a installable ZIP package of an attribute example plugin <a href="{
 The following example shows how the default `SearchBundleDBAL` implementation handles conditions.
 Each condition inside the `SearchBundleDBAL` is handled by their own `ConditionHandler`.
 Each `ConditionHandler` must implement the `Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface`
-The `Shopware_SearchBundleDBAL_Collect_Condition_Handlers` event can be used to register a condition handler class:
+You may register your own ConditionHandler via the `services.xml` of your plugin:
 
-```php
-<?php
-//register condition handlers for dbal search implementation
-
-namespace YourPlugin;
-
-class YourPlugin extends \Shopware\Components\Plugin
-{
-    public static function getSubscribedEvents()
-    {
-        return [
-            'Shopware_SearchBundleDBAL_Collect_Condition_Handlers' => 'onCollectConditionHandlers'
-        ];
-    }
-
-    public function onCollectConditionHandlers() {
-        return new CategoryConditionHandler();
-    }
-}
+```xml
+<!-- register condition handlers for dbal search implementation -->
+<services>
+    <service class="YourPlugin\SearchBundleDBAL\Condition\CategoryConditionHandler" id="your_plugin.search_bundle_dbal.condition.category_condition_handler">
+        <tag name="condition_handler_dbal"/>
+    </service>
+</services>
 ```
 
 Each condition handler has to implement two methods:

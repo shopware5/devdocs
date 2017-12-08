@@ -1,0 +1,29 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_search_bundle.search_bundle_subscriber" class="SwagSearchBundle\Subscriber\SearchBundleSubscriber">
+            <argument>%swag_search_bundle.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service class="SwagSearchBundle\SearchBundleDBAL\CriteriaRequestHandler" id="swag_search.search_bundle_dbal.criteria_request_handler">
+            <tag name="criteria_request_handler"/>
+        </service>
+
+        <service class="SwagSearchBundle\SearchBundleDBAL\Condition\EsdConditionHandler" id="swag_search.search_bundle_dbal_condition.esd_condition_handler">
+            <tag name="condition_handler_dbal"/>
+        </service>
+
+        <service class="SwagSearchBundle\SearchBundleDBAL\Sorting\RandomSortingHandler" id="swag_search.search_bundle_dbal_sorting.random_sorting_handler">
+            <tag name="sorting_handler_dbal"/>
+        </service>
+
+        <service class="SwagSearchBundle\SearchBundleDBAL\Facet\EsdFacetHandler" id="swag_search.search_bundle_dbal_facet.esd_facet_handler">
+            <tag name="facet_handler_dbal"/>
+            <argument type="service" id="shopware_searchdbal.dbal_query_builder_factory"/>
+            <argument type="service" id="snippets"/>
+        </service>
+    </services>
+</container>

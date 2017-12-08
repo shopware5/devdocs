@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Facet;
+namespace SwagSearchBundle\SearchBundleDBAL\Facet;
 
 use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\FacetInterface;
@@ -9,8 +9,7 @@ use Shopware\Bundle\SearchBundleDBAL\FacetHandlerInterface;
 use Shopware\Bundle\SearchBundleDBAL\QueryBuilderFactory;
 use Shopware\Bundle\StoreFrontBundle\Struct;
 
-class EsdFacetHandler implements
-    FacetHandlerInterface
+class EsdFacetHandler implements FacetHandlerInterface
 {
     /**
      * @var QueryBuilderFactory

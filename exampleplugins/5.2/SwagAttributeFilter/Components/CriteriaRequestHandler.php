@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopwarePlugins\SwagAttributeFilter;
+namespace SwagAttributeFilter\Components;
 
 use Enlight_Controller_Request_RequestHttp as Request;
 use Shopware\Bundle\SearchBundle\Condition\ProductAttributeCondition;

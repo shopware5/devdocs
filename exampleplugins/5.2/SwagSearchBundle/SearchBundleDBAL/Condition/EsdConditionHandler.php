@@ -1,11 +1,10 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Condition;
+namespace SwagSearchBundle\SearchBundleDBAL\Condition;
 
 use Shopware\Bundle\SearchBundle\ConditionInterface;
 use Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface;
 use Shopware\Bundle\SearchBundleDBAL\QueryBuilder;
-use Shopware\Bundle\StoreFrontBundle\Struct;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
 
 class EsdConditionHandler implements ConditionHandlerInterface

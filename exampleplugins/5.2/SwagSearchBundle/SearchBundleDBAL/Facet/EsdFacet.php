@@ -1,17 +1,17 @@
 <?php
 
-namespace ShopwarePlugins\SwagSearchBundle\SearchBundleDBAL\Sorting;
+namespace SwagSearchBundle\SearchBundleDBAL\Facet;
 
-use Shopware\Bundle\SearchBundle\SortingInterface;
+use Shopware\Bundle\SearchBundle\FacetInterface;
 
-class RandomSorting implements SortingInterface
+class EsdFacet implements FacetInterface
 {
     /**
      * @inheritdoc
      */
     public function getName()
     {
-        return 'swag_search_bundle_random';
+        return 'swag_search_bundle_esd';
     }
 
     /**

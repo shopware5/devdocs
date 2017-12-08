@@ -105,7 +105,7 @@ For details on registering a new media optimizer, read [Media Optimizer - Create
 
 After the data mapping is defined, the data can be indexed using the `Shopware\Bundle\ESIndexingBundle\DataIndexerInterface` interface. The `populate` method is responsible for loading all relevant data entries into Elasticsearch for the provided shop.
 
-For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 
 ## shopware_elastic_search.mapping
 
@@ -113,13 +113,13 @@ For details on Elasticsearch, read [Elasticsearch development](/developers-guide
 
 The entity properties must be mapped to Elasticsearch fields using the `Shopware\Bundle\ESIndexingBundle\MappingInterface` interface.
 
-For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 
 ## shopware_elastic_search.settings
 
 **Purpose**: Add custom Elasticsearch anaylzers
  
-For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 
 ## shopware_elastic_search.synchronizer
 
@@ -127,7 +127,7 @@ For details on Elasticsearch, read [Elasticsearch development](/developers-guide
 
 Handles backlog queue to synchronize entities which are added by the `ORMBacklogSubscriber`.
 
-For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 
 ## shopware_search_es.search_handler
 
@@ -135,7 +135,7 @@ For details on Elasticsearch, read [Elasticsearch development](/developers-guide
 
 Analog to the DBAL condition handlers, you have to translate the abstract condition to an Elasticsearch query.
 
-For details on Elasticsearch, read [Elasticsearch development](/developers-guide/Elasticsearch/).
+For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 
 ## criteria_request_handler
 
@@ -155,7 +155,7 @@ Generates the facet data for the passed query, criteria and context object. For 
 
 Your handler must implement the `Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface` interface and be registered in your `services.xml`.
 
-```php
+```xml
 <service id="swag_plugin.foo_condition_handler" class="SwagPlugin\FooConditionHandler">
     <tag name="condition_handler_dbal" />
 </service>
@@ -171,7 +171,7 @@ Each sorting class can be used for ascending or descending sorting. The directio
 
 You should use `addOrderBy()` on the query to prevent overwriting of other sortings.
 
-```php
+```xml
 <service id="swag_plugin.foo_sorting_handler" class="SwagPlugin\FooSortingHandler">
     <tag name="sorting_handler_dbal" />
 </service>
@@ -183,7 +183,7 @@ For understanding the concept of sortings for products and customers, read [Sear
 
 **Purpose**: Add a command to the application
 
-For details on registering your own commands in the service container, read [How to Define Commands as Services](https://symfony.com/doc/current/console/commands_as_services.html).
+For details on registering your own commands in the service container, read [How to Define Commands as Services](https://symfony.com/doc/2.8/console/commands_as_services.html).
 
 ## shopware.event_subscriber
 
@@ -205,7 +205,7 @@ To enable a custom subscriber, add it as a regular service in your `services.xml
 
 During the execution of Shopware, different events are triggered and you can also dispatch custom events. This tag allows you to hook your own classes into any of those events.
 
-For a full example of this listener, read the [Shopware Events](https://developers.shopware.com/developers-guide/event-guide/) guide.
+For a full example of this listener, read the [Shopware Events](/developers-guide/event-guide/) guide.
 
 ## shopware.captcha
 
@@ -221,7 +221,7 @@ Each sorting class can be used for ascending or descending sorting. The directio
 
 You should use `addOrderBy()` on the query to prevent overwriting of other sortings.
 
-```php
+```xml
 <service id="swag_plugin.foo_sorting_handler" class="SwagPlugin\FooSortingHandler">
     <tag name="customer_search.sorting_handler" />
 </service>
@@ -235,7 +235,7 @@ For understanding the concept of sortings for products and customers, read [Sear
 
 Your handler must implement the `Shopware\Bundle\CustomerSearchBundleDBAL\ConditionHandlerInterface` interface and be registered in your `services.xml`.
 
-```php
+```xml
 <service id="swag_plugin.foo_condition_handler" class="SwagPlugin\FooConditionHandler">
     <tag name="customer_search.condition_handler" />
 </service>

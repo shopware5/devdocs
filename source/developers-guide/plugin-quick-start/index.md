@@ -1043,7 +1043,7 @@ Example:
 The given `label` is the display name of the button.
 You can define an option `handler` as callback for click events.
 
-Visit [Plugin Configuration](https://developers.shopware.com/developers-guide/plugin-configuration/) for further information.
+Visit [Plugin Configuration](/developers-guide/plugin-configuration/) for further information.
 
 ## Backend Menu Items
 

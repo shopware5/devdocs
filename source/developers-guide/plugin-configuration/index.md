@@ -212,6 +212,20 @@ Below all supported configuration elements including their design and source cod
 ```
 <img src="img/remotecombo.png" alt="Remotecombobox" class="image-border" />
 
+### Multi selectionfield / multi combobox / multi remote combobox
+
+To make your selectfield / combobox multiple selectable, you need to create the options node:
+
+```xml
+<element required="true" type="combo">
+    ...
+    <store>Shopware.apps.Base.store.CustomerGroup</store>
+    <options>
+        <multiSelect>true</multiSelect>
+    </options>
+</element>
+```
+
 ### Textfield
 ```xml
 <element required="true" type="text">

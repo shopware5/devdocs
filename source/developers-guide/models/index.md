@@ -12,15 +12,16 @@ group: Developer Guides
 subgroup: Developing plugins
 ---
 
-The [Doctrine framework](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/) has been integrated since Shopware 4 and offers the possibility of centrally defining the database structure in PHP. In addition, Doctrine offers the ability to centrally define all queries in a single system, called `Repositories`, to be used later at various points in the system.
+The [Doctrine framework](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/) has been integrated since Shopware 4 and offers the possibility of centrally defining the database structure in PHP.
+In addition, Doctrine offers the ability to centrally define all queries in a single system, called `Repositories`, to be used later at various points in the system.
 
-In order to create models for your plugin, you should create a directory named `Models` and call `$this->registerCustomModels()` in your bootstrap's `install()` method to automatically register them.
+In order to create models for your plugin, you should create a directory named `Models`.
 
 <div class="toc-list"></div>
 
 ## Namespaces
 
-Shopware models make use of the PHP namespaces. This makes it possible to create your own article model in a plugin, without interfering with the default Shopware article model. With classes defined in other namespaces, it is not always necessary to use the full namespace. We can *include* them with an `use` statement:
+Shopware models make use of the PHP namespaces. This makes it possible to create your own product model in a plugin, without interfering with the default Shopware product model. With classes defined in other namespaces, it is not always necessary to use the full namespace. We can *include* them with an `use` statement:
 
 ```php
 namespace MyPluginName\Models;

@@ -31,14 +31,11 @@ class TemplateRegistration implements SubscriberInterface
     }
 
     /**
-     * @param Enlight_Controller_ActionEventArgs $args
+     * @param \Enlight_Controller_ActionEventArgs $args
      */
-    public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
+    public function onPostDispatchBackendEmotion(\Enlight_Controller_ActionEventArgs $args)
     {
-        /** @var \Shopware_Controllers_Backend_Emotion $controller */
-        $controller = $args->getSubject();
-        $view = $controller->View();
-
+        $view = $args->getSubject()->View();
         $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
         $view->extendsTemplate('backend/emotion/swag_vimeo_element/view/detail/elements/vimeo_video.js');
     }

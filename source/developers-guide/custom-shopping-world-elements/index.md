@@ -30,7 +30,6 @@ $vimeoElement = $this->emotionComponentInstaller->createOrUpdate(
     'SwagVimeoElement',
     [
         'name' => 'Vimeo Video',
-        'xtype' => 'emotion-components-vimeo',
         'template' => 'emotion_vimeo',
         'cls' => 'emotion-vimeo-element',
         'description' => 'A simple vimeo video element for the shopping worlds.'
@@ -406,6 +405,15 @@ The name of the file has to match the definition in the `createOrUpdate()` metho
 {/block}
 ```
 
+To load your template you have to register the emotion component view subscriber in your dependency injection container. This subscriber registers all neccessary view paths for your frontend template and custom components.
+
+```xml
+<service id="swag_vimeo_element.subscriber.templates" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
+    <argument>%swag_vimeo_element.plugin_dir%</argument>
+    <tag name="shopware.event_subscriber"/>
+</service>
+```
+
 ## Process the element data before output ##
 
 When you have to process the saved element data before it is passed to the frontend, you have the possibility to register to the `Shopware_Controllers_Widgets_Emotion_AddElement` controller event. Here you get the original data to manipulate the output.
@@ -419,7 +427,7 @@ class VimeoComponentHandler implements ComponentHandlerInterface
 {
     public function supports(Element $element)
     {
-        return $element->getComponent()->getType() === 'emotion-components-vimeo';
+        return $element->getComponent()->getTemplate() === 'emotion_vimeo';
     }
 
     public function prepare(PrepareDataCollection $collection, Element $element, ShopContextInterface $context)
@@ -435,9 +443,11 @@ class VimeoComponentHandler implements ComponentHandlerInterface
 }
 ```
 
-Now register it in the dependency injection container to make it available when rendering the component.
+Because the handler is called for every element we have to do a check if the handler supports the executed element before processing the data.
 
-```
+Now register the handler in the dependency injection container to make it available when rendering the component.
+
+```xml
 <service id="swag_vimeo_element.vimeo_component_handler" class="SwagVimeoElement\ComponentHandler\VimeoComponentHandler">
     <tag name="shopware_emotion.component_handler"/>
 </service>
@@ -464,64 +474,6 @@ public function handle(ResolvedDataCollection $collection, Element $element, Sho
 ```
 
 Keep in mind to use a unique key for requesting and getting products. For best practise, use the element's id in your key (`$element->getId()`).
-
-```xml
-<!-- Add TemplateRegistration subscriber to the service.xml-->
-<service id="swag_vimeo_element.subscriber.templates" class="SwagVimeoElement\Subscriber\TemplateRegistration">
-    <argument>%swag_vimeo_element.plugin_dir%</argument>
-    <tag name="shopware.event_subscriber"/>
-</service>
-```
-
-```php
-<?php
-
-namespace SwagVimeoElement\Subscriber;
-
-use Enlight\Event\SubscriberInterface;
-use Enlight_Controller_ActionEventArgs;
-
-class TemplateRegistration implements SubscriberInterface
-{
-    /**
-     * @var string
-     */
-    private $pluginDirectory;
-
-    /**
-     * @param $pluginDirectory
-     */
-    public function __construct($pluginDirectory)
-    {
-        $this->pluginDirectory = $pluginDirectory;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [
-            'Enlight_Controller_Action_PostDispatchSecure_Backend_Emotion' => 'onPostDispatchBackendEmotion'
-        ];
-    }
-
-    /**
-     * @param Enlight_Controller_ActionEventArgs $args
-     */
-    public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
-    {
-        /** @var \Shopware_Controllers_Backend_Emotion $controller */
-        $controller = $args->getSubject();
-        $view = $controller->View();
-
-        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
-        $view->extendsTemplate('backend/emotion/swag_vimeo_element/view/detail/elements/vimeo_video.js');
-    }
-}
-```
-
-Because the event is called for every element we have to do a check before processing the data. You can get the element info from the event arguments with `$args->get('element')`. To test for a specific element we can validate the defined `xType`. When the element is the right one we can get the data of the configuration form with `$args->getReturn()`. After processing the data we have to set the new output for the frontend with `$args->setReturn($data)`.
 
 ## Adding a custom component handler for export
 <img src="img/screen_component_handler.jpg" class="is-float-right" alt="backend emotion component handler directory structure" />
@@ -693,9 +645,24 @@ class BannerComponentHandler extends AbstractComponentHandler
 <img src="img/screen_component_structure.jpg" class="is-float-right" alt="backend component directory structure" />
 If you want to go a little further by creating custom configuration fields for your element you have the possibility to create your own ExtJS component for the element. Here you have full access to the configuration form in ExtJS. You can manipulate existing fields or add new fields which are more complex than the standard form elements.
 
-The file for the component is also located in the `emotion_components` directory, so it will be detected automatically. The complete path to the file is `Resources/views/emotion_components/backend/{name}.js`.
+The file for the component is also located in the `emotion_components` directory. The complete path to the file is `Resources/views/emotion_components/backend/{name}.js`.
 
 For the Vimeo example we use the custom ExtJS component to make a call to the Vimeo api for receiving information about the preview image of the video and save it in the hidden input we already created via the helper functions.
+
+First of all you have to define a xtype in the createEmotionComponent() method for your element.
+
+```php
+$vimeoElement = $this->emotionComponentInstaller->createOrUpdate(
+    $this->pluginName,
+    'SwagVimeoElement',
+    [
+        'xtype' => 'emotion-components-vimeo',
+        // the config of your component
+    ]
+);
+```
+
+Now we can implement the custom javascript.
 
 ```js
 //{block name="emotion_components/backend/vimeo_video"}
@@ -811,14 +778,11 @@ class TemplateRegistration implements SubscriberInterface
     }
 
     /**
-     * @param Enlight_Controller_ActionEventArgs $args
+     * @param \Enlight_Controller_ActionEventArgs $args
      */
-    public function onPostDispatchBackendEmotion(Enlight_Controller_ActionEventArgs $args)
+    public function onPostDispatchBackendEmotion(\Enlight_Controller_ActionEventArgs $args)
     {
-        /** @var \Shopware_Controllers_Backend_Emotion $controller */
-        $controller = $args->getSubject();
-        $view = $controller->View();
-
+        $view = $args->getSubject()->View();
         $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
         $view->extendsTemplate('backend/emotion/swag_vimeo_element/view/detail/elements/vimeo_video.js');
     }

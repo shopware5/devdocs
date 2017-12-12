@@ -20,7 +20,7 @@ On the left you can see Shopware's default directory structure, as you will find
 
 <img src="img/tree.png" class="is-float-left" />
 
-**_sql**: (Not in release packages) Contains various deltas and migrations to set up Shopware or migrate the database of an old Shopware version to the database of a new versions.
+**_sql**: (Not in release packages) Contains various deltas and migrations to set up Shopware or migrate the database of an old Shopware version to the database of a new version.
 
 **bin**: Contains the `console` command which can be executed to run the Shopware command line tools
 
@@ -44,8 +44,6 @@ On the left you can see Shopware's default directory structure, as you will find
 
 **snippets**: Contains Shopware snippets for frontend and backend in a simple INI format. Snippets will automatically be deployed to database during installation. (Not in release packages)
 
-**templates**: The Shopware 4 template base (emotion)
-
 **tests**: PHPUnit and Mink tests
 
 **themes**: The Shopware 5 template base (bare, responsive)
@@ -60,7 +58,7 @@ On the left you can see Shopware's default directory structure, as you will find
 Shopware makes use of the [MVC design pattern](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). For this reason, the representational aspect of the application (view), the controlling and user input (controller) as well as the data layer and business logic (model) are decoupled throughout the application.
 
 ### View
-Shopware uses [Smarty](http://en.wikipedia.org/wiki/Smarty) as template engine. When using the new responsive template base, you will find all templates in `themes`. The old Shopware 4 template can still be found in `templates`.
+Shopware uses [Smarty](http://en.wikipedia.org/wiki/Smarty) as template engine. You will find all templates in `themes`.
 
 ### Model
 [Doctrine](http://en.wikipedia.org/wiki/Doctrine_(PHP)) is used as ORM and database abstraction layer. You will find the various Doctrine models in `engine/Shopware/Models`. The models are grouped by domain, so you will find article related models in the `Article` directory, customer related models in the `Customer` directory and so on. The business logic of Shopware can be found in `Core`, `Components` or `Bundle` - depending how tight the service in question is coupled to Shopware itself.

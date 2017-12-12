@@ -2,12 +2,16 @@
 layout: default
 title: Implementing your own captcha
 github_link: developers-guide/implementing-your-own-captcha/index.md
+shopware_version: 5.3.0
 tags:
   - captcha
   - recaptcha
   - example
 indexed: true
-shopware_version: 5.3.0
+group: Developer Guides
+subgroup: General Resources
+menu_title: Captcha
+menu_order: 120
 ---
 
 <div class="toc-list"></div>

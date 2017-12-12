@@ -188,7 +188,7 @@ $.plugin('example', {
     * Setter method which overrides the value of the provided key with the provided value.
 * ```applyDataAttributes()```
     * **Arguments**
-        * ```[shouldDeserialize : Boolean = false]``` - Tries to parse the given string values and returns the right value if its successful. Supports boolean, null, number, json, string. (optional, default: false)
+        * ```[shouldDeserialize : Boolean = undefined]``` - Tries to parse the given string values and returns the right value if its successful. Supports boolean, null, number, json, string. This feature is enabled by default. Pass `false` to deactivate parsing.
     * Fetches the provided configuration keys and overrides the values based on the elements ```data``` attributes. Hint: You don't need to convert ([camel|pascal](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case java script variable names to ([dash|hyphend|kebab](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case html attribute names.
     
 ## Global jQuery event observer
@@ -455,7 +455,7 @@ $.plugin('myPlugin', {
     },
     init: function() {
         var me = this;
-        me.applyDataAttributes(true);
+        me.applyDataAttributes();
     }
 }); 
 ```

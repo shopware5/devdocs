@@ -354,24 +354,6 @@ div.search.fixed {
   &.no--shadow {
     .box-shadow(none);
   }
-
-  &:before {
-    content:"";
-    padding: 50px;
-    display: block;
-    background: url(../images/loading-indicator-2.gif) no-repeat center;
-    background-size: 40px;
-
-    @media (max-width: 479px) {
-      padding: 30px;
-      background-size: 30px;
-    }
-  }
-  &.done {
-    &:before {
-      display: none;
-    }
-  }
   iframe, pre {
     width: 100%;
     float: left;
@@ -480,6 +462,29 @@ div.search.fixed {
         font-size: 11px;
         overflow-x: auto;
         white-space: pre;
+      }
+    }
+  }
+}
+
+body.components,
+body.preview {
+  .example.complete {
+    &:before {
+      content:"";
+      padding: 50px;
+      display: block;
+      background: url(../images/loading-indicator-2.gif) no-repeat center;
+      background-size: 40px;
+
+      @media (max-width: 479px) {
+        padding: 30px;
+        background-size: 30px;
+      }
+    }
+    &.done {
+      &:before {
+        display: none;
       }
     }
   }

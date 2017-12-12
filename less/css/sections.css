@@ -388,22 +388,6 @@ div.search.fixed.is--fixed:before {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-.example.complete:before {
-  content: "";
-  padding: 50px;
-  display: block;
-  background: url(../images/loading-indicator-2.gif) no-repeat center;
-  background-size: 40px;
-}
-@media (max-width: 479px) {
-  .example.complete:before {
-    padding: 30px;
-    background-size: 30px;
-  }
-}
-.example.complete.done:before {
-  display: none;
-}
 .example.complete iframe,
 .example.complete pre {
   width: 100%;
@@ -561,4 +545,23 @@ div.search.fixed.is--fixed:before {
     overflow-x: auto;
     white-space: pre;
   }
+}
+body.components .example.complete:before,
+body.preview .example.complete:before {
+  content: "";
+  padding: 50px;
+  display: block;
+  background: url(../images/loading-indicator-2.gif) no-repeat center;
+  background-size: 40px;
+}
+@media (max-width: 479px) {
+  body.components .example.complete:before,
+  body.preview .example.complete:before {
+    padding: 30px;
+    background-size: 30px;
+  }
+}
+body.components .example.complete.done:before,
+body.preview .example.complete.done:before {
+  display: none;
 }

@@ -200,11 +200,6 @@ For example:
 $seoService = $this->container->get('shopware_storefront.seo_category_service');
 ```
 
-## Theme_Compiler_Collect_Plugin_Less
-
-Add the `all.less` file to the `Resources/views/frontend/less` directory. 
-If the plugin is installed and active, Shopware loads this file automatically
-
 ## Plugin ListProductService (Service Decoration) 
 
 ```xml

@@ -4,6 +4,8 @@ title: Shopping cart & ordering processes
 github_link: labs/shopping-cart-and-ordering-processes/index.md
 shopware_version: X
 indexed: true
+redirect:
+  - /developers-guide/concept-cart-bundle/
 tags:
   - cart
   - refactoring

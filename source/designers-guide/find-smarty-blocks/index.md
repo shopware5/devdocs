@@ -32,7 +32,7 @@ Apart from the frontend, a theme can also include modules such as newsletter and
 ├── documents
 ├── frontend
 ├── newsletter
-├── documents
+├── widgets
 └── Theme.php
 ```
 *Directory structure of a typical theme*

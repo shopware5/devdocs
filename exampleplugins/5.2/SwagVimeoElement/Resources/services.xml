@@ -4,7 +4,7 @@
 
     <services>
         <!-- Add emotion component auto loader -->
-        <service id="swag_emotion.emotion_view_subscriber" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
+        <service id="swag_vimeo_element.emotion_view_subscriber" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
             <argument>%swag_vimeo_element.plugin_dir%</argument>
             <tag name="shopware.event_subscriber" />
         </service>

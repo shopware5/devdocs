@@ -783,6 +783,7 @@ public function install(InstallContext $context)
 ```
 
 Registering the `Shopware\Components\Emotion\EmotionComponentViewSubscriber` as event subscriber allows to add the required template directory automatically:
+Make sure that the service id is unique. Prefix it e.g with the plugin name.
 ```xml
 <?xml version="1.0" ?>
 
@@ -792,7 +793,7 @@ Registering the `Shopware\Components\Emotion\EmotionComponentViewSubscriber` as 
 
     <services>
         <!-- Change swag_emotion in id to your plugin name -->
-        <service id="swag_emotion.emotion_view_subscriber" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
+        <service id="swag_your_plugin_name.emotion_view_subscriber" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
             <!-- Change argument swag_emotion to your plugin name -->
             <argument>%swag_emotion.plugin_dir%</argument>
             <tag name="shopware.event_subscriber" />

@@ -89,10 +89,10 @@ When a model object is first added to the database, the `prePersist` and `postPe
 namespace SwagModel\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Shopware\Models\Article\Article;
 use Doctrine\ORM\Events;
+use Shopware\Components\Model\ModelManager;
+use Shopware\Models\Article\Article;
 
 class ModelSubscriber implements EventSubscriber
 {
@@ -118,7 +118,7 @@ class ModelSubscriber implements EventSubscriber
      */
     public function prePersist(LifecycleEventArgs $arguments)
     {
-        /** @var EntityManager $modelManager */
+        /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
 
         $model = $arguments->getEntity();
@@ -135,7 +135,7 @@ class ModelSubscriber implements EventSubscriber
      */
     public function postPersist(LifecycleEventArgs $arguments)
     {
-        /** @var EntityManager $modelManager */
+        /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
 
         $model = $arguments->getEntity();
@@ -165,7 +165,7 @@ public function getSubscribedEvents()
  */
 public function preUpdate(LifecycleEventArgs $arguments)
 {
-    /** @var EntityManager $modelManager */
+    /** @var ModelManager $modelManager */
     $modelManager = $arguments->getEntityManager();
 
     $model = $arguments->getEntity();
@@ -182,7 +182,7 @@ public function preUpdate(LifecycleEventArgs $arguments)
  */
 public function postUpdate(LifecycleEventArgs $arguments)
 {
-    /** @var EntityManager $modelManager */
+    /** @var ModelManager $modelManager */
     $modelManager = $arguments->getEntityManager();
 
     $model = $arguments->getEntity();
@@ -211,12 +211,12 @@ public function getSubscribedEvents()
 
 **Event listener**
 ```php
-/**
+    /**
      * @param LifecycleEventArgs $arguments
      */
     public function preRemove(LifecycleEventArgs $arguments)
     {
-        /** @var EntityManager $modelManager */
+        /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
 
         $model = $arguments->getEntity();
@@ -233,7 +233,7 @@ public function getSubscribedEvents()
      */
     public function postRemove(LifecycleEventArgs $arguments)
     {
-        /** @var EntityManager $modelManager */
+        /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
 
         $model = $arguments->getEntity();

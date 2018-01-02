@@ -25,7 +25,7 @@ Please note that Vagrant setup does not contain a Shopware installation. The ins
 Download the required software:
 
  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
- - [Vagrant](https://www.vagrantup.com/downloads)
+ - [Vagrant](https://www.vagrantup.com/downloads.html)
   
  Additional Information for VirtualBox setup (Windows), or you get errors like "error downloading the file" without any further explanation:
 - make sure VirtualBox supports 64bit Guest Systems, if only 32 bit is supported check if:

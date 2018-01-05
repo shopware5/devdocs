@@ -299,7 +299,16 @@ With the help of the scope parameter we can assign configurations per subshop. W
 ```php
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 {
-    $config = $this->container->get('shopware.plugin.config_reader')->getByPluginName('PluginName');
+    $shop = false;
+    if ($this->container->has('shop')) {
+        $shop = $this->container->get('shop');
+    }
+
+    if (!$shop) {
+        $shop = $this->container->get('models')->getRepository(Shopware\Models\Shop\Shop::class)->getActiveDefault();
+    }
+
+    $config = $this->container->get('shopware.plugin.config_reader')->getByPluginName('PluginName', $shop);
     if (empty($config->show)) {
         return;
     }

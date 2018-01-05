@@ -21,11 +21,11 @@ Starting on Monday, <strong>5th September and continuing until Monday, 19th Sept
 
 ## How you can contribute:
 
-1. Join our [IRC Channel](/contributing/irc) for direct communication with us and the rest of the community.
+1. Join our [IRC Channel](/community/irc) for direct communication with us and the rest of the community.
 2. Find a papercut that you want to fix from the <a target="_blank" href="https://issues.shopware.com/99-paper-cuts">existing papercuts</a>.
     -  When you start working please write a comment like "Working on it" into the ticket.
 3. Create a Pull Request on [Github](https://github.com/shopware/shopware).
-    - Please read [How to create a Pull Request](/contributing/contributing-code/)
+    - Please read [How to create a Pull Request](/community/contributing-code/)
     - The pull request must be based on the `99-papercuts` branch (`git checkout -b my-new-feature upstream/99-papercuts`)
     - Prefix the Pull Request Title with `[Papercut]` like this: `[Papercut] Fix spelling of newsletter`
     - The commit message must be formatted with the Issue number like this: `SW-9999 - Fix spelling of newsletter`
@@ -40,7 +40,7 @@ Don't know where to start? You can also see all <a target="_blank" href="https:/
 
 ## Direct contact & help from Shopware developers
 
-The best tool to directly communicate with the Community and shopware developers is the [\#shopware IRC Channel](/contributing/irc).
+The best tool to directly communicate with the Community and shopware developers is the [\#shopware IRC Channel](/community/irc).
 During the time of the papercut project, we will be paying close attention to this channel and supporting you with your pull requests.
 
 ## Brag about it on Twitter

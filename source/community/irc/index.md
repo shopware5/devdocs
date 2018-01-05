@@ -1,16 +1,18 @@
 ---
 layout: default
 title: Shopware IRC Channel
-github_link: contributing/irc/index.md
+github_link: community/irc/index.md
 indexed: true
 menu_title: IRC Channel
-menu_order: 50
-group: Contributing
+menu_order: 40
+group: Community
+redirect: 
+  - /contributing/irc/
 ---
 
 ## The shopware IRC channel is discontinued
 
-*It is replaced by Gitter.* Please use <a href="{{ site.url }}/contributing/gitter">this guide</a> to connect and (re)join the awesome shopware community via chat!
+*It is replaced by Gitter.* Please use <a href="{{ site.url }}/community/gitter">this guide</a> to connect and (re)join the awesome shopware community via chat!
 
 ## Why was  IRC discontinued?
 
@@ -27,7 +29,7 @@ But besides the coolness there are a few disadvantages that come with using IRC:
 Of course, all these points are arguable.    
 But in the end, we wanted to have a chat community with easier access and more modern features.
 
-We hope to not lose any old IRC users (we learned to love you all at #shopware) and get many new and interesting people to join <a href="{{ site.url }}/contributing/gitter">Gitter</a>.
+We hope to not lose any old IRC users (we learned to love you all at #shopware) and get many new and interesting people to join <a href="{{ site.url }}/community/gitter">Gitter</a>.
 
 ## "But I don't want to use Gitter! In fact, I hate it!"
 

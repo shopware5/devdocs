@@ -1,11 +1,13 @@
 ---
 layout: default
 title: Shopware Gitter Channel
-github_link: contributing/gitter/index.md
+github_link: community/gitter/index.md
 indexed: true
 menu_title: Gitter
-menu_order: 40
-group: Contributing
+menu_order: 10
+group: Community
+redirect: 
+  - /contributing/gitter/
 ---
 
 The official chatroom for shopware is [shopware/shopware](https://gitter.im/shopware/shopware?utm_source=share-link&utm_medium=link&utm_campaign=share-link) on `gitter.im`. 
@@ -27,7 +29,7 @@ If you do not want to use the website, there are Gitter [apps](https://gitter.im
 Mobile users can use the [iPhone](http://appstore.com/gitter) or [android](https://play.google.com/store/apps/details?id=im.gitter.gitter) app.
 
 ## Why not IRC or Slack?
-The #shopware IRC channel was active since 2011 and had quite a few regular active users. It is no longer available. The reasons for discontinuing can be found <a href="{{ site.url }}/contributing/irc">here</a>. 
+The #shopware IRC channel was active since 2011 and had quite a few regular active users. It is no longer available. The reasons for discontinuing can be found <a href="{{ site.url }}/community/irc">here</a>. 
 
 Ultimatively, we choose Gitter over slack because shopware is an open source product with git as VCS and with Gitter there is a direct connection between the chat and our repository.
 The community evolves around github, so Gitter was the most integrated and easily accessible medium for a chat.

@@ -25,7 +25,7 @@ First of all you need a working Shopware installation. Just visit our [Github Re
 and follow the `README.md` installation instructions. You do not want to worry about a local webserver or database server?
 Then take a look at our [Vagrant and PHPStorm](/developers-guide/vagrant-phpstorm/) guide to set up a virtual
 machine, ready to develop with Shopware. If you want to contribute to the Shopware repository also check out our
-[Contributing](/contributing/) guides.
+[contribution guideline](/community/contribution-guideline/).
 
 
 ### Benefits of using PhpStorm

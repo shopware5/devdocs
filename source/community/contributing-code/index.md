@@ -1,12 +1,14 @@
 ---
 layout: default
 title: Contributing Code 
-github_link: contributing/contributing-code/index.md
+github_link: community/contributing-code/index.md
 indexed: true
 tags: [pullrequest, github, contribute, git, pull-request, fork]
 menu_title: Contributing Code
-menu_order: 10
-group: Contributing
+menu_order: 30
+group: Community
+redirect: 
+  - /contributing/contributing-code/
 ---
 
 <div class="toc-list"></div>
@@ -23,7 +25,7 @@ Set up your user information with your real name and a working email address:
 ## Create a Fork
 Navigate to the [Shopware Github Repository](https://github.com/shopware/shopware) and click the **"Fork"**-Button in the upper right hand corner.
 
-<img src="/contributing/img/github-fork-button.png"/>
+<img src="/community/img/github-fork-button.png"/>
 
 This will create a "copy" of the entire Shopware repository into your personal user namespace.
 
@@ -88,9 +90,9 @@ Push your branch to your github fork:
 ## Create a Pull Request on Github
 Navigate back to the [Shopware Github Repository](https://github.com/shopware/shopware) and click the **"Compare & pull request"-Button**.
 
-<img src="/contributing/img/github-create-pull-request.png"/>
+<img src="/community/img/github-create-pull-request.png"/>
 
-Before creating your pull request make sure that it fits our [contribution guideline](/contributing/contribution-guideline/).
+Before creating your pull request make sure that it fits our [contribution guideline](/community/contribution-guideline/).
 
 ### How to create a Pull Request
 

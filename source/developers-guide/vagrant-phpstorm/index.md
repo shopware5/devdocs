@@ -112,7 +112,7 @@ These directories will be marked red in your project and might not be visible an
 
 ### Coding Style
 
-As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.1/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
+As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.3/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
 
 
 ### Deploy with PhpStorm

@@ -1,12 +1,14 @@
 ---
 layout: default
 title: Contribution Guideline 
-github_link: contributing/contribution-guideline/index.md
+github_link: community/contribution-guideline/index.md
 indexed: true
 tags: [pullrequest, github, guideline, contribute, git, pull-request, fork]
 menu_title: Contribution Guideline
 menu_order: 20
-group: Contributing
+group: Community
+redirect: 
+  - /contributing/contribution-guideline/
 ---
 
 <div class="toc-list"></div>
@@ -40,7 +42,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-incomplete.jpg" />
+            <img src="/community/img/label-incomplete.jpg" />
         </td>
         <td>
             Your pull request is incomplete. It is either missing some of the necessary information, or your code implementation is not sufficient to fix the issue. Mostly there will be a comment by our developers which gives you further information of what is missing.
@@ -48,7 +50,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-tests.jpg" />
+            <img src="/community/img/label-tests.jpg" />
         </td>
         <td>
             When you want to commit a new feature or bigger change it is highly necessary that you provide the corresponding tests for it. We only accept new features or bug fixes which are completely tested.
@@ -56,7 +58,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-question.jpg" />
+            <img src="/community/img/label-question.jpg" />
         </td>
         <td>
             Our developers have a question about your code and want to talk with you. They will either comment directly in your code or in the main conversation of the pull request. Try to give them all needed information as detailed as possible so that they can understand what you want to achieve with your changes.
@@ -64,7 +66,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-declined.jpg" />
+            <img src="/community/img/label-declined.jpg" />
         </td>
         <td>
             Your pull request was declined by our developers and is closed. No reason to be sad. It can have very different reasons. We understand that it sometimes can be hard to understand the reason behind this. Mostly there will be a comment by our developers about why it was declined.
@@ -72,7 +74,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-scheduled.jpg" />
+            <img src="/community/img/label-scheduled.jpg" />
         </td>
         <td>
             Yeaha! You made the first step towards the holy grail. Your changes had been reviewed by our developers and they decided that you provided a good benefit for our product. Your pull request will be imported to our ticket system and will go through our internal workflow. You will find a comment containing the ticket number to follow the status.
@@ -80,7 +82,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-pick.jpg" />
+            <img src="/community/img/label-pick.jpg" />
         </td>
         <td>
             You are a lucky one! The changes you provide are only a small fix which is easy to test and implement. Our developers decided to quickly integrate this to our software.
@@ -88,7 +90,7 @@ When you create a new pull request on GitHub normally it will get a first sight 
     </tr>
     <tr>
         <td>
-            <img src="/contributing/img/label-accepted.jpg" />
+            <img src="/community/img/label-accepted.jpg" />
         </td>
         <td>
             Your changes are finally accepted. The pull request passed our internal workflow. Your changes will be released with one of the next releases.

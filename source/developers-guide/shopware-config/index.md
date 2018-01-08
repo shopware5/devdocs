@@ -89,7 +89,7 @@ The default value of `error_reporting` should be sufficient for developing.
     ],
 ```
 
-The difference between `throwExceptions` and `showExceptions` is how an exception will be handled.
+The difference between `throwExceptions` and `showException` is how an exception will be handled.
 
 The option `showException` keeps the Shopware error handler enabled, catches the PHP exception and prints the message instead of showing the generic "Oops! An error has occurred!" message.
 
@@ -163,7 +163,7 @@ return [
     ],
     
     'front' => [
-        'throwException' => true,
+        'throwExceptions' => true,
         'showException' => true
     ],
 

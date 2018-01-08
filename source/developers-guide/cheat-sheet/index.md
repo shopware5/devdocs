@@ -90,6 +90,15 @@ $attributeCrudService->update(
     
 );
 ```
+### Naming - Attribute generation
+If you get the `Error: Unrecognized field: my_field` when querying for your attribute it could be that you forgot to generate the attribute models:
+```php
+$this->container()->get('models')->generateAttributeModels();
+```
+or ran into naming issues:
+* the field name gets __lower cased__ before added to the database
+* when using underscores(`_`) in field names they must be queried in __camel case__
+
 ### Delete existing attribute
 ```php
 $attributeCrudService = $this->container->get('shopware_attribute.crud_service');

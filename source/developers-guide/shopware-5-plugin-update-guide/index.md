@@ -119,10 +119,10 @@ The goal is to make this plugin compatible with the new Shopware 5 templates. Fo
 
     In order for the plugin template to be easily extended by others, the template adjustments should be extracted into a separate file.
 
-First, the template structure is revised. The example1.tpl file is now divided into three new files:
+First, the template structure is revised. The example1.tpl file is now divided into two new files:
 
-    *SwagExample1/Resources/views/responsive/frontend/detail/index.tpl (Entry point to extends the responsive template)
-    *SwagExample1/Resources/views/common/frontend/swag_example1/detail_extension.tpl (Contains the source code for the extension)
+    *SwagExample1/Resources/views/frontend/detail/index.tpl (Entry point to extend the template)
+    *SwagExample1/Resources/views/frontend/swag_example1/detail_extension.tpl (Contains the source code for the extension)
 
 The new files contain the following source code:
 `/.../SwagUpdatePlugin/Resources/views/frontend/detail/index.tpl`
@@ -130,11 +130,11 @@ The new files contain the following source code:
 {extends file="parent:frontend/detail/index.tpl"}
 
 {block name="frontend_detail_index_detail"}
-    {include file="frontend/swag_update_plugin/detail/example1.tpl"}
+    {include file="frontend/swag_example1/detail_extension.tpl"}
 {/block}
 ```
 
-`/.../SwagUpdatePlugin/Resources/views/frontend/swag_update_pluigin/detail/example1.tpl`
+`/.../SwagUpdatePlugin/Resources/views/frontend/swag_example1/detail_extension.tpl`
 ```html
 {block name="frontend_detail_example"}
     <div class="example--own-topseller">
@@ -157,7 +157,7 @@ The new files contain the following source code:
 
 Notice: Template extensions for the responsive template are loaded via the inheritance hierarchy based on the file system. Therefore, this template should be extends via {extends file = ".."}.
 
-The SwagExample1/Resources/views/responsive/frontend/detail/index.tpl file serve only as entry points into the original template. The source code for displaying the top seller sliders and the banner element, which was previously located directly in the extended template file, has now been made available globally in a separate template file, and is now simply included by both templates. This has the following advantages:
+The SwagExample1/Resources/views/frontend/detail/index.tpl file serve only as entry points into the original template. The source code for displaying the top seller sliders and the banner element, which was previously located directly in the extended template file, has now been made available globally in a separate template file, and is now simply included by the template. This has the following advantages:
 
     Avoid duplicate source code
     Extensible plugin template for other developers

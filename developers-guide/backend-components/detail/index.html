@@ -1,0 +1,1383 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Backend Components - Detail</title><meta name="description" content="Backend Components - Detail"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505361.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505361.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505361.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter is--active">
+                    <a href="/developers-guide/" class="navi--link is--active has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter is--active">
+
+                            <a class="navi--link is--active has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link is--active" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/developers-guide/backend-components/detail/index.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Backend Components - Detail
+            </h1>
+            
+            <p>This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial we covered the <a href="/developers-guide/backend-components/listing/">Backend Components - Listing</a> and the different configuration options of the <code>Shopware.grid.Panel</code>. In this tutorial, you'll learn the basics of the detail window and get a little example of it. This time, the <code>Shopware.model.Container</code> and <code>Shopware.window.Detail</code> components will be explained in more detail.</p>
+
+<p>We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: <a href="/exampleplugins/SwagProductListing.zip">SwagProductListing.zip</a></p>
+
+<p>The <code>Shopware.window.Detail</code> for the detail window was implemented in <code>Resources/views/backend/swag_product_detail/view/detail/window.js</code>.</p>
+
+<p>The <code>Shopware.model.Container</code> for more detailed configuration of the detail window in <code>Resources/views/backend/swag_product_detail/view/list/window.js</code>.</p>
+
+<div class="toc-list"></div>
+
+<h2 id="shopware.window.detail-basics">Shopware.window.Detail Basics</h2>
+
+<p>The <code>Shopware.window.Detail</code> component, hereinafter referred to as detail window, is the entry to manage a record in detail and is defined as <code>detailWindow</code> in the <code>Shopware.grid.Panel</code>. The <code>Shopware.grid.Panel</code> calls the detail window with a single record. This is the only requirement for this component to work. The detail window will then create the view based on the <code>Shopware.data.Model</code>. That's why we create a relation in the <code>configure()</code> method right inside of the <code>Shopware.data.Model</code>.</p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.model.Product', {
+    extend: 'Shopware.data.Model',
+    configure: function() {
+        return {
+            controller: 'SwagProductDetail',
+            detail: 'Shopware.apps.SwagProductDetail.view.detail.Product'
+        };
+    },
+    fields: [
+        { name : 'id', type: 'int', useNull: true },
+        ...
+    ]
+});
+</code></pre>
+
+<h3 id="event-handling">Event Handling</h3>
+
+<p>The event handling of the <code>Shopware.window.Detail</code> and <code>Shopware.model.Container</code> components are managed by the <code>Shopware.detail.Controller</code>. This controller will be created and mapped by the <code>Shopware.window.Detail</code> automatically. To prevent duplicated event names, every event will be prefixed. The prefix will be determined by the class name of the given record.</p>
+
+<p><strong>Example</strong>:<br>
+The class name of the given record is <code>Shopware.apps.SwagProductDetail.model.Product</code>. The event prefix will then be <code>product</code>.</p>
+
+<p>All events are now prefixed like this:</p>
+
+<ul><li>product-save</li>
+<li>product-tab-changed</li>
+<li>...</li>
+</ul><p>The <code>Shopware.detail.Controller</code> catches these events and performs the default actions for the appropriate event. In the <a href="/developers-guide/backend-components/batch-processes/">Backend Component - Batch Processes</a> you will learn how to deactivate or extend the Shopware default controller.</p>
+
+<h2 id="shopware.model.container-basics">Shopware.model.Container Basics</h2>
+
+<p>In this section of the tutorial, we'll focus on the <code>Shopware.model.Container</code>, hereinafter referred to as <em>model container</em>, and how it works behind the scenes. In addition, you'll learn how the model container creates the field sets, the input fields and how to configure them properly. The requirements are that the property <code>record</code> should contain a <code>Shopware.data.Model</code> instance and that the <code>controller</code> property should be the name of the PHP controller.</p>
+
+<h3 id="generating-forms">Generating forms</h3>
+
+<p>The base for the form generation is the <code>Shopware.data.Model</code> instance provided in the <code>record</code> property. By default, you have to create every field manually except for the <code>id</code> property. This should result in a faster application. Furthermore, only one field set will be created by default.</p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.model.Product', {
+    extend: 'Shopware.data.Model',
+    configure: { ... },
+    fields: [
+        { name : 'id', type: 'int', useNull: true },
+        { name : 'name', type: 'string' },
+        { name : 'active', type: 'boolean' },
+        { name : 'createDate', type: 'date' },
+        { name : 'description', type: 'string' },
+        { name : 'descriptionLong', type: 'string' },
+        { name : 'lastStock', type: 'boolean' }
+    ]
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/detail_1.png" alt="Basic detail page"></p>
+</div>
+
+<p>Based on the field types, different default Shopware form fields will be created. Because a model can contain many more fields than those seen above, you can decide whether a field should be displayed alone or inside a field set. You can use the <code>fieldSets</code> configuration option to group them according to your needs. The <code>fieldSets</code> parameter is an array of objects, each containing a <code>title</code> and <code>fields</code>. The <code>title</code> is the title of the field set whereas the property <code>fields</code> is an object of the desired fields defined as its keys.</p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    configure: function() {
+        return {
+            controller: 'SwagProductDetail',
+            fieldSets: [{
+                title: 'Product data',
+                fields: {
+                    name: {},
+                    active: {}
+                }
+            }, {
+                title: 'Additional data',
+                fields: {
+                    description: {},
+                    descriptionLong: {}
+                }
+            }]
+        };
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/detail_2.png" alt="Detail window with two field sets"></p>
+</div>
+
+<p>Like in the previous tutorial, the order of the field sets and fields is important for the creation order. Furthermore, if you specify a column layout, the field sets will be splitted into two container to utilize the blank space in the detail window.</p>
+
+<p>The <code>fields</code> property may not only be used for limitation - it can also be used to configure the field even more precisely. You can also specify additional configuration parameters for the filed:</p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    padding: 20,
+
+    configure: function() {
+        return {
+            controller: 'SwagProductDetail',
+            fieldSets: [{
+                title: 'Product data',
+                fields: {
+                    name: 'Product name',
+                    active: { disabled: true }
+                }
+            }, {
+                title: 'Additional data',
+                layout: 'fit',
+                fields: {
+                    description: 'Short description',
+                    descriptionLong: {
+                        fieldLabel: null
+                    }
+                }
+            }]
+        };
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/detail_3.png" alt="Custom field sets"></p>
+</div>
+
+<p>The example above shows that the fields <code>description</code> and <code>name</code> make use of the field's shorthand method. If you want to hide a label entirely, just set the <code>fieldLabel</code> of a field to <code>null</code>. A good practise is to use the <code>fieldLabel</code> for translations. If you have noticed, there is a <code>layout</code> option inside a field set - it simply disables the column layout so that every field is displayed in its own row.</p>
+
+<p>Sometimes you need more than just a simple object to configure your field properly. Because of that, you can define your own methods to be used for creation. The method will get the <code>record</code> and an already generated field which can be then modified or overwritten entirely.</p>
+
+<pre><code class="language-javascript">Ext.define('...view.detail.Product', {
+
+   extend: 'Shopware.model.Container',
+   alias: 'widget.product-detail-container',
+   configure: function() {
+      return {
+         controller: 'SwagProductDetail',
+         fieldSets: [{
+            title: 'Product data',
+            fields: {
+               name: 'Product name',
+               active: { disabled: true }
+            }
+         }, {
+            title: 'Additional data',
+            layout: 'fit',
+            fields: {
+               description: this.createDescription,
+               descriptionLong: { 
+                  fieldLabel: null, 
+                  xtype: 'tinymce' 
+               }
+            }
+         }]
+      };
+   },
+
+   createDescription: function(model, formField) {
+      formField.xtype = 'textarea';
+      formField.height = 90;
+      formField.grow = true;
+      return formField;
+   }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/detail_4.png" alt="Expanded detail page"></p>
+</div>
+
+<p>In other scenarios, you may not even need data from the model and just want to display some informative messages. In those cases, you can create a simple container, which may contain other components, like a Shopware Block Message, a <code>Shopware.grid.Panel</code> or any other kind of container. You can define them to replace a field set using functions. Have a look at the example below:</p>
+
+<pre><code class="language-javascript">Ext.define('...view.detail.Product', {
+
+   extend: 'Shopware.model.Container',
+   alias: 'widget.product-detail-container',
+   configure: function() {
+      return {
+         controller: 'SwagProductDetail',
+         fieldSets: [{
+            title: 'Product data',
+            fields: {
+               name: 'Product name',
+               active: { disabled: true }
+            }
+         }, 
+         this.createCustomContainer,
+         {
+            title: 'Additional data',
+            layout: 'fit',
+            fields: {
+               description: this.createDescription,
+               descriptionLong: { 
+                  fieldLabel: null, 
+                  xtype: 'tinymce' 
+               }
+            }
+         }]
+      };
+   },
+
+   createCustomContainer: function() {
+      return Shopware.Notification.createBlockMessage(
+         'A Shopware.grid.Panel could also be implemented here.',
+         'notice'
+      );
+   }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/detail_5.png" alt="Warning message"></p>
+</div>
+
+<h2 id="how-to-extend">How to extend</h2>
+
+<p>In this section of this tutorial you will learn how to easily extend the <code>Shopware.detail.Window</code> and <code>Shopware.model.Container</code>. Like extending the <code>Shopware.grid.Panel</code>, there are two ways to accomplish this task:</p>
+
+<ul><li>through override of the methods</li>
+<li>through the ExtJS event system</li>
+</ul><p>The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller in <code>swag_product_detail/controller/main.js</code>.</p>
+
+<h3 id="create-a-toolbar-button">Create a Toolbar Button</h3>
+
+<p>To add a new button to the toolbar, you have to extend the toolbar elements of the <code>Shopware.window.Detail</code>. The toolbar will be created by the <code>createToolbar()</code> method. The actual elements will be created by the <code>createToolbarItems()</code> method.</p>
+
+<pre><code class="language-javascript">createToolbarItems: function() {
+    var me = this, items = [];
+
+    me.fireEvent(this.getEventName('before-create-toolbar-items'), me, items);
+
+    items.push({ xtype: 'tbfill' });
+    items.push(me.createCancelButton());
+    items.push(me.createSaveButton());
+
+    me.fireEvent(this.getEventName('after-create-toolbar-items'), me, items);
+
+    return items;
+},
+</code></pre>
+
+<p>You can now choose to extend them by either overriding the method or using the event <code>product-after-create-toolbar-items</code> in the main controller.</p>
+
+<p><strong>Through method overriding</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.view.detail.Window', {
+    extend: 'Shopware.window.Detail',
+    alias: 'widget.product-detail-window',
+    title : '{s name=title}Product details{/s}',
+    height: 270,
+    width: 680,
+
+    createToolbarItems: function() {
+        var me = this,
+            items = me.callParent(arguments);
+
+        items.push(me.createToolbarButton());
+
+        return items;
+    },
+
+    createToolbarButton: function() {
+        return Ext.create('Ext.button.Button', {
+            text: 'Single Toolbar Button'
+        });
+    }
+});
+</code></pre>
+
+<p><strong>Through the event system</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
+    extend: 'Enlight.app.Controller',
+    init: function() {
+        var me = this;
+
+        me.control({
+            'product-detail-window': {
+                'product-after-create-toolbar-items': me.addDetailWindowButton
+            }
+        });
+        me.mainWindow = me.getView('list.Window').create({ }).show();
+    },
+
+    addDetailWindowButton: function(window, items) {
+        items.push(this.createToolbarButton());
+        return items;
+    },
+
+    createToolbarButton: function() {
+        return Ext.create('Ext.button.Button', {
+            text: 'Single Toolbar Button'
+        });
+    }
+});
+</code></pre>
+
+<h3 id="implement-a-sidebar">Implement a sidebar</h3>
+
+<p>To implement a sidebar, you have to extend the product's <code>Shopware.model.Container</code> component in <code>swag_product_detail/view/detail/product.js</code>. The elements of the <code>Shopware.model.Container</code> will be created by the <code>createItems()</code> method:</p>
+
+<pre><code class="language-javascript">createItems: function() {
+    var me = this, items = [], item, config,
+        associations, fields, field, keys;
+
+    if (!me.fireEvent(me.eventAlias + '-before-create-items', me, items)) {
+        return false;
+    }
+
+    //iterate all defined field sets. If no field set configured, the component is used for none model fields.
+    Ext.each(me.getConfig('fieldSets'), function(fieldSet) {
+        ...
+        item = me.createModelFieldSet(me.record.$className, fields, fieldSet);
+        items.push(item);
+    });
+
+    ...
+
+    me.fireEvent(me.eventAlias + '-after-create-items', me, items);
+
+    return items;
+},
+</code></pre>
+
+<p>Now, to implement the actual sidebar, you have either to override the <code>createItems()</code> method in <code>Resources/views/backend/swag_product_detail/view/detail/product.js</code> or subscribe to the event <code>product-after-create-items</code> in the main controller. Additionally, you should change the layout of the product container to <code>hbox</code>:</p>
+
+<pre><code class="language-javascript">Ext.define('...view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    layout: {
+        type: 'hbox',
+        align: 'stretch'
+    },
+    ...
+});
+</code></pre>
+
+<p>In the following example, we've removed the <code>configure()</code> method, since you don't have to modify it.</p>
+
+<p><strong>Through method overriding</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    ...
+
+    createItems: function() {
+        var me = this,
+            items = me.callParent(arguments);
+
+        var leftContainer = Ext.create('Ext.container.Container', {
+            flex: 1,
+            margin: 20,
+            items: items
+        });
+
+        return [leftContainer, me.createSidebar()];
+    },
+
+    createSidebar: function() {
+        return Ext.create('Ext.panel.Panel', {
+            width: 200,
+            layout: {
+                type: 'accordion',
+                titleCollapse: false,
+                animate: true,
+                activeOnTop: true
+            },
+            items: [{
+                title: 'Panel 1',
+                html: 'Panel content!'
+            },{
+                title: 'Panel 2',
+                html: 'Panel content!'
+            }]
+        });
+    }
+});
+</code></pre>
+
+<p><strong>Through the event system</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
+    extend: 'Enlight.app.Controller',
+
+    init: function() {
+        var me = this;
+
+        me.control({
+            'product-detail-container': {
+                'product-after-create-items': me.afterCreateItems
+            }
+        });
+
+        me.mainWindow = me.getView('list.Window').create({ }).show();
+    },
+
+    afterCreateItems: function(container, items) {
+        var me = this;
+
+        // create left container to wrap the already generated items
+        var leftContainer = Ext.create('Ext.container.Container', {
+            flex: 1,
+            margin: 20,
+            items: Ext.clone(items)
+        });
+
+        // reset reference array
+        items.length = 0;
+
+        // create new items array structure
+        items.push(leftContainer, me.createSidebar());
+    },
+
+    createSidebar: function() {
+        return Ext.create('Ext.panel.Panel', {
+            width: 200,
+            layout: {
+                type: 'accordion',
+                titleCollapse: false,
+                animate: true,
+                activeOnTop: true
+            },
+            items: [{
+                title: 'Panel 1',
+                html: 'Panel content!'
+            },{
+                title: 'Panel 2',
+                html: 'Panel content!'
+            }]
+        });
+    }
+});
+</code></pre>
+
+<p>If you are using the event system solution, you have to fiddle a little bit, because you must not reset the array by just creating a new one - you have to reset it like this: <code>items.length = 0</code>. In addition, the already created elements are assigned to the wrapper container by <code>Ext.clone()</code>.</p>
+
+<h3 id="implement-the-tab-panel">Implement the Tab Panel</h3>
+
+<p>There is not much code needed to implement a tab panel inside of the detail window, because the <code>Shopware.detail.Window</code> already supports that.</p>
+
+<p>There is a little difference here when compared to creating elements in the conventional method by calling <code>createItems()</code>. You now have to modify the detail window's items like so: <code>detailWindow.items = [ me.createFormpanel() ];</code>. This ensures that the toolbar is always on top. The <code>createFormPanel()</code> method can then be used to create the form panels and <code>createTabItems()</code> to create its children elements. If the <code>createTabItems()</code> returns an array with more than one element, the elements will be displayed as tab panel:</p>
+
+<pre><code class="language-javascript">createFormPanel: function () {
+    var me = this, items;
+
+    items = me.createTabItems();
+
+    if (items.length &gt; 1) {
+        me.tabPanel = Ext.create('Ext.tab.Panel', {
+            items: items,
+            ...
+        });
+        items = [ me.tabPanel ];
+    }
+
+    me.formPanel = Ext.create('Ext.form.Panel', {
+        items: items,
+        ...
+    });
+    return me.formPanel;
+},
+
+createTabItems: function () {
+    var me = this, item, items = [];
+
+    if (!me.fireEvent(me.getEventName('before-create-tab-items'), me, items)) {
+        return [];
+    }
+    ...
+    me.fireEvent(me.getEventName('after-create-tab-items'), me, items);
+
+    return items;
+}
+</code></pre>
+
+<p>To complete the implementation, you can override the <code>createTabItems()</code> method and add the new element to the parent's list. In case you want to use the event system, you can subscribe to the event <code>product-after-create-tab-items</code>:</p>
+
+<p><strong>Through method overriding</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.view.detail.Window', {
+    extend: 'Shopware.window.Detail',
+    alias: 'widget.product-detail-window',
+    title : '{s name=title}Product details{/s}',
+    height: 270,
+    width: 680,
+
+    createTabItems: function() {
+        var me = this,
+            items = me.callParent(arguments);
+
+        items.push(me.createOwnTabItem());
+
+        return items;
+    },
+
+    createOwnTabItem: function() {
+        return Ext.create('Ext.container.Container', {
+            items: [],
+            title: 'My tab item'
+        });
+    }
+});
+</code></pre>
+
+<p><strong>Through the event system</strong></p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
+    extend: 'Enlight.app.Controller',
+
+    init: function() {
+        var me = this;
+
+        me.control({
+            'product-detail-window': {
+                'product-after-create-tab-items': me.afterCreateTabItems
+            }
+        });
+
+        me.mainWindow = me.getView('list.Window').create({ }).show();
+    },
+
+    afterCreateTabItems: function(window, items) {
+        var me = this;
+
+        items.push(me.createOwnTabItem());
+
+        return items;
+    },
+
+    createOwnTabItem: function() {
+        return Ext.create('Ext.container.Container', {
+            items: [],
+            title: 'My tab item'
+        });
+    }
+});
+</code></pre>
+
+<h2 id="plugin-download-swagproductdetail.zip">Plugin Download - <a href="/exampleplugins/SwagProductDetail.zip">SwagProductDetail.zip</a></h2>
+
+<p>Congratulations! You've just created your first customized detail window component using Shopware backend components. You now have learned how to completely customize and extend the detail window in your plugin.</p>
+
+<p><a href="img/detail_6.png" target="_blank" style="text-align:center;">
+<img src="img/detail_6.png" alt="Fully customized detail window"></a></p>
+
+<h2 id="further-tutorials">Further Tutorials</h2>
+
+<p>The next tutorial will cover the already learned basics in more depth and the implementation of associations.</p>
+
+<p>Proceed to <a href="/developers-guide/backend-components/associations/">Backend Components - Associations</a>.</p>
+
+                    </div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505361.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

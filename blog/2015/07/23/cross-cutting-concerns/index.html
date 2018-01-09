@@ -1,0 +1,1231 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Cross cutting concerns</title><meta name="description" content="In the last blog post I discussed the Shopware hook system
+and also mentioned that hooks are technically a way to address cross cutting concerns with an AO"><meta name="keywords" content="cross cutting concerns, command bus, events, observer pattern, AOP"><meta name="author" content="Daniel Nögel"><link rel="author" href="https://developers.shopware.com/blog/authors/dn"><!-- Facebook --><meta property="og:title" content="Cross cutting concerns"><meta property="og:type" content="article"><meta property="og:image" content=""><meta property="og:url" content="/blog/2015/07/23/cross-cutting-concerns"><meta property="og:description" content="In the last blog post I discussed the Shopware hook system
+and also mentioned that hooks are technically a way to address cross cutting concerns with an AO"><!-- Twitter --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Cross cutting concerns"><meta name="twitter:description" content="In the last blog post I discussed the Shopware hook system
+and also mentioned that hooks are technically a way to address cross cutting concerns with an AO"><meta name="twitter:image" content=""><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505347.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505347.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505347.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter">
+                    <a href="/developers-guide/" class="navi--link has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2015-07-23-cross-cutting.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Cross cutting concerns
+            </h1>
+            
+            <article class="blog-post"><div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_dn.jpg" width="50" height="50"></div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/dn">Daniel Nögel</a>
+            <span class="user-title">, Developer</span>        </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> July 23rd, 2015
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/danielnoegel" target="_blank" title="Twitter Daniel Nögel">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://danielnoegel.de" target="_blank" title="Website Daniel Nögel">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://github.com/dnoegel/" target="_blank" title="Github Daniel Nögel">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+                    </div>
+    </div>
+</div>
+                    </div>
+    
+    <div class="blog-detail-text">
+        <p>In the last blog post I discussed <a href="http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/">the Shopware hook system</a>
+and also mentioned that hooks are technically a way to address cross cutting concerns with an AOP approach.
+In this blog entry I want to have a deeper look into cross cutting concerns and ways to address them in PHP.</p>
+
+<h1>What is a &quot;concern&quot;?</h1>
+
+<p>Talking about <code>cross cutting concerns</code> raises the question: what are <code>concerns</code> in the first place? In the context of computer
+science, <a href="https://en.wikipedia.org/wiki/Concern_(computer_science)">wikipedia defines</a> concerns as</p>
+
+<blockquote>
+<p>a particular set of information that has an effect on the code of a computer program</p>
+</blockquote>
+
+<p>Information can be anything from knowledge of a certain calculation to a concrete functional requirement you need to
+reflect in your code. When writing modular programs, you usually will try to split your code in independent parts, which interact with each other and hide their actual implementation from each other.
+The general design principle behind this is the so called <strong><a href="https://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a></strong>,
+as it suggests to structure the code by concerns: Usually you will try to separate the price calculation from view related
+things like &quot;formatting the price&quot;. This way of organizing the code will usually lead to more understandable, reusable and
+maintainable code, as you are able to change the details of e.g. a class without having to take care of other classes.</p>
+
+<p>The well known acronym <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a> covers this aspect in the
+<strong>single responsibility principle</strong>, which is often summarized to &quot;there should only be one reason to change the code of a class&quot;.
+If there are multiple reasons to change your class (e.g. the price calculation changed, the logger syntax changed or the
+security policy changed), your class is responsible for multiple concerns (calculation, logging, security), and violates
+the <strong>separation of concerns</strong> approach as well as the <strong>single responsibility principle</strong>.</p>
+
+<h1>Cross cutting concerns</h1>
+
+<p>Usually developers will try to identify the main concerns of their software and split them into separate classes or functions.
+There are system-level and peripheral cases, however, where such clear separation of concerns is not possible: logging, security aspects or internationalisation issues are common examples of these concerns. These cases need to be taken care of in a wide range of the application, and usually &quot;cross cut&quot; many other components. Those concerns are called &quot;cross cutting concerns&quot; in differentiation to &quot;core concerns&quot;.</p>
+
+<p><img src="/blog/img/cross-cutting.png" alt="Structural overview of hooks"></p>
+
+<p>As you can see in the image above, you might have several core concerns like &quot;cart&quot;, &quot;account&quot; or &quot;price calculation&quot; that
+are split into separate classes and namespaces. When writing object oriented code, there are usually a lot of patterns to
+address this kind of issues, allowing you to create architecture that separate those concerns in a proper way.
+On the other hand, the cross cutting concerns need to be taken care of in all of the core concerns, and are not that easy to implement properly. In many cases, this kind of concerns leads to scattering (duplication) of code or tangling (tight coupling) of the code.</p>
+
+<p>Cross cutting concerns are not a bad thing <em>per se</em> - they are a need of any modern application. But many applications
+fall short when implementing those concerns in a way that respects principles such as DRY (don't repeat yourself) or SRP (singe responsibility principle). For that reason &quot;cross cutting concerns&quot; should be considered a generic term for a certain kind of architectural needs of an application.</p>
+
+<h1>Example</h1>
+
+<p>Imagine you have a shopping cart class with a purchase method:</p>
+
+<pre><code>class Cart
+{
+    public function purchase($itemId, $customerId)
+    {
+        $this-&gt;privileges-&gt;purchaseAllowed($itemId, $customerId);
+        $this-&gt;log-&gt;debug(&quot;Purchasing $itemId&quot;);
+
+        try {
+            $this-&gt;connection-&gt;beginTransaction();
+
+            $purchase = new Purchase($itemId, $customerId);
+            $this-&gt;em-&gt;persist($purchase);
+            $this-&gt;em-&gt;flush();
+
+            $this-&gt;connection-&gt;commitTransaction();
+        } catch(\Exception $e) {
+            $this-&gt;connection-&gt;rollbackTransaction();
+            $throw $e;
+        }
+
+        $this-&gt;log-&gt;debug(&quot;Purchased $itemId&quot;);
+    }
+}
+</code></pre>
+
+<p>What are the core and cross cutting concerns here?</p>
+
+<p>The actual core concern is creating a new purchase in the database. Elements like privilege checking, logging and transaction
+could be considered cross cutting concerns, as these elements will also affect other components of your application.
+Building the application like this will scatter e.g. the log concern all over your classes and massively bloat the implementation.</p>
+
+<h1>How to deal with cross cutting concerns</h1>
+
+<h2 id="events">Events</h2>
+
+<p>One common approach to address cross cutting concerns is event based programming. In this section we will discuss the observer
+and the PubSub pattern.</p>
+
+<h3 id="observer-pattern">Observer pattern</h3>
+
+<p>In case of the <a href="https://en.wikipedia.org/wiki/Observer_pattern">observer pattern</a>, our <code>Cart</code> class would maintain a list
+of dependencies, and notify them about relevant events.</p>
+
+<pre><code>class Cart
+{
+    private $observers;
+    
+    public function purchase($itemId, $customerId)
+    {
+        $this-&gt;notify('cart.beforePurchase', [ 'itemId' =&gt; $itemId, 'customerId' =&gt; $customerId ]);    
+    
+        $purchase = new Purchase($itemId, $customerId);
+        $this-&gt;em-&gt;persist($purchase);
+        $this-&gt;em-&gt;flush();
+        
+        $this-&gt;notify('cart.afterPurchase', [ 'itemId' =&gt; $itemId, 'customerId' =&gt; $customerId ]);
+
+    }
+    
+    public function addObserver(Observer $observer)
+    {
+        $this-&gt;observers[] = $observer;
+    }
+    
+    private function notify($type, $context = [])
+    {
+        foreach ($this-&gt;observers as $observer) {
+            $observer-&gt;notify($type, $context);
+        }
+    }
+}
+</code></pre>
+
+<p>With this, we can easily register our dependent services in <code>Cart</code>, without actually being forced to deal with e.g. logging
+there. A possible observer might look like this:</p>
+
+<pre><code>class Logger implements Observer
+{
+    public function __construct() { … }
+
+    public function notify($type, $context)
+    {
+        switch ($type) {
+            case 'cart.beforePurchase':
+                $this-&gt;log-&gt;debug(&quot;Purchasing &quot; . $context['itemId']);
+                break;
+            case 'cart.afterPurchase':
+                $this-&gt;log-&gt;debug(&quot;Purchased &quot; . $context['itemId']);
+                break;
+        }
+    }
+}
+</code></pre>
+
+<p>This observer can easily be subscribed to by using e.g. <code>$container-&gt;get('cart')-&gt;addObserver(new Logger());</code>. In the same way, we could easily wrap the purchase in a transaction or do the permission check in the <code>cart.beforePurchase</code> notification.</p>
+
+<p>As you can see, the <code>notify</code> method is quite generic in dealing with the <code>$context</code> object. If it is more
+suitable for your case, you could easily create a <code>CartObserver</code> interface with two more specific handler methods, like
+<code>notifyBeforePurchase($itemId, $customerId)</code> and <code>notifyAfterPurchase($itemId, $customerId)</code>. PHP even comes with its own
+<code>SplObserver</code> and <code>SplSubject</code> observer interfaces - but those might not be suitable for all cases and do pass a reference
+of the object to the observers, which might be questionable or not sufficient.</p>
+
+<h3 id="pubsub">PubSub</h3>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">Publish-subscribe pattern</a> is another event based
+pattern that allows you to address cross cutting concerns.</p>
+
+<p>While the observer pattern forces the objects to care about their observers itself, PubSub introduces its own
+service to take care of this. This central instance will take care of subscriptions as well as of notifications.</p>
+
+<pre><code>class EventManager
+{
+    private $events = [];
+
+    public function subscribe($name, $callback)
+    {
+        if (!isset($this-&gt;events[$name])) {
+            $this-&gt;events[$name] = [];
+        }
+        
+        $this-&gt;events[$name][] = $callback;
+    }
+    
+    public function notify($name, Event $event)
+    {
+        if (!isset($this-&gt;events[$name])) {
+            return false;
+        }
+        
+        foreach ($this-&gt;events[$name] as $subscriber) {
+            $subscriber($event);
+        }
+    }
+}
+</code></pre>
+
+<p>Having an event dispatcher like this, our <code>Cart</code> class might look like this:</p>
+
+<pre><code>class Cart
+{
+    public function purchase($itemId, $customerId)
+    {
+        $this-&gt;event-&gt;notify('cart.beforePurchase', new BeforePurchaseEvent($itemId, $customerId));    
+    
+        $purchase = new Purchase($itemId, $customerId);
+        $this-&gt;em-&gt;persist($purchase);
+        $this-&gt;em-&gt;flush();
+        
+        $this-&gt;event-&gt;notify('cart.afterPurchase', new AfterPurchaseEvent($itemId, $customerId));
+    }
+}
+</code></pre>
+
+<p><code>BeforePurchaseEvent</code> and <code>AfterPurchaseEvent</code> are just simple value containers which store some context and allow the
+subscribers to access this context:</p>
+
+<pre><code>$container-&gt;get('event_manager')-&gt;subscribe('cart.beforePurchase', function(BeforePurchaseEvent $event) {
+    // logging $event-&gt;getItemId;
+});
+
+$container-&gt;get('event_manager')-&gt;subscribe('cart.afterPurchase', function(AfterPurchaseEvent $event) {
+    // logging $event-&gt;getItemId;
+});
+</code></pre>
+
+<p>A very common PubSub implementation is the <a href="https://github.com/symfony/EventDispatcher/blob/master/EventDispatcherInterface.php">symfony event dispatcher</a>
+which also comes along with a handy <a href="https://github.com/symfony/EventDispatcher/blob/master/EventSubscriberInterface.php">EventSubscriberInterface</a>
+which makes subscribing events even easier and is also available in Shopware.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Both approaches will allow you to remove the direct dependency to logging, transactions and ACL from the cart implementation
+and address those issues in specific observers / subscribers.</p>
+
+<p>Both patterns tend to hide the actually executed code of the <code>Cart</code> class a bit, as the dependencies are registered during runtime and cannot be statically inspected. For that reason, you cannot tell beforehand if e.g. only the <code>Logger</code> service is subscribed or also the ACL service. This kind of abstraction can make debugging harder.</p>
+
+<p>Another common problem is the handling of context information: In the observer example, a simple <code>Array</code> was used, which is convenient
+but might lead to issues regarding typos and debuggability. This might easily be changed to event objects, as
+the PubSub example shows: The classes <code>BeforePurchaseEvent</code> and <code>AfterPurchaseEvent</code> define a clean interface for a specific
+event and can easily inspected for debugging reasons.
+I already mentioned that the PHP <a href="http://php.net/manual/de/class.splobserver.php">SplObserver</a> interface for an observer pattern defines that a reference to the subject (the <code>Cart</code> class in our case) is passed. From my experience with the Shopware event system, I would consider this a bad practice, as this will allow the observers to hardly bind to the subject, even though this might not be necessary at all. Selectively passing relevant context information also will make sure that the observer does not modify e.g. internal state of the passed class.</p>
+
+<p>This is related to a third issue I'd like to address: In many cases some kind of &quot;backchannel&quot; is wanted, so that a
+event listener can e.g. filter some context variables (<code>filter</code> event in Shopware) or return objects (<code>notifyUntil</code>).
+This might be considered bad practice, too, as multiple event listener changing the same event object by reference will lead
+to hard to debug errors and side effects in some cases. Speaking of <a href="https://en.wikipedia.org/wiki/Loose_coupling">loose coupling</a>
+as one of the main goals for our event system, by-reference changes of context objects and behavioural decisions depending
+on the return value of an event are not ideal but hard to avoid.</p>
+
+<h2 id="command-bus">Command Bus</h2>
+
+<p>The command bus is based on the <a href="https://en.wikipedia.org/wiki/Command_pattern">command pattern</a> extended by an additional service layer
+and also allows you to address cross cutting concerns easily. The generally idea is to not call services directly, but
+have a &quot;command bus&quot; service, which &quot;dispatches&quot; your commands to the corresponding handler.</p>
+
+<p>The <code>Cart</code> example above might look like this:</p>
+
+<pre><code>class PurchaseCommand
+{
+    private $itemId;
+    private $customerId;
+
+    public function __construct($itemId, $customerId)
+    {
+        $this-&gt;itemId = $itemId;
+        $this-&gt;customerId = $customerId;
+    }
+    
+    public getItemId()
+    {
+        return $this-&gt;itemId;
+    }
+    
+    public getCustomerId()
+    {
+        return $this-&gt;customerId;
+    }
+}
+
+class PurchaseHandler
+{
+    public function handle(PurchaseCommand $command)
+    {
+        $purchase = new Purchase($command-&gt;getItemId(), $command-&gt;getCustomerId());
+        $this-&gt;em-&gt;persist($purchase);
+        $this-&gt;em-&gt;flush();
+    }
+}
+
+class CommandBus implements CommandBusInterface
+{
+    private $handlers;
+    
+    public function __construct($handlers) { … }
+   
+    public function handle($command)
+    {
+        $this-&gt;getHandlerForCommand($command)-&gt;handle($command);
+    }
+    
+    private function getHandlerForCommand() { … }
+}
+</code></pre>
+
+<p>A setup like this will allow you to process a new purchase calling:</p>
+
+<pre><code>$container-&gt;get('command_bus')-&gt;handle(new PurchaseCommand(3, 15));
+</code></pre>
+
+<p>The command bus will then find the correct handler for the <code>PurchaseCommand</code> (in our case the <code>PurchaseHandler</code>) and make
+it handle the command. Analog to the PubSub example, <code>PurchaseCommand</code> is a simple value object without any logic.</p>
+
+<h3 id="handling-cross-cutting-concerns">Handling cross cutting concerns</h3>
+
+<p>With the <code>CommandBus</code> being a central instance that handles all the commands in our application, we have a nice entry
+point for extension. The <code>CommandBus</code> class can easily be decorated, as we will see in the following logger example:</p>
+
+<pre><code>class LoggerDecorator implements CommandBusInterface
+{
+    protected $logger;
+    protected $decoratedBus;
+
+    public function __construct(Logger $logger, CommandBusInterface $decoratedBus)
+    {
+        $this-&gt;logger = $logger;
+        $this-&gt;decoratedBus = $decoratedBus;
+    }
+    
+    public function handle($command)
+    {
+        if (!$command instanceof PurchaseCommand) {
+            return $this-&gt;decoratedBus-&gt;handle($command);
+        }
+        
+        $this-&gt;logger-&gt;debug(&quot;Purchasing &quot; . $command-&gt;getItemId());
+        $this-&gt;decoratedBus-&gt;handle($command);
+        $this-&gt;logger-&gt;debug(&quot;Purchased &quot; . $command-&gt;getItemId());
+    }
+}
+</code></pre>
+
+<p>In this case the command is explicitly checked against <code>PurchaseCommand</code>. Without this check, we'd get a very
+general logger.</p>
+
+<h3 id="conclusion-0">Conclusion</h3>
+
+<p>The <code>CommandBus</code> pattern takes another approach than the observer and PubSub patterns. The commands are first class citizens
+of your application, which makes it easy to tell core and cross cutting concerns apart. Instead of having a primary
+&quot;core service&quot; on the one hand, which is tightly coupled to your application, and observers / subscribers on the other hand
+which communicate with some kind of messaging system, the messaging system (more precise: command bus) becomes a central
+part of your application. By decorating this &quot;central part&quot;, it's easy to cover wide ranges of your service layers and
+take care of cross cutting concerns.</p>
+
+<p>As the <code>CommandBus</code> addresses the service layer itself, it's not a &quot;drop in&quot; solution like the observer / PubSub pattern is
+in many cases. Especially in legacy applications with a tangled service layer, refactoring the services into small command
+handlers might not always be that easy to accomplish. When it comes to returning results, things even get a bit disputable:
+Often it is argued that Commands should not return anything. This, however, seems to refer to <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">CQS</a>,
+even though a CommandBus does not necessarily imply CQS. Anyway: Usually the <a href="http://martinfowler.com/eaaDev/DomainEvent.html">domain event pattern</a> is the recommended solution for this kind of problems, a small PHP example can be found in Benjamin Eberlei's blog post
+<a href="http://www.whitewashing.de/2012/08/25/decoupling_applications_with_domain_events.html">Decoupling applications with domain events</a>.</p>
+
+<h2 id="aop">AOP</h2>
+
+<p>As discussed in <a href="http://devdocs.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/">the Shopware hook system</a>,
+AOP is another approach to handle cross cutting concerns. Unlike the pattern based approaches above, AOP
+is a programming paradigm that (usually) addresses this kind of issues on a language base.
+Due to the complexity of the topic, we will discuss AOP in a <a href="https://developers.shopware.com/blog/2015/08/04/aop/">separate blog</a> post and try to implement <a href="https://github.com/lisachenko/go-aop-php">Go AOP PHP</a>
+using the example of Shopware.</p>
+
+<h1>Further readings:</h1>
+
+<ul><li>
+<a href="https://speakerdeck.com/cjsaylor/wrangle-cross-cutting-concerns-with-event-driven-development">Wrangle cross cutting concerns with event driven development</a> - A quick overview with slides from Chris Saylor</li>
+<li>
+<a href="http://de.slideshare.net/rosstuck/command-bus-to-awesome-town">Command bus to awesome town</a> - Slides by Ross Tuck who also addresses cross cutting concerns</li>
+<li>
+<a href="http://tactician.thephpleague.com/">Tactician command bus library</a> - Command bus library by Ross Tuck</li>
+<li>
+<a href="https://github.com/lisachenko/go-aop-php">Go AOP PHP</a> - AOP implementation for PHP</li>
+<li>
+<a href="http://www.researchgate.net/publication/220425704_Discussing_aspects_of_AOP">Discussing aspects of AOP</a> - Overview of cross cutting concerns and the general benefits of AOP</li>
+</ul></div>
+
+    <a href="https://developers.shopware.com/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article></div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505347.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505347.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505347.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505347.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505347.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

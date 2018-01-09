@@ -1,0 +1,2475 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Backend Components - Associations</title><meta name="description" content="Backend Components - Associations"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505361.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505361.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505361.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter is--active">
+                    <a href="/developers-guide/" class="navi--link is--active has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter is--active">
+
+                            <a class="navi--link is--active has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link is--active" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/developers-guide/backend-components/associations/index.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Backend Components - Associations
+            </h1>
+            
+            <p>This tutorial is part of a series that covers the Shopware Backend Components. In the <a href="/developers-guide/backend-components/detail/">Backend Components - Detail</a> tutorial we covered the different configuration options of the detail window. In this tutorial, you'll learn the basics about the implementation of associations.</p>
+
+<p>We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: <a href="/exampleplugins/SwagProductDetail.zip">SwagProductDetail.zip</a></p>
+
+<p>The detail and listing windows are already defined, but not customized yet. Therefore all fields are displayed:</p>
+
+<p><a href="img/assoc_1.png" style="text-align:center;"></a></p>
+
+<p><img src="img/assoc_1.png" alt="Listing and detail windows"></p>
+
+<p></p>
+
+<div class="toc-list"></div>
+
+<h2 id="php-implementation">PHP Implementation</h2>
+
+<p>The previous tutorials described how to display simple data structures. This tutorial will extend the product model with the following elements:</p>
+
+<ul><li>Link products to tax rates (<code>ManyToOne</code>)</li>
+<li>Link products to categories (<code>ManyToMany</code>)</li>
+<li>Link products to attributes (<code>OneToOne</code>)</li>
+<li>Link products to variants (<code>OneToMany</code>)</li>
+</ul><p>Before you start to implement the ExtJS part, you have to modify the PHP implementation because you will not have enough data transferred to the backend. Because of that, you will now implement the relations seen above before implementing the ExtJS part.</p>
+
+<p>Shopware uses Doctrine 2 to manage models and their corresponding associations. The way in which you can define these associations is not part of the scope of this document, but you can read more about them in the <a href="http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/association-mapping.html">Official Doctrine 2 documentation page</a>.</p>
+
+<p>However, as these associations are required before we can continue our Backend module development, you should copy the following model code into your plugin (or, as an alternative, replace your <code>Models</code> directory with the corresponding content from <a href="/exampleplugins/SwagProductAssoc.zip">SwagProductAssoc.zip</a>)</p>
+
+<h3 id="the-product-model-(\models\product.php)">The Product model (<code>\Models\Product.php</code>)</h3>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagProductAssoc\Models;
+
+use Shopware\Components\Model\ModelEntity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name=&quot;s_product&quot;)
+ */
+class Product extends ModelEntity
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Id
+     * @ORM\Column(type=&quot;integer&quot;)
+     * @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column()
+     */
+    private $name;
+
+    /**
+     * @var integer $active
+     *
+     * @ORM\Column(type=&quot;boolean&quot;)
+     */
+    private $active = false;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(type=&quot;text&quot;, nullable=true)
+     */
+    private $description = null;
+
+    /**
+     * @var string $descriptionLong
+     *
+     * @ORM\Column(type=&quot;text&quot;, nullable=true)
+     */
+    private $descriptionLong = null;
+
+    /**
+     * @var integer $lastStock
+     *
+     * @ORM\Column(type=&quot;boolean&quot;, nullable=false)
+     */
+    private $lastStock = false;
+
+    /**
+     * @var \DateTime $added
+     *
+     * @ORM\Column(type=&quot;date&quot;, nullable=true)
+     */
+    private $createDate = null;
+
+    /**
+     * @var Variant[]
+     * @ORM\OneToMany(
+     *      targetEntity=&quot;SwagProductAssoc\Models\Variant&quot;,
+     *      mappedBy=&quot;product&quot;,
+     *      cascade={&quot;persist&quot;, &quot;remove&quot;}
+     * )
+     */
+    protected $variants;
+
+    /**
+     * @var Attribute
+     * @ORM\OneToOne(
+     *      targetEntity=&quot;SwagProductAssoc\Models\Attribute&quot;,
+     *      mappedBy=&quot;product&quot;,
+     *      cascade={&quot;persist&quot;, &quot;remove&quot;}
+     * )
+     */
+    protected $attribute;
+
+    /**
+     * @var
+     * @ORM\Column(name=&quot;tax_id&quot;, type=&quot;integer&quot;)
+     */
+    protected $taxId;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity=&quot;Shopware\Models\Tax\Tax&quot;)
+     * @ORM\JoinColumn(name=&quot;tax_id&quot;, referencedColumnName=&quot;id&quot;)
+     */
+    protected $tax;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity=&quot;Shopware\Models\Category\Category&quot;)
+     * @ORM\JoinTable(name=&quot;s_product_categories&quot;,
+     *      joinColumns={
+     *          @ORM\JoinColumn(
+     *              name=&quot;product_id&quot;,
+     *              referencedColumnName=&quot;id&quot;
+     *          )
+     *      },
+     *      inverseJoinColumns={
+     *          @ORM\JoinColumn(
+     *              name=&quot;category_id&quot;,
+     *              referencedColumnName=&quot;id&quot;
+     *          )
+     *      }
+     * )
+     */
+    protected $categories;
+
+    public function __construct()
+    {
+        $this-&gt;variants = new ArrayCollection();
+        $this-&gt;categories = new ArrayCollection();
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+
+
+    /**
+     * @param int $active
+     */
+    public function setActive($active)
+    {
+        $this-&gt;active = $active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getActive()
+    {
+        return $this-&gt;active;
+    }
+
+    /**
+     * @param \DateTime $createDate
+     */
+    public function setCreateDate($createDate)
+    {
+        $this-&gt;createDate = $createDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this-&gt;createDate;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this-&gt;description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this-&gt;description;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this-&gt;name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
+
+    /**
+     * @param string $descriptionLong
+     */
+    public function setDescriptionLong($descriptionLong)
+    {
+        $this-&gt;descriptionLong = $descriptionLong;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionLong()
+    {
+        return $this-&gt;descriptionLong;
+    }
+
+    /**
+     * @param int $lastStock
+     */
+    public function setLastStock($lastStock)
+    {
+        $this-&gt;lastStock = $lastStock;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastStock()
+    {
+        return $this-&gt;lastStock;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getCategories()
+    {
+        return $this-&gt;categories;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $categories
+     */
+    public function setCategories($categories)
+    {
+        $this-&gt;categories = $categories;
+    }
+
+    /**
+     * @return Attribute
+     */
+    public function getAttribute()
+    {
+        return $this-&gt;attribute;
+    }
+
+    /**
+     * @param Attribute $attribute
+     * @return \Shopware\Components\Model\ModelEntity
+     */
+    public function setAttribute($attribute)
+    {
+        return $this-&gt;setOneToOne(
+            $attribute,
+            Attribute::class,
+            'attribute',
+            'product'
+        );
+    }
+
+    /**
+     * @return Variant[]
+     */
+    public function getVariants()
+    {
+        return $this-&gt;variants;
+    }
+
+    /**
+     * @param Variant[] $variants
+     * @return \Shopware\Components\Model\ModelEntity
+     */
+    public function setVariants($variants)
+    {
+        return $this-&gt;setOneToMany(
+            $variants,
+            Variant::class,
+            'variants',
+            'product'
+        );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTax()
+    {
+        return $this-&gt;tax;
+    }
+
+    /**
+     * @param mixed $tax
+     */
+    public function setTax($tax)
+    {
+        $this-&gt;tax = $tax;
+    }
+}
+</code></pre>
+
+<h3 id="the-product-attribute-model-(models\attribute.php)">The Product Attribute model (<code>Models\Attribute.php</code>)</h3>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagProductAssoc\Models;
+
+use Shopware\Components\Model\ModelEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name=&quot;s_product_attribute&quot;)
+ */
+class Attribute extends ModelEntity
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Id
+     * @ORM\Column(type=&quot;integer&quot;)
+     * @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)
+     */
+    private $id;
+
+
+    /**
+     * @var string $attr1
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    protected $attr1 = null;
+
+
+    /**
+     * @var string $attr2
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    protected $attr2 = null;
+
+
+    /**
+     * @var string $attr3
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    protected $attr3 = null;
+
+
+    /**
+     * @var string $attr4
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    protected $attr4 = null;
+
+
+    /**
+     * @var string $attr5
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    protected $attr5 = null;
+
+    /**
+     * @var
+     * @ORM\OneToOne(targetEntity=&quot;SwagProductAssoc\Models\Product&quot;, inversedBy=&quot;attribute&quot;)
+     * @ORM\JoinColumn(name=&quot;product_id&quot;, referencedColumnName=&quot;id&quot;)
+     */
+    protected $product;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product)
+    {
+        $this-&gt;product = $product;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this-&gt;product;
+    }
+
+    /**
+     * @param string $attr1
+     */
+    public function setAttr1($attr1)
+    {
+        $this-&gt;attr1 = $attr1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttr1()
+    {
+        return $this-&gt;attr1;
+    }
+
+    /**
+     * @param string $attr2
+     */
+    public function setAttr2($attr2)
+    {
+        $this-&gt;attr2 = $attr2;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttr2()
+    {
+        return $this-&gt;attr2;
+    }
+
+    /**
+     * @param string $attr3
+     */
+    public function setAttr3($attr3)
+    {
+        $this-&gt;attr3 = $attr3;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttr3()
+    {
+        return $this-&gt;attr3;
+    }
+
+    /**
+     * @param string $attr4
+     */
+    public function setAttr4($attr4)
+    {
+        $this-&gt;attr4 = $attr4;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttr4()
+    {
+        return $this-&gt;attr4;
+    }
+
+    /**
+     * @param string $attr5
+     */
+    public function setAttr5($attr5)
+    {
+        $this-&gt;attr5 = $attr5;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAttr5()
+    {
+        return $this-&gt;attr5;
+    }
+}
+</code></pre>
+
+<h3 id="the-product-variant-model-(models\variant.php)">The Product Variant model (<code>Models\Variant.php</code>)</h3>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagProductAssoc\Models;
+
+use Shopware\Components\Model\ModelEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name=&quot;s_product_variant&quot;)
+ */
+class Variant extends ModelEntity
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Id
+     * @ORM\Column(type=&quot;integer&quot;)
+     * @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name=&quot;product_id&quot;, type=&quot;integer&quot;)
+     */
+    protected $productId;
+
+    /**
+     * @var string
+     * @ORM\Column(type=&quot;string&quot;)
+     */
+    private $number;
+
+    /**
+     * @var string $additionalText
+     *
+     * @ORM\Column(type=&quot;string&quot;, nullable=true)
+     */
+    private $additionalText = null;
+
+    /**
+     * @var integer $active
+     *
+     * @ORM\Column(type=&quot;integer&quot;, nullable=false)
+     */
+    private $active = false;
+
+    /**
+     * @var integer $inStock
+     *
+     * @ORM\Column(type=&quot;integer&quot;, nullable=true)
+     */
+    private $inStock = null;
+
+    /**
+     * @var integer $stockMin
+     *
+     * @ORM\Column(type=&quot;integer&quot;, nullable=true)
+     */
+    private $stockMin = null;
+
+    /**
+     * @var float $weight
+     *
+     * @ORM\Column(type=&quot;decimal&quot;, nullable=true, precision=3)
+     */
+    private $weight = null;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity=&quot;SwagProductAssoc\Models\Product&quot;, inversedBy=&quot;variants&quot;)
+     * @ORM\JoinColumn(name=&quot;product_id&quot;, referencedColumnName=&quot;id&quot;)
+     */
+    protected $product;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this-&gt;id;
+    }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product)
+    {
+        $this-&gt;product = $product;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this-&gt;product;
+    }
+
+    /**
+     * @param int $active
+     */
+    public function setActive($active)
+    {
+        $this-&gt;active = $active;
+    }
+
+    /**
+     * @return int
+     */
+    public function getActive()
+    {
+        return $this-&gt;active;
+    }
+
+    /**
+     * @param string $additionalText
+     */
+    public function setAdditionalText($additionalText)
+    {
+        $this-&gt;additionalText = $additionalText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalText()
+    {
+        return $this-&gt;additionalText;
+    }
+
+    /**
+     * @param int $inStock
+     */
+    public function setInStock($inStock)
+    {
+        $this-&gt;inStock = $inStock;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInStock()
+    {
+        return $this-&gt;inStock;
+    }
+
+    /**
+     * @param string $number
+     */
+    public function setNumber($number)
+    {
+        $this-&gt;number = $number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this-&gt;number;
+    }
+
+    /**
+     * @param int $stockMin
+     */
+    public function setStockMin($stockMin)
+    {
+        $this-&gt;stockMin = $stockMin;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStockMin()
+    {
+        return $this-&gt;stockMin;
+    }
+
+    /**
+     * @param float $weight
+     */
+    public function setWeight($weight)
+    {
+        $this-&gt;weight = $weight;
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight()
+    {
+        return $this-&gt;weight;
+    }
+}
+</code></pre>
+
+<h3 id="extend-the-php-controller">Extend the PHP Controller</h3>
+
+<p>You have to extend the <code>Controllers/Backend/Product.php</code> controller in order to load associated models data and serve it to the backend modules. To do this, you have to extend the detail and listing queries.</p>
+
+<p>Both queries have their own method for generating a query builder. They are named <code>getListQuery()</code> and <code>getDetailQuery()</code>. You can just overwrite these methods.</p>
+
+<p>As a rule of thumb, you should always call the parent method and then extend the query:</p>
+
+<pre><code class="language-php">&lt;?php
+
+use SwagProductAssoc\Models\Product;
+
+class Shopware_Controllers_Backend_SwagProductAssoc extends Shopware_Controllers_Backend_Application
+{
+    protected $model = Product::class;
+    protected $alias = 'product';
+
+    protected function getListQuery()
+    {
+        $builder = parent::getListQuery();
+
+        $builder-&gt;leftJoin('product.tax', 'tax');
+        $builder-&gt;addSelect(array('tax'));
+
+        return $builder;
+    }
+
+    protected function getDetailQuery($id)
+    {
+        $builder = parent::getDetailQuery($id);
+
+        $builder-&gt;leftJoin('product.tax', 'tax')
+                -&gt;leftJoin('product.attribute', 'attribute');
+
+        $builder-&gt;addSelect(array('tax', 'attribute'));
+
+        return $builder;
+    }
+}
+</code></pre>
+
+<p>The detail query might grow fast in different scenarios, therefore it's not recommended to select <code>@ORM\ManyToMany</code> and <code>@ORM\OneToMany</code> associations in the same query. But since the <code>getDetailQuery()</code> method always has to return a query builder, this isn't possible. For those cases you can use the <code>getAdditionalDetailData()</code> which gets the result of the query builder as an array. You can now modify the array to your needs and return it:</p>
+
+<pre><code class="language-php">&lt;?php
+
+use SwagProductAssoc\Models\Product;
+
+class Shopware_Controllers_Backend_SwagProductAssoc extends Shopware_Controllers_Backend_Application
+{
+    protected $model = Product::class;
+    protected $alias = 'product';
+
+    protected function getListQuery()
+    {
+        $builder = parent::getListQuery();
+
+        $builder-&gt;leftJoin('product.tax', 'tax');
+        $builder-&gt;addSelect(array('tax'));
+
+        return $builder;
+    }
+
+    protected function getDetailQuery($id)
+    {
+        $builder = parent::getDetailQuery($id);
+
+        $builder-&gt;leftJoin('product.tax', 'tax')
+            -&gt;leftJoin('product.attribute', 'attribute');
+
+        $builder-&gt;addSelect(array('tax', 'attribute'));
+
+        return $builder;
+    }
+
+    protected function getAdditionalDetailData(array $data)
+    {
+        $data['categories'] = $this-&gt;getCategories($data['id']);
+        $data['variants'] = array();
+        return $data;
+    }
+
+    protected function getCategories($productId)
+    {
+        $builder = $this-&gt;getManager()-&gt;createQueryBuilder();
+        $builder-&gt;select(array('products', 'categories'))
+            -&gt;from(Product::class, 'products')
+            -&gt;innerJoin('products.categories', 'categories')
+            -&gt;where('products.id = :id')
+            -&gt;setParameter('id', $productId);
+
+        $paginator = $this-&gt;getQueryPaginator($builder);
+
+        $data = $paginator-&gt;getIterator()-&gt;current();
+
+        return $data['categories'];
+    }
+}
+
+</code></pre>
+
+<h3 id="table-generation">Table Generation</h3>
+
+<p>Now, the data is going to be selected and returned to the backend application. To create the database table for the variant and attribute models, you have to modify the <code>install()</code> and <code>uninstall()</code> methods to tell doctrine what to do. You have to add the class metadata of the models to an array and use <code>createSchema()</code> to create a table or <code>dropSchema()</code> to drop a table respectively:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagProductAssoc;
+
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\Tools\SchemaTool;
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\ActivateContext;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
+use SwagProductAssoc\Models\Attribute;
+use SwagProductAssoc\Models\Product;
+use SwagProductAssoc\Models\Variant;
+
+class SwagProductAssoc extends Plugin
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function install(InstallContext $installContext)
+    {
+        $this-&gt;createDatabase();
+
+        $this-&gt;addDemoData();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function activate(ActivateContext $activateContext)
+    {
+        $activateContext-&gt;scheduleClearCache(ActivateContext::CACHE_LIST_DEFAULT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function uninstall(UninstallContext $uninstallContext)
+    {
+        if (!$uninstallContext-&gt;keepUserData()) {
+            $this-&gt;removeDatabase();
+        }
+    }
+
+    private function createDatabase()
+    {
+        $modelManager = $this-&gt;container-&gt;get('models');
+        $tool = new SchemaTool($modelManager);
+
+        $classes = $this-&gt;getClasses($modelManager);
+
+        $tool-&gt;updateSchema($classes, true); // make sure use the save mode
+    }
+
+    private function removeDatabase()
+    {
+        $modelManager = $this-&gt;container-&gt;get('models');
+        $tool = new SchemaTool($modelManager);
+
+        $classes = $this-&gt;getClasses($modelManager);
+
+        $tool-&gt;dropSchema($classes);
+    }
+    
+    /**
+     * @param ModelManager $modelManager
+     * @return array
+     */
+    private function getClasses(ModelManager $modelManager)
+    {
+        return [
+            $modelManager-&gt;getClassMetadata(Product::class),
+            $modelManager-&gt;getClassMetadata(Variant::class),
+            $modelManager-&gt;getClassMetadata(Attribute::class)
+        ];
+    }
+
+    ...
+}
+</code></pre>
+
+<h3 id="insert-demo-data">Insert Demo Data</h3>
+
+<p>Last, you have to add some demo data to the tables. For this task, append the <code>addDemoData()</code> method with the following code:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagProductAssoc;
+
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\Tools\SchemaTool;
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\ActivateContext;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
+use SwagProductAssoc\Models\Attribute;
+use SwagProductAssoc\Models\Product;
+use SwagProductAssoc\Models\Variant;
+
+class SwagProductAssoc extends Plugin
+{
+    ...
+
+    private function addDemoData()
+    {
+        $connection = $this-&gt;container-&gt;get('dbal_connection');
+
+        $this-&gt;createProductDemoData($connection);
+        $this-&gt;createProductVariantDemoData($connection);
+        $this-&gt;createProductAttributeDemoData($connection);
+
+        $sql = &quot;
+            SET FOREIGN_KEY_CHECKS = 0;
+            INSERT IGNORE INTO s_product_categories (product_id, category_id)
+            SELECT
+              a.articleID as product_id,
+              a.categoryID as category_id
+            FROM s_articles_categories a
+        &quot;;
+
+        $connection-&gt;exec($sql);
+    }
+
+    private function createProductDemoData(Connection $connection)
+    {
+        $sql = 'INSERT IGNORE INTO s_product (id, name, active, description, descriptionLong, lastStock, createDate, tax_id)
+            SELECT
+                a.id,
+                a.name,
+                a.active,
+                a.description,
+                a.description_long as descriptionLong,
+                a.laststock as lastStock,
+                a.datum as createDate,
+                a.taxID as tax_id
+            FROM s_articles a
+        ';
+
+        $connection-&gt;exec($sql);
+    }
+
+    private function createProductVariantDemoData(Connection $connection)
+    {
+        $sql = 'SET FOREIGN_KEY_CHECKS = 0;
+            INSERT IGNORE INTO s_product_variant (id, product_id, number, additionalText, active, inStock, stockMin, weight)
+            SELECT
+              a.id,
+              a.articleID,
+              a.ordernumber,
+              a.additionaltext,
+              a.active,
+              a.instock,
+              a.stockmin,
+              a.weight
+            FROM s_articles_details a
+        ';
+
+        $connection-&gt;exec($sql);
+    }
+
+    private function createProductAttributeDemoData(Connection $connection)
+    {
+        $sql = 'SET FOREIGN_KEY_CHECKS = 0;
+            INSERT IGNORE INTO s_product_attribute
+            SELECT
+              a.id,
+              a.articleID as product_id,
+              a.attr1,
+              a.attr2,
+              a.attr3,
+              a.attr4,
+              a.attr5
+            FROM s_articles_attributes a
+        ';
+
+        $connection-&gt;exec($sql);
+    }
+    
+    ...
+    
+}
+</code></pre>
+
+<p>With this change, you are done implementing associations in PHP. Next up is the implementation in ExtJS.</p>
+
+<h2 id="extjs-implementation">ExtJS Implementation</h2>
+
+<p>Since we return the product including its associations, you now have to define them in ExtJS too. In addition, you have to define which type of association you are using and how you want them to be displayed.</p>
+
+<p>In the following sections of the tutorial, multiple models and views will be created. You always have to register them in the <code>app.js</code> file. Below you'll find the final <code>app.js</code> with some commented lines so we don't have to show you the whole file every time we create a component. To enable a component, just uncomment the appropriate line and reload the application:</p>
+
+<pre><code class="language-javascript">Ext.define('Shopware.apps.SwagProductAssocAssoc', {
+    extend: 'Enlight.app.SubApplication',
+
+    name:'Shopware.apps.SwagProductAssocAssoc',
+
+    loadPath: '{url action=load}',
+    bulkLoad: true,
+
+    controllers: [ 'Main' ],
+
+    views: [
+        'list.Window',
+        'list.Product',
+
+        'detail.Product',
+        'detail.Window',
+
+//        'detail.Category',
+//        'detail.Attribute',
+//        'detail.Variant'
+    ],
+
+    models: [
+        'Product',
+//        'Category',
+//        'Attribute',
+//        'Variant'
+    ],
+    stores: [
+        'Product',
+//        'Variant'
+    ],
+
+    launch: function() {
+        return this.getController('Main').mainWindow;
+    }
+});
+</code></pre>
+
+<h3 id="the-detail-window">The Detail Window</h3>
+
+<p>To implement associations in the detail window, you first have to understand how the detail window assembles the different components. The definition of how a model is represented in a specific detail window is based on the association definition and the configured view component in the model.</p>
+
+<p>Such definition has already been implemented in the first tutorial of our Shopware Backend Components series, in the detail window of the product model:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() {
+        return {
+            detail: 'Shopware.apps.SwagProductAssoc.view.detail.Product'
+        };
+    },
+    ...
+});
+</code></pre>
+
+<p>Here you defined that the detail window should always display the <code>Shopware.app.SwagProduct.view.detail.Product</code> component. If you provide a <code>Shopware.apps.SwagProductAssoc.model.Product</code> entry to the <code>Shopware.window.Detail</code> component, the detail window will recognize the entry as a main entry and check the <code>detail</code> parameter of the model.</p>
+
+<p>Associations work in a similar way, but you first have to look up which type of association is configured. To keep things simple, there is a simplified model with four possible associations below:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+    ...
+
+    associations: [{
+        relation: 'ManyToOne',
+        model: 'Shopware.apps.Base.model.Tax',
+    }, {
+        relation: 'ManyToMany',
+        model: 'Shopware.apps.SwagProductAssoc.model.Category',
+    }, {
+        relation: 'OneToOne',
+        model: 'Shopware.apps.SwagProductAssoc.model.Attribute'
+    }, {
+        relation: 'OneToMany',
+        model: 'Shopware.apps.SwagProductAssoc.model.Variant'
+    }]
+});
+</code></pre>
+
+<p>Every association type exists with their appropriate configuration option / view definition in the <code>Shopware.data.Model</code>.</p>
+
+<ul><li>
+<code>field</code> &lt;&gt; ManyToOne</li>
+<li>
+<code>related</code> &lt;&gt; ManyToMany</li>
+<li>
+<code>detail</code> &lt;&gt; OneToOne / Also used for the provided main model in the detail window</li>
+<li>
+<code>listing</code> &lt;&gt; OneToMany</li>
+</ul><p>If the <code>ManyToOne</code> association from the example above is displayed in a detail window, the detail window will check which component has been configured using the <code>field</code> property of the <code>Shopware.apps.Base.model.Tax</code> component.</p>
+
+<p>If the <code>ManyToMany</code> association is displayed in a detail window, the detail window will check which component has been configured using the <code>related</code> property of the <code>Shopware.apps.SwagProductAssoc.model.Category</code> component.</p>
+
+<p>Because associations may be displayed in the same way, the <code>Shopware.data.Model</code> already has some views pre-configured. For example, <code>ManyToOne</code> associations (e.g. product &amp; tax) always display a combobox:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.data.Model', {
+    extend: 'Ext.data.Model',
+
+    statics: {
+        displayConfig: {
+            listing: 'Shopware.grid.Panel',
+            detail:  'Shopware.model.Container',
+            related: 'Shopware.grid.Association',
+            field:   'Shopware.form.field.Search',
+        },
+        ...
+    }
+    ...
+});
+</code></pre>
+
+<p>In case that they don't fit your needs, you can overwrite them with your own components.</p>
+
+<h3 id="manytoone-associations-products-&amp;-tax-rates">ManyToOne Associations - Products &amp; Tax Rates</h3>
+
+<p>To implement a <code>ManyToOne</code> association using the Shopware backend components, you have to do the following things first:</p>
+
+<ul><li>Implement the <code>taxId</code> field</li>
+<li>Implement the association in the product model</li>
+<li>Configure the association type &amp; foreign keys</li>
+</ul><p>The <code>ManyToOne</code> association is the easiest type to configure. This association is commonly used to link data between applications. In most of cases, the foreign model already exists and therefore does not need be implemented again.</p>
+
+<p>To link a product to a tax rate, you have to extend the product model:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() {
+        ...
+    },
+
+    fields: [
+        { name : 'id', type: 'int' },
+        { name : 'taxId', type: 'int' },
+        ...
+    ],
+
+    associations: [{
+        relation: 'ManyToOne',
+        field: 'taxId',
+
+        type: 'hasMany',
+        model: 'Shopware.apps.Base.model.Tax',
+        name: 'getTax',
+        associationKey: 'tax'
+    }]
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_2.png" alt="Product listing and detail"></p>
+</div>
+
+<p>First, you add the line <code>{ name: 'taxId', type: 'int' },</code>, which adds this field to the product model. This field contains the id of the stored tax rate - the foreign key.</p>
+
+<p>Additionally, a new association has been defined, which links the product model to the <code>Shopware.app.Base.model.Tax</code> model. The association type is defined by the required property <code>relation: 'ManyToOne',</code>.</p>
+
+<p>To combine this information into a single field, you provide the option <code>field: 'taxId',</code> which tells the application to replace the default input field with the appropriate component configured earlier.</p>
+
+<h4 id="shopware.form.field.search">Shopware.form.field.Search</h4>
+
+<p><code>ManyToOne</code> associations are usually displayed by a <code>Shopware.form.field.Search</code> component, which is an extension of the <code>Ext.form.field.ComboBox</code>. A dynamic store will be assigned to the search field which looks as follow:</p>
+
+<pre><code class="language-php">return Ext.create('Ext.data.Store', {
+    model: 'Shopware.apps.Base.model.Tax',
+    proxy: {
+        type: 'ajax',
+        url: '{url controller=&quot;SwagProduct&quot; action=&quot;searchAssociation&quot;}',
+        reader: { type: 'json', root: 'data', totalProperty: 'total' },
+        extraParams: { association: 'tax' }
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_3.png" alt="Tax selection detail"></p>
+</div>
+
+<p>The tax data will be determined using an AJAX request to the plugin controller method <code>searchAssociationAction()</code>.</p>
+
+<p>Since all association data will be determined using this method, you'll get the property name of the association, e.g. <code>tax</code>, as a parameter. The <code>Shopware.form.field.Search</code> also supports searching through all fields using the user's input.</p>
+
+<h3 id="manytomany-associations-products-&amp;-categories">ManyToMany Associations - Products &amp; Categories</h3>
+
+<p>The following tasks are necessary to use the <code>ManyToMany</code> association using the Shopware backend components:</p>
+
+<ul><li>Defining the association in the product model</li>
+<li>Creating the category model</li>
+<li>Defining the category view</li>
+<li>Defining where the category view should be displayed</li>
+</ul><p>First, the product model will be extended with the category association. At the same time, you should create the category model in <code>Views/backend/swag_product/model/category.js</code>:</p>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/product.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+   extend: 'Shopware.data.Model',
+   configure: function() { ... },
+   fields: [ ... ],
+
+   associations: [{
+     relation: 'ManyToMany',
+
+     type: 'hasMany',
+     model: 'Shopware.apps.SwagProductAssoc.model.Category',
+     name: 'getCategory',
+     associationKey: 'categories'
+   } ... ]
+});
+</code></pre>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/category.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Category', {
+
+     extend: 'Shopware.apps.Base.model.Category',
+
+     configure: function() { 
+        return {
+           related: 'Shopware.apps.SwagProductAssoc.view.detail.Category'
+        }
+     }
+});
+</code></pre>
+
+<p>Since only the related view in the category model should be modified, you can create your own category model and extend the standard category model <code>Shopware.apps.Base.model.Category</code>. The upside is that you don't have to create all the fields again, and can just modify the things you need to change.</p>
+
+<p>Because you are using the <code>ManyToMany</code> association, we have to define the <code>related</code> option.</p>
+
+<p>This option has a new view component assigned to it, which is implemented in <code>Views/backend/swag_product/view/detail/category.js</code>:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Category', {
+    extend: 'Shopware.grid.Association',
+    alias: 'widget.product-view-detail-category',
+    height: 300,
+    title: 'Category',
+
+    configure: function() {
+        return {
+            controller: 'SwagProductAssoc',
+            columns: {
+                name: {}
+            }
+        };
+    }
+});
+</code></pre>
+
+<p><code>ManyToMany</code> associations use the <code>Shopware.grid.Association</code> component by default. To not modify the default functionality, you should create a new component which extends the <code>Shopware.grid.Association</code>. A more in depth description of the <code>Shopware.grid.Association</code> can be found <a href="#shopwaregridassociation">here</a>.</p>
+
+<p>Now you have to tell the backend components where to display these associations. There are two places which are supported by the backend components:</p>
+
+<ul><li>
+<code>Shopware.window.Detail</code> - As tab on in the detail window</li>
+<li>
+<code>Shopware.model.Container</code> - Inside the detail window of a model</li>
+</ul><p>Both places have the same API to assign associations. For this, the <code>associations</code> option in the <code>configure()</code> method needs to modified. This can be an array with the names of the associations. The names are the name of the properties in the doctrine models of the association.</p>
+
+<p>To display the category view as a new tab, you have to modify the detail window (<code>Views/backend/swag_product/view/detail/window.js</code>) with the following code:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Window', {
+    extend: 'Shopware.window.Detail',
+    alias: 'widget.product-detail-window',
+    title : '{s name=title}Product details{/s}',
+    height: 270,
+    width: 680,
+    configure: function() {
+        return {
+            associations: [ 'categories' ]
+        }
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_4.png" alt="Search field detail"></p>
+</div>
+
+<p>The category view can also be displayed right inside the product container. For this, you have to extend the product container (<code>Views/backend/swag_product/view/detail/product.js</code>) with the following code:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    padding: 20,
+
+    configure: function() {
+        return {
+            controller: 'SwagProductAssoc',
+            associations: [ 'categories' ]
+        };
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_5.png" alt="Search field detail"></p>
+</div>
+
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
+
+<h4 id="shopware.grid.association">Shopware.grid.Association</h4>
+
+<p>By default, <code>ManyToMany</code> associations will be displayed as a <code>Shopware.grid.Association</code> component. This component derives from the <code>Shopware.grid.Panel</code> component, but disables all its unnecessary features. For example, the grid association does not contain an add or edit button. Like the <code>Shopware.grid.Panel</code>, the association grid requires an <code>Ext.data.Store</code> to generate the columns and display the data.</p>
+
+<p>In addition, the association grid contains a <code>Shopware.form.field.Search</code> in the toolbar to search and add new entries. Refer to <a href="#shopwareformfieldsearch">Shopware.form.field.Search Documentation</a> to learn more.</p>
+
+<div class="alert alert-info">
+<b>Important</b>: You have to provide the <code>controller</code> property, because search requests from the `Shopware.form.field.Search` or from the ComboBox will be send to this controller.
+</div>
+
+<h3 id="onetoone-association-products-&amp;-attributes">OneToOne Association - Products &amp; Attributes</h3>
+
+<p>The following tasks are necessary to use the <code>OneToOne</code> association using the Shopware backend components:</p>
+
+<ul><li>Implement the association in the product model</li>
+<li>Integrate the attribute model</li>
+<li>Define the attribute view</li>
+<li>Define where the attribute view should be displayed</li>
+</ul><p>First, you have to extend the product model by adding the association and create a new file containing the attribute model in <code>Views/backend/swag_product/model/attribute.js</code>:</p>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/product.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+    configure: function() { ... },
+    fields: [ ... ],
+
+    associations: [{
+      relation: 'OneToOne',
+
+      type: 'hasMany',
+      model: 'Shopware.apps.SwagProductAssoc.model.Attribute',
+      name: 'getAttribute',
+      associationKey: 'attribute'
+    } ... ]
+});
+</code></pre>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/attribute.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Attribute', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() {
+        return {
+            detail: 'Shopware.apps.SwagProductAssoc.view.detail.Attribute'
+        };
+    },
+
+    fields: [
+        { name: 'id', type: 'int' },
+        { name: 'attr1', type: 'string' },
+        { name: 'attr2', type: 'string' },
+        { name: 'attr3', type: 'string' },
+        { name: 'attr4', type: 'string' },
+        { name: 'attr5', type: 'string' },
+        { name: 'attr6', type: 'string' },
+        { name: 'attr7', type: 'string' }
+    ]
+});
+</code></pre>
+
+<p>Because the attribute model is not part of Shopware's base models, you cannot extend an existing model and you have to implement it manually.</p>
+
+<p>The attribute model has been linked with a <code>OneToOne</code> association and therefore the configuration option <code>detail</code> needs to be implemented. The attribute view will be a new file in <code>Views/backend/swag_product/view/detail/attribute.js</code>:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Attribute', {
+    extend: 'Shopware.model.Container',
+    padding: 20,
+
+    configure: function() {
+        return {
+            fieldAlias: 'attribute'
+        }
+    }
+});
+</code></pre>
+
+<p>By default, a <code>Shopware.model.Container</code> will be created in order to display the <code>OneToOne</code> association. Every <code>Shopware.model.Container</code> need a <code>fieldAlias</code> and should be equal to the property name of the doctrine association. The <code>fieldAlias</code> is also required in order to display fields of multiple models inside of the same form panel. The fields of the attribute model will therefore be named like seen below:</p>
+
+<ul><li>attr1 &gt; attribute[attr1]</li>
+<li>attr2 &gt; attribute[attr2]</li>
+<li>attr3 &gt; attribute[attr3]</li>
+<li>...</li>
+</ul><p>That makes it possible to display attribute fields of different models inside of the same form panel without getting into conflict with the data indexing.</p>
+
+<p>Lastly, you have to define, where the attribute data in the detail window should be displayed. As like the <code>ManyToMany</code> association, there are two different ways:</p>
+
+<ul><li>
+<code>Shopware.window.Detail</code> - As tab on in the detail window</li>
+<li>
+<code>Shopware.model.Container</code> - Inside the detail window of an model</li>
+</ul><p>To display the attribute data as a new tab, you have to modify the detail window (<code>Views/backend/swag_product/view/detail/window.js</code>) with the following code:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Window', {
+    extend: 'Shopware.window.Detail',
+    alias: 'widget.product-detail-window',
+    title : '{s name=title}Product details{/s}',
+    height: 270,
+    width: 680,
+    configure: function() {
+        return {
+            associations: [ 'categories', 'attribute' ]
+        }
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_6.png" alt="Product attributes form"></p>
+</div>
+
+<p>Alternatively, you can display the attribute view in a <code>Shopware.model.Container</code> and you would be able to display the attribute view right inside of the product container. For this you just have to move the association from the detail window into the product container (<code>Views/backend/swag_product/view/detail/product.js</code>):</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    padding: 20,
+
+    configure: function() {
+        return {
+            controller: 'SwagProductAssoc',
+            associations: [ 'attribute' ]
+        };
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_7.png" alt="Product detail with attributes"></p>
+</div>
+
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
+
+<h3 id="onetomany-association-products-&amp;-variants">OneToMany Association - Products &amp; Variants</h3>
+
+<p>The following tasks are necessary to use the <code>OneToMany</code> association using the Shopware backend components:</p>
+
+<ul><li>Implementation of the association in the product model</li>
+<li>Integration of the variant model</li>
+<li>Definition of the variant view</li>
+<li>Definition of where the variant view should be displayed</li>
+</ul><p>First, you have to extend the product model by adding the variant association and create a new file containing the varaint model in <code>Views/backend/swag_product/model/variant.js</code>:</p>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/product.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() { ... },
+    fields: [ ... ],
+
+    associations: [{
+        relation: 'OneToMany',
+
+        type: 'hasMany',
+        model: 'Shopware.apps.SwagProductAssoc.model.Variant',
+        name: 'getVariants',
+        associationKey: 'variants'
+    } ...]
+});
+</code></pre>
+
+<p><strong>SwagProduct/Views/backend/swag_product/model/variant.js</strong></p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Variant', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() {
+        return {
+            listing: 'Shopware.apps.SwagProductAssoc.view.detail.Variant'
+        };
+    },
+
+    fields: [
+        { name: 'id', type: 'int' },
+        { name: 'productId', type: 'int' },
+        { name: 'number', type: 'string' },
+        { name: 'additionalText', type: 'string' },
+        { name: 'active', type: 'boolean' },
+        { name: 'inStock', type: 'int' },
+        { name: 'stockMin', type: 'int' },
+        { name: 'weight', type: 'float' }
+    ]
+});
+</code></pre>
+
+<p>Since the variants have been implemented as an <code>OneToMany</code> association, you have to set <code>listing</code> property. The variant view component will be created in <code>Views/backend/swag_product/view/detail/variant.js</code>:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Variant', {
+    extend: 'Shopware.grid.Panel',
+    alias: 'widget.shopware-product-variant-grid',
+    title: 'Variant',
+    height: 300
+});
+</code></pre>
+
+<p>By default, a <code>Shopware.grid.Panel</code> will be created in order to display <code>OneToMany</code> associations. The <code>Shopware.grid.Panel</code> component can then implement their own detail view in order to edit the variants.  Alternatively, you can implement a <a href="http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.grid.plugin.RowEditing">Ext.grid.plugin.RowEditing</a> component to edit the data directly inside of the grid.</p>
+
+<p>Like the <code>OneToMany</code> and <code>OneToOne</code> associations, you have to define where the variant view should be displayed. Like seen in previous section, you can display the view in a new tab or inside of a model container.</p>
+
+<p>To display the variant view as a new tab, you have to modify the detail window (<code>Views/backend/swag_product/view/detail/window.js</code>) with the following code:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Window', {
+    extend: 'Shopware.window.Detail',
+    alias: 'widget.product-detail-window',
+    title : '{s name=title}Product details{/s}',
+    height: 270,
+    width: 680,
+    configure: function() {
+        return {
+            associations: [ 'attribute', 'categories', 'variants' ]
+        }
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_8.png" alt="Variants tab"></p>
+</div>
+
+<p>As an alternative, you can display the association right inside of the product container. For this, you have to move the association from the detail window to the product container in <code>Views/backend/swag_product/view/detail/product.js</code>:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Product', {
+    extend: 'Shopware.model.Container',
+    alias: 'widget.product-detail-container',
+    padding: 20,
+
+    configure: function() {
+        return {
+            controller: 'SwagProductAssoc',
+            associations: [ 'variants' ]
+        };
+    }
+});
+</code></pre>
+
+<div class="is-center">
+<p><img src="img/assoc_9.png" alt="Product detail with variant"></p>
+</div>
+
+<div class="alert alert-info">
+<strong>Important</strong>: To make these changes visible, you have to uncomment the elements in the <code>app.js</code> file.
+</div>
+
+<h4 id="lazy-loading">Lazy Loading</h4>
+
+<p>So far, the data for the detail window will always be completely selected by the <code>getDetailQuery()</code>. But this can lead to bad performance since we don't need all of the associated data right from the start. Therefore, the data should be loaded, if we activate a tab. A good example for that is the product's variant tab. If an user only wants to edit the basic data of a product, he has to wait until every association including all variants have been loaded. The might take some time on big variant configurations. But we've covered this scenario too and have a solution called <strong>Lazy-Loading associations</strong>.</p>
+
+<p>To load the variant grid data as the tab gets active, you have to do the following tasks:</p>
+
+<ul><li>Extend the variant association</li>
+<li>Implement an association store</li>
+<li>Remove the variant selection in the PHP controller</li>
+</ul><p>At first, you have to extend the variant association in the product model:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.model.Product', {
+    extend: 'Shopware.data.Model',
+
+    configure: function() { ... },
+    fields: [ ... ],
+
+    associations: [{
+        relation: 'OneToMany',
+        storeClass: 'Shopware.apps.SwagProductAssoc.store.Variant',
+        lazyLoading: true,
+
+        type: 'hasMany',
+        model: 'Shopware.apps.SwagProductAssoc.model.Variant',
+        name: 'getVariants',
+        associationKey: 'variants'
+    } ...]
+});
+</code></pre>
+
+<p>The option <code>lazyLoading</code> defines, that the association should only be loaded, if the variant grid gets into visible range.</p>
+
+<p>The option <code>storeClass</code> defines, which store component should be used. By default, ExtJS creates an <code>Ext.data.Store</code> for every association, but without an proxy configuration which is needed to load the data from the controller. The store will be implemented in <code>Views/backend/swag_product/store/variant.js</code>:</p>
+
+<pre><code class="language-php">Ext.define('Shopware.apps.SwagProductAssoc.store.Variant', {
+    extend: 'Shopware.store.Association',
+    model: 'Shopware.apps.SwagProductAssoc.model.Variant',
+    configure: function() {
+        return {
+            controller: 'SwagProductAssoc'
+        };
+    }
+});
+</code></pre>
+
+<p>For <code>OneToMany</code> association stores, it is important to derive from the <code>Shopware.store.Association</code> component, otherwise you will be missing some features of the variant view.</p>
+
+<p>Because the data is now lazy loaded, you have to remove the selection from the <code>getDetailQuery()</code> method in the PHP controller. However, the <code>variants</code> property needs still to be set to an empty array, because ExtJS needs it to create an empty store. We recommend you to extend the <code>getAdditionalDetailData()</code> method to implement this.</p>
+
+<pre><code class="language-php">class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
+{
+    protected $model = Product::class;
+    protected $alias = 'product';
+
+    protected function getListQuery()
+    {
+        ...
+    }
+ 
+    protected function getDetailQuery($id)
+    {
+        $builder = parent::getDetailQuery($id);
+
+        $builder-&gt;leftJoin('product.tax', 'tax')
+                -&gt;leftJoin('product.attribute', 'attribute');
+
+        $builder-&gt;addSelect(array('tax', 'attribute'));
+
+        return $builder;
+    }
+
+    protected function getAdditionalDetailData(array $data)
+    {
+        $data['categories'] = $this-&gt;getCategories($data['id']);
+        $data['variants'] = array();
+        return $data;
+    }
+
+    protected function getCategories($productId)
+    {
+        ...
+    }
+}
+</code></pre>
+
+<h2 id="plugin-download-swagproductassoc.zip">Plugin Download - <a href="/exampleplugins/SwagProductAssoc.zip">SwagProductAssoc.zip</a></h2>
+
+<p>Congratulations! You've just learned how to use associations using Shopware backend components. The basic development of Shopware backend components is therefore done. You should now be able to write your own backend applications.</p>
+
+<h2 id="further-tutorials">Further Tutorials</h2>
+
+<p>The next tutorial will cover extensions for the listing component.</p>
+
+<p>Proceed to <a href="/developers-guide/backend-components/listing-extensions/">Backend Components - Listing Extensions</a>.</p>
+
+                    </div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505361.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505361.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

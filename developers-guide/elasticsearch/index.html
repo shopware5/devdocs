@@ -1,0 +1,2736 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Elasticsearch development</title><meta name="description" content="Elasticsearch development"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505363.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505363.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505363.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter is--active">
+                    <a href="/developers-guide/" class="navi--link is--active has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter is--active">
+
+                            <a class="navi--link is--active has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link is--active" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link is--active has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                                    <span class="version clearfix" data-shopware-version="5.1.0">
+                        <span class="versionDisc">as of version</span>
+                        <span class="versionBadge">5.1.0</span>
+                    </span>
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/developers-guide/elasticsearch/index.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Elasticsearch development
+            </h1>
+            
+            <div class="toc-list"></div>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this guide we introduce the Elasticsearch (ES) integration for Shopware.</p>
+
+<p>Shopware uses two bundles for the ES implementation:</p>
+
+<ol><li>ESIndexingBundle - Contains all components that index data from Shopware to ES</li>
+<li>SearchBundleES   - Implementation of the SearchBundle using ES</li>
+</ol><h2 id="libraries">Libraries</h2>
+
+<p>Shopware uses the official PHP low-level client for Elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html">elasticsearch-php</a> as well as the <a href="http://www.ongr.io/">ONGR</a> Elasticsearch DSL library <a href="https://github.com/ongr-io/ElasticsearchDSL">ElasticsearchDSL</a> that provides an objective query builder.</p>
+
+<h2 id="public-api">Public API</h2>
+
+<p>The following list contains all relevant events, interfaces and public API calls for Elasticsearch:</p>
+
+<table><thead><tr><th>Console Command</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>sw:es:analyze</td>
+<td>Helper tool to test the integrated analyzers.</td>
+</tr><tr><td>sw:es:backlog:clear</td>
+<td>Remove backlog entries that are already synchronized.</td>
+</tr><tr><td>sw:es:backlog:sync</td>
+<td>Synchronize events from the backlog to the live index.</td>
+</tr><tr><td>sw:es:index:cleanup</td>
+<td>Remove unused Elasticsearch indices.</td>
+</tr><tr><td>sw:es:index:populate</td>
+<td>Reindex all shops into new indexes and switch the live system alias after the index process.</td>
+</tr><tr><td>sw:es:switch:alias</td>
+<td>Switch live system aliases.</td>
+</tr></tbody></table><table><thead><tr><th>Interface</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>DataIndexerInterface</td>
+<td>Required to add new data indexer</td>
+</tr><tr><td>MappingInterface</td>
+<td>Required to add new data mappings</td>
+</tr><tr><td>SettingsInterface</td>
+<td>Required to add new ES settings</td>
+</tr><tr><td>SynchronizerInterface</td>
+<td>Required to add new data synchronizer</td>
+</tr><tr><td>ShopAnalyzerInterface</td>
+<td>Defines which ES analyzer(s) is used in which shop</td>
+</tr><tr><td>SearchTermQueryBuilderInterface</td>
+<td>Builds the search query for product search</td>
+</tr><tr><td>HandlerInterface</td>
+<td>Allows handling criteria parts in ES number searches</td>
+</tr><tr><td>ResultHydratorInterface</td>
+<td>Allows hydrating ES number search results</td>
+</tr></tbody></table><table><thead><tr><th>DI Container service</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>shopware_elastic_search.client</td>
+<td>ES client for communication</td>
+</tr><tr><td>shopware_elastic_search.shop_indexer</td>
+<td>Starts indexing process for all shops</td>
+</tr><tr><td>shopware_elastic_search.shop_analyzer</td>
+<td>Defines which ES analyzer(s) is used in which shop</td>
+</tr><tr><td>shopware_elastic_search.backlog_processor</td>
+<td>Process the backlog queue</td>
+</tr><tr><td>shopware_search_es.product_number_search</td>
+<td>ProductNumberSearch using ES</td>
+</tr><tr><td>shopware_search_es.search_term_query_builder</td>
+<td>Builds the search query for product searches</td>
+</tr></tbody></table><table><thead><tr><th>DI Container tag</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>shopware_elastic_search.data_indexer</td>
+<td>Registers a new data indexer</td>
+</tr><tr><td>shopware_elastic_search.mapping</td>
+<td>Registers a new data mapping</td>
+</tr><tr><td>shopware_elastic_search.synchronizer</td>
+<td>Registers a new data synchronizer</td>
+</tr><tr><td>shopware_elastic_search.settings</td>
+<td>Registers a new ES settings class</td>
+</tr><tr><td>shopware_search_es.search_handler</td>
+<td>Registers a new search handler</td>
+</tr></tbody></table><table><thead><tr><th>Event</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>Shopware_ESIndexingBundle_Collect_Indexer</td>
+<td>Registers a new data indexer</td>
+</tr><tr><td>Shopware_ESIndexingBundle_Collect_Mapping</td>
+<td>Registers a new data mapping</td>
+</tr><tr><td>Shopware_ESIndexingBundle_Collect_Synchronizer</td>
+<td>Registers a new data synchronizer</td>
+</tr><tr><td>Shopware_ESIndexingBundle_Collect_Settings</td>
+<td>Registers a new ES settings class</td>
+</tr><tr><td>Shopware_SearchBundleES_Collect_Handlers</td>
+<td>Registers a new search handler</td>
+</tr></tbody></table><h2 id="indexing-additional-data">Indexing additional data</h2>
+
+<p>One common use case is to index additional data into ES and make it searchable. The following example shows which components are required to add new data sources to ES and keep it up to date. After data is indexed, the product number search will be extended to select additional data. The example indexes Shopware blog entries. To index additional data, the following class implementations are required:</p>
+
+<ol><li>DataIndexerInterface</li>
+<li>MappingInterface</li>
+<li>SynchronizerInterface</li>
+<li>A class to record Doctrine events and write them into the backlog</li>
+</ol><p>You can find a installable ZIP package of this plugin <a href="https://developers.shopware.com/exampleplugins/SwagESBlog.zip">here</a>.</p>
+
+<h3 id="register-the-services-and-subscriber">Register the services and subscriber</h3>
+
+<p>The plugin service.xml looks as follows:</p>
+
+<pre><code class="language-xml">&lt;container xmlns=&quot;http://symfony.com/schema/dic/services&quot;
+           xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+           xsi:schemaLocation=&quot;http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd&quot;&gt;
+
+    &lt;services&gt;
+
+        &lt;service id=&quot;swag_es_blog.bundle_blog_provider&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogProvider&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;dbal_connection&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add DataIndexer 'BlogDataIndexer' --&gt;
+        &lt;service id=&quot;swag_es_blog.bundle.indexer&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogDataIndexer&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;dbal_connection&quot;/&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.client&quot;/&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;swag_es_blog.bundle_blog_provider&quot;/&gt;
+            &lt;!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/DataIndexerCompilerPass.php --&gt;
+            &lt;tag name=&quot;shopware_elastic_search.data_indexer&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add search mapping 'BlogMapping' --&gt;
+        &lt;service id=&quot;swag_es_blog.bundle.mapping&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogMapping&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.field_mapping&quot;/&gt;
+            &lt;!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/MappingCompilerPass.php --&gt;
+            &lt;tag name=&quot;shopware_elastic_search.mapping&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add settings 'BlogSettings' --&gt;
+        &lt;service id=&quot;swag_es_blog.bundle.settings&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogSettings&quot;&gt;
+            &lt;!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SettingsCompilerPass.php --&gt;
+            &lt;tag name=&quot;shopware_elastic_search.settings&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add synchronizer 'BlogSynchronizer' --&gt;
+        &lt;service id=&quot;swag_es_blog.bundle.synchronizer&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogSynchronizer&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;swag_es_blog.bundle.indexer&quot;/&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;dbal_connection&quot;/&gt;
+            &lt;!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SynchronizerCompilerPass.php --&gt;
+            &lt;tag name=&quot;shopware_elastic_search.synchronizer&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add search 'BlogSearch' --&gt;
+        &lt;service id=&quot;swag_es_blog.search_bundle.search&quot; class=&quot;SwagESBlog\Bundle\SearchBundleES\BlogSearch&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.client&quot;/&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;shopware_search.product_search&quot;/&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.index_factory&quot;/&gt;
+            &lt;!-- /.../engine/Shopware/Bundle/SearchBundleES/DependencyInjection/CompilerPass/SearchHandlerCompilerPass.php --&gt;
+            &lt;tag name=&quot;shopware_search_es.search_handler&quot;/&gt;
+        &lt;/service&gt;
+
+        &lt;!-- Add doctrine event subscriber 'ORMBacklogSubscriber.php' --&gt;
+        &lt;service id=&quot;user_listener&quot; class=&quot;SwagESBlog\Subscriber\ORMBacklogSubscriber&quot;&gt;
+            &lt;argument type=&quot;service&quot; id=&quot;service_container&quot;/&gt;
+            &lt;!-- /.../engine/Shopware/Components/DependencyInjection/Compiler/DoctrineEventSubscriberCompilerPass.php --&gt;
+            &lt;tag name=&quot;doctrine.event_subscriber&quot;/&gt;
+        &lt;/service&gt;
+
+    &lt;/services&gt;
+
+&lt;/container&gt;
+</code></pre>
+
+<p>The service file contains only the events needed to register the new services and subscriber. The following classes are initialized and registered:</p>
+
+<table><thead><tr><th>Class</th>
+<th>Description</th>
+</tr></thead><tbody><tr><td>BlogMapping</td>
+<td>Defines how a blog data structure looks like</td>
+</tr><tr><td>BlogDataIndexer</td>
+<td>Populates the blog data into the ES indices</td>
+</tr><tr><td>BlogProvider</td>
+<td>Helper class which provides data for blog entries</td>
+</tr><tr><td>ORMBacklogSubscriber</td>
+<td>Traces Doctrine events for the blog entity and insert changes into the backlog queue</td>
+</tr><tr><td>BlogSynchronizer</td>
+<td>Handles backlog queue to synchronize blog entities which are added by the <code>ORMBacklogSubscriber</code></td>
+</tr></tbody></table><p>To index data into ES, the <code>BlogMapping</code>, <code>BlogDataIndexer</code> and <code>BlogProvider</code> are required.</p>
+
+<h3 id="additional-mapping">Additional mapping</h3>
+
+<p>Before data can be indexed, a data mapping has to be created. This is defined in the <code>BlogMapping</code> class, which looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\ESIndexingBundle;
+
+use Shopware\Bundle\ESIndexingBundle\FieldMappingInterface;
+use Shopware\Bundle\ESIndexingBundle\MappingInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class BlogMapping implements MappingInterface
+{
+    /**
+     * @var FieldMappingInterface
+     */
+    private $fieldMapping;
+
+    /**
+     * @param FieldMappingInterface $fieldMapping
+     */
+    public function __construct(FieldMappingInterface $fieldMapping)
+    {
+        $this-&gt;fieldMapping = $fieldMapping;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return 'blog';
+    }
+
+    /**
+     * @param Shop $shop
+     * @return array
+     */
+    public function get(Shop $shop)
+    {
+        return [
+            'properties' =&gt; [
+                'id' =&gt; ['type' =&gt; 'long'],
+                'title' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop),
+                'shortDescription' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop),
+                'longDescription' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop),
+                'metaTitle' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop),
+                'metaKeywords' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop),
+                'metaDescription' =&gt; $this-&gt;fieldMapping-&gt;getLanguageField($shop)
+            ]
+        ];
+    }
+}
+</code></pre>
+
+<p><code>BlogMapping</code> uses the <code>FieldMappingInterface</code> to get definitions for language fields. It returns a string field definition with sub fields for configured shop analyzers. A language field is only required if a search term for this field has to be analyzed for different shop languages. For fields which shouldn't be searchable, it is more useful to define a simple string field. Example for shop with english locale:</p>
+
+<pre><code class="language-php">[
+    [type] =&gt; string
+    [fields] =&gt; [
+        [english_analyzer] =&gt; [
+            [type] =&gt; string
+            [analyzer] =&gt; english
+        ]
+    ]
+]
+</code></pre>
+
+<p>The <code>english_analyzer</code> field uses, at indexing and search time, a pre configured english analyzer of ES. The <code>getType</code> function defines the unique name for the data type, in this example <code>blog</code>.</p>
+
+<h3 id="additional-indexer">Additional indexer</h3>
+
+<p>After the data mapping is defined, the data can be indexed using the <code>BlogDataIndexer</code>, which looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\ESIndexingBundle;
+
+use Doctrine\DBAL\Connection;
+use Elasticsearch\Client;
+use Shopware\Bundle\ESIndexingBundle\Console\ProgressHelperInterface;
+use Shopware\Bundle\ESIndexingBundle\DataIndexerInterface;
+use Shopware\Bundle\ESIndexingBundle\Struct\ShopIndex;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class BlogDataIndexer implements DataIndexerInterface
+{
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
+     * @var Client
+     */
+    private $client;
+
+    /**
+     * @var BlogProvider
+     */
+    private $provider;
+
+    /**
+     * @param Connection $connection
+     * @param Client $client
+     * @param BlogProvider $provider
+     */
+    public function __construct(
+        Connection $connection,
+        Client $client,
+        BlogProvider $provider
+    ) {
+        $this-&gt;connection = $connection;
+        $this-&gt;client = $client;
+        $this-&gt;provider = $provider;
+    }
+
+    /**
+     * @param ShopIndex $index
+     * @param ProgressHelperInterface $progress
+     */
+    public function populate(ShopIndex $index, ProgressHelperInterface $progress)
+    {
+        $ids = $this-&gt;getBlogIds($index-&gt;getShop());
+        $progress-&gt;start(count($ids), 'Indexing blog');
+
+        $chunks = array_chunk($ids, 100);
+        foreach ($chunks as $chunk) {
+            $this-&gt;index($index, $chunk);
+            $progress-&gt;advance(100);
+        }
+
+        $progress-&gt;finish();
+    }
+
+    /**
+     * @param ShopIndex $index
+     * @param int[] $ids
+     */
+    public function index(ShopIndex $index, $ids)
+    {
+        if (empty($ids)) {
+            return;
+        }
+
+        $blog = $this-&gt;provider-&gt;get($ids);
+        $remove = array_diff($ids, array_keys($blog));
+
+        $documents = [];
+        foreach ($blog as $row) {
+            $documents[] = ['index' =&gt; ['_id' =&gt; $row-&gt;getId()]];
+            $documents[] = $row;
+        }
+
+        foreach ($remove as $id) {
+            $documents[] = ['delete' =&gt; ['_id' =&gt; $id]];
+        }
+
+        if (empty($documents)) {
+            return;
+        }
+
+        $this-&gt;client-&gt;bulk([
+            'index' =&gt; $index-&gt;getName(),
+            'type'  =&gt; 'blog',
+            'body'  =&gt; $documents
+        ]);
+    }
+
+    private function getBlogIds(Shop $shop)
+    {
+        $query = $this-&gt;connection-&gt;createQueryBuilder();
+        $query-&gt;select('blog.id')
+            -&gt;from('s_blog', 'blog')
+            -&gt;innerJoin('blog', 's_categories', 'category', 'category.id = blog.category_id AND category.path LIKE :path')
+            -&gt;setParameter(':path', '%|'.(int)$shop-&gt;getCategory()-&gt;getId().'|%');
+
+        return $query-&gt;execute()-&gt;fetchAll(\PDO::FETCH_COLUMN);
+    }
+}
+</code></pre>
+
+<p>The <code>populate</code> function is responsible for loading all blog entries into ES for the provided shop.
+Since the shop indexer doesn't know how to iterate the <code>DataIndexer</code> rows, the iteration has to be inside the <code>populate</code> function. A progress can be displayed using the provided <code>ProgressHelperInterface</code>. First, the function selects all blog ids for the provided shop and passes them into the <code>index</code> function. To separate data indexing and data loading, the <code>BlogIndexer</code> loads blog data using his own <code>BlogProvider</code>.</p>
+
+<pre><code class="language-php">$blog = $this-&gt;provider-&gt;get($ids);
+</code></pre>
+
+<p>ES allows executing multiple task types, such as delete, update and insert, inside a single request, using the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html">Bulk API</a>, which expects the following parameters:</p>
+
+<ul><li>index (name of the ES index)</li>
+<li>type  (mapping type, <code>blog</code> in this case)</li>
+<li>body  (documents to index)</li>
+</ul><p>To index a document using the bulk API, two array elements must be sent:</p>
+
+<pre><code class="language-php">$this-&gt;client-&gt;bulk([
+    'index' =&gt; $index-&gt;getName(),
+    'type'  =&gt; 'blog',
+    'body'  =&gt; [
+        ['index' =&gt; ['_id' =&gt; 1]],
+        ['name' =&gt; 'First blog row', 'title' =&gt; '...', ...]
+    ]
+]);
+</code></pre>
+
+<p>Documents provided using the bulk API must be json serializable. In this case, the provider returns a <code>BlogStruct</code>, which implements the <code>JsonSerializable</code> interface.
+The indexing process can be started using the <code>sw:es:index:populate</code> console command:</p>
+
+<pre><code class="language-bash">$ php bin/console sw:es:index:populate
+
+## Indexing shop Deutsch ##
+Indexing blog
+ 3/3 [============================] 100%  1 sec/1 sec
+Indexing properties
+ 5/5 [============================] 100%  1 sec/1 sec
+Indexing products
+ 197/197 [============================] 100%  1 sec/1 sec
+
+## Indexing shop English ##
+Indexing blog
+ 3/3 [============================] 100%  1 sec/1 sec
+Indexing properties
+ 5/5 [============================] 100%  1 sec/1 sec
+Indexing products
+ 107/107 [============================] 100%  1 sec/1 sec
+</code></pre>
+
+<div class="alert alert-info" role="alert">
+    <strong>Note:</strong> Shopware creates a index for each shop, to separate language specify data. This prevents a language mixing inside an ES index. Otherwise, the search term might be mixed, and a search couldn't be limited to the shop the user is currently browsing. This means that each indexer has to index the data directly in the provided shop language. The shop can be accessed using the provided `ShopIndex` class. Additionally, all restrictions to customer groups, shops or others have to be indexed too.
+</div>
+
+<h3 id="additional-synchronisation">Additional synchronisation</h3>
+
+<p>To keep the blog entries up to date, it is required to synchronize the blog data when changes are made.
+By default, Shopware traces changes using <a href="http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/events.html">doctrine events</a>.
+The first step to synchronize blog entries is registering the <code>ORMBacklogSubscriber</code> service. It subscribes to Doctrine's <code>onFlush</code> and <code>postFlush</code> events, in order to trace data changes.</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Subscriber;
+
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostFlushEventArgs;
+use Doctrine\ORM\Events;
+use Shopware\Bundle\ESIndexingBundle\Struct\Backlog;
+use Shopware\Components\DependencyInjection\Container;
+use Shopware\Components\Model\ModelEntity;
+use Shopware\Components\Model\ModelManager;
+use Shopware\Models\Blog\Blog as BlogModel;
+
+class ORMBacklogSubscriber implements EventSubscriber
+{
+    const EVENT_BLOG_DELETED = 'blog_deleted';
+    const EVENT_BLOG_INSERTED = 'blog_inserted';
+    const EVENT_BLOG_UPDATED = 'blog_updated';
+
+    /**
+     * @var Backlog[]
+     */
+    private $queue = [];
+
+    /**
+     * @var array
+     */
+    private $inserts;
+
+    /**
+     * @var bool
+     */
+    private $eventRegistered = false;
+
+    /**
+     * @var Container
+     */
+    private $container;
+
+    /**
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this-&gt;container = $container;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSubscribedEvents()
+    {
+        return [
+            Events::onFlush,
+            Events::postFlush
+        ];
+    }
+
+    /**
+     * @param OnFlushEventArgs $eventArgs
+     */
+    public function onFlush(OnFlushEventArgs $eventArgs)
+    {
+        /** @var $em ModelManager */
+        $em = $eventArgs-&gt;getEntityManager();
+        $uow = $em-&gt;getUnitOfWork();
+
+        // Entity deletions
+        foreach ($uow-&gt;getScheduledEntityDeletions() as $entity) {
+            $backlog = $this-&gt;getDeleteBacklog($entity);
+            if (!$backlog) {
+                continue;
+            }
+            $this-&gt;queue[] = $backlog;
+        }
+
+        // Entity Insertions
+        foreach ($uow-&gt;getScheduledEntityInsertions() as $entity) {
+            $this-&gt;inserts[] = $entity;
+        }
+
+        // Entity updates
+        foreach ($uow-&gt;getScheduledEntityUpdates() as $entity) {
+            $backlog = $this-&gt;getUpdateBacklog($entity);
+            if (!$backlog) {
+                continue;
+            }
+            $this-&gt;queue[] = $backlog;
+        }
+    }
+
+    /**
+     * @param PostFlushEventArgs $eventArgs
+     */
+    public function postFlush(PostFlushEventArgs $eventArgs)
+    {
+        foreach ($this-&gt;inserts as $entity) {
+            $backlog = $this-&gt;getInsertBacklog($entity);
+            if (!$backlog) {
+                continue;
+            }
+            $this-&gt;queue[] = $backlog;
+        }
+        $this-&gt;inserts = [];
+
+        $this-&gt;registerShutdownListener();
+    }
+
+    private function registerShutdownListener()
+    {
+        if ($this-&gt;eventRegistered) {
+            return;
+        }
+
+        $this-&gt;eventRegistered = true;
+        $this-&gt;container-&gt;get('events')-&gt;addListener(
+            'Enlight_Controller_Front_DispatchLoopShutdown',
+            function () {
+                $this-&gt;processQueue();
+            }
+        );
+    }
+
+    private function processQueue()
+    {
+        if (empty($this-&gt;queue)) {
+            return;
+        }
+        $this-&gt;container-&gt;get('shopware_elastic_search.backlog_processor')-&gt;add($this-&gt;queue);
+        $this-&gt;queue = [];
+    }
+
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
+    private function getDeleteBacklog($entity)
+    {
+        switch (true) {
+            case ($entity instanceof BlogModel):
+                return new Backlog(self::EVENT_BLOG_DELETED, ['id' =&gt; $entity-&gt;getId()]);
+        }
+    }
+
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
+    private function getInsertBacklog($entity)
+    {
+        switch (true) {
+            case ($entity instanceof BlogModel):
+                return new Backlog(self::EVENT_BLOG_INSERTED, ['id' =&gt; $entity-&gt;getId()]);
+
+        }
+    }
+
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
+    private function getUpdateBacklog($entity)
+    {
+        switch (true) {
+            case ($entity instanceof BlogModel):
+                return new Backlog(self::EVENT_BLOG_UPDATED, ['id' =&gt; $entity-&gt;getId()]);
+        }
+    }
+}
+</code></pre>
+
+<p>It separates between update, delete and insert actions of the Shopware blog model. This class can be used as reference for other implementations.
+To prevent database operation inside a Doctrine flush event, the <code>postFlush</code> function registers a dynamic event listener for the <code>Enlight_Controller_Front_DispatchLoopShutdown</code> event, which inserts new backlogs entries at the end of the request.
+New backlogs can be easily added using the <code>shopware_elastic_search.backlog_processor</code> service. A <code>Backlog</code> struct contains the following data structure:</p>
+
+<ul><li>
+<code>event</code> &gt;  which can be defined manually</li>
+<li>
+<code>payload</code> &gt; data which will be saved as json string</li>
+</ul><p>Changes to blog entries are traced and stored in the <code>s_es_backlog</code> table. The synchronisation process will take place when the <code>sw:es:backlog:sync</code> command is called.
+To handle the backlog queue, it is required to register an additional <code>SynchronizerInterface</code>, which looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\ESIndexingBundle;
+
+use Doctrine\DBAL\Connection;
+use Shopware\Bundle\ESIndexingBundle\Struct\ShopIndex;
+use Shopware\Bundle\ESIndexingBundle\SynchronizerInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+use SwagESBlog\Subscriber\ORMBacklogSubscriber;
+
+class BlogSynchronizer implements SynchronizerInterface
+{
+    /**
+     * @var BlogDataIndexer
+     */
+    private $indexer;
+
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    /**
+     * @param BlogDataIndexer $indexer
+     * @param Connection $connection
+     */
+    public function __construct(BlogDataIndexer $indexer, Connection $connection)
+    {
+        $this-&gt;indexer = $indexer;
+        $this-&gt;connection = $connection;
+    }
+
+    public function synchronize(ShopIndex $shopIndex, $backlogs)
+    {
+        $ids = [];
+        foreach ($backlogs as $backlog) {
+            switch ($backlog-&gt;getEvent()) {
+                case ORMBacklogSubscriber::EVENT_BLOG_UPDATED:
+                case ORMBacklogSubscriber::EVENT_BLOG_DELETED:
+                case ORMBacklogSubscriber::EVENT_BLOG_INSERTED:
+                    $payload = $backlog-&gt;getPayload();
+                    $ids[] = $payload['id'];
+                    break;
+                default:
+                    continue;
+            }
+        }
+
+        $blogIds = $this-&gt;filterShopBlog($shopIndex-&gt;getShop(), $ids);
+        if (empty($blogIds)) {
+            return;
+        }
+        $this-&gt;indexer-&gt;index($shopIndex, $blogIds);
+    }
+
+    private function filterShopBlog(Shop $shop, $ids)
+    {
+        $query = $this-&gt;connection-&gt;createQueryBuilder();
+        $query-&gt;select('blog.id')
+            -&gt;from('s_blog', 'blog')
+            -&gt;innerJoin('blog', 's_categories', 'category', 'category.id = blog.category_id AND category.path LIKE :path')
+            -&gt;andWhere('blog.id IN (:ids)')
+            -&gt;setParameter(':path', '%|' . (int)$shop-&gt;getCategory()-&gt;getId() . '|%')
+            -&gt;setParameter(':ids', $ids, Connection::PARAM_INT_ARRAY);
+
+        return $query-&gt;execute()-&gt;fetchAll(\PDO::FETCH_COLUMN);
+    }
+}
+</code></pre>
+
+<p>The <code>BlogSynchronizer</code> implements the <code>SynchronizerInterface</code>, requiring a <code>synchronize</code> method implementation, which has a <code>ShopIndex</code> parameter to define which ES index has to be synchronized, and an array of <code>Backlog</code> structs which has to be processed. A Backlog struct contains the saved payload, which contains, in this case, the blog id. After all blog ids are collected, the implementation provides them, with the <code>ShopIndex</code>, to his own <code>BlogIndexer</code> to index these ids again. By filtering the selected blog ids using the <code>filterShopBlog</code>, the BlogIndexer gets only ids for the provided shop. This logic can be placed in the BlogIndexer too, which is a detail of each implementation.</p>
+
+<h3 id="decorate-product-search">Decorate product search</h3>
+
+<p>Now the plugin has to <a href="/developers-guide/shopware-5-core-service-extensions/">decorate</a> the <code>ProductSearch</code> to search for blog entries. This is possible using following xml code:</p>
+
+<pre><code class="language-xml">&lt;!-- Decorates product search with 'BlogSearch' --&gt;
+&lt;service id=&quot;swag_es_blog.search_bundle.search&quot; class=&quot;SwagESBlog\Bundle\SearchBundleES\BlogSearch&quot;
+    decorates=&quot;shopware_search.product_search&quot;
+    public=&quot;false&quot;&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.client&quot;/&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;swag_es_blog.search_bundle.search.inner&quot;/&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;shopware_elastic_search.index_factory&quot;/&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>The <code>BlogSearch</code> looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\SearchBundleES;
+
+use Elasticsearch\Client;
+use ONGR\ElasticsearchDSL\Query\MultiMatchQuery;
+use ONGR\ElasticsearchDSL\Search;
+use Shopware\Bundle\ESIndexingBundle\IndexFactoryInterface;
+use Shopware\Bundle\SearchBundle\Condition\SearchTermCondition;
+use Shopware\Bundle\SearchBundle\Criteria;
+use Shopware\Bundle\SearchBundle\ProductSearchInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct;
+use SwagESBlog\Bundle\ESIndexingBundle\Struct\Blog;
+
+class BlogSearch implements ProductSearchInterface
+{
+    /**
+     * @var ProductSearchInterface
+     */
+    private $coreService;
+
+    /**
+     * @var Client
+     */
+    private $client;
+
+    /**
+     * @var IndexFactoryInterface
+     */
+    private $indexFactory;
+
+    /**
+     * @param Client $client
+     * @param ProductSearchInterface $coreService
+     * @param IndexFactoryInterface $indexFactory
+     */
+    public function __construct(
+        Client $client,
+        ProductSearchInterface $coreService,
+        IndexFactoryInterface $indexFactory
+    ) {
+        $this-&gt;coreService = $coreService;
+        $this-&gt;client = $client;
+        $this-&gt;indexFactory = $indexFactory;
+    }
+
+    public function search(Criteria $criteria, Struct\ProductContextInterface $context)
+    {
+        $result = $this-&gt;coreService-&gt;search($criteria, $context);
+
+        if ($criteria-&gt;hasCondition('search')) {
+            $blog = $this-&gt;searchBlog($criteria, $context);
+
+            $result-&gt;addAttribute(
+                'swag_elastic_search',
+                new Struct\Attribute(['blog' =&gt; $blog])
+            );
+        }
+
+        return $result;
+    }
+
+    private function searchBlog(Criteria $criteria, Struct\ProductContextInterface $context)
+    {
+        /**@var $condition SearchTermCondition*/
+        $condition = $criteria-&gt;getCondition('search');
+        $query = $this-&gt;createMultiMatchQuery($condition);
+
+        $search = new Search();
+        $search-&gt;addQuery($query);
+        $search-&gt;setFrom(0)-&gt;setSize(5);
+
+        $index = $this-&gt;indexFactory-&gt;createShopIndex($context-&gt;getShop());
+        $params = [
+            'index' =&gt; $index-&gt;getName(),
+            'type'  =&gt; 'blog',
+            'body'  =&gt; $search-&gt;toArray()
+        ];
+
+        $raw = $this-&gt;client-&gt;search($params);
+
+        return $this-&gt;createBlogStructs($raw);
+    }
+
+    /**
+     * @param SearchTermCondition $condition
+     * @return MultiMatchQuery
+     */
+    private function createMultiMatchQuery(SearchTermCondition $condition)
+    {
+        return new MultiMatchQuery(
+            ['title', 'shortDescription', 'longDescription'],
+            $condition-&gt;getTerm(),
+            ['operator' =&gt; 'AND']
+        );
+    }
+
+    /**
+     * @param $raw
+     * @return array
+     */
+    private function createBlogStructs($raw)
+    {
+        $result = [];
+        foreach ($raw['hits']['hits'] as $hit) {
+            $source = $hit['_source'];
+
+            $blog = new Blog($source['id'], $source['title']);
+            $blog-&gt;setShortDescription($source['shortDescription']);
+            $blog-&gt;setLongDescription($source['longDescription']);
+            $blog-&gt;setMetaTitle($source['metaTitle']);
+            $blog-&gt;setMetaKeywords($source['metaKeywords']);
+            $blog-&gt;setMetaDescription($source['metaDescription']);
+
+            $result[] = $blog;
+        }
+        return $result;
+    }
+}
+</code></pre>
+
+<p>By implementing the <code>ProductSearchInterface</code>, it is required to implement a <code>search</code> function with a <code>Criteria</code> and <code>ShopContextInterface</code> parameters.</p>
+
+<pre><code class="language-php">public function search(Criteria $criteria, Struct\ProductContextInterface $context)
+</code></pre>
+
+<p>This function is the only public API of this class and has to return a <code>ProductSearchResult</code>.
+The product search should be executed using the original <code>ProductSearchService</code>, therefore the function calls the <code>search</code> function on the decorated service to get access on the original search result.</p>
+
+<pre><code class="language-php">$result = $this-&gt;coreService-&gt;search($criteria, $context);
+</code></pre>
+
+<p>After the product search has been executed, it is required to check if the provided <code>Criteria</code> class contains a <code>search</code> condition.
+If the criteria contains no <code>search</code> condition, the criteria class contains only filter parameters like <code>categoryId: 10; filterValues: [1,2]; ..</code> which are used to define products list, like category listings or sliders, and the function has to return, at this point, the original product search result.</p>
+
+<pre><code class="language-php">if (!$criteria-&gt;hasCondition('search')) {
+    return $result;
+}
+</code></pre>
+
+<p>In case the criteria contains a <code>search</code> condition, the <code>searchBlog</code> function can be called to search for blog entries which matches the provided search term.
+The <code>searchBlog</code> function first builds a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html"><code>MultiMatchQuery</code></a> for all relevant search fields:</p>
+
+<pre><code class="language-php">/**@var $condition SearchTermCondition*/
+$condition = $criteria-&gt;getCondition('search');
+$query = new MultiMatchQuery(
+     ['title', 'shortDescription', 'longDescription'],
+     $condition-&gt;getTerm(),
+     ['operator' =&gt; 'AND']
+ );
+</code></pre>
+
+<p>To build the required search body structure, Shopware uses the <a href="http://ongr.readthedocs.org/en/latest/components/ElasticsearchBundle/dsl/index.html"><code>ONGR\ElasticsearchDSL\Search</code></a> class, which allows building ES search queries:</p>
+
+<pre><code class="language-php">$search = new Search();
+$search-&gt;addQuery($query);
+$search-&gt;setFrom(0)-&gt;setSize(5);
+</code></pre>
+
+<p>ES searches are executed using official client <a href="https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html"><code>Elasticsearch\Client</code></a>.</p>
+
+<pre><code class="language-php">$index = $this-&gt;indexFactory-&gt;createShopIndex($context-&gt;getShop());
+$raw = $this-&gt;client-&gt;search([
+    'index' =&gt; $index-&gt;getName(),
+    'type'  =&gt; 'blog',
+    'body'  =&gt; $search-&gt;toArray()
+]);
+</code></pre>
+
+<p>The <code>indexFactory</code> is used to get the index name based on the current shop of the provided context.
+As result, the client returns an array with all ES information of the search request:</p>
+
+<pre><code class="language-php">[
+    [took] =&gt; 1
+    [timed_out] =&gt;
+    [_shards] =&gt; [
+        [total] =&gt; 5
+        [successful] =&gt; 5
+        [failed] =&gt; 0
+    ]
+    [hits] =&gt; [
+        [total] =&gt; 1
+        [max_score] =&gt; 1.0521741
+        [hits] =&gt;[
+            [0] =&gt; [
+                [_index] =&gt; sw_shop2_20150707155554
+                [_type] =&gt; blog
+                [_id] =&gt; 6
+                [_score] =&gt; 1.0521741
+                [_source] =&gt; [
+                    [id] =&gt; 6
+                    [title] =&gt; The summer will be colorful
+                    [shortDescription] =&gt; This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman.
+                    [longDescription] =&gt; This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman. Whether lemon-yellow top, grass-green chinos or pink clutch – with these colors you will definitely be an eye catcher. And this year we even go one step further.
+                    [metaTitle] =&gt;
+                    [metaKeywords] =&gt;
+                    [metaDescription] =&gt;
+                ]
+            ]
+        ]
+    ]
+]
+</code></pre>
+
+<p>This data will be hydrated and converted to Blog structs using the <code>createBlogStructs</code> function:</p>
+
+<pre><code class="language-php">private function createBlogStructs($raw)
+{
+    $result = [];
+    foreach ($raw['hits']['hits'] as $hit) {
+        $source = $hit['_source'];
+        $blog = new Blog($source['id'], $source['title']);
+        //...
+        $result[] = $blog;
+    }
+    return $result;
+}
+</code></pre>
+
+<p>The found blog structs will be assigned as an <code>Attribute</code> struct to the original product search result:</p>
+
+<pre><code class="language-php">$blog = $this-&gt;searchBlog($criteria, $context);
+$result-&gt;addAttribute(
+    'swag_blog_es_search',
+    new Struct\Attribute(['blog' =&gt; $blog])
+);
+</code></pre>
+
+<h3 id="additional-es-analyzer">Additional ES analyzer</h3>
+
+<p>The basic blog data should be indexed and searchable with the custom ES analyzer. To add an additional analyzer, the <code>SettingsInterface</code> of the <code>ESIndexingBundle</code> can be used.
+The plugin service.xml registers an additional service to add the new <code>BlogSettings</code>:</p>
+
+<pre><code class="language-xml">&lt;!-- Add settings 'BlogSettings' --&gt;
+&lt;service id=&quot;swag_es_blog.bundle.settings&quot; class=&quot;SwagESBlog\Bundle\ESIndexingBundle\BlogSettings&quot;&gt;
+    &lt;!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SettingsCompilerPass.php --&gt;
+    &lt;tag name=&quot;shopware_elastic_search.settings&quot;/&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>The BlogSettings class contains the following source code:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\ESIndexingBundle;
+
+use Shopware\Bundle\ESIndexingBundle\SettingsInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class BlogSettings implements SettingsInterface
+{
+    /**
+     * @param Shop $shop
+     * @return array|null
+     */
+    public function get(Shop $shop)
+    {
+        return [
+            'settings' =&gt; [
+                'analysis' =&gt; [
+                    'analyzer' =&gt; [
+                        'blog_analyzer' =&gt; [
+                            'type' =&gt; 'custom',
+                            'tokenizer' =&gt; 'standard',
+                            'filter' =&gt; [
+                                'lowercase',
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+}
+</code></pre>
+
+<p>The <code>get</code> function has to return a nested array which will be provided to the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html"><code>Elasticsearch\Client::putSettings</code></a> API.
+This <code>blog_analyzer</code> contains definitions for a new custom ES analyzer, which contains only a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lowercase-tokenfilter.html"><code>lowercase</code></a> token filter, which means that all input data will be lowercase.
+In case they were configured prior to indexing, Shopware provides a small tool to test analyzers.</p>
+
+<pre><code>sw:es:analyze [&lt;shopId&gt;] [&lt;analyzer&gt;] [&lt;query&gt;]
+</code></pre>
+
+<pre><code>$ php bin/console sw:es:analyze 1 'blog_analyzer' 'Shopware AG'
++----------+-------+-----+------------+----------+
+| Token    | Start | End | Type       | position |
++----------+-------+-----+------------+----------+
+| shopware | 0     | 8   | &lt;ALPHANUM&gt; | 1        |
+| ag       | 9     | 11  | &lt;ALPHANUM&gt; | 2        |
++----------+-------+-----+------------+----------+
+</code></pre>
+
+<p>For more information about analyzers refer to <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html">Analysis API</a>.</p>
+
+<p>This analyzer can be used in the blog mapping as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESBlog\Bundle\ESIndexingBundle;
+
+use Shopware\Bundle\ESIndexingBundle\FieldMappingInterface;
+use Shopware\Bundle\ESIndexingBundle\MappingInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class BlogMapping implements MappingInterface
+{
+    //...
+    public function get(Shop $shop)
+    {
+        return [
+            'properties' =&gt; [
+                'id' =&gt; ['type' =&gt; 'long'],
+                'title' =&gt; ['type' =&gt; 'string', 'analyzer' =&gt; 'blog_analyzer'],
+                //...
+            ]
+        ];
+    }
+}
+</code></pre>
+
+<h2 id="extend-indexed-product-data">Extend indexed product data</h2>
+
+<p>Another common use case is to extend the indexed product data with additional plugin data, to extend listing filtering or query optimization.
+The following example shows how to extend product data with additional fields.</p>
+
+<p>You can find a installable ZIP package of this plugin <a href="https://developers.shopware.com/exampleplugins/SwagESProduct.zip">here</a>.</p>
+
+<h3 id="plugin-bootstrap">Plugin Bootstrap</h3>
+
+<p>To extend the indexed product data for ES, the plugin has to decorate two services:</p>
+
+<ol><li>
+<code>ProductMapping</code>, which defines how the product data looks like</li>
+<li>
+<code>ProductProvider</code>, which selects the data for ES</li>
+</ol><p>The plugin service.xml looks as follows:</p>
+
+<pre><code class="language-xml">&lt;!-- Decorates productMapping --&gt;
+&lt;service id=&quot;swag_es_product.decorator.es_product_mapping&quot;
+         class=&quot;SwagESProduct\Bundle\ESIndexingBundle\ProductMapping&quot;
+         decorates=&quot;shopware_elastic_search.product_mapping&quot;
+         public=&quot;false&quot;&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;swag_es_product.decorator.es_product_mapping.inner&quot;/&gt;
+&lt;/service&gt;
+
+&lt;!-- Decorates productProvider --&gt;
+&lt;service id=&quot;swag_es_product.decorator.es_product_provider&quot;
+         class=&quot;SwagESProduct\Bundle\ESIndexingBundle\ProductProvider&quot;
+         decorates=&quot;shopware_elastic_search.product_provider&quot;
+         public=&quot;false&quot;&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;swag_es_product.decorator.es_product_provider.inner&quot;/&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>The new services has a dependency on the original service, otherwise the new service would override the original implementation.
+The <code>ProductMapping</code> class looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\ESIndexingBundle;
+
+use Shopware\Bundle\ESIndexingBundle\MappingInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class ProductMapping implements MappingInterface
+{
+    /**
+     * @var MappingInterface
+     */
+    private $coreMapping;
+
+    /**
+     * @param MappingInterface $coreMapping
+     */
+    public function __construct(MappingInterface $coreMapping)
+    {
+        $this-&gt;coreMapping = $coreMapping;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this-&gt;coreMapping-&gt;getType();
+    }
+
+    /**
+     * @param Shop $shop
+     * @return array
+     */
+    public function get(Shop $shop)
+    {
+        $mapping = $this-&gt;coreMapping-&gt;get($shop);
+        $mapping['properties']['attributes']['properties']['swag_es_product'] = [
+            'properties' =&gt; [
+                'my_name' =&gt; ['type' =&gt; 'string']
+            ]
+        ];
+        return $mapping;
+    }
+}
+</code></pre>
+
+<p>Product data can only be extended with <code>Attribute</code> structs, therefore the function adds a new product attribute <code>swag_es_product</code> with a field <code>my_name</code>.
+This field is filled over the decorated <code>ProductProvider</code> class and contains the product name and the product keywords:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\ESIndexingBundle;
+
+use Shopware\Bundle\ESIndexingBundle\Product\ProductProviderInterface;
+use Shopware\Bundle\ESIndexingBundle\Struct\Product;
+use Shopware\Bundle\StoreFrontBundle\Struct\Attribute;
+use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
+
+class ProductProvider implements ProductProviderInterface
+{
+    /**
+     * @var ProductProviderInterface
+     */
+    private $coreService;
+
+    /**
+     * @param ProductProviderInterface $coreService
+     */
+    public function __construct(ProductProviderInterface $coreService)
+    {
+        $this-&gt;coreService = $coreService;
+    }
+
+    /**
+     * @param Shop $shop
+     * @param string[] $numbers
+     * @return Product[]
+     */
+    public function get(Shop $shop, $numbers)
+    {
+        $products = $this-&gt;coreService-&gt;get($shop, $numbers);
+
+        foreach ($products as $product) {
+            $attribute = new Attribute(['my_name' =&gt; $product-&gt;getName() . ' / ' . $product-&gt;getKeywords()]);
+            $product-&gt;addAttribute('swag_es_product', $attribute);
+        }
+
+        return $products;
+    }
+}
+</code></pre>
+
+<h3 id="extend-product-search-query">Extend product search query</h3>
+
+<p>Now it is time to extend the product search query, so it handles the new <code>my_name</code> field. The product search query for ES is build using the <code>SearchTermQueryBuilderInterface</code> of the <code>SearchBundleES</code>, which can be decorated like all other services of the DI container:</p>
+
+<pre><code class="language-xml">&lt;!-- Decorates searchTermQueryBuilder --&gt;
+&lt;service id=&quot;swag_es_product.decorator.es_search_query_builder&quot;
+         class=&quot;SwagESProduct\Bundle\SearchBundleES\SearchTermQueryBuilder&quot;
+         decorates=&quot;shopware_search_es.search_term_query_builder&quot;
+         public=&quot;false&quot;&gt;
+    &lt;argument type=&quot;service&quot; id=&quot;swag_es_product.decorator.es_search_query_builder.inner&quot;/&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>The <code>SearchTermQueryBuilder</code> contains only one <code>buildQuery</code> function that returns a <code>ONGR\ElasticsearchDSL\Query\BoolQuery</code>, which can contain different sub queries.
+The new <code>SearchTermQueryBuilder</code> contains the following source code:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundleES;
+
+use ONGR\ElasticsearchDSL\Query\BoolQuery;
+use ONGR\ElasticsearchDSL\Query\MultiMatchQuery;
+use Shopware\Bundle\SearchBundleES\SearchTermQueryBuilderInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+
+class SearchTermQueryBuilder implements SearchTermQueryBuilderInterface
+{
+    /**
+     * @var SearchTermQueryBuilderInterface
+     */
+    private $decoratedQueryBuilder;
+
+    /**
+     * @param SearchTermQueryBuilderInterface $decoratedQueryBuilder
+     */
+    public function __construct(SearchTermQueryBuilderInterface $decoratedQueryBuilder)
+    {
+        $this-&gt;decoratedQueryBuilder = $decoratedQueryBuilder;
+    }
+
+    /**
+     * @param ShopContextInterface $context
+     * @param $term
+     * @return BoolQuery
+     */
+    public function buildQuery(ShopContextInterface $context, $term)
+    {
+        $query = $this-&gt;decoratedQueryBuilder-&gt;buildQuery($context, $term);
+
+        $matchQuery = new MultiMatchQuery(
+            ['attributes.properties.swag_es_product.my_name'],
+            $term
+        );
+        $query-&gt;add($matchQuery, BoolQuery::SHOULD);
+
+        return $query;
+    }
+}
+</code></pre>
+
+<p>The following dump shows which queries are returned by the Shopware core's <code>SearchTermQueryBuilder</code>:</p>
+
+<pre><code class="language-php">ONGR\ElasticsearchDSL\Query\BoolQuery Object
+(
+    [container:ONGR\ElasticsearchDSL\Query\BoolQuery:private] =&gt; Array
+        (
+            [should] =&gt; Array
+                (
+                    [0] =&gt; Array
+                        (
+                            [multi_match] =&gt; Array
+                                (
+                                    [fields] =&gt; Array
+                                        (
+                                            [0] =&gt; name^7
+                                            [1] =&gt; name.*_analyzer^7
+                                            [2] =&gt; keywords^5
+                                            [3] =&gt; keywords.*_analyzer^5
+                                            [4] =&gt; manufacturer.name^3
+                                            [5] =&gt; manufacturer.name.*_analyzer^3
+                                            [6] =&gt; shortDescription
+                                            [7] =&gt; shortDescription.*_analyzer
+                                        )
+
+                                    [query] =&gt; Spachtel
+                                    [type] =&gt; best_fields
+                                    [minimum_should_match] =&gt; 50%
+                                    [tie_breaker] =&gt; 0.3
+                                )
+
+                        )
+
+                    [1] =&gt; Array
+                        (
+                            [multi_match] =&gt; Array
+                                (
+                                    [fields] =&gt; Array
+                                        (
+                                            [0] =&gt; number
+                                            [1] =&gt; name
+                                        )
+                                    [query] =&gt; Spachtel
+                                    [type] =&gt; phrase_prefix
+                                    [max_expansions] =&gt; 2
+                                )
+                        )
+                )
+        )
+    [parameters:ONGR\ElasticsearchDSL\Query\BoolQuery:private] =&gt; Array
+        (
+            [minimum_should_match] =&gt; 1
+        )
+)
+</code></pre>
+
+<p>In this case, the query contains two <code>MultiMatchQuery</code> sub queries as a <code>SHOULD</code> query. In addition, the query contains a <code>minimum_should_match</code> parameter with a value of <code>1</code>, which means that one of the queries has to match.
+The new <code>SearchTermQueryBuilder</code> now adds an additional <code>MultiMatchQuery</code> for the new field <code>my_name</code> which is stored in <code>attributes.properties.swag_es_product</code>:</p>
+
+<pre><code class="language-php">$matchQuery = new MultiMatchQuery(
+    ['attributes.properties.swag_es_product.my_name'],
+    $term
+);
+$query-&gt;add($matchQuery, BoolQuery::SHOULD);
+</code></pre>
+
+<p>After the query has been added, a dump of the original query looks as follows:</p>
+
+<pre><code class="language-php">ONGR\ElasticsearchDSL\Query\BoolQuery Object
+(
+    [container:ONGR\ElasticsearchDSL\Query\BoolQuery:private] =&gt; Array
+        (
+            [should] =&gt; Array
+                (
+                    [0] =&gt; Array
+                        (
+                            [multi_match] =&gt; Array
+                                (
+                                    [fields] =&gt; Array
+                                        (
+                                            [0] =&gt; name^7
+                                            [1] =&gt; name.*_analyzer^7
+                                            [2] =&gt; keywords^5
+                                            [3] =&gt; keywords.*_analyzer^5
+                                            [4] =&gt; manufacturer.name^3
+                                            [5] =&gt; manufacturer.name.*_analyzer^3
+                                            [6] =&gt; shortDescription
+                                            [7] =&gt; shortDescription.*_analyzer
+                                        )
+
+                                    [query] =&gt; Spachtel
+                                    [type] =&gt; best_fields
+                                    [minimum_should_match] =&gt; 50%
+                                    [tie_breaker] =&gt; 0.3
+                                )
+                        )
+                    [1] =&gt; Array
+                        (
+                            [multi_match] =&gt; Array
+                                (
+                                    [fields] =&gt; Array
+                                        (
+                                            [0] =&gt; number
+                                            [1] =&gt; name
+                                        )
+
+                                    [query] =&gt; Spachtel
+                                    [type] =&gt; phrase_prefix
+                                    [max_expansions] =&gt; 2
+                                )
+                        )
+                    [2] =&gt; Array
+                        (
+                            [multi_match] =&gt; Array
+                                (
+                                    [fields] =&gt; Array
+                                        (
+                                            [0] =&gt; attributes.properties.swag_es_product.my_name
+                                        )
+
+                                    [query] =&gt; Spachtel
+                                )
+                        )
+                )
+        )
+    [parameters:ONGR\ElasticsearchDSL\Query\BoolQuery:private] =&gt; Array
+        (
+            [minimum_should_match] =&gt; 1
+        )
+)
+</code></pre>
+
+<h3 id="additional-criteria-parts">Additional Criteria parts</h3>
+
+<p>In the following example, the plugin adds a new <code>Facet</code>, <code>Sorting</code> and <code>Condition</code> for the product listing, which accesses the product sales field.
+This example can be used for each other field which is indexed for products.
+First, the plugin has to register his own criteria parts (<code>Facet</code>, <code>Sorting</code> and <code>Condition</code>) with a <code>CriteriaRequestHandler</code>.
+The criteria part classes have no dependencies on any search implementation like DBAL or ES. They are defined as abstract and only describe how the search should be executed.
+The plugin bootstrap contains the additional source code:</p>
+
+<pre><code class="language-xml">&lt;!-- Add criteria_request_handler --&gt;
+&lt;service id=&quot;swag_es_product.search.criteria_request_handler&quot;
+         class=&quot;SwagESProduct\Bundle\SearchBundle\CriteriaRequestHandler&quot;&gt;
+    &lt;tag name=&quot;criteria_request_handler&quot;/&gt;
+&lt;/service&gt;
+
+&lt;!-- Add shopware_search_es.search_handler --&gt;
+&lt;service id=&quot;swag_es_product.es_search.sales_facet_handler&quot;
+         class=&quot;SwagESProduct\Bundle\SearchBundleES\SalesFacetHandler&quot;&gt;
+    &lt;tag name=&quot;shopware_search_es.search_handler&quot;/&gt;
+&lt;/service&gt;
+&lt;service id=&quot;swag_es_product.es_search.sales_condition_handler&quot;
+         class=&quot;SwagESProduct\Bundle\SearchBundleES\SalesConditionHandler&quot;&gt;
+    &lt;tag name=&quot;shopware_search_es.search_handler&quot;/&gt;
+&lt;/service&gt;
+&lt;service id=&quot;swag_es_prodcut.es_search.sales_sorting_handler&quot;
+         class=&quot;SwagESProduct\Bundle\SearchBundleES\SalesSortingHandler&quot;&gt;
+    &lt;tag name=&quot;shopware_search_es.search_handler&quot;/&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>The <code>criteria_request_handler</code> tag allows you to register an additional <code>CriteriaRequestHandler</code>.
+By using the <code>shopware_search_es.search_handler</code> tag it is possible to register additional handlers for the <code>SearchBundleES</code>.
+Each criteria part should have its own handler class.
+First, the plugin has to add the new criteria parts into the criteria for listings. This will be handled in the <code>CriteriaRequestHandler</code>, which is called if a Criteria class must be generated with the request parameters:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundle;
+
+use Enlight_Controller_Request_RequestHttp as Request;
+use Shopware\Bundle\SearchBundle\Criteria;
+use Shopware\Bundle\SearchBundle\CriteriaRequestHandlerInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+
+class CriteriaRequestHandler implements CriteriaRequestHandlerInterface
+{
+    public function handleRequest(
+        Request $request,
+        Criteria $criteria,
+        ShopContextInterface $context
+    ) {
+        $criteria-&gt;addFacet(new SalesFacet());
+
+        $minSales = $request-&gt;getParam('minSales', null);
+        $maxSales = $request-&gt;getParam('maxSales', null);
+
+        if ($minSales || $maxSales) {
+            $criteria-&gt;addCondition(
+                new SalesCondition($minSales, $maxSales)
+            );
+        }
+
+        if ($request-&gt;getParams('sSort') == 'sales') {
+            $criteria-&gt;resetSorting();
+            $criteria-&gt;addSorting(new SalesSorting());
+        }
+    }
+}
+</code></pre>
+
+<p>This class adds the <code>SalesFacet</code> to the criteria and, if the request contains different parameters, the <code>SalesCondition</code> and the <code>SalesSorting</code>.
+The <code>SalesFacet</code>, <code>SalesCondition</code> and <code>SalesSorting</code> class look as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundle;
+
+use Shopware\Bundle\SearchBundle\ConditionInterface;
+
+class SalesCondition implements ConditionInterface
+{
+    /**
+     * @var int
+     */
+    private $min;
+
+    /**
+     * @var int
+     */
+    private $max;
+
+    /**
+     * @param int $min
+     * @param int $max
+     */
+    public function __construct($min, $max)
+    {
+        $this-&gt;min = $min;
+        $this-&gt;max = $max;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMin()
+    {
+        return $this-&gt;min;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMax()
+    {
+        return $this-&gt;max;
+    }
+
+    public function getName()
+    {
+        return 'swag_es_product_sales';
+    }
+}
+</code></pre>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundle;
+
+use Shopware\Bundle\SearchBundle\FacetInterface;
+
+class SalesFacet implements FacetInterface
+{
+    public function getName()
+    {
+        return 'swag_es_product_sales';
+    }
+}
+</code></pre>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundle;
+
+use Shopware\Bundle\SearchBundle\SortingInterface;
+
+class SalesSorting implements SortingInterface
+{
+    public function getName()
+    {
+        return 'swag_es_product_sales';
+    }
+}
+</code></pre>
+
+<p>After the facet has been added to the criteria, the <code>ShopwarePlugins\SwagESProduct\SearchBundleES\SalesFacetHandler</code> will be implemented and looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundleES;
+
+use ONGR\ElasticsearchDSL\Aggregation\StatsAggregation;
+use ONGR\ElasticsearchDSL\Search;
+use Shopware\Bundle\SearchBundle\Criteria;
+use Shopware\Bundle\SearchBundle\CriteriaPartInterface;
+use Shopware\Bundle\SearchBundle\FacetResult\RangeFacetResult;
+use Shopware\Bundle\SearchBundle\ProductNumberSearchResult;
+use Shopware\Bundle\SearchBundleES\HandlerInterface;
+use Shopware\Bundle\SearchBundleES\ResultHydratorInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+use SwagESProduct\Bundle\SearchBundle\SalesCondition;
+use SwagESProduct\Bundle\SearchBundle\SalesFacet;
+
+class SalesFacetHandler implements HandlerInterface, ResultHydratorInterface
+{
+    public function supports(CriteriaPartInterface $criteriaPart)
+    {
+        return ($criteriaPart instanceof SalesFacet);
+    }
+
+    public function handle(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $statsAgg = new StatsAggregation('sales');
+        $statsAgg-&gt;setField('sales');
+        $search-&gt;addAggregation($statsAgg);
+    }
+
+    public function hydrate(
+        array $elasticResult,
+        ProductNumberSearchResult $result,
+        Criteria $criteria,
+        ShopContextInterface $context
+    ) {
+        if (!isset($elasticResult['aggregations']['agg_sales'])) {
+            return;
+        }
+
+        $data = $elasticResult['aggregations']['agg_sales'];
+
+        $actives = $this-&gt;getActiveValues($criteria, $data);
+
+        $facetResult = new RangeFacetResult(
+            'swag_product_es_sales',
+            $criteria-&gt;hasCondition('swag_es_product_sales'),
+            'Sales',
+            $data['min'],
+            $data['max'],
+            $actives['min'],
+            $actives['max'],
+            'minSales',
+            'maxSales'
+        );
+
+        $result-&gt;addFacet($facetResult);
+    }
+
+    /**
+     * @param Criteria $criteria
+     * @param $data
+     * @return array
+     */
+    private function getActiveValues(Criteria $criteria, $data)
+    {
+        $actives = [
+            'min' =&gt; $data['min'],
+            'max' =&gt; $data['max']
+        ];
+
+        /** @var SalesCondition $condition */
+        if (!($condition = $criteria-&gt;getCondition('swag_es_product_sales'))) {
+            return $actives;
+        }
+
+        if ($condition-&gt;getMin()) {
+            $actives['min'] = $condition-&gt;getMin();
+        }
+
+        if ($condition-&gt;getMax()) {
+            $actives['max'] = $condition-&gt;getMax();
+        }
+        return $actives;
+    }
+}
+</code></pre>
+
+<p>The first step is to implement a facet handler for ES. The class has to implement the <code>Shopware\Bundle\SearchBundleES\HandlerInterface</code> interface, which requires the class to implement the <code>supports</code> and the <code>handle</code> functions.
+In the support function, the new handler returns <code>true</code> if it can handle the provided <code>CriteriaPartInterface</code> class - in this case only if it is a <code>SalesFacet</code>:</p>
+
+<pre><code class="language-php">public function supports(CriteriaPartInterface $criteriaPart)
+{
+    return ($criteriaPart instanceof SalesFacet);
+}
+</code></pre>
+
+<p>If the <code>supports</code> function returns <code>true</code>, the <code>handle</code> function will be called. In this function it is possible to extend the provided <code>ONGR\ElasticsearchDSL\Search</code> class which is used for the search definition. In this case the class adds a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-stats-aggregation.html?q=stats"><code>StatsAggregation</code></a> to the field <code>sales</code>:</p>
+
+<pre><code class="language-php">public function handle(
+    CriteriaPartInterface $criteriaPart,
+    Criteria $criteria,
+    Search $search,
+    ShopContextInterface $context
+) {
+    $statsAgg = new StatsAggregation('sales');
+    $statsAgg-&gt;setField('sales');
+    $search-&gt;addAggregation($statsAgg);
+}
+</code></pre>
+
+<p>Now the search generates an aggregation result for this field with the following data structure:</p>
+
+<pre><code class="language-php">Array
+(
+    [hits] =&gt; Array
+        (
+            [total] =&gt; 17
+            [max_score] =&gt;
+            [hits] =&gt; Array
+                (...)
+        )
+    [aggregations] =&gt; Array
+        (
+            [agg_sales] =&gt; Array
+                (
+                    [count] =&gt; 44
+                    [min] =&gt; 2
+                    [max] =&gt; 272
+                    [avg] =&gt; 31.068181818182
+                    [sum] =&gt; 1367
+                )
+            ...
+)
+</code></pre>
+
+<p>To display this data in the storefront, it is necessary to add a <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/#facetresult"><code>FacetResultInterface</code></a> to the <code>ProductSearchResult</code>.
+This can be done by implementing the <code>Shopware\Bundle\SearchBundleES\ResultHydratorInterface</code> interface, which requires the class to implement a <code>hydrate</code> function.</p>
+
+<pre><code class="language-php">
+public function hydrate(
+    array $elasticResult,
+    ProductNumberSearchResult $result,
+    Criteria $criteria,
+    ShopContextInterface $context
+) {
+    if (!isset($elasticResult['aggregations']['agg_sales'])) {
+        return;
+    }
+
+    $data = $elasticResult['aggregations']['agg_sales'];
+    $actives = $this-&gt;getActiveValues($criteria, $data);
+
+    $facetResult = new RangeFacetResult(
+        'swag_product_es_sales',
+        $criteria-&gt;hasCondition('swag_es_product_sales'),
+        'Sales',
+        $data['min'],
+        $data['max'],
+        $actives['min'],
+        $actives['max'],
+        'minSales',
+        'maxSales'
+    );
+
+    $result-&gt;addFacet($facetResult);
+}
+</code></pre>
+
+<p>To prevent errors, the class first validates if the result is set before access:</p>
+
+<pre><code class="language-php">if (!isset($elasticResult['aggregations']['agg_sales'])) {
+    return;
+}
+$data = $elasticResult['aggregations']['agg_sales'];
+</code></pre>
+
+<p>The next step is to generate a <code>RangeFacetResult</code> to display a range slider in the store front, which allows customers to filter by conditions:</p>
+
+<pre><code class="language-php">$facetResult = new RangeFacetResult(
+    'swag_product_es_sales',
+    $criteria-&gt;hasCondition('swag_es_product_sales'),
+    'Sales',
+    $data['min'],
+    $data['max'],
+    $actives['min'],
+    $actives['max'],
+    'minSales',
+    'maxSales'
+);
+</code></pre>
+
+<p>The <code>RangeFacetResult</code> class has the following parameters:</p>
+
+<ul><li>facetName (<code>'swag_product_es_sales'</code>)</li>
+<li>active    (<code>$criteria-&gt;hasCondition('swag_es_product_sales')</code>)</li>
+<li>label     (<code>'Sales'</code>)</li>
+<li>minValue  (<code>$data['min']</code>)</li>
+<li>maxValue  (<code>$data['max']</code>)</li>
+<li>activeMin (<code>$actives['min']</code>)</li>
+<li>activeMax (<code>$actives['max']</code>)</li>
+<li>request parameter for min value (<code>'minSales'</code>)</li>
+<li>request parameter for max value (<code>'maxSales'</code>)</li>
+</ul><p>The <code>getActiveValues</code> function validates which value should be used for activeMin and activeMax parameters, by checking if the criteria class contains the <code>SalesCondition</code>.
+If the customer uses the new range slider for sales, the request will contain the <code>minSales</code> and <code>maxSales</code> parameters, which are handled by the new <code>CriteriaRequestHandler</code> by adding a <code>SalesCondition</code> with the provided data:</p>
+
+<pre><code class="language-php">$minSales = $request-&gt;getParam('minSales', null);
+$maxSales = $request-&gt;getParam('maxSales', null);
+
+if ($minSales || $maxSales) {
+    $criteria-&gt;addCondition(
+        new SalesCondition($minSales, $maxSales)
+    );
+}
+</code></pre>
+
+<p>This <code>SalesCondition</code> has its own <code>SalesConditionHandler</code> which looks as follows:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundleES;
+
+use ONGR\ElasticsearchDSL\Filter\RangeFilter;
+use ONGR\ElasticsearchDSL\Search;
+use Shopware\Bundle\SearchBundle\Criteria;
+use Shopware\Bundle\SearchBundle\CriteriaPartInterface;
+use Shopware\Bundle\SearchBundleES\HandlerInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+use SwagESProduct\Bundle\SearchBundle\SalesCondition;
+
+class SalesConditionHandler implements HandlerInterface
+{
+    public function supports(CriteriaPartInterface $criteriaPart)
+    {
+        return ($criteriaPart instanceof SalesCondition);
+    }
+
+    public function handle(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $range = [];
+
+        /** @var SalesCondition $criteriaPart */
+        if ($criteriaPart-&gt;getMin() &gt; 0) {
+            $range['gte'] = (int) $criteriaPart-&gt;getMin();
+        }
+        if ($criteriaPart-&gt;getMax() &gt; 0) {
+            $range['lte'] = (int) $criteriaPart-&gt;getMax();
+        }
+        $filter = new RangeFilter('sales', $range);
+
+        if ($criteria-&gt;hasBaseCondition($criteriaPart-&gt;getName())) {
+            $search-&gt;addFilter($filter);
+        } else {
+            $search-&gt;addPostFilter($filter);
+        }
+    }
+}
+</code></pre>
+
+<p>Like the <code>SalesFacetHandler</code>, the <code>SalesConditionHandler</code> implements the <code>Shopware\Bundle\SearchBundleES\HandlerInterface</code> to handle parts of the criteria.
+The <code>supports</code> function returns <code>true</code> if the provided <code>CriteriaPart</code> is a <code>SalesCondition</code>.</p>
+
+<pre><code class="language-php">public function supports(CriteriaPartInterface $criteriaPart)
+{
+    return ($criteriaPart instanceof SalesCondition);
+}
+</code></pre>
+
+<p>To filter the result with a <code>from</code> and <code>to</code> values, it is required to add a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-filter.html?q=range"><code>ONGR\ElasticsearchDSL\Filter\RangeFilter</code></a> in the handle function:</p>
+
+<pre><code class="language-php">public function handle(
+    CriteriaPartInterface $criteriaPart,
+    Criteria $criteria,
+    Search $search,
+    ShopContextInterface $context
+) {
+    $range = [];
+
+    /** @var SalesCondition $criteriaPart */
+    if ($criteriaPart-&gt;getMin() &gt; 0) {
+        $range['gte'] = (int) $criteriaPart-&gt;getMin();
+    }
+    if ($criteriaPart-&gt;getMax() &gt; 0) {
+        $range['lte'] = (int) $criteriaPart-&gt;getMax();
+    }
+    $filter = new RangeFilter('sales', $range);
+}
+</code></pre>
+
+<p>After the filter is created, it is required to check if the filter should be added as normal filter or as a post filter.</p>
+
+<ol><li>post filter &gt; Filters the result after the aggregations calculated</li>
+<li>normal filter &gt; Filters the result before the aggregations calculated</li>
+</ol><p>This can be checked using the criteria object, by using the <code>hasBaseCondition</code> function. If the <code>criteriaPart</code> is a <code>BaseCondition</code>, the filter has to be added as normal filter, otherwise as post filter.</p>
+
+<pre><code class="language-php">if ($criteria-&gt;hasBaseCondition($criteriaPart-&gt;getName())) {
+    $search-&gt;addFilter($filter);
+} else {
+    $search-&gt;addPostFilter($filter);
+}
+</code></pre>
+
+<p>The <code>CriteriaRequestHandler</code> adds the SalesSorting class if the request parameter sSort is set to <code>sales</code>:</p>
+
+<pre><code class="language-php">if ($request-&gt;getParams('sSort') == 'sales') {
+    $criteria-&gt;resetSorting();
+    $criteria-&gt;addSorting(new SalesSorting());
+}
+</code></pre>
+
+<p>This is handled by the <code>SalesSortingHandler</code>:</p>
+
+<pre><code class="language-php">&lt;?php
+
+namespace SwagESProduct\Bundle\SearchBundleES;
+
+use ONGR\ElasticsearchDSL\Search;
+use ONGR\ElasticsearchDSL\Sort\Sort;
+use Shopware\Bundle\SearchBundle\Criteria;
+use Shopware\Bundle\SearchBundle\CriteriaPartInterface;
+use Shopware\Bundle\SearchBundleES\HandlerInterface;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+use SwagESProduct\Bundle\SearchBundle\SalesSorting;
+
+class SalesSortingHandler implements HandlerInterface
+{
+    public function supports(CriteriaPartInterface $criteriaPart)
+    {
+        return ($criteriaPart instanceof SalesSorting);
+    }
+
+    public function handle(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $sort = new Sort('sales', 'desc');
+        $search-&gt;addSort($sort);
+    }
+}
+</code></pre>
+
+<p>Like the other handlers, the <code>SalesSortingHandler</code> handles a <code>CriteriaPart</code>, so it implements the <code>Shopware\Bundle\SearchBundleES\HandlerInterface</code>.
+To sort the search result, the <code>ONGR\ElasticsearchDSL\Sort\Sort</code> class can be added to the provided <code>ONGR\ElasticsearchDSL\Search</code>.</p>
+
+<h2 id="shopware-5.3-changes">Shopware 5.3 changes</h2>
+
+<p>A new filter behaviour was implemented with shopware 5.3, now filters are only displayed if they can be combined with the user conditions that are currently in effect.
+In the elastic search implementation the filter behavior is controlled by the condition handlers. By adding a query as <code>post filter</code>, facets are not affected by other filters.
+This behavior is checked via the <code>Criteria-&gt;hasBaseCondition</code> statement:</p>
+
+<pre><code class="language-php">public function handle(
+    CriteriaPartInterface $criteriaPart,
+    Criteria $criteria,
+    Search $search,
+    ShopContextInterface $context
+) {
+    if ($criteria-&gt;hasBaseCondition($criteriaPart-&gt;getName())) {
+        $search-&gt;addFilter(new TermQuery('active', 1));
+    } else {
+        $search-&gt;addPostFilter(new TermQuery('active', 1));
+    }
+}
+</code></pre>
+
+<p>This behavior is now controlled in the <code>\Shopware\Bundle\SearchBundleES\ProductNumberSearch</code>. To support the new filter mode, each condition handler has to implement the <code>\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface</code>.
+It is possible to implement this interface alongside the original <code>\Shopware\Bundle\SearchBundleES\HandlerInterface</code>.</p>
+
+<pre><code class="language-php">namespace Shopware\Bundle\SearchBundleES;
+if (!interface_exists('\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface')) {
+    interface PartialConditionHandlerInterface { }
+}
+
+namespace Shopware\SwagBonusSystem\Bundle\SearchBundleES;
+
+class BonusConditionHandler implements HandlerInterface, PartialConditionHandlerInterface
+{
+    const ES_FIELD = 'attributes.bonus_system.has_bonus';
+
+    public function supports(CriteriaPartInterface $criteriaPart)
+    {
+        return ($criteriaPart instanceof BonusCondition);
+    }
+
+    public function handleFilter(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $search-&gt;addFilter(
+            new TermQuery(self::ES_FIELD, 1)
+        );
+    }
+
+    public function handlePostFilter(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        $search-&gt;addPostFilter(new TermQuery(self::ES_FIELD, 1));
+    }
+
+    public function handle(
+        CriteriaPartInterface $criteriaPart,
+        Criteria $criteria,
+        Search $search,
+        ShopContextInterface $context
+    ) {
+        if ($criteria-&gt;hasBaseCondition($criteriaPart-&gt;getName())) {
+            $this-&gt;handleFilter($criteriaPart, $criteria, $search, $context);
+        } else {
+            $this-&gt;handlePostFilter($criteriaPart, $criteria, $search, $context);
+        }
+    }
+}
+</code></pre>
+
+                    </div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505363.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505363.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505363.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505363.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505363.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

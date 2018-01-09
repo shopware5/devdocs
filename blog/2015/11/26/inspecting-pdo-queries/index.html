@@ -1,0 +1,1235 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Inspecting PDO queries</title><meta name="description" content="This blog post will describe how to detect (potentially) unsafe SQL queries automatically by parsing and analyzing the queries
+which hit the PDO connection"><meta name="keywords" content="inspect pdo, parse sql query, sql injection detection"><meta name="author" content="Daniel Nögel"><link rel="author" href="https://developers.shopware.com/blog/authors/dn"><!-- Facebook --><meta property="og:title" content="Inspecting PDO queries"><meta property="og:type" content="article"><meta property="og:image" content=""><meta property="og:url" content="/blog/2015/11/26/inspecting-pdo-queries"><meta property="og:description" content="This blog post will describe how to detect (potentially) unsafe SQL queries automatically by parsing and analyzing the queries
+which hit the PDO connection"><!-- Twitter --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Inspecting PDO queries"><meta name="twitter:description" content="This blog post will describe how to detect (potentially) unsafe SQL queries automatically by parsing and analyzing the queries
+which hit the PDO connection"><meta name="twitter:image" content=""><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505348.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505348.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505348.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter">
+                    <a href="/developers-guide/" class="navi--link has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2015-11-26-pdo-inspector.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Inspecting PDO queries
+            </h1>
+            
+            <article class="blog-post"><div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_dn.jpg" width="50" height="50"></div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/dn">Daniel Nögel</a>
+            <span class="user-title">, Developer</span>        </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> November 26th, 2015
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/danielnoegel" target="_blank" title="Twitter Daniel Nögel">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://danielnoegel.de" target="_blank" title="Website Daniel Nögel">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://github.com/dnoegel/" target="_blank" title="Github Daniel Nögel">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+                    </div>
+    </div>
+</div>
+                    </div>
+    
+    <div class="blog-detail-text">
+        <p>This blog post will describe how to detect (potentially) unsafe SQL queries automatically by parsing and analyzing the queries
+which hit the PDO connection.</p>
+
+<h1>Motivation</h1>
+
+<p>The <a href="https://www.owasp.org/">Open Web Application Security Project (OWAP)</a> defines (SQL) injections as
+<a href="https://www.owasp.org/index.php/Top_10_2013-A1-Injection">one of the top ten security risks in the web</a>.
+One of the main reasons for this is the fact that SQL injections can be tested / used with minimal effort and have
+an enormous impact on the compromised database; starting from defacing web pages, copying user data, stealing credit card
+numbers or even whole identities, the scenarios of SQL injections are hard to overestimate.</p>
+
+<h1>What is a SQL injection and what to do about it?</h1>
+
+<p>Generally speaking, a SQL injection is an attack where the attacker exploits a badly prepared SQL statement, by passing
+input data that will allow him to execute arbitrary SQL statements.</p>
+
+<p>A simple example would be this:</p>
+
+<p><code>SELECT user_id FROM user WHERE name='$_GET['name']'</code></p>
+
+<p>An attacker can provide a HTTP query string like this:</p>
+
+<p><code>?name=peter; DROP TABLE user; --</code></p>
+
+<p>which will then result in a query like this:</p>
+
+<p><code>SELECT user_id FROM user WHERE name='peter; DROP TABLE user; --'</code></p>
+
+<p>In this case the database will then first execute the (intended) SELECT statement and then the injected <code>DROP TABLE user</code>
+statement, therefore deleting the user table. Any remaining parts of the original query (in this case <code>'</code>) will be marked
+as comment, so that the database will not complain at all.</p>
+
+<p>The actual attacking scenarios are quite broad: from dropping tables to gaining admin privileges or even dumping the database
+in a file that will then be downloaded later.</p>
+
+<p>A common technique to prevent SQL injections are <a href="https://en.wikipedia.org/wiki/Prepared_statement">prepared statements</a>.
+These will not directly introduce values into the SQL query, but use placeholders in the query, which are later resolved:</p>
+
+<p><code>SELECT user_id FROM user WHERE name=?</code></p>
+
+<p>This way the DBMS can safely populate the SQL query, no matter how it looks like. A malicious query string like <code>peter; DROP TABLE user; --</code>
+could then still be properly escaped, and would not be executed as another query.</p>
+
+<p>But even though there are techniques to prevent SQL injections, attack vectors making use of them are quite widespread.
+Possible reasons for this might be legacy applications, missing convenience of prepared statements in some cases, misinformed developers, or the high degree of abstraction that many applications use when working with databases.</p>
+
+<h2 id="is-my-application-safe?">Is my application safe?</h2>
+
+<p>All these considerations bring up the question: how to make sure that an existing piece of software does not contain any SQL injections? By the very nature of SQL queries, statically finding and analyzing those queries in an application is quite hard and error-prone, as the queries might be composed during runtime and database connection objects might be hidden by variable names or implementation details of the application.</p>
+
+<h3 id="pentests">Pentests</h3>
+
+<p>A common approach are the so called <a href="https://en.wikipedia.org/wiki/Penetration_test">penetration test</a> which, in some cases,
+might use automated tools to black-box scan a given application for errors and SQL injections. These tests might try
+to crawl all pages of a web application, change input parameters and look for conspicuous responses from the server.
+These &quot;conspicuous responses&quot; might be an error message, a differing HTTP response code, changed sizes of the response
+or changed response times. As you might imagine, this is a time-consuming task, as the crawler will need to retry any single
+possible call with multiple values and check for all the possible criteria mentioned above.</p>
+
+<h3 id="analyzing-queries">Analyzing queries</h3>
+
+<p>Discussing ways to detect security issues automatically with Florian Ressel, a student from Munich currently writing
+his bachelor thesis about web application security, I wondered if it was possible to inspect queries on the database connection level
+and find possible SQL injections by actually parsing and analyzing the queries. As I didn't find existing libraries
+doing this, I implemented a prototype and, after a few evenings, I think the answer is &quot;yes&quot;.</p>
+
+<h2 id="sql-query-inspector">SQL Query inspector</h2>
+
+<p>The SQL Query inspector is a simple library, which decorates the PDO object and parses all SQL queries that are about
+to hit the SQL server. At this point, the SQL queries are fully assembled and either plain text SQL queries or prepared statements.</p>
+
+<p>Using the <a href="https://github.com/greenlion/PHP-SQL-Parser">PHP SQL parser from Justin Swanhart</a>, the library is able to find
+query parts which contain hardcoded constant values in the query. This can be legit values like</p>
+
+<p><code>SELECT * FROM test_table WHERE id=1</code></p>
+
+<p>but might also be possible SQL injections like</p>
+
+<p><code>SELECT * FROM test_table WHERE id={$_GET['id']}</code></p>
+
+<p>So this scenario will produce false positives for hardcoded values - but also catch real SQL injection vulnerabilities.</p>
+
+<p>Using <code>debug_backtrace</code> of PHP and routing information of either the <code>$_SERVER</code> super global or a application specific handler,
+the tool will also be able to provide you the concrete route / path of any possible SQL injection, as well as the concrete stack trace and even
+the source code of the method / function that triggered that query.</p>
+
+<p>For example the unit tests of the SQL query inspector library produces this log:</p>
+
+<pre><code>(
+    [route] =&gt;
+    [problems] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [expr_type] =&gt; const
+                    [base_expr] =&gt; &quot;Test&quot;
+                    [sub_tree] =&gt;
+                )
+
+        )
+
+    [code] =&gt; Array
+        (
+            [40] =&gt;     public function testThis()
+            [41] =&gt;     {
+            [42] =&gt;         $sql = &lt;&lt;&lt;EOF
+            [43] =&gt; CREATE TABLE test
+            [44] =&gt; (
+            [45] =&gt; id int,
+            [46] =&gt; name varchar(255)
+            [47] =&gt; );
+            [48] =&gt; EOF;
+            [49] =&gt;
+            [50] =&gt;         $this-&gt;getPDO()-&gt;prepare($sql)-&gt;execute();
+            [51] =&gt;
+            [52] =&gt;         $sql = 'INSERT INTO &quot;test&quot; (`name`) VALUES(&quot;Test&quot;)';
+            [!!!] =&gt;         $this-&gt;getPDO()-&gt;prepare($sql)-&gt;execute();
+            [54] =&gt;         $this-&gt;assertEquals($sql, $this-&gt;storage-&gt;getDocument('problem', '42dec3f3d68a119b4faef11cd2b6afe3')['sql']);
+            [55] =&gt;
+            [56] =&gt;     }
+        )
+
+    [sql] =&gt; INSERT INTO &quot;test&quot; (`name`) VALUES(&quot;Test&quot;)
+    [trace] =&gt; stdClass Object
+        (
+            [0] =&gt; Test: testThis:
+            [1] =&gt; ReflectionMethod: invokeArgs:  963
+            [2] =&gt; PHPUnit_Framework_TestCase: runTest:  835
+            [3] =&gt; PHPUnit_Framework_TestCase: runBare:  643
+            [4] =&gt; PHPUnit_Framework_TestResult: run:  771
+            [5] =&gt; PHPUnit_Framework_TestCase: run:  703
+            [6] =&gt; PHPUnit_Framework_TestSuite: run:  703
+            [7] =&gt; PHPUnit_Framework_TestSuite: run:  423
+            [8] =&gt; PHPUnit_TextUI_TestRunner: doRun:  186
+            [9] =&gt; PHPUnit_TextUI_Command: run:  138
+            [10] =&gt; PHPUnit_TextUI_Command: main:  42
+        )
+
+    [normalized] =&gt; Array
+        (
+            [INSERT] =&gt; Array
+                (
+                    [0] =&gt; Array
+                        (
+                            [expr_type] =&gt; reserved
+                            [base_expr] =&gt; INTO
+                        )
+
+                    [1] =&gt; Array
+                        (
+                            [expr_type] =&gt; table
+                            [table] =&gt; &quot;test&quot;
+                            [no_quotes] =&gt; Array
+                                (
+                                    [delim] =&gt;
+                                    [parts] =&gt; Array
+                                        (
+                                            [0] =&gt; test
+                                        )
+
+                                )
+
+                            [alias] =&gt;
+                            [base_expr] =&gt; &quot;test&quot;
+                        )
+
+                    [2] =&gt; Array
+                        (
+                            [expr_type] =&gt; column-list
+                            [base_expr] =&gt; (`name`)
+                            [sub_tree] =&gt; Array
+                                (
+                                    [0] =&gt; Array
+                                        (
+                                            [expr_type] =&gt; colref
+                                            [base_expr] =&gt; `name`
+                                            [no_quotes] =&gt; Array
+                                                (
+                                                    [delim] =&gt;
+                                                    [parts] =&gt; Array
+                                                        (
+                                                            [0] =&gt; name
+                                                        )
+
+                                                )
+
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [VALUES] =&gt; Array
+                (
+                    [0] =&gt; Array
+                        (
+                            [expr_type] =&gt; record
+                            [base_expr] =&gt; (&quot;Test&quot;)
+                            [data] =&gt; Array
+                                (
+                                    [0] =&gt; Array
+                                        (
+                                            [expr_type] =&gt; const
+                                            [base_expr] =&gt; NORMALIZED
+                                            [sub_tree] =&gt;
+                                        )
+
+                                )
+
+                            [delim] =&gt;
+                        )
+
+                )
+
+        )
+
+)
+
+</code></pre>
+
+<p>As you can see, the following info is available:</p>
+
+<ul><li>
+<code>route</code>: The route / request, that triggered that query - empty in this case, as it is a unit test</li>
+<li>
+<code>problems</code>: The list of the static values, in this case the hardcoded &quot;Test&quot; string was detected</li>
+<li>
+<code>code</code>: The code of the function that triggered the problematic query. As you can see, the relevant call is highlighted using
+exclamation marks as key</li>
+<li>
+<code>sql</code>: The SQL being executed</li>
+<li>
+<code>trace</code>: The trace of the SQL - so you can tell which file / which line executed it</li>
+<li>
+<code>normalized</code>: The parsed and normalized SQL query - it is normalized so that the same query with other values will not
+be registered as a new incident</li>
+</ul><p>This way reviewing the generated result is quite easy, as the generated logs provide all information you need, without
+having to re-check the original source code.</p>
+
+<h2 id="in-detail:-how-does-it-work?">In-detail: How does it work?</h2>
+
+<h3 id="half-the-battle:-decorating-the-pdo-connection:">Half the battle: Decorating the PDO connection:</h3>
+
+<p>As mentioned before, statically analyzing all SQL queries from an application is hard, as the queries might be assembled
+dynamically during runtime. But there is another point to address: The database connection itself: As every SQL query
+is going to hit the database server sooner or later, we could try to catch the queries there - after they have been assembled
+by the application and before they hit the SQL server.
+In modern PHP application this will the PDO connection in most cases. The PDO object in PHP has three functions we
+might be interested in:</p>
+
+<pre><code>class Pdo
+{
+    /**
+     * Executes an SQL statement, returning a result set as a PDOStatement object
+     */
+    public function query ($statement, $mode = PDO::ATTR_DEFAULT_FETCH_MODE, $arg3 = null) {}
+
+    /**
+     * Execute an SQL statement and return the number of affected rows
+     */
+    public function exec ($statement) {}
+
+    /**
+     * Prepares a statement for execution and returns a statement object
+     */
+    public function prepare ($statement, array $driver_options = array()) {}
+}
+</code></pre>
+
+<p>These three methods will either directly execute a query (e.g. <code>DELETE * FROM test</code>), query a result (e.g. <code>SELECT * FROM test</code>)
+or prepare a SQL query for later execution (e.g <code>SELECT * FROM test WHERE id=?</code>). Now we can write a simple inspector,
+that will behave just like the PDO object but analyze any query before it passes it to the database server:</p>
+
+<pre><code>class PDOInspectionDecorator extends \PDO
+{
+    #
+    # Overrides of the original PDO object
+    # in order to inspect the queries
+    #
+
+    public function prepare($statement, $options = array())
+    {
+        $this-&gt;inspector-&gt;inspect($statement);
+        return $this-&gt;innerPDO-&gt;prepare($statement, $options);
+    }
+
+
+    public function query()
+    {
+        // remove empty constructor params list if it exists
+        $args = func_get_args();
+
+        $this-&gt;inspector-&gt;inspect($args[0]);
+
+        return call_user_func_array(array($this-&gt;innerPDO, 'query'), $args);
+    }
+
+    public function exec($statement)
+    {
+        $this-&gt;inspector-&gt;inspect($statement);
+        return $this-&gt;innerPDO-&gt;exec($statement);
+    }
+}
+</code></pre>
+
+<p>As you can see, all overridden functions will pass the SQL query to the &quot;sql query inspector&quot; and then execute it on the
+decorated PDO object (<code>innerPDO</code>). This way the application will still run as always - but behind the scenes, every single query is analyzed for a possible SQL injection:</p>
+
+<h3 id="the-second-half:-inspecting-the-result">The second half: Inspecting the result</h3>
+
+<p>The <code>\Dnoegel\DatabaseInspection\SqlProblemInspector</code> will inspect every SQL by parsing it and checking for constant
+values in the query. If the normalized and hashed query was whitelisted, no further logic will be executed.
+If possible injections where detected, the script will get the routing information (<code>\Dnoegel\DatabaseInspection\RouteProvider\RouteProvider</code>)
+as well as a debug trace + source code of the relevant file (<code>\Dnoegel\DatabaseInspection\Trace\Trace</code>). All this
+information will then be stored using a simple storage interface (<code>\Dnoegel\DatabaseInspection\Storage\Storage</code>) which
+defaults to a json storage. Theoretically this can easy be changed to store the information e.g. in a database or somewhere
+else.</p>
+
+<h3 id="possible-improvements">Possible improvements</h3>
+
+<p>There are several things to consider for this library:</p>
+
+<p>First of all, parsing every SQL query, getting debug information and writing this info to hard disc has a negative effect
+on the performance of the application. This might be ok while pentesting a setup but is not ideal for live systems. I think
+this is a reasonable trade of, as live systems with e.g. caching enabled are not a reasonable source for proper results.
+If this is required anyway, we could easily alter the script to just store all the queries and do the parsing / analyzing
+later.</p>
+
+<p>Secondly, the amount of false positives might be quite high. One the one hand, we could discuss, if &quot;hardcoded&quot; values
+in SQL queries are necessary at all - why not using prepared statements for those, too? On the other hand, having
+false positives might be still reasonable, as the debug format makes it easy to tell those queries apart from problematic
+queries. After whitelisting those queries once, they shouldn't appear again, so I think it's worth the effort.</p>
+
+<h3 id="can-this-tool-be-used-to-actually-prevent-sql-injection-attacks?">Can this tool be used to actually prevent SQL injection attacks?</h3>
+
+<p>This tool shouldn't be used in an &quot;input filter&quot; like manner: It is a QA / developer tool, not a security layer. Limitations
+are:</p>
+
+<ul><li>Performance: Parsing and analyzing the queries is quite costly</li>
+<li>Security: Even though SQL injections will mostly derive from not-properly prepared statements, an actual SQL injection
+attack does not necessarily have a constant query part.</li>
+</ul><p>For these reasons, this tool should ony be considered a developer analytics tool and is by no mean a &quot;security layer&quot; of
+whatever kind.</p>
+
+<h2 id="other-approaches">Other approaches</h2>
+
+<p>As mentioned before, there are other approaches to detect SQL injections. Since 2014 there is a <a href="https://wiki.php.net/rfc/taint">PHP RFC by Wietse Venema</a>
+who suggests &quot;tainting&quot; of PHP variables. This way PHP would internally store how a string was composed.
+A string created completely from within the application might be safe, a string created using user input from HTTP query variables,
+shell arguments or similar would be marked as &quot;tainted&quot;. As soon as such a &quot;tainted&quot; string would be e.g. printed out
+to the template or passed to the database connection, PHP could then raise an exception, as the string might cause injection
+vulnerabilities.
+Furthermore, the RFC proposes letting certain PHP functions remove such taint flags: So e.g. <code>htmlspecialchars</code> might
+remove the taint for HTML output, <code>mysql_real_escape_string</code> for database connections and <code>escapeshellcmd</code> for shell
+output.</p>
+
+<p>Even though this RFC did not hit the PHP core any perhaps never will - I think it's not only a nice concept, but also
+very informative, as you actually should consider any string generated from user input as &quot;tainted&quot;. So it might
+also help you to understand injections attacks better.</p>
+
+<p>Another interesting library is <a href="https://github.com/emanuil/php-reaper">php-reaper</a> which will parse your PHP source code
+for tainted SQL queries. Currently its bound to <code>AdoDB</code> and also produces a lot of false positives - but I think it's also a nice approach to find possible SQL injections statically.</p>
+
+<h2 id="download">Download</h2>
+
+<p>You can find the query inspector on my <a href="https://github.com/dnoegel/pdo-inspector">github repo</a></p>
+
+    </div>
+
+    <a href="https://developers.shopware.com/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article></div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505348.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

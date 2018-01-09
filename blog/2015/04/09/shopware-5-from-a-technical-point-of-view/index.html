@@ -1,0 +1,1137 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Shopware 5 from a technical point of view</title><meta name="description" content="Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shopper"><meta name="keywords" content="tech, odl"><meta name="author" content="VIISON (Guest Blogger)"><link rel="author" href="https://developers.shopware.com/blog/authors/viison"><!-- Facebook --><meta property="og:title" content="Shopware 5 from a technical point of view"><meta property="og:type" content="article"><meta property="og:image" content=""><meta property="og:url" content="/blog/2015/04/09/shopware-5-from-a-technical-point-of-view"><meta property="og:description" content="Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shopper"><!-- Twitter --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Shopware 5 from a technical point of view"><meta name="twitter:description" content="Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shopper"><meta name="twitter:image" content=""><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505346.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505346.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505346.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter">
+                    <a href="/developers-guide/" class="navi--link has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2015-04-09-shopware-5-from-a-technical-point-of-view.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Shopware 5 from a technical point of view
+            </h1>
+            
+            <article class="blog-post"><div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_viison.jpg" width="50" height="50"></div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/viison">VIISON (Guest Blogger)</a>
+                    </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> April 9th, 2015
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/viison" target="_blank" title="Twitter VIISON (Guest Blogger)">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="http://viison.com" target="_blank" title="Website VIISON (Guest Blogger)">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                    </div>
+    </div>
+</div>
+                    </div>
+    
+    <div class="blog-detail-text">
+        <p>Shopware moves with the times and ships Shopware 5 with a completely overhauled default template, which is now fully responsive. With more and more shoppers <a href="https://www.internetretailer.com/2015/03/09/nearly-half-digital-shoppers-top-retailers-are-mobile-only" target="_blank">preferring to use mobile devices</a> for online shopping, this is an important step to take. The core classes have also been revised and especially with the new <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle classes</a>, plugin authors and Shopware agencies now have a much easier time to customize article listings.</p>
+
+<p><img src="/blog/img/shopware-5-from-a-technical-point-of-view_1.png" alt="image"></p>
+
+<p>Another area where Shopware 5 provides improvements is internationalization. Since not all countries have the same address format as Germany, Shopware has been made more flexible at this point. The street name and street number fields have been merged into one address line field, furthermore it is now possible to enable up to two additional address line fields for customer addresses.</p>
+
+<p><img src="/blog/img/shopware-5-from-a-technical-point-of-view_2.png" alt="image"></p>
+
+<h2 id="searchbundle-in-action">SearchBundle in Action</h2>
+
+<p>As mentioned earlier, manipulating article listings got a lot simpler with Shopware 5. Let us have a look at how this makes plugin development easier. One of our plugins, the <a href="http://store.shopware.com/en/viison00571/latest-articles.html" target="_blank">Latest articles plugin</a>, can be massively simplified by making use of the new SearchBundle classes. The task of this plugin is to provide a page with a special article listing, which displays articles that are newly available in the online shop. Our old plugin had 826 lines of code, more than 500 of them only making sure that the latest article page behaves the same way as an ordinary category listing (e.g. sorting &amp; pagination functionalities). All this code was essentially duplicated, because there was no clean way to manipulate the queries that provide the article data of a category. An alternative to this in Shopware 4 would have been to use the `Shopware_Modules_Articles_sGetArticlesByCategory_FilterSql` event to make changes to the SQL that is used to gather the article data. Manipulating SQL queries with search &amp; replace is not a good style though, since it is not robust to changes of the original query and can also easily create SQL injection vulnerabilities when performed carelessly. Luckily, Shopware 5 allows us to perform customized article filtering and sorting in a much cleaner way.</p>
+
+<p>The following is the whole code needed for a frontend controller that shows an article listing with custom filtering:</p>
+
+<pre><code class="language-php">class Shopware_Controllers_Frontend_ViisonLatestArticles extends Enlight_Controller_Action
+{
+    public function indexAction()
+    {
+        $context = $this-&gt;get('shopware_storefront.context_service')-&gt;getProductContext();
+        $criteria = $this-&gt;get('shopware_search.store_front_criteria_factory')-&gt;createListingCriteria(
+            $this-&gt;Request(),
+            $context
+        );
+        $maxAge = 30; // Only show articles created within the last 30 days
+        $criteria-&gt;addCondition(new ArticleAgeCondition($maxAge));
+        $result = $this-&gt;get('shopware_search.product_search')-&gt;search(
+            $criteria,
+            $context
+        );
+        $products = $this-&gt;get('legacy_struct_converter')-&gt;convertListProductStructList(
+            $result-&gt;getProducts()
+        );
+        $this-&gt;View()-&gt;assign([
+            'showListing' =&gt; true,
+            'ajaxCountUrlParams' =&gt; ['SwagSearchBundleCount' =&gt; 1],
+            'criteria' =&gt; $criteria,
+            'facets' =&gt; $result-&gt;getFacets(),
+            'sArticles' =&gt; $products,
+            'shortParameters' =&gt; $this-&gt;get('query_alias_mapper')-&gt;getQueryAliases(),
+            'sSort' =&gt; $this-&gt;Request()-&gt;getParam('sSort')
+        ]);
+    }
+}
+</code></pre>
+
+<p>The ArticleAgeCondition is a custom filter criterion that performs the specific filtering that our plugin needs. Shopware also comes with a number of predefined conditions, so you do not always have to write these conditions yourself. The predefined conditions can be found in the <a href="https://developers.shopware.com/developers-guide/shopware-5-search-bundle/" target="_blank">SearchBundle documentation</a>. The ArticleAgeCondition class is defined as follows:</p>
+
+<pre><code class="language-php">class ArticleAgeCondition implements ConditionInterface
+{
+    /**
+     * @var int
+     */
+    private $maxAge = 30;
+    /**
+     * @param int $maxAge
+     */
+    public function __construct($maxAge)
+    {
+        $this-&gt;maxAge = $maxAge;
+    }
+    /**
+     * @return int
+     */
+    public function getMaxAge()
+    {
+        return $this-&gt;maxAge;
+    }
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'viison_article_age';
+    }
+}
+</code></pre>
+
+<p>As you see, the condition class itself does not a whole lot, it is basically just a container for the parameters of a filter. The real logic behind a condition is implemented in its respective handler class:</p>
+
+<pre><code class="language-php">class ArticleAgeConditionHandler implements ConditionHandlerInterface
+{
+    public function supportsCondition(ConditionInterface $condition)
+    {
+        return ($condition instanceof ArticleAgeCondition);
+    }
+
+    public function generateCondition (
+        ConditionInterface $condition,
+        QueryBuilder $query,
+        ShopContextInterface $context
+    ) {
+        $query-&gt;andWhere('product.datum IS NOT NULL');
+        $query-&gt;andWhere('DATEDIFF(NOW(), product.datum) &lt;= :max_age');
+        $query-&gt;setParameter('max_age', $condition-&gt;getMaxAge());
+    }
+}
+</code></pre>
+
+<p>To make Shopware aware of our custom condition handler, we have to register it with the SearchBundle:</p>
+
+<pre><code class="language-php">class LatestArticlesSubcriber implements SubscriberInterface
+{
+    public static function getSubscribedEvents()
+    {
+        return [
+           'Shopware_SearchBundleDBAL_Collect_Condition_Handlers' =&gt; 'registerConditionHandler'
+       ];
+    }
+
+    public function registerConditionHandler()
+    {
+        return new ArticleAgeConditionHandler();
+    }
+}
+</code></pre>
+
+<p>By defining a <code>Views/frontend/viison_latest_articles_new/index.tpl</code> template that extends <code>parent:frontend/listing/index.tpl</code>, we come up with a result like the following when visiting <code>http://&lt;SHOP_URL&gt;/ViisonLatestArticles</code>:</p>
+
+<p><img src="/blog/img/shopware-5-from-a-technical-point-of-view_3.png" alt="image"></p>
+
+<p>Both the filter and sorting features are working as expected, without us having to write additional code:</p>
+
+<p><img src="/blog/img/shopware-5-from-a-technical-point-of-view_4.png" alt="image"></p>
+
+<p>So we are done already – not too much work involved indeed. At the same time, the new implementation of our plugin has only 169 lines of code in total – 80% less than the original plugin. To make it even better, it now has the new filtering feature and its code is much cleaner, eliminating all code duplication.</p>
+
+<h2 id="splitting-an-address-line-into-street-name-+-house-number">Splitting an address line into street name + house number</h2>
+
+<p>The new combined address line in Shopware 5 is good for internationalization, but unfortunately, sometimes still separate street names and house numbers are needed. In our case, we stumbled upon this need while making our <a href="http://store.shopware.com/viison00656/dhl-adapter.html" target="_blank">DHL Adapter</a> ready for Shopware 5. When creating a shipping label via the DHL web service, street name and house number are both required fields. This is the case not only for national, but also for international shipments.</p>
+
+<p>At first thought, the task of splitting an address line into street name and house number might seem simple – looking for a number at the end of a string (when thinking of a typical German address like ‘Mustermannstr. 1’) cannot be too difficult. However, especially when considering international addresses, the complexity of this task becomes apparent. In many other countries, the house number is placed at the beginning of the address and not at the end (e.g. “1117 Franklin Blvd”, “205, rue Richelieu”). To make things even more complicated, users might be tempted to insert additional information into the address line, especially when no additional address lines are available (e.g. “3940 Radio Road, Unit 110”, “Pallaswiesenstr. 57 App. 235”). We therefore recommend shop operators to enable at least one additional address line to make the splitting of address information a bit easier at this point.</p>
+
+<p>f the splitting only has to work for german addresses and we assume that only street name and house number are given, the splitting can be performed relatively robustly using a regex like:</p>
+
+<pre><code>\A\s*(.*?)\s*\/?(\pN+\s*[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+\s*[a-zA-Z]?)*)\s*\Z
+</code></pre>
+
+<p>This takes into account that house numbers can sometimes look a bit more complicated (“13/15”, “7 B”, “3-10”, “2/41/7/21”). This method has shown to give correct results for about 98-100% of german addresses.</p>
+
+<p>If you also want to support international addresses, this task becomes incredibly harder. It certainly is possible to come up with a regex that works well enough on this task, though. The downside here is the added complexity and that maintainability might be a problem if you don’t have a regex guru nearby.</p>
+
+<p>Here is a <em>slightly</em> more complicated regex that is capable of splitting our unit tests successfully:</p>
+
+<pre><code>\A\s*
+(?: #########################################################################
+    # Option A: [&lt;Addition to address 1&gt;] &lt;Street name&gt; &lt;House number&gt;      #
+    # [&lt;Addition to address 2&gt;]                                             #
+    #########################################################################
+    (?:(?P&lt;A_Addition_to_address_1&gt;.*?),\s*)? # Addition to address 1
+(?:No\.\s*)?
+    (?P&lt;A_Street_name_1&gt;\pN+[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # Street name
+\s*,?\s*
+    (?P&lt;A_House_number_1&gt;(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?&lt;!\s)) # House number
+\s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
+    (?P&lt;A_Addition_to_address_2&gt;(?!\s).*?))? # Addition to address 2
+|   #########################################################################
+    # Option B: [&lt;Addition to address 1&gt;] &lt;House number&gt; &lt;Street name&gt;      #
+    # [&lt;Addition to address 2&gt;]                                             #
+    #########################################################################
+    (?:(?P&lt;B_Addition_to_address_1&gt;.*?),\s*(?=.*[,\/]))? # Addition to address 1
+    (?!\s*No\.)(?P&lt;B_House_number&gt;\S\s*\S(?:[^,#](?!\b\pN+\s))*?(?&lt;!\s)) # House number
+\s*[\/,]?\s*(?:\sNo\.)?\s+
+    (?P&lt;B_Street_name&gt;\pN+\s*-?[a-zA-Z]?(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|[IVXLCDM]+(?!.*\b\pN+\b))(?&lt;!\s) # Street name
+\s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
+    (?P&lt;B_Addition_to_address_2&gt;(?!\s).*?))? # Addition to address 2
+)
+\s*\Z
+</code></pre>
+
+<p>Note that this is a regex in PCRE_EXTENDED format, which allows for free formatting and comments inside the regex. To use it within PHP, you therefore have to use the <a href="http://php.net/manual/en/reference.pcre.pattern.modifiers.php" target="_blank">/x pattern modifier</a>.</p>
+
+<p>You can run our unit tests and play with this monster over at the great <a href="https://regex101.com/r/vO5fY7/1" target="_blank">regex101.com site</a>. Find a fully functional address splitter class below:</p>
+
+<pre><code class="language-php">class AddressSplittingService
+{
+    public static function splitAddress($address)
+    {
+                $regex = '
+            /\A\s*
+            (?: #########################################################################
+                # Option A: [&lt;Addition to address 1&gt;] &lt;Street name&gt; &lt;House number&gt;      #
+                # [&lt;Addition to address 2&gt;]                                             #
+                #########################################################################
+                (?:(?P&lt;A_Addition_to_address_1&gt;.*?),\s*)? # Addition to address 1
+            (?:No\.\s*)?
+                (?P&lt;A_Street_name_1&gt;\pN+[a-zA-Z]?(?:\s*[-\/\pP]\s*\pN+[a-zA-Z]?)*) # Street name
+            \s*,?\s*
+                (?P&lt;A_House_number_1&gt;(?:[a-zA-Z]\s*|\pN\pL{2,}\s\pL)\S[^,#]*?(?&lt;!\s)) # House number
+            \s*(?:(?:[,\/]|(?=\#))\s*(?!\s*No\.)
+                (?P&lt;A_Addition_to_address_2&gt;(?!\s).*?))? # Addition to address 2
+            |   #########################################################################
+                # Option B: [&lt;Addition to address 1&gt;] &lt;House number&gt; &lt;Street name&gt;      #
+                # [&lt;Addition to address 2&gt;]                                             #
+                #########################################################################
+                (?:(?P&lt;B_Addition_to_address_1&gt;.*?),\s*(?=.*[,\/]))? # Addition to address 1
+                (?!\s*No\.)(?P&lt;B_House_number&gt;\S\s*\S(?:[^,#](?!\b\pN+\s))*?(?&lt;!\s)) # House number
+            \s*[\/,]?\s*(?:\sNo\.)?\s+
+                (?P&lt;B_Street_name&gt;\pN+\s*-?[a-zA-Z]?(?:\s*[-\/\pP]?\s*\pN+(?:\s*[\-a-zA-Z])?)*|[IVXLCDM]+(?!.*\b\pN+\b))(?&lt;!\s) # Street name
+            \s*(?:(?:[,\/]|(?=\#)|\s)\s*(?!\s*No\.)\s*
+                (?P&lt;B_Addition_to_address_2&gt;(?!\s).*?))? # Addition to address 2
+            )
+            \s*\Z/x';
+                $result = preg_match($regex, $address, $matches);
+                if ($result === 0)
+                {
+            throw new Exception('Address \'' . $address . '\' could not be splitted into street name and house number');
+                }
+                else if ($result === false)
+                {
+            throw new Exception('Error occured while trying to split address \'' . $address . '\'');
+                }
+                if (!empty($matches['A_Street_name']))
+                {
+            return array(
+                                'additionToAddress1' =&gt; $matches['A_Addition_to_address_1'],
+                                'streetName' =&gt; $matches['A_Street_name'],
+                                'houseNumber' =&gt; $matches['A_House_number'],
+                                'additionToAddress2' =&gt; $matches['A_Addition_to_address_2']
+            );
+                }
+                else
+                {
+            return array(
+                                'additionToAddress1' =&gt; $matches['B_Addition_to_address_1'],
+                                'streetName' =&gt; $matches['B_Street_name'],
+                                'houseNumber' =&gt; $matches['B_House_number'],
+                                'additionToAddress2' =&gt; $matches['B_Addition_to_address_2']
+            );
+                }
+        }
+}
+</code></pre>
+
+<p>You can use a line like the following to test the address splitter:</p>
+
+<pre><code>var_dump(AddressSplittingService::splitAddress('Pallaswiesenstr. 57 App. 235'));
+</code></pre>
+
+<p>The output of this command is:</p>
+
+<pre><code class="language-php">array(4) {
+  [&quot;additionToAddress1&quot;]=&gt;
+  string(0) &quot;&quot;
+  [&quot;streetName&quot;]=&gt;
+  string(16) &quot;Pallaswiesenstr.&quot;
+  [&quot;houseNumber&quot;]=&gt;
+  string(2) &quot;57&quot;
+  [&quot;additionToAddress2&quot;]=&gt;
+  string(8) &quot;App. 235&quot;
+}
+</code></pre>
+
+<p>In our concrete use case with the <a href="http://store.shopware.com/viison00656/dhl-adapter.html" target="_blank">DHL Adapter</a> and <a href="http://www.pickware.de" target="_blank">Pickware</a>, one additional address line can be displayed on the shipping label. We decided to join all available additional address information (separated by commata) and to use these as the additional address line. This makes sure that all available information shows up on the label.</p>
+
+<p>In practice, the shipping process with Shopware 5 works as follows:</p>
+
+<p>1. During checkout, the user can enter an arbitrary address line, e.g. “Wiesentcenter, Bayreuther Str. 108, 2. Stock” as part of his shipping address.
+<img src="/blog/img/shopware-5-from-a-technical-point-of-view_5.png" alt="image"></p>
+
+<p>2. The address gets split up automatically when creating a shipping label with the <a href="http://store.shopware.com/viison00656/dhl-adapter.html" target="_blank">DHL Adapter</a>.
+<img src="/blog/img/shopware-5-from-a-technical-point-of-view_6.png" alt="image"></p>
+
+<p>3. The shipping label that is created for this order contains all information that was given during checkout:
+<img src="/blog/img/shopware-5-from-a-technical-point-of-view_7.png" alt="image"></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Shopware 5 comes with a bunch of new features that make it worth updating. With its new responsive template, Shopware now per default comes with a frontend that is optimized for mobile devices. For developers, it is definitely worthwhile to check out the new SearchBundle classes that take care of article filtering and sorting and are designed to be easily customizable by plugins. As we have seen in our example, these new classes can massively simplify plugin development.</p>
+
+<p>In the area of internationalization, Shopware now supports multiple address lines. This makes it usable in all countries, no matter how odd the address format might be. We presented a robust solution to extract the street name and house number from a given address, if they are required separately for a specific application.</p>
+
+<p>You can download the latest Shopware 5 version here. At the time of writing, the newest available Shopware 5 version was 5.0.0 RC1.</p>
+
+<h2 id="about-viison">About VIISON</h2>
+
+<p>The <a href="http://www.viison.com/">VIISON GmbH</a> is a young startup from Darmstadt with a talented team of web- and mobile developers. Creating innovative and sustainable solutions in close collaboration with our customers is our passion.</p>
+
+<p>As Shopware Business Partner we already count over 600 satisfied shop operators using one of our Shopware plugins (for example our <a href="http://store.shopware.com/viison00656/dhl-adapter.html">DHL</a> or <a href="http://store.shopware.com/viison01622/ups-adapter.html">UPS Adapters</a>). On top of that, we proudly offer <a href="http://www.pickware.de/">Pickware</a>, a commissioning and inventory management system developed especially for Shopware. Being seamlessly integrated in the Shopware environment, Pickware maps all relevant processes in mobile apps and thereby achieves a significant improvement of productivity.</p>
+
+    </div>
+
+    <a href="https://developers.shopware.com/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article></div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505346.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505346.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505346.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505346.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505346.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

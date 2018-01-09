@@ -1,0 +1,1358 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Graph based recommendation engine for Shopware</title><meta name="description" content="At the end of September, Benjamin and I visited the
+Bulgaria PHP conference.
+We saw a very interesting talk by Mariusz Gil called
+Discovering graph structu"><meta name="keywords" content="graph database, neo4j, recommendation engine"><meta name="author" content="Daniel Nögel"><link rel="author" href="https://developers.shopware.com/blog/authors/dn"><!-- Facebook --><meta property="og:title" content="Graph based recommendation engine for Shopware"><meta property="og:type" content="article"><meta property="og:image" content=""><meta property="og:url" content="/blog/2015/10/14/graph-based-recommendation-engine-for-shopware"><meta property="og:description" content="At the end of September, Benjamin and I visited the
+Bulgaria PHP conference.
+We saw a very interesting talk by Mariusz Gil called
+Discovering graph structu"><!-- Twitter --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Graph based recommendation engine for Shopware"><meta name="twitter:description" content="At the end of September, Benjamin and I visited the
+Bulgaria PHP conference.
+We saw a very interesting talk by Mariusz Gil called
+Discovering graph structu"><meta name="twitter:image" content=""><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505348.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505348.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505348.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter">
+                    <a href="/developers-guide/" class="navi--link has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2015-10-14-graph-based-reco-engine.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Graph based recommendation engine for Shopware
+            </h1>
+            
+            <article class="blog-post"><div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_dn.jpg" width="50" height="50"></div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/dn">Daniel Nögel</a>
+            <span class="user-title">, Developer</span>        </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> October 14th, 2015
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/danielnoegel" target="_blank" title="Twitter Daniel Nögel">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://danielnoegel.de" target="_blank" title="Website Daniel Nögel">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://github.com/dnoegel/" target="_blank" title="Github Daniel Nögel">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+                    </div>
+    </div>
+</div>
+                    </div>
+    
+    <div class="blog-detail-text">
+        <p>At the end of September, <a href="https://developers.shopware.com/blog/authors/bc/">Benjamin</a> and I visited the
+<a href="http://www.bgphp.org/">Bulgaria PHP conference</a>.
+We saw a very interesting talk by <a href="https://twitter.com/mariuszgil/">Mariusz Gil</a> called
+<a href="https://joind.in/talk/view/14886">Discovering graph structures</a>, which gave a quick
+introduction to graph databases and especially <a href="neo4j.com">Neo4j</a>.</p>
+
+<p>Over a long weekend I decided that trying to implement a recommendation engine
+for Shopware based on Neo4j might be a good start to get into Neo4j and graph
+databases in general. In this blog post I will discuss the graph database,
+Shopware's current way of handling recommendations and a simple plugin to implement
+a recommendation engine using neo4j in Shopware.</p>
+
+<div class="toc-list" data-depth="4" data-headline=""></div>
+
+<h2 id="what-is-it-all-about?">What is it all about?</h2>
+
+<p><img src="/blog/img/graph_simple_result.png" alt="Simple graph" class="is-float-left" style="width:300px">
+A graph database is a database which represents information in form of graphs. It's ideal for highly cross-linked
+data which needs to be queried in a semantic way.
+A typical graph database will have <strong>nodes</strong>, <strong>edges</strong> and <strong>properties</strong> to represent data. The <strong>nodes</strong> are entities
+like e.g. customer and items / products.
+<strong>Properties</strong> are additional information stored for the nodes, e.g. <em>name</em> and <em>address</em> of a person or the <em>price</em>
+of an item.
+<strong>Edges</strong> represent the relationship between nodes, so they will bring semantic information into the system. Having
+<em>customer</em> and <em>items</em> as nodes, one might have <em>edges</em> like "purchased". This way one could design a graph with all
+<em>items</em> that all <em>customers</em> purchased.</p>
+
+<p>Graph databases are popular everywhere meaningful information needs to be extracted from an information
+network. Popular examples are recommendation engines for e.g. products, movies or even friends in social networks.
+Even though it is possible to represent such structures in relational databases, graph databases are actually made
+for this kind of requirement and might be preferable in regards of performance and maintainability.</p>
+
+<p>The graph above shows a simple customer / item graph with three customers (blue) having purchased various items (green).
+As you can see, all customers purchased the &quot;ESD download&quot; item, so other items could be suggested to the customers
+based on this common preference.</p>
+
+<h2 id="neo4j">Neo4j</h2>
+
+<p><img src="/blog/img/graph_tom_hanks.png" alt="Tom hanks movies + directors" class="is-float-right" style="max-width:350px"></p>
+
+<p>Neo4j is a very popular open source graph database written in Java. You can simply download the community edition
+at <a href="http://neo4j.com/download/">http://neo4j.com/download/</a>, unzip the archive and run <code>bin/neo4j start</code> in order
+to run the neo4j server locally.
+Afterwards you can navigate your browser to <code>http://localhost:7474/</code> and play around with the tutorials a bit.
+I highly recommend the movie graph tutorial, as it shows some basic concepts and allows to learn the query language
+called <code>cypher</code> easily.</p>
+
+<p>So there is a query, for example, to show all movies with Tom Hanks and the directory of each of those movies (see image
+on the right).</p>
+
+<p>Other examples show how to find all co-actors of Tom Hanks or the shortest relationship path between e.g. Tom Hanks and
+Kevin Bacon (also known as <a href="https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon">bacon path</a>). So playing around with the movie data
+demo set gives quite a good impression of what is possible with a graph database.</p>
+
+<h3 id="the-cypher-query-language">The cypher query language</h3>
+
+<p>Cypher is a declarative query language for neo4j. It focuses on being human readable and allowing people to express <em>which</em>
+information they want to read, not <em>how</em> the information can be found.</p>
+
+<p>Typical keywords are <code>MATCH</code>, <code>WHERE</code> and <code>RETURN</code>: <code>MATCH</code> will usually describe a (sub)graph in the neo4j database,
+<code>WHERE</code> adds some additional conditions to the information being queried and <code>RETURN</code> defines the data you actually
+want to read.</p>
+
+<p>A typical query might look like this:</p>
+
+<pre><code>MATCH (currentCustomer:Customer {name: &quot;Peter&quot;})-[:purchased]-&gt;(purchasedItems:Item)
+RETURN purchasedItems
+</code></pre>
+
+<p>Re-formatting the query a bit makes understanding it even easier:</p>
+
+<pre><code>MATCH
+    (currentCustomer:Customer {name: &quot;Peter&quot;})
+    -[:purchased]-&gt;
+    (purchasedItems:Item)
+RETURN purchasedItems
+</code></pre>
+
+<p>First of all there is the <code>MATCH</code> statement, which describes the relation we want to find:</p>
+
+<ul><li>find a node of type <code>Customer</code> with <code>name=&quot;Peter&quot;</code> and assign the alias <code>currentCustomer</code>
+</li>
+<li>from this node find all edges / relations of type <code>purchased</code>
+</li>
+<li>the edge should point to another node of type <code>Item</code> with the alias <code>purchasedItems</code>
+</li>
+<li>return all <code>purchasedItems</code>
+</li>
+</ul><p>The statement <code>-[:purchased]-&gt;</code> is kind of a ASCII representation of the relation you want to describe, so its
+very easy to read and to understand. The <code>MATCH</code> query does not need to have three parts, you can extend it to
+you needs:</p>
+
+<pre><code>MATCH
+    (currentCustomer:Customer {name: &quot;Peter&quot;})
+    -[:purchased]-&gt;
+    (purchasedItems:Item)
+    &lt;-[:purchased]-
+    (otherCustomer:Customer)
+RETURN otherCustomer
+</code></pre>
+
+<p>In this case we added another edge <code>purchased</code> and another node <code>Customer</code> called <code>otherCustomer</code>. The arrow now points
+into the other direction, so that it goes from <code>otherCustomer</code> towards <code>purchasedItems</code>, but there are also bidirectional
+edges, if that better fits your needs.</p>
+
+<h3 id="more-on-cypher-&amp;-co">More on Cypher &amp; Co</h3>
+
+<p>Of course this is only a small part of the functionality of the cypher query language; it also supports updating and
+deleting graphs / nodes / edges, importing CSV, prepared statements and various functions. I highly recommend that you read the
+<a href="http://neo4j.com/docs/stable/cypher-query-lang.html">neo4j documentation</a> which provides some good examples and explanations,
+and even an interactive query editor / graph browser.</p>
+
+<p>Additionally there are <a href="http://neo4j.com/books/">ebooks on the neo4j homepage</a> you can download by leaving your contact data.
+They will give a deeper insight of graph databases in general and ways to design graphs properly.</p>
+
+<h3 id="php-integration">PHP integration</h3>
+
+<p>Neo4j has a REST API, which makes it is easy to communicate with the server. Of course in most cases you don't want to take
+care of that yourself; information about some PHP integrations can also be found in the
+<a href="http://neo4j.com/developer/php/">PHP section</a> of the neo4j wiki. The most popular libraries seem to be
+<a href="https://github.com/jadell/neo4jphp">neo4j php</a> by Josh Adell and <a href="https://github.com/lphuberdeau/Neo4j-PHP-OGM">Neo4j PHP OGM</a>
+by Louis-Philippe Huberdeau. The first one is a simple OOP library to create cypher queries, the latter is a
+Doctrine2 style OGM (object graph mapper) which is built on top of the neo4jphp library.</p>
+
+<h2 id="the-current-situation-in-shopware">The current situation in Shopware</h2>
+
+<p>Currently, the so called &quot;Marketing aggregate&quot; components of Shopware take care
+of parts of the recommendation engine. They make use of the PHP /MySQL stack
+only, so that there are no additional dependencies for this kind of recommendation engine.</p>
+
+<h3 id="the-general-concept">The general concept</h3>
+
+<p>Generally the &quot;also bought&quot; functionality is based on these components:</p>
+
+<ul><li>The table <code>s_articles_also_bought_ro</code> which is a denormalized representation
+of the &quot;also bought&quot; marketing information. This is basically a ManyToMany
+mapping for every item in the shop: It indicates which item was purchased how
+often and with which other item
+<img src="/blog/img/graph_also_bought_table.png" alt=""></li>
+<li>The <code>\Shopware_Components_AlsoBought</code> component takes care of refreshing
+this table. If the whole &quot;also bought&quot; table needs to be rebuilt, it will call
+the <code>\Shopware_Components_AlsoBought::initAlsoBought</code> method. Usually this is not
+necessary, as the <code>\Shopware_Components_AlsoBought::refreshMultipleBoughtArticles</code> method
+will allow Shopware to update the &quot;also bought&quot; table on a per-order base.</li>
+</ul><h3 id="the-sql-side">The SQL side</h3>
+
+<p>Generally this form of denormalization is used as the kind of queries needed to get this
+information in a relational database is quite complex.</p>
+
+<p>The &quot;also bought&quot; query in Shopware might look like this:</p>
+
+<pre><code>SELECT
+    detail1.articleID as article_id,
+    detail2.articleID as related_article_id,
+    COUNT(detail2.articleID) as sales
+FROM s_order_details detail1
+   INNER JOIN s_order_details detail2
+      ON detail1.orderID = detail2.orderID
+      AND detail1.articleID != detail2.articleID
+      AND detail1.modus = 0
+      AND detail2.modus = 0
+      AND detail2.articleID &gt; 0
+      AND detail1.articleID = :articleId
+GROUP BY detail2.articleID
+</code></pre>
+
+<p>As you can see, it takes a given item <code>articleId</code>, reads all orders with it
+and joins all other items of the very same order. After a <code>GROUP BY</code> on
+the &quot;also bought&quot; items, it can aggregate the total sum of the &quot;also bought&quot;
+value for each other item using <code>COUNT(detail2.articleID) as sales</code>.</p>
+
+<p>This works quite well and gives us the information needed - but it does
+not scale well enough for it to be used live on a per request base:</p>
+
+<p><img src="/blog/img/graph_explain.png" alt=""></p>
+
+<p>As you can see here, the relevant query might produce a temporary table and a
+filesort - so it is not a good idea to run it on every request on the detail page.
+Instead, we are currently running this query on a per order base:</p>
+
+<p><img src="/blog/img/graph_basket_also_bought.png" alt=""></p>
+
+<p>This will just fetch the &quot;pairs&quot; for the &quot;also bought&quot; information and then
+increase the <code>sales</code> field in the <code>s_articles_also_bought_ro</code> table. This
+query also has a much smaller database footprint, so we don't have the
+performance issue we'd have if we used the first query shown above.</p>
+
+<h3 id="round-up">Round up</h3>
+
+<p>The &quot;also bought&quot; functionality shows that getting this kind of recommendation
+information is possible in SQL - but it takes quite some effort to do it in
+a proper way, and it doesn't allow the kind of flexibility you might be used to
+from using a graph database.</p>
+
+<h2 id="writing-a-recommendation-plugin">Writing a recommendation plugin</h2>
+
+<p>Below I will discuss a simple recommendation plugin which you can find at <a href="https://github.com/dnoegel/DsnRecommendation">my github repo</a>.</p>
+
+<p>The plugin must be installed by checking it out to <code>engine/Shopware/Plugins/Local/Core/DsnRecommendation</code>. After that,
+the composer dependencies can be installed running <code>composer install</code> from the plugin directory. Configure your neo4j
+server in your shop's <code>config.php</code> file:</p>
+
+<pre><code>'neo4j' =&gt; array(
+    'host' =&gt; 'localhost',
+    'user' =&gt; 'neo4j',
+    'pass' =&gt; 'shopware',
+    'port' =&gt; ''
+)
+</code></pre>
+
+<p>Now you can install and activate the plugin using the shopware command line tools:</p>
+
+<pre><code>./bin/console sw:plugin:refresh
+./bin/console sw:plugin:install --activate DsnRecommendation
+</code></pre>
+
+<h3 id="creating-some-demo-data">Creating some demo data</h3>
+
+<p><img src="/blog/img/graph_outdoor.png" alt="Simple graph" class="is-float-right" style="width:400px"></p>
+
+<p>First of all, the plugin provides some demo data that can be used to test various recommendation scenarios. It will
+create some items, customers and orders. The items are separated into groups like &quot;console games&quot;, &quot;outdoor games&quot; and
+&quot;board and card games&quot;, so we can test different customers with different preferences.</p>
+
+<p>The demo data generation can be triggered by running <code>./bin/console dsn:recommendation:demo</code>. Afterwards, the shop
+should have a new category &quot;Gaming&quot; with the subcategories &quot;digital&quot;, &quot;analog&quot; and &quot;outdoor&quot;:</p>
+
+<p>Technically the demo data is generated by the <code>DemoData</code> components that can be found in the directory
+<code>DsnRecommendation/Components/DemoData</code> of the plugin.</p>
+
+<h3 id="exporting-orders-to-neo4j">Exporting orders to Neo4j</h3>
+
+<p>The plugin requires an initial export of the order data to Neo4j: <code>./bin/console dsn:neo4j:export</code>
+Afterwards the plugin will automatically sync new orders to the graph database.</p>
+
+<p>Technically this command will export the orders as CSV by using <code>\Shopware\Plugins\DsnRecommendation\Components\CsvExporter</code>.
+Then <code>\Shopware\Plugins\DsnRecommendation\Components\Neo\BulkExporter</code> will let neo4j import the CSV running this cypher
+query:</p>
+
+<pre><code>USING PERIODIC COMMIT
+
+LOAD CSV WITH HEADERS FROM &quot;$url&quot; AS row
+MERGE (customer:Customer { id: row.userId, name:row.userName})
+MERGE (item:Item { id:row.itemId, name:row.item })
+CREATE UNIQUE (customer)-[:purchased]-&gt;(item);
+</code></pre>
+
+<p>So it will basically iterate the CSV and create <code>Customer</code> and <code>Item</code> nodes and create edges to link a given
+customer to the items he purchased.</p>
+
+<h3 id="having-a-look-at-the-resulting-graph">Having a look at the resulting graph</h3>
+
+<p><img src="/blog/img/graph_neo.png" alt="Resulting graph graph" class="is-float-left" style="width:300px">
+Now you can navigate to your neo4j frontend, typically <code>http://localhost:7474/browser/</code>. In the query window at the top
+cypher queries can be entered. The query <code>MATCH (n) RETURN n LIMIT 100</code>, for example, will print the whole graph:</p>
+
+<p>This graphs shows four &quot;purchasing group&quot;. The group at the bottom left is Shopware's demo data.
+The other three &quot;purchase groups&quot; are the demo data of this plugin: Each of these groups simulates buying behaviour
+for another topic, e.g. &quot;card and board games&quot;, &quot;computer games&quot; and &quot;outdoor games&quot;. The groups would be linked in
+reality, but for the purpose of debugging and experimenting around, smaller, separated groups seem to be more useful.
+<br><br></p>
+
+<h4 id="getting-recommendations-for-a-given-customer">Getting recommendations for a given customer</h4>
+
+<p>Now let's see how to give recommendations for a specific customer based on his overall buying behaviour:</p>
+
+<pre><code>// find customer who ordered same items
+MATCH (u:Customer)-[r1:purchased]-&gt;(p:Item)&lt;-[r2:purchased]-(u2:Customer),
+// find items of those customers
+(u2:Customer)-[:purchased]-&gt;(p2:Item)
+// only for this user
+WHERE u.name = &quot;Felix Frechmann&quot;
+// make sure, that the current user  didn't order that product, yet
+AND not (u)-[:purchased]-&gt;(p2:Item)
+// count / group by u2, so every user-path only counts once
+RETURN p2.name, count(DISTINCT u2) as frequency
+ORDER BY frequency DESC
+</code></pre>
+
+<p><img src="/blog/img/graph_result.png" alt=""></p>
+
+<p>Looking at the graph example above, you will see that this query recommends &quot;outdoor game: water fight&quot; and
+&quot;outdoor game: soccer&quot; to the customer &quot;Felix Frechmann&quot;. The reason is basically the following:</p>
+
+<ul><li>Felix bought &quot;rope jumping&quot; and &quot;golf pro&quot;</li>
+<li>So did Kathrin and Max</li>
+<li>Kathrin and Max also bought the game &quot;water fight&quot;</li>
+<li>Kathrin bought the game &quot;soccer&quot;
+So basically there are two paths to &quot;water fight&quot; and one path to &quot;soccer&quot; for Felix. For this reason, the
+&quot;water fight&quot; recommendation is higher ranked than the &quot;soccer&quot; recommendation.</li>
+</ul><p>Currently the <code>frequency</code> is calculated by the number of customers who bought the same product as Felix. This could
+be changed to also take the number of similar items into account: <code>count(u2) as frequency</code>
+With this modification, the &quot;water fight&quot; game would get a frequency of 4, as every actual path is taken into account.
+Both approaches could be combined by having the frequency calculated like this:</p>
+
+<p><code>count(u2) * count(DISTINCT u2) as frequency</code></p>
+
+<p>Now the &quot;water fight&quot; game becomes a frequency of 8, the &quot;soccer&quot; game a frequency of 2 - which might reflect the number
+of customers and the number of common items even better.</p>
+
+<h4 id="getting-recommendations-for-a-given-product">Getting recommendations for a given product</h4>
+
+<p>Another example demonstrates how we can make a general recommendation based on a given product (without knowing the current
+customer):</p>
+
+<pre><code>MATCH (originalItem:Item {name: 'console game: Racing 2000'})&lt;-[:purchased]-(otherCustomer:Customer)-[:purchased]-&gt;(alsoBought:Item)
+WHERE alsoBought &lt;&gt; originalItem
+RETURN alsoBought.itemId, alsoBought.name, count(alsoBought) as frequency
+ORDER BY frequency DESC
+LIMIT 10
+</code></pre>
+
+<p>This query will basically start from a given item (&quot;console game: Racing 2000&quot;) and find customers who purchased it. Then, for these customers, all purchased items which are not identical to the original item will be found.
+Finally the <code>id</code> and <code>name</code> of the <code>alsoBought</code> items are returned together with the <code>frequency</code> of purchases.
+The result will be ordered by <code>frequency</code>, so that the most purchased item will be returned first.</p>
+
+<p>The result will look like this:</p>
+
+<p><img src="/blog/img/graph_result_item_reco.png" alt=""></p>
+
+<h3 id="implement-recommendation-queries-in-shopware">Implement recommendation queries in Shopware</h3>
+
+<p>The following sections will briefly discuss how the plugin works.</p>
+
+<h4 id="syncing-new-orders-to-neo4j">Syncing new orders to neo4j</h4>
+
+<p>All existing orders were already exported to neo4j using the export console command of this plugin. Now we just need
+to make sure that new orders will also be synchronized to the graph database.
+To do so, we add a little order subscriber like this:</p>
+
+<pre><code>class Order implements \Enlight\Event\SubscriberInterface
+{
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'Shopware_Modules_Order_SaveOrder_ProcessDetails' =&gt; 'onSaveOrder'
+        );
+    }
+
+    public function onSaveOrder(\Enlight_Event_EventArgs $args)
+    {
+        /** @var \sOrder $order */
+        $order = $args-&gt;get('subject');
+        $details = $args-&gt;get('details');
+        $userData = $order-&gt;sUserData;
+
+        $userName = $userData['billingaddress']['firstname'] . ' ' . $userData['billingaddress']['lastname'];
+        $userId = $userData['billingaddress']['userID'];
+        $items = array_map(function ($item) {
+            return [
+                'id' =&gt; $item['id'],
+                'name' =&gt; $item['articlename']
+            ];
+        }, array_filter($details, function ($item) {
+            return $item['modus'] == 0;
+        }));
+
+        Shopware()-&gt;Container()-&gt;get('dsn_recommendation.sync_service')-&gt;sync($userId, $userName, $items);
+    }
+}
+</code></pre>
+
+<p>This subscriber will be notified whenever a new order is processed. In the callback method, the user data (id and name)
+as well as the product information (id and name) are read and passed to the <code>\Shopware\Plugins\DsnRecommendation\Components\Neo\SyncOrder</code>
+service.</p>
+
+<p>This service will basically create queries like the following and send them to the neo4j server:</p>
+
+<pre><code>MERGE (customer:Customer { userId: '224', name:'Jimmy Jellyfish'})
+MERGE (item:Item { itemId:'670', name:'Sonnenbrille &quot;Red&quot;' })
+CREATE UNIQUE (customer)-[:purchased]-&gt;(item);
+</code></pre>
+
+<p>So all new ordered items will be created / updated on the server and the current customers get a &quot;purchased&quot; reference to them.</p>
+
+<h4 id="showing-recommendations">Showing recommendations</h4>
+
+<p>In order to show the recommendations to the customer, we will need</p>
+
+<ul><li>a post dispatch event on the detail page</li>
+<li>a recommendation service that will fetch the recommendations for a given item</li>
+<li>a template extension</li>
+</ul><p>The post dispatch is registered using an own <code>Recommendation</code> subscriber, which registers to the
+<code>Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail</code> event, so that it is notified after
+any call to a detail page:</p>
+
+<pre><code>class Recommendation implements \Enlight\Event\SubscriberInterface
+{
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Detail' =&gt; 'onPostDispatchDetail'
+        );
+    }
+
+    public function onPostDispatchDetail(\Enlight_Event_EventArgs $args)
+    {
+        /** @var \Enlight_View $view */
+        $view = $args-&gt;get('subject')-&gt;View();
+        $itemId = $view-&gt;getAssign('sArticle')['articleID'];
+
+        $view-&gt;addTemplateDir(__DIR__ . '/../Views');
+
+        $result = $this-&gt;getRecommendationItems($itemId);
+
+        $view-&gt;assign('dsnHasRecommendations', $result);
+    }
+
+    private function getRecommendationItems($itemId)
+    {
+        /** @var \Shopware\Plugins\DsnRecommendation\Components\Neo\Recommendation $recommendationService */
+        $recommendationService = Shopware()-&gt;Container()-&gt;get('dsn_recommendation.recommendation');
+        $recommendations = $recommendationService-&gt;recommend($itemId);
+
+        $result = [];
+        foreach ($recommendations as $recommendation =&gt; $frequency) {
+            if ($promotion = Shopware()-&gt;Modules()-&gt;Articles()-&gt;sGetPromotionById('fix', 0, $recommendation)) {
+                $result[] = $promotion;
+            }
+        }
+        return $result;
+    }
+}
+</code></pre>
+
+<p>As you can see, it will basically read the current <code>articleID</code> from the current page and pass it to the <code>getRecommendationItems</code> method. This will query the <code>Recommendation</code> service and load additional item info using the
+<code>sGetPromotionById</code> method. This data is then returned and assigned to the <code>dsnHasRecommendations</code> template variable.</p>
+
+<p>The <code>Recommendation</code> service itself does not implement much of logic:</p>
+
+<pre><code>class Recommendation
+{
+    /**
+     * @var \Everyman\Neo4j\Client
+     */
+    private $client;
+
+    public function __construct(\Everyman\Neo4j\Client $client)
+    {
+        $this-&gt;client = $client;
+    }
+
+    public function recommend($itemId)
+    {
+        $template = &lt;&lt;&lt;EOD
+            MATCH (originalItem:Item {itemId: {itemId}})&lt;-[:purchased]-(otherCustomer:Customer)-[:purchased]-&gt;(alsoBought:Item)
+            WHERE alsoBought &lt;&gt; originalItem
+            RETURN alsoBought.itemId, count(alsoBought) as frequency
+            ORDER BY frequency DESC
+            LIMIT 10
+EOD;
+
+
+        $query = new Query($this-&gt;client, $template, ['itemId' =&gt; (string)$itemId]);
+
+        $result = [];
+        foreach ($query-&gt;getResultSet() as $row) {
+            $result[$row['itemId']] = $row['frequency'];
+        }
+
+        return $result;
+
+    }
+}
+</code></pre>
+
+<p>It will basically use the cypher query discussed above to request recommended items for the given itemId. Those items
+are then ordered by frequency and returned.</p>
+
+<p>Finally there is a little template extension in <code>DsnRecommendation/Views/frontend/detail/index.tpl</code>, which will add
+a new tab to the recommendation tabs, that will show our neo4j recommendations.</p>
+
+<p><img src="/blog/img/graph_result_reco.png" alt=""></p>
+
+<h3 id="round-up-0">Round up</h3>
+
+<p>As you can see, the actual logic related to neo4j is quite simple. With 3 rather simple queries we accomplished
+a <em>full export</em> to neo4j, an <em>update query for new orders</em> and the <em>recommendation call</em>.
+Of course there are a lot of optimizations to talk about. So currently the recommendation query will take into account
+<em>all</em> ordered items of other customers, not only items also bought in the <em>same</em> order. Additional checks for the subshop or even the customer group might be useful.</p>
+
+<h3 id="download">Download</h3>
+
+<p>The <a href="https://github.com/dnoegel/DsnRecommendation">plugin is available on github</a>, install instructions can be found
+above or in the github repository.</p>
+
+    </div>
+
+    <a href="https://developers.shopware.com/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article></div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505348.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505348.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

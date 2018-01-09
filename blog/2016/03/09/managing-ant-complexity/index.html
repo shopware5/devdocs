@@ -1,0 +1,1405 @@
+<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Managing Ant complexity</title><meta name="description" content="We @shopware use different tools for our highly automated development setups. We use Docker and Vagrant to set up operating system environments for develop"><meta name="keywords" content="ant, build, clean code, software layer"><meta name="author" content="Jan Philipp Pietrzyk"><link rel="author" href="https://developers.shopware.com/blog/authors/jp"><!-- Facebook --><meta property="og:title" content="Managing Ant complexity"><meta property="og:type" content="article"><meta property="og:image" content=""><meta property="og:url" content="/blog/2016/03/09/managing-ant-complexity"><meta property="og:description" content="We @shopware use different tools for our highly automated development setups. We use Docker and Vagrant to set up operating system environments for develop"><!-- Twitter --><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Managing Ant complexity"><meta name="twitter:description" content="We @shopware use different tools for our highly automated development setups. We use Docker and Vagrant to set up operating system environments for develop"><meta name="twitter:image" content=""><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505349.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505349.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<div class="wrapper">
+
+    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505349.svg"></a>
+
+    </header><div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
+            <ul class="navi--tree"><li class="navi--chapter">
+                    <a href="/developers-guide/" class="navi--link has--children">
+                       Developer Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/plugin-guide/">
+                                Developing plugins
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick start guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Storefront extension
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                Backend and ExtJS
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/developers-guide/rest/">
+                                REST API
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/designers-guide/" class="navi--link has--children">
+                       Frontend Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/theme-guide/">
+                                Developing Themes
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the community store
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                General Resources
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                Tutorials
+                            </a>
+
+                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            <li class="navi--sub-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                    </ul></li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/community/" class="navi--link has--children">
+                       Community
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/gitter/">
+                                Gitter
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contribution-guideline/">
+                                Contribution Guideline
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/contributing-code/">
+                                Contributing Code
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/community/irc/">
+                                IRC Channel
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/labs/" class="navi--link has--children">
+                       Labs
+                    </a>
+
+                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/3d-product-visualization/">
+                                3D Product visualization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
+                                Shopping Cart &amp; ordering processes
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/new-administration/">
+                                New administration
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/internationalization/">
+                                Internationalization
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/api/">
+                                API
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/labs/housekeeping/">
+                                Housekeeping
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/sysadmins-guide/" class="navi--link has--children">
+                       System Guides
+                    </a>
+
+                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                System requirements
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                Installation Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                Update Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                Performance Guide
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                Elasticsearch setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                Varnish setup
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                Sessions
+                            </a>
+
+                                                    </li>
+                                                <li class="navi--sub-chapter">
+
+                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                Cluster setup
+                            </a>
+
+                                                    </li>
+                                            </ul></li>
+
+                
+                <li class="navi--chapter">
+                    <a href="/blog/" class="navi--link">
+                       Blog
+                    </a>
+
+                                    </li>
+
+                            </ul></div>
+    </nav><div class="devdocs content">
+
+        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section><div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2016-03-09-managing-ant-complexities.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Managing Ant complexity
+            </h1>
+            
+            <article class="blog-post"><div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_jp.jpg" width="50" height="50"></div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/jp">Jan Philipp Pietrzyk</a>
+            <span class="user-title">, Developer</span>        </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> March 9th, 2016
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/FloydThreepwood" target="_blank" title="Twitter Jan Philipp Pietrzyk">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="http://jpietrzyk.de" target="_blank" title="Website Jan Philipp Pietrzyk">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://github.com/JanPietrzyk/" target="_blank" title="Github Jan Philipp Pietrzyk">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+                    </div>
+    </div>
+</div>
+                    </div>
+    
+    <div class="blog-detail-text">
+        <p>We @shopware use different tools for our highly automated development setups. We use Docker and Vagrant to set up operating system environments for development and testing,
+we use composer, bower and npm to manage library dependencies and we use Bamboo, Scrutinizer and Travis as integrated testing environments.</p>
+
+<p>All these setups work a little different. A Vagrant virtual machine and a Travis build share just the basic operating system type, but nothing else.
+Therefore it is still necessary to rely on tools that help you build your application in 2016. And here Ant is the default solution. In the following paragraphs
+I want to share some problems and solutions we encountered in the past few months concerning Ant.</p>
+
+<h2 id="quick-introduction-to-ant">Quick introduction to Ant</h2>
+
+<h3 id="what-is-a-build?">What is a Build?</h3>
+
+<p>Historically the necessity to build an application stems from compiled languages like C or Java. They often need to include and precompile certain modules
+either from third parties or operating system dependent. These are tasks that can not be done through the application itself because it does not compile as long as it
+is incomplete. Build scripts also usually employ configuration files that can set e.g. compiler values or en- and disable features in the resulting compiled application.</p>
+
+<p>In more recent years build scripts have evolved to contain different targets. So one can create a production version of the application, prepare and execute the unit
+tests suite or install a development version.</p>
+
+<p>Although PHP is a interpreted language, many modern applications also depend on build scripts as the layer between the operating system requirements and a working installation.
+Thus everything that can be automatically installed, configured and executed is usually present as a build script.</p>
+
+<h3 id="ant">Ant</h3>
+
+<p>Ant is the de facto standard for a mostly operating system independent build system. It is completely written in Java and therefore works on all major operating systems.
+Moreover the Linux, OSX and Windows versions all share a library of common tasks that allow you to create portable scripts. If you have ever encountered a project with a <code>build.xml</code>
+you most certainly have seen an Ant build script.</p>
+
+<p>Ant uses XML as its primary syntax; so a typical Ant file might look like this:</p>
+
+<pre><code>&lt;project name=&quot;Enterprise Dashboard&quot; basedir=&quot;../&quot;&gt;
+
+    &lt;!--
+        Main build targets
+    --&gt;
+    &lt;target name=&quot;install&quot; depends=&quot;build-composer-install, apply-migrations&quot;&gt;
+
+    &lt;/target&gt;
+
+    &lt;!--
+        Apply Migration
+    --&gt;
+    &lt;target name=&quot;apply-migrations&quot;&gt;
+        &lt;exec executable=&quot;php&quot; dir=&quot;${basedir}/app&quot; failonerror=&quot;true&quot;&gt;
+            &lt;arg line=&quot;console doctrine:migrations:migrate&quot;/&gt;
+        &lt;/exec&gt;
+    &lt;/target&gt;
+
+    &lt;!--
+        Composer build dependencies
+    --&gt;
+    &lt;target name=&quot;check-composer-binary&quot;&gt;
+        &lt;available file=&quot;${basedir}/composer.phar&quot; property=&quot;composer.binary.present&quot;/&gt;
+    &lt;/target&gt;
+
+    &lt;!-- Download composer --&gt;
+    &lt;target name=&quot;install-composer-binary&quot; depends=&quot;check-composer-binary&quot;  unless=&quot;composer.binary.present&quot;&gt;
+        &lt;exec executable=&quot;bash&quot; failonerror=&quot;true&quot;&gt;
+            &lt;arg value=&quot;-c&quot; /&gt;
+            &lt;arg value=&quot;curl -s https://getcomposer.org/installer | php&quot; /&gt;
+        &lt;/exec&gt;
+    &lt;/target&gt;
+
+    &lt;!-- selfupdate composer --&gt;
+    &lt;target name=&quot;update-composer-binary&quot; depends=&quot;install-composer-binary&quot;&gt;
+        &lt;exec executable=&quot;php&quot;&gt;
+            &lt;arg value=&quot;composer.phar&quot; /&gt;
+            &lt;arg value=&quot;self-update&quot; /&gt;
+            &lt;arg value=&quot;--no-interaction&quot; /&gt;
+        &lt;/exec&gt;
+    &lt;/target&gt;
+
+    &lt;!-- execute composer install --&gt;
+    &lt;target name=&quot;build-composer-install&quot; depends=&quot;update-composer-binary&quot;&gt;
+        &lt;exec executable=&quot;php&quot; failonerror=&quot;true&quot;&gt;
+            &lt;arg value=&quot;composer.phar&quot; /&gt;
+            &lt;arg value=&quot;install&quot; /&gt;
+            &lt;arg value=&quot;--no-interaction&quot; /&gt;
+            &lt;arg value=&quot;--optimize-autoloader&quot; /&gt;
+        &lt;/exec&gt;
+    &lt;/target&gt;
+
+&lt;/project&gt;
+</code></pre>
+
+<p>In fact this is the very first build.xml file we had in our project. The typical buildfile you might stumble upon contains a project
+which consists of many different targets. Per default all these targets are publicly available and can be called just by executing
+<code>ant __TARGET_NAME__</code> from your buildfiles directory.</p>
+
+<p>Executing a target will set the Ant engine in motion, parse the buildfile and extract the correct order of targets. As you can see targets
+can depend on each other and almost always will.</p>
+
+<p>Each target then contains tasks. A task is the most basic unit of work in Ant and basically maps to a shell command. Either directly through the
+<code>&lt;exec /&gt;</code> task or more abstract with <code>&lt;copy /&gt;</code>, <code>&lt;available /&gt;</code> or <code>&lt;zipfile /&gt;</code>.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<h3 id="xml">XML</h3>
+
+<p>Without getting into the debate on the best <a href="http://c2.com/cgi/wiki?XmlSucks">formatting for XML, verbosity of XML</a>, the arbitrary decision on what is an <a href="http://www.ibm.com/developerworks/xml/library/x-eleatt/index.html">attribute and what is
+a tag</a> or any other <a href="http://c2.com/cgi/wiki?XmlIsTooComplex">weak point of XML</a>, let me just give you one example.</p>
+
+<p>Let's execute a composer install. This is the simple shell command to do this:</p>
+
+<pre><code>&gt; php composer.phar install --no-interaction --optimize-autoload
+</code></pre>
+
+<p>This is the equal statement in Ant-XML:</p>
+
+<pre><code>&lt;exec executable=&quot;php&quot; failonerror=&quot;true&quot;&gt;
+    &lt;arg value=&quot;composer.phar&quot; /&gt;
+    &lt;arg value=&quot;install&quot; /&gt;
+    &lt;arg value=&quot;--no-interaction&quot; /&gt;
+    &lt;arg value=&quot;--optimize-autoloader&quot; /&gt;
+&lt;/exec&gt;
+</code></pre>
+
+<h3 id="order-of-execution">Order of execution</h3>
+
+<p>By looking at the single build.xml above we will now try to extract the order of execution. Lets first look at the <strong>install</strong> target.</p>
+
+<p>The tree below is a representation of all build targets in the order <em>install</em> states its dependencies.</p>
+
+<pre><code>install
+├── build-composer-install
+│   ├── build-composer-binary
+│       ├── update-composer-install
+│           ├── install-composer-binary
+│               ├── check-composer-binary
+├── apply-migrations
+</code></pre>
+
+<p>So this is supposed to just install the composer dependencies and execute a console command? Obvious? No magic involved... For installing the application which
+just expects that all composer dependencies are available and that the database was migrated we end up with this weird tree like structure. Where each target
+depends on another target. I personally can not understand what is happening by looking at the tree, so I transform this into into a simpler recipe like this</p>
+
+<pre><code>1. check-composer-binary
+2. install-composer-binary
+3. update-composer-binary
+4. build-composer-binary
+5. build-composer-install
+6. apply-migrations
+7. echo &quot;Installation done&quot;
+</code></pre>
+
+<p>Now it becomes clear what the writer of the buildfile expected to happen. One could play this even further by describing what he indented to do</p>
+
+<pre><code>1. install-composer-dependencies
+2. apply-migrations
+3. echo &quot;Installation done&quot;
+</code></pre>
+
+<p>Oh, this is actually in the file, although a little bit hidden:</p>
+
+<pre><code>...
+&lt;target name=&quot;install&quot; depends=&quot;build-composer-install, apply-migrations&quot;&gt; 
+...
+</code></pre>
+
+<p>I think you see the issue with the Ant syntax now. The intend of the author is rarely matched by the syntax of Ant. Instead Ant forces you to think in a chain of dependencies that are
+composed to a tree.</p>
+
+<h3 id="user-left-alone">User left alone</h3>
+
+<p>So if writing Ant scripts is cumbersome, what about the other way around? Does it communicate intend and options to developers using it? We can easily examine this by
+just thinking about what can go wrong. Of course installing the application is now easier then it was before. Just execute <code>ant install</code> and be done with it. So Ant fulfills
+its original purpose here, but where does the information come from what build target to execute in which case? Splitting your build into too many targets is s source of potential
+confusion, because Ant makes executing <code>ant apply-migrations</code> just as easy, although this task has a implicit dependency on the composer files.</p>
+
+<p>So the tree like structure of Ant targets create problems when a dependency is missing or only present in a parent node. The composition of different targets is potentially error
+prone, because dependencies between these nodes are not correctly configured. Let's take a look at an alternative way to create the script:</p>
+
+<pre><code>install
+├── apply-migrations
+    ├── build-composer-install
+        ├── build-composer-binary
+            ├── update-composer-install
+                ├── install-composer-binary
+                    ├── check-composer-binary
+</code></pre>
+
+<p>Now applying migrations is dependent on a successful composer install which fixes the problem in the first place. Problem solved, blog finished... Wait not so fast... How can I now
+create a different chain for a different target? If certain chain elements should be reusable and others not we can only copy and paste for the newly created targets. So in the end
+in our application we could not get a suitable chain of targets that would be robust and secure for the user. Furthermore it meant splitting everything to the least common denominator
+so that we gained an uncontrollable amount of syntax without gaining features. The result was a mess to read, understand and handle.</p>
+
+<h3 id="self-explaining">Self explaining</h3>
+
+<p>Ant heavily depends on documentation. You have to create documents to state the original intend, describe securely executable targets, describe the applications expected dependencies.
+Either in the form of recipes and tables in README files or inline through comments. And now you have to sync your knowledge from the external documentation with the implementation. So
+if it should really be well documented you will start with something like this:</p>
+
+<pre><code>1. check-composer-binary
+2. install-composer-binary
+3. update-composer-binary
+4. build-composer-binary
+5. build-composer-install
+6. apply-migrations
+7. echo &quot;Installation done&quot;
+</code></pre>
+
+<p>And have to map it to the buildfile. I just put the comments in the code block below, to remove the noise. Let's see how fast this can be matched up:</p>
+
+<pre><code>&lt;project name=&quot;Enterprise Dashboard&quot; basedir=&quot;../&quot;&gt;
+
+    &lt;!--
+        Main build targets
+    --&gt;
+    [-----]
+    
+    &lt;!--
+        Apply Migration
+    --&gt;
+    [-----]
+
+    &lt;!--
+        Composer build dependencies
+    --&gt;
+    [-----]
+
+    &lt;!-- Download composer --&gt;
+    [-----]
+
+    &lt;!-- selfupdate composer --&gt;
+    [-----]
+
+    &lt;!-- execute composer install --&gt;
+    [-----]
+
+&lt;/project&gt;
+</code></pre>
+
+<p>So how long does it take to match it? And remember I already removed the noise for you. I think the problem is obvious now:</p>
+
+<ul><li>The comments have to be really close to what you expect.</li>
+<li>The order of targets in the file is not arbitrary. But how should you order it? most important first? Order of execution? There are good reasons for both viewpoints.</li>
+<li>You never know on which level of abstraction you are. Is it a high level group target or a low level dependency.</li>
+</ul><p>And as always: Since comments don't depend on the actual code executed it is very easy to get them out of sync with the implementation present.</p>
+
+<h3 id="it-grows-on-you">It grows on you</h3>
+
+<p>This kind of model does hardly scale at all. Over the course of 5 months it grew from it's original 60 lines to around 470 lines. It gained the
+responsibility for cleanup, unit test execution, and package build. Of course we could have split the tasks into different files, but after refactoring
+the buildfile as an experiment we soon noticed that it would not gain readability, but just verbosity.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I don't just want to reiterate the conclusions already drawn but introduce a new one:</p>
+
+<p><strong>The problem is Ant uses the same mechanism for abstraction and flow control.</strong></p>
+
+<p>To me the mechanism of abstraction is different from the mechanism of flow control. I control abstraction by creating reusable entities and the flow by
+rearranging these reusable entities in unique ways. Ant does not. It just creates a chain of actions that can depend on each other in any order necessary. Moreover
+Ant expects that information is not decided upon but created from the outset through properties. This may lead to more stable builds but the way to getting this
+stability was neither pleasant nor easy. So we started investigating alternatives.</p>
+
+<h2 id="ant-lesser-known-features">Ant lesser known features</h2>
+
+<p>As it turns out the described features above are not everything that Ant provides. There are a few very interesting additions to the Ant way of things.</p>
+
+<h3 id="macros">Macros</h3>
+
+<p>Since version 1.6 <em>(2003!)</em> Ant supports a way to create custom tasks with custom input by creating a macro. It works a lot like targets by also being a sequence
+of tasks, with the one exception: <strong>Macros allow you to pass arguments</strong>.</p>
+
+<p>So let's take a look how <em>hello world</em> might look like using a macro:</p>
+
+<pre><code>&lt;macrodef name=&quot;say-hello&quot;&gt; &lt;!-- define the name how to call this macro --&gt;
+    &lt;attribute name=&quot;to-the&quot; required=&quot;true&quot;/&gt; &lt;!-- define attributes you either require or give default values --&gt;
+    &lt;sequential&gt; &lt;!-- syntax: the calls start here --&gt;
+        &lt;echo&gt;Hello {@to-the}&lt;/echo&gt; &lt;!-- the Ant tasks from your project --&gt;
+    &lt;/sequential&gt; &lt;!-- --&gt;
+&lt;/macrodef&gt; &lt;!-- --&gt;
+</code></pre>
+
+<p>Which then can be called with from every target just by this:</p>
+
+<pre><code>&lt;target name=&quot;calls-a-macro&quot;&gt;
+    &lt;say-hello to-the=&quot;world&quot; /&gt;
+&lt;/target&gt;
+</code></pre>
+
+<p>will produce</p>
+
+<pre><code>&gt; ant calling-a-macro
+[echo] Hello world
+</code></pre>
+
+<p>Macros can therefore be reused with different options from different callers. No need to try to set a property once per target chain, but just set it when it's called.</p>
+
+<p><em>Side Note: This is by far not everything to macros. They allow for parallel execution of tasks, can have there own properties, can even have there own collections of tags as input.</em></p>
+
+<h3 id="inline-conditions">Inline conditions</h3>
+
+<p>In Version 1.9.1 <em>(2013)</em> Ant gained another very interesting feature: Generic conditions on every XML tag. To enable it you have to first extend your project tag with
+a little bit of configuration magic</p>
+
+<pre><code>&lt;project 
+    [...]
+    xmlns:if=&quot;ant:if&quot;
+    xmlns:unless=&quot;ant:unless&quot;
+    [...]
+&gt;
+</code></pre>
+
+<p>And now you can add it to literally everything!</p>
+
+<pre><code>&lt;target name=&quot;uses-inline-conditions&quot;&gt;
+    &lt;property name=&quot;test&quot; value=&quot;1&quot; /&gt;
+
+    &lt;echo if:set=&quot;test2&quot;&gt;Foo&lt;/echo&gt; &lt;!-- no output --&gt;
+    &lt;echo unless:set=&quot;test2&quot;&gt;Bar&lt;/echo&gt; &lt;!-- output --&gt;
+    &lt;echo if:set=&quot;test&quot;&gt;Baz&lt;/echo&gt; &lt;!-- output --&gt;
+    &lt;echo unless:set=&quot;test&quot;&gt;Biz&lt;/echo&gt; &lt;!-- no output --&gt;
+&lt;/target&gt;
+</code></pre>
+
+<p>Although the syntax is strange, it just works and after a while becomes a second nature.</p>
+
+<h3 id="conclusion-1">Conclusion</h3>
+
+<p>Are you thinking what I think? ***We can build functions with this :)***. On their own both features are interesting, but only become useful in
+certain edge cases, because both lack key ingredients.</p>
+
+<ul><li>Conditions on their own are not that useful because of the lack of dynamically set properties.</li>
+<li>Macros on their own are not that useful because they can not make decisions on input variables.</li>
+</ul><p>But the combination of dynamic input from a caller and the ability to make decisions based on that makes a powerful tool, that might even be enough to
+circumvent Ants shortcomings.</p>
+
+<h2 id="software-the-theory">Software - the theory</h2>
+
+<p>As it turns out creating functions and calling them is exactly our job decryption as software developers. And we have a vast body of theory to harness now!
+Don't worry I am not going to apply everything I can think of to the art of build scripting, but only a few aspects of each of the following ideas.</p>
+
+<h3 id="clean-code-stay-in-your-scope">Clean Code - stay in your scope</h3>
+
+<p>From <a href="https://de.wikipedia.org/wiki/Clean_Code">Clean Code</a> I will cherry pick the scope invariant from taken out from the functions/methods chapter. Each macro and target will contain only the same
+level of abstraction. If it starts low level, the next task will also be low level, if it starts abstract it will only contain abstract calls.</p>
+
+<p>This ensures that there is no pollution in mapping intend of the developer to the implementation. Different levels of abstraction call for different macros or targets.</p>
+
+<h3 id="clean-code-naming">Clean Code - naming</h3>
+
+<p>Next I will pick the function/method naming conventions from clean code and every book that followed it. Although instead of <em>set</em>, <em>get</em>, <em>is</em>, and <em>has</em> we will
+have to swap the language to be more build centric. Descriptive stages of the build process like <em>install</em>, <em>unit</em> or the environment like <em>dev</em>, or <em>ci</em> seem more
+appropriate.</p>
+
+<h3 id="layered-architecture">Layered Architecture</h3>
+
+<p>In the past few paragraphs I have used the term abstraction level and scope very often. It is now time to give it a more formal description by using the term layer:</p>
+
+<p>A layer in Software is <a href="https://en.wikipedia.org/wiki/Multilayered_architecture">&quot;the allocation of different responsibilities in software project&quot;</a> Everything clear now? Just kidding...</p>
+
+<p>A layer for us means that we can sort the applications classes, files, or functions by their dependencies and see commonalities, so that we can group the files according to this.
+So we can for example see, that repository classes never interact with the view directly, but instead always have classes that are called service or at least controller between them.
+So we can safely assume that the Controllers are a layer that is responsible for interacting and negotiating with both classes.</p>
+
+<p>This of course leads to far more complex topics, but for the buildscript at hand it is enough to just create a definition on what a layer is here.</p>
+
+<h2 id="software-the-practice">Software - the practice</h2>
+
+<p>We can now create application design that serves a purpose other then just building the application so let's formulate some quality requirements.</p>
+
+<ul><li>I want to see immediately what build targets are available - this should be done through a convention in the source itself.</li>
+<li>I want every build target to create the desired state on it's own. Especially I don't want to be required to remember any order in which a call should happen.</li>
+<li>If a build target is broken I want to be able to understand what the author intended, what the application needs and how it is implemented</li>
+</ul><p>All this should be done through the source and hand full of conventions.</p>
+
+<h3 id="layers">Layers</h3>
+
+<p>For Ant we defined two layers:</p>
+
+<p><strong>Macros / technical requirements:</strong> A collection of Ant tasks that is named according to a technical application requirement.</p>
+
+<p>Examples:</p>
+
+<ul><li>
+<code>&lt;composer-install /&gt;</code> - Install composer dependencies, not caring if a composer.phar is present, is globally installed or where it is.</li>
+<li>
+<code>&lt;phar-box-build /&gt;</code> - Create a phar file, not caring where the required box.phar comes from.</li>
+</ul><p><strong>Targets / application states:</strong> A state the application can be in.</p>
+
+<ul><li>
+<code>&lt;target name=&quot;prepare-dev&quot; /&gt;</code> - Have all development requirements installed and ready to install the application as a whole</li>
+<li>
+<code>&lt;target name=&quot;package&quot; /&gt;</code> - Create a installable package of the application</li>
+<li>
+<code>&lt;target name=&quot;unit&quot; /&gt;</code> - Execute the test suite</li>
+</ul><h2 id="the-result">The result</h2>
+
+<h4 id="the-macros">The macros</h4>
+
+<p>So now we go to the real meat, how did we define our new macros. As an example I'm showing the <code>&lt;composer-install /&gt;</code> macro. Note: The comments are not part of the
+macros, because the author deems them redundant ;).</p>
+
+<pre><code>&lt;macrodef name=&quot;composer-install&quot;&gt;
+    &lt;attribute name=&quot;workingdir&quot; default=&quot;.&quot;/&gt;
+    &lt;attribute name=&quot;dev&quot; default=&quot;&quot;/&gt;
+    &lt;sequential&gt;
+        &lt;echo&gt;Installing Composer dependencies&lt;/echo&gt;
+
+        &lt;available file=&quot;@{workingdir}/composer.phar&quot; property=&quot;composer.binary.present&quot;/&gt; &lt;!-- check if already present --&gt;
+
+        &lt;exec executable=&quot;bash&quot; failonerror=&quot;true&quot; dir=&quot;@{workingdir}&quot; unless:true=&quot;${composer.binary.present}&quot;&gt; &lt;!-- install if not present --&gt;
+            &lt;arg value=&quot;-c&quot;/&gt;
+            &lt;arg value=&quot;curl -s https://getcomposer.org/installer | php&quot;/&gt;
+        &lt;/exec&gt;
+
+        &lt;exec executable=&quot;php&quot; dir=&quot;@{workingdir}&quot; if:true=&quot;${composer.binary.present}&quot;&gt; &lt;!-- update if present --&gt;
+            &lt;arg value=&quot;composer.phar&quot;/&gt;
+            &lt;arg value=&quot;self-update&quot;/&gt;
+            &lt;arg value=&quot;--no-interaction&quot;/&gt;
+        &lt;/exec&gt;
+
+        &lt;exec executable=&quot;php&quot; failonerror=&quot;true&quot; dir=&quot;@{workingdir}&quot;&gt; &lt;!-- execute composer install --&gt;
+            &lt;arg value=&quot;composer.phar&quot;/&gt;
+            &lt;arg value=&quot;install&quot;/&gt;
+            &lt;arg value=&quot;--no-interaction&quot;/&gt;
+            &lt;arg if:blank=&quot;@{dev}&quot; value=&quot;--optimize-autoloader&quot;/&gt; &lt;!-- takes a long time - disabled for development --&gt;
+            &lt;arg if:blank=&quot;@{dev}&quot; value=&quot;--no-dev&quot;/&gt; &lt;!-- remove dev requirements if not in development --&gt;
+        &lt;/exec&gt;
+    &lt;/sequential&gt;
+&lt;/macrodef&gt;
+</code></pre>
+
+<p>This now translates to a reusable command, that captures a technical dependency a target or application state might have</p>
+
+<pre><code>&lt;composer-install /&gt; &lt;!-- just install the required dependencies --&gt;
+&lt;composer-install dev=&quot;true&quot; /&gt; &lt;!-- include development dependencies --&gt;
+&lt;composer-install working-dir=&quot;/var/www/shopware&quot; /&gt; &lt;!-- install dependencies in a specific directory --&gt;
+</code></pre>
+
+<p>I personally think this quite well captures the idea the author had and the requirement the application has. And if anything is wrong with it you can switch to the
+macro definition and fix it.</p>
+
+<p><em>Side note: An interesting side effect is that this can now be executed and tested in isolation and therefore be developed much quicker.</em></p>
+
+<h3 id="target-naming">Target naming</h3>
+
+<p>We currently use a target naming convention with <em><em>main_target</em></em>-<em><em>environment_modifier</em></em>. So we have a clean number of tasks and task groups.</p>
+
+<h4 id="main-targets">Main targets</h4>
+
+<table><thead><tr><th>Main target</th>
+<th align="center">Meaning</th>
+</tr></thead><tbody><tr><td>prepare</td>
+<td align="center">Install all application requirements.</td>
+</tr><tr><td>install</td>
+<td align="center">Install application, can now be executed through the webserver or CLI.</td>
+</tr><tr><td>unit</td>
+<td align="center">Execute the unit test suite.</td>
+</tr><tr><td>package</td>
+<td align="center">Create a deployable package.</td>
+</tr></tbody></table><h4 id="environment-modifier">Environment modifier</h4>
+
+<table><thead><tr><th>Name</th>
+<th align="center">Meaning</th>
+</tr></thead><tbody><tr><td>prod</td>
+<td align="center">Execute target with the intention to create a production application</td>
+</tr><tr><td>dev</td>
+<td align="center">Execute target with the intention to create a development application</td>
+</tr></tbody></table><p>This leads to tasks like</p>
+
+<ul><li>
+<code>install-dev</code> -  development ready installation</li>
+<li>
+<code>unit-dev</code> - unit test suite containing only the small unit and integration tests</li>
+</ul><p>Which are expressive and follow a extensible ruleset, just the way I like it. So adaptions in the foreseeable future will not be a problem.</p>
+
+<h4 id="the-new-targets">The new targets</h4>
+
+<p>Our new build targets are much more streamlined then the ones previously shown. The infamous buildfile now looks very different. Let's peek at the new install target</p>
+
+<pre><code>&lt;target name=&quot;prepare-dev&quot;&gt;
+    &lt;composer-install dev=&quot;true&quot; /&gt;
+&lt;/target&gt;
+
+&lt;target name=&quot;install-dev&quot; depends=&quot;prepare-dev&quot;&gt;
+    &lt;exec-setup/&gt;
+&lt;/target&gt;
+</code></pre>
+
+<p>It still basically does the same thing as stated above but it is now much clearer what the intend of the developer was:</p>
+
+<ul><li>
+<code>&lt;composer-install dev=&quot;true&quot; /&gt;</code> belongs to <code>prepare-dev</code> so obviously it is necessary for the preparation of the application that all composer dependencies are
+installed. Even more interesting, <code>dev=&quot;true&quot;</code> means that installing dev dependencies is necessary for development.</li>
+<li>
+<code>&lt;exec-setup/&gt;</code> in <code>install-dev</code> is responsible to execute the setup scripts, so e.g. migration is no longer explicitly stated, but implicitly part of the setup
+process <em>(The last few months have proven that this collection of tasks grows quicker then anything else)</em>
+</li>
+<li>
+<code>install-dev</code> depends on <code>prepare-dev</code> regardless of the applications state before calling the install target. The application will self assemble into the desired
+state, always!</li>
+</ul><p>The size of the files greatly decreased, and at least in my personal opinion the information density is greatly increased here.</p>
+
+<h3 id="target-dependencies">Target dependencies</h3>
+
+<p>We now can easily visualize the different application states with their appropriate Ant targets and once the naming is internalized it will no longer be necessary to even look
+at the build file</p>
+
+<p><img src="/blog/img/ant-complexity-build-targets.svg"></p>
+
+<p>The above graph highlights that</p>
+
+<ul><li>Every target depends on a previous state, but requires the application as a whole to only be in the initial state.</li>
+<li>There are certain levels that can be modified.</li>
+<li>Although the outset may differ the outcome is always guaranteed.</li>
+</ul><h2 id="problems-encountered">Problems encountered</h2>
+
+<p>It is kind of curious, that although you depend on a Ant version that must be newer than 2013 it is actually not present everywhere.</p>
+
+<h3 id="no-errors-in-older-versions">No errors in older versions</h3>
+
+<p>Due to the nature of XML older Ant versions will not issue warnings, or interrupt execution if the do not support the conditions. Therefore if you see unexplained behavior
+be sure to check</p>
+
+<pre><code>ant -version 
+</code></pre>
+
+<h4 id="travis">Travis</h4>
+
+<p>Travis of all applications has a preinstalled Ant version 1.8+, so if you use the public ci you have to install a new one yourself. This little snippet should help you:</p>
+
+<pre><code>before_install:
+  - cd $HOME 
+  - wget http://www.apache.org/dist/ant/binaries/apache-ant-1.9.6-bin.tar.bz2
+  - tar -xf apache-ant-1.9.6-bin.tar.bz2
+  - export ANT_HOME=$HOME/apache-ant-1.9.6
+  - export PATH=$HOME/apache-ant-1.9.6/bin:$PATH
+  - export CLASSPATH=$CLASSPATH:$HOME/apache-ant-1.9.6/lib
+  - ant -version
+  - cd $TRAVIS_BUILD_DIR
+</code></pre>
+
+<h2 id="conclusion-0">Conclusion</h2>
+
+<p>What you see here of course was the result of a longer period of trial and error. But the end result looks promising enough to last for the next year or two at least.
+It is easier to understand, debug and develop the scripts. With no end in sight on when it will no longer scale.</p>
+
+<p>Would I do it again like this on my next project? I am actually not sure...  What I definitely take away here is that Ant scripts can scale and can be readable -<br>
+but for a small project the more common solution to just create targets might be enough. Only time will tell.</p>
+
+    </div>
+
+    <a href="https://developers.shopware.com/blog/" title="Back to overview" class="btn btn-default">Back to overview</a>
+
+    <div class="clearfix"></div>
+</article></div>
+
+        <div class="clearfix"></div>
+    </div>
+    
+    <!-- Footer -->
+            <footer class="main-footer"><div class="footer--container">
+                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
+            </div>
+        </footer></div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505349.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505349.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505349.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505349.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505349.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>

@@ -1,0 +1,31 @@
+{
+  "name": "devdocs-docsearch",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Custom styling for the Algolia Docsearch",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "./build-css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shopware/devdocs.git"
+  },
+  "keywords": [
+    "docsearch",
+    "algolia",
+    "shopware"
+  ],
+  "author": "klarstil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shopware/devdocs/issues"
+  },
+  "homepage": "https://github.com/shopware/devdocs#readme",
+  "dependencies": {
+    "autoprefixer": "^6.5.1",
+    "cssnano": "^3.8.0",
+    "node-sass": "^3.10.1",
+    "postcss-cli": "^2.6.0"
+  }
+}

@@ -22,7 +22,7 @@ In this one-day workshop, you will get insight into the technology behind Shopwa
 ## Info:
 
 ### Date
-February 02, 2018
+February 23, 2018
 
 ### Time
 Check-in: From 8:30 am

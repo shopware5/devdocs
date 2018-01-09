@@ -17,7 +17,7 @@ github_link: blog/_posts/2018-01-09-exclusive-enterprise-dev-training.md
 
 # Exclusive Enterprise Developer Training - Only five places remaining
 
-In this one-day workshop, you will get insight into the technology behind Shopware Enterprise, namely the Shopware Accelerator “B2B Suite”. Led by the developers who created the software itself, you will learn everything about this key feature, including practical application. This training is designed for experienced developers who already have the “Shopware Certified Developer” certificate. 
+In this one-day workshop, you will get insight into the technology behind Shopware Enterprise, namely the Shopware Accelerator “B2B Suite”. Lead by the developers who created the software itself, you will learn everything about this key feature, including practical application. This training is designed for experienced developers who already have the “Shopware Certified Developer” certificate. 
 
 ## Info:
 

@@ -26,13 +26,18 @@ February 02, 2018
 
 ### Time
 Check-in: From 8:30 am
+
 Start: 9 am
+
 End: 5 pm
 
 ### Location:
 shopware AG
+
 Ebbinghoff 10 
+
 48624 Schöppingen
+
 Germany 
 
 ### Fee:

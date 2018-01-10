@@ -9,7 +9,7 @@ categories:
 - dev
 
 authors: [tn]
-github_link: blog/_posts/2018-01-12-mutation-testing-with-infection.md
+github_link: blog/_posts/2018-01-11-mutation-testing-with-infection.md
 
 ---
 
@@ -17,7 +17,7 @@ github_link: blog/_posts/2018-01-12-mutation-testing-with-infection.md
 Anyone who is just searching for the updated example source code and does not want to read the complete blog post, <a href="https://github.com/teiling88/mutation-testing">here it is.</a>
 </div>
 
-This blog post is a follow up for my mutation testing post from [2017-08-24](https://developers.shopware.com/blog/2017/08/24/mutation-testing/). Since [31.12.2017](https://github.com/humbug/humbug/commit/53730b3306efebf85bd66b6f7ec870d500f5ccbd) humbug is marked as deprecated with an link to infection as an alternative. Maks Rafalko is the author of infection and well known as borNfreee on github. The last released version of Infection is 0.7.0. So let us have a closer look into it.  
+This blog post is a follow up for my mutation testing post from [24.08.2017](https://developers.shopware.com/blog/2017/08/24/mutation-testing/). Since [31.12.2017](https://github.com/humbug/humbug/commit/53730b3306efebf85bd66b6f7ec870d500f5ccbd) humbug is marked as deprecated with a link to infection as an alternative. Maks Rafalko is the author of infection and well known as [borNfreee](https://github.com/borNfreee) on github. The last released version of Infection is 0.7.0. So let us have a closer look into it.  
 
 ## Installation and Integration
 I will use <a href="https://github.com/teiling88/mutation-testing/commit/78dfccf89d8b97040f5efbffa9542b18fed44c59">this</a> commit as the starting point for the next steps. If you execute infection the first time, it will guide you through a small wizard to configure infection for your application. It is not necessary to keep a special configuration command in mind. Foremost the wizard wants to configure your source directory:
@@ -25,9 +25,9 @@ I will use <a href="https://github.com/teiling88/mutation-testing/commit/78dfccf
 ```bash
 Welcome to the Infection config generator
 
-We did not find configuration file. The following questions will help us to generate it for you.
+We did not find a configuration file. The following questions will help us to generate it for you.
 
-What source directories do you want to include (comma separated)? [src]: 
+Which source directories do you want to include (comma separated)? [src]: 
   [0] .
   [1] build
   [2] src
@@ -66,8 +66,8 @@ Configuration file "infection.json.dist" was created.
    / // __ \/ /_/ _ \/ ___/ __/ / __ \/ __ \
  _/ // / / / __/  __/ /__/ /_/ / /_/ / / / /
 /___/_/ /_/_/  \___/\___/\__/_/\____/_/ /_/
- 
-    0 [>---------------------------] < 1 secRunning initial test suite...
+
+Running initial test suite...
 
 Phpunit version: 5.7.2
 
@@ -96,14 +96,14 @@ Metrics:
 Please note that some mutants will inevitably be harmless (i.e. false positives).
 ```
 
-The result page looks very similar like humbug result page. Infection created 8 mutations which all were killed. Finally the initial configuration process is easy and the generated `infection.json.dist` file is ready for more detailed settings.
+The result page looks very similar to the humbug result page. Infection created 8 mutations which all were killed. Finally the initial configuration process is easy and the generated `infection.json.dist` file is ready for more detailed settings.
 
 ## Changes under the hood
 
 As we learned infection is easy to setup and run. But in which way does infection differ from humbug?
 
-* the generated Mutations are based on [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
-* more Mutators are available like `Function Signature` and `Loop` 
+* the generated mutations are based on [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
+* more mutators are available like `Function Signature` and `Loop` 
 * great performance improvements
 
 Let us have a detailed look into some points.
@@ -113,10 +113,10 @@ Let us have a detailed look into some points.
 What kind of benefit gets infection from using an Abstract Syntax Tree? 
 
 * the sourcecode is easier to maintain
-* easier to write new Mutators
+* easier to write new mutators
 * much easier to handle false-positives and different edge cases, e.g. deciding when mutation should be done or should not in difficult situation 
 
-To prove this benefits I decided to compare some Mutators from infection with the equals in humbug. So let us see the Plus Mutator which is changing `+` into `-` from infection first and the Mutator from humbug as second:
+To prove this benefits I decided to compare some mutators from infection with the equivalents in humbug. So let us see the Plus mutator which is changing `+` into `-` from infection first and the mutator from humbug as second:
 
 ```php 
 // https://github.com/infection/infection/blob/master/src/Mutator/Arithmetic/Plus.php
@@ -203,15 +203,15 @@ class Addition extends MutatorAbstract
 }
 ```
 
-As we can see the approach from infection with AST is much smaller, easier to read and understand. If you need another example to prove the benefits on your own just have a look into the FunctionCall Mutator from [humbug](https://github.com/humbug/humbug/blob/1.0.0-alpha2/src/Mutator/ReturnValue/FunctionCall.php) and [infection](https://github.com/infection/infection/blob/0.2.1/src/Mutator/ReturnValue/FunctionCall.php).
+As we can see the approach from infection with AST is much smaller, easier to read and understand. If you need another example to prove the benefits on your own just have a look into the FunctionCall mutator from [humbug](https://github.com/humbug/humbug/blob/1.0.0-alpha2/src/Mutator/ReturnValue/FunctionCall.php) and [infection](https://github.com/infection/infection/blob/0.2.1/src/Mutator/ReturnValue/FunctionCall.php).
 
 ## More Mutators
 
-Infection introduced two more Mutator types instead of humbug. The first is the `Function Signature` Mutator. It will
+Infection has two additional mutator types as humbug. The first is the `Function Signature` mutator. It will
 change the visibility of a method and change it to protected or private. If no error occurs it might be possible to change
 the visibility to a more restricted one.
 
-Another one is the Loop Mutator. This mutation changes some special keywords within a loop. You can see a table with possible
+Another one is the Loop mutator. This mutation changes some special keywords within a loop. You can see a table with possible
 changes below: 
 
  Name      | Original                      |    Mutated         
@@ -222,7 +222,7 @@ changes below:
 
 ## Performance
 
-To have a small test I used our [psh](https://github.com/shopwareLabs/psh) test suite as basis for the performance measurements. First I started humbug with the psh test suite. As we can see, humbug created 156 mutations and needed overall ~ 54 seconds. 
+To have a small test I used our [psh](https://github.com/shopwareLabs/psh) test suite as base for the performance measurements. First I started humbug with the psh test suite. As we can see, humbug created 156 mutations and needed overall ~ 54 seconds. 
 
 ```bash
  _  _            _
@@ -319,7 +319,7 @@ Please note that some mutants will inevitably be harmless (i.e. false positives)
 42.33    
 ```
 
-At last we should test the threading option of inception. Be aware this option can give you many false-positives results if your tests depends on each other or use a non stateless database for testing purpose. I started infection with 4 threads and the result is amazing. Instead of 42 Seconds infection needs only 19 seconds to execute the whole mutation stuff.
+At last we should test the threading option of infection. Be aware this option can give you many false-positives results if your tests depends on each other or use a non stateless database for testing purpose. I started infection with 4 threads and the result is amazing. Instead of 42 Seconds infection needs only 19 seconds to execute the whole mutation stuff.
 
 ```bash
     ____      ____          __  _
@@ -369,6 +369,6 @@ infection                | 223               | 42 seconds     |  5.30 mutations
 infection with 4 threads | 223               | 19 seconds     | 11.74 mutations
 
 ## Conclusion
-In comparison with Humbug, Infection does many things different. I like the way which infection solves the mutation challenges. I hope this tool will be still maintained in the future and we will see some new features. Maybe in the future infection didn't need to execute the whole test suite at first to do the mutation stuff. This would be another great performance improvement. :-)
+Compared to Humbug, Infection does a lot of things differently. I like the way, infection solves the mutation challenges. I hope this tool will be still maintained in the future and we will see some new features. Maybe in the future infection won't have to execute the whole test suite before doing the mutation stuff. This would be another great performance improvement. :-)
 
 If you are interested in the updated source code, it can be found [here](https://github.com/teiling88/mutation-testing). 

@@ -203,7 +203,8 @@ With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adap
             array(
                 'host' => '127.0.0.1',
                 'port' => 6379,
-                'dbindex' => 0
+                'dbindex' => 0,
+                'redisAuth' => ''
             ),
         ),
     ],

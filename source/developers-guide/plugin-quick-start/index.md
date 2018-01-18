@@ -1108,6 +1108,23 @@ Example `Resources/cronjob.xml`:
 
 </cronjobs>
 ```
+The cronjob manager will publish an event according to name given with the `action` tag, whenever your cronjob is due to execute. Just subscribe to this event and register a handler. Exmaple (in your plugin oder subscriber class):
+
+```php
+public static function getSubscribedEvents()
+{
+   return [
+       'Shopware_CronJob_SendBirthdayMail' => 'onSendBirthdayMailCronjob'
+   ];
+}
+
+public function onSendBirthdayMailCronjob()
+    {
+        // do some fancy things
+    }
+```
+
+```
 
 ## Access to other plugins
 

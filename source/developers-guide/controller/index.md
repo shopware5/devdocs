@@ -103,7 +103,7 @@ If you remove the `die('Hello World');` call, Shopware will raise an exception. 
 will automatically try to find a template for your controller. In this case, this template should be called `frontend/test/index.tpl`.
 As this template does not exists, yet, an exception is raised. This is easy to fix:
 
-Create the file `Views/frontend/test/index.tpl` in your plugin and add the following code:
+Create the file `Resources/views/frontend/test/index.tpl` in your plugin and add the following code:
 
 ```
 {extends file="parent:frontend/index/index.tpl"}

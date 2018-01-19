@@ -1118,7 +1118,7 @@ public static function getSubscribedEvents()
    ];
 }
 
-public function onSendBirthdayMailCronjob()
+public function onSendBirthdayMailCronjob(Shopware_Components_Cron_CronJob $job)
     {
         // do some fancy things
     }

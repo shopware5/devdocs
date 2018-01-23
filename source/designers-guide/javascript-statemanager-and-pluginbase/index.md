@@ -188,8 +188,17 @@ $.plugin('example', {
     * Setter method which overrides the value of the provided key with the provided value.
 * ```applyDataAttributes()```
     * **Arguments**
-        * ```[shouldDeserialize : Boolean = undefined]``` - Tries to parse the given string values and returns the right value if its successful. Supports boolean, null, number, json, string. This feature is enabled by default. Pass `false` to deactivate parsing.
-    * Fetches the provided configuration keys and overrides the values based on the elements ```data``` attributes. Hint: You don't need to convert ([camel|pascal](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case java script variable names to ([dash|hyphend|kebab](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case html attribute names.
+        * ```[shouldDeserialize : Boolean = undefined]``` - Tries to parse the 
+        given string values and returns the right value if its successful. 
+        Supports boolean, null, number, json, string. This feature is enabled by default.
+        Pass `false` to deactivate parsing.
+        * ```[ignoreList : Array = []]``` - A list of options which will be excluded
+         when applying the data attributes to the corresponding options. Introduced with Shopware 5.3.7
+    * Fetches the provided configuration keys and overrides the values based on
+        the elements ```data``` attributes. Hint: You don't need to convert
+        ([camel|pascal](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case 
+        java script variable names to ([dash|hyphend|kebab](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case 
+        html attribute names.
     
 ## Global jQuery event observer
 

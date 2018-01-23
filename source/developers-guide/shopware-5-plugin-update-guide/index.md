@@ -436,7 +436,7 @@ $.plugin('yourName', {
    init: function() {
        // ...initialization code
 
-       //The applyDataAttributes function merges data attributes into plugin options. Example element: <div class="test" data-exampleValue="value2"></div>
+       //The applyDataAttributes function merges data attributes into plugin options. Example element: <div class="test" data-example-value="value2"></div>
        //The default "exampleValue" variable will be overwritten with "value2".
        //This value is then available in this.opts.exampleValue variable
 

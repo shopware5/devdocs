@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Storefront extension
+title: Example plugin: storefront extension
 github_link: developers-guide/example-plugin/index.md
 indexed: true
-menu_title: Storefront extension
+menu_title: Example plugin
 menu_order: 20
 group: Developer Guides
 subgroup: Developing plugins

@@ -112,4 +112,7 @@ So the worst thing happened, your pull request was declined. No reason to be ups
 - The benefit of your change is too minor. Sometimes we do not have enough resources to handle every small change.
 - Your change implements a feature which does not fit to our roadmap or our company values.
 
+## The Shopware CLA
 
+When submitting your code to Shopware you need to sign our [https://github.com/shopware/shopware/blob/5.3/CLA.md](CLA (Contributor License Agreement)).
+This CLA ensures that Shopware will stay an open and living product. In short, you give the explicit right to use your code in Shopware to shopware AG.

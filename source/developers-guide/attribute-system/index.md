@@ -36,7 +36,7 @@ Following types are supported:
 
 | Unified type        | SQL type           | Backend view  |
 | ------------- |:-------------:| -----:|
-| string            | VARCHAR(500)  | Ext.form.field.Text
+| string            | TEXT          | Ext.form.field.Text
 | text              | TEXT          | Ext.form.field.TextArea
 | html              | MEDIUMTEXT    | Shopware.form.field.TinyMCE
 | integer           | INT(11)       | Ext.form.field.Number

@@ -155,6 +155,7 @@ If you want to read more about the events in Shopware you can take a look at the
 ## Extending the database
 Your plugin is free to create its own table in the Shopware database in order to store additional data. But there is even a more convenient way: The Shopware attribute system.
 Shopware attributes are basically tables in a OneToOne relation to important Shopware entities. So, for every entry in `s_user` (the customer table), there is also an entry in `s_user_attributes`. In Shopware, it is very easy to add a new column to this table and to automatically add it to the customer doctrine attribute model. Whenever Shopware reads a customer, article or another entity from database, it will also read the attributes, so that you can make use of attributes in many places and modules.
+If you want to read more about extending the database in Shopware you can take a look at the [attribute system article](https://developers.shopware.com/developers-guide/attribute-system/#schema-operations-and-configuration)
 
 ## Extending the template
 In many cases you might want to modify the template. Shopware makes use of the Smarty block system for that. Blocks are basically named areas inside the template that you can prepend, append or even replace. Shopware's default frontend theme has more than 1.500 blocks - so more than 1.500 extension points for you as a plugin developer.

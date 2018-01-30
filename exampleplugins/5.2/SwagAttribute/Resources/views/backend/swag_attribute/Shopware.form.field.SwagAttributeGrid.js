@@ -1,6 +1,4 @@
-
-
-
+//
 Ext.define('Shopware.form.field.SwagAttributeGrid', {
     extend: 'Shopware.form.field.Grid',
     alias: 'widget.shopware-form-field-swag-attribute-grid',
@@ -18,6 +16,3 @@ Ext.define('Shopware.form.field.SwagAttributeGrid', {
         return Ext.create('Shopware.form.field.SingleSelection', this.getComboConfig());
     }
 });
-
-
-

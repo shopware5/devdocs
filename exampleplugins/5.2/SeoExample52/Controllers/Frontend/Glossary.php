@@ -4,7 +4,8 @@ class Shopware_Controllers_Frontend_Glossary extends Enlight_Controller_Action
 {
     public function preDispatch()
     {
-        $this->View()->addTemplateDir(__DIR__ . '/../../Resources/views');
+        $pluginBasePath = $this->container->getParameter('seo_example52.plugin_dir');
+        $this->View()->addTemplateDir($pluginBasePath . '/Resources/views');
     }
 
     public function indexAction()

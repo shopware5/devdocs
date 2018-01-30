@@ -1,7 +1,4 @@
-
-
-
-
+//
 Ext.define('SwagAttribute.FieldHandler', {
 
     extend: 'Shopware.attribute.FieldHandlerInterface',
@@ -17,7 +14,7 @@ Ext.define('SwagAttribute.FieldHandler', {
             return false;
         }
 
-        return (name == 'my_own_validation' || name == 'my_own_type');
+        return (name === 'my_own_validation' || name === 'my_own_type');
     },
 
     /**
@@ -56,6 +53,3 @@ Ext.define('SwagAttribute.FieldHandler', {
         });
     }
 });
-
-
-

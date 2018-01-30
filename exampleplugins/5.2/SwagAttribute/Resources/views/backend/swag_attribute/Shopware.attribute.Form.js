@@ -32,6 +32,3 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 });
 
 //{/block}
-
-
-

@@ -18,7 +18,7 @@ class SwagCustomerSearchExtension extends Plugin
         /** @var \Shopware_Controllers_Backend_Customer $subject */
         $subject = $args->getSubject();
 
-        $subject->View()->addTemplateDir(__DIR__ . '/Resources/views');
+        $subject->View()->addTemplateDir($this->getPath() . '/Resources/views');
 
         $subject->View()->extendsTemplate('backend/customer/swag_customer_stream_extension.js');
     }

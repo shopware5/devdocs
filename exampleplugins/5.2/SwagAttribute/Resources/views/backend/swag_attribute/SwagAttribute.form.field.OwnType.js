@@ -1,6 +1,4 @@
-
-
-
+//
 Ext.define('SwagAttribute.form.field.OwnType', {
     alias: 'widget.swag-attribute-type',
     extend: 'Ext.form.FieldContainer',
@@ -79,5 +77,3 @@ Ext.define('SwagAttribute.form.field.OwnType', {
         return value;
     }
 });
-
-

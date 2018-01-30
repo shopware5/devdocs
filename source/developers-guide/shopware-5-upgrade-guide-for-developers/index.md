@@ -17,6 +17,184 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.4
+
+<div class="alert alert-info">
+
+### SSL Encryption
+
+The mixed SSL encryption mode in the shop configuration has been removed. As of 5.4, the SSL encryption can only be 
+enabled or disabled globally. Shops using the mixed SSL encryption setting will automatically be upgraded to full 
+SSL encryption. Deprecated table columns and methods have been removed.
+
+To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
+
+</div>
+
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**.
+
+### Removal of JSONP requests
+
+Shopware 5.4 removes all JSONP requests and replaces them with regular AJAX requests. The response type was changed to
+standard HTML mostly (with one exception being JSON without the JSONP-callback, see below).
+
+These actions now return HTML directly:
+- Shopware/Controllers/Frontend/AjaxSearch.php
+    - `indexAction`
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxCartAction`
+- Shopware/Controllers/Frontend/Compare.php
+    - `addArticleAction`
+    - `deleteArticleAction`
+    - `deleteAllAction`
+    - `getListAction`
+    - `indexAction`
+    - `overlayAction`
+- Shopware/Controllers/Frontend/Note.php
+    - `ajaxAddAction`
+- Shopware/Controllers/Widgets/Listing.php 
+    - `ajaxListingAction`
+    
+This action still returns JSON but doesn't use the JSONP-type function call.
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxAmountAction`
+
+### POST on data modification
+
+Also, to be more HTTP compliant, all request that change any data on the server were changed to be made using the HTTP POST verb.
+These methods are:
+
+* Basket actions
+    - `addArticle`
+    - `addAccessories`
+    - `addPremium`
+    - `changeQuantity`
+    - `deleteArticle`
+    - `setAddress`
+    - `ajaxAddArticle`
+    - `ajaxAddArticleCart`
+    - `ajaxDeleteArticle`
+    - `ajaxDeleteArticleCart`
+
+* Checkout actions:
+    - `finish`
+
+### Replace Hook implementation refactored
+
+In Shopware <5.4 the execution model of `replace` hooks is broken, as soon as more than one `replace` hook exists for the same 
+method. The problem is that all `replace` hooks are executed sequentially and each of these hooks has the opportunity
+to call `executeParent()`. Hence, if all `replace` hooks do call `executeParent()`, the original (parent) implementation is 
+executed more than once. This basically breaks `replace` hooks on methods that have side effects, because these side 
+effects are applied for every call of `executeParent()`. As a result, it is currently very risky to have more than one 
+`replace` hook on the same method.
+
+The new execution model of `replace` hooks prevents multiple calls of the original implementation, if all hooks 
+call `executeParent()` only once. The `replace` hooks are now parents of each other, based on the position 
+they are sorted by in the event manager. 
+
+The generated proxy classes now contain an execution context, which executes the registered `replace` hooks as a chain 
+in which each call to `executeParent()` calls the respective next hook, if available. Only the last (highest position)
+hook’s call to `executeParent()` calls the original implementation of the hooked method. Finally the respective return 
+values can be passed down the chain again. That is, the replace hook with the lowest position is able to ultimately 
+override the return value, before it is passed to any `after` hooks.
+
+### Smarty
+
+#### Security mode
+
+The `config.php` option `['template_security']['enabled'] => false` for disabling smarty security got removed.
+
+#### Link flags
+
+The flags `forceSecure` and `sUseSSL` for forcing the smarty `{url controller=...}`-helper to use SSL are deprecated.
+They are now without function, whether the link uses SSL or not depends on the global "Use SSL" setting.
+
+### Routing
+
+Some AJAX routes generated in the template `themes/Frontend/Bare/frontend/index/index.tpl` check for existing SEO URLs. This
+behaviour has been deprecated for performance reasons and SEO support for the routes defined in the template will be 
+removed in 5.5. If you need SEO URLs for one of the following routes, you can override the block 
+`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+
+The affected routes are:
+
+- `/checkout/ajaxCart`
+- `/register/index`
+- `/checkout/addArticle`
+- `/widgets/Listing/ajaxListing`
+- `/checkout/ajaxAmount`
+- `/address/ajaxSelection`
+- `/address/ajaxEditor`
+
+#### Checkout routes
+
+Added new SEO routes for checkout on new installations of 5.4.
+
+- `sViewport=register`:
+    `/anmeldung` (DE) and `/signup` (EN)
+- `sViewport=checkout&sAction=cart`:
+    `/warenkorb` (DE) and `/basket` (EN)
+- `sViewport=checkout&sAction=confirm`:
+    `/bestellen` (DE) and `/order` (EN)
+- `sViewport=checkout&sAction=shippingPayment`:
+    `/zahlungsart-und-versand` (DE) and `/payment-and-delivery` (EN)
+- `sViewport=checkout`:
+    `/pruefen-und-bestellen` (DE) and `/check-and-order` (EN)
+- `sViewport=checkout&sAction=finish`:
+    `/vielen-dank-fuer-ihre-bestellung` (DE) and `/thank-you-for-your-order` (EN)
+    
+### DIC
+
+#### Shopware Version
+
+The usage of the constants `Shopware::VERSION`, `Shopware::VERSION_TEXT` and `Shopware::REVISION` has been deprecated. 
+They have been replaced with the following parameters in the DIC:
+
+- `shopware.release.version`
+    The version of the Shopware installation (e.g. '5.4.0')
+- `shopware.release.version_text`
+    The version_text of the Shopware installation (e.g. 'RC1')
+- `shopware.release.revision`
+    The revision of the Shopware installation (e.g. '20180081547')
+Added new service in the DIC containing all parameters above 
+- `shopware.release`
+    A new struct of type `\Shopware\Components\ShopwareReleaseStruct` containing all parameters above
+
+To be compatible with the most versions of Shopware, please use the `config` service from the DIC for the time being:
+```
+    $this->container->get('config')->get('version') === Shopware::VERSION; # => true
+    $this->container->get('config')->get('version_text') === Shopware::VERSION_TEXT; # => true
+    $this->container->get('config')->get('revision') === Shopware::REVISION; # => true
+```
+
+#### New paths
+
+Several paths have been added to the DIC:
+
+- `shopware.plugin_directories.projectplugins` 
+    Path to project specific plugins, see [Composer project](https://github.com/shopware/composer-project)
+- `shopware.template.templatedir`
+    Path to the themes folder
+- `shopware.app.rootdir`
+    Path to the root of your project
+- `shopware.app.downloadsdir`
+    Path to the downloads folder
+- `shopware.app.documentsdir`
+    Path to the generated documents folder
+- `shopware.web.webdir`
+    Path to the web folder
+- `shopware.web.cachedir`
+    Path to the web-cache folder 
+
+These paths are configurable in the `config.php`, see `engine/Shopware/Configs/Default.php` for defaults
+
+### Mpdf
+
+Mpdf has been updated to v6.1.4 and it's namespace has been registered in the Composer autoloader. You don't need to 
+include the `mpdf.php` library as you used to in previous versions, you can just use `new mPDF();` to create a new instance.
+
 ## Shopware 5.3
 
 <div class="alert alert-info">

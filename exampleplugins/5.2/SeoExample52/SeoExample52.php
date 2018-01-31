@@ -78,7 +78,7 @@ class SeoExample52 extends \Shopware\Components\Plugin
             return;
         }
 
-        $subject->View()->addTemplateDir(__DIR__ . '/Resources/views/');
+        $subject->View()->addTemplateDir($this->getPath() . '/Resources/views/');
         $subject->View()->extendsTemplate('backend/performance/view/glossary.js');
         $subject->View()->extendsTemplate('backend/performance/controller/glossary.js');
     }

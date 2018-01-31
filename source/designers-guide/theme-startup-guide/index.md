@@ -135,6 +135,13 @@ class Theme extends \Shopware\Components\Theme
 }
 ```
 
+<div class="alert alert-warning">
+    Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding 
+    Less/JavaScript, defined by another theme. You can find detailed information 
+    <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">here</a>.
+</div>
+
+
 ### Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.
 

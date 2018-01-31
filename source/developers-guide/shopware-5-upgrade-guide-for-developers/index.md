@@ -158,6 +158,7 @@ They have been replaced with the following parameters in the DIC:
     The version_text of the Shopware installation (e.g. 'RC1')
 - `shopware.release.revision`
     The revision of the Shopware installation (e.g. '20180081547')
+
 Added new service in the DIC containing all parameters above 
 - `shopware.release`
     A new struct of type `\Shopware\Components\ShopwareReleaseStruct` containing all parameters above

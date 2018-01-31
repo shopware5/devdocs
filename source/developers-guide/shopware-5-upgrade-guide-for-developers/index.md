@@ -81,25 +81,6 @@ These methods are:
 * Checkout actions:
     - `finish`
 
-### Replace Hook implementation refactored
-
-In Shopware <5.4 the execution model of `replace` hooks is broken, as soon as more than one `replace` hook exists for the same 
-method. The problem is that all `replace` hooks are executed sequentially and each of these hooks has the opportunity
-to call `executeParent()`. Hence, if all `replace` hooks do call `executeParent()`, the original (parent) implementation is 
-executed more than once. This basically breaks `replace` hooks on methods that have side effects, because these side 
-effects are applied for every call of `executeParent()`. As a result, it is currently very risky to have more than one 
-`replace` hook on the same method.
-
-The new execution model of `replace` hooks prevents multiple calls of the original implementation, if all hooks 
-call `executeParent()` only once. The `replace` hooks are now parents of each other, based on the position 
-they are sorted by in the event manager. 
-
-The generated proxy classes now contain an execution context, which executes the registered `replace` hooks as a chain 
-in which each call to `executeParent()` calls the respective next hook, if available. Only the last (highest position)
-hook’s call to `executeParent()` calls the original implementation of the hooked method. Finally the respective return 
-values can be passed down the chain again. That is, the replace hook with the lowest position is able to ultimately 
-override the return value, before it is passed to any `after` hooks.
-
 ### Smarty
 
 #### Security mode

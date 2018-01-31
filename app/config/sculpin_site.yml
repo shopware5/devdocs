@@ -4,6 +4,11 @@ github_enabled: true
 default_date_format: "F jS, Y"
 
 authors:
+  dk:
+      name: Dominic Klein
+      title: Developer
+      bio: I work at shopware and do on-site as well as online trainings for developers. Besides that I look after our enterprise customers with focus on technical subjects.
+      github: https://github.com/elkmod
   nd:
       name: Niklas Dzösch
       title: Developer / Developer Evangelist

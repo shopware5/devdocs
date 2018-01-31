@@ -267,6 +267,47 @@ subgroup: REST API
 | symbolPosition      | integer                  |                                                 |
 | position              | integer                  |                                                 |
 
+## Customer
+
+* **Model:** Shopware\Models\Customer\Customer
+* **Table:** s_user
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| number                | string                |                                                 |
+| groupKey              | string (foreign key)  | **[CustomerGroup](#customer-group)**            |
+| paymentId             | integer (foreign key) | **[Payment](#payment)**                         |
+| shopId                | string (foreign key)  | **[Shop](#shop)**                               |
+| priceGroupId          | integer (foreign key) | **[PriceGroup](#price-group)**                  |
+| encoderName           | string                |                                                 |
+| hashPassword          | string                |                                                 |
+| active                | boolean               |                                                 |
+| email                 | string                |                                                 |
+| firstLogin            | date/time             |                                                 |
+| lastLogin             | date/time             |                                                 |
+| accountMode           | integer               |                                                 |
+| confirmationKey       | string                |                                                 |
+| sessionId             | string                |                                                 |
+| newsletter            | boolean               |                                                 |
+| validation            | string                |                                                 |
+| affiliate             | boolean               |                                                 |
+| paymentPreset         | integer               |                                                 |
+| languageId            | integer (foreign key) | **[Shop](#shop)**                               |
+| referer               | string                |                                                 |
+| internalComment       | string                |                                                 |
+| failedLogins          | integer               |                                                 |
+| lockedUntil           | date/time             |                                                 |
+| salutation            | string                |                                                 |
+| title                 | string                |                                                 |
+| firstname             | string                |                                                 |
+| lastname              | string                |                                                 |
+| birthday              | date                  |                                                 |
+| defaultBillingAddress | integer (foreign key) | **[Billing](#address)**                         |
+| defaultShippingAddress| integer (foreign key) | **[Shipping](#address)**                        |
+
 ## Customer Attribute
 
 * **Model:** Shopware\Models\Attribute\Customer
@@ -276,8 +317,8 @@ subgroup: REST API
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| customerId             | integer (foreign key) | **[Customer](../api-resource-customer/)**        |
+| id                  | integer (primary key) |                                                 |
+| customerId          | integer (foreign key) | **[Customer](#customer)**                       |
 
 ## Customer Group
 
@@ -289,7 +330,7 @@ subgroup: REST API
 
 | Field                 | Type                  | Original object                                 |
 |-----------------------|-----------------------|-------------------------------------------------|
-| id                     | integer (primary key) |                                                 |
+| id                    | integer (primary key) |                                                 |
 | key                   | string                |                                                 |
 | name                  | string                |                                                 |
 | tax                   | boolean               |                                                 |
@@ -308,11 +349,11 @@ subgroup: REST API
 
 ### Structure
 
-| Field            | Type                   | Original Object |
-|------------------|-----------------------|-----------------|
-| id               | integer (primary key) |                 |
-| discount         | integer               |                 |
-| value            | integer               |                 |
+| Field                 | Type                  | Original Object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| discount              | integer               |                                                 |
+| value                 | integer               |                                                 |
 
 ## Debit
 
@@ -321,14 +362,14 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| customerId          | integer (foreign key) |                                                 |
-| account              | string                  |                                                    |
-| bankCode              | string                  |                                                    |
-| bankName              | string                  |                                                    |
-| accountHolder          | string                  |                                                    |
+| Field               | Type                    | Original object                                 |
+|---------------------|-------------------------|-------------------------------------------------|
+| id                  | integer (primary key)   |                                                 |
+| customerId          | integer (foreign key)   |                                                 |
+| account             | string                  |                                                 |
+| bankCode            | string                  |                                                 |
+| bankName            | string                  |                                                 |
+| accountHolder       | string                  |                                                 |
 
 ## Dispatch
 

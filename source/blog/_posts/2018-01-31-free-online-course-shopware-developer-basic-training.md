@@ -25,7 +25,7 @@ cover topics like:
 * Events
 * Using the service container
 
-Two examples will round off the course by using what you’ve learned to create a new service and implement the plugin lifestyle methods. 
+Two examples will round off the course by using what you’ve learned to create a new service and implement the plugin lifecycle methods. 
 
 Your trainer will be Dominic Klein, Core Developer at Shopware.
 

@@ -175,7 +175,7 @@ Below all supported configuration elements including their design and source cod
 
 ### Boolean
 To define something similar like checkbox you can use `boolean`
-```
+```xml
 <elements>
     <element required="false" type="boolean" scope="shop">
         <name>show</name>

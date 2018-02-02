@@ -188,7 +188,9 @@ To define something similar like checkbox you can use `boolean`
 ```
 This will provide you with a prefilled dropdown.
 
-Currently there is no element for checkbox at the moment. [Here you can find the reason.](https://github.com/shopware/shopware/blob/9a116f29f78c0005e031e34ffcce919b6a50e3a9/themes/Backend/ExtJs/backend/base/component/Shopware.form.PluginPanel.js#L324-L326)
+Currently there is no element for checkbox at the moment. 
+[Reason:  This was done to support the not selected values by the customer because checkboxes only have two states.
+Usualy there are three states true, false and inheritance.](https://github.com/shopware/shopware/blob/9a116f29f78c0005e031e34ffcce919b6a50e3a9/themes/Backend/ExtJs/backend/base/component/Shopware.form.PluginPanel.js#L324-L326)
 
 If you want a real checkbox there is kind of a workaround you can use.
 

@@ -114,5 +114,5 @@ So the worst thing happened, your pull request was declined. No reason to be ups
 
 ## The Shopware CLA
 
-When submitting your code to Shopware you need to sign our [https://github.com/shopware/shopware/blob/5.3/CLA.md](CLA (Contributor License Agreement)).
+When submitting your code to Shopware you need to sign our [CLA (Contributor License Agreement)](https://github.com/shopware/shopware/blob/5.3/CLA.md).
 This CLA ensures that Shopware will stay an open and living product. In short, you give the explicit right to use your code in Shopware to shopware AG.

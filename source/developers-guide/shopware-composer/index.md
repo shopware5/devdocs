@@ -105,7 +105,7 @@ recommended to define a specific, fixed version to not update by accident.
 ### Upgrade project specific plugins
 
 As the code of project specific plugins (under `/custom/project/`) are part of your projects repository, these plugins
-will always have the version that was commited with the version of your project you have checked out currently.
+will always have the version that was committed with the version of your project you have checked out currently.
 
 ### Upgrade required, external plugins
 
@@ -130,10 +130,9 @@ Please be aware that this only updates the source code of the plugins, it does n
 might contain (e.g. to upgrade some plugin-specific tables).
 </div>
 
-To let the plugin update tself, it is a good practice to run the following command to let the plugin update it's own
+To let the plugin update itself, it is a good practice to run the following command to let the plugin update it's own
 internal state to the new version: 
 
 ```bash
 bin/console sw:plugin:update <plugin-name>
 ``` 
-</div>

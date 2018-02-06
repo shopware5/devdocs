@@ -195,18 +195,21 @@ Usualy there are three states true, false and inheritance.](https://github.com/s
 If you want a real checkbox there is kind of a workaround you can use.
 
 ```xml
-<element required="false" type="boolean" scope=shop"">
+<element type="boolean">
     <name>show</name>
     <label lang="de">An/Aus</label>
     <label lang="en">On/Off</label>
     <description lang="de">Anschalten / Ausschalten</description>
     <description lang="en">Switch on / Switch off</description>
+    <value>true</value>
     <options>
+        <inputValue>true</inputValue>
+        <uncheckedValue>false</uncheckedValue>
         <xtype>checkbox</xtype>
-        <checked>true</checked>
     </options>
 </element>
 ```
+This will return a boolean TRUE or FALSE.
 
 
 ### Selectionfield / combobox

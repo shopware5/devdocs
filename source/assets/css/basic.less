@@ -118,7 +118,7 @@ b, strong {
     @media screen and (min-width: 1200px) {
         margin-left: 390px;
         margin-top: 0;
-        padding-right: 40px
+        padding-right: 55px
     }
 }
 
@@ -201,6 +201,21 @@ b, strong {
     overflow-x: hidden;
 }
 
+nav.navi--main:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    height: 100px;
+    z-index: 10;
+    background: -moz-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    background: -webkit-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    background: linear-gradient(to bottom, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00142432', endColorstr='#142432', GradientType=0);
+    pointer-events: none;
+}
+
 .navi--main {
     .transform(translateX(-100%));
     .transition(all 0.4s ease-out);
@@ -212,7 +227,7 @@ b, strong {
     top: 0; left: 0;
     z-index: 9800;
     padding: 150px 0 50px 0;
-    overflow: hidden;
+    overflow-x: hidden;
 
     ::-webkit-scrollbar {
         display: none;
@@ -235,23 +250,22 @@ b, strong {
 
             &.is--active {
                 padding-bottom: 10px;
-                margin-bottom: 10px;
             }
 
             .navi--link {
                 display: block;
-                padding: 13px 38px;
+                padding: 11px 38px;
                 color: rgba(255, 255, 255, 0.95);
                 font-weight: 500;
                 position: relative;
                 font-size: 17px;
                 z-index: 10;
-                border-left: 2px solid rgba(255, 255, 255, 0);
+                border-left: 3px solid rgba(255, 255, 255, 0);
                 background-color: rgba(255, 255, 255, 0);
 
                 &:hover {
                     background-color: rgba(255, 255, 255, 0.05);
-                    border-left: 2px solid rgba(255, 255, 255, 1);
+                    border-left: 3px solid rgba(255, 255, 255, 1);
                     color: rgba(255, 255, 255, 1);
                     transition: all 0.3s cubic-bezier(0.25, 0.2, 0.45, 1);
 
@@ -262,7 +276,7 @@ b, strong {
 
                 &.is--active {
                     color: #ffffff;
-                    border-left: 2px solid rgba(255, 255, 255, 1);
+                    border-left: 3px solid rgba(255, 255, 255, 1);
                     font-weight: 600;
                 }
             }
@@ -330,7 +344,7 @@ b, strong {
                             .navi--link {
                                 font-size: 15px;
                                 color: rgba(255, 255, 255, 0.33);
-                                padding: 4px 30px 4px 50px;
+                                padding: 3px 30px 3px 50px;
                                 font-weight: 500;
                                 z-index: 1;
 
@@ -510,9 +524,9 @@ input#search-query {
     padding: 5px 50px;
     width: 100%;
     border-radius: 30px;
-    color: rgba(255, 255, 255, 1);
+    color: rgba(205, 221, 247, 0.1);
     font-weight: 400;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(205, 221, 247, 0.1);
     font-family: 'Brandon';
 
     &::-ms-clear {
@@ -1002,7 +1016,7 @@ input#search-query {
                 width: 5px;
                 display: block;
                 margin-top: 8px;
-                left: -20px;
+                left: -15px;
             }
 
             li {
@@ -1331,7 +1345,6 @@ h2#recent-blog-posts a {
 
 // -------- Table of Content --------------
 
-
 .toc-wrapper {
     background: #FFFFFF;
     box-shadow: 0 0px 20px 0 rgba(12, 21, 75, 0.10);
@@ -1364,7 +1377,7 @@ h2#recent-blog-posts a {
     }
 
     ul li li {
-        margin: 5px 0 5px 23px;
+        margin: 2px 0 2px 23px;
         font-weight: 500;
 
         a {
@@ -1374,7 +1387,7 @@ h2#recent-blog-posts a {
 }
 
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1660px) {
     .toc-wrapper {
         overflow-y: auto;
         background: #FFFFFF;
@@ -1385,9 +1398,10 @@ h2#recent-blog-posts a {
         right: 0;
         top: 0;
         z-index: 1;
-        width: 400px;
-        min-height: 53%;
+        width: 390px;
+        min-height: 43%;
         max-height: 93%;
+
     }
 
     .toc-list {
@@ -1414,7 +1428,13 @@ h2#recent-blog-posts a {
     }
 }
 
-//Back to top ----------------
+@media screen and (min-width: 1900px) {
+    .toc-wrapper {
+        width: 450px;
+    }
+}
+
+//Back to top button ----------------
 
 .dev-top {
     display: inline-block;
@@ -1422,10 +1442,9 @@ h2#recent-blog-posts a {
     width: 50px;
     border-radius: 50px;
     position: fixed;
-    bottom: 15px;
-    right: 15px;
+    bottom: 70px;
+    right: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    /* image replacement properties */
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap;
@@ -1436,47 +1455,34 @@ h2#recent-blog-posts a {
     -moz-transition: all 0.3s;
     transition: all 0.3s;
 }
+
 .dev-top.dev-is-visible {
-    /* the button becomes visible */
     visibility: visible;
     opacity: 1;
 }
+
 .dev-top.dev-fade-out {
     opacity: .8;
 }
+
 .no-touch .dev-top:hover,
 .dev-top.dev-fade-out:hover {
     background-color: #607182;
     opacity: 1;
 }
 
-.dev-top {
-    i {
-        border: solid black;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
-    }
-
-    .up {
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .dev-top {
-        right: 30px;
-        bottom: 65px;
-    }
-}
 @media only screen and (min-width: 1600px) {
     .dev-top {
         right: auto;
-        bottom: 65px;
-        left: 1300px;
+        bottom: 70px;
+        left: 1215px;
     }
 }
 
+@media screen and (min-width: 1900px) {
+    .dev-top {
+        left: 1230px;
+    }
+}
 
 

@@ -44,7 +44,7 @@ As default for the `ProductNumberSearch`, Shopware uses `Shopware\Bundle\SearchB
 The `Shopware\Bundle\SearchBundleDBAL` is based on the `Doctrine\DBAL\Query\Builder`.
 
 ## ShopContextInterface
-A `ShopContext` contains all shop related data for the current request. (shop id and details, customer group, ...) For more information, see `Shopware\Bundle\StoreFrontBundle\README.md`
+A `ShopContext` contains all shop related data for the current request. (shop id and details, customer group, ...) For more information, see `Shopware\Bundle\SearchBundle\README.md`
 
 This context is used in all Shopware bundle services, and can be accessed by getting the `context_service` from the DI container.
 

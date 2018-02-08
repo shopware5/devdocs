@@ -61,6 +61,10 @@ The requirements specified above reflect only the minimum requirements of Shopwa
 
 The above requirements reflect the officially supported and recommended system setup to run Shopware. However, you might be able to run Shopware on equivalent setups (Mac OS, nginx, MariaDB, etc). Please keep in mind that we are unable to provide official support on those setups.
 
+## Elasticsearch
+
+Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x and 5.x out of the box. 
+For more details see the [Elasticsearch setup]({{ site.url }}/sysadmins-guide/elasticsearch-setup/).
 
 ## Shopware 5 System Requirements - Administration client
 
@@ -73,4 +77,3 @@ The administration of your shop can be done completely online via the web browse
 - 4 GB RAM
 - Dual-core CPU
 - Minimum backend resolution:  1366 x 768 pixels
-

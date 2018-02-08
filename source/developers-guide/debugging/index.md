@@ -10,7 +10,7 @@ indexed: true
 group: Developer Guides
 subgroup: General Resources
 menu_title: Debugging Shopware
-menu_order: 30
+menu_order: 35
 ---
 
 Writing and extending software is only a part of a developer's daily work. Debugging and bug fixing is another relevant part one needs to take care of.

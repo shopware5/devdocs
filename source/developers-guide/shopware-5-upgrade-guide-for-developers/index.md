@@ -81,6 +81,34 @@ These methods are:
 * Checkout actions:
     - `finish`
 
+### Variants in listing
+
+It is now possible to allow displaying and filtering of variants in the listing. This new filter can be activated in the
+backend filter settings and defines which groups are filterable and which of those will be expanded in the listing.
+
+The basic product box size is increased by 45px (from 231px to 276px) to allow the variants to display which of the
+options filtered match for the current variant. If the customer e.g. filters for the colors red and blue and the
+expanding of colors is active, each variant listed shows a little "**Color: red**" or "**Color: blue**" tag to identify
+what variant this is.     
+
+A new block `frontend_listing_box_variant_description` was added in file `themes/Frontend/Bare/frontend/listing/product-box/box-basic.tpl`
+to allow modifications of the default way the options of the variant shown are displayed. 
+
+### Sold out variants
+
+Shop owners can now mark individual variants as “sold out”. The flag `laststock` in table `s_articles` is still 
+available but a new column `laststock int(1) NOT NULL DEFAULT '0'` in table `s_articles_details` has been introduced
+to allow selling off of variants.
+
+The current behaviour for main products stays the same, the new flag is being checked when variants are shown in listings 
+and on detail pages.
+
+This new flag is part of the configurator templates that are applied to variants, so regeneration of variants use the
+default setting for this flag from the configurator template that is responsible for this product.
+
+Please make sure to also check for this new flag if you handle variants in your plugins or happen to read or write from 
+the `s_articles_details` table. Also take the flag into account when checking for stock quantity.  
+
 ### Smarty
 
 #### Security mode
@@ -127,6 +155,10 @@ Added new SEO routes for checkout on new installations of 5.4.
     `/vielen-dank-fuer-ihre-bestellung` (DE) and `/thank-you-for-your-order` (EN)
     
 ### DIC
+
+There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
+dependency. If you are interested in developing Shopware using Composer, have a look at the [Documentation]({{ site.url }}/developers-guide/shopware-composer/)
+ and the Shopware [Composer project](https://github.com/shopware/composer-project).
 
 #### Shopware Version
 
@@ -176,6 +208,11 @@ These paths are configurable in the `config.php`, see `engine/Shopware/Configs/D
 
 Mpdf has been updated to v6.1.4 and it's namespace has been registered in the Composer autoloader. You don't need to 
 include the `mpdf.php` library as you used to in previous versions, you can just use `new mPDF();` to create a new instance.
+
+### Discard JavaScript/CSS from other Themes
+
+Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding Less/JavaScript, defined by another theme.
+Find out more at [Custom theme configuration]({{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes)
 
 ## Shopware 5.3
 

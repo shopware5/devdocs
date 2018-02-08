@@ -6,7 +6,7 @@ indexed: true
 group: Developer Guides
 subgroup: General Resources
 menu_title: Using composer with Shopware
-menu_order: 2
+menu_order: 32
 ---
 
 <div class="toc-list"></div>

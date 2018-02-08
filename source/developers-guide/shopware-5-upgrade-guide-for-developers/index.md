@@ -157,7 +157,7 @@ Added new SEO routes for checkout on new installations of 5.4.
 ### DIC
 
 There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
-dependency. If you are interested in developing Shopware using Composer, have a look at the [Documentation]({{ site.url }}/developers-guide/shopware-composer/)
+dependency. If you are interested in developing Shopware using Composer, have a look at the <a href="{{ site.url }}/developers-guide/shopware-composer/">documentation</a>
  and the Shopware [Composer project](https://github.com/shopware/composer-project).
 
 #### Shopware Version
@@ -212,7 +212,7 @@ include the `mpdf.php` library as you used to in previous versions, you can just
 ### Discard JavaScript/CSS from other Themes
 
 Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding Less/JavaScript, defined by another theme.
-Find out more at [Custom theme configuration]({{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes)
+Find out more at <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">Custom theme configuration</a>.
 
 ## Shopware 5.3
 

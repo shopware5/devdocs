@@ -55,7 +55,7 @@ the `app/config/` directory.
 Given you want to require the SwagMediaSftp-plugin, all you need to do is run
 
 ```bash
-composer require shopwarelabs/swag-media-sftp:1.0.0
+composer require shopwarelabs/swag-media-sftp:1.0.1
 ```
 
 This will add the plugin to your composer.json, download it and install it into the appropriate folder `custom/plugins`.

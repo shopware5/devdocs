@@ -424,6 +424,10 @@ Create a new component handler class for your element and implement the `\Shopwa
 
 ```php
 use Shopware\Bundle\EmotionBundle\ComponentHandler\ComponentHandlerInterface;
+use Shopware\Bundle\EmotionBundle\Struct\Collection\PrepareDataCollection;
+use Shopware\Bundle\EmotionBundle\Struct\Collection\ResolvedDataCollection;
+use Shopware\Bundle\EmotionBundle\Struct\Element;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
 
 class VimeoComponentHandler implements ComponentHandlerInterface
 {

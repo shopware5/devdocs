@@ -420,9 +420,11 @@ When you have to process the saved element data before it is passed to the front
 
 ### Shopware 5.3 and above
 
-Create a new component handler class for your element and implement the `ComponentHandlerInterface`.
+Create a new component handler class for your element and implement the `\Shopware\Bundle\EmotionBundle\ComponentHandler\ComponentHandlerInterface`.
 
 ```php
+use Shopware\Bundle\EmotionBundle\ComponentHandler\ComponentHandlerInterface;
+
 class VimeoComponentHandler implements ComponentHandlerInterface
 {
     public function supports(Element $element)

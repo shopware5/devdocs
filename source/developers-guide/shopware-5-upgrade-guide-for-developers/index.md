@@ -137,23 +137,6 @@ The affected routes are:
 - `/address/ajaxSelection`
 - `/address/ajaxEditor`
 
-#### Checkout routes
-
-Added new SEO routes for checkout on new installations of 5.4.
-
-- `sViewport=register`:
-    `/anmeldung` (DE) and `/signup` (EN)
-- `sViewport=checkout&sAction=cart`:
-    `/warenkorb` (DE) and `/basket` (EN)
-- `sViewport=checkout&sAction=confirm`:
-    `/bestellen` (DE) and `/order` (EN)
-- `sViewport=checkout&sAction=shippingPayment`:
-    `/zahlungsart-und-versand` (DE) and `/payment-and-delivery` (EN)
-- `sViewport=checkout`:
-    `/pruefen-und-bestellen` (DE) and `/check-and-order` (EN)
-- `sViewport=checkout&sAction=finish`:
-    `/vielen-dank-fuer-ihre-bestellung` (DE) and `/thank-you-for-your-order` (EN)
-    
 ### DIC
 
 There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)

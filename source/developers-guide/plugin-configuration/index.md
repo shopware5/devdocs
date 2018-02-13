@@ -186,7 +186,11 @@ To define something similar like checkbox you can use `boolean`
     </element>
 </elements>
 ```
+Notice: Fields like `name`, `label`,`description` are not required. They just listed for code transparency.
+
 This will provide you with a prefilled dropdown.
+
+<img src="img/boolean.png" alt="Booleanfield" class="image-border" />
 
 Currently there is no element for checkbox at the moment. 
 [Reason:  This was done to support the not selected values by the customer because checkboxes only have two states.
@@ -209,6 +213,8 @@ If you want a real checkbox there is kind of a workaround you can use.
     </options>
 </element>
 ```
+NOTICE: xtype is not supported official!!!
+
 This will return a boolean TRUE or FALSE.
 
 

@@ -45,7 +45,6 @@ $ cd shopware-vagrant
 ### 2. Boot up your Vagrant virtual machine
 
 ```bash
-$ cd vagrant
 $ vagrant up
 ```
 

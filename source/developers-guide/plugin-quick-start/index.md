@@ -401,7 +401,7 @@ SwagResource
 
 So far we have set up the plugin - but where does the actual template extension come from?
 
-We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Views/frontend/index/index.tpl` template. 
+We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Resources/views/frontend/index/index.tpl` file. 
 This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
 
 Now our plugin's `index.tpl` might look like this:

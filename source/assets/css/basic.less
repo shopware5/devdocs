@@ -111,13 +111,14 @@ b, strong {
     max-width: 900px;
     margin-top: 80px;
     background: #fff;
-    padding-top: 100px;
+    padding-top: 90px;
     padding-bottom: 0;
     position: relative;
 
     @media screen and (min-width: 1200px) {
         margin-left: 390px;
         margin-top: 0;
+        padding-top: 60px;
         padding-right: 55px
     }
 }
@@ -165,7 +166,7 @@ b, strong {
         @media screen and (min-width: 1200px) {
             width: 118px;
             height: 118px;
-            top: 63px;
+            top: 53px;
         }
     }
 }
@@ -229,10 +230,6 @@ nav.navi--main:after {
     padding: 150px 0 50px 0;
     overflow-x: hidden;
 
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
     &.is--active {
         .transform(translateX(0));
     }
@@ -241,7 +238,7 @@ nav.navi--main:after {
         .transform(translateX(0));
         .transition(none);
         width: 350px;
-        padding-top: 260px;
+        padding-top: 240px;
     }
 
     ul.navi--tree {
@@ -254,7 +251,7 @@ nav.navi--main:after {
 
             .navi--link {
                 display: block;
-                padding: 11px 38px;
+                padding: 10px 38px;
                 color: rgba(255, 255, 255, 0.95);
                 font-weight: 500;
                 position: relative;
@@ -293,11 +290,15 @@ nav.navi--main:after {
                 height: 0;
                 overflow: hidden;
 
+                &.is-numbered {
+                    margin-bottom: 5px;
+                }
+
                 li.navi--sub-chapter {
                     .navi--link {
                         font-size: 16px;
                         color: rgba(255, 255, 255, 0.55);
-                        padding: 8px 15px 8px 38px;
+                        padding: 5px 15px 5px 38px;
                         font-weight: 500;
                         z-index: 5;
 
@@ -460,7 +461,8 @@ nav.navi--main:after {
     z-index: 9990;
 
     @media screen and (min-width: 1200px) {
-        top: 195px; left: 0;
+        top: 180px;
+        left: 0;
         padding: 0px 18px 15px 18px;
         width: 350px;
     }
@@ -524,7 +526,7 @@ input#search-query {
     padding: 5px 50px;
     width: 100%;
     border-radius: 30px;
-    color: rgba(205, 221, 247, 0.1);
+    color: rgba(255, 255, 255, 1);
     font-weight: 400;
     background: rgba(205, 221, 247, 0.1);
     font-family: 'Brandon';
@@ -888,7 +890,7 @@ input#search-query {
         background: #f9f9f9;
         border-radius: 3px;
         font-size: 14px;
-        padding: 40px;
+        padding: 30px;
         font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Courier New", sans-serif;
         margin: 0px 0 40px 0;
         border: 1px solid #f2f2f2;
@@ -916,7 +918,8 @@ input#search-query {
         background-color: rgba(0,0,0,.04);
         border-radius: 3px;
         font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Courier New", sans-serif;
-        color: #333;
+        font-size: 13px;
+        color: #000;
         word-wrap: break-word;
     }
 
@@ -942,7 +945,7 @@ input#search-query {
 
         .edit-on-github {
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
 
             .icon-github {
                 font-size: 24px;
@@ -966,9 +969,7 @@ input#search-query {
         }
 
         @media screen and (min-width: 1200px) {
-            margin-left: 10px;
-            margin-top: 8px;
-            float: right;
+            margin-bottom: 5px;
 
             .edit-on-github {
                 margin-bottom: 0;
@@ -1359,16 +1360,17 @@ h2#recent-blog-posts a {
     }
 
     .devdocs ul.toc-list--element li {
-        margin: 8px 0 8px 23px;
+        margin: 8px 0 8px 20px;
     }
 }
 
 .devdocs .toc-list {
     ul li {
-        margin: 5px 0px 5px 23px;
+        margin: 5px 0px 5px 20px;
         font-weight: 500;
         font-size: 15px;
         display: block;
+        word-wrap: break-word;
     }
 
     ul li ul {
@@ -1377,8 +1379,9 @@ h2#recent-blog-posts a {
     }
 
     ul li li {
-        margin: 2px 0 2px 23px;
+        margin: 2px 0 2px 20px;
         font-weight: 500;
+        word-wrap: break-word;
 
         a {
             font-size: 14px;
@@ -1393,9 +1396,9 @@ h2#recent-blog-posts a {
         background: #FFFFFF;
         box-shadow: 0 -20px 30px 0 rgba(12,21,75, 0.10);
         border-radius: 5px;
-        padding: 50px 30px 30px 55px;
+        padding: 50px 50px 30px 45px;
         position: fixed;
-        right: 0;
+        right: -20px;
         top: 0;
         z-index: 1;
         width: 390px;

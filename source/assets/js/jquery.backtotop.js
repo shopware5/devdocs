@@ -1,7 +1,4 @@
-/**
- * Created by julchenrehme on 05.02.18.
- */
-jQuery(document).ready(function($){
+$(function() {
     // browser window scroll (in pixels) after which the "back to top" link is shown
     var offset = 300,
         //browser window scroll (in pixels) after which the "back to top" link opacity is reduced

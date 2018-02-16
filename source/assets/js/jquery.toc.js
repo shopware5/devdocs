@@ -332,6 +332,8 @@
             if($el.attr('data-headline')) {
                 options.headlineTitle = $el.attr('data-headline');
             }
+
+            $el.wrap('<div class="toc-wrapper"></div>');
             
             toc = new $.TableOfContents(this, scope, options);
             delete toc; // Free memory

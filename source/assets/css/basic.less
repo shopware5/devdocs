@@ -101,8 +101,8 @@ b, strong {
 /* GRID */
 .wrapper {
     .clearfix();
-    position: relative;
-    padding-bottom: 60px;
+    //position: relative;
+    height: 100%;
 }
 
 .container {
@@ -115,18 +115,18 @@ b, strong {
 
 .content {
     .clearfix();
-    max-width: 1200px;
+    max-width: 900px;
     margin-top: 80px;
     background: #fff;
-    padding-top: 100px;
+    padding-top: 90px;
     padding-bottom: 0;
     position: relative;
 
     @media screen and (min-width: 1200px) {
-        margin-left: 28%;
+        margin-left: 390px;
         margin-top: 0;
-        padding-right: 40px
-
+        padding-top: 60px;
+        padding-right: 55px
     }
 }
 
@@ -173,7 +173,7 @@ b, strong {
         @media screen and (min-width: 1200px) {
             width: 118px;
             height: 118px;
-            top: 63px;
+            top: 53px;
         }
     }
 }
@@ -209,6 +209,20 @@ b, strong {
     overflow-x: hidden;
 }
 
+nav.navi--main:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    height: 100px;
+    z-index: 10;
+    background: -moz-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    background: -webkit-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    background: linear-gradient(to bottom, rgba(20, 36, 50, 0) 0%, #142432 100%);
+    pointer-events: none;
+}
+
 .navi--main {
     .transform(translateX(-100%));
     .transition(all 0.4s ease-out);
@@ -220,11 +234,7 @@ b, strong {
     top: 0; left: 0;
     z-index: 9800;
     padding: 150px 0 50px 0;
-    overflow: hidden;
-
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    overflow-x: hidden;
 
     &.is--active {
         .transform(translateX(0));
@@ -234,7 +244,7 @@ b, strong {
         .transform(translateX(0));
         .transition(none);
         width: 350px;
-        padding-top: 260px;
+        padding-top: 240px;
     }
 
     ul.navi--tree {
@@ -243,23 +253,22 @@ b, strong {
 
             &.is--active {
                 padding-bottom: 10px;
-                margin-bottom: 10px;
             }
 
             .navi--link {
                 display: block;
-                padding: 13px 38px;
+                padding: 10px 38px;
                 color: rgba(255, 255, 255, 0.95);
                 font-weight: 500;
                 position: relative;
                 font-size: 17px;
                 z-index: 10;
-                border-left: 2px solid rgba(255, 255, 255, 0);
+                border-left: 3px solid rgba(255, 255, 255, 0);
                 background-color: rgba(255, 255, 255, 0);
 
                 &:hover {
                     background-color: rgba(255, 255, 255, 0.05);
-                    border-left: 2px solid rgba(255, 255, 255, 1);
+                    border-left: 3px solid rgba(255, 255, 255, 1);
                     color: rgba(255, 255, 255, 1);
                     transition: all 0.3s cubic-bezier(0.25, 0.2, 0.45, 1);
 
@@ -270,7 +279,7 @@ b, strong {
 
                 &.is--active {
                     color: #ffffff;
-                    border-left: 2px solid rgba(255, 255, 255, 1);
+                    border-left: 3px solid rgba(255, 255, 255, 1);
                     font-weight: 600;
                 }
             }
@@ -287,11 +296,15 @@ b, strong {
                 height: 0;
                 overflow: hidden;
 
+                &.is-numbered {
+                    margin-bottom: 5px;
+                }
+
                 li.navi--sub-chapter {
                     .navi--link {
                         font-size: 16px;
                         color: rgba(255, 255, 255, 0.55);
-                        padding: 8px 15px 8px 38px;
+                        padding: 5px 15px 5px 38px;
                         font-weight: 500;
                         z-index: 5;
 
@@ -338,7 +351,7 @@ b, strong {
                             .navi--link {
                                 font-size: 15px;
                                 color: rgba(255, 255, 255, 0.33);
-                                padding: 4px 30px 4px 50px;
+                                padding: 3px 30px 3px 50px;
                                 font-weight: 500;
                                 z-index: 1;
 
@@ -396,7 +409,7 @@ b, strong {
     font-weight: 600;
     padding: 20px 10px;
     overflow: hidden;
-    position: absolute;
+    position: static;
     bottom: 0;
     left: 0;
     right: 0;
@@ -454,7 +467,8 @@ b, strong {
     z-index: 9990;
 
     @media screen and (min-width: 1200px) {
-        top: 195px; left: 0;
+        top: 180px;
+        left: 0;
         padding: 0px 18px 15px 18px;
         width: 350px;
     }
@@ -520,7 +534,7 @@ input#search-query {
     border-radius: 30px;
     color: rgba(255, 255, 255, 1);
     font-weight: 400;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(205, 221, 247, 0.1);
     font-family: 'Brandon';
 
     &::-ms-clear {
@@ -882,7 +896,7 @@ input#search-query {
         background: #f9f9f9;
         border-radius: 3px;
         font-size: 14px;
-        padding: 40px;
+        padding: 30px;
         font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Courier New", sans-serif;
         margin: 0px 0 40px 0;
         border: 1px solid #f2f2f2;
@@ -910,7 +924,8 @@ input#search-query {
         background-color: rgba(0,0,0,.04);
         border-radius: 3px;
         font-family: "Consolas", "Monaco", "DejaVu Sans Mono", "Courier New", sans-serif;
-        color: #333;
+        font-size: 13px;
+        color: #000;
         word-wrap: break-word;
     }
 
@@ -936,7 +951,7 @@ input#search-query {
 
         .edit-on-github {
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
 
             .icon-github {
                 font-size: 24px;
@@ -960,9 +975,7 @@ input#search-query {
         }
 
         @media screen and (min-width: 1200px) {
-            margin-left: 10px;
-            margin-top: 8px;
-            float: right;
+            margin-bottom: 5px;
 
             .edit-on-github {
                 margin-bottom: 0;
@@ -1010,7 +1023,7 @@ input#search-query {
                 width: 5px;
                 display: block;
                 margin-top: 8px;
-                left: -20px;
+                left: -15px;
             }
 
             li {
@@ -1336,4 +1349,150 @@ h2#recent-blog-posts a {
         }
     }
 }
+
+// -------- Table of Content --------------
+
+.toc-wrapper {
+    background: #FFFFFF;
+    box-shadow: 0 0px 20px 0 rgba(12, 21, 75, 0.10);
+    border-radius: 5px;
+    padding: 10px 30px 30px 35px;
+}
+
+.toc-list {
+    h2 {
+        margin-top: 20px;
+        color: #142432;
+    }
+
+    .devdocs ul.toc-list--element li {
+        margin: 8px 0 8px 20px;
+    }
+}
+
+.devdocs .toc-list {
+    ul li {
+        margin: 5px 0px 5px 20px;
+        font-weight: 500;
+        font-size: 15px;
+        display: block;
+        word-wrap: break-word;
+    }
+
+    ul li ul {
+        margin-bottom: 16px;
+        margin-top: 10px;
+    }
+
+    ul li li {
+        margin: 2px 0 2px 20px;
+        font-weight: 500;
+        word-wrap: break-word;
+
+        a {
+            font-size: 14px;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1660px) {
+    .toc-wrapper {
+        overflow-y: auto;
+        background: #FFFFFF;
+        box-shadow: 0 -20px 30px 0 rgba(12,21,75, 0.10);
+        border-radius: 5px;
+        padding: 50px 50px 30px 45px;
+        position: fixed;
+        right: -20px;
+        top: 0;
+        z-index: 1;
+        width: 390px;
+        min-height: 43%;
+        max-height: 93%;
+
+    }
+
+    .toc-list {
+        font-size: 15px;
+        line-height: 130%;
+
+
+        &:hover {
+            opacity: 1;
+        }
+
+        .devdocs ul li {
+            margin: 8px 0px 8px 20px;
+        }
+
+        .devdocs ul li ul {
+            font-size: 14px;
+        }
+    }
+
+    .toc-list--headline {
+        font-size: 22px;
+        color: #607182;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .toc-wrapper {
+        width: 450px;
+    }
+}
+
+//Back to top button ----------------
+
+.dev-top {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: rgba(96, 113, 130, 0.8) url("../img/arrow-up.svg") no-repeat center;
+    background-size: 23px 23px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.dev-top.dev-is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dev-top.dev-fade-out {
+    opacity: .8;
+}
+
+.no-touch .dev-top:hover,
+.dev-top.dev-fade-out:hover {
+    background-color: #607182;
+    opacity: 1;
+}
+
+@media only screen and (min-width: 1600px) {
+    .dev-top {
+        right: auto;
+        bottom: 70px;
+        left: 1215px;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .dev-top {
+        left: 1230px;
+    }
+}
+
 

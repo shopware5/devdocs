@@ -26,6 +26,7 @@
     .wrapper {
         z-index: 1;
         padding-bottom: 0;
+        position: relative;
     }
 
     .row {
@@ -119,11 +120,6 @@
     }
 }
 
-.devdocs.content.start {
-    margin-top: 0;
-    padding: 10px 0 30px 20px;
-}
-
 @media screen and (min-width: 768px) {
     .header-banner {
         position: relative;
@@ -145,7 +141,7 @@
     .header-banner .headline {
         display: block;
         font-size: 60px;
-        margin: 50px 30px 30px 30px;
+        margin: 50px 30px 25px 55px;
         color: #FFF;
         font-weight: 600;
         text-align: left;
@@ -179,7 +175,7 @@
     }
 
     .start.page-wrap .wrapper {
-        margin-left: 28%;
+        margin-left: 25%;
         max-width: 1200px;
     }
 
@@ -195,6 +191,17 @@
 }
 
 /*------- BLOG POST -----------*/
+
+.devdocs.content.start {
+    margin-top: 0;
+    padding: 10px 0 30px 20px;
+
+    @media screen and (min-width: 1200px) {
+        margin-left: 25%;
+        max-width: 1200px;
+    }
+}
+
 h2#recent-blog-posts {
     text-align: center;
     padding-bottom: 15px;
@@ -562,7 +569,7 @@ h2#recent-blog-posts {
 
 @media screen and (min-width: 1200px) {
     .start.page-wrap .latest-changes h3 {
-        margin-left: 28%;
+        margin-left: 25%;
         max-width: 1200px;
     }
 }

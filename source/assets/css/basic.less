@@ -227,7 +227,11 @@ nav.navi--main:after {
     top: 0; left: 0;
     z-index: 9800;
     padding: 150px 0 50px 0;
-    overflow-x: hidden;
+    overflow: hidden;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     &.is--active {
         .transform(translateX(0));

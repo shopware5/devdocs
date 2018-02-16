@@ -82,7 +82,6 @@ The required attribute specifies whether the configuration item is mandatory or 
 <element required="true" ... >
 ```
 
-
 <img src="img/required.png" alt="Textfield marked as required" class="image-border" />
 
 ### Scope
@@ -109,14 +108,60 @@ The description parameter allows to provide a more detailed description of the c
 ## Element Types
 Below all supported configuration elements including their design and source code are described again.
 
-### Colorpicker
+
+### Textfield
 ```xml
-<element required="true" type="color">
+<element required="true" type="text">
     ...
 </element>
 ```
 
-<img src="img/colorpicker.png" alt="Colorpicker" class="image-border" />
+<img src="img/textfield.png" alt="Textfield" class="image-border" />
+
+### Textarea
+```xml
+<element required="true" type="textarea">
+    ...
+</element>
+```
+
+<img src="img/textarea.png" alt="Textarea" class="image-border" />
+
+### HTML editor
+```xml
+<element required="true" type="html">
+    ...
+</element>
+```
+
+<img src="img/htmleditor.png" alt="HTML editor" class="image-border" />
+
+### Numberfield
+```xml
+<element required="true" type="number">
+    ...
+</element>
+```
+
+<img src="img/numberfield.png" alt="Numberfield" class="image-border" />
+
+### Timefield
+```xml
+<element required="true" type="time">
+    ...
+</element>
+```
+
+<img src="img/timefield.png" alt="Timefield" class="image-border" />
+
+### Time interval
+```xml
+<element required="true" type="interval">
+    ...
+</element>
+```
+
+<img src="img/timeinterval.png" alt="Time interval" class="image-border" />
 
 ### Datefield
 ```xml
@@ -136,24 +181,14 @@ Below all supported configuration elements including their design and source cod
 
 <img src="img/datetimefield.png" alt="Datetime field" class="image-border" />
 
-### HTML editor
+### Colorpicker
 ```xml
-<element required="true" type="html">
+<element required="true" type="color">
     ...
 </element>
 ```
 
-<img src="img/htmleditor.png" alt="HTML editor" class="image-border" />
-
-
-### Time interval
-```xml
-<element required="true" type="interval">
-    ...
-</element>
-```
-
-<img src="img/timeinterval.png" alt="Time interval" class="image-border" />
+<img src="img/colorpicker.png" alt="Colorpicker" class="image-border" />
 
 ### Mediaselection
 ```xml
@@ -163,15 +198,6 @@ Below all supported configuration elements including their design and source cod
 ```
 
 <img src="img/mediaselection.png" alt="Mediaselection" class="image-border" />
-
-### Numberfield
-```xml
-<element required="true" type="number">
-    ...
-</element>
-```
-
-<img src="img/numberfield.png" alt="Numberfield" class="image-border" />
 
 ### Selectionfield / combobox
 ```xml
@@ -224,33 +250,6 @@ To make your selectfield / combobox multiple selectable, you need to create the 
     </options>
 </element>
 ```
-
-### Textfield
-```xml
-<element required="true" type="text">
-    ...
-</element>
-```
-
-<img src="img/textfield.png" alt="Textfield" class="image-border" />
-
-### Textarea
-```xml
-<element required="true" type="textarea">
-    ...
-</element>
-```
-
-<img src="img/textarea.png" alt="Textarea" class="image-border" />
-
-### Timefield
-```xml
-<element required="true" type="time">
-    ...
-</element>
-```
-
-<img src="img/timefield.png" alt="Timefield" class="image-border" />
 
 ## Configure basic settings
 The plugin configurations of the various plugins are automatically 

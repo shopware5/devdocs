@@ -98,6 +98,7 @@ have a stand alone memcache instance in place:
 ### Redis
 Redis is a popular key/value storage, that easily can be clustered for redundancy. It does not support session locking,
 however.
+When using a single redis instance with multiple shopware installations (e.g. for stating environments) it would be wise to use seperate prefixes for each shopware installation. Otherwise, your session keys could re-used between your installations and race conditions or strange session-related behavoir may occur. A prefix can be confiured using the conncection uri. Please consult the offical [phpredis documentation](https://github.com/phpredis/phpredis#php-session-handler).
 
 #### Install
 

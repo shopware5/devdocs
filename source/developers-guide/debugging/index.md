@@ -127,7 +127,7 @@ $result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop(), 2, true, false);
 ```
 
 ### shopware-profiler
-The [shopware-profiler](https://github.com/shyim/shopware-profiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
+The [FroshProfiler](https://github.com/FriendsOfShopware/FroshProfiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
 * showing registered and called events
 * viewing of database operations and their results
 * providing various template information such as variables and which files were loaded

@@ -109,9 +109,18 @@ The description parameter allows to provide a more detailed description of the c
 ## Element Types
 Below all supported configuration elements including their design and source code are described again.
 
+### Boolean
+```xml
+<element type="boolean">
+    ...
+</element>
+```
+
+<img src="img/boolean.png" alt="Booleanfield" class="image-border" />
+
 ### Colorpicker
 ```xml
-<element required="true" type="color">
+<element type="color">
     ...
 </element>
 ```
@@ -120,7 +129,7 @@ Below all supported configuration elements including their design and source cod
 
 ### Datefield
 ```xml
-<element required="true" type="date">
+<element type="date">
     ...
 </element>
 ```
@@ -129,7 +138,7 @@ Below all supported configuration elements including their design and source cod
 
 ### Datetime field
 ```xml
-<element required="true" type="datetime">
+<element type="datetime">
     ...
 </element>
 ```
@@ -138,7 +147,7 @@ Below all supported configuration elements including their design and source cod
 
 ### HTML editor
 ```xml
-<element required="true" type="html">
+<element type="html">
     ...
 </element>
 ```
@@ -148,7 +157,7 @@ Below all supported configuration elements including their design and source cod
 
 ### Time interval
 ```xml
-<element required="true" type="interval">
+<element type="interval">
     ...
 </element>
 ```
@@ -157,7 +166,7 @@ Below all supported configuration elements including their design and source cod
 
 ### Mediaselection
 ```xml
-<element required="true" type="mediaselection">
+<element type="mediaselection">
     ...
 </element>
 ```
@@ -166,40 +175,16 @@ Below all supported configuration elements including their design and source cod
 
 ### Numberfield
 ```xml
-<element required="true" type="number">
+<element type="number">
     ...
 </element>
 ```
 
 <img src="img/numberfield.png" alt="Numberfield" class="image-border" />
 
-### Boolean
-To define something similar like checkbox you can use `boolean`
-```xml
-<elements>
-    <element required="false" type="boolean" scope="shop">
-        <name>show</name>
-        <label lang="de">Anzeigen</label>
-        <label lang="en">Show</label>
-        <description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
-        <description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
-    </element>
-</elements>
-```
-Notice: Fields like `name`, `label`,`description` are not required. They just listed for code transparency.
-
-This will provide you with a prefilled dropdown.
-
-<img src="img/boolean.png" alt="Booleanfield" class="image-border" />
-
-Currently there is no element for checkbox at the moment. 
-[Reason:  This was done to support the not selected values by the customer because checkboxes only have two states.
-Usualy there are three states true, false and inheritance.](https://github.com/shopware/shopware/blob/9a116f29f78c0005e031e34ffcce919b6a50e3a9/themes/Backend/ExtJs/backend/base/component/Shopware.form.PluginPanel.js#L324-L326)
-
-
 ### Selectionfield / combobox
 ```xml
-<element required="true" type="select" >
+<element type="select" >
     <store>
         <option>
             <value>1</value>
@@ -228,7 +213,7 @@ Usualy there are three states true, false and inheritance.](https://github.com/s
 
 ### Selectionfield / remote combobox
 ```xml
-<element required="true" type="combo">
+<element type="combo">
     ...
     <store>Shopware.apps.Base.store.CustomerGroup</store>
 </element>
@@ -240,7 +225,7 @@ Usualy there are three states true, false and inheritance.](https://github.com/s
 To make your selectfield / combobox multiple selectable, you need to create the options node:
 
 ```xml
-<element required="true" type="combo">
+<element type="combo">
     ...
     <store>Shopware.apps.Base.store.CustomerGroup</store>
     <options>
@@ -251,7 +236,7 @@ To make your selectfield / combobox multiple selectable, you need to create the 
 
 ### Textfield
 ```xml
-<element required="true" type="text">
+<element type="text">
     ...
 </element>
 ```
@@ -260,7 +245,7 @@ To make your selectfield / combobox multiple selectable, you need to create the 
 
 ### Textarea
 ```xml
-<element required="true" type="textarea">
+<element type="textarea">
     ...
 </element>
 ```
@@ -269,7 +254,7 @@ To make your selectfield / combobox multiple selectable, you need to create the 
 
 ### Timefield
 ```xml
-<element required="true" type="time">
+<element type="time">
     ...
 </element>
 ```

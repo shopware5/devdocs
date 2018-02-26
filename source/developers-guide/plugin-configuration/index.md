@@ -173,6 +173,30 @@ Below all supported configuration elements including their design and source cod
 
 <img src="img/numberfield.png" alt="Numberfield" class="image-border" />
 
+### Boolean
+To define something similar like checkbox you can use `boolean`
+```xml
+<elements>
+    <element required="false" type="boolean" scope="shop">
+        <name>show</name>
+        <label lang="de">Anzeigen</label>
+        <label lang="en">Show</label>
+        <description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+        <description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+    </element>
+</elements>
+```
+Notice: Fields like `name`, `label`,`description` are not required. They just listed for code transparency.
+
+This will provide you with a prefilled dropdown.
+
+<img src="img/boolean.png" alt="Booleanfield" class="image-border" />
+
+Currently there is no element for checkbox at the moment. 
+[Reason:  This was done to support the not selected values by the customer because checkboxes only have two states.
+Usualy there are three states true, false and inheritance.](https://github.com/shopware/shopware/blob/9a116f29f78c0005e031e34ffcce919b6a50e3a9/themes/Backend/ExtJs/backend/base/component/Shopware.form.PluginPanel.js#L324-L326)
+
+
 ### Selectionfield / combobox
 ```xml
 <element required="true" type="select" >

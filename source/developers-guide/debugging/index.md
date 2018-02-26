@@ -122,7 +122,7 @@ exit();
 Instead, you should use the Doctrine debug helper to print / log complex objects: 
 
 ```
-$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop(), 2, true, false)
+$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop(), 2, true, false);
 // now safely log $result with your preferred logger
 ```
 

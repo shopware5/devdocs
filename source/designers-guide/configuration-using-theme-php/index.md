@@ -77,7 +77,7 @@ Since Shopware 5.4, it's possible to manipulate the chain of inheritance by disc
 defined by another theme.
 </div>
 
-When you want develop a complete new theme,
+When you want to develop a completely new theme,
 it might be a good idea to discard the styling defined
 by the Shopware Responsive theme.
 
@@ -95,18 +95,19 @@ It's also possible to discard Javascript files:
 
 To have an unique identifier, you have to use the full class name of the Theme,
 you would like to discard. You get this by navigating to the theme folder
-located at themes/{the-theme-name}/ and opening the Theme.php.
+located at themes/{the-theme-name}/ and opening the Theme.php. Locate the namespace at the top of the file.
 
-For the Bare theme, its
+For the Bare theme the namespace looks like this:
 
 ```php
     namespace Shopware\Themes\Bare;
 ```
 
-so you would have to use:
+Add the name of the class (alwas `Theme`) to it to get the complete name.
+You will have to use:
 
 ```php
-\Shopware\Themes\Bare::class
+\Shopware\Themes\Bare\Theme::class
 ```
 
 in your own Theme.php if you want to discard the Less or JavaScript of the Bare theme. 

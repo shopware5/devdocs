@@ -103,7 +103,7 @@ For the Bare theme the namespace looks like this:
     namespace Shopware\Themes\Bare;
 ```
 
-Add the name of the class (alwas `Theme`) to it to get the complete name.
+Add the name of the class (always `Theme`) to it to get the complete name.
 You will have to use:
 
 ```php

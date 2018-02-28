@@ -42,34 +42,42 @@ It is required to parametrize this API call. The following parameters are availa
 
 | Field                 | Type                  | Original Object                                                               |
 |-----------------------|-----------------------|-------------------------------------------------------------------------------|
-| id                    | integer (primary key) |                                                                                 |
+| number                | string                |                                                                               |
+| id                    | integer (primary key) |                                                                               |
 | paymentId             | integer (foreign key) | **[Payment](../models/#payment-data)**                                         |
-| groupKey              | string (foreign key)  | **[CustomerGroup](../models/#customer-group)**                                    |
-| shopId                | string (foreign key)  | **[Shop](../models/#shop)**                                                     |
-| priceGroupId          | integer (foreign key) | **[PriceGroup](../models/#price-group)**                                          |
-| encoderName           | string                |                                                                                 |
-| hashPassword          | string                |                                                                                 |
-| active                | boolean                |                                                                                |
-| email                 | string                |                                                                                |
-| firstLogin            | date/time                |                                                                                |
-| lastLogin             | date/time                |                                                                                |
-| accountMode           | integer                |                                                                                |
-| confirmationKey       | string                |                                                                                |
-| sessionId             | string                |                                                                                |
-| newsletter            | boolean                |                                                                                |
-| validation            | string                |                                                                                |
-| affiliate             | boolean                |                                                                                |
-| paymentPreset         | integer                |                                                                                |
-| languageId            | integer (foreign key) |                                                                                |
-| referer               | string                |                                                                                |
-| internalComment       | string                |                                                                                |
-| failedLogins          | integer                |                                                                                |
-| lockedUntil           | date/time                |                                                                                |
-| attribute             | object                | **[CustomerAttribute](../models/#customer-attribute)**                            |
-| billing               | object                | **[Billing](../models/#address)**                                                |
-| paymentData           | array                    | **[PaymentData](../models/#payment-data)**                                        |
-| shipping              | object                | **[Shipping](../models/#address)**                                            |
-| debit                 | object                | **[Debit](../models/#debit)**                                                    |
+| groupKey              | string (foreign key)  | **[CustomerGroup](../models/#customer-group)**                                 |
+| shopId                | string (foreign key)  | **[Shop](../models/#shop)**                                                   |
+| priceGroupId          | integer (foreign key) | **[PriceGroup](../models/#price-group)**                                       |
+| encoderName           | string                |                                                                               |
+| hashPassword          | string                |                                                                               |
+| active                | boolean               |                                                                               |
+| email                 | string                |                                                                               |
+| firstLogin            | date/time             |                                                                               |
+| lastLogin             | date/time             |                                                                               |
+| accountMode           | integer               |                                                                               |
+| confirmationKey       | string                |                                                                               |
+| sessionId             | string                |                                                                               |
+| newsletter            | boolean               |                                                                               |
+| validation            | string                |                                                                               |
+| affiliate             | boolean               |                                                                               |
+| paymentPreset         | integer               |                                                                               |
+| languageId            | integer (foreign key) |                                                                               |
+| referer               | string                |                                                                               |
+| internalComment       | string                |                                                                               |
+| failedLogins          | integer               |                                                                               |
+| lockedUntil           | date/time             |                                                                               |
+| salutation            | string                |                                                                               |
+| title                 | string                |                                                                               |
+| firstname             | string                |                                                                               |
+| lastname              | string                |                                                                               |
+| birthday              | date/time             |                                                                               |
+| attribute             | object                | **[CustomerAttribute](../models/#customer-attribute)**                         |
+| defaultBillingAddress | object                | **[Billing](../models/#address)**                                             |
+| billing               | object                | **[Billing](../models/#address)**                                             |
+| paymentData           | array                 | **[PaymentData](../models/#payment-data)**                                     |
+| shipping              | object                | **[Shipping](../models/#address)**                                             |
+| defaultShippingAddress| object                | **[Shipping](../models/#address)**                                             |
+| debit                 | object                | **[Debit](../models/#debit)**                                                 |
 
 ## GET (List)
 

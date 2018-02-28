@@ -104,7 +104,7 @@ arrays.  The `app.js` is then executed by the JavaScript framework and will lazy
 This is done by performing another Ajax request to the configured controller. As Shopware uses some minification here, usually
 the request will look like this:
 
-```text
+```
 http://localhost/training/backend/customer/load/?f=m/Customer|m/Billing|m/Shipping|m/Debit|m/PaymentData|m/List|m/Order|m/Chart|m/BillingAttributes|m/ShippingAttributes|m/Attribute|m/Batch|v/detail/Window|v/detail/Base|v/detail/Billing|v/detail/Shipping|v/detail/Debit|v/detail/Comment|v/detail/Additional|v/list/List|v/main/Window|v/order/List|v/order/Chart|store/Detail|store/List|store/Orders|store/Chart|store/Batch|c/Main|c/List|c/Detail|c/Order&no-cache=1448265316+1+1
 ```
 

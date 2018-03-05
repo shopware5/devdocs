@@ -419,6 +419,10 @@ that we introduced before:
 //{block name="backend/customer/view/detail/window"}
 // {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
+     /**
+     * Override the customer detail window
+     * @string
+     */
    override: 'Shopware.apps.Customer.view.detail.Window',
 
    getTabs: function() {
@@ -431,6 +435,40 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
    }
 });
 //{/block}
+```
+
+#### Add custom ExtJS controller
+
+To register a custom controller in an existing backend ExtJS module, first you need to add the file to the app.js:
+
+```js
+//{block name="backend/customer/application"}
+//      {$smarty.block.parent}
+//      {include file="backend/swag_extend_customer/controller/my_own_controller.js"}
+//      {include file="backend/swag_extend_customer/view/detail/my_own_tab.js"}
+//{/block}
+```
+
+After adding it to the app.js file, the fill will be loaded, but the controller will not be instanced.
+
+To instantiate your controller, you need to override an the existing controller (depends on the module you want to extend). In this file you can override existing functions of the parent controller. You can and mostly need to call the parent function with the line `me.callParent(arguments)`:
+
+```js
+Ext.define('Shopware.apps.SwagExtendCustomer.controller.MyOwnController', {
+    
+     /**
+     * Override the customer main controller
+     * @string
+     */
+    override: 'Shopware.apps.Customer.controller.Main',
+    
+    init: function () {
+        var me = this;
+        
+        // me.callParent will execute the init function of the overridden controller
+        me.callParent(arguments);
+    }
+});
 ```
 
 ## Download

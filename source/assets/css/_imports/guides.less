@@ -1,0 +1,307 @@
+.start-guide {
+    .dev-guide {
+        text-align: center;
+
+        img {
+            width: 200px;
+            margin-top: 0;
+        }
+    }
+
+    h1:first-of-type {
+        color: #142432;
+        font-size: 33px;
+        font-weight: 600;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .info.guide {
+        font-weight: 600;
+    }
+
+    .anchorjs-icon:before {
+        content: '';
+    }
+}
+
+/*------- START & END COLUMN -------*/
+.dev-guide--opener,
+.dev-guide--gitter {
+    display: inline-block;
+    padding-top: 20px;
+    padding-bottom: 30px;
+
+    .row {
+        clear: both;
+    }
+
+    .col {
+        width: 98%;
+        padding: 5% 1%;
+        text-align: center;
+    }
+
+    .col .say {
+        font-weight: 600;
+        font-size: 20px;
+        color: @text-color;
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+        padding: 20px 30px 0px 30px;
+
+        small {
+            font-size: 12px;
+            font-weight: 500;
+            color: lighten(@text-color, 10%);
+        }
+    }
+
+    .one {
+        background: url("../../img/img-one.jpg") center center no-repeat;
+        background-size: cover;
+        height: 110px;
+        width: 110px;
+        border-radius: 100%;
+        margin: 0 auto;
+        box-shadow: 0 9px 20px 0 rgba(0,0,0,0.14);
+    }
+
+    h2 {
+        font-size: 22px;
+        margin: 2px 0;
+    }
+
+    h3 {
+        font-size: 33px;
+        font-weight: 600;
+    }
+
+    .udemy-teaser--screenshot {
+        background: url("../../img/screen-dev-udemy.jpg") top center no-repeat;
+        background-size: contain;
+        width: 278px;
+        height: 170px;
+        margin: 0 auto;
+    }
+
+    .gitter-headline {
+        padding: 5% 10% 0 10%;
+    }
+
+    .gitter--screenshot {
+        background: url("../../img/screen-dev-gitter.jpg") top center no-repeat;
+        background-size: contain;
+        height: 140px;
+        margin: 0 auto;
+    }
+
+    .gitter--dialog {
+        text-align: left;
+        padding: 0 0 20px 30px;
+
+        .avatar-one {
+            background: url("../../img/img-one.jpg") center center no-repeat;
+            background-size: cover;
+            margin-top: 10px;
+            border-radius: 3px;
+            height: 45px;
+            width: 45px;
+            float: left;
+        }
+
+        .avatar-two {
+            background: url("../../img/dnoegel.png") center center no-repeat;
+            background-size: cover;
+            margin-top: 10px;
+            border-radius: 3px;
+            height: 45px;
+            width: 45px;
+            float: left;
+        }
+
+        .chat {
+            display: block;
+            padding-left: 60px;
+            font-weight: 600;
+
+            small {
+                font-size: 12px;
+                font-weight: 500;
+                color: lighten(@text-color, 10%);
+            }
+        }
+    }
+}
+
+/*------- BUTTON STYLES -------*/
+.start-guide {
+    .button {
+        clear: both;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 10px;
+
+        a {
+            display: inline-block;
+            color: #FFFFFF;
+            background: @gray05;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.1px;
+            padding: 13px 25px;
+            transition: all .3s cubic-bezier(0.25, 0.2, 0.45, 1);
+            box-shadow: 0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.12);
+
+            &:hover {
+                background: darken(@gray05, 9%);
+                box-shadow: 0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.33);
+                transform: translateY(-3px);
+                -webkit-transform: translateY(-3px);
+                -moz-transform: translateY(-3px);
+                -ms-transform: translateY(-3px);
+                -o-transform: translateY(-3px);
+            }
+        }
+    }
+
+    .udemy-teaser .button a {
+        background: #FA6179;
+        color: #FFF;
+        box-shadow: 0 0.5rem 1rem -0.3rem rgba(250, 97, 121, 0.22);
+
+        &:hover {
+            background: darken(#FA6179, 5%);
+            box-shadow: 0 0.5rem 1rem -0.3rem rgba(250, 97, 121, 0.44);
+        }
+    }
+}
+
+/*------- MENUE BOXES -------*/
+.dev-guide--menu {
+    display: inline-block;
+    width: 100%;
+
+    .row {
+        clear: both;
+    }
+
+    a.col {
+        color: @text-color;
+    }
+
+    .col {
+        background: #FFFFFF;
+        box-shadow: 0 5px 20px 0 rgba(12, 21, 75, 0.12);
+        border-radius: 6px;
+        width: 48%;
+        margin: 1%;
+        padding: 4% 1%;
+        height: 130px;
+        float: left;
+        text-align: center;
+        transition: all .3s cubic-bezier(0.25, 0.2, 0.45, 1);
+
+        &:hover {
+            box-shadow: 0 5px 25px 0 rgba(12, 21, 85, 0.23);
+            transform: translateY(-3px);
+            -webkit-transform: translateY(-2px);
+            -moz-transform: translateY(-2px);
+            -ms-transform: translateY(-2px);
+            -o-transform: translateY(-2px);
+        }
+
+        h2 {
+            color: #142432;
+            font-size: 21px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 468px) {
+    .dev-guide--opener .col,
+    .dev-guide--gitter .col {
+        float: left;
+        width: 90%;
+
+        &.medium {
+            width: 50%;
+        }
+
+        &.small {
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .start-guide .dev-guide img {
+        width: 260px;
+    }
+
+    h1:first-of-type {
+        font-size: 53px;
+    }
+
+    .dev-guide--opener .col,
+    .dev-guide--gitter .col {
+        padding: 5% 1%;
+
+        &.medium {
+            width: 65%;
+        }
+
+        &.small {
+            width: 35%;
+        }
+    }
+
+    .dev-guide--menu .col {
+        width: 31%;
+        margin: 1%;
+        padding: 5% 1%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .start-guide h1:first-of-type {
+        font-size: 53px;
+    }
+
+    .start-guide .dev-guide img {
+        margin-top: -30px;
+    }
+}
+
+
+@media screen and (min-width: 1400px) {
+    .bubble {
+        overflow: hidden;
+    }
+
+    .bubble--big {
+        position: fixed;
+        z-index: 0;
+        left: 85%;
+        top: 5%;
+        height: 600px;
+        width: 600px;
+        border-radius: 100%;
+        background-color: rgba(0, 73, 255, 0.09);
+    }
+
+    .bubble--small {
+        position: fixed;
+        z-index: 0;
+        bottom: 100px;
+        right: 0;
+        height: 200px;
+        width: 200px;
+        border-radius: 100%;
+        background-color: rgba(24, 158, 255, 0.08);
+    }
+}

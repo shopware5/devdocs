@@ -449,9 +449,9 @@ To register a custom controller in an existing backend ExtJS module, first you n
 //{/block}
 ```
 
-After adding it to the app.js file, the fill will be loaded, but the controller will not be instanced.
+After adding it to the app.js file, the file will be loaded, but the controller will not be instanced.
 
-To instantiate your controller, you need to override an the existing controller (depends on the module you want to extend). In this file you can override existing functions of the parent controller. You can and mostly need to call the parent function with the line `me.callParent(arguments)`:
+To instantiate your controller, you need to override the existing controller (depends on the module you want to extend). In this file you can override existing functions of the parent controller. You can and mostly need to call the parent function with the line `me.callParent(arguments)`:
 
 ```js
 Ext.define('Shopware.apps.SwagExtendCustomer.controller.MyOwnController', {

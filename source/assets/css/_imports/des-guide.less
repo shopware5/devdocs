@@ -1,10 +1,10 @@
 .start-guide {
-    .dev-guide {
+    .des-guide {
         text-align: center;
 
         img {
-            width: 200px;
             margin-top: 0;
+            width: 100px;
         }
     }
 
@@ -26,8 +26,8 @@
 }
 
 /*------- START & END COLUMN -------*/
-.dev-guide--opener,
-.dev-guide--gitter {
+.des-guide--opener,
+.des-guide--styletile {
     display: inline-block;
     padding-top: 20px;
     padding-bottom: 30px;
@@ -37,35 +37,37 @@
     }
 
     .col {
-        width: 98%;
         padding: 5% 1%;
         text-align: center;
+        width: 98%;
     }
 
     .col .say {
-        font-weight: 600;
-        font-size: 20px;
-        color: @text-color;
+        color: darken(@text-color, 20%);
         display: block;
+        font-size: 18px;
+        font-weight: 500;
+        font-style: italic;
         text-align: center;
         margin-bottom: 10px;
-        padding: 20px 30px 0px 30px;
+        padding: 8px 0 0 0;
 
         small {
+            color: lighten(@text-color, 20%);
             font-size: 12px;
             font-weight: 500;
-            color: lighten(@text-color, 10%);
+            font-style: normal;
         }
     }
 
     .one {
-        background: url("../../img/img-one.jpg") center center no-repeat;
+        background: url("../../img/des-img-one.jpg") center center no-repeat;
         background-size: cover;
-        height: 110px;
-        width: 110px;
         border-radius: 100%;
-        margin: 0 auto;
         box-shadow: 0 9px 20px 0 rgba(0,0,0,0.14);
+        height: 110px;
+        margin: 0 auto;
+        width: 110px;
     }
 
     h2 {
@@ -78,59 +80,64 @@
         font-weight: 600;
     }
 
-    .udemy-teaser--screenshot {
-        background: url("../../img/screen-dev-udemy.jpg") top center no-repeat;
-        background-size: contain;
-        width: 278px;
-        height: 170px;
-        margin: 0 auto;
-    }
-
-    .gitter-headline {
+    .styletile-headline {
         padding: 5% 10% 0 10%;
     }
 
-    .gitter--screenshot {
-        background: url("../../img/screen-dev-gitter.jpg") top center no-repeat;
+    .udemy-teaser--screenshot {
+        background: url("../../img/screen-des-udemy.jpg") top center no-repeat;
         background-size: contain;
-        height: 140px;
+        height: 170px;
+        image-rendering: -webkit-optimize-contrast;
         margin: 0 auto;
+        width: 278px;
     }
 
-    .gitter--dialog {
+    .styletile--screenshot {
+        background: url("../../img/screen-des-styletile.svg") top center no-repeat;
+        background-size: contain;
+        margin: 0 auto;
+        margin-top: 20px;
+        height: 170px;
+        width: 290px;
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    .styletile--dialog {
         text-align: left;
-        padding: 0 0 20px 30px;
+        padding: 0 0 20px 20px;
+        clear: both;
 
         .avatar-one {
-            background: url("../../img/img-one.jpg") center center no-repeat;
+            background: url("../../img/styletile-preview.svg") center center no-repeat;
             background-size: cover;
-            margin-top: 10px;
             border-radius: 3px;
-            height: 45px;
-            width: 45px;
             float: left;
+            height: 115px;
+            width: 88px;
         }
 
         .avatar-two {
-            background: url("../../img/dnoegel.png") center center no-repeat;
+            background: url("../../img/styletile-cheatsheet.svg") center center no-repeat;
             background-size: cover;
             margin-top: 10px;
             border-radius: 3px;
-            height: 45px;
-            width: 45px;
             float: left;
+            height: 70px;
+            width: 105px;
+        }
+
+        h4 {
+            color: darken(@text-color, 20%);
+            font-size: 24px;
         }
 
         .chat {
+            color: @text-color;
             display: block;
-            padding-left: 60px;
-            font-weight: 600;
+            font-weight: 500;
+            padding-left: 140px;
 
-            small {
-                font-size: 12px;
-                font-weight: 500;
-                color: lighten(@text-color, 10%);
-            }
         }
     }
 }
@@ -144,16 +151,15 @@
         padding-top: 10px;
 
         a {
-            display: inline-block;
-            color: #FFFFFF;
             background: @gray05;
             border-radius: 30px;
+            box-shadow: 0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.12);
+            color: #FFFFFF;
+            display: inline-block;
             font-weight: 600;
             font-size: 16px;
-            letter-spacing: 0.1px;
             padding: 13px 25px;
             transition: all .3s cubic-bezier(0.25, 0.2, 0.45, 1);
-            box-shadow: 0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.12);
 
             &:hover {
                 background: darken(@gray05, 9%);
@@ -169,8 +175,8 @@
 
     .udemy-teaser .button a {
         background: #FA6179;
-        color: #FFF;
         box-shadow: 0 0.5rem 1rem -0.3rem rgba(250, 97, 121, 0.22);
+        color: #FFF;
 
         &:hover {
             background: darken(#FA6179, 5%);
@@ -180,7 +186,7 @@
 }
 
 /*------- MENUE BOXES -------*/
-.dev-guide--menu {
+.des-guide--menu {
     display: inline-block;
     width: 100%;
 
@@ -195,14 +201,15 @@
     .col {
         background: #FFFFFF;
         box-shadow: 0 5px 20px 0 rgba(12, 21, 75, 0.12);
-        border-radius: 6px;
-        width: 48%;
-        margin: 1%;
-        padding: 4% 1%;
-        height: 130px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
         float: left;
+        margin: 1%;
+        padding: 20px 15px;
         text-align: center;
         transition: all .3s cubic-bezier(0.25, 0.2, 0.45, 1);
+        width: 98%;
 
         &:hover {
             box-shadow: 0 5px 25px 0 rgba(12, 21, 85, 0.23);
@@ -216,15 +223,16 @@
         h2 {
             color: #142432;
             font-size: 21px;
-            margin: 0;
+            line-height: 115%;
+            margin: 0 0 5px 0;
             padding: 0;
         }
     }
 }
 
 @media screen and (min-width: 468px) {
-    .dev-guide--opener .col,
-    .dev-guide--gitter .col {
+    .des-guide--opener .col,
+    .des-guide--styletile .col {
         float: left;
         width: 90%;
 
@@ -236,44 +244,65 @@
             width: 50%;
         }
     }
+
+    .des-guide--menu .col {
+        margin: 1%;
+        padding: 40px 15px;
+        width: 48%;
+    }
 }
 
 @media screen and (min-width: 768px) {
-    .start-guide .dev-guide img {
-        width: 260px;
+    .start-guide .des-guide img {
+        width: 180px;
     }
 
     h1:first-of-type {
         font-size: 53px;
     }
 
-    .dev-guide--opener .col,
-    .dev-guide--gitter .col {
+    .des-guide--opener .col,
+    .des-guide--styletile .col {
         padding: 5% 1%;
 
         &.medium {
-            width: 65%;
+            width: 60%;
         }
 
         &.small {
-            width: 35%;
+            width: 40%;
         }
     }
 
-    .dev-guide--menu .col {
-        width: 31%;
+    .des-guide--opener .col .say {
+        font-size: 20px;
+        padding: 8px 20px 0px 20px;
+    }
+
+    .des-guide--menu .col {
         margin: 1%;
-        padding: 5% 1%;
+        min-height: 160px;
+        padding: 40px 15px;
+        width: 31%;
     }
 }
 
 @media screen and (min-width: 1200px) {
+    .start-guide .des-guide img {
+        margin-top: -30px;
+        width: 180px;
+    }
+
     .start-guide h1:first-of-type {
         font-size: 53px;
     }
 
-    .start-guide .dev-guide img {
-        margin-top: -30px;
+    .des-guide--opener .col .say {
+        padding: 8px 50px 0px 50px;
+    }
+
+    .des-guide--menu .col {
+        min-height: auto;
     }
 }
 
@@ -284,24 +313,38 @@
     }
 
     .bubble--big {
-        position: fixed;
-        z-index: 0;
-        left: 85%;
-        top: 5%;
-        height: 600px;
-        width: 600px;
+        background-color: rgba(0, 73, 255, 0.05);
         border-radius: 100%;
-        background-color: rgba(0, 73, 255, 0.09);
+        left: 85%;
+        position: fixed;
+        top: 3%;
+        height: 660px;
+        width: 660px;
+        z-index: 0;
     }
 
     .bubble--small {
-        position: fixed;
-        z-index: 0;
-        bottom: 100px;
-        right: 0;
+        background-color: rgba(24, 158, 255, 0.09);
+        border-radius: 100%;
         height: 200px;
         width: 200px;
-        border-radius: 100%;
-        background-color: rgba(24, 158, 255, 0.08);
+        bottom: 8%;
+        right: 15px;
+        position: fixed;
+        z-index: 0;
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    .bubble--big {
+        background-color: rgba(0, 73, 255, 0.03);
+        height: 900px;
+        width: 900px;
+        left: 78%;
+    }
+
+    .bubble--small {
+        background-color: rgba(24, 158, 255, 0.06);
+        right: 10%;
     }
 }

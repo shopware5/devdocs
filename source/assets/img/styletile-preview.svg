@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 88 115" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>styletile-preview</title>
+<desc>Created with Sketch.</desc>
+<defs>
+<linearGradient id="d" x1="50%" x2="50%" y1="3.9979%" y2="100%">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#F8F8FA" offset="1"/>
+</linearGradient>
+<rect id="a" width="56" height="34" rx="3"/>
+<linearGradient id="c" x1="50%" x2="50%" y1="3.9979%" y2="100%">
+<stop stop-color="#FA5D27" offset="0"/>
+<stop stop-color="#D9400B" offset="1"/>
+</linearGradient>
+<linearGradient id="b" x1="50%" x2="50%" y1="3.9979%" y2="100%">
+<stop stop-color="#5F7285" offset="0"/>
+<stop stop-color="#3F4C58" offset="1"/>
+</linearGradient>
+</defs>
+<g fill="none" fill-rule="evenodd">
+<g transform="translate(-834 -1140)">
+<g transform="translate(460 1006)">
+<g transform="translate(374 134)">
+<use fill="url(#d)" fill-rule="evenodd" xlink:href="#a"/>
+<rect x=".5" y=".5" width="55" height="33" rx="3" stroke="#D2D2E0"/>
+<text fill="#485E74" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" letter-spacing=".094828">
+<tspan x="12" y="21">Basic</tspan>
+</text>
+<rect y="41" width="75" height="34" rx="3" fill="url(#c)"/>
+<text fill="#FFFFFF" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" letter-spacing=".094828">
+<tspan x="13" y="62">Primary</tspan>
+</text>
+<rect y="81" width="88" height="34" rx="3" fill="url(#b)"/>
+<text fill="#FFFFFF" font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" letter-spacing=".094828">
+<tspan x="13" y="102">Secondary</tspan>
+</text>
+</g>
+</g>
+</g>
+</g>
+</svg>

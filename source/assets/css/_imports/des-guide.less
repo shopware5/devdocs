@@ -31,6 +31,7 @@
     display: inline-block;
     padding-top: 20px;
     padding-bottom: 30px;
+    width: 98%;
 
     .row {
         clear: both;
@@ -81,14 +82,13 @@
     }
 
     .styletile-headline {
-        padding: 5% 10% 0 10%;
+        padding: 2% 1% 0 1%;
     }
 
     .udemy-teaser--screenshot {
         background: url("../../img/screen-des-udemy.jpg") top center no-repeat;
         background-size: contain;
         height: 170px;
-        image-rendering: -webkit-optimize-contrast;
         margin: 0 auto;
         width: 278px;
     }
@@ -97,10 +97,8 @@
         background: url("../../img/screen-des-styletile.svg") top center no-repeat;
         background-size: contain;
         margin: 0 auto;
-        margin-top: 20px;
         height: 170px;
-        width: 290px;
-        image-rendering: -webkit-optimize-contrast;
+        width: auto;
     }
 
     .styletile--dialog {
@@ -111,20 +109,18 @@
         .avatar-one {
             background: url("../../img/styletile-preview.svg") center center no-repeat;
             background-size: cover;
-            border-radius: 3px;
             float: left;
-            height: 115px;
-            width: 88px;
+            height: 105px;
+            width: 80px;
         }
 
         .avatar-two {
             background: url("../../img/styletile-cheatsheet.svg") center center no-repeat;
             background-size: cover;
             margin-top: 10px;
-            border-radius: 3px;
             float: left;
-            height: 70px;
-            width: 105px;
+            height: 60px;
+            width: 80px;
         }
 
         h4 {
@@ -136,7 +132,7 @@
             color: @text-color;
             display: block;
             font-weight: 500;
-            padding-left: 140px;
+            padding-left: 120px;
 
         }
     }
@@ -231,8 +227,7 @@
 }
 
 @media screen and (min-width: 468px) {
-    .des-guide--opener .col,
-    .des-guide--styletile .col {
+    .des-guide--opener .col {
         float: left;
         width: 90%;
 
@@ -243,12 +238,6 @@
         &.small {
             width: 50%;
         }
-    }
-
-    .des-guide--menu .col {
-        margin: 1%;
-        padding: 40px 15px;
-        width: 48%;
     }
 }
 
@@ -263,6 +252,8 @@
 
     .des-guide--opener .col,
     .des-guide--styletile .col {
+        float: left;
+        width: 98%;
         padding: 5% 1%;
 
         &.medium {
@@ -272,16 +263,25 @@
         &.small {
             width: 40%;
         }
+
+        .styletile--screenshot {
+            background-position: top left;
+            margin-top: 20px;
+        }
+    }
+
+    .des-guide--styletile .styletile-headline {
+        padding: 5% 10% 0 10%;
     }
 
     .des-guide--opener .col .say {
         font-size: 20px;
-        padding: 8px 20px 0px 20px;
+        padding: 8px 25px 0px 25px;
     }
 
     .des-guide--menu .col {
         margin: 1%;
-        min-height: 160px;
+        min-height: 140px;
         padding: 40px 15px;
         width: 31%;
     }
@@ -295,10 +295,6 @@
 
     .start-guide h1:first-of-type {
         font-size: 53px;
-    }
-
-    .des-guide--opener .col .say {
-        padding: 8px 50px 0px 50px;
     }
 
     .des-guide--menu .col {

@@ -31,6 +31,7 @@
     display: inline-block;
     padding-top: 20px;
     padding-bottom: 30px;
+    width: 98%;
 
     .row {
         clear: both;
@@ -81,14 +82,13 @@
     }
 
     .gitter-headline {
-        padding: 5% 10% 0 10%;
+        padding: 2% 1% 0 1%;
     }
 
     .udemy-teaser--screenshot {
         background: url("../../img/screen-dev-udemy.jpg") top center no-repeat;
         background-size: contain;
         height: 170px;
-        image-rendering: -webkit-optimize-contrast;
         margin: 0 auto;
         width: 278px;
     }
@@ -97,9 +97,8 @@
         background: url("../../img/screen-dev-gitter.jpg") top center no-repeat;
         background-size: contain;
         margin: 0 auto;
-        height: 170px;
-        width: 290px;
-        image-rendering: -webkit-optimize-contrast;
+        height: 160px;
+        width: auto;
     }
 
     .gitter--dialog {
@@ -243,12 +242,6 @@
             width: 50%;
         }
     }
-
-    .dev-guide--menu .col {
-        margin: 1%;
-        padding: 40px 15px;
-        width: 48%;
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -273,14 +266,18 @@
         }
     }
 
+    .dev-guide--gitter .gitter-headline{
+        padding: 5% 10% 0 10%;
+    }
+
     .dev-guide--opener .col .say {
         font-size: 20px;
-        padding: 8px 20px 0px 20px;
+        padding: 8px 25px 0px 25px;
     }
 
     .dev-guide--menu .col {
         margin: 1%;
-        min-height: 160px;
+        min-height: 140px;
         padding: 40px 15px;
         width: 31%;
     }
@@ -294,10 +291,6 @@
 
     .start-guide h1:first-of-type {
         font-size: 53px;
-    }
-
-    .dev-guide--opener .col .say {
-        padding: 8px 50px 0px 50px;
     }
 
     .dev-guide--menu .col {

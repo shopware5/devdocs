@@ -199,14 +199,14 @@ With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adap
 'cache' => [
     'backend' => 'redis', // e.G auto, apcu, xcache
     'backendOptions' => [
-        'servers' => array(
-            array(
+        'servers' => [
+            [
                 'host' => '127.0.0.1',
                 'port' => 6379,
                 'dbindex' => 0,
                 'redisAuth' => ''
-            ),
-        ),
+            ],
+        ],
     ],
 ]
 ```

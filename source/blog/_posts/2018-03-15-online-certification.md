@@ -1,5 +1,5 @@
 ---
-title: Get your template or developer certification online
+title: New: Get your template or developer certification online
 tags:
 - certification
 - training
@@ -10,8 +10,6 @@ categories:
 authors: [nd]
 github_link: blog/_posts/2018-03-15-online-certification.md
 ---
-
-# New: Get your template or developer certification online
 
 Interested in sharing your Shopware expertise with potential clients? Why not make it official - you can now take the exam to become a certified Shopware developer or template designer and developer online. Not only does a certificate increase your opportunities as a developer, but it’s proof of your expertise and ability to develop innovative solutions for Shopware. Equipped with everything you need to know to pass, our free trainings on Udemy are the perfect way to prepare for the exam. Those who are looking to become re-certified can also do so online.
 

@@ -15,11 +15,11 @@ menu_order: 30
 
 This tutorial is part of a series that covers the Shopware Backend Components. In the last tutorial [Backend Components - Basics](/developers-guide/backend-components/basics/) we covered the implementation of a simple product listing. In this tutorial, you'll learn the basics of the listing and get a little example of it. For this, the `Shopware.grid.Panel` and `Shopware.window.Listing` components will be explained in more detail.
 
-We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductBasics.zip](/exampleplugins/SwagProductBasics.zip)
+We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductBasic.zip](/exampleplugins/SwagProductBasic.zip)
 
-The `Shopware.grid.Panel` for the listing was implemented in `Views/backend/swag_product/view/list/product.js`.
+The `Shopware.grid.Panel` for the listing was implemented in `Resources/views/backend/swag_product_listing/view/list/product.js`.
 
-The `Shopware.window.Listing` in `Views/backend/swag_product/view/list/window.js`.
+The `Shopware.window.Listing` in `Resources/views/backend/swag_product_listing/view/list/window.js`.
 
 <div class="toc-list"></div>
 
@@ -27,7 +27,7 @@ The `Shopware.window.Listing` in `Views/backend/swag_product/view/list/window.js
 The `Shopware.window.Listing` component, hereinafter referred to as listing window, does not contain many configuration options and therefore it's quickly explained. The listing window is usually used as startup window of an application and has been defined in our main controller last time. As requirements you have the `listingGrid` and `listingStore` property. Here you have to define the class names of our `Shopware.grid.Panel` and `Shopware.store.Listing`.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Window', {
     extend: 'Shopware.window.Listing',
     alias: 'widget.product-list-window',
     height: 340,
@@ -36,8 +36,8 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
     configure: function() {
         return {
-            listingGrid: 'Shopware.apps.SwagProduct.view.list.Product',
-            listingStore: 'Shopware.apps.SwagProduct.store.Product'
+            listingGrid: 'Shopware.apps.SwagProductListing.view.list.Product',
+            listingStore: 'Shopware.apps.SwagProductListing.store.Product'
         };
     }
 });
@@ -45,11 +45,11 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
 The defined listing store will be created while instantiating the listing window using the `createListingStore()` method. If you don't define any, you'll get the following error message:
 
-<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProduct.view.list.Window: Component requires the configured `listingStore` property in the configure() function.</div>
+<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProductListing.view.list.Window: Component requires the configured `listingStore` property in the configure() function.</div>
 
 The `Shopware.grid.Panel` will be created by the `createGridPanel()` method and will be added to the `items` property of the listing window. In addition, the created `Shopware.grid.Panel` will also be available in the listing window as a property called `gridPanel`. This makes it easier to access the component later on. If there is no `listingGrid` defined, you'll get the following error message:
 
-<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProduct.view.list.Window: Component requires the configured `listingGrid` property in the configure() function. </div>
+<div class="alert alert-danger">Uncaught Shopware configuration error: Shopware.apps.SwagProductListing.view.list.Window: Component requires the configured `listingGrid` property in the configure() function. </div>
 
 Further configuration options of the `Shopware.window.Listing` will be covered in the upcoming tutorials.
 
@@ -60,7 +60,7 @@ In this part of the tutorial we'll cover the basics of how the `Shopware.grid.Pa
 The `Shopware.grid.Panel` expects a `Ext.data.Store` which contains `Ext.data.Model` instances. The model will be the basis for the generation of the column. By default, you should create every field manually except for the `id` property. This should result in a faster application:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductListing.model.Product', {
    fields: [
       { name : 'id', type: 'int', useNull: true },
       { name : 'name', type: 'string' },
@@ -82,7 +82,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 Based on the field types of your model, different default Shopware columns will be created. Because a model can contain many more fields than those seen above, you can decide whether a certain field should be displayed or not. To do so, you can set the property `columns` within the `configure()` method. As soon as the property `columns` is defined, only the provided fields will be created and displayed. The `columns` property is defined as an object based on a key/value schema where the key represents the field name like `name`:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -103,7 +103,7 @@ The `columns` property may not only be used for limitation - it can also be used
 The first configuration option is the sorting of the shown columns. The `Shopware.grid.Panel` creates the columns in the order of their declaration. Second, you can define field specific configurations, like a renderer method or translations, by providing an object like seen below:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -124,7 +124,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 But this is not the only way to configure a column. You can also provide a function which returns the column:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -148,7 +148,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 In the configuration above, the `header` property of the column `name` has been modified to change the name of the column header. There is also a shorthand for that. Instead of providing an object, you can provide a string which will be the column header. You can even use that shorthand for translations:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -166,7 +166,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 The `Shopware.grid.Panel` also has features like a toolbar and their children elements. This feature can be activated or deactivated. Every `Shopware.grid.Panel` feature has its own activation parameter:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -182,7 +182,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 #### Example: Disable add button and hide search field
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -199,7 +199,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 #### Example: Hide action column
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -215,7 +215,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 #### Example: Hide delete column
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     configure: function() {
         return {
@@ -253,7 +253,7 @@ You can extend the `Shopware.grid.Panel` with either one of the following ways:
 * through override of the methods
 * through the ExtJS event system
 
-The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller, `swag_product/controller/main.js`.
+The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller, `swag_product_listing/controller/main.js`.
 
 ### Add custom action column
 The action column of the `Shopware.grid.Panel` will be created by the `createActionColumn()` method. The actual elements of the action column will be created by the `createActionColumnItems()` method:
@@ -277,12 +277,12 @@ createActionColumnItems: function () {
 },
 ```
 
-To add a new column, you can easily just override the method of the `Shopware.apps.SwagProduct.view.list.Product` component or subscribe to the `product-after-create-action-column-items` event in the main controller:
+To add a new column, you can easily just override the method of the `Shopware.apps.SwagProductListing.view.list.Product` component or subscribe to the `product-after-create-action-column-items` event in the main controller:
 
 **Through method overriding**
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center',
@@ -306,7 +306,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 **Through the event system**
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductListing.controller.Main', {
     extend: 'Enlight.app.Controller',
     init: function() {
         var me = this;
@@ -368,7 +368,7 @@ The event system example will use the `product-before-create-right-toolbar-items
 
 **Through method overriding**
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center',
@@ -396,7 +396,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 
 **Through the event system**
 ```php
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductListing.controller.Main', {
     extend: 'Enlight.app.Controller',
     init: function() {
         var me = this;
@@ -477,7 +477,7 @@ To implement this, you have to either override the `createColumns()` method or u
 
 **Through method overriding**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductListing.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center',
@@ -512,7 +512,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
 
 **Through the event system**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductListing.controller.Main', {
     extend: 'Enlight.app.Controller',
     init: function() {
         var me = this;

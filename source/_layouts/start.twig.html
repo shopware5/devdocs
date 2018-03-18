@@ -1,0 +1,324 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}</title>
+
+    {% block head_meta %}
+    <meta name="description"
+          content="{% if page.title is defined %}{{ page.title }}{% else %}{{ page.project.name }}{% endif %}{% if page.description is defined %}: {{ page.description }}{% else %}{{ page.project.description }}{% endif %}"/>
+    {% endblock %}
+
+    {% if page.menu_chapter %}
+    <meta name="robots" content="noindex" />
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#26556f">
+
+    <link rel="stylesheet" href='//fonts.googleapis.com/css?family=Open+Sans:700,600,400' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css">
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/docsearch.min.css')) }}" />
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/basic.css')) }}"  media="screen">
+
+    <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/blog/atom.xml"
+          title="Shopware Developer blog feed"/>
+</head>
+
+<body>
+<div class="wrapper">
+
+    <header class="header--main">
+
+        <a href="{{ site.url }}/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
+            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/shopware_developers_logo_white.svg')) }}" />
+        </a>
+
+    </header>
+
+    <div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+            <button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true">
+        <div class="navi--content">
+            <ul class="navi--tree">
+                {% for group in page.menu %}
+
+                <li class="navi--chapter{% if (page.group == group.menu_title) or (page.menu_title == group.menu_title) %} is--active{% endif %}">
+                    <a href="{{ group.url }}" class="navi--link{% if (page.group == group.menu_title) or (page.menu_title == group.menu_title) %} is--active{% endif %}{% if group.children %} has--children{% endif %}">
+                        {{ group.menu_title }}
+                    </a>
+
+                    {% if group.children %}
+                    <ul class="navi--sub-tree{% if group.menu_style == 'numeric' %} is--numbered{% endif %}{% if group.menu_style == 'bullet' %} is--bulleted{% endif %}">
+                        {% for subgroup in group.children %}
+                        <li class="navi--sub-chapter{% if ((page.subgroup == subgroup.menu_title) and (page.group == group.menu_title)) or (page.menu_title == subgroup.menu_title) %} is--active{% endif %}">
+
+                            <a class="navi--link{% if page.subgroup == subgroup.menu_title or (page.menu_title == subgroup.menu_title) %} is--active{% endif %}{% if subgroup.children %} has--children{% endif %}" href="{{ subgroup.url }}">
+                                {{ subgroup.menu_title }}
+                            </a>
+
+                            {% if subgroup.children %}
+                            <ul class="navi--sub-tree{% if subgroup.menu_style == 'numeric' %} is--numbered{% endif %}{% if subgroup.menu_style == 'bullet' %} is--bulleted{% endif %}">
+
+                                {% for item in subgroup.children %}
+                                <li class="navi--sub-chapter">
+                                    <a class="navi--link{% if page.menu_title == item.menu_title %} is--active{% endif %}" href="{{ item.url }}">
+                                        {{ item.menu_title }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+
+    {% block content_main %}
+
+
+    <div class="start page-wrap"><!-----  Start Custom Page ------->
+        <div class="header-banner">
+            <div class="wrapper">
+                <div class="headline">Getting started</div>
+                <div class="col">
+                    <div class="start-icon install"></div>
+                    <h1>Set up</h1>
+                    <h5>Start developing with Shopware.</h5>
+                    <div class="button"><a href="/sysadmins-guide/installation-guide/" title="shopware installer">start now</a></div>
+                </div>
+                <div class="col">
+                    <div class="start-icon design"></div>
+                    <h1>Themes</h1>
+                    <h5>Learn how to create themes.</h5>
+                    <div class="button"><a href="/designers-guide/" title="shopware designers guide">how to</a></div>
+                </div>
+                <div class="col">
+                    <div class="start-icon plugin"></div>
+                    <h1>Plugins</h1>
+                    <h5>Learn how to extend Shopware.</h5>
+                    <div class="button"><a href="/plugin-guide/" title="shopware plugin guide">show me</a></div>
+                </div>
+            </div>
+            <div class="gradient"></div>
+            <div class="bridge" style="clip-path: polygon(100% 0.75%, 0% 100%, 100% 100%);"></div>
+
+        </div>
+    </div><!-- close Page Wrap -->
+
+
+
+    <!---- START Blog ----->
+    <div class="devdocs content start">
+
+        <section id="search-results" style="display: none;">
+            <h2 class="search-results--headline">Search results</h2>
+
+            <div class="entries"></div>
+        </section>
+
+        <div class="inner-container">
+
+            {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+
+            {% if page.history is defined %}
+            <h2>Version History</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Changes</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for changeDate, changeText in page.history|reverse(true) %}
+                <tr>
+                    <td>{{ changeDate|date("Y-m-d") }}</td>
+                    <td>{{ changeText }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+    </div><!---- END Blog ----->
+
+
+    <div class="start page-wrap">
+
+        <!-- START Contribute & Resources Icons -->
+        <div class="icon-banner">
+            <div class="wrapper">
+
+            <h3>Contribute & Resources</h3>
+
+            <div class="row"><!-- start row --->
+                <div class="col">
+                   <a href="https://issues.shopware.com" target="_blank" alt="Bug Icon" title="Issue Tracker">
+                    <div class="icon issuetracker"></div>
+                    <h5>Issue Tracker</h5>
+                   </a>
+                </div>
+
+                <div class="col">
+                    <a href="https://github.com/shopwareLabs" target="_blank" alt="Labs Icon" title="Shopware Labs on github">
+                        <div class="icon labs"></div>
+                        <h5>Labs</h5>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="{{ site.url }}/styletile/" target="_blank" alt="Non-style Icon" title="Theme style tile">
+                        <div class="icon styleguide"></div>
+                        <h5>Style tile</h5>
+                    </a>
+                </div>
+            </div><!-- ende row --->
+
+            <div class="row"><!-- start row --->
+                <div class="col">
+                    <a href="https://github.com/shopware/shopware" target="_blank" alt="Github Icon" title="Shopware on github">
+                        <div class="icon github"></div>
+                        <h5>GitHub</h5>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="https://twitter.com/shopware" target="_blank" alt="Twitter Icon" title="Shopware on twitter">
+                        <div class="icon twitter"></div>
+                        <h5>Twitter</h5>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="http://forum.shopware.com/?_ga=2.38302695.533270487.1511170509-1625522452.1501580272" target="_blank" alt="Forum Icon" title="shopware community forum">
+                        <div class="icon forum"></div>
+                        <h5>Forum</h5>
+                    </a>
+                </div>
+            </div><!-- ende row --->
+
+        </div>
+    </div><!-- END Contribute & Resources Icons -->
+
+
+        <!--UDEMY TEASER-->
+        <div class="udemy-teaser">
+            <div class="wrapper">
+
+                <div class="bubbles">
+                    <div class="bubble-img">
+
+                        <div class="big-one"></div>
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                        <div class="four"></div>
+                        <div class="bubble-name">
+                            <h6>Niklas Dzösch</h6>
+                            <p>Shopware Evangelist and Core Developer</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <h3>Develop your own unique theme</h3>
+                    <p>Here Shopware Evangelist and Core Developer, Niklas Dzösch, takes you step-by-step through the process of developing your own unique Shopware theme. From installation to uploading your own theme in our store, this video series provides you with first-hand experience so that you can easily start creating your own Shopware themes today.</p>
+                </div>
+
+                <div class="button">
+                    <a href="https://www.udemy.com/shopware-template-training-basic/" target="_blank" title="Enrol now for free">Enrol now for free</a>
+                </div>
+            </div>
+        </div><!-- close udemy --->
+
+
+    <div class="latest-changes">
+        <h3>Latest changes</h3>
+        <div class="wrapper">
+
+            <a href="#expandcode" class="expand" id="expandcode">show more</a>
+            <a href="#collapsecode" class="collapse" id="collapsecode">show less</a>
+
+            <div class="content-list">
+                {% include 'latest_changes.twig' %}
+            </div>
+        </div>
+    </div>
+
+    </div><!-----  END Start Page Wrap------->
+
+
+    {% endblock %}
+
+    <!-- Footer -->
+    {% block footer_main %}
+
+
+    <footer class="main-footer">
+        <div class="footer--container">
+            <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
+            <div class="footer--links">
+                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+</div>
+
+<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/anchor.min.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.expandCode.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.toc.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.offcanvas.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/app.js')) }}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+
+{% block scripts_after %}
+{% endblock %}
+
+{% if site.google_tag_manager_id %}
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id={{site.google_tag_manager_id}}" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+        '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', '{{site.google_tag_manager_id}}');</script>
+<!-- End Google Tag Manager -->
+{% endif %}
+
+</body>
+</html>

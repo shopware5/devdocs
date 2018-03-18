@@ -20,15 +20,3 @@ script:
 
 after_success:
     - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && ./deploy.sh
-
-deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    local_dir: output_prod
-    target_branch: gh-pages
-    fqdn: developers.shopware.com
-    name: shopwareBot
-    email: entwicklung@shopware.de
-    on:
-        branch: master

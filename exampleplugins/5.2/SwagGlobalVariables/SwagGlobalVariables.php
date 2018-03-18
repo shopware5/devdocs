@@ -22,6 +22,6 @@ class SwagGlobalVariables extends Plugin
      */
     public function onPostDispatch(\Enlight_Controller_ActionEventArgs $args)
     {
-        $args->getSubject()->View()->assign('sUserloggedIn', Shopware()->Modules()->Admin()->sCheckUser());
+        $args->getSubject()->View()->assign('sUserLoggedIn', Shopware()->Modules()->Admin()->sCheckUser());
     }
 }

@@ -50,11 +50,11 @@ The `picture` element also contains a default `img` tag, in cases the `media` at
 ```html
 <picture>
     <source sizes="(min-width: 48em) 80vw, (min-width: 64em) 50vw, 100vw"
-    		srcset="product-small@2x.jpg 400w, product-medium@2x.jpg 1200w, product-large@2x.jpg 2560w" 
-    		media="(min-resolution: 192dpi)">
+            srcset="product-small@2x.jpg 400w, product-medium@2x.jpg 1200w, product-large@2x.jpg 2560w" 
+            media="(min-resolution: 192dpi)">
   
     <source sizes="(min-width: 48em) 80vw, (min-width: 64em) 50vw, 100vw"
-    		srcset="product-small.jpg 200w, product-medium.jpg 600w, product-large.jpg 1280w">
+            srcset="product-small.jpg 200w, product-medium.jpg 600w, product-large.jpg 1280w">
 
     <img srcset="product-large.jpg, product-large@2x.jpg 2x" alt="Product picture">
 </picture>

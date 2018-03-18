@@ -1,0 +1,23 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--
+        First create an event subscriber class in `PluginName/Subscriber/` that implements the `Enlight\Event\SubscriberInterface`.
+        The interface determines that the getSubscribedEvents method must be implemented.
+        To register an event subscriber in the services.xml use the `shopware.event_subscriber` tag.
+        -->
+
+        <service id="swag_events.subscriber.frontend_listing_subscriber"
+                 class="SwagEvents\Subscriber\FrontendListingSubscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="swag_events.subscriber.swag_event_subscriber" class="SwagEvents\Subscriber\SwagEventsSubscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+    </services>
+
+</container>

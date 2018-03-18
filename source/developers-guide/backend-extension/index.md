@@ -51,11 +51,13 @@ names are in CamelCase, backend paths are in snake_case.
 ### Bootstrapping
 When clicking the menu item, Shopware will trigger the following request to the configured controller's `index` action:
 
-```http://localhost/training/backend/Customer?file=app```
+```text
+http://localhost/training/backend/Customer?file=app
+```
 
 The controller will then respond with the content of the `app.js` file from the path `backend/customer/app.js`:
 
-```
+```js
 //{block name="backend/customer/application"}
 Ext.define('Shopware.apps.Customer', {
     name:'Shopware.apps.Customer',
@@ -122,40 +124,76 @@ you will need to insert your JavaScript in the `index` action (see description a
 components (e.g. a grid in the customer module), you will need to insert your overwrite in the `load` action - as this
 is where all the components are loaded.
 
-<img title="numberfield modification" align="right" style="margin-right:10px;width:300px;" src="img/numberfield.png" />
-
 ### Example #1: Simple extension
 
+<img title="title modification" src="img/replace.png" />
+
 In this example, an extension for Shopware's default customer module is implemented. First of all, an existing free
-text field should be changed to only allow entering numbers.
+text field should be changed ComboBox with preset titles.
 
 In order to do so, we need to know where the original text field is created. This happens in
-`themes/Backend/ExtJs/backend/customer/view/detail/billing.js` in the method `createBillingFormRight`. This method
-will return all fields for the right side of the billing info overview. In order to modify this method, we subscribe to
-the `PostDispatchSecure` event of the customer controller:
+`themes/Backend/ExtJs/backend/customer/view/detail/window.js` in the method `createPersonalFieldSet`. This method
+will return all fields for the right side of the billing info overview as a FieldSet. In order to modify this method, we subscribe to
+the `PostDispatchSecure` event of the customer controller in the service,xml:
 
+```xml
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_extend_customer.subscriber.templates" class="SwagExtendCustomer\Subscriber\ExtendCustomer">
+            <argument>%swag_extend_customer.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+</container>
 ```
-public function install()
+
+```php
+<?php
+
+namespace SwagExtendCustomer\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+
+class ExtendCustomer implements SubscriberInterface
 {
-    $this->subscribeEvent(
-        'Enlight_Controller_Action_PostDispatchSecure_Backend_Customer',
-        'onCustomerPostDispatch'
-    );
+    /**
+     * @var string
+     */
+    private $pluginDirectory;
 
-    return true;
-}
+    /**
+     * @param $pluginDirectory
+     */
+    public function __construct($pluginDirectory)
+    {
+        $this->pluginDirectory = $pluginDirectory;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Backend_Customer' => 'onCustomerPostDispatch'
+        ];
+    }
 
-public function onCustomerPostDispatch(Enlight_Event_EventArgs $args)
-{
-    /** @var \Enlight_Controller_Action $controller */
-    $controller = $args->getSubject();
-    $view = $controller->View();
-    $request = $controller->Request();
+    public function onCustomerPostDispatch(\Enlight_Event_EventArgs $args)
+    {
+        /** @var \Shopware_Controllers_Backend_Customer $controller */
+        $controller = $args->getSubject();
 
-    $view->addTemplateDir(__DIR__ . '/Views');
+        $view = $controller->View();
+        $request = $controller->Request();
 
-    if ($request->getActionName() == 'load') {
-        $view->extendsTemplate('backend/swag_extend_customer/view/detail/billing.js');
+        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
+
+        if ($request->getActionName() == 'load') {
+            $view->extendsTemplate('backend/swag_extend_customer/view/detail/window.js');
+        }
     }
 }
 ```
@@ -163,96 +201,170 @@ public function onCustomerPostDispatch(Enlight_Event_EventArgs $args)
 So in the `load` action, where all the components are loaded, we inject our modification template. In this example,
 this file looks like this:
 
-```
-//{block name="backend/customer/view/detail/billing"}
+```js
+//{block name="backend/customer/view/detail/window"}
 // {$smarty.block.parent}
-Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Billing', {
-    override:'Shopware.apps.Customer.view.detail.Billing',
+Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
+    override: 'Shopware.apps.Customer.view.detail.Window',
 
     /**
-     * This extjs override will call the original method first
-     * and then change the xtype of the 3rd field
+     * Replace the textBox for field "title" with a comboBox
+     *
+     * @return { Ext.form.FieldSet }
      */
-    createBillingFormRight: function() {
-        var me = this,
-            result = me.callParent(arguments);
+     createPersonalFieldSet: function () {
+            var me = this,
+                fieldSet = me.callParent(arguments),
+                indexA, indexB;
+    
+            fieldSet.items.items.each(function (item, firstIndex) {
+                item.items.items.each(function (field, secondIndex) {
+                    if(field.name === 'title') {
+                        indexA = firstIndex;
+                        indexB = secondIndex;
+                    }
+                });
+            });
+    
+            fieldSet.items.items[indexA].items.items[indexB] = Ext.create('Ext.form.field.ComboBox', {
+                labelWidth: 155,
+                anchor: '95%',
+                name: 'title',
+                displayField: 'name',
+                valueField: 'name',
+                store: me.createTitleStore(),
+                fieldLabel: 'Title'
+            });
+    
+            return fieldSet;
+        },
 
-        result[2].xtype = 'numberfield';
-
-        return result;
+    /**
+     * @return { Ext.data.Store }
+     */
+    createTitleStore: function () {
+        return Ext.create('Ext.data.Store', {
+            fields: [
+                { name: 'name' }
+            ],
+            data: [
+                { name: 'Sir' },
+                { name: 'Madame' },
+                { name: 'Lord' },
+                { name: 'Dr.' },
+                { name: 'Prof.' },
+                { name: 'Prof. Dr.' }
+            ]
+        })
     }
+
 });
 //{/block}
 ```
 
 As you can see, the block of the original customer module is extended using Smarty:
 
-```
-{block name="backend/customer/view/detail/billing"}
+```smarty
+ {block name="backend/customer/view/detail/window"}
  {$smarty.block.parent}
 ```
 
-Then a ExtJS class is defined. The class name `Shopware.apps.SwagExtendCustomer.view.detail.Billing` originates
+Then a ExtJS class is defined. The class name `Shopware.apps.SwagExtendCustomer.view.detail.Window` originates
 from the path of that template file. In the next line ExtJS is instructed to override the original customer billing class:
 
-```
-override:'Shopware.apps.Customer.view.detail.Billing'
+```js
+override:'Shopware.apps.Customer.view.detail.Window'
 ```
 
-Now the method `createBillingFormRight` can just be re-implemented. Calling `me.callParent(arguments)` will call the
-original (overridden) method and return its result - in our case the array of fields we want to modify. This array can
-be modified as needed - in this example the xtype of the 3rd field is changed to `numberfield`: `result[2].xtype = 'numberfield';`.
+Now the method `createPersonalFieldSet` can just be re-implemented. Calling `me.callParent(arguments)` will call the
+original (overridden) method and return its result - in this case we get a Ext.form.FieldSet as result and modify the items of the FieldSet
 
-At the end the modified array is returned - this way our extension is rendered into the window instead of the original
+At the end the modified FieldSet is returned - this way our extension is rendered into the window instead of the original
 one.
 
-<img title="numberfield modification" align="right" style="margin-right:10px;width:300px;" src="img/tab.png" />
+### Example #2: Custom components 
 
-### Example #2: Custom components
+<img title="numberfield modification" align="right" style="margin-right:10px;width:300px;" src="img/tab.png" />
 
 In some cases, you also want to add whole new components to a backend module. This example might look similar to the
 first one, but there are subtle changes. In this example, a new tab is introduced to the customer module, which
 will just contain a simple "hello world" message - but you could easily extend it to show custom data.
-The `Bootstrap` looks similar, it subscribes to `Enlight_Controller_Action_PostDispatchSecure_Backend_Customer` and
+The `Subscriber` looks similar, it subscribes to `Enlight_Controller_Action_PostDispatchSecure_Backend_Customer` and
 registers a callback method.
 
 In the callback, there is a distinction between `index` and `load` actions. The `index` action is the right place
  to introduce the new component, so we know that it's available before all other components are loaded. The `load` action - just
  as in the first example - is used to modify the original module, so that the new tab is actually displayed:
 
+```xml
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_extend_customer.subscriber.templates" class="SwagExtendCustomer\Subscriber\ExtendCustomer">
+            <argument>%swag_extend_customer.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+</container>
 ```
-public function install()
+
+```php
+<?php
+
+namespace SwagExtendCustomer\Subscriber;
+
+use Enlight\Event\SubscriberInterface;
+
+class ExtendCustomer implements SubscriberInterface
 {
-    $this->subscribeEvent(
-        'Enlight_Controller_Action_PostDispatchSecure_Backend_Customer',
-        'onCustomerPostDispatch'
-    );
+    /**
+     * @var string
+     */
+    private $pluginDirectory;
 
-    return true;
-}
-
-public function onCustomerPostDispatch(Enlight_Event_EventArgs $args)
-{
-    /** @var \Enlight_Controller_Action $controller */
-    $controller = $args->getSubject();
-    $view = $controller->View();
-    $request = $controller->Request();
-
-    $view->addTemplateDir(__DIR__ . '/Views');
-
-    if ($request->getActionName() == 'index') {
-        $view->extendsTemplate('backend/swag_extend_customer/app.js');
+    /**
+     * @param $pluginDirectory
+     */
+    public function __construct($pluginDirectory)
+    {
+        $this->pluginDirectory = $pluginDirectory;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Backend_Customer' => 'onCustomerPostDispatch'
+        ];
     }
 
-    if ($request->getActionName() == 'load') {
-        $view->extendsTemplate('backend/swag_extend_customer/view/detail/window.js');
+    public function onCustomerPostDispatch(\Enlight_Event_EventArgs $args)
+    {
+        /** @var \Shopware_Controllers_Backend_Customer $controller */
+        $controller = $args->getSubject();
+
+        $view = $controller->View();
+        $request = $controller->Request();
+
+        $view->addTemplateDir($this->pluginDirectory . '/Resources/views');
+
+        if ($request->getActionName() == 'index') {
+           $view->extendsTemplate('backend/swag_extend_customer/app.js');
+        }
+ 
+        if ($request->getActionName() == 'load') {
+           $view->extendsTemplate('backend/swag_extend_customer/view/detail/window.js');
+        }
     }
 }
 ```
 
 As the template file `backend/swag_extend_customer/app.js` just needs to include the new component, its rather simple:
 
-```
+```js
 //{block name="backend/customer/application"}
 //      {$smarty.block.parent}
 //      {include file="backend/swag_extend_customer/view/detail/my_own_tab.js"}
@@ -261,7 +373,7 @@ As the template file `backend/swag_extend_customer/app.js` just needs to include
 
 It appends the original `app.js` file of the customer module and includes the new tab component `backend/swag_extend_customer/view/detail/my_own_tab.js`:
 
-```
+```js
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.MyOwnTab', {
     extend: 'Ext.container.Container',
     padding: 10,
@@ -283,7 +395,7 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.MyOwnTab', {
 In this case, the component inherits from `Ext.container.Container` - a container which organizes other elements. Here we
 only have a simple label:
 
-```
+```js
 me.items  =  [{
     xtype: 'label',
     html: '<h1>Hello world</h1>'
@@ -292,7 +404,7 @@ me.items  =  [{
 
 In order to bring the new tab into play, the `Bootstrap` described above also extends the `load` action:
 
-```
+```js
 if ($request->getActionName() == 'load') {
     $view->extendsTemplate('backend/swag_extend_customer/view/detail/window.js');
 }
@@ -303,10 +415,14 @@ The mechanism is the same as in the first example: in this case the `getTabs` me
 Also, instead of modifying an existing array element, a new one is pushed - which makes use of the new tab component
 that we introduced before:
 
-```
+```js
 //{block name="backend/customer/view/detail/window"}
 // {$smarty.block.parent}
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
+     /**
+     * Override the customer detail window
+     * @string
+     */
    override: 'Shopware.apps.Customer.view.detail.Window',
 
    getTabs: function() {
@@ -319,6 +435,40 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
    }
 });
 //{/block}
+```
+
+#### Add custom ExtJS controller
+
+To register a custom controller in an existing backend ExtJS module, first you need to add the file to the app.js:
+
+```js
+//{block name="backend/customer/application"}
+//      {$smarty.block.parent}
+//      {include file="backend/swag_extend_customer/controller/my_own_controller.js"}
+//      {include file="backend/swag_extend_customer/view/detail/my_own_tab.js"}
+//{/block}
+```
+
+After adding it to the app.js file, the file will be loaded, but the controller will not be instanced.
+
+To instantiate your controller, you need to override the existing controller (depends on the module you want to extend). In this file you can override existing functions of the parent controller. You can and mostly need to call the parent function with the line `me.callParent(arguments)`:
+
+```js
+Ext.define('Shopware.apps.SwagExtendCustomer.controller.MyOwnController', {
+    
+     /**
+     * Override the customer main controller
+     * @string
+     */
+    override: 'Shopware.apps.Customer.controller.Main',
+    
+    init: function () {
+        var me = this;
+        
+        // me.callParent will execute the init function of the overridden controller
+        me.callParent(arguments);
+    }
+});
 ```
 
 ## Download

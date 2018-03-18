@@ -106,4 +106,4 @@ Updating many articles at once requires an array of translation data being provi
 
 * **[PUT] http://my-shop-url/translations/**
 
-Simply provide the same data as described in the `GET` request.
+Simply provide the same data as described in the `GET` request. Unlike other batch endpoints, a "key" field is required instead of an "id" field. 

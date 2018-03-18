@@ -5,26 +5,41 @@ pre code {
 }
 
 .code-expandButton {
-    background-color: #E8E8E8;
+    background-color: #607182;
+    border-radius: 30px;
     bottom: 0;
     color: #777777;
     cursor: pointer;
     display: block;
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+    color: #FFF;
     font-weight: 600;
-    height: 30px;
-    padding-top: 5px;
+    padding: 13px 10px;
     position: absolute;
     right: 0;
     text-align: center;
     width: 15%;
+    min-width: 150px;
     z-index: 100;
-    border-bottom-right-radius: 3px;
+    transition: all .3s cubic-bezier(0.25, 0.2, 0.45, 1);
+    -moz-transform: translate(-50%, 50%);
+    -ms-transform: translate(-50%, 50%);
+    -o-transform: translate(-50%, 50%);
+    -webkit-transform: translate(-50%, 50%);
+    transform: translate(-50%, 50%);
+    margin-right: 35%;
 }
+
 .code-expandButton:hover {
-    background-color: #d8d8d8;
-    color: #555;
+    background-color: #395467;
+    color: #FFF;
+    -moz-transform: translate(-50%, calc(50% - 3px));
+    -ms-transform: translate(-50%, calc(50% - 3px));
+    -o-transform: translate(-50%, calc(50% - 3px));
+    -webkit-transform: translate(-50%, calc(50% - 3px));
+    transform: translate(-50%, calc(50% - 3px));
+    box-shadow: 0 0.5rem 1rem -0.25rem rgba(57, 84, 103, 0.33);
 }
 
 .code-wrapper {
@@ -43,4 +58,6 @@ pre code {
 .code-collapsed {
     height: 370px;
     overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 60px;
 }

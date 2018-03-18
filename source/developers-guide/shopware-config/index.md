@@ -89,7 +89,7 @@ The default value of `error_reporting` should be sufficient for developing.
     ],
 ```
 
-The difference between `throwExceptions` and `showExceptions` is how an exception will be handled.
+The difference between `throwExceptions` and `showException` is how an exception will be handled.
 
 The option `showException` keeps the Shopware error handler enabled, catches the PHP exception and prints the message instead of showing the generic "Oops! An error has occurred!" message.
 
@@ -163,7 +163,7 @@ return [
     ],
     
     'front' => [
-        'throwException' => true,
+        'throwExceptions' => true,
         'showException' => true
     ],
 
@@ -199,13 +199,14 @@ With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adap
 'cache' => [
     'backend' => 'redis', // e.G auto, apcu, xcache
     'backendOptions' => [
-        'servers' => array(
-            array(
+        'servers' => [
+            [
                 'host' => '127.0.0.1',
                 'port' => 6379,
-                'dbindex' => 0
-            ),
-        ),
+                'dbindex' => 0,
+                'redisAuth' => ''
+            ],
+        ],
     ],
 ]
 ```

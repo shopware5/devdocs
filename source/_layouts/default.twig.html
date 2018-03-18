@@ -37,7 +37,7 @@
         </a>
 
         <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
-            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}" />
+            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/shopware_developers_logo_white.svg')) }}" />
         </a>
 
     </header>
@@ -148,8 +148,10 @@
         </div>
 
         <div class="clearfix"></div>
+        <a href="#0" class="dev-top">Top</a>
     </div>
     {% endblock %}
+
 
     <!-- Footer -->
     {% block footer_main %}
@@ -173,6 +175,7 @@
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.toc.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.offcanvas.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/app.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.backtotop.js')) }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
 
 {% block scripts_after %}

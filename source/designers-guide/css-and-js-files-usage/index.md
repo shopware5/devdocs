@@ -28,6 +28,12 @@ ExampleTheme
 
 As the second step you will have to define the CSS or JavaScript files you would like to use inside your custom theme. This can be done by defining the corresponding configuration variables in the `Theme.php` file, where you add the specific file paths.
 
+<div class="alert alert-warning">
+    Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding 
+    Less/JavaScript, defined by another theme. You can find detailed information 
+    <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">here</a>.
+</div>
+
 ### Add CSS files
 Add the file paths to the `$css` variable in your `Theme.php` file, relative to the `_public` directory.
 ```php

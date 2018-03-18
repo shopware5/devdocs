@@ -5,7 +5,7 @@ namespace SwagCustomerSearchExtension\Bundle\CustomerSearchBundleDBAL;
 use Doctrine\DBAL\Connection;
 use Shopware\Bundle\CustomerSearchBundleDBAL\Indexing\SearchIndexerInterface;
 
-class SearchIndexer implements SearchIndexerInterface
+class SearchIndexer extends \Shopware\Bundle\CustomerSearchBundleDBAL\Indexing\SearchIndexer implements SearchIndexerInterface
 {
     /**
      * @var SearchIndexerInterface

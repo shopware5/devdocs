@@ -84,77 +84,72 @@ One common use case is to index additional data into ES and make it searchable. 
 
 You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagESBlog.zip">here</a>.
 
-### Plugin Bootstrap
-The plugin's Bootstrap.php looks as follows:
+### Register the services and subscriber
+The plugin service.xml looks as follows:
 
-```php
-<?php
+```xml
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-use Shopware\Components\Model\ModelManager;
-use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogDataIndexer;
-use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogMapping;
-use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogProvider;
-use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogSynchronizer;
-use ShopwarePlugins\SwagESBlog\Subscriber\ORMBacklogSubscriber;
+    <services>
 
-class Shopware_Plugins_Frontend_SwagESBlog_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
-{
-    public function install()
-    {
-        $this->subscribeEvent('Enlight_Bootstrap_InitResource_swag_es_blog_search.blog_indexer', 'registerIndexerService');
-        $this->subscribeEvent('Shopware_ESIndexingBundle_Collect_Indexer', 'addIndexer');
-        $this->subscribeEvent('Shopware_ESIndexingBundle_Collect_Mapping', 'addMapping');
-        $this->subscribeEvent('Shopware_ESIndexingBundle_Collect_Synchronizer', 'addSynchronizer');
-        $this->subscribeEvent('Enlight_Controller_Front_StartDispatch', 'addBacklogSubscriber');
-        return true;
-    }
+        <service id="swag_es_blog.bundle_blog_provider" class="SwagESBlog\Bundle\ESIndexingBundle\BlogProvider">
+            <argument type="service" id="dbal_connection"/>
+        </service>
 
-    public function afterInit()
-    {
-        $this->get('Loader')->registerNamespace('ShopwarePlugins\SwagESBlog', $this->Path());
-    }
+        <!-- Add DataIndexer 'BlogDataIndexer' -->
+        <service id="swag_es_blog.bundle.indexer" class="SwagESBlog\Bundle\ESIndexingBundle\BlogDataIndexer">
+            <argument type="service" id="dbal_connection"/>
+            <argument type="service" id="shopware_elastic_search.client"/>
+            <argument type="service" id="swag_es_blog.bundle_blog_provider"/>
+            <!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/DataIndexerCompilerPass.php -->
+            <tag name="shopware_elastic_search.data_indexer"/>
+        </service>
 
-    public function registerIndexerService()
-    {
-        return new BlogDataIndexer(
-            $this->get('dbal_connection'),
-            $this->get('shopware_elastic_search.client'),
-            new BlogProvider($this->get('dbal_connection'))
-        );
-    }
+        <!-- Add search mapping 'BlogMapping' -->
+        <service id="swag_es_blog.bundle.mapping" class="SwagESBlog\Bundle\ESIndexingBundle\BlogMapping">
+            <argument type="service" id="shopware_elastic_search.field_mapping"/>
+            <!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/MappingCompilerPass.php -->
+            <tag name="shopware_elastic_search.mapping"/>
+        </service>
 
-    public function addIndexer()
-    {
-        return $this->get('swag_es_blog_search.blog_indexer');
-    }
+        <!-- Add settings 'BlogSettings' -->
+        <service id="swag_es_blog.bundle.settings" class="SwagESBlog\Bundle\ESIndexingBundle\BlogSettings">
+            <!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SettingsCompilerPass.php -->
+            <tag name="shopware_elastic_search.settings"/>
+        </service>
 
-    public function addMapping()
-    {
-        return new BlogMapping($this->get('shopware_elastic_search.field_mapping'));
-    }
+        <!-- Add synchronizer 'BlogSynchronizer' -->
+        <service id="swag_es_blog.bundle.synchronizer" class="SwagESBlog\Bundle\ESIndexingBundle\BlogSynchronizer">
+            <argument type="service" id="swag_es_blog.bundle.indexer"/>
+            <argument type="service" id="dbal_connection"/>
+            <!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SynchronizerCompilerPass.php -->
+            <tag name="shopware_elastic_search.synchronizer"/>
+        </service>
 
-    public function addBacklogSubscriber()
-    {
-        $subscriber = new ORMBacklogSubscriber(Shopware()->Container());
+        <!-- Add search 'BlogSearch' -->
+        <service id="swag_es_blog.search_bundle.search" class="SwagESBlog\Bundle\SearchBundleES\BlogSearch">
+            <argument type="service" id="shopware_elastic_search.client"/>
+            <argument type="service" id="shopware_search.product_search"/>
+            <argument type="service" id="shopware_elastic_search.index_factory"/>
+            <!-- /.../engine/Shopware/Bundle/SearchBundleES/DependencyInjection/CompilerPass/SearchHandlerCompilerPass.php -->
+            <tag name="shopware_search_es.search_handler"/>
+        </service>
 
-        /** @var ModelManager $entityManager */
-        $entityManager = $this->get('models');
-        $entityManager->getEventManager()->addEventSubscriber($subscriber);
-    }
+        <!-- Add doctrine event subscriber 'ORMBacklogSubscriber.php' -->
+        <service id="user_listener" class="SwagESBlog\Subscriber\ORMBacklogSubscriber">
+            <argument type="service" id="service_container"/>
+            <!-- /.../engine/Shopware/Components/DependencyInjection/Compiler/DoctrineEventSubscriberCompilerPass.php -->
+            <tag name="doctrine.event_subscriber"/>
+        </service>
 
-    public function addSynchronizer()
-    {
-        return new BlogSynchronizer(
-            $this->get('swag_es_blog_search.blog_indexer'),
-            $this->get('dbal_connection')
-        );
-    }
-}
+    </services>
 
+</container>
 ```
 
-The Bootstrap.php file contains only the events needed to register the new classes. The following classes are initialized and registered:
+The service file contains only the events needed to register the new services and subscriber. The following classes are initialized and registered:
 
 | Class                     | Description
 |---------------------------|--------------------------
@@ -172,7 +167,7 @@ Before data can be indexed, a data mapping has to be created. This is defined in
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\ESIndexingBundle;
+namespace SwagESBlog\Bundle\ESIndexingBundle;
 
 use Shopware\Bundle\ESIndexingBundle\FieldMappingInterface;
 use Shopware\Bundle\ESIndexingBundle\MappingInterface;
@@ -180,18 +175,31 @@ use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
 
 class BlogMapping implements MappingInterface
 {
+    /**
+     * @var FieldMappingInterface
+     */
     private $fieldMapping;
 
+    /**
+     * @param FieldMappingInterface $fieldMapping
+     */
     public function __construct(FieldMappingInterface $fieldMapping)
     {
         $this->fieldMapping = $fieldMapping;
     }
 
+    /**
+     * @return string
+     */
     public function getType()
     {
         return 'blog';
     }
 
+    /**
+     * @param Shop $shop
+     * @return array
+     */
     public function get(Shop $shop)
     {
         return [
@@ -212,20 +220,15 @@ class BlogMapping implements MappingInterface
 `BlogMapping` uses the `FieldMappingInterface` to get definitions for language fields. It returns a string field definition with sub fields for configured shop analyzers. A language field is only required if a search term for this field has to be analyzed for different shop languages. For fields which shouldn't be searchable, it is more useful to define a simple string field. Example for shop with english locale:
 
 ```php
-Array
-(
+[
     [type] => string
-    [fields] => Array
-        (
-            [english_analyzer] => Array
-                (
-                    [type] => string
-                    [analyzer] => english
-                )
-
-        )
-
-)
+    [fields] => [
+        [english_analyzer] => [
+            [type] => string
+            [analyzer] => english
+        ]
+    ]
+]
 ```
 
 The `english_analyzer` field uses, at indexing and search time, a pre configured english analyzer of ES. The `getType` function defines the unique name for the data type, in this example `blog`.
@@ -236,7 +239,7 @@ After the data mapping is defined, the data can be indexed using the `BlogDataIn
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\ESIndexingBundle;
+namespace SwagESBlog\Bundle\ESIndexingBundle;
 
 use Doctrine\DBAL\Connection;
 use Elasticsearch\Client;
@@ -340,7 +343,6 @@ class BlogDataIndexer implements DataIndexerInterface
         return $query->execute()->fetchAll(\PDO::FETCH_COLUMN);
     }
 }
-
 ```
 
 The `populate` function is responsible for loading all blog entries into ES for the provided shop.
@@ -402,7 +404,7 @@ The first step to synchronize blog entries is registering the `ORMBacklogSubscri
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\Subscriber;
+namespace SwagESBlog\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\OnFlushEventArgs;
@@ -428,7 +430,7 @@ class ORMBacklogSubscriber implements EventSubscriber
     /**
      * @var array
      */
-    private $inserts = [];
+    private $inserts;
 
     /**
      * @var bool
@@ -448,15 +450,24 @@ class ORMBacklogSubscriber implements EventSubscriber
         $this->container = $container;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getSubscribedEvents()
     {
-        return array(Events::onFlush, Events::postFlush);
+        return [
+            Events::onFlush,
+            Events::postFlush
+        ];
     }
 
+    /**
+     * @param OnFlushEventArgs $eventArgs
+     */
     public function onFlush(OnFlushEventArgs $eventArgs)
     {
         /** @var $em ModelManager */
-        $em  = $eventArgs->getEntityManager();
+        $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
 
         // Entity deletions
@@ -483,6 +494,9 @@ class ORMBacklogSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * @param PostFlushEventArgs $eventArgs
+     */
     public function postFlush(PostFlushEventArgs $eventArgs)
     {
         foreach ($this->inserts as $entity) {
@@ -521,6 +535,10 @@ class ORMBacklogSubscriber implements EventSubscriber
         $this->queue = [];
     }
 
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
     private function getDeleteBacklog($entity)
     {
         switch (true) {
@@ -529,6 +547,10 @@ class ORMBacklogSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
     private function getInsertBacklog($entity)
     {
         switch (true) {
@@ -538,6 +560,10 @@ class ORMBacklogSubscriber implements EventSubscriber
         }
     }
 
+    /**
+     * @param ModelEntity $entity
+     * @return Backlog
+     */
     private function getUpdateBacklog($entity)
     {
         switch (true) {
@@ -560,14 +586,13 @@ To handle the backlog queue, it is required to register an additional `Synchroni
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\ESIndexingBundle;
+namespace SwagESBlog\Bundle\ESIndexingBundle;
 
 use Doctrine\DBAL\Connection;
-use Shopware\Bundle\ESIndexingBundle\Struct\Backlog;
 use Shopware\Bundle\ESIndexingBundle\Struct\ShopIndex;
 use Shopware\Bundle\ESIndexingBundle\SynchronizerInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
-use ShopwarePlugins\SwagESBlog\Subscriber\ORMBacklogSubscriber;
+use SwagESBlog\Subscriber\ORMBacklogSubscriber;
 
 class BlogSynchronizer implements SynchronizerInterface
 {
@@ -632,26 +657,17 @@ class BlogSynchronizer implements SynchronizerInterface
 The `BlogSynchronizer` implements the `SynchronizerInterface`, requiring a `synchronize` method implementation, which has a `ShopIndex` parameter to define which ES index has to be synchronized, and an array of `Backlog` structs which has to be processed. A Backlog struct contains the saved payload, which contains, in this case, the blog id. After all blog ids are collected, the implementation provides them, with the `ShopIndex`, to his own `BlogIndexer` to index these ids again. By filtering the selected blog ids using the `filterShopBlog`, the BlogIndexer gets only ids for the provided shop. This logic can be placed in the BlogIndexer too, which is a detail of each implementation.
 
 ### Decorate product search
-Now the plugin has to [decorate](/developers-guide/shopware-5-core-service-extensions/) the ```ProductSearch``` to search for blog entries. This is possible using following event:
+Now the plugin has to [decorate](/developers-guide/shopware-5-core-service-extensions/) the ```ProductSearch``` to search for blog entries. This is possible using following xml code:
 
-```php
-use ShopwarePlugins\SwagESBlog\SearchBundleES\BlogSearch;
-
-public function install()
-{
-    $this->subscribeEvent('Enlight_Bootstrap_AfterInitResource_shopware_search.product_search', 'decorateProductSearch');
-    //...
-}
-
-public function decorateProductSearch()
-{
-    $service = new BlogSearch(
-        $this->get('shopware_elastic_search.client'),
-        $this->get('shopware_search.product_search'),
-        $this->get('shopware_elastic_search.index_factory')
-    );
-    Shopware()->Container()->set('shopware_search.product_search', $service);
-}
+```xml
+<!-- Decorates product search with 'BlogSearch' -->
+<service id="swag_es_blog.search_bundle.search" class="SwagESBlog\Bundle\SearchBundleES\BlogSearch"
+    decorates="shopware_search.product_search"
+    public="false">
+    <argument type="service" id="shopware_elastic_search.client"/>
+    <argument type="service" id="swag_es_blog.search_bundle.search.inner"/>
+    <argument type="service" id="shopware_elastic_search.index_factory"/>
+</service>
 ```
 
 The `BlogSearch` looks as follows:
@@ -659,7 +675,7 @@ The `BlogSearch` looks as follows:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\SearchBundleES;
+namespace SwagESBlog\Bundle\SearchBundleES;
 
 use Elasticsearch\Client;
 use ONGR\ElasticsearchDSL\Query\MultiMatchQuery;
@@ -669,7 +685,7 @@ use Shopware\Bundle\SearchBundle\Condition\SearchTermCondition;
 use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\ProductSearchInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct;
-use ShopwarePlugins\SwagElasticSearch\BlogExtension\ESIndexingBundle\Struct\Blog;
+use SwagESBlog\Bundle\ESIndexingBundle\Struct\Blog;
 
 class BlogSearch implements ProductSearchInterface
 {
@@ -707,16 +723,14 @@ class BlogSearch implements ProductSearchInterface
     {
         $result = $this->coreService->search($criteria, $context);
 
-        if (!$criteria->hasCondition('search')) {
-            return $result;
+        if ($criteria->hasCondition('search')) {
+            $blog = $this->searchBlog($criteria, $context);
+
+            $result->addAttribute(
+                'swag_elastic_search',
+                new Struct\Attribute(['blog' => $blog])
+            );
         }
-
-        $blog = $this->searchBlog($criteria, $context);
-
-        $result->addAttribute(
-            'swag_blog_es_search',
-            new Struct\Attribute(['blog' => $blog])
-        );
 
         return $result;
     }
@@ -725,24 +739,35 @@ class BlogSearch implements ProductSearchInterface
     {
         /**@var $condition SearchTermCondition*/
         $condition = $criteria->getCondition('search');
-        $query =  new MultiMatchQuery(
-             ['title', 'shortDescription', 'longDescription'],
-             $condition->getTerm(),
-             ['operator' => 'AND']
-         );
+        $query = $this->createMultiMatchQuery($condition);
 
         $search = new Search();
         $search->addQuery($query);
         $search->setFrom(0)->setSize(5);
 
         $index = $this->indexFactory->createShopIndex($context->getShop());
-        $raw = $this->client->search([
+        $params = [
             'index' => $index->getName(),
             'type'  => 'blog',
             'body'  => $search->toArray()
-        ]);
+        ];
+
+        $raw = $this->client->search($params);
 
         return $this->createBlogStructs($raw);
+    }
+
+    /**
+     * @param SearchTermCondition $condition
+     * @return MultiMatchQuery
+     */
+    private function createMultiMatchQuery(SearchTermCondition $condition)
+    {
+        return new MultiMatchQuery(
+            ['title', 'shortDescription', 'longDescription'],
+            $condition->getTerm(),
+            ['operator' => 'AND']
+        );
     }
 
     /**
@@ -827,42 +852,36 @@ The `indexFactory` is used to get the index name based on the current shop of th
 As result, the client returns an array with all ES information of the search request:
 
 ```php
-Array
-(
+[
     [took] => 1
     [timed_out] =>
-    [_shards] => Array
-        (
-            [total] => 5
-            [successful] => 5
-            [failed] => 0
-        )
-    [hits] => Array
-        (
-            [total] => 1
-            [max_score] => 1.0521741
-            [hits] => Array
-                (
-                    [0] => Array
-                        (
-                            [_index] => sw_shop2_20150707155554
-                            [_type] => blog
-                            [_id] => 6
-                            [_score] => 1.0521741
-                            [_source] => Array
-                                (
-                                    [id] => 6
-                                    [title] => The summer will be colorful
-                                    [shortDescription] => This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman.
-                                    [longDescription] => This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman. Whether lemon-yellow top, grass-green chinos or pink clutch – with these colors you will definitely be an eye catcher. And this year we even go one step further.
-                                    [metaTitle] =>
-                                    [metaKeywords] =>
-                                    [metaDescription] =>
-                                )
-                        )
-                )
-        )
-)
+    [_shards] => [
+        [total] => 5
+        [successful] => 5
+        [failed] => 0
+    ]
+    [hits] => [
+        [total] => 1
+        [max_score] => 1.0521741
+        [hits] =>[
+            [0] => [
+                [_index] => sw_shop2_20150707155554
+                [_type] => blog
+                [_id] => 6
+                [_score] => 1.0521741
+                [_source] => [
+                    [id] => 6
+                    [title] => The summer will be colorful
+                    [shortDescription] => This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman.
+                    [longDescription] => This summer is going to be colorful. Brightly colored clothes are the must-have for every style-conscious woman. Whether lemon-yellow top, grass-green chinos or pink clutch – with these colors you will definitely be an eye catcher. And this year we even go one step further.
+                    [metaTitle] =>
+                    [metaKeywords] =>
+                    [metaDescription] =>
+                ]
+            ]
+        ]
+    ]
+]
 ```
 
 This data will be hydrated and converted to Blog structs using the `createBlogStructs` function:
@@ -893,22 +912,14 @@ $result->addAttribute(
 
 ### Additional ES analyzer
 The basic blog data should be indexed and searchable with the custom ES analyzer. To add an additional analyzer, the `SettingsInterface` of the `ESIndexingBundle` can be used.
-The plugin bootstrap registers an additional event to add the new `BlogSettings`:
+The plugin service.xml registers an additional service to add the new `BlogSettings`:
 
-```php
-use ShopwarePlugins\SwagESBlog\ESIndexingBundle\BlogSettings;
-//...
-
-public function install()
-{
-    $this->subscribeEvent('Shopware_ESIndexingBundle_Collect_Settings', 'addSettings');
-    //...
-}
-
-public function addSettings()
-{
-    return new BlogSettings();
-}
+```xml
+<!-- Add settings 'BlogSettings' -->
+<service id="swag_es_blog.bundle.settings" class="SwagESBlog\Bundle\ESIndexingBundle\BlogSettings">
+    <!-- /.../engine/Shopware/Bundle/ESIndexingBundle/DependencyInjection/CompilerPass/SettingsCompilerPass.php -->
+    <tag name="shopware_elastic_search.settings"/>
+</service>
 ```
 
 The BlogSettings class contains the following source code:
@@ -916,7 +927,7 @@ The BlogSettings class contains the following source code:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\ESIndexingBundle;
+namespace SwagESBlog\Bundle\ESIndexingBundle;
 
 use Shopware\Bundle\ESIndexingBundle\SettingsInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
@@ -973,7 +984,7 @@ This analyzer can be used in the blog mapping as follows:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESBlog\ESIndexingBundle;
+namespace SwagESBlog\Bundle\ESIndexingBundle;
 
 use Shopware\Bundle\ESIndexingBundle\FieldMappingInterface;
 use Shopware\Bundle\ESIndexingBundle\MappingInterface;
@@ -1006,67 +1017,33 @@ To extend the indexed product data for ES, the plugin has to decorate two servic
 1. `ProductMapping`, which defines how the product data looks like
 2. `ProductProvider`, which selects the data for ES
 
-The plugin bootstrap looks as follows:
+The plugin service.xml looks as follows:
 
-```php
-<?php
+```xml
+<!-- Decorates productMapping -->
+<service id="swag_es_product.decorator.es_product_mapping"
+         class="SwagESProduct\Bundle\ESIndexingBundle\ProductMapping"
+         decorates="shopware_elastic_search.product_mapping"
+         public="false">
+    <argument type="service" id="swag_es_product.decorator.es_product_mapping.inner"/>
+</service>
 
-use Shopware\Bundle\ESIndexingBundle\Product\ProductProviderInterface;
-use ShopwarePlugins\SwagESProduct\ESIndexingBundle\ProductMapping;
-use ShopwarePlugins\SwagESProduct\ESIndexingBundle\ProductProvider;
-
-class Shopware_Plugins_Frontend_SwagESProduct_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
-{
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Bootstrap_AfterInitResource_shopware_elastic_search.product_mapping',
-            'decorateProductMapping'
-        );
-        $this->subscribeEvent(
-            'Enlight_Bootstrap_AfterInitResource_shopware_elastic_search.product_provider',
-            'decorateProductProvider'
-        );
-        return true;
-    }
-
-    public function afterInit()
-    {
-        $this->get('Loader')->registerNamespace('ShopwarePlugins\SwagElasticSearch', $this->Path());
-    }
-
-    public function decorateProductMapping()
-    {
-        /** @var \Shopware\Bundle\ESIndexingBundle\MappingInterface $mapping */
-        $mapping = $this->get('shopware_elastic_search.product_mapping');
-        Shopware()->Container()->set(
-            'shopware_elastic_search.product_mapping',
-            new ProductMapping($mapping)
-        );
-    }
-
-    public function decorateProductProvider()
-    {
-        /** @var ProductProviderInterface $provider */
-        $provider = $this->get('shopware_elastic_search.product_provider');
-
-        Shopware()->Container()->set(
-            'shopware_elastic_search.product_provider',
-            new ProductProvider($provider)
-        );
-    }
-}
+<!-- Decorates productProvider -->
+<service id="swag_es_product.decorator.es_product_provider"
+         class="SwagESProduct\Bundle\ESIndexingBundle\ProductProvider"
+         decorates="shopware_elastic_search.product_provider"
+         public="false">
+    <argument type="service" id="swag_es_product.decorator.es_product_provider.inner"/>
+</service>
 ```
 
-Each event listener is registered on the `AfterInitResource` event to decorate the associated service.
 The new services has a dependency on the original service, otherwise the new service would override the original implementation.
 The `ProductMapping` class looks as follows:
 
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\ESIndexingBundle;
+namespace SwagESProduct\ESIndexingBundle;
 
 use Shopware\Bundle\ESIndexingBundle\MappingInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\Shop;
@@ -1117,7 +1094,7 @@ This field is filled over the decorated `ProductProvider` class and contains the
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\ESIndexingBundle;
+namespace SwagESProduct\ESIndexingBundle;
 
 use Shopware\Bundle\ESIndexingBundle\Product\ProductProviderInterface;
 use Shopware\Bundle\ESIndexingBundle\Struct\Product;
@@ -1161,25 +1138,14 @@ class ProductProvider implements ProductProviderInterface
 ### Extend product search query
 Now it is time to extend the product search query, so it handles the new `my_name` field. The product search query for ES is build using the `SearchTermQueryBuilderInterface` of the `SearchBundleES`, which can be decorated like all other services of the DI container:
 
-```php
-use ShopwarePlugins\SwagESProduct\SearchBundleES\SearchTermQueryBuilder;
-
-public function install()
-{
-    $this->subscribeEvent(
-        'Enlight_Bootstrap_AfterInitResource_shopware_search_es.search_term_query_builder',
-        'decorateSearchTermQueryBuilder'
-    );
-    //...
-}
-
-public function decorateSearchTermQueryBuilder()
-{
-    $searchTermQueryBuilder = new SearchTermQueryBuilder(
-        $this->get('shopware_search_es.search_term_query_builder')
-    );
-    Shopware()->Container()->set('shopware_search_es.search_term_query_builder', $searchTermQueryBuilder);
-}
+```xml
+<!-- Decorates searchTermQueryBuilder -->
+<service id="swag_es_product.decorator.es_search_query_builder"
+         class="SwagESProduct\Bundle\SearchBundleES\SearchTermQueryBuilder"
+         decorates="shopware_search_es.search_term_query_builder"
+         public="false">
+    <argument type="service" id="swag_es_product.decorator.es_search_query_builder.inner"/>
+</service>
 ```
 
 The `SearchTermQueryBuilder` contains only one `buildQuery` function that returns a `ONGR\ElasticsearchDSL\Query\BoolQuery`, which can contain different sub queries.
@@ -1188,7 +1154,7 @@ The new `SearchTermQueryBuilder` contains the following source code:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundleES;
+namespace SwagESProduct\Bundle\SearchBundleES;
 
 use ONGR\ElasticsearchDSL\Query\BoolQuery;
 use ONGR\ElasticsearchDSL\Query\MultiMatchQuery;
@@ -1371,55 +1337,37 @@ First, the plugin has to register his own criteria parts (`Facet`, `Sorting` and
 The criteria part classes have no dependencies on any search implementation like DBAL or ES. They are defined as abstract and only describe how the search should be executed.
 The plugin bootstrap contains the additional source code:
 
-```php
-<?php
+```xml
+<!-- Add criteria_request_handler -->
+<service id="swag_es_product.search.criteria_request_handler"
+         class="SwagESProduct\Bundle\SearchBundle\CriteriaRequestHandler">
+    <tag name="criteria_request_handler"/>
+</service>
 
-use Doctrine\Common\Collections\ArrayCollection;
-use ShopwarePlugins\SwagESProduct\SearchBundle\CriteriaRequestHandler;
-use ShopwarePlugins\SwagESProduct\SearchBundleES\SalesConditionHandler;
-use ShopwarePlugins\SwagESProduct\SearchBundleES\SalesFacetHandler;
-use ShopwarePlugins\SwagESProduct\SearchBundleES\SalesSortingHandler;
-//...
-
-class Shopware_Plugins_Frontend_SwagESProduct_Bootstrap
-    extends Shopware_Components_Plugin_Bootstrap
-{
-    public function install()
-    {
-        //...
-        $this->subscribeEvent('Shopware_SearchBundle_Collect_Criteria_Request_Handlers', 'addCriteriaRequestHandler');
-        $this->subscribeEvent('Shopware_SearchBundleES_Collect_Handlers', 'addSearchHandlers');
-
-        return true;
-    }
-
-    public function addCriteriaRequestHandler()
-    {
-        return new CriteriaRequestHandler();
-    }
-
-    public function addSearchHandlers()
-    {
-        return new ArrayCollection([
-            new SalesFacetHandler(),
-            new SalesConditionHandler(),
-            new SalesSortingHandler()
-        ]);
-    }
-
-    //...
-}
+<!-- Add shopware_search_es.search_handler -->
+<service id="swag_es_product.es_search.sales_facet_handler"
+         class="SwagESProduct\Bundle\SearchBundleES\SalesFacetHandler">
+    <tag name="shopware_search_es.search_handler"/>
+</service>
+<service id="swag_es_product.es_search.sales_condition_handler"
+         class="SwagESProduct\Bundle\SearchBundleES\SalesConditionHandler">
+    <tag name="shopware_search_es.search_handler"/>
+</service>
+<service id="swag_es_prodcut.es_search.sales_sorting_handler"
+         class="SwagESProduct\Bundle\SearchBundleES\SalesSortingHandler">
+    <tag name="shopware_search_es.search_handler"/>
+</service>
 ```
 
-The `Shopware_SearchBundle_Collect_Criteria_Request_Handlers` event allows you to register an additional `CriteriaRequestHandler`.
-By registering the `Shopware_SearchBundleES_Collect_Handlers` it is possible to register additional handlers for the `SearchBundleES`.
+The `criteria_request_handler` tag allows you to register an additional `CriteriaRequestHandler`.
+By using the `shopware_search_es.search_handler` tag it is possible to register additional handlers for the `SearchBundleES`.
 Each criteria part should have its own handler class.
 First, the plugin has to add the new criteria parts into the criteria for listings. This will be handled in the `CriteriaRequestHandler`, which is called if a Criteria class must be generated with the request parameters:
 
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundle;
+namespace SwagESProduct\Bundle\SearchBundle;
 
 use Enlight_Controller_Request_RequestHttp as Request;
 use Shopware\Bundle\SearchBundle\Criteria;
@@ -1458,7 +1406,7 @@ The `SalesFacet`, `SalesCondition` and `SalesSorting` class look as follows:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundle;
+namespace SwagESProduct\Bundle\SearchBundle;
 
 use Shopware\Bundle\SearchBundle\ConditionInterface;
 
@@ -1510,7 +1458,7 @@ class SalesCondition implements ConditionInterface
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundle;
+namespace SwagESProduct\Bundle\SearchBundle;
 
 use Shopware\Bundle\SearchBundle\FacetInterface;
 
@@ -1526,7 +1474,7 @@ class SalesFacet implements FacetInterface
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundle;
+namespace SwagESProduct\Bundle\SearchBundle;
 
 use Shopware\Bundle\SearchBundle\SortingInterface;
 
@@ -1544,7 +1492,7 @@ After the facet has been added to the criteria, the `ShopwarePlugins\SwagESProdu
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundleES;
+namespace SwagESProduct\Bundle\SearchBundleES;
 
 use ONGR\ElasticsearchDSL\Aggregation\StatsAggregation;
 use ONGR\ElasticsearchDSL\Search;
@@ -1555,8 +1503,8 @@ use Shopware\Bundle\SearchBundle\ProductNumberSearchResult;
 use Shopware\Bundle\SearchBundleES\HandlerInterface;
 use Shopware\Bundle\SearchBundleES\ResultHydratorInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
-use ShopwarePlugins\SwagESProduct\SearchBundle\SalesCondition;
-use ShopwarePlugins\SwagESProduct\SearchBundle\SalesFacet;
+use SwagESProduct\Bundle\SearchBundle\SalesCondition;
+use SwagESProduct\Bundle\SearchBundle\SalesFacet;
 
 class SalesFacetHandler implements HandlerInterface, ResultHydratorInterface
 {
@@ -1774,7 +1722,7 @@ This `SalesCondition` has its own `SalesConditionHandler` which looks as follows
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundleES;
+namespace SwagESProduct\Bundle\SearchBundleES;
 
 use ONGR\ElasticsearchDSL\Filter\RangeFilter;
 use ONGR\ElasticsearchDSL\Search;
@@ -1782,7 +1730,7 @@ use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\CriteriaPartInterface;
 use Shopware\Bundle\SearchBundleES\HandlerInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
-use ShopwarePlugins\SwagESProduct\SearchBundle\SalesCondition;
+use SwagESProduct\Bundle\SearchBundle\SalesCondition;
 
 class SalesConditionHandler implements HandlerInterface
 {
@@ -1877,7 +1825,7 @@ This is handled by the `SalesSortingHandler`:
 ```php
 <?php
 
-namespace ShopwarePlugins\SwagESProduct\SearchBundleES;
+namespace SwagESProduct\Bundle\SearchBundleES;
 
 use ONGR\ElasticsearchDSL\Search;
 use ONGR\ElasticsearchDSL\Sort\Sort;
@@ -1885,7 +1833,7 @@ use Shopware\Bundle\SearchBundle\Criteria;
 use Shopware\Bundle\SearchBundle\CriteriaPartInterface;
 use Shopware\Bundle\SearchBundleES\HandlerInterface;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
-use ShopwarePlugins\SwagESProduct\SearchBundle\SalesSorting;
+use SwagESProduct\Bundle\SearchBundle\SalesSorting;
 
 class SalesSortingHandler implements HandlerInterface
 {
@@ -1913,7 +1861,8 @@ To sort the search result, the `ONGR\ElasticsearchDSL\Sort\Sort` class can be ad
 A new filter behaviour was implemented with shopware 5.3, now filters are only displayed if they can be combined with the user conditions that are currently in effect.
 In the elastic search implementation the filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by other filters.
 This behavior is checked via the `Criteria->hasBaseCondition` statement:
-```
+
+```php
 public function handle(
     CriteriaPartInterface $criteriaPart,
     Criteria $criteria,
@@ -1926,11 +1875,12 @@ public function handle(
         $search->addPostFilter(new TermQuery('active', 1));
     }
 }
-
 ```
+
 This behavior is now controlled in the `\Shopware\Bundle\SearchBundleES\ProductNumberSearch`. To support the new filter mode, each condition handler has to implement the `\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface`.
 It is possible to implement this interface alongside the original `\Shopware\Bundle\SearchBundleES\HandlerInterface`.
-```
+
+```php
 namespace Shopware\Bundle\SearchBundleES;
 if (!interface_exists('\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface')) {
     interface PartialConditionHandlerInterface { }

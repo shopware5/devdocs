@@ -351,4 +351,4 @@ You download the example plugin above
 
 ## REST API
 We also offer a complete REST API for Customer Streams.
-For a detailed documentation click **[here]({{ site.url }}/developers-guide/rest-api/customer-streams/)**.
+For a detailed documentation click **[here](https://developers.shopware.com/developers-guide/rest-api/customer-streams/)**.

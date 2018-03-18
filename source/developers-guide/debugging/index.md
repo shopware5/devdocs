@@ -10,7 +10,7 @@ indexed: true
 group: Developer Guides
 subgroup: General Resources
 menu_title: Debugging Shopware
-menu_order: 30
+menu_order: 35
 ---
 
 Writing and extending software is only a part of a developer's daily work. Debugging and bug fixing is another relevant part one needs to take care of.
@@ -122,12 +122,12 @@ exit();
 Instead, you should use the Doctrine debug helper to print / log complex objects: 
 
 ```
-$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop())
+$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop(), 2, true, false);
 // now safely log $result with your preferred logger
 ```
 
 ### shopware-profiler
-The [shopware-profiler](https://github.com/shyim/shopware-profiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
+The [FroshProfiler](https://github.com/FriendsOfShopware/FroshProfiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
 * showing registered and called events
 * viewing of database operations and their results
 * providing various template information such as variables and which files were loaded
@@ -175,7 +175,7 @@ After clearing the cache and reloading the backend, the "debug" ExtJS file is in
 
 In many cases, you will have no alternative but to debug using `console.log()` calls in your Javascript code. The following list should help you narrow down the error:
 
-* Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Views/backend/my_plugin/view/window` should be `Shopware.apps.MyPlugin.view.Window`
+* Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Resources/views/backend/my_plugin/view/window` should be `Shopware.apps.MyPlugin.view.Window`
 * Referencing a wrong xtype: Whenever you use `xtype` to reference a ExtJS class, you should double check if the referenced xtype actually exists.
 * Not registering the components: As ExtJS must actually know your components, you need to either register them in the `app.js` file or (when extending pre-existing modules) include them using Smarty and extending the original original applications `app.js` block.
 * Missing call to `callParent(arguments);`: When implementing your own components in ExtJS, you will overwrite base-components a lot. When you are implementing a constructor like `initComponent` or `init` you should call `callParent(arguments);` so that ExtJS can handle the base component's logic.

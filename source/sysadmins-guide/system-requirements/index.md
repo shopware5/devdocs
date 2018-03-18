@@ -47,6 +47,12 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 - `upload_max_filesize` > 6M
 - `allow_url_fopen` activated
 
+### Optional MySQL settings
+
+- MySQL variable `group_concat_max_len` should be increased to 2048 (default: 1024)
+- `innodb_buffer_pool_size` should be at least as large as the whole database
+- `query_cache_size` should normally be between 100 - 200MB
+
 ### Recommended
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
@@ -61,6 +67,10 @@ The requirements specified above reflect only the minimum requirements of Shopwa
 
 The above requirements reflect the officially supported and recommended system setup to run Shopware. However, you might be able to run Shopware on equivalent setups (Mac OS, nginx, MariaDB, etc). Please keep in mind that we are unable to provide official support on those setups.
 
+## Elasticsearch
+
+Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x and 5.x out of the box. 
+For more details see the [Elasticsearch setup]({{ site.url }}/sysadmins-guide/elasticsearch-setup/).
 
 ## Shopware 5 System Requirements - Administration client
 
@@ -72,5 +82,4 @@ The administration of your shop can be done completely online via the web browse
 - JavaScript and Cookies enabled
 - 4 GB RAM
 - Dual-core CPU
-- Minimum backend resolution:  1366 x 768 pixels
-
+- Minimum backend resolution: 1366 x 768 pixels

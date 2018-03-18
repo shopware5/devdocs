@@ -58,7 +58,7 @@ To add a new script, open up the newly created `package.json` in your plugin dir
 {
     // ...
     "scripts": {
-    	"lint": "./node_modules/eslint/bin/eslint.js -c ../../../../../../themes/.eslintrc.js Views/frontend/_public/src/js"
+        "lint": "./node_modules/eslint/bin/eslint.js -c ../../../../../../themes/.eslintrc.js Views/frontend/_public/src/js"
     },
     //....
 }
@@ -94,7 +94,7 @@ If you're using a `package.json` file in your plugin, we highly recommend adding
     // ...
     "scripts": {
         "lint": "..."
-    	"fix": "./node_modules/eslint/bin/eslint.js -c ../../../../../../themes/.eslintrc.js Views/frontend/_public/src/js"
+        "fix": "./node_modules/eslint/bin/eslint.js -c ../../../../../../themes/.eslintrc.js Views/frontend/_public/src/js"
     },
     //....
 }

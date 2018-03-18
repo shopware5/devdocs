@@ -25,7 +25,7 @@ Please note that Vagrant setup does not contain a Shopware installation. The ins
 Download the required software:
 
  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
- - [Vagrant](https://www.vagrantup.com/downloads)
+ - [Vagrant](https://www.vagrantup.com/downloads.html)
   
  Additional Information for VirtualBox setup (Windows), or you get errors like "error downloading the file" without any further explanation:
 - make sure VirtualBox supports 64bit Guest Systems, if only 32 bit is supported check if:
@@ -45,7 +45,6 @@ $ cd shopware-vagrant
 ### 2. Boot up your Vagrant virtual machine
 
 ```bash
-$ cd vagrant
 $ vagrant up
 ```
 
@@ -112,7 +111,7 @@ These directories will be marked red in your project and might not be visible an
 
 ### Coding Style
 
-As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.1/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
+As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.3/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
 
 
 ### Deploy with PhpStorm

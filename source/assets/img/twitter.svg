@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="67px" height="68px" viewBox="0 0 67 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Twitter</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0.138859552,63.3333333 L39.900327,63.3333333" id="path-1"></path>
+        <filter x="-4.9%" y="-50.0%" width="114.6%" height="250.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="2" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="2" dy="2" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="5" y="55" width="40" height="9" rx="4.5"></rect>
+        <rect id="path-4" x="39" y="0" width="5" height="6" rx="2.5"></rect>
+        <circle id="path-5" cx="61.5" cy="63.5" r="2.5"></circle>
+        <filter x="-20.0%" y="-20.0%" width="180.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <circle id="path-7" cx="53" cy="61" r="3"></circle>
+        <filter x="-16.7%" y="-16.7%" width="166.7%" height="166.7%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="LESS-Dokumentation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage-two" transform="translate(-1106.000000, -1554.000000)">
+            <g id="Link-Liste" transform="translate(639.000000, 1254.000000)">
+                <g id="Twitter" transform="translate(468.000000, 300.000000)">
+                    <g id="TwitterLogo_#55acee" transform="translate(32.000000, 24.000000)" fill="#55ACEE">
+                        <path d="M25,2.36220467 C24.0801602,2.76286605 23.0916456,3.03365603 22.0541168,3.15544416 C23.1131351,2.53195361 23.9263506,1.54471534 24.30932,0.368418066 C23.3183364,0.945654271 22.2206372,1.3649072 21.0523428,1.59087987 C20.1166831,0.611814692 18.7836973,0 17.3085153,0 C14.4758404,0 12.1793043,2.25550534 12.1793043,5.03750183 C12.1793043,5.43232529 12.2247522,5.8168201 12.3121731,6.18550761 C8.0493983,5.97543207 4.27009035,3.9698798 1.7403709,0.922122937 C1.29887706,1.66614421 1.0459417,2.53150454 1.0459417,3.45470525 C1.0459417,5.2024008 1.95151615,6.7443319 3.32775522,7.64768365 C2.48692344,7.62154771 1.69611178,7.39494635 1.00451736,7.01763667 C1.00415158,7.0386532 1.00415158,7.05975955 1.00415158,7.08095572 C1.00415158,9.52174786 2.7721387,11.557837 5.11851202,12.02056 C4.68808296,12.1357019 4.23497568,12.1972246 3.76714584,12.1972246 C3.43666557,12.1972246 3.11532975,12.1656998 2.80222393,12.1068715 C3.45486302,14.1082923 5.34904349,15.5647203 7.59345623,15.6054061 C5.83808845,16.9564819 3.62650426,17.7618463 1.22352683,17.7618463 C0.809557775,17.7618463 0.401258276,17.7380455 0,17.6915218 C2.2698343,19.1208258 4.96589122,19.9547511 7.86239438,19.9547511 C17.2965361,19.9547511 22.4554665,12.2785964 22.4554665,5.62165373 C22.4554665,5.40322547 22.4505285,5.18596479 22.4406525,4.96996151 C23.4427009,4.2597104 24.3123377,3.37243539 25,2.36220467" id="Fill-1"></path>
+                    </g>
+                    <path d="M38,5.00019189 C24.5752396,4.95923722 10,11.4677581 10,30.329092 L10.4700906,57" id="Path-25" stroke-opacity="0.44" stroke="#189EFF" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M43,5.00019276 C29.4561226,4.95905322 16,11.4969528 16,30.4434246 L16.4742617,56" id="Path-25" stroke="#0049FF" stroke-width="2" stroke-linecap="round"></path>
+                    <g id="Path-26" stroke-linecap="round">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use stroke-opacity="0.3" stroke="#189EFF" stroke-width="2" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M10.1351009,57.3333333 L42.9254521,57.3333333" id="Path-26" stroke="#0049FF" stroke-width="2" stroke-linecap="round"></path>
+                    <g id="Rectangle-15">
+                        <use fill="#92B1FF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <rect stroke="#0049FF" stroke-width="2" x="6" y="56" width="38" height="7" rx="3.5"></rect>
+                    </g>
+                    <g id="Rectangle-18">
+                        <use fill="#0049FF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        <rect stroke="#0049FF" stroke-width="1" x="39.5" y="0.5" width="4" height="5" rx="2"></rect>
+                    </g>
+                    <g id="Oval-10">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                        <use fill="#FFDB47" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    </g>
+                    <g id="Oval-10">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                        <use fill="#FFDB47" fill-rule="evenodd" xlink:href="#path-7"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -43,7 +43,7 @@ contains the base information about the plugin, the label in English and German,
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
 
     <label lang="de">Erweiterung für CustomProducts (v2)</label>
     <label lang="en">Extension for CustomProducts (v2)</label>
@@ -61,10 +61,12 @@ contains the base information about the plugin, the label in English and German,
     </changelog>
 
     <requiredPlugins>
-        <requiredPlugin pluginName="SwagCustomProducts"/>
+        <requiredPlugin pluginName="SwagCustomProducts" minVersion="4.0.0"/>
     </requiredPlugins>
 </plugin>
 ```
+
+The `minVersion="4.0.0"` attribute makes sure, that we use the correct version of CustomProduct.
 
 ### SwagExtendCustomProducts/Resources/services.xml
 
@@ -83,90 +85,46 @@ Make sure that Subscriber-Services implement the tag.
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="swag_extend_custom_products.subscriber.backend" class="SwagExtendCustomProducts\Subscriber\Backend">
+        <service id="swag_extend_custom_products.subscriber.backend"
+                 class="SwagExtendCustomProducts\Subscriber\Backend">
             <argument>%swag_extend_custom_products.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.frontend" class="SwagExtendCustomProducts\Subscriber\Frontend">
+        <service id="swag_extend_custom_products.subscriber.frontend"
+                 class="SwagExtendCustomProducts\Subscriber\Frontend">
             <argument>%swag_extend_custom_products.plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.type_factory" class="SwagExtendCustomProducts\Subscriber\TypeFactory">
+        <service id="swag_extend_custom_products.subscriber.type_factory"
+                 class="SwagExtendCustomProducts\Subscriber\TypeFactory">
             <tag name="shopware.event_subscriber"/>
         </service>
 
-        <service id="swag_extend_custom_products.subscriber.file_type_decorator" class="SwagExtendCustomProducts\Subscriber\FileTypeDecorator">
-            <argument type="service" id="service_container"/>
-            <tag name="shopware.event_subscriber"/>
+        <service id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator"
+                 class="SwagExtendCustomProducts\Decorators\FileTypeWhiteListDecorator"
+                 decorates="custom_products.file_upload.file_type_whitelist"
+                 public="false">
+            <argument type="service" id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator.inner"/>
         </service>
     </services>
 </container>
 ```
 
 ## Decorate the WhiteListService
-We decide to decorate the service by the event method because the plugin we want to expand is still based on the old plugin system. Thus, the service is not injected into the container yet.
+To add new items into the white list we must decorate the service by using the `services.xml`.
 
-To add new items into the white list we must decorate the service. 
-That means, call the original service and create our own service. This contains the original service, implements the same interface and extends the functions. 
-At the end set the service to the container instead of the original. 
-
- - To decorate the WhiteListService of the Custom Product (v2) plugin we need the event name that invokes the Service. _custom_products.file_upload.file_type_whitelist_
- - In combination with the prefix _Enlight_Bootstrap_AfterInitResource_ we create the full event name: **_Enlight_Bootstrap_AfterInitResource_custom_products.file_upload.file_type_whitelist_**
- 
- For more information about Shopware events read the <a href="{{ site.url }}/developers-guide/event-guide/">Event guide</a>
- 
-The Subscriber **_SwagExtendCustomProducts/Subscriber/FileTypeDecorator.php_** 
-
-```php
-<?php
-
-namespace SwagExtendCustomProducts\Subscriber;
-
-use Enlight\Event\SubscriberInterface;
-use Shopware\Components\DependencyInjection\Container;
-use ShopwarePlugins\SwagCustomProducts\Components\FileUpload\FileTypeWhitelistInterface;
-use SwagExtendCustomProducts\Decorators\FileTypeWhiteListDecorator;
-
-class FileTypeDecorator implements SubscriberInterface
-{
-    /**
-     * @var Container
-     */
-    private $container;
-
-    /**
-     * @param Container $container
-     */
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [
-            'Enlight_Bootstrap_AfterInitResource_custom_products.file_upload.file_type_whitelist' => 'decorateFileTypeWhiteList',
-        ];
-    }
-
-    public function decorateFileTypeWhiteList()
-    {
-        /** @var FileTypeWhitelistInterface $fileTypeWhiteList */
-        $fileTypeWhiteList = $this->container->get('custom_products.file_upload.file_type_whitelist');
-
-        $this->container->set(
-            'custom_products.file_upload.file_type_whitelist',
-            new FileTypeWhiteListDecorator($fileTypeWhiteList)
-        );
-    }
-}
+ ```xml
+<service id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator"
+         class="SwagExtendCustomProducts\Decorators\FileTypeWhiteListDecorator"
+         decorates="custom_products.file_upload.file_type_whitelist"
+         public="false">
+    <argument type="service" id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator.inner"/>
+</service>
 ```
-If Custom Products (v2) calls the event, set the decorator into the container to replace the original service.
+
+The container replaces the original service with our own. If the service is called the  'FileTypeWhiteListDecorator' is returned.
 
 **_SwagExtendCustomProducts/Decorators/FileTypeWhiteListDecorator.php_** adds an array of new mime types to the white list.
 
@@ -176,9 +134,9 @@ Now the customer in the frontend can upload the files with the new mime types.
 
 namespace SwagExtendCustomProducts\Decorators;
 
-use ShopwarePlugins\SwagCustomProducts\Components\FileUpload\FileTypeWhitelist;
-use ShopwarePlugins\SwagCustomProducts\Components\FileUpload\FileTypeWhitelistInterface;
-use ShopwarePlugins\SwagCustomProducts\Components\Types\Types\FileUploadType;
+use SwagCustomProducts\Components\FileUpload\FileTypeWhitelist;
+use SwagCustomProducts\Components\FileUpload\FileTypeWhitelistInterface;
+use SwagCustomProducts\Components\Types\Types\FileUploadType;
 
 class FileTypeWhiteListDecorator implements FileTypeWhitelistInterface
 {
@@ -312,7 +270,7 @@ Define the type of the "customType" with a string and control whether the class 
 
 namespace SwagExtendCustomProducts\Components\Types;
 
-use ShopwarePlugins\SwagCustomProducts\Components\Types\TypeInterface;
+use SwagCustomProducts\Components\Types\TypeInterface;
 
 class CustomType implements TypeInterface
 {

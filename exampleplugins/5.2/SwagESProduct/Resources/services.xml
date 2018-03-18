@@ -1,0 +1,53 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- Decorates productMapping -->
+        <service id="swag_es_product.decorator.es_product_mapping"
+                 class="SwagESProduct\Bundle\ESIndexingBundle\ProductMapping"
+                 decorates="shopware_elastic_search.product_mapping"
+                 public="false">
+            <argument type="service" id="swag_es_product.decorator.es_product_mapping.inner"/>
+        </service>
+
+        <!-- Decorates productProvider -->
+        <service id="swag_es_product.decorator.es_product_provider"
+                 class="SwagESProduct\Bundle\ESIndexingBundle\ProductProvider"
+                 decorates="shopware_elastic_search.product_provider"
+                 public="false">
+            <argument type="service" id="swag_es_product.decorator.es_product_provider.inner"/>
+        </service>
+
+        <!-- Decorates searchTermQueryBuilder -->
+        <service id="swag_es_product.decorator.es_search_query_builder"
+                 class="SwagESProduct\Bundle\SearchBundleES\SearchTermQueryBuilder"
+                 decorates="shopware_search_es.search_term_query_builder"
+                 public="false">
+            <argument type="service" id="swag_es_product.decorator.es_search_query_builder.inner"/>
+        </service>
+
+        <!-- Add criteria_request_handler -->
+        <service id="swag_es_product.search.criteria_request_handler"
+                 class="SwagESProduct\Bundle\SearchBundle\CriteriaRequestHandler">
+            <tag name="criteria_request_handler"/>
+        </service>
+
+        <!-- Add shopware_search_es.search_handler -->
+        <service id="swag_es_product.es_search.sales_facet_handler"
+                 class="SwagESProduct\Bundle\SearchBundleES\SalesFacetHandler">
+            <tag name="shopware_search_es.search_handler"/>
+        </service>
+        <service id="swag_es_product.es_search.sales_condition_handler"
+                 class="SwagESProduct\Bundle\SearchBundleES\SalesConditionHandler">
+            <tag name="shopware_search_es.search_handler"/>
+        </service>
+        <service id="swag_es_prodcut.es_search.sales_sorting_handler"
+                 class="SwagESProduct\Bundle\SearchBundleES\SalesSortingHandler">
+            <tag name="shopware_search_es.search_handler"/>
+        </service>
+
+    </services>
+
+</container>

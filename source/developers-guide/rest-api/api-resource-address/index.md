@@ -71,7 +71,7 @@ To get a list of all addresses, simply query:
 | Shopware\Models\Customer\Address   | s_user_addresses     |
 
 
-This API call returns an array of elements, one for each address. Each of these elements has the same structure like a single element above.
+This API call returns an array of elements, one for each address. Each of these elements has the same structure like a single element above, but without the detailed customer data.
 
 Appended to the above mentioned list, you will also find the following data:
 

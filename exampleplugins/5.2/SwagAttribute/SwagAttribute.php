@@ -48,7 +48,6 @@ class SwagAttribute extends Plugin
             ],
         ]);
 
-
         $service->update(
             's_articles_attributes',
             'my_own_validation',
@@ -66,7 +65,6 @@ class SwagAttribute extends Plugin
             null,
             true
         );
-
 
         $em = $this->container->get('models');
         $schemaTool = new SchemaTool($em);
@@ -93,7 +91,7 @@ class SwagAttribute extends Plugin
     {
         /** @var \Enlight_View_Default $view */
         $view = $arguments->getSubject()->View();
-        $view->addTemplateDir($this->getPath() . '/Views/');
+        $view->addTemplateDir($this->getPath() . '/Resources/views/');
         $view->extendsTemplate('backend/swag_attribute/Shopware.attribute.Form.js');
     }
 }

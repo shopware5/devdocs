@@ -22,34 +22,58 @@ that can be found in `themes/Backend/ExtJs/backend/risk_management/store/risks.j
 
 
 ```php
-// in install()
-$this->subscribeEvent(
-    'Enlight_Controller_Action_PostDispatchSecure_Backend_RiskManagement',
-    'onRiskManagementBackend'
-);
-```
+<?php
+// SwagCustomRiskRule/Subscriber/RiskManagement.php
+namespace SwagCustomRiskRule\Subscriber;
 
-```php
-public function onRiskManagementBackend(Enlight_Controller_ActionEventArgs $args)
+use Enlight\Event\SubscriberInterface;
+
+class RiskManagement implements SubscriberInterface
 {
-    $subject = $args->getSubject();
-    $request = $subject->Request();
-
-    $view = $subject->View();
-    $view->addTemplateDir(__DIR__.'/Views/');
-
-    if ($request->getActionName() === 'load') {
-        $view->extendsTemplate('backend/my_risk_rule/store/risks.js');
+    /*
+     * @var  $pluginPath string
+     */
+    private $pluginPath;
+    /**
+     * @param $pluginPath
+     */
+    public function __construct($pluginPath)
+    {
+        $this->pluginPath = $pluginPath;
+    }
+    /**
+     * @return array
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Backend_RiskManagement' => 'onRiskManagementBackend'
+        ];
+    }
+    public function onRiskManagementBackend(\Enlight_Event_EventArgs $args)
+    {
+        /** @var \Shopware_Controllers_Backend_Customer $controller */
+        $controller = $args->get('subject');
+        
+        $view = $controller->View();
+        $request = $controller->Request();
+        
+        $view->addTemplateDir($this->pluginPath . '/Resources/views');
+        
+        if ($request->getActionName() == 'load') {
+            $view->extendsTemplate('backend/swag_custom_risk_rule/store/risks.js');
+        }
     }
 }
 ```
 
-The file `SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js` adds a new entry to the existing store:
+The file `SwagCustomRiskRule/Resources/views/backend/my_risk_rule/store/risks.js` adds a new entry to the existing store:
 
-```
-// SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js
+```javascript
+// SwagCustomRiskRule/Resources/views/backend/my_risk_rule/store/risks.js
+
 //{block name="backend/risk_management/store/risk/data"}
-// {$smarty.block.parent}
+//{$smarty.block.parent}
 { description: 'My Custom Rule', value: 'MyCustomRule' },
 //{/block}
 ```
@@ -59,11 +83,14 @@ The file `SwagCustomRiskRule/Views/backend/my_risk_rule/store/risks.js` adds a n
 Given the new rule is named `MyCustomRule` the event we have subscribed to is `Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule`.
 
 ```php
-// in install()
-$this->subscribeEvent(
-    'Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule',
-    'onMyCustomRule'
-);
+// extend existing subscriber or define a new one
+
+public static function getSubscribedEvents()
+{
+    return [
+        'Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule' => 'onMyCustomRule'
+    ];
+}
 ```
 
 In the event callback we have access to the the name of the rule, the user, the basket and to the value:
@@ -88,67 +115,8 @@ public function onMyCustomRule(Enlight_Event_EventArgs $args)
 }
 ```
 
+## The complete plugin
 
-## The complete plugin bootstrap
-
-
-```php
-// SwagCustomRiskRule/Bootstrap.php
-<?php
-class Shopware_Plugins_Backend_SwagCustomRiskRule_Bootstrap extends Shopware_Components_Plugin_Bootstrap
-{
-    public function install()
-    {
-        $this->subscribeEvent(
-            'Enlight_Controller_Action_PostDispatchSecure_Backend_RiskManagement',
-            'onRiskManagementBackend'
-        );
-
-        $this->subscribeEvent(
-            'Shopware_Modules_Admin_Execute_Risk_Rule_sRiskMyCustomRule',
-            'onMyCustomRule'
-        );
-
-        return true;
-    }
-
-    /**
-     * @param Enlight_Controller_ActionEventArgs $args
-     */
-    public function onRiskManagementBackend(Enlight_Controller_ActionEventArgs $args)
-    {
-        $subject = $args->getSubject();
-        $request = $subject->Request();
-
-        $view = $subject->View();
-        $view->addTemplateDir(__DIR__.'/Views/');
-
-        if ($request->getActionName() === 'load') {
-            $view->extendsTemplate('backend/my_risk_rule/store/risks.js');
-        }
-    }
-
-    /**
-     * @param Enlight_Event_EventArgs $args
-     * @return bool
-     */
-    public function onMyCustomRule(Enlight_Event_EventArgs $args)
-    {
-        $rule   = $args->get('rule');
-        $user   = $args->get('user');
-        $basket = $args->get('basket');
-        $value  = $args->get('value');
-
-        if ($basket['AmountNumeric'] > $value) {
-            return true; // it's a risky customer
-        }
-
-        return false;
-    }
-}
-
-```
-
-You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagCustomRiskRule.zip">here</a>.
+You can find an installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagCustomRiskRule.zip">here</a>.
 
 

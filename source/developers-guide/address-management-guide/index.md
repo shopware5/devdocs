@@ -99,13 +99,24 @@ You have access to your data by using `$address->getAdditional()`. The first exa
 
 This example will add a new field named `neighboursName` and it should not be empty.
 
-##### Add to install() method in Bootstrap.php
-```php
-$this->subscribeEvent('Shopware_Form_Builder', 'onFormBuild');
+##### Add the subscriber to the service.xml
+```xml
+<service id="pluginname.address_form_extender" class="PluginName\Subscriber\FormExtenderSubscriber">
+    <tag name="shopware.event_subscriber" />
+</service>
 ```
 
-##### Create method onFormBuild() in Bootstrap.php
+##### Create the Subscriber file
 ```php
+// PluginFolder/Subscriber/FormExtenderSubscriber.php
+
+public static function getSubscribedEvents()
+{
+    return [
+        'Shopware_Form_Builder' => 'onFormBuild',
+    ];
+}
+    
 public function onFormBuild(\Enlight_Event_EventArgs $event)
 {
     if ($event->getReference() !== \Shopware\Bundle\AccountBundle\Form\Account\AddressFormType::class) {
@@ -128,13 +139,17 @@ public function onFormBuild(\Enlight_Event_EventArgs $event)
 
 The example will add multiple fields with different validation options. If you don't provide a list of constraints to a field, it will be optional.
 
-##### Add to install() method in Bootstrap.php
-```php
-$this->subscribeEvent('Shopware_Form_Builder', 'onFormBuild');
+##### Add the subscriber to the service.xml
+```xml
+<service id="pluginname.address_form_extender" class="PluginName\Subscriber\FormExtenderSubscriber">
+    <tag name="shopware.event_subscriber" />
+</service>
 ```
 
-##### Create method onFormBuild() in Bootstrap.php
+
+##### Create the Subscriber file and the onFormBuild() method
 ```php
+// PluginFolder/Subscriber/FormExtenderSubscriber.php
 public function onFormBuild(\Enlight_Event_EventArgs $event) {
     if ($event->getReference() !== \Shopware\Bundle\AccountBundle\Form\Account\AddressFormType::class) {
         return;
@@ -233,21 +248,17 @@ class MyAddressService implements AddressServiceInterface
 }
 ```
 
-Now that we have created the class, we need to decorate the existing service with our new service. For this, subscribe to a new event in your `Bootstrap.php` file.
+Now that we have created the class, we need to decorate the existing service with our new service.
 
-##### Add to install() method in Bootstrap.php
-```php
-$this->subscribeEvent('Enlight_Bootstrap_AfterInitResource_shopware_account.address_service', 'decorateService');
-```
-
-##### Create method decorateService() in Bootstrap.php
-```php
-public function decorateService()
-{
-    $coreService = $this->get('shopware_account.address_service');
-    $newService = new MyAddressService($coreService);
-    Shopware()->Container()->set('shopware_account.address_service', $newService);
-}
+##### Decorate the service in /Resources/service.xml
+```xml
+<service id="swag_demo.subscriber.address_service_decorator"
+    class="SwagDoku\Services\AddressServiceDecorator"
+    decorates="shopware_account.address_service"
+    public="false"
+>
+    <argument type="service" id="swag_demo.subscriber.address_service_decorator.inner" />
+</service>
 ```
 
 You are now set and your service takes over the work.

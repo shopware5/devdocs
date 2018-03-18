@@ -2,9 +2,9 @@
 
 namespace SwagExtendCustomProducts\Decorators;
 
-use ShopwarePlugins\SwagCustomProducts\Components\FileUpload\FileTypeWhitelist;
-use ShopwarePlugins\SwagCustomProducts\Components\FileUpload\FileTypeWhitelistInterface;
-use ShopwarePlugins\SwagCustomProducts\Components\Types\Types\FileUploadType;
+use SwagCustomProducts\Components\FileUpload\FileTypeWhitelist;
+use SwagCustomProducts\Components\FileUpload\FileTypeWhitelistInterface;
+use SwagCustomProducts\Components\Types\Types\FileUploadType;
 
 class FileTypeWhiteListDecorator implements FileTypeWhitelistInterface
 {
@@ -70,7 +70,7 @@ class FileTypeWhiteListDecorator implements FileTypeWhitelistInterface
             'application/x-ms-wmz',     // .wmz
             'application/x-ms-wmd',     // .wmd
         ];
-
+        
         return array_merge(
             FileTypeWhitelist::$mimeTypeWhitelist['file'],
             $newMimeTypes

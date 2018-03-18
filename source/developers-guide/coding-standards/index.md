@@ -5,7 +5,8 @@ github_link: developers-guide/coding-standards/index.md
 indexed: true
 menu_title: Coding Standards
 menu_order: 30
-group: Contributing
+group: Developer Guides
+subgroup: General Resources
 ---
 
 The shopware team uses the following coding standards. All contributions to Shopware as well as plugins and customizations should also use these standards. 

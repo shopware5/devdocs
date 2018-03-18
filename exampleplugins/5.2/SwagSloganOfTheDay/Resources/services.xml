@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_slogan_of_the_day.subscriber.route" class="SwagSloganOfTheDay\Subscriber\RouteSubscriber">
+            <argument>%swag_slogan_of_the_day.plugin_name%</argument>
+            <argument>%swag_slogan_of_the_day.plugin_dir%</argument>
+
+            <argument type="service" id="swag_slogan_of_the_day.slogan_printer" />
+            <argument type="service" id="shopware.plugin.cached_config_reader" />
+
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <service id="swag_slogan_of_the_day.slogan_printer" class="SwagSloganOfTheDay\Components\SloganPrinter" />
+    </services>
+</container>

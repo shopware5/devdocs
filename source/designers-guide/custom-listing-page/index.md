@@ -147,7 +147,7 @@ After defining the block we are ready to add some markup to our template file. W
 The structural changes that we added require a styling adjustment in the frontend in order to work and look correctly. We will add two new `less` files to our theme, first the required `all.less` file and a `custom-listing.less` which will contain our style adjustments. The `all.less` file is automatically recognized by Shopware and all we need to do is import our new created file.
 
 <div class="alert alert-info" role="alert">
-Need help with LESS? Have a look at our <a href="https://developers.shopware.com/designers-guide/less/">Getting started with LESS</a> guide.
+Need help with LESS? Have a look at our <a href="{{ site.url }}/designers-guide/less/">Getting started with LESS</a> guide.
 </div>
 
 ```
@@ -290,3 +290,17 @@ In the last step we will add styling to the product box itself, add the hover ef
 If you want to take a closer look at all the code we have written in this tutorial you can download this plugin:
 
 <strong><a href="{{ site.url }}/exampleplugins/SwagCustomListingTheme.zip">Plugin download</a></strong>
+
+The theme is packed inside a plugin. This is a requirement to distribute themes via our store.
+The structure of the theme is exactly the same as before, it is just placed a few layers deeper in the directory hierarchy:
+
+```
+SwagCustomListingTheme
+└── Resources
+    └── Themes
+        └── Frontend
+            └── *The theme folder*
+```
+
+In addition, the root directory of the plugin contains a plugin base file and a `plugin.xml` with meta information.
+For more information on the Shopware plugin system, please head over to our [developer documentation](https://developers.shopware.com/plugin-guide/).

@@ -1,7 +1,7 @@
 .alert {
     padding: 10px 20px;
     margin-bottom: 20px;
-    border: 2px solid rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
     .border-radius(5px);
     line-height: 26px;
 
@@ -11,26 +11,26 @@
 }
 
 .alert-success {
-    color: darken(@success, 30%);
+    color: @success;
     border-color: fade(@success, 40%);
-    background: fade(@success, 20%);
+    background: fade(@success, 10%);
 }
 
 .alert-info {
-    color: darken(@blue01, 30%);
+    color: @blue01;
     border-color: fade(@blue01, 40%);
-    background: fade(@blue01, 20%);
+    background: fade(@blue01, 10%);
 }
 
-.alert-warning,
-.alert-error {
-    color: darken(@warning, 30%);
+.alert-warning {
+    color: #d49000;
     border-color: fade(@warning, 40%);
-    background: fade(@warning, 20%);
+    background: fade(@warning, 10%);
 }
 
-.alert-danger {
-    color: darken(@danger, 30%);
+.alert-danger,
+.alert-error {
+    color: @danger;
     border-color: fade(@danger, 40%);
-    background: fade(@danger, 20%);
+    background: fade(@danger, 10%);
 }

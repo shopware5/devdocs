@@ -204,7 +204,7 @@ Using the Shopware default components, you should get the following button appea
 ## Styling
 
 <div class="alert alert-info" role="alert">
-Need help with LESS? Have a look at our <a href="https://developers.shopware.com/designers-guide/less/">Getting started with LESS</a> guide.
+Need help with LESS? Have a look at our <a href="{{ site.url }}/designers-guide/less/">Getting started with LESS</a> guide.
 </div>
 
 Because of the changes we made to the structure, we need to adjust the styling. To keep things organized, we will create a new file named `custom-detail.less`:
@@ -486,3 +486,17 @@ The code to remove the image zoom is pretty simple. We check if the main `conten
 If you want to take a closer look at all the code we have written in this tutorial you can download this plugin:
 
 <strong><a href="{{ site.url }}/exampleplugins/SwagCustomDetailTheme.zip">Plugin download</a></strong>
+
+The theme is packed inside a plugin. This is a requirement to distribute themes via our store.
+The structure of the theme is exactly the same as before, it is just placed a few layers deeper in the directory hierarchy:
+
+```
+SwagCustomDetailTheme
+└── Resources
+    └── Themes
+        └── Frontend
+            └── *The theme folder*
+```
+
+In addition, the root directory of the plugin contains a plugin base file and a `plugin.xml` with meta information.
+For more information on the Shopware plugin system, please head over to our [developer documentation](https://developers.shopware.com/plugin-guide/).

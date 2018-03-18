@@ -53,9 +53,9 @@ class HistoryListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Sculpin::EVENT_BEFORE_RUN => 'dumpGitHistory',
-        );
+        ];
     }
 
     /**
@@ -91,7 +91,6 @@ class HistoryListener implements EventSubscriberInterface
 
         foreach ($data as $key => $item) {
             foreach ($item['articles'] as $articleKey => $article) {
-
                 if ($prefix && strpos($article, $prefix) !== 0) {
                     continue;
                 }
@@ -176,7 +175,7 @@ class HistoryListener implements EventSubscriberInterface
             $commitDateProcess = new Process(sprintf('git show --pretty=%%ct %s', $commit), $this->projectDir);
             $commitDateProcess->run();
 
-            $commitDate = trim($commitDateProcess->getOutput());
+            $commitDate = (int) trim($commitDateProcess->getOutput());
 
             $latestHash = $commit;
 

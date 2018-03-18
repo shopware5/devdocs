@@ -17,6 +17,186 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.4
+
+<div class="alert alert-info">
+
+### SSL Encryption
+
+The mixed SSL encryption mode in the shop configuration has been removed. As of 5.4, the SSL encryption can only be 
+enabled or disabled globally. Shops using the mixed SSL encryption setting will automatically be upgraded to full 
+SSL encryption. Deprecated table columns and methods have been removed.
+
+To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
+
+</div>
+
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**.
+
+### Removal of JSONP requests
+
+Shopware 5.4 removes all JSONP requests and replaces them with regular AJAX requests. The response type was changed to
+standard HTML mostly (with one exception being JSON without the JSONP-callback, see below).
+
+These actions now return HTML directly:
+- Shopware/Controllers/Frontend/AjaxSearch.php
+    - `indexAction`
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxCartAction`
+- Shopware/Controllers/Frontend/Compare.php
+    - `addArticleAction`
+    - `deleteArticleAction`
+    - `deleteAllAction`
+    - `getListAction`
+    - `indexAction`
+    - `overlayAction`
+- Shopware/Controllers/Frontend/Note.php
+    - `ajaxAddAction`
+- Shopware/Controllers/Widgets/Listing.php 
+    - `ajaxListingAction`
+    
+This action still returns JSON but doesn't use the JSONP-type function call.
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxAmountAction`
+
+### POST on data modification
+
+Also, to be more HTTP compliant, all request that change any data on the server were changed to be made using the HTTP POST verb.
+These methods are:
+
+* Basket actions
+    - `addArticle`
+    - `addAccessories`
+    - `addPremium`
+    - `changeQuantity`
+    - `deleteArticle`
+    - `setAddress`
+    - `ajaxAddArticle`
+    - `ajaxAddArticleCart`
+    - `ajaxDeleteArticle`
+    - `ajaxDeleteArticleCart`
+
+* Checkout actions:
+    - `finish`
+
+### Variants in listing
+
+It is now possible to allow displaying and filtering of variants in the listing. This new filter can be activated in the
+backend filter settings and defines which groups are filterable and which of those will be expanded in the listing.
+
+The basic product box size is increased by 45px (from 231px to 276px) to allow the variants to display which of the
+options filtered match for the current variant. If the customer e.g. filters for the colors red and blue and the
+expanding of colors is active, each variant listed shows a little "**Color: red**" or "**Color: blue**" tag to identify
+what variant this is.     
+
+A new block `frontend_listing_box_variant_description` was added in file `themes/Frontend/Bare/frontend/listing/product-box/box-basic.tpl`
+to allow modifications of the default way the options of the variant shown are displayed. 
+
+### Sold out variants
+
+Shop owners can now mark individual variants as “sold out”. The flag `laststock` in table `s_articles` is still 
+available but a new column `laststock int(1) NOT NULL DEFAULT '0'` in table `s_articles_details` has been introduced
+to allow selling off of variants.
+
+The current behaviour for main products stays the same, the new flag is being checked when variants are shown in listings 
+and on detail pages.
+
+This new flag is part of the configurator templates that are applied to variants, so regeneration of variants use the
+default setting for this flag from the configurator template that is responsible for this product.
+
+Please make sure to also check for this new flag if you handle variants in your plugins or happen to read or write from 
+the `s_articles_details` table. Also take the flag into account when checking for stock quantity.  
+
+### Smarty
+
+#### Security mode
+
+The `config.php` option `['template_security']['enabled'] => false` for disabling smarty security got removed.
+
+#### Link flags
+
+The flags `forceSecure` and `sUseSSL` for forcing the smarty `{url controller=...}`-helper to use SSL are deprecated.
+They are now without function, whether the link uses SSL or not depends on the global "Use SSL" setting.
+
+### Routing
+
+Some AJAX routes generated in the template `themes/Frontend/Bare/frontend/index/index.tpl` check for existing SEO URLs. This
+behaviour has been deprecated for performance reasons and SEO support for the routes defined in the template will be 
+removed in 5.5. If you need SEO URLs for one of the following routes, you can override the block 
+`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+
+The affected routes are:
+
+- `/checkout/ajaxCart`
+- `/register/index`
+- `/checkout/addArticle`
+- `/widgets/Listing/ajaxListing`
+- `/checkout/ajaxAmount`
+- `/address/ajaxSelection`
+- `/address/ajaxEditor`
+
+### DIC
+
+There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
+dependency. If you are interested in developing Shopware using Composer, have a look at the <a href="{{ site.url }}/developers-guide/shopware-composer/">documentation</a>
+ and the Shopware [Composer project](https://github.com/shopware/composer-project).
+
+#### Shopware Version
+
+The usage of the constants `Shopware::VERSION`, `Shopware::VERSION_TEXT` and `Shopware::REVISION` has been deprecated. 
+They have been replaced with the following parameters in the DIC:
+
+- `shopware.release.version`
+    The version of the Shopware installation (e.g. '5.4.0')
+- `shopware.release.version_text`
+    The version_text of the Shopware installation (e.g. 'RC1')
+- `shopware.release.revision`
+    The revision of the Shopware installation (e.g. '20180081547')
+
+Added new service in the DIC containing all parameters above 
+- `shopware.release`
+    A new struct of type `\Shopware\Components\ShopwareReleaseStruct` containing all parameters above
+
+To be compatible with the most versions of Shopware, please use the `config` service from the DIC for the time being:
+```
+    $this->container->get('config')->get('version') === Shopware::VERSION; # => true
+    $this->container->get('config')->get('version_text') === Shopware::VERSION_TEXT; # => true
+    $this->container->get('config')->get('revision') === Shopware::REVISION; # => true
+```
+
+#### New paths
+
+Several paths have been added to the DIC:
+
+- `shopware.plugin_directories.projectplugins` 
+    Path to project specific plugins, see [Composer project](https://github.com/shopware/composer-project)
+- `shopware.template.templatedir`
+    Path to the themes folder
+- `shopware.app.rootdir`
+    Path to the root of your project
+- `shopware.app.downloadsdir`
+    Path to the downloads folder
+- `shopware.app.documentsdir`
+    Path to the generated documents folder
+- `shopware.web.webdir`
+    Path to the web folder
+- `shopware.web.cachedir`
+    Path to the web-cache folder 
+
+These paths are configurable in the `config.php`, see `engine/Shopware/Configs/Default.php` for defaults
+
+### Mpdf
+
+Mpdf has been updated to v6.1.4 and it's namespace has been registered in the Composer autoloader. You don't need to 
+include the `mpdf.php` library as you used to in previous versions, you can just use `new mPDF();` to create a new instance.
+
+### Discard JavaScript/CSS from other Themes
+
+Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding Less/JavaScript, defined by another theme.
+Find out more at <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">Custom theme configuration</a>.
+
 ## Shopware 5.3
 
 <div class="alert alert-info">
@@ -108,6 +288,22 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
     }
 }
 ```
+
+###### Unknown {s} tag error
+In the past, this error has occurred on some systems and results to an 500 internal server error. This is based on the problem that template files included, which are not inside a registered directory. In a production environment shopware prevents the exceptions to be displayed (config.php), which results that the rendering process are not aborted.
+The following scenarios can occur:
+
+- Default config 
+No exceptions no errors should be displayed. This results to an apache error log entry with the unknown {s} tag error
+- phpsettings.display_errors = 1
+The {s} tag error will be displayed in the store front
+- front.throwExceptions = true
+The original exception with the `unsecure template directory` will be displayed:
+```
+Uncaught SmartyException: directory 'custom/plugins/.../Views/test_index.tpl' not allowed by security setting
+```
+
+To see all configurable options see [config.php settings documentation](https://developers.shopware.com/developers-guide/shopware-config/) 
 
 #### Rendering
 
@@ -943,7 +1139,7 @@ The account section and registration have been refactored to continue the refact
     * Uses the new service `shopware_account.register_service`
     * Methods of core class `\sAdmin` regarding the registration have been removed without substitution.
     * Templates may have been rewritten
-        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
+        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
 
 ### Address management
 
@@ -961,7 +1157,7 @@ The address management allows a customer to manage more than only one address wh
 * Selecting another address in the checkout results in a change of the session key `checkoutBillingAddressId` or `checkoutShippingAddressId` with the corresponding address id. After the order has been saved, the session keys will be reset.
 * The customer api endpoint now uses the structure of the address model, instead of the billing or shipping model
 * The checkout templates have been rewritten which results in changed and removed blocks.
-    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
+    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
 
 To learn more about the new address service, refer to the [Address Management Guide](/developers-guide/address-management-guide).
 
@@ -1078,7 +1274,7 @@ attributeForm.saveAttribute(record.get('id'), function (successful) {
 
 This call will send a new request which saves all attributes for this item.
 
-To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware/shopware/blob/5.2/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
+To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
 
 ### Library updates
 

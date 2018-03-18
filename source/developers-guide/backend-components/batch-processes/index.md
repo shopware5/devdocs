@@ -40,9 +40,9 @@ To help you process large data sets, Shopware provides you with the `Shopware.wi
 Our goal is to extend the existing product listing with the batch process component. But before we start, you have to implement the basis to make it work. For this, you have to implement the following methods in your PHP controller:
 
 ```php
-class Shopware_Controllers_Backend_SwagProduct extends Shopware_Controllers_Backend_Application
+class Shopware_Controllers_Backend_SwagProductAssoc extends Shopware_Controllers_Backend_Application
 {
-    protected $model = 'Shopware\CustomModels\Product\Product';
+    protected $model = Product::class;
     protected $alias = 'product';
 
     ...
@@ -106,14 +106,14 @@ Both methods are quite simple and should only show you a simple implementation o
 In ExtJS, you need to add a new toolbar button to the listing window. This button will trigger the appropriate batch process. Put the following code in `Views/backend/swag_product/view/list/product.js`:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.Product', {
+Ext.define('Shopware.apps.SwagProductAssoc.view.list.Product', {
     extend: 'Shopware.grid.Panel',
     alias:  'widget.product-listing-grid',
     region: 'center',
 
     configure: function() {
         return {
-            detailWindow: 'Shopware.apps.SwagProduct.view.detail.Window'
+            detailWindow: 'Shopware.apps.SwagProductAssoc.view.detail.Window'
         };
     },
 
@@ -155,7 +155,7 @@ First, you have to know how the `Shopware.window.Progress`  works. Basically, th
 Now, to implement the progress window in the product listing window, you have to modify your main controller like this:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductAssoc.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {
@@ -225,7 +225,7 @@ tasks: [{
 Now you have to implement the actual task logic in the main controller:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductAssoc.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {
@@ -244,7 +244,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
     onDeactivateProducts: function (task, record, callback) {
         Ext.Ajax.request({
-            url: '{url controller=SwagProduct action=deactivateProducts}',
+            url: '{url controller=SwagProductAssoc action=deactivateProducts}',
             method: 'POST',
             params: {
                 productId: record.get('id')
@@ -285,7 +285,7 @@ Different from the previous components, the `Shopware.window.Progress` component
 To illustrate this, the example below now sends an additional AJAX request, which should set the creation date of the product to the current day. Modify your main controller to match the following changes:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductAssoc.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {
@@ -305,7 +305,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
     onChangeCreateDate: function (task, record, callback) {
         Ext.Ajax.request({
-            url: '{url controller=SwagProduct action=changeCreateDate}',
+            url: '{url controller=SwagProductAssoc action=changeCreateDate}',
             method: 'POST',
             params: {
                 productId: record.get('id')

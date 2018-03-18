@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Responsive Theme mit angepasster Detailseite</label>
+    <label lang="en">Responsive theme with custom detail page</label>
+
+    <version>1.0.0</version>
+    <copyright>(c) by shopware AG</copyright>
+    <license>MIT</license>
+    <link>https://developers.shopware.com</link>
+    <author>shopware AG</author>
+    <compatibility minVersion="5.3.0"/>
+
+    <description lang="de">Dieses Theme stellt ein zusätzliches Detailseitentemplate bereit welches für einzelne Produkte genutzt werden kann. Wenn das Plugin aktiv ist, solltest du das Theme im Theme Manager sehen können. </description>
+    <description lang="en">This theme creates an additional detail page template which can be used on specific products. When you have activated the plugin you should see the new theme inside your Theme Manager.</description>
+
+    <changelog version="1.0.0">
+        <changes lang="de">Erstveröffentlichung</changes>
+        <changes lang="en">First release</changes>
+    </changelog>
+</plugin>

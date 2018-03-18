@@ -26,7 +26,7 @@ class SwagLastRegistrationsWidget extends Plugin
      */
     public function onGetBackendControllerPath()
     {
-        return __DIR__ . '/Controllers/Backend/SwagLastRegistrationsWidget.php';
+        return $this->getPath() . '/Controllers/Backend/SwagLastRegistrationsWidget.php';
     }
 
     /**

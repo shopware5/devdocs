@@ -59,6 +59,60 @@ While snippets are mostly used to translate plain text, they are flexible enough
 {s name="frontend/checkout/cart/separate_dispatch"}<strong>bold example text</strong>{/s}
 ```
 
+### Using smarty variables and functions in snippets
+
+With smarty you have access to config variables, view variables and you can even use modifiers and functions. With this you have the possibility to make your snippets more adaptive.
+
+Here are some examples what's possible:
+
+Instead of changing the name in each snippet make use of the config variable:
+```
+Hello to the new {config name=shopName} Shop!
+```
+
+Instead of changing the year of the copyright every year, make use of a smarty modifier:
+```
+Copyright {"%Y"|strftime} {config name=shopName}
+```
+
+Determine the output of your snippets with "if-queries":
+```
+{if $sArticle.length}L{$sArticle.length} {/if}{if $sArticle.width}B{$sArticle.width} {/if}{if $sArticle.height}H{$sArticle.height} {/if}cm
+```
+
+
+### Using dynamic snippets
+
+You are able to create snippets which use dynamic snippet names. This could be useful if you only have a value/name stored in variable, but you need a translation of that value/name.
+
+Example: You have an attribute on your product (attr1, combobox) with the following contents selectable (value => content):
+* light => Light
+* medium => Medium
+* hard => Hard
+
+But those values in the combobox are not translatable. For this purpose you can generate dynamic snippets depending on the value of your attribute.
+
+The following smarty code shows how it works.
+```
+{$name = "DetailDataHardness"|cat:$sArticle.attr1}
+{$namespace = "frontend/detail/data"}
+{$sArticle.attr1|snippet:$name:$namespace}
+```
+
+DetailDataHardness is the name of the snippet in your snippet manager and will be concatinated with the value of your attribute and will be stored as variable in `$name`.
+
+In our example we will get three new snippets called:
+* DetailDataHardnesslight
+* DetailDataHardnessmedium
+* DetailDataHardnesshard
+
+As with every snippet, we need to select the namespace, stored in `$namespace`.
+
+After this we use the smarty modifier `snippet` and set the `$name` and `$namespace`.
+
+In your snippet manager you can now edit the translations of the dynamically generated snippets.
+
+
 ### Understanding snippet handling
 
 Snippet handling is configurable, so you can decide exactly how snippets are loaded and saved by Shopware. This can be changed in your `config.php` file, inside the `snippet` section:
@@ -169,6 +223,22 @@ A few things to keep in mind when using this approach:
 ### Snippets during plugin installation
 
 If your plugin/theme uses snippets, they should be placed inside the corresponding directory in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
+
+For plugins, place the .ini files below the following directory:
+
+```
+PluginDirectory
+    Resources
+        snippets
+```
+
+For themes, place the .ini files below the following directory:
+
+```
+ThemeDirectory
+    _private
+        snippets
+```
 
 ## Snippets during installation/production phases
 ![Backend snippet administration](admin.jpg)

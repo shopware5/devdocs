@@ -88,7 +88,7 @@ We have installed everything that we need to start working with Grunt. The defau
 
 ```bash
 grunt
-grunt --shopId 1 # optionally specify shopId
+grunt --shopId=1 # optionally specify shopId
 ```
 
 ![Grunt Screenshot](grunt-screenshot.png)

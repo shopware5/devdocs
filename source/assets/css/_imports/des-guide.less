@@ -16,26 +16,25 @@
         padding-bottom: 0;
     }
 
-    .info.guide {
+    .info {
         font-weight: 600;
     }
 
     .anchorjs-icon:before {
         content: '';
     }
-}
-
-/*------- START & END COLUMN -------*/
-.des-guide--opener,
-.des-guide--styletile {
-    display: inline-block;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    width: 98%;
 
     .row {
         clear: both;
     }
+}
+
+/*------- START & END COLUMN -------*/
+.des-guide--container {
+    display: inline-block;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 98%;
 
     .col {
         padding: 5% 1%;
@@ -43,7 +42,7 @@
         width: 98%;
     }
 
-    .col .say {
+    .say {
         color: darken(@text-color, 20%);
         display: block;
         font-size: 18px;
@@ -61,7 +60,7 @@
         }
     }
 
-    .one {
+    .designer-img {
         background: url("../../img/des-img-one.jpg") center center no-repeat;
         background-size: cover;
         border-radius: 100%;
@@ -186,10 +185,6 @@
     display: inline-block;
     width: 100%;
 
-    .row {
-        clear: both;
-    }
-
     a.col {
         color: @text-color;
     }
@@ -226,32 +221,16 @@
     }
 }
 
-@media screen and (min-width: 468px) {
-    .des-guide--opener .col {
-        float: left;
-        width: 90%;
-
-        &.medium {
-            width: 50%;
-        }
-
-        &.small {
-            width: 50%;
-        }
-    }
-}
-
 @media screen and (min-width: 768px) {
     .start-guide .des-guide img {
         width: 180px;
     }
 
-    h1:first-of-type {
+    .start-guide h1:first-of-type {
         font-size: 53px;
     }
 
-    .des-guide--opener .col,
-    .des-guide--styletile .col {
+    .des-guide--container .col {
         float: left;
         width: 98%;
         padding: 5% 1%;
@@ -270,11 +249,11 @@
         }
     }
 
-    .des-guide--styletile .styletile-headline {
+    .guide--container .styletile-headline {
         padding: 5% 10% 0 10%;
     }
 
-    .des-guide--opener .col .say {
+    .des-guide--container .col .say {
         font-size: 20px;
         padding: 8px 25px 0px 25px;
     }
@@ -288,7 +267,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-    .start-guide .des-guide img {
+    .des-guide img {
         margin-top: -30px;
         width: 180px;
     }
@@ -301,7 +280,6 @@
         min-height: auto;
     }
 }
-
 
 @media screen and (min-width: 1400px) {
     .bubble {

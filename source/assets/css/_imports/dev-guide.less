@@ -23,19 +23,18 @@
     .anchorjs-icon:before {
         content: '';
     }
-}
-
-/*------- START & END COLUMN -------*/
-.dev-guide--opener,
-.dev-guide--gitter {
-    display: inline-block;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    width: 98%;
 
     .row {
         clear: both;
     }
+}
+
+/*------- START & END COLUMN -------*/
+.dev-guide--container {
+    display: inline-block;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 98%;
 
     .col {
         padding: 5% 1%;
@@ -43,7 +42,7 @@
         width: 98%;
     }
 
-    .col .say {
+    .say {
         color: darken(@text-color, 20%);
         display: block;
         font-size: 18px;
@@ -61,7 +60,7 @@
         }
     }
 
-    .one {
+    .developer-img {
         background: url("../../img/img-one.jpg") center center no-repeat;
         background-size: cover;
         border-radius: 100%;
@@ -188,10 +187,6 @@
     display: inline-block;
     width: 100%;
 
-    .row {
-        clear: both;
-    }
-
     a.col {
         color: @text-color;
     }
@@ -228,34 +223,19 @@
     }
 }
 
-@media screen and (min-width: 468px) {
-    .dev-guide--opener .col,
-    .dev-guide--gitter .col {
-        float: left;
-        width: 90%;
-
-        &.medium {
-            width: 50%;
-        }
-
-        &.small {
-            width: 50%;
-        }
-    }
-}
-
 @media screen and (min-width: 768px) {
     .start-guide .dev-guide img {
         width: 180px;
     }
 
-    h1:first-of-type {
+    .start-guide h1:first-of-type {
         font-size: 53px;
     }
 
-    .dev-guide--opener .col,
-    .dev-guide--gitter .col {
+    .dev-guide--container .col {
         padding: 5% 1%;
+        float: left;
+        width: 98%;
 
         &.medium {
             width: 60%;
@@ -264,15 +244,15 @@
         &.small {
             width: 40%;
         }
-    }
 
-    .dev-guide--gitter .gitter-headline{
-        padding: 5% 10% 0 10%;
-    }
+        .gitter-headline {
+            padding: 5% 10% 0 10%;
+        }
 
-    .dev-guide--opener .col .say {
-        font-size: 20px;
-        padding: 8px 25px 0px 25px;
+        .say {
+            font-size: 20px;
+            padding: 8px 25px 0px 25px;
+        }
     }
 
     .dev-guide--menu .col {
@@ -297,7 +277,6 @@
         min-height: auto;
     }
 }
-
 
 @media screen and (min-width: 1400px) {
     .bubble {

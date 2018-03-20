@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg version="1.1" viewBox="0 0 343 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <title>Styleguide-doppel</title>
-<desc>Created with Sketch.</desc>
 <defs>
 <path id="h" d="m160.19 1.2285l120.5 44.875c11.627 4.33 19.842 14.815 21.265 27.14l2.0499 17.756h-160v-78.526c0-6.6274 5.3726-12 12-12 1.4298 0 2.8481 0.25552 4.188 0.75452z"/>
 <path id="b" d="m274 112h-270.22"/>

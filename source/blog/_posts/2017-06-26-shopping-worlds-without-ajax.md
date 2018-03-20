@@ -36,7 +36,7 @@ With these changes in place, you're now able to include shopping worlds literall
 </div>
 ```
 
-The argument `emotionId` in the widget call lets you choose what shopping world you would like to include. To get an overview of all available shopping worlds, please refer to the `s_core_emotion` database table. 
+The argument `emotionId` in the widget call lets you choose what shopping world you would like to include. To get an overview of all available shopping worlds, please refer to the `s_emotion` database table. 
 
 You may have to customize the styling of the shopping world, depending on what section of the store front you're using it.
 

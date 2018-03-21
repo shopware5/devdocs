@@ -1,0 +1,47 @@
+{% extends "default.twig.html" %}
+
+    {% block content_main %}
+    <div class="devdocs content">
+
+        <section id="search-results" style="display: none;">
+            <h2 class="search-results--headline">Search results</h2>
+
+            <div class="entries"></div>
+        </section>
+
+        <div class="inner-container">
+
+            {% block content_wrapper %}{% block content %}{% endblock %}{% endblock %}
+
+            {% if page.history is defined %}
+            <h2>Version History</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Changes</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for changeDate, changeText in page.history|reverse(true) %}
+                <tr>
+                    <td>{{ changeDate|date("Y-m-d") }}</td>
+                    <td>{{ changeText }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+        <a href="#" class="dev-top">Top</a>
+    </div>
+
+    <div class="bubble">
+        <div class="bubble--big"></div>
+        <div class="bubble--small"></div>
+    </div>
+
+    {% endblock %}
+

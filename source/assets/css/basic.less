@@ -18,6 +18,8 @@
 @import "_imports/landing-page.less";
 @import "_imports/labs.less";
 @import "_imports/start.less";
+@import "_imports/dev-guide.less";
+@import "_imports/des-guide.less";
 
 /**
  * — Minor Section Heading —
@@ -115,18 +117,21 @@ b, strong {
 
 .content {
     .clearfix();
-    max-width: 900px;
     margin-top: 80px;
     background: #fff;
     padding-top: 90px;
     padding-bottom: 0;
+    padding-left: 15px;
+    padding-right: 20px;
     position: relative;
 
     @media screen and (min-width: 1200px) {
+        max-width: 900px;
         margin-left: 390px;
         margin-top: 0;
         padding-top: 60px;
-        padding-right: 55px
+        padding-left: 0;
+        padding-right: 50px;
     }
 }
 
@@ -214,8 +219,8 @@ nav.navi--main:after {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 50px;
-    height: 100px;
+    bottom: 40px;
+    height: 20px;
     z-index: 10;
     background: -moz-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
     background: -webkit-linear-gradient(top, rgba(20, 36, 50, 0) 0%, #142432 100%);
@@ -233,7 +238,7 @@ nav.navi--main:after {
     position: fixed;
     top: 0; left: 0;
     z-index: 9800;
-    padding: 150px 0 50px 0;
+    padding: 150px 0 40px 0;
     overflow: hidden;
 
     ::-webkit-scrollbar {
@@ -538,7 +543,7 @@ input#search-query {
     border-radius: 30px;
     color: rgba(255, 255, 255, 1);
     font-weight: 400;
-    background: rgba(205, 221, 247, 0.1);
+    background: rgba(205, 221, 247, 0.15);
     font-family: 'Brandon';
 
     &::-ms-clear {

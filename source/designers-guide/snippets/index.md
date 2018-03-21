@@ -45,7 +45,7 @@ If you use this feature, your snippets will no longer require an explicit declar
 
 You can optionally still declare the namespace in that snippet. The namespace declared in the snippets takes precedence over the file's global namespace. Use this if you need to reuse, in your current namespace, a snippet from another namespace. Keep in mind that this is not recommended, as later changes to that snippet will impact multiple points of your plugin, potentially causing undesired consequences.
 
-Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` directory will have the `theme/<theme name>` prefix automatically added to them.
+Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` directory will have the `themes/<theme name>` prefix automatically added to them.
 
 ### Using snippets
 

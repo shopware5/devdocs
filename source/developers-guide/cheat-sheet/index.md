@@ -34,7 +34,6 @@ $this->Front()->Plugins()->ViewRenderer()->setNoRender();
 ### Add json Rendering
 Useful for ajax calls
 ```php
-$this->Front()->Plugins()->ViewRenderer()->setNoRender();
 $this->Front()->Plugins()->Json()->setRenderer();
 ```
 

@@ -176,7 +176,7 @@ Traced models:
 - `Shopware\Models\Article\Detail`
 - `Shopware\Models\Article\Price`
 
-When changes to entities belonging to these models are done, they are immediately saved in the MySQL database, but propagation to Elasticsearch is delayed until the next execution of the `sw:es:sync:backlog` command.
+When changes to entities belonging to these models are done, they are immediately saved in the MySQL database, but propagation to Elasticsearch is delayed until the next execution of the `sw:es:backlog:sync` command.
 
 ### Rebuilding the search index
 

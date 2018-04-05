@@ -18,7 +18,7 @@ Professional deployment begins with professional development. The time when ever
 FTP server are long gone.
 
 You should be using a version control system (VCS), preferably [git](https://git-scm.com/) to allow parallel development
-on local machines while integrating these parts in a central point. See the [developers guide]({{ site.url }}/developers-guide/plugin-quick-start)
+on local machines while integrating these parts in a central point. See the <a href="{{ site.url }}/developers-guide/plugin-quick-start">developers guide</a>.
 
 If you find yourself reusing plugins, themes or configuration, think about using [Composer](https://getcomposer.org/) and
 the [Shopware Composer Project](https://github.com/shopware/composer-project) for your new projects. It will help you

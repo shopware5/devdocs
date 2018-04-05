@@ -38,14 +38,14 @@ Many projects out there use acceptance tests as their only way of automated test
 
 | Page Loads  |  Time   |
 |-------------|---------|
-| 1           | 250 ms  |
-| 5           |   1 min |
-| 10          |   2 min |
-| 50          |  10 min |
-| 100         |  20 min |
-| 400         |   1 hr  |
+| 1           |  250 ms |
+| 5           | 1.25 s  |
+| 10          |  2.5 s  |
+| 50          | 12.5 s  |
+| 100         |   25 s  |
+| 400         |  100 s  |
 
-Now you have to ask yourself: Do you want to maintain this? Is it useful? Creating an application that has 400 different click paths is quite easy, but waiting an hour to validate every single change is tedious at least and at worst it stops being helpful quickly.
+Now you have to ask yourself: Do you want to maintain this? Is it useful? Creating an application that has 400 different click paths is quite easy, but waiting 100 seconds to validate every single change is tedious at least and at worst it stops being helpful quickly.
 
 The main advantage is that - at least for settled applications - introducing testing late in a development flow makes this a quick win because usually you have to write the least amount of code for this. And even if the Structure of your source code does not allow to easily introduce testing into every layer, these tests at least tend to solidify the basic functionality. So this is possible by just introducing a single layer on top of your application:
 

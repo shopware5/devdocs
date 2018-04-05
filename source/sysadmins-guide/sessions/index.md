@@ -16,7 +16,7 @@ redirect:
 indexed: true
 group: System Guides
 menu_title: Sessions
-menu_order: 70
+menu_order: 80
 ---
 
 Shopware uses the database for session handling by default. This article will explain configuration options and

@@ -9,7 +9,7 @@ tags:
 indexed: true
 group: System Guides
 menu_title: Varnish setup
-menu_order: 60
+menu_order: 70
 ---
 
 <div class="toc-list"></div>

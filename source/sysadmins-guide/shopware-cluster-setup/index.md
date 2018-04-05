@@ -5,7 +5,7 @@ github_link: sysadmins-guide/shopware-cluster-setup/index.md
 indexed: true
 group: System Guides
 menu_title: Cluster setup
-menu_order: 80
+menu_order: 90
 ---
 Installing and running Shopware on a single server LAMP stack is easy to accomplish and a common solution for small and
 mid size customers. When it comes to high performance and high reliability, however, having a clustered, redundant

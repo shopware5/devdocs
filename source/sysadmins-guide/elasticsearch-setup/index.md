@@ -11,7 +11,7 @@ redirect:
 indexed: true
 group: System Guides
 menu_title: Elasticsearch setup
-menu_order: 50
+menu_order: 60
 ---
 
 <div class="toc-list"></div>

@@ -204,13 +204,15 @@ The returned version has to be compatible with the [php version_compare](http://
 
 ## Plugin Name
 
-The plugin name should always be prefixed with your developer prefix so it's unique in the Shopware universe.
+The plugin name must be fashioned according to the [PHP variable name rules](http://php.net/manual/language.variables.basics.php) and should always be prefixed with your developer prefix so it's unique in the Shopware universe.
 To submit plugins to the [shopware store](http://store.shopware.com/) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
 In the following examples the developer prefix "Swag" will be used (short for shopware AG).
 
 ## The plugin base file
-The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed in `custom/plugins/SwagSloganOfTheDay`.
+The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed
+in either `custom/plugins/SwagSloganOfTheDay` or `custom/project/SwagSloganOfTheDay` if it is a project-specific
+plugin by intention.
 
  In the `SwagSloganOfTheDay.php` file, we create a simple class:
 
@@ -226,6 +228,9 @@ The main entry point of every plugin is the plugin base file in your plugin dire
  
  }
 ```
+
+Both the PHP namespace and the class name must match the [plugin name](#plugin-name) equally and no additional
+path parts must be added.
 
 It's important to extend the `Shopware\Components\Plugin` class.
 

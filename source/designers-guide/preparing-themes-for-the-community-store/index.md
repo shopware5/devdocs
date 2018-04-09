@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Preparing themes for the community store
+title: Preparing themes for the Community Store
 github_link: designers-guide/preparing-themes-for-the-community-store/index.md
 indexed: true
 group: Frontend Guides
 subgroup: Developing Themes
-menu_title: Preparing themes for the community store
+menu_title: Preparing themes for the Community Store
 menu_order: 90
 ---
 

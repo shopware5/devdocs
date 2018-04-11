@@ -314,11 +314,11 @@ public function onPostDispatch(Enlight_Event_EventArgs $arguments)
     }
 
     if (!$shop) {
-        $shop = $this->container->get('models')->getRepository(Shopware\Models\Shop\Shop::class)->getActiveDefault();
+        $shop = $this->container->get('models')->getRepository(\Shopware\Models\Shop\Shop::class)->getActiveDefault();
     }
 
-    $config = $this->container->get('shopware.plugin.config_reader')->getByPluginName('PluginName', $shop);
-    if (empty($config->show)) {
+    $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName('PluginName', $shop);
+    if (!(bool) $config['show']) {
         return;
     }
  

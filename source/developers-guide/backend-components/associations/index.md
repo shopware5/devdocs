@@ -1552,7 +1552,7 @@ Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Variant', {
 });
 ```
 
-By default, a `Shopware.grid.Panel` will be created in order to display `OneToMany` associations. The `Shopware.grid.Panel` component can then implement their own detail view in order to edit the variants.  Alternatively, you can implement a [Ext.grid.plugin.RowEditing](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.grid.plugin.RowEditing) component to edit the data directly inside of the grid.
+By default, a `Shopware.grid.Panel` will be created in order to display `OneToMany` associations. The `Shopware.grid.Panel` component can then implement their own detail view in order to edit the variants.  Alternatively, you can implement a [Ext.grid.plugin.RowEditing](http://docs.sencha.com/extjs/4.1.1/#!/api/Ext.grid.plugin.RowEditing) component to edit the data directly inside of the grid.
 
 Like the `OneToMany` and `OneToOne` associations, you have to define where the variant view should be displayed. Like seen in previous section, you can display the view in a new tab or inside of a model container.
 

@@ -24,9 +24,9 @@ We also recommend the following articles:
 
 **ExtJS Documentation**
 
-* [ExtJS API](http://docs.sencha.com/extjs/4.1.3/#!/api)
-* [ExtJS Guides](http://docs.sencha.com/extjs/4.1.3/#!/guide)
-* [ExtJS Examples](http://docs.sencha.com/extjs/4.1.3/#!/example)
+* [ExtJS API](http://docs.sencha.com/extjs/4.1.1/#!/api)
+* [ExtJS Guides](http://docs.sencha.com/extjs/4.1.1/#!/guide)
+* [ExtJS Examples](http://docs.sencha.com/extjs/4.1.1/#!/example)
 
 **Shopware Plugin Concept**
 

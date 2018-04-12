@@ -269,7 +269,7 @@ Ext.define('...view.list.extensions.Info', {
 
 </div>
 
-You can find a more detailed list of all available `Ext.XTemplates` features in the official [ExtJS documentation](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.XTemplate).
+You can find a more detailed list of all available `Ext.XTemplates` features in the official [ExtJS documentation](http://docs.sencha.com/extjs/4.1.1/#!/api/Ext.XTemplate).
 
 ## Shopware.listing.FilterPanel
 

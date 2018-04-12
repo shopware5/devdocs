@@ -369,7 +369,7 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 ```
 
 This example only shows a small validation to `allowBlank: false` and defines a minimum string length of 10. ExtJS supports different validation functions for an `Ext.form.field.Base`, for more information see:
-[ExtJs Docs](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.form.field.VTypes)
+[ExtJs Docs](http://docs.sencha.com/extjs/4.1.1/#!/api/Ext.form.field.VTypes)
 
 ### Define own backend view
 In some cases it is required to define an own view for the backend attribute which is not kind of the default view elements.

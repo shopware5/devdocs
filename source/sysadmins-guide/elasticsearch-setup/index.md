@@ -43,6 +43,8 @@ Elasticsearch 2.0 or newer is required.
 
 Elasticsearch installation and configuration greatly depends on your operating system and hosting provider. You will find extensive documentation online regarding the installation and configuration of Elasticsearch on most common Linux distributions. Some hosting providers might also provide specific documentation regarding this subject. Installation on Mac OSX or Windows is also possible, but not officially supported.
 
+Note that you can also use the official [hosted Elasticsearch by elastic](https://cloud.elastic.co/) which might make your deployment easier.
+
 The current Shopware 5 integration is designed to work with the out-of-the-box configuration of Elasticsearch. This does not mean, of course, that these are the best settings for a production environment. Although they will affect performance and security, the settings you choose to use on your Elasticsearch setup will be mostly transparent to your Shopware installation. The best setting constellation for your shop will greatly depend on your server setup, number and structure of products, replication requirements , to name a few. These settings fall out of the scope of this document, but you can refer to the official [Elasticsearch documentation page](https://www.elastic.co/guide/index.html) for more info.
 
 ### Shopware configuration

@@ -42,7 +42,7 @@ class RiskManagement implements SubscriberInterface
         $view->addTemplateDir($this->pluginPath . '/Resources/views');
 
         if ($request->getActionName() == 'load') {
-            $view->extendsTemplate('backend/swag_custom_risk_rule/store/risks.js');
+            $view->extendsTemplate('backend/risk_management/store/risks.js');
         }
     }
 }

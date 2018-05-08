@@ -22,8 +22,10 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
             fieldSet = me.callParent(arguments),
             indexA, indexB;
 
-        fieldSet.items.items.each(function (item, firstIndex) {
-            item.items.items.each(function (field, secondIndex) {
+
+        fieldSet.items.each(function (item, firstIndex) {
+            item.items.each(function (field, secondIndex) {
+
                 if(field.name === 'title') {
                     indexA = firstIndex;
                     indexB = secondIndex;
@@ -42,6 +44,7 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
         });
 
         return fieldSet;
+  
     },
 
     /**

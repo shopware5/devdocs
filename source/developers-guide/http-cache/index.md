@@ -241,9 +241,8 @@ Also, be aware that this approach only applies to Shopware's built-in reverse pr
 have to make your [Varnish configuration](/sysadmins-guide/varnish-setup/) aware of this cookie.
 
 
-## Trusted Proxies
-Another topic that is quite relevant for you, if you are working with bigger environments, is the [`trustedproxies`
-configuration](http://symfony.com/doc/current/components/http_foundation/trusting_proxies.html).
+## Cluster environments
+Another topic that is quite relevant for you, if you are working with bigger environments, is the [`trustedproxies`](http://symfony.com/doc/current/components/http_foundation/trusting_proxies.html) and `purge_allowed_ips` configuration.
 
 It does not affect the cache directly, but as soon as you have e.g. a Varnish and a load balancer in play, you will need
 to deal with the fact that your IP address is replaced with e.g. the proxy's IP address. This might have effects on
@@ -252,6 +251,8 @@ IP to see the shop. Usually, the proxy will set a header `HTTP_X_FORWARDED_FOR` 
 triggered the request. Of course, Shopware cannot simply rely on this header, as headers can be spoofed easily.
 The `trustedproxies` configuration defines which clients (proxies) are allowed to set the `HTTP_X_FORWARDED_FOR` header.
 Headers from other IPs are ignored.
+
+If you are running the build-in HTTP shopware cache on your shopware slave servers, you need to whitelist your servers in order to allow the cache to be invalided by this servers. This is set via `purge_allowed_ips` configuration. You also need to [configure an alternative proxy URL](/developers-guide/http-cache/#configuring-the-cache) in backend settings (Settings > Cache / Performance > Settings > HTTP-Cache). Your slave servers need to be accessible via a distinct URL, e.g. http://fe01.domian.tld, http://fe02.domian.tld.
 
 In order to configure this config, simply change your `config.php` like this:
 
@@ -263,8 +264,14 @@ return [
         // your default db configuration
     ],
     'trustedproxies' => [
-        '192.168.0.10',
-        '192.168.0.11',
+        '192.168.0.10', // IP address of load balancer
+        '192.168.0.11', // IP address of varnish cache
+    ],
+    'httpcache' => [
+        'purge_allowed_ips' => [
+            '192.168.0.101', // IP address of shopware slave 1 @ http://fe01.domian.tld
+            '192.168.0.102', // IP address of shopware slave 2 @ http://fe02.domian.tld
+        ],
     ],
 ]
 ```

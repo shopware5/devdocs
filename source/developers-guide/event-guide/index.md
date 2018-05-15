@@ -652,8 +652,8 @@ class FrontendListingSubscriber implements SubscriberInterface
 }
 ```
 
-This controller will subscribe to the `PostDispatchSecure_Frontend_Checkout` event - so it will only be called *after*
-the frontend checkout controller and only if there was *no exception* and a *template is available*. Notice, that template
+This controller will subscribe to the `PostDispatchSecure_Frontend_Listing` event - so it will only be called *after*
+the frontend listing controller and only if there was *no exception* and a *template is available*. Notice, that template
 variables and the template directory `Resources/views` is registered. By registering the `Resources/views` directory
 this way, you can overwrite / extend core templates, if you create them with the same name as in the core. See
 the [plugin quick start guide](/developers-guide/plugin-quick-start/#template-extension) for more

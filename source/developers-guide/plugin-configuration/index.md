@@ -309,7 +309,7 @@ With the help of the scope parameter we can assign configurations per subshop. W
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)
 {
     $shop = false;
-    if ($this->container->has('shop')) {
+    if ($this->container->initialized('shop')) {
         $shop = $this->container->get('shop');
     }
 

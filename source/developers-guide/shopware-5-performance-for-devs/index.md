@@ -36,6 +36,11 @@ You can learn more about Shopware's HTTP cache, its configuration options, behav
 
 Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](/sysadmins-guide/varnish-setup/) support for Enterprise customers.
 
+## ESI tags
+Excessive use of ESI tags can be a big performance problem. Especially if the cache hit rate is very low or they are completely uncached. ESI tags should be used with great care. 
+You can learn more about ESI tags and there implications by reading this [article](/blog/2016/07/11/on-action-tags/#slow-esi-tags).
+
+
 ## Theme Cache
 
 ### How the theme cache works

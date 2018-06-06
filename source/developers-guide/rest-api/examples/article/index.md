@@ -599,7 +599,69 @@ $client->post('propertyGroups', $properties);
 ```
 The returned identifier may be set as `filterGroupId`, just like the example `$filterTest` shows.
 
-## Example 7 - Creating and referencing units
+## Example 7 - Link new or existing images to a property 
+
+Its possible to assign images to a specific product property.
+
+```
+$filterTest = array(
+    'name' => 'My awesome liquor',
+    'description' => 'hmmmmm',
+
+    'active' => true,
+    'taxId'      => 1,
+
+    'mainDetail' => array(
+        'number' => 'brand1',
+        'inStock' => 15,
+        'active' => true,
+
+        'prices' => array(
+            array(
+                'customerGroupKey' => 'EK',
+                'from'  => 1,
+                'price' => 50
+            )
+        )
+    ),
+    
+    'images' => array(
+        array(
+            'link' => 'http://example.org/test.jpg',
+            'main' => 1,
+            'position' => 1,
+            'options' => array(
+                'name' => 'Alcohol content'
+            )
+        ),
+        array(
+            'mediaId' => 57,
+            'main' => 0,
+            'position' => 2,
+            'options' => array(
+                'name' => 'Color'
+            )
+        )
+    ),
+
+    'filterGroupId' => 1,
+    'propertyValues' => array(
+        array(
+            'option' => array('name' => "Alcohol content"),
+            'value' => '10%'
+        ),
+        array(
+            'option' => array('name' => "Color"),
+            'value' => 'rot'
+        )
+    )
+);
+
+$client->post('articles', $filterTest);
+
+```
+
+## Example 8 - Creating and referencing units
 
 It's possible to specify units using the `unit` key. The snippet below shows how:
 

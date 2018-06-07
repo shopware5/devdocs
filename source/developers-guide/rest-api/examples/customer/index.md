@@ -43,6 +43,9 @@ $client->get('customers?limit=20');
             "encoderName":"md5",
             "hashPassword":"a256a310bc1e5db755fd392c524028a8",
             "active":true,
+            "doubleOptinConfirmDate":"2011-11-23T12:00:00+0100",
+            "doubleOptinEmailSentDate":"2011-11-23T00:00:00+0100",
+            "doubleOptinRegister":true,
             "email":"test@example.com",
             "salutation": "mr",
             "firstname": "Max",
@@ -71,6 +74,9 @@ $client->get('customers?limit=20');
             "encoderName":"md5",
             "hashPassword":"352db51c3ff06159d380d3d9935ec814",
             "active":true,
+            "doubleOptinConfirmDate":null,
+            "doubleOptinEmailSentDate":null,
+            "doubleOptinRegister":false,
             "email":"mustermann@b2b.com",
             "salutation": "mr",
             "firstname": "Max",
@@ -117,6 +123,9 @@ $client->get('customers/1');
         "encoderName":"md5",
         "hashPassword":"a256a310bc1e5db755fd392c524028a8",
         "active":true,
+        "doubleOptinConfirmDate":null,
+        "doubleOptinEmailSentDate":null,
+        "doubleOptinRegister":false,
         "email":"test@example.com",
         "salutation": "mr",
         "firstname": "Max",
@@ -209,6 +218,33 @@ $client->post('customers',  array(
 ));
 ```
 
+## Example 4 - Create customer with Double-Opt-In confirmation
+
+This examples shows how to add a minimalistic customer using `'doubleOptinRegister' => true` to register him using
+Double-Opt-In and `'sendOptinMail' => true` to send him the required E-Mail with a confirmation link to complete his registration:
+
+```
+$client->post('customers',  array(
+    'email' => 'meier@mail.de',
+    'firstname' => 'Max',
+    'lastname' => 'Meier',
+    'salutation' => 'mr',
+    'doubleOptinRegister' => true,
+    'sendOptinMail' => true,
+    'billing' => array(
+        'firstname' => 'Max',
+        'lastname' => 'Meier',
+        'salutation' => 'mr',
+        'street' => 'Musterstrasse 55',
+        'city' => 'Sch\u00f6ppingen',
+        'zipcode' => '48624',
+        'country' => 2
+    )
+));
+```
+
+
+
 ### Result
 
 If the customer was created successfully this will be returned:
@@ -221,7 +257,7 @@ Array
 )
 ```
 
-## Example 4 - Update specific customer
+## Example 5 - Update specific customer
 
 It's possible to update a customer by passing its identifier and the new fields.
 
@@ -232,7 +268,7 @@ $client->put('customers/1', array(
 
 ```
 
-## Example 5 - Delete a specific customer
+## Example 6 - Delete a specific customer
 
 ```
 $client->delete('customers/1');

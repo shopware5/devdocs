@@ -17,7 +17,7 @@ menu_title: Performance Guide
 menu_order: 50
 ---
 
-In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
+In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new dependencies, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
 
 <div class="alert alert-warning">
 <strong>Note:</strong> This guide only covers system configuration optimizations, and does not cover Shopware's configuration itself. However, there are several configuration options inside Shopware itself that you can use to improve you shop's performance. Please refer to the <a href="/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a> for more details on this subject.

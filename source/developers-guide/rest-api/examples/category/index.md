@@ -22,10 +22,10 @@ These examples assume you are using the provided **[demo API client](/developers
 This example adds a sub-category to category 3
 
 ```
-$createCategory = array(
+$createCategory = [
     'parentId' => 3,
     'name'     => 'Test category'
-);
+];
 $client->post('categories', $createCategory);
 
 ```
@@ -34,19 +34,37 @@ $client->post('categories', $createCategory);
 
 ```
 
-$categoryData = array(
-    "name" => "Test category",
-    "metaDescription" => "metaTest",
-    "metaKeywords" => "keywordTest",
-    "cmsHeadline" => "headlineTest",
-    "cmsText" => "cmsTextTest",
-    "active" => true,
-    "noViewSelect" => true,
-    "attribute" => array(
-        1 => "Attribute1",
-        2 => "Attribute2",
-    )
-);
+$categoryData = [
+    'name" => 'Test category',
+    'metaDescription" => 'metaTest',
+    'metaKeywords" => 'keywordTest',
+    'cmsHeadline" => 'headlineTest',
+    'cmsText" => 'cmsTextTest',
+    'active" => true,
+    'noViewSelect" => true,
+    'attribute" => [
+        1 => 'Attribute1',
+        2 => 'Attribute2',
+    [
+];
 $client->post('categories', $categoryData );
 
+```
+
+## Example 3 - Create a category with translation
+
+```
+$categoryData = [
+    'name' => 'Test category',
+    'attribute' => [
+        1 => "Attr1",
+    [
+    'translations' => [
+        2 => [
+            'shopId' => 2,
+            'description' => 'Test category, english translation',
+            '__attribute_attribute1' => 'Attr1 English'
+        ]
+    ]
+];
 ```

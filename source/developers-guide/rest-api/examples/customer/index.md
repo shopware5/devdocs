@@ -220,7 +220,7 @@ $client->post('customers',  array(
 
 ## Example 4 - Create customer with Double-Opt-In confirmation
 
-This examples shows how to add a minimalistic customer using `'doubleOptinRegister' => true` to register him using
+This examples shows how to add a minimalistic customer using `'doubleOptinRegister' => true` to register him during
 Double-Opt-In and `'sendOptinMail' => true` to send him the required E-Mail with a confirmation link to complete his registration:
 
 ```

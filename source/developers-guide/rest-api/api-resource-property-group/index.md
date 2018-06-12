@@ -39,6 +39,8 @@ You can retrieve a property group by using its id
 | options              | array                  | **[Option](../models/#property-group-option)**            |
 | attribute              | array                  | **[Attribute](../models/#property-group-attribute)**        |
 
+Note the camel case notation for 'sortMode'.
+
 ## GET (List)
 
 To get more than one property group at once, simply remove the id parameter from the request URL.
@@ -66,7 +68,9 @@ You can post or put data by querying the following URL:
 | name                  | string                  |                                                            |
 | position              | integer                  |                                                            |
 | comparable          | boolean                  |                                                            |
-| sortMode              | integer                  |                                                            |
+| sortmode              | integer                  |                                                            |
+
+Note the small case notation for 'sortmode' to go with POST or PUT as opposed for GET.
 
 ## DELETE
 To delete a property group, simply query this URL with a `DELETE` request:

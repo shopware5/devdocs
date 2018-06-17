@@ -18,8 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
-    <link rel="stylesheet" href='//fonts.googleapis.com/css?family=Open+Sans:700,600,400' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css">
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/open-sans-font.css')) }}" />
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/highlight-github-gist.min.css')) }}" />
     <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/docsearch.min.css')) }}" />
     <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/basic.css')) }}"  media="screen">
 
@@ -287,15 +287,16 @@
     {% endblock %}
 </div>
 
-<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.min.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/highlight.min.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/highlight-lang-less.min.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/anchor.min.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.expandCode.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.toc.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.offcanvas.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/app.js')) }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.backtotop.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/docsearch.min.js')) }}"></script>
 
 {% block scripts_after %}
 {% endblock %}

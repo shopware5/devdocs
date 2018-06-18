@@ -670,9 +670,11 @@ $articleWithUnit = array(
     'name' => 'Sport shoes',
     'tax' => 19,
     'supplier' => 'Sport shoes Inc.',
+    'active' => true,
 
     'mainDetail' => array(
         'number' => 'turn33',
+        'active' => true,
         'prices' => array(
             array(
                 'customerGroupKey' => 'EK',
@@ -713,6 +715,7 @@ $testArticle = array(
 
     'mainDetail' => array(
         'number' => 'swTEST' . uniqid(),
+        'active' => true,
         'inStock' => 16,
         'prices' => array(
             array(
@@ -768,6 +771,7 @@ $configuratorArticle = array(
 
    'mainDetail' => array(
         'number' => 'swTEST' . uniqid(),
+        'active' => true,
         'prices' => array(
             array(
                 'customerGroupKey' => 'EK',

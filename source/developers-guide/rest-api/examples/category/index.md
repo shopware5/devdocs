@@ -45,7 +45,7 @@ $categoryData = [
     'attribute" => [
         1 => 'Attribute1',
         2 => 'Attribute2',
-    [
+    ]
 ];
 $client->post('categories', $categoryData );
 

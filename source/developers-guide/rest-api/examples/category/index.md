@@ -35,14 +35,14 @@ $client->post('categories', $createCategory);
 ```
 
 $categoryData = [
-    'name" => 'Test category',
-    'metaDescription" => 'metaTest',
-    'metaKeywords" => 'keywordTest',
-    'cmsHeadline" => 'headlineTest',
-    'cmsText" => 'cmsTextTest',
-    'active" => true,
-    'noViewSelect" => true,
-    'attribute" => [
+    'name' => 'Test category',
+    'metaDescription' => 'metaTest',
+    'metaKeywords' => 'keywordTest',
+    'cmsHeadline' => 'headlineTest',
+    'cmsText' => 'cmsTextTest',
+    'active' => true,
+    'noViewSelect' => true,
+    'attribute' => [
         1 => 'Attribute1',
         2 => 'Attribute2',
     ]
@@ -58,7 +58,7 @@ $categoryData = [
     'name' => 'Test category',
     'attribute' => [
         1 => "Attr1",
-    [
+    ],
     'translations' => [
         2 => [
             'shopId' => 2,

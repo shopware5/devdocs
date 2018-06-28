@@ -275,7 +275,7 @@ $fieldset = $this->createFieldSet(
 ![Custom fieldset layout](custom-fieldset-layout.png)
 
 <div class="alert alert-info">
-If you'd like to learn more about the layout options which can be used in the attributes array, you can take a look at the <a href="https://cdn.sencha.com/ext/gpl/4.1.1/docs/index.html#!/api">ExtJs documentation</a>.
+If you'd like to learn more about the layout options which can be used in the attributes array, you can take a look at the <a href="https://docs.sencha.com/extjs/4.1.1/#!/api">ExtJs documentation</a>.
 </div>
 
 ## Creating a blank theme configuration

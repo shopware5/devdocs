@@ -416,7 +416,7 @@ subgroup: REST API
 | date                 | date/time              |                                                 |
 | typeId              | integer (foreign key) | **[DocumentType](#document-type)**                |
 | customerId          | integer (foreign key) | **[Customer](#customer)**                        |
-| orderId              |    integer (foreign key) | **[Order](#order)**                                |
+| orderId              |    integer (foreign key) | **[Order](../api-resource-orders/)**                                |
 | amount              | double                  |                                                 |
 | documentId          | integer (foreign key) |                                                 |
 | hash                  | string                   |                                                    |

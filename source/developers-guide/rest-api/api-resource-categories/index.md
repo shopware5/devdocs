@@ -118,6 +118,7 @@ Appended to the above mentioned list, you will also find the following data:
 | parent              | object                | Required if no parentId is provided                  | **[Category](../models/#category)**                                             |
 | parentId            | integer               |                                                      | `s_category.id`                                                                 |
 | position            | integer               |                                                      |                                                                                  |
+| metaTitle           | string                |                                                         |                                                                                  |
 | metaKeywords        | string                |                                                         |                                                                                  |
 | metaDescription      | string                  |                                                      |                                                                                  |
 | cmsHeadline          | string                  |                                                      |                                                                                  |

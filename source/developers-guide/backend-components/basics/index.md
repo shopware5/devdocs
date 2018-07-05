@@ -422,14 +422,14 @@ Different from previous backend controllers, the `SwagProductBasic` controller d
 The property `$alias` will be the query alias used in every query with the root model (`$model` property).
 
 ## ExtJS Implementation
-Now, we go on to the proper usage of the backend components. First, we implement the following components in our directory `Views/backend`:
+Now, we go on to the proper usage of the backend components. First, we implement the following components in our directory `Resources/views/backend`:
 
-* `swag_product/app.js`
-* `swag_product/controller/main.js`
-* `swag_product/model/product.js`
-* `swag_product/store/product.js`
-* `swag_product/view/list/window.js`
-* `swag_product/view/list/product.js`
+* `swag_product_basic/app.js`
+* `swag_product_basic/controller/main.js`
+* `swag_product_basic/model/product.js`
+* `swag_product_basic/store/product.js`
+* `swag_product_basic/view/list/window.js`
+* `swag_product_basic/view/list/product.js`
 
 
 ### The Subapplication - `swag_product_basic/app.js`
@@ -466,7 +466,7 @@ The `launch()` method will instantiate the main controller and return its `mainW
 
 <div class="alert alert-info">Keep in mind that the naming of the classes in subapplications is important. It should always match the PHP controller name.</div>
 
-### The Main Controller - `swag_product/controller/main.js`
+### The Main Controller - `swag_product_basic/controller/main.js`
 The main controller is responsible for starting the application by creating and displaying the listing window:
 
 ```javascript
@@ -482,7 +482,7 @@ Ext.define('Shopware.apps.SwagProductBasic.controller.Main', {
 
 There is not much to say about the main controller. The only important thing is to set the property `mainWindow`, in order to ensure that your application can be closed by clicking the footer button.
 
-### The Listing Window - `swag_product/view/list/window.js`
+### The Listing Window - `swag_product_basic/view/list/window.js`
 The listing window derives from the `Shopware.window.Listing` component and will be the first backend component that will be used in our application.
 
 ```javascript
@@ -512,8 +512,8 @@ It is important to set property `alias`, otherwise all component events can't be
 This tutorial already contains some of the Shopware configuration options. You'll find an extended list of the configuration options in the upcoming tutorials.
 </div>
 
-### The Grid Panel - `swag_product/view/list/product.js`
-Next, we implement the `Shopware.grid.Panel` in `swag_product/view/list/product.js`.
+### The Grid Panel - `swag_product_basic/view/list/product.js`
+Next, we implement the `Shopware.grid.Panel` in `swag_product_basic/view/list/product.js`.
 
 ```javascript
 Ext.define('Shopware.apps.SwagProductBasic.view.list.Product', {

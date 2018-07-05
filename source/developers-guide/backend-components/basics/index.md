@@ -422,7 +422,7 @@ Different from previous backend controllers, the `SwagProductBasic` controller d
 The property `$alias` will be the query alias used in every query with the root model (`$model` property).
 
 ## ExtJS Implementation
-Now, we go on to the proper usage of the backend components. First, we implement the following components in our directory `Resources/Views/backend`:
+Now, we go on to the proper usage of the backend components. First, we implement the following components in our directory `Resources/views/backend`:
 
 * `swag_product_basic/app.js`
 * `swag_product_basic/controller/main.js`

@@ -17,14 +17,219 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.5
+
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**. Please be aware that
+PHP 5.6 and PHP 7.0 reach their "end of life" (the end of the offical support by the PHP Group) by the end of the year.
+For performance and compatibility reasons, we recommend using PHP 7.2 if no Ioncube encrypted plugin are installed.
+
+### Removal of deprecated code
+
+Shopware 5.5 removes a lot of old, deprecated code. If you're updating from Shopware < v5.4.5, you might want to consider
+updating on the latest version of 5.4 first: versions 5.4.5 onwards show deprecation warnings in development mode if a
+deprecated function is being called. Alternatively you can change the loglevel in your `config.php` by setting
+
+```php
+...
+'logger' => [
+    'level' => \Shopware\Components\Logger::DEBUG
+],
+...
+```
+
+The most relevant changes are:
+
+- The methods `ModelManager::addAttribute` and `ModelManager::removeAttribute` were removed. Use `\Shopware\Bundle\AttributeBundle\Service\CrudService::update` instead.
+- The class `Shopware\Bundle\EmotionBundle\ComponentHandler\EventComponentHandler` was removed. Implement a `\Shopware\Bundle\EmotionBundle\ComponentHandler` instead.
+- The legacy models `Shopware\Models\Customer\Billing` and `Shopware\Models\Customer\Shipping` aren't available anymore.
+The same is true for their references in the `Customer` model (customer.billing, customer.shipping) and the repository
+`Shopware\Models\Customer\BillingRepository`. The matching tables `s_user_billingaddress`, `s_user_shippingaddress`
+and their attribute tables `s_user_billingaddress_attributes` and `s_user_shippingaddress_attributes` won't be removed
+on upgrade until Shopware 5.6, but they won't be kept in sync anymore.
+- Old conversion classes got removed: `Shopware_Components_Convert_Csv`, `Shopware_Components_Convert_Excel` and `Shopware_Components_Convert_Xml`
+- The action `\Shopware_Controllers_Widgets_Listing::ajaxListingAction` was removed. Use `Shopware_Controllers_Widgets_Listing::listingCountAction` instead.
+
+For a complete overview check the **Removals** part of the <a href="https://github.com/shopware/shopware/blob/5.5/UPGRADE-5.5.md#removals">Upgrade.md</a>. 
+
+### Library updates
+
+- Updated `Symfony` to version 3.4.14 LTS. Some nice, new features are <a href="https://symfony.com/blog/new-in-symfony-3-4-simpler-injection-of-tagged-services" target="_blank">Simpler injection of tagged services</a> or <a href="" target="_blank">Command Lazyloading</a>.
+- Updated `jQuery` to 3.3.1.  You can see the <a href="https://jquery.com/upgrade-guide/3.0/" target="_blank">jQuery update guide</a>
+    for a list of important and breaking changes and links to the migration plugin.
+    In Shopware, the relevant changes were:
+    - Changing `.delegate()` to `.on()`
+    - Using `.prop()` instead of `.addAttribute()` or `.removeAttribute()`
+    - Using `JSON.parse()` instead of `$.parseJSON()`
+    - `$.ajax` is returning a `Deferred` object from now on and the callback method property for the failure behaviour is now called `error` instead of `failure`
+- Updated `league/flysystem` to 1.0.45
+- Updated `Mpdf` to 7.0.3
+- Updated `doctrine/common` to 2.7.3
+- Updated `beberlei/assert` to 2.9.2
+- Replaced `JSMin` with `JShrink`
+
+### Basket refactoring
+
+To improve basket performance and ease of use for plugin developers, the `sBasket` class was refactored slightly
+while still being compatible with existing plugins as much as possible.
+
+The most relevant change is in regards to the following blocks in `themes/Frontend/Bare/frontend/checkout/cart_item.tpl`
+which were moved to their own files:
+    * `frontend_checkout_cart_item_product`
+    * `frontend_checkout_cart_item_premium_product`
+    * `frontend_checkout_cart_item_voucher`
+    * `frontend_checkout_cart_item_rebate`
+    * `frontend_checkout_cart_item_surcharge_discount`
+
+These five blocks were moved to their own template files in `themes/Frontend/Bare/frontend/checkout/` to optimize the include process:
+    * `cart_item_product.tpl`
+    * `cart_item_premium_product.tpl`
+    * `cart_item_rebate.tpl`
+    * `cart_item_voucher.tpl`
+    * `cart_item_surcharge_discount.tpl`
+
+Also, the following templates no longer extend `cart_item.tpl` but include the logic themselves and have their own subtemplates:
+    * `confirm_item_premium_product.tpl`
+    * `confirm_item_product.tpl`
+    * `confirm_item_rebate.tpl`
+    * `confirm_item_surcharge_discount.tpl`
+    * `confirm_item_voucher.tpl`
+    * `finish_item_premium_product.tpl`
+    * `finish_item_product.tpl`
+    * `finish_item_voucher.tpl`
+
+If your theme extends one of the contained blocks, you'll have to change the filename it extends from.
+
+The following classes were added to simplify changes to the checkout process by plugins:
+* Added struct `Shopware\Components\Cart\Struct\CartItemStruct` to represent items in the cart during calculation
+* Added public function `sBasket::updateCartItems` to provide a new way of interacting with cart updates
+
+### Proportional tax calculation
+
+The proportional tax calculation allows to calculate multiple taxes for all fees, vouchers, discounts etc in baskets
+containing items with e.g. 19% and 7% tax. This feature needs to be activated in *Settings*, *Checkout*, *Proportional calculation of tax positions*.
+For the proportional tax calculation to work with vouchers and modes of dispatch, be sure to set the mode of tax calculation to "auto detection" in their settings
+
+The following changes were made to implement this feature:
+
+* Added `Shopware\Components\Cart\ProportionalTaxCalculator` to calculate proportional taxes for the cart items
+* Added `Shopware\Components\Cart\BasketHelper` to to add items to the cart that need to be calculation in a proportional way
+* Added `Shopware\Components\Cart\ProportionalCartMerger` to merge proportional cart items into one cart item
+* Added new filter event to modify proportional vouchers `Shopware_Modules_Basket_AddVoucher_VoucherPrices`
+* Added new column `invoice_shipping_tax_rate` to `s_order`, to save exact dispatch shipping tax rate. If the proportional
+calculation is disabled, this field is `null` and shipping tax rate will be calculated like before
+* Added new column `is_proportional_calculation` to `s_order`, which defines that the order is made with proportional items
+
+### Elasticsearch
+
+Shopware 5.5 supports Elasticsearch versions 2.x, 5.x and 6.x.
+
+Shopware works with index aliases to allow multiple indices to exist in parallel and switch between them if necessary.
+Should an index with the name of an alias (e.g. `shop_1`) already exist, will now be deleted so that the new alias can
+be created without error.
+
+To support Elasticsearch 6 it was necessary to split the existing index into multiple indices for different document types
+(product, property). If you're using `sw:es:analyze` and `sw:es:switch:alias`, you now need to also provide the parameter
+document type that you want to analyze or switch the index of.
+
+### Elasticsearch backend
+
+A new `EsBackendBunde` was added to index and search for products, customers and orders in the backend. New config.php
+parameters where added for that, the `es` array of parameters now contains a new key `backend`:
+
+```
+'es' => [
+    ...
+    'backend' => [
+        'write_backlog' => false,
+        'enabled' => false,
+    ],
+    ...
+],
+```
+
+To activate Elasticsearch in the backend, simply change `backend.enabled` to `true` and use the `sw:es:backend:index:populate`
+command to populate the necessary indices. If you also enabled the `backend.write_log`, you can use `sw:es:backend:sync`
+periodically after that to keep the index in sync.
+
+### Changed execution model of `replace` hooks
+
+When multiple `replace` hooks exist for one method, up to 5.4 (incl.) each of these hooks were called sequentially with
+each of these hooks having the opportunity to call `executeParent()`. Hence, if this happened, the original (parent)
+implementation got called multiple times, leading to unexpected behaviours.
+
+In Shopware 5.5 the execution model was changed to a decorative type of implementation: If more than one `replace` hook
+exists for a function, calling `executeParent()` inside the hook will execute the next `replace` hook of function. Only
+the last `replace` hook will then call the original implementation on `executeParent()`.
+ 
+### Filesystem abstraction layer
+
+As of Shopware 5.5, the use of direct file system access methods (like e.g. `fopen()`, `file()`, `is_readable()` and many more)
+is being discouraged. Instead, we rely on the library <a href="https://github.com/thephpleague/flysystem" target="_blank">FlySystem</a>
+as a generic file system abstraction layer. This allows a lot of flexibility in regards to where files are being stored.
+E.g. Documents, ESD and Sitemap files can now also served from S3 or Google Cloud. We added support for
+Amazon Web Services and Google Cloud Platform for the moment but this layer will help us in the future to support more
+cloud services.
+
+Multiple instances of this abstraction classes are available to plugins. The services with the ids `shopware.filesystem.public`
+and `shopware.filesystem.private` are available to Shopware itself and to all plugins that are active. These services are
+used to access a shared "folder" in which files can be stored that should be shared between Shopware and plugins.
+The service `shopware.filesystem.public.url_generator` can be used for generating a URL to a file in the public filesystem.
+
+The `shopware.filesystem.public` file system is intended for files that need to be accessible to clients directly, e.g.
+images, product manuals etc. while `shopware.filesystem.private` is for files that need to be available throughout Shopware
+(e.g. invoice pdfs, ESDs like software), but are not to be accessed by a browser directly without any authentication.
+
+This is a simple example of how a file can be written using the new system:
+
+```php
+$fileName = 'HelloWorld.txt';
+$contents = 'Uploaded by Shopware using FlySystem';
+
+$filesystem = $this->container->get('shopware.filesystem.private');
+if ($filesystem->has($fileName)) {
+    $filesystem->delete($fileName);
+}
+
+$filesystem->write($fileName, $contents);
+```
+
+Plugins can access their own filesystems which are instantiated and available automatically:
+    * `plugin_name.filesystem.public`
+    * `plugin_name.filesystem.private`
+
+### Sitemap
+
+To support more than 50.000 URLs that are allowed in one `sitemap.xml` file, Shopware now adds a `sitemap_index.xml`,
+which itself contains links to one or more `sitemap.xml`. The sitemap files can be created by cronjob, live or using
+the command `sw:generate:sitemap`.
+
+If you need to add some links to the sitemap, you can simply create a service implementing the interface
+`\Shopware\Bundle\SitemapBundle\UrlProviderInterface` and give it the DIC tag `sitemap_url_provider`. The sitemap exporter
+will collect your service using the tag and export the URLs it provides along with the others.
+
+### Dynamic cache invalidation
+
+The cache duration of the HTTP cache for shopping worlds, product detail pages, categories or blog pages is now being
+calculated dynamically, should an entity be changed automatically at a certain point in time. An example would be a 
+new shopping world on the frontpage or a category that goes live at noon. Normally it wouldn't be visible till the 
+HTTP cache expires or is cleaned manually.
+
+Now, the cache time is calculated dynamically so that it expires at the correct point in time.
+
+If you want to implement this feature for your own element, you only need to provide a service that implements the 
+interface `Shopware\Components\HttpCache\CacheTimeServiceInterface` and then tag this service in the `services.xml` with
+the tag `invalidation_date_provider`. It will then be picked up and called automatically.
+
 ## Shopware 5.4
 
 <div class="alert alert-info">
 
 ### SSL Encryption
 
-The mixed SSL encryption mode in the shop configuration has been removed. As of 5.4, the SSL encryption can only be 
-enabled or disabled globally. Shops using the mixed SSL encryption setting will automatically be upgraded to full 
+The mixed SSL encryption mode in the shop configuration has been removed. As of 5.4, the SSL encryption can only be
+enabled or disabled globally. Shops using the mixed SSL encryption setting will automatically be upgraded to full
 SSL encryption. Deprecated table columns and methods have been removed.
 
 To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
@@ -155,11 +360,11 @@ They have been replaced with the following parameters in the DIC:
 - `shopware.release.revision`
     The revision of the Shopware installation (e.g. '20180081547')
 
-Added new service in the DIC containing all parameters above 
+A new service was added in the DIC containing all parameters above 
 - `shopware.release`
     A new struct of type `\Shopware\Components\ShopwareReleaseStruct` containing all parameters above
 
-To be compatible with the most versions of Shopware, please use the `config` service from the DIC for the time being:
+To be compatible with most versions of Shopware, please use the `config` service from the DIC for the time being:
 ```
     $this->container->get('config')->get('version') === Shopware::VERSION; # => true
     $this->container->get('config')->get('version_text') === Shopware::VERSION_TEXT; # => true

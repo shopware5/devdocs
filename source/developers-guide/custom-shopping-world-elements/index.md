@@ -2,7 +2,7 @@
 layout: default
 title: Custom shopping world elements
 github_link: developers-guide/custom-shopping-world-elements/index.md
-shopware_version: 5.2.0
+shopware_version: 5.2.10
 indexed: true
 tags:
   - shopping worlds

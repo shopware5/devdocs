@@ -8,7 +8,7 @@ subgroup: Developing plugins
 menu_title: Plugin configuration
 menu_order: 70
 ---
-This document will give you a brief introduction about how to set configuration options for plugins, which parameters are available and how to use them.
+This document will give you a brief introduction about how to set configuration options for plugins, which tags are available and how to use them.
 All configurations is done with help of the `config.xml` file resulting in the examples shown here.
 
 <div class="toc-list"></div>
@@ -56,11 +56,8 @@ Which would lead to a simple textfield.
 
 <img src="img/simple_textfield.png" alt="Simple textfield" class="image-border" />
 
-## Options Parameter
-The options parameter of the `setElement` function allows to set several configurations on the form element.
-
 ### Label
-The label parameter allows to create a simple descriptional label for the form element.
+The label tag allows to create a simple descriptional label for the form element.
 ```xml
 <label lang="de">Dein Label</label>
 <label lang="en">Your label</label>
@@ -68,13 +65,35 @@ The label parameter allows to create a simple descriptional label for the form e
 
 <img src="img/textfield_label.png" alt="Textfield with label" class="image-border" />
 
+### Description
+The description tag allows to provide a more detailed description of the configuration element.
+
+```xml
+<description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+<description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
+```
+
+<img src="img/description.png" alt="Textfield with description" class="image-border" />
+
 ### Value
-The value parameter stands for the default value of the field if this hasn´t been edited yet. It will directly be shown in the configuration element.
+The value tag stands for the default value of the field if this hasn´t been edited yet. It will directly be shown in the configuration element.
 ```xml
 <value>preselection</value>
 ```
 
 <img src="img/default_value.png" alt="Textfield with default value" class="image-border" />
+
+### Options
+The options tag allows you to set configs of the ExtJs representation of a specific configuration element. See [ExtJs Docs](https://docs.sencha.com/extjs/4.1.1/#!/api/Ext.form.field.Number-cfg-minValue)
+```xml
+<element type="number">
+    <name>testNumber</name>
+    <label lang="en">Test Number field</label>
+    <options>
+        <minValue>0</minValue>
+    </options>
+</element>
+```
 
 ### Required
 The required attribute specifies whether the configuration item is mandatory or not.
@@ -82,11 +101,10 @@ The required attribute specifies whether the configuration item is mandatory or 
 <element required="true" ... >
 ```
 
-
 <img src="img/required.png" alt="Textfield marked as required" class="image-border" />
 
 ### Scope
-With help of the scope parameter it is possible to generate subshop specific configurations. Leaving this option out results in a configuration option
+With help of the scope attribute it is possible to generate subshop specific configurations. Leaving this option out results in a configuration option
 that applies for all subshops.
 ```xml
  <element ... scope="locale">
@@ -95,16 +113,6 @@ that applies for all subshops.
 <img src="img/scope.png" alt="Configuration with scope" class="image-border" />
 
 You can read more on subshop specific configuration at the end of this article reading the [Subshop specific configuration](#subshop-specific-plugin-configur) part.
-
-### Description
-The description parameter allows to provide a more detailed description of the configuration element.
-
-```xml
-<description lang="de">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
-<description lang="en">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</description>
-```
-
-<img src="img/description.png" alt="Textfield with description" class="image-border" />
 
 ## Element Types
 Below all supported configuration elements including their design and source code are described again.
@@ -303,7 +311,7 @@ we write a little plugin which replaces the Shopware logo with random text.
 </config>
 ```
 
-With the help of the scope parameter we can assign configurations per subshop. Without the scope parameter the configuration is used in all subshops. We´ve mentioned this earlier this article.
+With the help of the scope attribute we can assign configurations per subshop. Without the scope attribute the configuration is used in all subshops. We´ve mentioned this earlier this article.
 
 ```php
 public function onPostDispatch(Enlight_Event_EventArgs $arguments)

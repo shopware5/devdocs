@@ -308,7 +308,7 @@ class SwagAttribute extends Plugin
         /** @var \Enlight_View_Default $view */
         $view = $arguments->getSubject()->View();
 
-        $view->addTemplateDir($this->getPath() . '/Views/');
+        $view->addTemplateDir($this->getPath() . '/Resources/views/');
 
         $view->extendsTemplate('backend/swag_attribute/Shopware.attribute.Form.js');
     }
@@ -819,7 +819,7 @@ class SwagShoeSize extends Plugin
 ```
 
 ### Adding an input element for the attribute to the registration form
-We create the template `Resources/Views/frontend/register/personal_fieldset.tpl` and extend the block where we want the input to show up. The attribute is persisted automatically along with the registered customer.
+We create the template `Resources/views/frontend/register/personal_fieldset.tpl` and extend the block where we want the input to show up. The attribute is persisted automatically along with the registered customer.
 
 ```
 {extends file="parent:frontend/register/personal_fieldset.tpl"}
@@ -837,7 +837,7 @@ We create the template `Resources/Views/frontend/register/personal_fieldset.tpl`
 **Attention**: Although the field names are defined in snake_case when created using the CRUD-service, you need to use camelCase in name attributes. This is necessary due to the way the internally used FormBuilder works. 
 
 ### Show attributes in the frontend
-Attributes are loaded automatically with the entity they belong to. To display the shoesize in the account we create `Resources/Views/frontend/account/index.tpl`:
+Attributes are loaded automatically with the entity they belong to. To display the shoesize in the account we create `Resources/views/frontend/account/index.tpl`:
  
 ```
 {extends file="parent:frontend/account/index.tpl"}

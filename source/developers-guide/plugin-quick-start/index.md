@@ -589,18 +589,18 @@ Like:`->scheduleClearCache()`, `->getCurrentVersion()`, `->getUpdateVersion()`, 
 
 ### The clear cache method. 
 ```php
-$context->scheduleClearCache(...Context::CACHE_LIST_ALL);
+$context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
 ```
 Possible settings for the parameter `caches` contains each context as constant.
-`...Context::CACHE_LIST_DEFAULT`
-`...Context::CACHE_LIST_ALL`
-`...Context::CACHE_LIST_FRONTEND`
-`...Context::CACHE_TAG_CONFIG`
-`...Context::CACHE_TAG_HTTP`
-`...Context::CACHE_TAG_PROXY`
-`...Context::CACHE_TAG_ROUTER`
-`...Context::CACHE_TAG_TEMPLATE`
-`...Context::CACHE_TAG_THEME`
+`InstallContext::CACHE_LIST_DEFAULT`
+`InstallContext::CACHE_LIST_ALL`
+`InstallContext::CACHE_LIST_FRONTEND`
+`InstallContext::CACHE_TAG_CONFIG`
+`InstallContext::CACHE_TAG_HTTP`
+`InstallContext::CACHE_TAG_PROXY`
+`InstallContext::CACHE_TAG_ROUTER`
+`InstallContext::CACHE_TAG_TEMPLATE`
+`InstallContext::CACHE_TAG_THEME`
 
 ## Container Configuration
 

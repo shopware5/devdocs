@@ -76,28 +76,28 @@ while still being compatible with existing plugins as much as possible.
 
 The most relevant change is in regards to the following blocks in `themes/Frontend/Bare/frontend/checkout/cart_item.tpl`
 which were moved to their own files:
-    * `frontend_checkout_cart_item_product`
-    * `frontend_checkout_cart_item_premium_product`
-    * `frontend_checkout_cart_item_voucher`
-    * `frontend_checkout_cart_item_rebate`
-    * `frontend_checkout_cart_item_surcharge_discount`
+* `frontend_checkout_cart_item_product`
+* `frontend_checkout_cart_item_premium_product`
+* `frontend_checkout_cart_item_voucher`
+* `frontend_checkout_cart_item_rebate`
+* `frontend_checkout_cart_item_surcharge_discount`
 
 These five blocks were moved to their own template files in `themes/Frontend/Bare/frontend/checkout/` to optimize the include process:
-    * `cart_item_product.tpl`
-    * `cart_item_premium_product.tpl`
-    * `cart_item_rebate.tpl`
-    * `cart_item_voucher.tpl`
-    * `cart_item_surcharge_discount.tpl`
+* `cart_item_product.tpl`
+* `cart_item_premium_product.tpl`
+* `cart_item_rebate.tpl`
+* `cart_item_voucher.tpl`
+* `cart_item_surcharge_discount.tpl`
 
 Also, the following templates no longer extend `cart_item.tpl` but include the logic themselves and have their own subtemplates:
-    * `confirm_item_premium_product.tpl`
-    * `confirm_item_product.tpl`
-    * `confirm_item_rebate.tpl`
-    * `confirm_item_surcharge_discount.tpl`
-    * `confirm_item_voucher.tpl`
-    * `finish_item_premium_product.tpl`
-    * `finish_item_product.tpl`
-    * `finish_item_voucher.tpl`
+* `confirm_item_premium_product.tpl`
+* `confirm_item_product.tpl`
+* `confirm_item_rebate.tpl`
+* `confirm_item_surcharge_discount.tpl`
+* `confirm_item_voucher.tpl`
+* `finish_item_premium_product.tpl`
+* `finish_item_product.tpl`
+* `finish_item_voucher.tpl`
 
 If your theme extends one of the contained blocks, you'll have to change the filename it extends from.
 

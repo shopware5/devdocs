@@ -222,6 +222,50 @@ If you want to implement this feature for your own element, you only need to pro
 interface `Shopware\Components\HttpCache\CacheTimeServiceInterface` and then tag this service in the `services.xml` with
 the tag `invalidation_date_provider`. It will then be picked up and called automatically.
 
+### Cache warmer
+
+Up to now, the cache warmer relied on seo urls, but that did only cover a small amount of possible urls which can be found
+in shopware. With these changes, developers doesn't have to add unnecessary new seo urls to warm them for the cache.
+In addition, the performance and amount of urls were greatly improved to cover the most content of shopware by itself.
+
+By implementing `HttpCache\UrlProvider\UrlProviderInterface` to a new service with the tag `cache_warmer.url_provider`
+developers can now easily add their own url providers for the cache warmer. Note that CLI commands can't be extended by
+Plugins, so adding UrlProviders can only be used by the `--extensions` parameter to only warm all non-Shopware extensions
+or warming the full cache. To add these functions to the backend module, you have to extend the `httpCache` property like this:
+
+```
+//{block name="backend/performance/view/main/multi_request_tasks"}
+//{$smarty.block.parent}
+Ext.override(Shopware.apps.Performance.view.main.MultiRequestTasks, {
+    initComponent: function () {
+        this.httpCache.myNewProvider = {
+            providerLabel: 'myNewProvider',
+            requestUrl: '{url controller="Performance" action="warmUpCache" resource=myNewProvider}',
+        };
+
+        this.callParent(arguments);
+    }
+});
+//{/block}
+```
+
+As mentioned in the change log, the CLI command also offers new parameters. They can be used combined to call the providers
+independently. However, you still don't have to add any parameters to warm up everything.
+
+| Parameter             | Short | Description                                   |
+| --------------------- | ----- | --------------------------------------------- |
+| --category            | -j    | Warm up categories                            |
+| --emotion             | -o    | Warm up emotions                              |
+| --blog                | -g    | Warm up blog                                  |
+| --manufacturer        | -m    | Warm up manufacturer pages                    |
+| --static              | -t    | Warm up static pages                          |
+| --product             | -p    | Warm up products                              |
+| --variantswitch       | -d    | Warm up variant switch of configurators       |
+| --productwithnumber   | -z    | Warm up products with number parameter        |
+| --productwithcategory | -y    | Warm up producss with category parameter      |
+| --extensions          | -x    | Warm up all URLs provided by other extensions | 
+ 
+
 ## Shopware 5.4
 
 <div class="alert alert-info">

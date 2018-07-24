@@ -1,5 +1,5 @@
 ---
-title: An easy example how to switch form classic installation to composer installation
+title: An easy example how to switch from classic installation to composer installation
 tags:
 - Deployment
 - Composer Installation
@@ -50,7 +50,7 @@ mv composer-installation/shopware.php ./
 mv composer-installation/.env.example ./.env
 ```
 
-The directories custom, files, media, themes, var and web are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have Plugins in engine/Shopware/Plugins/Community or engine/Shopware/Plugins/Local the must be moved to ```./Plugins```!
+The directories custom, files, media, themes, var and web are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have Plugins in engine/Shopware/Plugins/Community or engine/Shopware/Plugins/Local they must be moved to ```./Plugins```!
 
 After that we should reduce the .env file. Please use your database credentials from your config.php file and delete it afterwards. It should look like the following: 
 
@@ -73,6 +73,7 @@ The next step is to set your database credentials as an environment variable. An
 
 ```
 <VirtualHost *:80>
+        ...
         SetEnv DB_USERNAME "root"
         SetEnv DB_PASSWORD "root"
         SetEnv DB_DATABASE "shopware"
@@ -89,4 +90,4 @@ The last step is to deactivate the SwagUpdate Plugin via the following command:
 ```
 
 ## Conclusion
-The switch from classic installation to the new composer installation is not very difficult. Please use it if you want to achieve easier deployment and shopware updates. Our colleague Soner aka shyim develops an extension for the composer project to install which you can handle community store plugins as a composer dependency. If you are interested please have a look [here](https://github.com/shyim/store-plugin-installer).
+The switch from classic installation to the new composer installation is not very difficult. Please use it if you want to achieve easier deployment and shopware updates. Our colleague Soner aka shyim develops an extension for the composer project to handle community store plugins as a composer dependency. If you are interested please have a look [here](https://github.com/shyim/store-plugin-installer).

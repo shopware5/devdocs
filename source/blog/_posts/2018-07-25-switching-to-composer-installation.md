@@ -12,17 +12,17 @@ github_link: /blog/_posts/2018-07-25-switching-to-composer-installation.md
 
 ---
 
-In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware [Livestream](https://www.youtube.com/watch?v=oUME-FnlUKE) (a new format you should know ;-) ).
+In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware [Livestream](https://www.youtube.com/watch?v=oUME-FnlUKE) (a format you should know ;-) ).
 
 The requirements are very easy to fulfill. We need Shopware in the latest Version of 5.4. Nothing more.
 
-### clean up classic installation
-So let`s start. Please go into the shopware root directory and delete some files and directories which are not longer needed from the classic installation: 
+### Clean up classic installation
+So let's start. Please go into the shopware root directory and delete some files and directories which are not longer needed from the classic installation: 
 ```bash 
 rm -rv bin recovery vendor composer.* shopware.php
 ```
 
-### create composer installation
+### Create composer installation
 
 Now we create a new composer project with the following command: 
 
@@ -37,22 +37,17 @@ Could not load .env file
 Script ./app/post-update.sh handling the post-update-cmd event returned with error code 1
 ```
 
-### merge classic and composer installation
+### Merge classic and composer installation
 
 The command creates a new directory composer-installation witch contains all needed files for our composer installation. After that we have to move some files and directories stored in the new directory a level up with this commands:
 ```bash
-mv composer-installation/app ./
-mv composer-installation/bin ./
-mv composer-installation/Plugins ./
-mv composer-installation/vendor ./
-mv composer-installation/composer.json ./
-mv composer-installation/shopware.php ./
+mv composer-installation/{app,bin,Plugins,vendor,composer.json,shopware.php} ./
 mv composer-installation/.env.example ./.env
 ```
 
-The directories custom, files, media, themes, var and web are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have Plugins in engine/Shopware/Plugins/Community or engine/Shopware/Plugins/Local they must be moved to ```./Plugins```!
+The directories `custom`, `files`, `media`, `themes`, `var` and `web` are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have Plugins in `engine/Shopware/Plugins/Community` or `engine/Shopware/Plugins/Local` they must be moved to ```./Plugins```!
 
-After that we should reduce the .env file. Please use your database credentials from your config.php file and delete it afterwards. It should look like the following: 
+After that we should reduce the .env file. Please use your database credentials from your `config.php`. If you have further config settings there move them to `app/config/config.php` and delete the `config.php` afterwards. The `.env` file should look like the following: 
 
 ```
 # Database credentials
@@ -83,7 +78,7 @@ The next step is to set your database credentials as an environment variable. An
 </VirtualHost>
 ```
 
-The last step is to deactivate the SwagUpdate Plugin via the following command:
+The last step is to uninstall the Shopware Auto Update Plugin. If you try an update with this Plugin, it will not work correctly and harm your Installation. You can uninstall the SwagUpdate Plugin via the following command:
 
 ```bash
 ./bin/console sw:plugin:uninstall SwagUpdate

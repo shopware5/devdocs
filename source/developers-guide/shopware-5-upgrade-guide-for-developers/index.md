@@ -135,7 +135,7 @@ document type that you want to analyze or switch the index of.
 
 ### Elasticsearch backend
 
-A new `EsBackendBunde` was added to index and search for products, customers and orders in the backend. New config.php
+A new `EsBackendBundle` was added to index and search for products, customers and orders in the backend. New config.php
 parameters where added for that, the `es` array of parameters now contains a new key `backend`:
 
 ```

@@ -12,12 +12,12 @@ github_link: /blog/_posts/2018-07-25-switching-to-composer-installation.md
 
 ---
 
-In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware [Livestream](https://www.youtube.com/watch?v=oUME-FnlUKE) (a format you should know ;-) ).
+In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware [livestream](https://www.youtube.com/watch?v=oUME-FnlUKE) (a format you should know ;-) ).
 
 The requirements are very easy to fulfill. We need Shopware in the latest Version of 5.4. Nothing more.
 
 ### Clean up classic installation
-So let's start. Please go into the shopware root directory and delete some files and directories which are not longer needed from the classic installation: 
+So let's start. Please go into the shopware root directory and delete some files and directories which are no longer needed from the classic installation: 
 ```bash 
 rm -rv bin recovery vendor composer.* shopware.php
 ```
@@ -30,7 +30,7 @@ Now we create a new composer project with the following command:
 composer create-project shopware/composer-project composer-installation \ 
     --no-interaction --stability=dev
 ```
-You should receive an error message like the following because we didn't created a .env file: 
+You should receive an error message like the following because we didn't create a .env file: 
 
 ```bash
 Could not load .env file
@@ -39,13 +39,13 @@ Script ./app/post-update.sh handling the post-update-cmd event returned with err
 
 ### Merge classic and composer installation
 
-The command creates a new directory composer-installation witch contains all needed files for our composer installation. After that we have to move some files and directories stored in the new directory a level up with this commands:
+The command creates a new directory composer-installation wich contains all needed files for our composer installation. After that we have to move some files and directories stored in the new directory a level up with this commands:
 ```bash
 mv composer-installation/{app,bin,Plugins,vendor,composer.json,shopware.php} ./
 mv composer-installation/.env.example ./.env
 ```
 
-The directories `custom`, `files`, `media`, `themes`, `var` and `web` are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have Plugins in `engine/Shopware/Plugins/Community` or `engine/Shopware/Plugins/Local` they must be moved to ```./Plugins```!
+The directories `custom`, `files`, `media`, `themes`, `var` and `web` are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have plugins in `engine/Shopware/Plugins/Community` or `engine/Shopware/Plugins/Local` they must be moved to ```./Plugins```!
 
 After that we should reduce the .env file. Please use your database credentials from your `config.php`. If you have further config settings there move them to `app/config/config.php` and delete the `config.php` afterwards. The `.env` file should look like the following: 
 

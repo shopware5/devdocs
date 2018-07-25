@@ -12,6 +12,10 @@ github_link: /blog/_posts/2018-07-25-switching-to-composer-installation.md
 
 ---
 
+<div class="alert alert-warning">
+Before you start please make a backup of your whole shop system!
+</div>
+
 In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware [livestream](https://www.youtube.com/watch?v=oUME-FnlUKE) (a format you should know ;-) ).
 
 The requirements are very easy to fulfill. We need Shopware in the latest Version of 5.4. Nothing more.

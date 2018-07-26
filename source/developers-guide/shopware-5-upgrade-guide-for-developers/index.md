@@ -55,7 +55,7 @@ For a complete overview check the **Removals** part of the <a href="https://gith
 
 ### Library updates
 
-- Updated `Symfony` to version 3.4.14 LTS. Some nice, new features are <a href="https://symfony.com/blog/new-in-symfony-3-4-simpler-injection-of-tagged-services" target="_blank">Simpler injection of tagged services</a> or <a href="" target="_blank">Command Lazyloading</a>.
+- Updated `Symfony` to version 3.4.14 LTS. Some nice, new features are <a href="https://symfony.com/blog/new-in-symfony-3-4-simpler-injection-of-tagged-services" target="_blank">Simpler injection of tagged services</a> or <a href="https://symfony.com/blog/new-in-symfony-3-4-lazy-commands" target="_blank">Command Lazyloading</a>.
 - Updated `jQuery` to 3.3.1.  You can see the <a href="https://jquery.com/upgrade-guide/3.0/" target="_blank">jQuery update guide</a>
     for a list of important and breaking changes and links to the migration plugin.
     In Shopware, the relevant changes were:

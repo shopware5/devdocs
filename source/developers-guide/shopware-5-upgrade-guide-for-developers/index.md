@@ -133,7 +133,11 @@ To support Elasticsearch 6 it was necessary to split the existing index into mul
 (product, property). If you're using `sw:es:analyze` and `sw:es:switch:alias`, you now need to also provide the parameter
 document type that you want to analyze or switch the index of.
 
+<div class="alert alert-info">
+
 Important: After a update you have to reindex Elasticsearch.
+
+</div>
 
 ### Elasticsearch backend
 

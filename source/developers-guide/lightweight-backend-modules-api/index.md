@@ -128,7 +128,7 @@ Sends a message to a subwindow
 **Example**:
 ```js
 postMessageApi.sendMessageToSubWindow({
-    name: 'customSubWindow',
+    component: 'customSubWindow',
     params: {
         msg: 'Your message',
         foo: [ 'bar', 'batz' ]

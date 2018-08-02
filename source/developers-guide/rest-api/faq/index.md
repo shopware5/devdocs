@@ -34,7 +34,8 @@ Stack trace:
 #4 /engine/Shopware/Kernel.php(182): Enlight_Controller_Front-&gt;dispatch()
 #5 / in <b>2/engine/Shopware/Components/Api/Resource/Article.php</b> on line <b>155</b><br />
 ```
-This is a sign that the `throwExceptions` config switch in the `config.php` is set to `true`. Removing this entry or setting it to `false` should resolve this issue. 
+This is a sign that the configs `throwExceptions` and `noErrorHandler` switch are located in `config.php` are set to `true`. Removing these entries or setting them to `false` should resolve this issue. 
+
 
 ## How can I access the API if my shop is protected with a `.htaccess` file?
 You need to add an exception for the API route. Here is an example for the `.htaccess` file:

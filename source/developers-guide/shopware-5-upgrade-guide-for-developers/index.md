@@ -135,7 +135,7 @@ document type that you want to analyze or switch the index of.
 
 <div class="alert alert-info">
 
-Important: After a update you have to reindex Elasticsearch.
+Important: After the update to 5.5 you have to reindex your Elasticsearch indices.
 
 </div>
 

@@ -269,6 +269,16 @@ To make your selectfield / combobox multiple selectable, you need to create the 
 
 <img src="img/timefield.png" alt="Timefield" class="image-border" />
 
+### Button
+```xml
+<element type="button">
+    ...
+</element>
+```
+
+<img src="img/button.png" alt="Buttonfield" class="image-border" />
+
+
 ## Configure basic settings
 The plugin configurations of the various plugins are automatically 
 reachable via the basic settings under the "Additional settings" entry:

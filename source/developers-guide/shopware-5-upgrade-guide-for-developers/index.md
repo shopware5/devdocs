@@ -21,15 +21,38 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ### System requirements changes
 
+<div class="alert alert-info">
+
+The IonCube Loader requirement has been dropped! Starting with Shopware 5.5, only unencrypted plugins are supported.
+Before removing the IonCube Loader from your server environment, please make sure no encrypted plugins are installed anymore.
+
+</div>
+
 The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**. Please be aware that
-PHP 5.6 and PHP 7.0 reach their "end of life" (the end of the offical support by the PHP Group) by the end of the year.
-For performance and compatibility reasons, we recommend using PHP 7.2 if no Ioncube encrypted plugin are installed.
+PHP 5.6 and PHP 7.0 reach their "end of life" (the end of the official support by the PHP Group) by the end of the year.
+Shopware will drop support for those versions of PHP with the next minor version.
+
+For performance and compatibility reasons, we recommend using **PHP 7.2**. Since encrypted plugins are no longer supported
+and the IonCube Loader therefore is no longer a requirement, an update to the latest version of PHP is now possible.
+
+The minimum MySQL version still is MySQL 5.5, but **MySQL 8.0** is now supported as well. Since the extended support of
+MySQL 5.5 ends in December 2018, Shopware will drop the support for this version soon thereafter.
+
+### Unencrypted Plugins
+
+Starting with Shopware 5.5, IonCube encryption of plugins is being discontinued and only unencrypted plugins are
+supported in Shopware 5.5.
+
+The Shopware LicenseManager plugin still is compatible with Shopware 5.5 to not break any existing installations, it is
+nevertheless being discontinued together with the encryption of plugins. So, if you are currently using the
+Shopware LicenseManager in your plugin, you have to remove the license check in order to upload a Shopware 5.5
+compatible version of your plugin to the Shopware Store.
 
 ### Removal of deprecated code
 
 Shopware 5.5 removes a lot of old, deprecated code. If you're updating from Shopware < v5.4.5, you might want to consider
 updating on the latest version of 5.4 first: versions 5.4.5 onwards show deprecation warnings in development mode if a
-deprecated function is being called. Alternatively you can change the loglevel in your `config.php` by setting
+deprecated function is being called. Alternatively you can change the loglevel in your `config.php` by configuring:
 
 ```php
 ...
@@ -67,7 +90,6 @@ For a complete overview check the **Removals** part of the <a href="https://gith
 - Updated `Mpdf` to 7.0.3
 - Updated `doctrine/common` to 2.7.3
 - Updated `beberlei/assert` to 2.9.2
-- Replaced `JSMin` with `JShrink`
 
 ### Basket refactoring
 
@@ -125,23 +147,23 @@ calculation is disabled, this field is `null` and shipping tax rate will be calc
 
 Shopware 5.5 supports Elasticsearch versions 2.x, 5.x and 6.x.
 
-Shopware works with index aliases to allow multiple indices to exist in parallel and switch between them if necessary.
-Should an index with the name of an alias (e.g. `shop_1`) already exist, will now be deleted so that the new alias can
-be created without error.
-
-To support Elasticsearch 6 it was necessary to split the existing index into multiple indices for different document types
-(product, property). If you're using `sw:es:analyze` and `sw:es:switch:alias`, you now need to also provide the parameter
-document type that you want to analyze or switch the index of.
-
 <div class="alert alert-info">
 
 Important: After the update to 5.5 you have to reindex your Elasticsearch indices.
 
 </div>
 
+Shopware works with index aliases to allow multiple indices to exist in parallel and switch between them if necessary.
+Should an index with the name of an alias (e.g. `shop_1`) already exist, it will now be deleted automatically so that
+the new alias can be created without error.
+
+To support Elasticsearch 6 it was necessary to split the existing index into multiple indices for different document types
+(product, property). If you're using `sw:es:analyze` and `sw:es:switch:alias`, you now need to also provide the parameter
+document type that you want to analyze or switch the index of.
+
 ### Elasticsearch backend
 
-A new `EsBackendBundle` was added to index and search for products, customers and orders in the backend. New config.php
+A new `EsBackendBundle` was added to index and search for products, customers and orders in the backend. New `config.php`
 parameters where added for that, the `es` array of parameters now contains a new key `backend`:
 
 ```
@@ -161,12 +183,12 @@ periodically after that to keep the index in sync.
 
 ### Changed execution model of `replace` hooks
 
-When multiple `replace` hooks exist for one method, up to 5.4 (incl.) each of these hooks were called sequentially with
-each of these hooks having the opportunity to call `executeParent()`. Hence, if this happened, the original (parent)
+When multiple `replace` hooks exist for one method, up to Shopware 5.4 (incl.) each of these hooks were called
+sequentially with every hook having the opportunity to call `executeParent()`. Hence, if this happened, the original (parent)
 implementation got called multiple times, leading to unexpected behaviours.
 
 In Shopware 5.5 the execution model was changed to a decorative type of implementation: If more than one `replace` hook
-exists for a function, calling `executeParent()` inside the hook will execute the next `replace` hook of function. Only
+exists for a function, calling `executeParent()` inside the hook will execute the next `replace` hook of said function. Only
 the last `replace` hook will then call the original implementation on `executeParent()`.
  
 ### Filesystem abstraction layer
@@ -174,9 +196,8 @@ the last `replace` hook will then call the original implementation on `executePa
 As of Shopware 5.5, the use of direct file system access methods (like e.g. `fopen()`, `file()`, `is_readable()` and many more)
 is being discouraged. Instead, we rely on the library <a href="https://github.com/thephpleague/flysystem" target="_blank">FlySystem</a>
 as a generic file system abstraction layer. This allows a lot of flexibility in regards to where files are being stored.
-E.g. Documents, ESD and Sitemap files can now also served from S3 or Google Cloud. We added support for
-Amazon Web Services and Google Cloud Platform for the moment but this layer will help us in the future to support more
-cloud services.
+E.g. Documents and Sitemap files can now also served from S3 or Google Cloud. We added support for Amazon Web Services
+and Google Cloud Platform for the moment but this layer will help us in the future to support more cloud services.
 
 Multiple instances of this abstraction classes are available to plugins. The services with the ids `shopware.filesystem.public`
 and `shopware.filesystem.private` are available to Shopware itself and to all plugins that are active. These services are
@@ -201,7 +222,8 @@ if ($filesystem->has($fileName)) {
 $filesystem->write($fileName, $contents);
 ```
 
-Plugins can access their own filesystems which are instantiated and available automatically:
+Plugins can access their own filesystems which are instantiated and made available automatically by retrieving them from
+the DIC:
     * `plugin_name.filesystem.public`
     * `plugin_name.filesystem.private`
 
@@ -211,7 +233,7 @@ To support more than 50.000 URLs that are allowed in one `sitemap.xml` file, Sho
 which itself contains links to one or more `sitemap.xml`. The sitemap files can be created by cronjob, live or using
 the command `sw:generate:sitemap`.
 
-If you need to add some links to the sitemap, you can simply create a service implementing the interface
+If you need to add some links to the sitemap coming from a plugin, you can simply create a service implementing the interface
 `\Shopware\Bundle\SitemapBundle\UrlProviderInterface` and give it the DIC tag `sitemap_url_provider`. The sitemap exporter
 will collect your service using the tag and export the URLs it provides along with the others.
 
@@ -1281,7 +1303,7 @@ The following methods have been removed:
 
 The required PHP version is now **PHP 5.6.4 or higher**. Please check your system configuration and update your PHP version if necessary. If you are using a PHP version prior to 5.6.4 there will be errors.
 
-The required IonCube Loader version was bumped to 5.0 or higher.
+The required ionCube Loader version was bumped to 5.0 or higher.
 
 ### Shopping worlds
 
@@ -2155,8 +2177,8 @@ The new responsive template is not supported in Internet Explorer 8 and below. T
 #### MySQL 5.1
 MySQL 5.1 is no longer supported in Shopware 5. The required Version of MySQL for Shopware 5 is 5.5 or above.
 
-#### IonCube Loader
-IonCube Loader requirement has been upped to version 4.6.0. Notice that you only need the IonCube Loader if you are using plugins from the Shopware Store.
+#### ionCube Loader
+ionCube Loader requirement has been upped to version 4.6.0. Notice that you only need the ionCube Loader if you are using plugins from the Shopware Store.
 
 ### Major Breaks
 * `Street number` data was moved into the `Street`field

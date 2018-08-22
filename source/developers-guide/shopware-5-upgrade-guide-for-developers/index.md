@@ -65,7 +65,6 @@ deprecated function is being called. Alternatively you can change the loglevel i
 The most relevant changes are:
 
 - The methods `ModelManager::addAttribute` and `ModelManager::removeAttribute` were removed. Use `\Shopware\Bundle\AttributeBundle\Service\CrudService::update` instead.
-- The class `Shopware\Bundle\EmotionBundle\ComponentHandler\EventComponentHandler` was removed. Implement a `\Shopware\Bundle\EmotionBundle\ComponentHandler` instead.
 - The legacy models `Shopware\Models\Customer\Billing` and `Shopware\Models\Customer\Shipping` aren't available anymore.
 The same is true for their references in the `Customer` model (customer.billing, customer.shipping) and the repository
 `Shopware\Models\Customer\BillingRepository`. The matching tables `s_user_billingaddress`, `s_user_shippingaddress`

@@ -37,7 +37,6 @@ themes
  ├── Backend
  ├── Frontend
  │   ├── Bare
- │   ├── Responsive
  │   │   ├── documents
  │   │   ├── frontend
  │   │   ├── newsletter
@@ -45,6 +44,7 @@ themes
  │   │   │   ├── container
  │   │   │   └── index
  │   │   └── widgets
+ │   ├── Responsive
 ```
 
 There are two different types of newsletter templates: A default newsletter template and a merchants template. The `index.tpl` contains the default template and the `indexh.tpl` contains the merchants template.

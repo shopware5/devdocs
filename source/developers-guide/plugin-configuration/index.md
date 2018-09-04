@@ -242,6 +242,47 @@ To make your selectfield / combobox multiple selectable, you need to create the 
 </element>
 ```
 
+### Remote combobox with own store
+Define and create your own ExtJs data store for the backend Plugin configuration
+
+```xml
+<element scope="shop" type="select">
+           ...
+            <store><![CDATA[Ext.define('YourPrefix.YourName.Form', {
+    extend: 'Ext.data.Store',
+    fields: [
+        { name:'id', type: 'int' },
+        { name:'name', type: 'string' }
+    ],
+    autoLoad: true,
+    pageSize: 25,
+    proxy: {
+        type: 'ajax',
+        url: window.location.href.substr(0, window.location.href.indexOf('backend')) + 'backend/YourController/YourAction',
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'total'
+        }
+    }
+    }).create();//new ]]>
+            </store>
+        </element>
+```
+Note that the `//new ` is an important hack to load the store
+
+```php
+    public function YourAction() {
+        $data = [
+            ['id' => 1, 'name' => 'foo'],
+            ['id' => 2, 'name' => 'bar'],
+        ];
+    
+        $this->view->assign('data', $data);
+    }
+```
+The controller action should assign a associated array.
+
 ### Textfield
 ```xml
 <element type="text">

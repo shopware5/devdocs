@@ -150,6 +150,13 @@ sub vcl_recv {
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
+    # Strip query strings only needed by browser javascript
+    if (req.url ~ "(\?|&)(gclid|utm_[a-z]+)=") {
+        # see rfc3986#section-2.3 "Unreserved Characters" for regex
+        set req.url = regsuball(req.url, "(gclid|utm_[a-z]+)=[A-Za-z0-9\-\_\.\~]+&?", "");
+    }
+    set req.url = regsub(req.url, "(\?|\?&|&)$", "");
+
     # Normalize query arguments
     set req.url = std.querysort(req.url);
 

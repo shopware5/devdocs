@@ -258,7 +258,7 @@ Define and create your own ExtJs data store for the backend Plugin configuration
     pageSize: 25,
     proxy: {
         type: 'ajax',
-        url: window.location.href.substr(0, window.location.href.indexOf('backend')) + 'backend/YourController/YourAction',
+        url: window.location.href.substr(0, window.location.href.indexOf('backend')) + 'backend/yourController/yourAction',
         reader: {
             type: 'json',
             root: 'data',
@@ -267,18 +267,22 @@ Define and create your own ExtJs data store for the backend Plugin configuration
     }
     }).create();//new ]]>
             </store>
-        </element>
+</element>
 ```
 Note that the `//new ` is an important hack to load the store
 
 ```php
-    public function YourAction() {
+    public function yourAction()
+    {
         $data = [
             ['id' => 1, 'name' => 'foo'],
             ['id' => 2, 'name' => 'bar'],
         ];
     
-        $this->view->assign('data', $data);
+        $this->view->assign([
+            'data' => $data,
+            'total' => count($data),
+        ]);
     }
 ```
 The controller action should assign a associated array.

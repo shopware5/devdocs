@@ -405,7 +405,7 @@ The name of the file has to match the definition in the `createOrUpdate()` metho
 {/block}
 ```
 
-To load your template you have to register the emotion component view subscriber in your dependency injection container. This subscriber registers all neccessary view paths for your frontend template and custom components.
+To load your template you have to register the emotion component view subscriber in your dependency injection container. This subscriber registers all necessary view paths for your frontend template and custom components.
 
 ```xml
 <service id="swag_vimeo_element.subscriber.templates" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">

@@ -16,7 +16,7 @@ You can find active community members and even some shopware employees there.
 
 Please note, the main channel is used for shopware related topics and english only.
 
-There is a seperate channel for [offtopic](https://gitter.im/shopware/offtopic?utm_source=share-link&utm_medium=link&utm_campaign=share-link) talk.
+There is a separate channel for [offtopic](https://gitter.im/shopware/offtopic?utm_source=share-link&utm_medium=link&utm_campaign=share-link) talk.
 
 Because of our strong german community, for the time being there is a [german channel](https://gitter.im/shopware/shopwareDE?utm_source=share-link&utm_medium=link&utm_campaign=share-link) as well.
 

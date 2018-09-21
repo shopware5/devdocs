@@ -3,7 +3,7 @@
 Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
     override: 'Shopware.apps.Customer.view.detail.Window',
 
-    getTabs: function () {
+    getTabs: function() {
         var me = this,
             result = me.callParent();
 
@@ -17,16 +17,15 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
      *
      * @returns { Ext.form.FieldSet }
      */
-    createPersonalFieldSet: function () {
+    createPersonalFieldSet: function() {
         var me = this,
             fieldSet = me.callParent(arguments),
             indexA, indexB;
 
+        Ext.each(fieldSet.items, function(item, firstIndex) {
+            Ext.each(item.items, function(field, secondIndex) {
 
-        fieldSet.items.each(function (item, firstIndex) {
-            item.items.each(function (field, secondIndex) {
-
-                if(field.name === 'title') {
+                if (field.name === 'title') {
                     indexA = firstIndex;
                     indexB = secondIndex;
                 }
@@ -44,13 +43,12 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
         });
 
         return fieldSet;
-  
     },
 
     /**
      * @returns { Ext.data.Store }
      */
-    createTitleStore: function () {
+    createTitleStore: function() {
         return Ext.create('Ext.data.Store', {
             fields: [
                 { name: 'name' }
@@ -65,16 +63,5 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
             ]
         })
     }
-
 });
 //{/block}
-
-
-
-
-
-
-
-
-
-

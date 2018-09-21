@@ -15,7 +15,7 @@ menu_order: 35
 This tutorial will point out some important information for adding a new payment method to shopware. This is done by creating a payment plugin. Payment handling is essential for every shop and therefore a payment plugin needs some extra features to guarantee secure and comfortable payments. 
 
 ### Qualification
-Before getting started with this tutorial, it is recommended to become familiar with creating Shopware plugins first, since this guide will only point out the extras for creating a __payment plugin__. For further information on developing plugins see [our plugin guides](plugin-guide/).
+Before getting started with this tutorial, it is recommended to become familiar with creating Shopware plugins first, since this guide will only point out the extras for creating a __payment plugin__. For further information on developing plugins see [our plugin guides](/plugin-guide/).
 
 ## Order process
 <img src="img/shopware_payment_process.jpg" alt="Payment process" class="image-border" />

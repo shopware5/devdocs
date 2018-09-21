@@ -115,6 +115,8 @@ class SwagAttribute extends Plugin
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\UninstallContext;
+
 
 class SwagAttribute extends Plugin
 {

@@ -120,4 +120,11 @@ authors:
       name: Christian Rades
       title: Developer
       github: https://github.com/Christian-Rades
-      bio: I am a Developer in the Enterprise team. I'm interested in distributed applications, continous delivery and functional programming. 
+      bio: I am a Developer in the Enterprise team. I'm interested in distributed applications, continous delivery and functional programming.
+  rc:
+      name: Raphael Emmerich
+      title: Enterprise Developer
+      twitter: https://twitter.com/emmer_91
+      github: https://github.com/emmer91
+      url: http://raphael-emmerich.de
+      bio: I am a software developer in the enterprise team. I'm interested in code quality, testing and functional programming.

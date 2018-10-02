@@ -88,9 +88,7 @@ The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx 
 
 ## PHP
 
-Shopware 5.0 has PHP 5.4 as minimum requirement, which is, at the time of the release, the oldest supported PHP version. However, PHP 5.4 support will be dropped during Shopware 5's lifetime, and the minimum requirement will be raised to PHP 5.5. As such, we recommend using, whenever possible, PHP 5.5 or higher, not only for performance reasons, but also to ensure your system will support future releases of Shopware 5.
-
-At the time of this publication, the latest stable PHP version was 5.6, which includes several performance optimizations over PHP 5.5. As such, we recommend that you use PHP 5.6 whenever possible.
+At the time of this publication, the latest stable PHP version was 7.2, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.2 whenever possible, though Shopware currenty still supports PHP 5.6. That support will be dropped when the official maintenance for PHP 5.6 ends.
 
 ### Opcode cache
 

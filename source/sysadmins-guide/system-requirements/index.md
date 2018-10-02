@@ -56,7 +56,6 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 ### Recommended
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
-- IonCube Loader version 5.0 or higher only needed for encrypted third-party plugins
 - When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
 
 ### Other requirements

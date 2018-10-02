@@ -68,7 +68,7 @@ The above requirements reflect the officially supported and recommended system s
 
 ## Elasticsearch
 
-Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x and 5.x out of the box. 
+Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x, 5.x and 6.x out of the box. 
 For more details see the [Elasticsearch setup]({{ site.url }}/sysadmins-guide/elasticsearch-setup/).
 
 ## Shopware 5 System Requirements - Administration client

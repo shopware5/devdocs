@@ -18,10 +18,11 @@ menu_order: 40
 ## Introduction
 In this guide we introduce the Elasticsearch (ES) integration for Shopware.
 
-Shopware uses two bundles for the ES implementation:
+Shopware uses three bundles for the ES implementation:
 
 1. ESIndexingBundle - Contains all components that index data from Shopware to ES
 2. SearchBundleES   - Implementation of the SearchBundle using ES
+3. EsBackendBundle  - Implementation ES in the Backend (Shopware 5.5)
 
 ## Libraries
 
@@ -37,6 +38,8 @@ The following list contains all relevant events, interfaces and public API calls
 | sw:es:backlog:sync                 | Synchronize events from the backlog to the live index.
 | sw:es:index:cleanup                | Remove unused Elasticsearch indices.
 | sw:es:index:populate               | Reindex all shops into new indexes and switch the live system alias after the index process.
+| sw:es:backend:index:populate       | Reindex all documents for the backend.
+| sw:es:backend:sync                 | Synchronize events from the backend backlog to the live index.
 | sw:es:switch:alias                 | Switch live system aliases.
 
 | Interface                                         | Description
@@ -58,6 +61,7 @@ The following list contains all relevant events, interfaces and public API calls
 | shopware_elastic_search.backlog_processor         | Process the backlog queue
 | shopware_search_es.product_number_search          | ProductNumberSearch using ES
 | shopware_search_es.search_term_query_builder      | Builds the search query for product searches
+| shopware_es_backend.indexer                       | Starts backend indexing process for all shops
 
 | DI Container tag                                  | Description
 |---------------------------------------------------|-----------------------------

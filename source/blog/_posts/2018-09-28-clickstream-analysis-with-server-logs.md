@@ -31,7 +31,7 @@ After the session filter, every session will be classified. Basic Classification
 
 ### Result click stream analysis
 
-<div style='text-align:center;'>
+<div style="text-align:center;">
 <img src="/blog/img/2018-09-28-clickstream-analysis-with-server-logs/histogram.jpg"/>
 
 ###### Histogram of session lengths for buying sessions for innovative and traditional customers (Suchacka & Chodak, 2017)

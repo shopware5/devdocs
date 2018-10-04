@@ -37,7 +37,7 @@ After the session filter, every session will be classified. Basic Classification
 ###### Histogram of session lengths for buying sessions for innovative and traditional customers (Suchacka & Chodak, 2017)
 </div>
 
-In our case traditional customer perform orders very fast and innovative customers wander longer through the shop before perform an order. Another result of the analysis determine 89 percent of innovative customers perform an order by entering the shop with a link from a search engine, add an article in the basket and open up to 45 pages on the system. Traditional customers have a tendency of 92 percent to perform an order after login in, visit 30 to 75 pages and be in the shop around 10 to 25 minutes. With these results customer group specific marketing can be performed. We can improve our page views of innovative customers by adding more optimised ads in searching engines.
+In our case traditional customer perform orders very fast and innovative customers wander longer through the shop before perform an order. Another result of the analysis determine 89 percent of innovative customers perform an order by entering the shop with a link from a search engine, add an article in the basket and open up to 45 pages on the system. Traditional customers have a tendency of 92 percent to perform an order after login in, visit 30 to 75 pages and be in the shop around 10 to 25 minutes. With these results customer group specific marketing can be performed. We can improve our page views of innovative customers by adding more optimised ads in search engines.
 > (Suchacka & Chodak, 2017)
 
 ### Gender prediction

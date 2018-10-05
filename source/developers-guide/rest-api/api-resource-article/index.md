@@ -213,12 +213,26 @@ The product(s) to delete can be defined using the following syntax:
 
 ## DELETE (Stack)
 
-In order to delete more than one product at once, it's possible to provide an array of ids to the REST API.
-Simply pass the array of product ids to the following URL (example)
+In order to delete more than one product at once, it's possible to provide an array of objects with ids or product numbers to the REST API.
+Simply pass the array of objects to the following URL (example)
 
 * **[DELETE] http://my-shop-url/api/articles/**
 
-without providing an id as seen in the single `DELETE` request. As data provide the array of ids you wish to delete.
+without providing an id as seen in the single `DELETE` request. 
+
+### Example
+* Deletes product with id 1 and product with number SW00002
+
+```javascript
+[
+    {"id": 1},
+    {"mainDetail":
+        {
+            "number": "SW00002"
+        }
+    }
+]
+```
 
 ## PUT (Stack)
 

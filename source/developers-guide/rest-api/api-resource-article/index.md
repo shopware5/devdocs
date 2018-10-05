@@ -7,7 +7,7 @@ indexed: false
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's article resource. With this resource, it's possible to retrieve, update and delete any article of your shop. We will also have a look at the associated data structures.
+In this part of the documentation you can learn more about the API's article resource. The name "article" is a legacy misnomer, it is used to describe products. With this resource, it's possible to retrieve, update and delete any product of your shop. We will also have a look at the associated data structures.
 
 
 ## General Information
@@ -36,7 +36,7 @@ This API call requires one of the following parameters to be defined:
 | Article Id    | id        | s_articles.id          | /api/articles/2                          |
 | Detail Number | number    | s_articles.ordernumber | /api/articles/SW10003?useNumberAsId=true |
 
-* **useNumberAsId=true** - This tells the API to query the article's data by its detail number, instead of its actual identifier. Otherwise, the syntax is just **/api/articles/id**. It's not possible to provide both parameters at the same time.
+* **useNumberAsId=true** - This tells the API to query the product's data by its detail number, instead of its actual identifier. Otherwise, the syntax is just **/api/articles/id**. It's not possible to provide both parameters at the same time.
 
 #### Optional Parameters
 Optional parameters can be provided:
@@ -194,7 +194,7 @@ Here is an example of a parametrized URL:
 
 ### PUT (update)
 
-Articles can be identified using the following:
+Products can be identified using the following:
 
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
@@ -205,7 +205,7 @@ The data structure used is similar to the one used for creation (**POST** reques
 
 ## DELETE
 
-The article(s) to delete can be defined using the following syntax:
+The product(s) to delete can be defined using the following syntax:
 
 | Identifier    | Parameter | DB column              | Example call                             |
 |---------------|-----------|------------------------|------------------------------------------|
@@ -213,7 +213,7 @@ The article(s) to delete can be defined using the following syntax:
 
 ## DELETE (Stack)
 
-In order to delete more than one article at once, it's possible to provide an array of objects with ids or article numbers to the REST API.
+In order to delete more than one product at once, it's possible to provide an array of objects with ids or product numbers to the REST API.
 Simply pass the array of objects to the following URL (example)
 
 * **[DELETE] http://my-shop-url/api/articles/**
@@ -221,7 +221,7 @@ Simply pass the array of objects to the following URL (example)
 without providing an id as seen in the single `DELETE` request. 
 
 ### Example
-* Deletes article with id 1 and article with number SW00002
+* Deletes product with id 1 and product with number SW00002
 
 ```javascript
 [
@@ -236,7 +236,7 @@ without providing an id as seen in the single `DELETE` request.
 
 ## PUT (Stack)
 
-Updating many articles at once requires an array of article data being provided to the following URL using the `PUT` request (example):
+Updating many products at once requires an array of product data being provided to the following URL using the `PUT` request (example):
 
 * **[PUT] http://my-shop-url/api/articles/**
 

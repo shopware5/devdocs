@@ -56,7 +56,6 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 ### Recommended
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
-- IonCube Loader version 5.0 or higher only needed for encrypted third-party plugins
 - When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
 
 ### Other requirements
@@ -69,7 +68,7 @@ The above requirements reflect the officially supported and recommended system s
 
 ## Elasticsearch
 
-Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x and 5.x out of the box. 
+Shopware supports [Elasticsearch](https://www.elastic.co/products/elasticsearch) servers in versions 2.x, 5.x and 6.x out of the box. 
 For more details see the [Elasticsearch setup]({{ site.url }}/sysadmins-guide/elasticsearch-setup/).
 
 ## Shopware 5 System Requirements - Administration client

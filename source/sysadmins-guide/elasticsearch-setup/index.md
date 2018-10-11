@@ -32,11 +32,7 @@ Shopware 5.0 is able to provide a seamless Elasticsearch integration that will g
 ## Installation and configuration
 
 To enable Elasticsearch integration, you must configure both your server and your Shopware 5 installation. 
-Elasticsearch 2.0 or newer is required.
-
-<div class="alert alert-info" role="alert">
-    <strong>Note:</strong> Currently we do not support Elasticsearch 6.0 or newer. The compatibility is scheduled for one of the next minor releases.
-</div>
+Elasticsearch 2.0 or newer is required. For Elasticsearch 6.0 Shopware 5.5 is required
 
 
 ### Elasticsearch installation and configuration

@@ -216,7 +216,7 @@ As such, it's safe to run this command even on production environments, provided
 
 ## Elasticsearch in Backend
 
-Since Shopware 5.5 its possible to use Elasticsearch also in backend for search/listing operations in products / orders / customers. To setup this you have to adjust your `config.php` to
+Since Shopware 5.5 it is also possible to use Elasticsearch in the backend for listing and search operations for products, orders and customers. To use this you need to adjust your ``config.php` to
 
 ```php
 return [
@@ -246,7 +246,7 @@ return [
 
 ### Initial data import
 
-Once Shopware is configured to using Elasticsearch for backend, you should execute the following Shopware CLI command:
+Once Shopware is configured for using Elasticsearch in the backend, you should execute the following Shopware CLI command:
 
 ```
 php bin/console sw:es:backend:index:populate

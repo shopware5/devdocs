@@ -213,3 +213,57 @@ php bin/console sw:es:backlog:clear
 ```
 
 As such, it's safe to run this command even on production environments, provided you have ensured that your current index is working as intended.
+
+## Elasticsearch in Backend
+
+Since Shopware 5.5 its possible to use Elasticsearch also in backend for search/listing operations in products / orders / customers. To setup this you have to adjust your `config.php` to
+
+```php
+return [
+    'db' => [
+        'username' => 'dbuser',
+        'password' => 'dbpw',
+        'dbname' => 'dbname',
+        'host' => 'localhost',
+        'port' => '3306',  
+    ],
+    'es' => [
+        'enabled' => true,
+        'number_of_replicas' => null,
+        'number_of_shards' => null,
+        'client' => [
+            'hosts' => [
+                'localhost:9200'
+            ]
+        ],
+        'backend' => [
+            'write_backlog' => true,
+            'enabled' => true,
+        ],
+    ],
+];
+```
+
+### Initial data import
+
+Once Shopware is configured to using Elasticsearch for backend, you should execute the following Shopware CLI command:
+
+```
+php bin/console sw:es:backend:index:populate
+```
+
+#### Live synchronization
+
+The `sw:es:backend:sync` command ensures your latest changes are propagated into Elasticsearch. It uses a queueing system, and it's execution time may greatly vary, depending on the pending operation list content. This command should be executed periodically to ensure data consistency.
+
+```
+php bin/console sw:es:backend:sync
+```
+
+#### Index cleanup
+
+After a new index is created, the old one is no longer used, but is not deleted. Should your new index be corrupted, you can just replace it with the old one, and have your shop running again without downtime. However, as new indexes should be created often (recommended every 24 hours), old indexes can accumulate and start taking up a significant amount of resources. Shopware provides a tool to cleanup those old indexes:
+
+```bash
+php sw:es:backend:index:cleanup
+```

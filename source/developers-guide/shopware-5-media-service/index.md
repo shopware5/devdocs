@@ -194,10 +194,10 @@ You should add the following options to your `config.php`. Please notice the `st
 ```php
 'cdn' => [
     'adapters' => [
+        'strategy' => 'plain',
         'local' => [
             'type' => 'local',
             'mediaUrl' => '',
-            'strategy' => 'plain',
             'path' => realpath(__DIR__ . '/'),
             'permissions' => [
                 'file' => [

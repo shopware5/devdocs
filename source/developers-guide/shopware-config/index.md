@@ -32,7 +32,7 @@ return [
 ```
 
 During this guide you will get to know some important options of the configuration.
-For a complete list of options you can look at the `engine/Shopware/Configs/Default.php` file 
+For a complete list of options you can look at the `engine/Shopware/Configs/Default.php` (in newer shopware-installations with composer: vendor/shopware/shopware/engine/Shopware/Configs/Default.php) file 
 which holds all possible configuration options and their default values. You only
 need to specify options in your `config.php` if you want to override the defaults.  
 But keep in mind that most of these options should only be used for __debugging and testing__ 

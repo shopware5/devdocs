@@ -678,5 +678,5 @@ whenever possible, and hooks should only be used as a last resort. For that same
 class, but only for controllers, core classes and repositories. Usually you will recognize hooks by the
 `FQN::METHOD::TYPE` syntax, e.g. `sBasket::sGetBasket::after`. Valid types are `before`, `replace` and `after`.
 There is a more detailed [blog post](https://developers.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/)
-about hooks in Shopware.
+about hooks in Shopware and an [event list](/developers-guide/event-list/).
 

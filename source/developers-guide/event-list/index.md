@@ -11,9 +11,9 @@ subgroup: Developing plugins
 
 If you want to hook onto Shopware you need to know the events. For more about events, see [the event guide](/developers-guide/event-guide/). The following list will give an overview of the existing events and how to subscribe to them.
 
-##Enlight_Controller_Front_StartDispatch
+## Enlight_Controller_Front_StartDispatch
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -25,8 +25,8 @@ public function dispatch()
     ...
 }
 ```
-   
-###Registration
+
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -35,8 +35,8 @@ public static function getSubscribedEvents()
     ];
 }
 ```
-    
-###Listener
+
+### Listener
 ```
 public function onEnlightControllerFrontStartDispatch(\Enlight_Event_EventArgs $arguments)
 {
@@ -45,7 +45,7 @@ public function onEnlightControllerFrontStartDispatch(\Enlight_Event_EventArgs $
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -71,10 +71,10 @@ stdClass Object
         )
 )
 ```
-    
-##Enlight_Controller_Front_RouteStartup
 
-###Definition
+## Enlight_Controller_Front_RouteStartup
+
+### Definition
 ```
 public function dispatch()
 {
@@ -87,7 +87,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -97,7 +97,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontRouteStartup(\Enlight_Event_EventArgs $arguments)
 {
@@ -112,7 +112,7 @@ public function onEnlightControllerFrontRouteStartup(\Enlight_Event_EventArgs $a
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -173,9 +173,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Router_Route
+## Enlight_Controller_Router_Route
 
-###Definition
+### Definition
 ```
 public function match($pathInfo, Context $context)
 {
@@ -190,7 +190,7 @@ public function match($pathInfo, Context $context)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -200,7 +200,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerRouteRoute(\Enlight_Event_EventArgs $arguments)
 {
@@ -211,8 +211,8 @@ public function onEnlightControllerRouteRoute(\Enlight_Event_EventArgs $argument
     $request = $arguments->getRequest();
 }
 ```
-    
-###Arguments dump
+
+### Arguments dump
 ```
 stdClass Object
 (
@@ -254,9 +254,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Front_RouteShutdown
+## Enlight_Controller_Front_RouteShutdown
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -269,7 +269,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -279,7 +279,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontRouteShutdown(\Enlight_Event_EventArgs $arguments)
 {
@@ -294,7 +294,7 @@ public function onEnlightControllerFrontRouteShutdown(\Enlight_Event_EventArgs $
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -355,9 +355,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Front_DispatchLoopStartup
+## Enlight_Controller_Front_DispatchLoopStartup
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -370,7 +370,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -380,7 +380,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontDispatchLoopStartup(\Enlight_Event_EventArgs $arguments)
 {
@@ -395,7 +395,7 @@ public function onEnlightControllerFrontDispatchLoopStartup(\Enlight_Event_Event
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -456,9 +456,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Front_PreDispatch
+## Enlight_Controller_Front_PreDispatch
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -471,7 +471,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -481,7 +481,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontPreDispatch(\Enlight_Event_EventArgs $arguments)
 {
@@ -496,7 +496,7 @@ public function onEnlightControllerFrontPreDispatch(\Enlight_Event_EventArgs $ar
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -557,9 +557,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Action_PreDispatch*
+## Enlight_Controller_Action_PreDispatch*
 
-###Definition
+### Definition
 ```
 public function dispatch($action)
 {
@@ -582,7 +582,7 @@ public function dispatch($action)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -592,7 +592,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerActionPreDispatchFrontendDetail(\Enlight_Event_EventArgs $arguments)
 {
@@ -607,7 +607,7 @@ public function onEnlightControllerActionPreDispatchFrontendDetail(\Enlight_Even
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -665,9 +665,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Action_PostDispatch* and Enlight_Controller_Action_PostDispatchSecure*
+## Enlight_Controller_Action_PostDispatch* and Enlight_Controller_Action_PostDispatchSecure*
 
-###Definition
+### Definition
 ```
 public function dispatch($action)
 {
@@ -711,7 +711,7 @@ public function dispatch($action)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -721,7 +721,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerActionPostDispatchFrontendDetail(\Enlight_Event_EventArgs $arguments)
 {
@@ -736,7 +736,7 @@ public function onEnlightControllerActionPostDispatchFrontendDetail(\Enlight_Eve
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -794,9 +794,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Plugins_ViewRenderer_PreRender
+## Enlight_Plugins_ViewRenderer_PreRender
 
-###Definition
+### Definition
 ```
 public function renderTemplate($template, $name = null)
 {
@@ -813,7 +813,7 @@ public function renderTemplate($template, $name = null)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -823,7 +823,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightPluginsViewRendererPreRender(\Enlight_Event_EventArgs $arguments)
 {
@@ -835,7 +835,7 @@ public function onEnlightPluginsViewRendererPreRender(\Enlight_Event_EventArgs $
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -885,9 +885,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Plugins_ViewRenderer_FilterRender
+## Enlight_Plugins_ViewRenderer_FilterRender
 
-###Definition
+### Definition
 ```
 public function renderTemplate($template, $name = null)
 {
@@ -901,7 +901,7 @@ public function renderTemplate($template, $name = null)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -911,7 +911,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightPluginsViewRendererFilterRender(\Enlight_Event_EventArgs $arguments)
 {
@@ -923,7 +923,7 @@ public function onEnlightPluginsViewRendererFilterRender(\Enlight_Event_EventArg
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -974,9 +974,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Plugins_ViewRenderer_PostRender
+## Enlight_Plugins_ViewRenderer_PostRender
 
-###Definition
+### Definition
 ```
 public function renderTemplate($template, $name = null)
 {
@@ -989,7 +989,7 @@ public function renderTemplate($template, $name = null)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -999,7 +999,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightPluginsViewRendererPostRender(\Enlight_Event_EventArgs $arguments)
 {
@@ -1011,7 +1011,7 @@ public function onEnlightPluginsViewRendererPostRender(\Enlight_Event_EventArgs 
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -1061,9 +1061,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Front_PostDispatch
+## Enlight_Controller_Front_PostDispatch
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -1076,7 +1076,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -1086,7 +1086,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontPostDispatch(\Enlight_Event_EventArgs $arguments)
 {
@@ -1101,7 +1101,7 @@ public function onEnlightControllerFrontPostDispatch(\Enlight_Event_EventArgs $a
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -1162,9 +1162,9 @@ stdClass Object
 )
 ```
 
-##Enlight_Controller_Front_DispatchLoopShutdown
+## Enlight_Controller_Front_DispatchLoopShutdown
 
-###Definition
+### Definition
 ```
 public function dispatch()
 {
@@ -1177,7 +1177,7 @@ public function dispatch()
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -1187,7 +1187,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerFrontDispatchLoopShutdown(\Enlight_Event_EventArgs $arguments)
 {
@@ -1202,7 +1202,7 @@ public function onEnlightControllerFrontDispatchLoopShutdown(\Enlight_Event_Even
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (
@@ -1263,10 +1263,9 @@ stdClass Object
 )
 ```
 
+## Enlight_Controller_Dispatcher_ControllerPath_*
 
-##Enlight_Controller_Dispatcher_ControllerPath_*
-
-###Definition
+### Definition
 ```
 public function getControllerPath(Enlight_Controller_Request_Request $request)
 {
@@ -1284,7 +1283,7 @@ public function getControllerPath(Enlight_Controller_Request_Request $request)
 }
 ```
 
-###Registration
+### Registration
 ```
 public static function getSubscribedEvents()
 {
@@ -1294,7 +1293,7 @@ public static function getSubscribedEvents()
 }
 ```
 
-###Listener
+### Listener
 ```
 public function onEnlightControllerDispatcherControllerPathFrontendDetail(\Enlight_Event_EventArgs $arguments)
 {
@@ -1306,7 +1305,7 @@ public function onEnlightControllerDispatcherControllerPathFrontendDetail(\Enlig
 }
 ```
 
-###Arguments dump
+### Arguments dump
 ```
 stdClass Object
 (

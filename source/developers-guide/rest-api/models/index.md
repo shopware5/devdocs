@@ -121,6 +121,7 @@ subgroup: REST API
 | releaseDate         | date/time             |                                                 |
 | active              | boolean               |                                                 |
 | shippingFree        | boolean               |                                                 |
+| esd                 | object                | **[Esd](#esd)**                                 |
 
 ## Billing
 

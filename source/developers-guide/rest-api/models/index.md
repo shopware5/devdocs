@@ -469,6 +469,31 @@ subgroup: REST API
 | file                  | string                |                                                       |
 | size                  | int                   |                                                       |
 
+## Esd
+
+* **Model:** Shopware\Models\Article\Esd
+* **Table:** s_articles_esd
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| file                  | string                |                                                       |
+| reuse                 | boolean               |                                                       |
+| hasSerials            | boolean               |                                                       |
+| serials               | object array          | **[EsdSerial](#esd-serial)**                          |
+
+## ESD-Serial
+
+* **Model:** Shopware\Models\Article\EsdSerial
+* **Table:** s_articles_esd_serials
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| serialnumber          | string                |                                                       |
+
 ## Image
 
 * **Model:** Shopware\Models\Article\Image

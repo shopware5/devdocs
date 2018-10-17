@@ -1114,6 +1114,9 @@ Example `Resources/cronjob.xml`:
 
 </cronjobs>
 ```
+
+This file will be analyzed and applied on every plugin installation and update. When this file is applied new cronjobs will be added, existing cronjobs updated and missing ones will be deleted. Whether a cronjob exists will be determined by the given action.
+
 The cronjob manager will publish an event according to the name given with the `action` tag, whenever your cronjob is due to execute. Just subscribe to this event and register a handler. Example (in your plugin or subscriber class):
 
 ```php

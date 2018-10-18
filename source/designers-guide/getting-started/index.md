@@ -146,7 +146,7 @@ If you wish to add your content __after__ the initial block content you can do i
 {/block}
 ```
 
-Of cause the other way around will also work, if you wish to add your content __before__ the content of the initial block:
+Of course the other way around will also work, if you wish to add your content __before__ the content of the initial block:
 ```smarty
 {block name='frontend_index_checkout_actions'}
     // place your new element here

@@ -267,7 +267,7 @@ class DetailSubscriber implements SubscriberInterface
 
 ## Uninstall
 
-During the uninstall process, the user can now be prompted which data he wishes to remove.
+During the uninstall process, the user will now be prompted which data he wishes to remove.
 Existing __uninstall()__ method should remove all data. 
 Use the `UninstallContext` which contains the __keepUserData()__ method. If the return value is `true` you should only remove non-user related data.
 

@@ -77,7 +77,7 @@ _The name of the model is always on the left side of the model, with which the a
 
 In addition to the Shopware events, Doctrine also offers an event system. This event system has been implemented into Shopware to add several new features. Just as like in Shopware, there are the `pre*` and `post*` events. Naturally, the `pre*` events fire before the respective action, and the `post*` events afterwards.
 
-To find more in depth documentation about Doctrine events, please refer to the official [Doctrine documentation](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/events.html).
+You can either define the events on the model class itself (using Doctrine's event system) or in a seperate subscriber class (using Shopware's event system). To find more in depth documentation about Doctrine events and defining the events on the model class, please refer to the official [Doctrine documentation](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/events.html). The following examples refers to defining the events in a seperate subscriber class.
 
 ### Insert event
 
@@ -89,7 +89,6 @@ When a model object is first added to the database, the `prePersist` and `postPe
 namespace SwagModel\Subscriber;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use Shopware\Components\Model\ModelManager;
 use Shopware\Models\Article\Article;
@@ -104,8 +103,8 @@ class ModelSubscriber implements EventSubscriber
     public function getSubscribedEvents()
     {
         return [
-           Events::prePersist,
-           Events::postPersist,
+           'Article::prePersist',
+           'Article::postPersist',
         ];
     }
     
@@ -114,9 +113,9 @@ class ModelSubscriber implements EventSubscriber
      */
 
     /**
-     * @param LifecycleEventArgs $arguments
+     * @param \Enlight_Event_EventArgs $arguments
      */
-    public function prePersist(LifecycleEventArgs $arguments)
+    public function prePersist(\Enlight_Event_EventArgs $arguments)
     {
         /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
@@ -131,9 +130,9 @@ class ModelSubscriber implements EventSubscriber
     }
 
     /**
-     * @param LifecycleEventArgs $arguments
+     * @param \Enlight_Event_EventArgs $arguments
      */
-    public function postPersist(LifecycleEventArgs $arguments)
+    public function postPersist(\Enlight_Event_EventArgs $arguments)
     {
         /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
@@ -161,9 +160,9 @@ public function getSubscribedEvents()
 **Event listener**
 ```php
 /**
- * @param LifecycleEventArgs $arguments
+ * @param \Enlight_Event_EventArgs $arguments
  */
-public function preUpdate(LifecycleEventArgs $arguments)
+public function preUpdate(\Enlight_Event_EventArgs $arguments)
 {
     /** @var ModelManager $modelManager */
     $modelManager = $arguments->getEntityManager();
@@ -178,9 +177,9 @@ public function preUpdate(LifecycleEventArgs $arguments)
 }
 
 /**
- * @param LifecycleEventArgs $arguments
+ * @param \Enlight_Event_EventArgs $arguments
  */
-public function postUpdate(LifecycleEventArgs $arguments)
+public function postUpdate(\Enlight_Event_EventArgs $arguments)
 {
     /** @var ModelManager $modelManager */
     $modelManager = $arguments->getEntityManager();
@@ -212,9 +211,9 @@ public function getSubscribedEvents()
 **Event listener**
 ```php
     /**
-     * @param LifecycleEventArgs $arguments
+     * @param \Enlight_Event_EventArgs $arguments
      */
-    public function preRemove(LifecycleEventArgs $arguments)
+    public function preRemove(\Enlight_Event_EventArgs $arguments)
     {
         /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();
@@ -229,9 +228,9 @@ public function getSubscribedEvents()
     }
 
     /**
-     * @param LifecycleEventArgs $arguments
+     * @param \Enlight_Event_EventArgs $arguments
      */
-    public function postRemove(LifecycleEventArgs $arguments)
+    public function postRemove(\Enlight_Event_EventArgs $arguments)
     {
         /** @var ModelManager $modelManager */
         $modelManager = $arguments->getEntityManager();

@@ -25,8 +25,10 @@ For PHP Code all contributions should use the [PSR-1: Basic Coding Standard](htt
 You can automatically check and fix the coding style with [php-cs-fixer](http://cs.sensiolabs.org/):
 
 ```bash
-php-cs-fixer fix -v --level=psr2 /path/to/files
+./vendor/bin/php-cs-fixer fix -v
 ```
+
+The configuration for php-cs-fixer can be found in `/.php_cs.dist`.
 
 ## JavaScript Coding Standard
 Please see our dedicated page for the [JavaScript Coding Standard](/designers-guide/javascript-coding-style/).

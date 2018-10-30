@@ -25,6 +25,7 @@ subgroup: REST API
 | company                  | string                |                                                    |                             |
 | department               | string                |                                                    |                             |
 | salutation               | string                |                                                    |                             |
+| title                    | string                |                                                    |                             |
 | firstname                | string                |                                                    |                             |
 | lastname                 | string                |                                                    |                             |
 | street                   | string                |                                                    |                             |

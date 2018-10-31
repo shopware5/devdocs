@@ -257,6 +257,12 @@ the DIC:
 
 ### Sitemap
 
+<div class="alert alert-info">
+
+Important: Large shops with many entities should consider switch after the upgrade to cronjob generation instead live generation.
+
+</div>
+
 To support more than 50.000 URLs that are allowed in one `sitemap.xml` file, Shopware now adds a `sitemap_index.xml`,
 which itself contains links to one or more `sitemap.xml`. The sitemap files can be created by cronjob, live or using
 the command `sw:generate:sitemap`.

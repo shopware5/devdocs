@@ -259,7 +259,7 @@ the DIC:
 
 <div class="alert alert-info">
 
-Important: Large shops with many entities should consider switch after the upgrade to cronjob generation instead live generation.
+Important: Large shops with many entities should consider switching to cronjob generation instead of live generation after the upgrade
 
 </div>
 

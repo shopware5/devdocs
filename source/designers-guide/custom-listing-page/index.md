@@ -107,6 +107,10 @@ We will simply overwrite the default listing block and add our own iteration thr
 {/block}
 ```
 
+<div class="alert alert-info" role="alert">
+    The static include of `frontend/listing/box-custom.tpl` overrides the category's settings for Product Layout. If you want to use this setting, please take a look at our <a href="/designers-guide/custom-templates/">custom product box layout tutorial</a>.
+</div>
+
 ### Custom product box
 
 The new product box is separated into its own `box-custom.tpl` file and extends the default `box-basic` product box of the bare theme. When we added the `{extends}` command of Smarty and chose the correct path, we can now overwrite every part of the product box inside our newly created file:

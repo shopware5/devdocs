@@ -258,7 +258,7 @@ the DIC:
 ### Routing
 
 SEO support for some AJAX routes defined in the template `themes/Frontend/Bare/frontend/index/index.tpl` has been removed for performance reasons. If you need SEO URLs for the following routes, you can override the block 
-`frontend_index_ajax_seo_optimized` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
 
 The affected routes are:
 

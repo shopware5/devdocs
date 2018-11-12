@@ -1,21 +1,22 @@
 .topic--overview {
-    .clearfix();
-    width: 100%;
-    margin: 25px auto;
-
-    &::after {
-        clear: both;
-    }
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 30px 30px;
+    align-items: center;
+    align-content: center;
 
     .topic {
-        display: block;
-        max-width: 320px;
-        min-height: 120px;
-        margin: 0 20px 10px;
+        display: grid;
+        height: 120px;
+        padding: 15px;
+        align-content: center;
+        align-items: center;
         background: @bg-color;
         border-bottom: 4px solid;
         text-align: center;
-        padding: 30px 15px;
         color: @text-color;
         font-size: 18px;
         font-weight: bold;
@@ -46,7 +47,23 @@
         }
     }
 
-    .topic--3d-product-viewer {
+    .topic--vision {
+        border-color: @text-color;
+
+        &:hover {
+            background: @text-color;
+        }
+    }
+
+    .topic--playground {
+        border-color: @highlight-color-red;
+
+        &:hover {
+            background: @highlight-color-red;
+        }
+    }
+
+    .topic--github {
         border-color: @highlight-color-light-blue;
 
         &:hover {
@@ -54,55 +71,18 @@
         }
     }
 
-    .topic--shopping-cart {
-        border-color: @highlight-color-green;
-
-        &:hover {
-            background: @highlight-color-green;
-        }
-    }
-
-    .topic--backend {
-        border-color: @highlight-color-turquoise;
-
-        &:hover {
-            background: @highlight-color-turquoise;
-        }
-    }
-
-    .topic--internationalization {
-        border-color: @highlight-color-yellow;
-
-        &:hover {
-            background: @highlight-color-yellow;
-        }
-    }
-
-    .topic--api {
+    .topic--docu {
         border-color: @highlight-color-blue;
 
         &:hover {
             background: @highlight-color-blue;
         }
     }
-
-    .topic--housekeeping {
-        border-color: @highlight-color-red;
-
-        &:hover {
-            background: @highlight-color-red;
-        }
-    }
 }
 
 @media screen and (min-width: @viewport-s) {
-    .topic--overview .topic {
-        float: left;
-        width: 48%;
-        margin-left: 1%;
-        margin-right: 1%;
-        max-width: none;
-        min-height: 200px;
+    .topic--overview {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -111,8 +91,8 @@
         margin: 0 auto;
     }
 
-    .topic--overview .topic {
-        width: 31.1%;
+    .topic--overview {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -125,13 +105,6 @@
 
 @media screen and (min-width: @viewport-xl) {
     .topic--overview {
-        max-width: (@viewport-xl - 20);
-    }
-}
-
-@media screen and (min-width: @viewport-xxl) {
-    .topic--overview .topic {
-        width: 14.6%;
-        min-height: 220px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

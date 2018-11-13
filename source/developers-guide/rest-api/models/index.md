@@ -122,6 +122,7 @@ subgroup: REST API
 | releaseDate         | date/time             |                                                 |
 | active              | boolean               |                                                 |
 | shippingFree        | boolean               |                                                 |
+| esd                 | object                | **[Esd](#esd)**                                 |
 
 ## Billing
 
@@ -469,6 +470,31 @@ subgroup: REST API
 | name                  | string                |                                                       |
 | file                  | string                |                                                       |
 | size                  | int                   |                                                       |
+
+## Esd
+
+* **Model:** Shopware\Models\Article\Esd
+* **Table:** s_articles_esd
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| file                  | string                |                                                       |
+| reuse                 | boolean               |                                                       |
+| hasSerials            | boolean               |                                                       |
+| serials               | object array          | **[EsdSerial](#esd-serial)**                          |
+
+## ESD-Serial
+
+* **Model:** Shopware\Models\Article\EsdSerial
+* **Table:** s_articles_esd_serials
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| serialnumber          | string                |                                                       |
 
 ## Image
 

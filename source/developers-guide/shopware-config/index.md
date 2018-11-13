@@ -38,6 +38,12 @@ need to specify options in your `config.php` if you want to override the default
 But keep in mind that most of these options should only be used for __debugging and testing__ 
 and should be removed for your live system.
 
+### Environment-specific config
+
+To be able to set different configs for different environments, you can place a file called `config_ENVIRONMENT.php` in the Shopware root directory. `ENVIRONMENT` should be replaced with the environment the kernel gets initialized and defaults to `production`, e.g. `config_production.php`. The environment-specific config file is preferred over the normal one.
+
+Blog post with a more advanced use case: [Configuring multiple Shopware environments](https://developers.shopware.com/blog/2016/01/26/configuring-multiple-shopware-environments/)
+
 ### Session locking
 
 As of Shopware 5.2.13 session locking is enabled by default. This prevents unsuspected failures when concurrent ajax requests work with the same session variables. With enabled locking ajax requests are processed one after another.

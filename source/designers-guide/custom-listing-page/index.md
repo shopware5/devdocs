@@ -262,7 +262,7 @@ In the last step we will add styling to the product box itself, add the hover ef
         width: 100%;
     
         .info--name {
-            .unitize(font-size, 30px);
+            .unitize(font-size, 30);
             color: #000;
             display: block;
             font-weight: 300;
@@ -270,7 +270,7 @@ In the last step we will add styling to the product box itself, add the hover ef
         }
     
         .info--price {
-            .unitize(font-size, 22px);
+            .unitize(font-size, 22);
             display: block;
             text-align: center;
         }
@@ -282,7 +282,7 @@ In the last step we will add styling to the product box itself, add the hover ef
         transform: translate(0, -50%);
     
         .image--media img {
-            .unitize(padding, 30px);
+            .unitize(padding, 30);
             height: 100%;
         }
     }

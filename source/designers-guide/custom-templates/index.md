@@ -38,3 +38,41 @@ Go to *Configuration* -> *Basic settings* -> *Frontend* -> *Shopping cart / item
 
 Add the template file and the name for the label to the string in the input field. In our example it is `;custom_detail.tpl:My custom page`. After clearing the configuration cache you can select your new template in the product settings.
 
+## Custom product box layouts
+<div class="alert alert-info" role="alert">
+Only for Shopware >= 5.5.4
+</div>
+<br />
+
+You can add custom product box layouts by extending the `ProductBoxLayout` store with an ExtJS Plugin. By extending this store it is possible to select an additional item from the Product Layout dropdown at the category's detail view. 
+This could look like this:
+
+![Custom product box layout](custom_product_box_layout.jpg)
+
+To add a new product layout you have to override the `createLayoutData` method in `themes/Backend/ExtJs/backend/base/store/product_box_layout.js` and push your new product layout item to the `data` array. This could look as following:
+```javascript
+//{namespace name=backend/base/product_box_layout}
+//{block name="backend/base/store/product_box_layout" append}
+Ext.override(Shopware.apps.Base.store.ProductBoxLayout, {
+
+    createLayoutData: function(config) {
+        var me = this,
+            data = me.callParent(arguments);
+
+        data.push({
+            key: 'shopware',
+            label: '{s name=box_layout_shopware_label}Shopware{/s}',
+            description: '{s name=box_layout_shopware_description}This is the custom Shopware box layout{/s}',
+            image: '{link file="backend/_resources/images/category/layout_box_basic.png"}'
+        });
+
+        return data;
+    }
+});
+//{/block}
+```
+
+The chosen key is important as you have to create a new template file that contains your key (e.g. `box-shopware.tpl` corresponding to the previous lines of code) in `frontend/listing/product-box/`. This template-file contains the new product box layout and is displayed in the frontend. 
+
+For creating new product layouts easily, we provide the `SwagCustomProductBoxLayout`-Plugin which can be downloaded [here](SwagCustomProductBoxLayout.zip).
+A default product layout has already been created. You can change the existing layout or create new ones within this plugin. Just **check the front- and backend resources**. 

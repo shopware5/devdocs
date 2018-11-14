@@ -54,6 +54,7 @@ This API call requires one of the following parameters to be defined:
 | invoiceAmountNet      | double                |                                                                               |
 | invoiceShipping       | double                |                                                                               |
 | invoiceShippingNet    | double                |                                                                               |
+| invoiceShippingTaxRate| double                |                                                                               |
 | orderTime             | date/time             |                                                                               |
 | transactionId         | string                |                                                                               |
 | comment               | string                |                                                                               |

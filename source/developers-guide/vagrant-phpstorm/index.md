@@ -13,7 +13,7 @@ menu_title: Vagrant and PHPStorm
 menu_order: 50
 ---
 
-We published a [Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) that provides you with a basic Ubuntu 14.04 that contains everything that you needed to develop with Shopware.
+We published a [Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) that provides you with a basic Ubuntu 16.04 that contains everything that you needed to develop with Shopware.
 It contains the Apache2 Web Server, MySQL Server as well as all required tools, like `ant`, `curl` and `git`.
 
 Please note that Vagrant setup does not contain a Shopware installation. The installation has to be done manually.

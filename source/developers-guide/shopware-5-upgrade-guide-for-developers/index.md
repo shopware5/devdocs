@@ -255,6 +255,21 @@ the DIC:
     * `plugin_name.filesystem.public`
     * `plugin_name.filesystem.private`
 
+### Routing
+
+SEO support for some AJAX routes defined in the template `themes/Frontend/Bare/frontend/index/index.tpl` has been removed for performance reasons. If you need SEO URLs for the following routes, you can override the block 
+`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+
+The affected routes are:
+
+- `/checkout/ajaxCart`
+- `/register/index`
+- `/checkout/addArticle`
+- `/widgets/Listing/ajaxListing`
+- `/checkout/ajaxAmount`
+- `/address/ajaxSelection`
+- `/address/ajaxEditor`
+
 ### Sitemap
 
 <div class="alert alert-info">
@@ -435,8 +450,8 @@ They are now without function, whether the link uses SSL or not depends on the g
 
 Some AJAX routes generated in the template `themes/Frontend/Bare/frontend/index/index.tpl` check for existing SEO URLs. This
 behaviour has been deprecated for performance reasons and SEO support for the routes defined in the template will be 
-removed in 5.5. If you need SEO URLs for one of the following routes, you can override the block 
-`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+removed in 5.5. If you want to disable SEO support for this routes, you can override the block 
+`frontend_index_ajax_seo_optimized` and set the variable `$ajaxSeoSupport` to `false`.
 
 The affected routes are:
 

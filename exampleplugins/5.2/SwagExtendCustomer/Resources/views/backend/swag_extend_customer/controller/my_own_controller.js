@@ -1,3 +1,5 @@
+// This is the controller
+
 
 Ext.define('Shopware.apps.SwagExtendCustomer.controller.MyOwnController', {
     /**

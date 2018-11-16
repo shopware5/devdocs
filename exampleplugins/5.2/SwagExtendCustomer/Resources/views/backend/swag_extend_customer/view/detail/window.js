@@ -20,19 +20,12 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
     createPersonalFieldSet: function() {
         var me = this,
             fieldSet = me.callParent(arguments),
-            indexA, indexB;
+            titelField = fieldSet.down('[name="title"]'),
+            titleContainer = titelField.up('container');
 
-        Ext.each(fieldSet.items, function(item, firstIndex) {
-            Ext.each(item.items, function(field, secondIndex) {
+        titelField.destroy();
 
-                if (field.name === 'title') {
-                    indexA = firstIndex;
-                    indexB = secondIndex;
-                }
-            });
-        });
-
-        fieldSet.items.items[indexA].items.items[indexB] = Ext.create('Ext.form.field.ComboBox', {
+        titleContainer.insert(0, Ext.create('Ext.form.field.ComboBox', {
             labelWidth: 155,
             anchor: '95%',
             name: 'title',
@@ -40,7 +33,7 @@ Ext.define('Shopware.apps.SwagExtendCustomer.view.detail.Window', {
             valueField: 'name',
             store: me.createTitleStore(),
             fieldLabel: 'Title'
-        });
+        }));
 
         return fieldSet;
     },

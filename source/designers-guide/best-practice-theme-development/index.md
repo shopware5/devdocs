@@ -94,7 +94,7 @@ grunt --shopId=1 # optionally specify shopId
 ![Grunt Screenshot](grunt-screenshot.png)
 
 ### Development Task
-Since Shopware 5.5.4 we have also a development Grunt task. This task will compile LESS and Javascript Files and exits without watching the files.
+Since Shopware 5.5.4 there is a development grunt task, which will compile LESS and Javascript files without starting to watch them afterwards.
 
 ## New in Shopware 5.3 - LiveReload & modularized grunt tasks
 

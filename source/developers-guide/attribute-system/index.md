@@ -126,7 +126,7 @@ class SwagAttribute extends Plugin
     }
 }
 ```
-Creates a new attribute `my_integer` with the default value `3`. Setting a default value while creating a new attribute is only possible since SW 5.5.4. It is possible to update existing attributes with default values for earlier SW versions as well. Please keep in mind that MySQL allows default values for none text/blob columns only. 
+Creates a new attribute `my_integer` with the default value `3`. Please notice that default values will only be shown in the backend if you're using SW 5.5.4 or higher. In addition to that, please keep in mind that MySQL allows default values for none text/blob columns only. 
 
 ### Delete an existing attribute
 ```

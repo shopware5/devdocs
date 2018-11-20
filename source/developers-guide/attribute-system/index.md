@@ -108,6 +108,26 @@ class SwagAttribute extends Plugin
 }
 ```
 
+### Set a default value
+```php
+<?php
+
+namespace SwagAttribute;
+
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\InstallContext;
+
+class SwagAttribute extends Plugin
+{
+    public function install(InstallContext $context)
+    {
+        $service = $this->container->get('shopware_attribute.crud_service');
+        $service->update('s_articles_attributes', 'my_integer', 'integer', [], null, false, 3);
+    }
+}
+```
+Creates a new attribute `my_integer` with the default value `3`. Please notice that default values will only be shown in the backend if you're using SW 5.5.4 or higher. In addition to that, please keep in mind that MySQL allows default values for none text/blob columns only. 
+
 ### Delete an existing attribute
 ```
 <?php

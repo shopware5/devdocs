@@ -112,7 +112,7 @@ that applies for all subshops.
 
 <img src="img/scope.png" alt="Configuration with scope" class="image-border" />
 
-You can read more on subshop specific configuration at the end of this article reading the [Subshop specific configuration](#subshop-specific-plugin-configur) part.
+You can read more on subshop specific configuration at the end of this article reading the [Subshop specific configuration](#subshop-specific-plugin-configuration) part.
 
 ## Element Types
 Below all supported configuration elements including their design and source code are described again.

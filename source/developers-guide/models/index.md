@@ -73,6 +73,42 @@ _The name of the model is always on the left side of the model, with which the a
 
 </div>
 
+## Linking to Media entities
+
+Media entities savour a special threatment in Shopware. They will be moved to the trash bin colletion by the media garbage collection, if they aren't referenced by another entity anymore. If you want to use media references in your custom model, you should annouce this to the garbage collector. Otherwise, media entities maybe moved to trash bin by mistake. You can announce references in associations and occurrences of `<img>`-tags in HTML text fields. You just need to subscribe the `Shopware_Collect_MediaPositions` and return an `ArrayCollection` with `MediaPosition` objects, which define your reference.
+
+```php
+<?php
+
+namespace MyPlugin\Subscriber;
+
+use Shopware\Bundle\MediaBundle\Struct\MediaPosition;
+use Doctrine\Common\Collections\ArrayCollection;
+
+class MySubscriber implements SubscriberInterface
+{
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'Shopware_Collect_MediaPositions' => 'addMediaPositions'
+        );
+    }
+    
+    public function addMediaPositions(\Enlight_Event_EventArgs $args)
+    {
+        return new ArrayCollection([
+            // OneToMany association
+            new MediaPosition('my_entity_table', 'my_assoc_image_id'),
+            // ManyToMany association
+            new MediaPosition('my_entity_join_table', 'my_assoc_image_id'),
+            // HTML field
+            new MediaPosition('my_entity_table', 'my_string_with_html_code', 'path', MediaPosition::PARSE_HTML),
+        ]);
+    }
+}
+```
+If you store JSON data with a path to the media file, pipe seperated media IDs or PHP-serialized media IDs in your entity, please have a look to `MediaPosition`s class constants and the according parsing methods `handle*Table()` in `GarbageCollector` class.
+
 ## Model events
 
 In addition to the Shopware events, Doctrine also offers an event system. This event system has been implemented into Shopware to add several new features. Just as like in Shopware, there are the `pre*` and `post*` events. Naturally, the `pre*` events fire before the respective action, and the `post*` events afterwards.

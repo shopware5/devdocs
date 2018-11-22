@@ -75,7 +75,7 @@ _The name of the model is always on the left side of the model, with which the a
 
 ## Linking to Media entities
 
-Media entities savour a special threatment in Shopware. They will be moved to the trash bin colletion by the media garbage collection, if they aren't referenced by another entity anymore. If you want to use media references in your custom model, you should annouce this to the garbage collector. Otherwise, media entities maybe moved to trash bin by mistake. You can announce references in associations and occurrences of `<img>`-tags in HTML text fields. You just need to subscribe the `Shopware_Collect_MediaPositions` and return an `ArrayCollection` with `MediaPosition` objects, which define your reference.
+Media entities savour a special threatment in Shopware. They will be moved to the trash bin colletion by the media garbage collection, if they aren't referenced by another entity anymore. If you want to use media references in your custom model, you should annouce this to the garbage collector. Otherwise, media entities maybe moved to trash bin by mistake. You can announce references in associations and occurrences of `<img>`-tags in HTML text fields. You just need to subscribe the `Shopware_Collect_MediaPositions` event and return an `ArrayCollection` with `MediaPosition` objects, which define your reference.
 
 ```php
 <?php

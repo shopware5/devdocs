@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="swag_custom_product_box_layout.subscriber.backend" class="SwagCustomProductBoxLayout\Subscriber\Backend">
+            <tag name="shopware.event_subscriber" />
+            <argument>%swag_custom_product_box_layout.plugin_dir%</argument>
+        </service>
+
+        <service id="swag_custom_product_box_layout.subscriber.frontend" class="SwagCustomProductBoxLayout\Subscriber\Frontend">
+            <tag name="shopware.event_subscriber" />
+            <argument>%swag_custom_product_box_layout.plugin_dir%</argument>
+        </service>
+
+    </services>
+</container>

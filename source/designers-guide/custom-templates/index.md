@@ -74,5 +74,5 @@ Ext.override(Shopware.apps.Base.store.ProductBoxLayout, {
 
 The chosen key is important as you have to create a new template file that contains your key (e.g. `box-shopware.tpl` corresponding to the previous lines of code) in `frontend/listing/product-box/`. This template-file contains the new product box layout and is displayed in the frontend. 
 
-For creating new product layouts easily, we provide the `SwagCustomProductBoxLayout`-Plugin which can be downloaded [here](SwagCustomProductBoxLayout.zip).
+For creating new product layouts easily, we provide the `SwagCustomProductBoxLayout`-Plugin which can be downloaded <a href="{{ site.url }}/exampleplugins/SwagCustomProductBoxLayout.zip">here</a>.
 A default product layout has already been created. You can change the existing layout or create new ones within this plugin. Just **check the front- and backend resources**. 

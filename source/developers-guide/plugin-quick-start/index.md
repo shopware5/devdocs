@@ -374,6 +374,12 @@ This will result in a configuration form like this:
 
 If you want to read more about plugin configuration start reading [Plugin configuration](/developers-guide/plugin-configuration/) article.
 
+<div class="alert alert-warning">
+<strong>Be careful with sensitive data!</strong>
+
+Please be aware to not save any files that contain sensitive data to your plugin directory (e.g. config or log files) as these might be accessible by public.
+</div>
+
 
 ### Frontend resources auto-registration
 

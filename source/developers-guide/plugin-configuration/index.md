@@ -18,6 +18,12 @@ After getting a short introduction by reading the Plugin Quick Introduction, we 
 the configuration options for plugins. Shopware delivers a big amount of helper functions for generating standard
 configuration fields in backend.
 
+<div class="alert alert-warning">
+<strong>Be careful with sensitive data!</strong>
+
+Please be aware to not save any files that contain sensitive data to your plugin directory (e.g. config or log files) as these might be accessible by public.
+</div>
+
 ## Creating forms
 A plugin configuration can be created with a Resources/config.xml file.
 

@@ -242,10 +242,9 @@ sub vcl_recv {
         return (pass);
     }
 
-    # Do not cache these paths.
-    if (req.url ~ "^/backend" ||
-        req.url ~ "^/backend/.*$") {
-
+    # Always pass these paths directly to php without caching
+    # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
+    if (req.url ~ "^/(checkout|account|backend)(/.*)?$") {
         return (pass);
     }
 

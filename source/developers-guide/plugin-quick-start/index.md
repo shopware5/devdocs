@@ -610,7 +610,7 @@ Possible settings for the parameter `caches` contains each context as constant.
 
 ## Container Configuration
 
-The [Symfony DependencyInjection Component](http://symfony.com/doc/2.8/components/dependency_injection.html)
+The [Symfony DependencyInjection Component](https://symfony.com/doc/3.4/components/dependency_injection.html)
 
 The container configuration is the main extension point for Shopware plugins.
 In this configuration new services can be defined, core services can be decorated or replaced or functionality can be added to the system.
@@ -715,7 +715,7 @@ The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService`
 
 ```
 
-For more information see http://symfony.com/doc/2.8/service_container/service_decoration.html
+For more information see [How to Decorate Services](https://symfony.com/doc/3.4/service_container/service_decoration.html)
 
 ### Extended Container Configuration
 
@@ -761,7 +761,7 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 </container>
 ```
 
-You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/2.8/cookbook/console/commands_as_services.html).
+You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/3.4/console/commands_as_services.html).
 
 
 ## Add backend emotion components

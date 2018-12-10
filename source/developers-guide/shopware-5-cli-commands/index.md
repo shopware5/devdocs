@@ -80,6 +80,7 @@ class ImportCommand extends ShopwareCommand
     protected function configure()
     {
         $this
+            ->setName('swagcommandexample:import')
             ->setDescription('Import data from file.')
             ->addArgument(
                 'filepath',

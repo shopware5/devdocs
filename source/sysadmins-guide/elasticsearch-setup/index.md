@@ -93,6 +93,22 @@ Shopware 5 communicates with Elasticsearch using the latter's REST API. The `hos
     <strong>Note:</strong> For a single node configuration, which is sufficient for a development environment, it is necessary to configure a `number_of_replicas` of `0`, otherwise the indexing process would wait for cluster health `green`, which can't be reached if no replicas can be applied.
 </div>
 
+### Defining Elasticsearch version to reduce calls
+
+By default, Shopware makes an `info` request to the Elasticsearch backend to be able to determine the version of Elasticsearch that is being used. In high load environments, this can create unnecessary additional load on all services due to the slight overhead these requests create.
+
+Starting with Shopware 5.5.5, it is possible to define the version of Elasticsearch being used in the `config.php` like described below. Doing so will keep Shopware from making these `info` requests.
+
+```php
+<?php
+return [
+    ...
+    'es' => [
+        ...
+        'version' => '5.6.5',
+    ]
+];
+```
 
 ### Initial data import
 
@@ -130,7 +146,6 @@ php bin/console sw:es:index:populate
 ```
 
 We recommend running this command every 24 hours, at a time when you server expects less traffic (typically during the night). There will be no downtime for both Shopware and Elasticsearch during its execution.
-
 
 ## Elasticsearch integration details
 

@@ -35,7 +35,7 @@ It mainly has the following configuration options:
 This is highly recommended, as this will allow you to have full cached pages AND almost instant
 cache updates, if e.g. the price of an item changes.
 * Alternate proxy URL: When not using Shopware built in cache, enter the IP of your cache here. This
-will allow you to invalidate / clear your remote cache from within Shopware.
+will allow you to invalidate / clear your remote cache from within Shopware. **If you use Nginx without Varnish, you have to add the URL to Shopware here with a custom URL path, because Nginx does not allow BAN requests on "/". Example:  http://example.com/ban**
 * Admin view: Do not cache frontend pages if you are signed in as an admin.
 * [Cache controller times](/blog/2015/02/11/understanding-the-shopware-http-cache/#whitelisted-controllers): Which
 controller should be cached for how long? The `Controller` column contains the controller's module + the controller's name.

@@ -303,6 +303,12 @@ $client->get('articles');
 $client->get('articles?limit=2');
 ```
 
+A maximum of 1000 entries is returned. By using the `start` parameter you can get the following entries.
+
+```
+$client->get('articles?start=1001');
+```
+
 ### Result
 ```
 {

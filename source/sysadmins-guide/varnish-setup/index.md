@@ -337,6 +337,11 @@ sub vcl_deliver {
     ## unset the headers, thus remove them from the response the client sees
     unset resp.http.X-Shopware-Allow-Nocache;
     unset resp.http.X-Shopware-Cache-Id;
+    
+    # remove link header, if session is already started to save client resources
+    if (req.http.cookie ~ "session-") {
+    	unset resp.http.Link;
+    }
 
     # Set a cache header to allow us to inspect the response headers during testing
     if (obj.hits > 0) {

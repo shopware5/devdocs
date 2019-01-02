@@ -80,9 +80,9 @@ It's imported that the IonCube Loader extension is loaded BEFORE the Xdebug exte
 Shopware makes use of the Monolog logger, which allows you to log into files, databases, emails or FirePHP. By default a `CoreLogger` and a `PluginLogger` are set up for usage:
 
 ```
-Shopware()->PluginLogger()->info("my info");
-Shopware()->PluginLogger()->warning("my warning");
-Shopware()->PluginLogger()->error("my error");
+Shopware()->Container()->get('pluginlogger')->info("my info");
+Shopware()->Container()->get('pluginlogger')->warning("my warning");
+Shopware()->Container()->get('pluginlogger')->error("my error");
 ```
 
 These calls will render the messages "my info", "my warning" and "my error" to the file `logs/plugin_production-YYY-MM-DD.log`. Depending on the logger configuration, you could force monolog to only show info messages if a warning or error occurs later (two fingers crossed handler), which might also be a huge benefit in productive environments. If multiple plugins write to the "PluginLogger", creating own loggers with other persistence backends is also an option.

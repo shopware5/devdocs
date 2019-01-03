@@ -56,6 +56,7 @@ The following list contains all relevant events, interfaces and public API calls
 | DI Container service                              | Description
 |---------------------------------------------------|-----------------------------
 | shopware_elastic_search.client                    | ES client for communication
+| shopware_elastic_search.client.logger             | Logs specific ES requests and their responses
 | shopware_elastic_search.shop_indexer              | Starts indexing process for all shops
 | shopware_elastic_search.shop_analyzer             | Defines which ES analyzer(s) is used in which shop
 | shopware_elastic_search.backlog_processor         | Process the backlog queue
@@ -1935,3 +1936,56 @@ class BonusConditionHandler implements HandlerInterface, PartialConditionHandler
     }
 }
 ```
+## ElasticSearch Logging
+In Shopware 5.5.5 we added an elasticsearch logger which logs several ES requests and their responses. In addition to that, you'll get an evaluation of the indexing process after each step by default.   
+The following options have been added to the index populate command for both, frontend and backend indexing:
+
+| Option                             | Description
+|------------------------------------|-----------------------------
+| --no-evaluation                    | Disable the evaluation
+| --stop-on-error                    | Abort the indexing process if an error occurs
+
+An example indexing process that uses the `--stop-on-error` option could look like this:
+```bash
+$ sudo bin/console sw:es:index:populate --stop-on-error
+
+
+## Indexing shop Deutsch ##
+Indexing properties
+ 5/5 [============================] 100% < 1 sec/< 1 sec
+
+ Evaluation:
+  Total: 5 items
+  Error: 0 items
+  Success: 5 items
+
+
+Indexing products
+
+In ConsoleEvaluationHelper.php line 183:
+                                                                                                                  
+  An error occured:                                                                                               
+  SW10002.3: mapper [calculatedPrices.EK_1.rule.unit.purchaseUnit] cannot be changed from type [long] to [float]  
+                                                                                                                  
+```
+
+As already mentionend do these options work with both, the `sw:es:index:populate` and the `sw:es:backend:index:populate` command. 
+
+An occured error can be viewed in detail via the system log backend view (Configuration > Logfile > System log) by selecting the correct ES logging file (something like `es_production-2018-12-06.log`).
+
+![elasticsearch_system_log_detail](elasticsearch_system_log_detail.png)
+
+The log files contain response and request data (in this order) for several ES requests. In production environments only errors will be logged by default. For development environments each request will be logged by default. Please notice that if every ES request is logged, the log files will become accordingly large. It is not recommended to log debug info in production environments. 
+You can customize the log level via your `config.php` from the default behaviour to fit your own needs (you can find the available log levels [here](https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels)):
+
+```php
+// ...
+'es' => [
+    // ...
+    'logger' => [
+        'level' => 100,
+    ],
+],
+// ...
+```  
+

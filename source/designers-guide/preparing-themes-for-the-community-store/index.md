@@ -11,6 +11,80 @@ menu_order: 90
 
 <div class="toc-list"></div>
 
+## Introduction Coding Standards
+This guide show you the required coding standard of plugins and explains how to gernerally prepare your plugins and make the ready to be downloaded or purchased from the [Shopware Community Store](http://store.shopware.com/en/).
+
+##1. All required meta data had to be defined in the plugin.xml
+
+##### plugin.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Mein Plugin-Name</label>
+    <label lang="en">My plugin name</label>
+    <label>MyPluignName</label>
+    <version>1.0.0</version>
+    <copyright>(c) by my company ltd.</copyright>
+    <license>MIT</license>
+    <link>https://my-website.com</link>
+    <author>My company ltd.</author>
+    <compatibility minVersion="5.2.0"/>
+    <changelog version="1.0.0">
+        <changes lang="de">Erstveröffentlichung</changes>
+        <changes lang="en">First release</changes>
+    </changelog>
+        
+</plugin>
+```
+##2. Allowed and required standard values to be set in the plugin.xml
+
+###Basic translations*:
+<label lang="de">Mein Plugin-Name</label>
+<label lang="en">My plugin name</label>
+
+###Version number*:
+<version>1.0.0</version>
+
+not allowed:
+<version>V1.0.0</version>
+<version>V1.0</version>
+<version>1.0</version>
+<version>1</version>
+
+###Copyright*:
+<copyright>(c) by my company</copyright>
+
+###License:
+<license>proprietary</license>
+
+###Link:
+<link>https://store.shopware.com</link>
+
+###Author*:
+<author>My company ltd.</author>
+
+###Compatibility ?
+<compatibility minVersion="5.3.0"/>
+
+not allowed:
+<compatibility minVersion="5.3"/>
+<compatibility minVersion="5"/>
+<compatibility minVersion="5.0.0"/>
+
+###Changelog - version*:
+<changelog version="1.0.0">
+
+not allowed:
+<changelog version="V1.0.0">
+<changelog version="V1.0">
+<changelog version="1.0">
+<changelog version="1">
+
+###Changelog - changes*
+<changes lang="de">Erstveröffentlichung</changes>
+<changes lang="en">First release</changes> </changelog>
+
+
 ## Introduction
 This guide explains how to prepare your custom themes, wrap them in plugins that can be installed with the Shopware plugin manager and make them ready to be downloaded or purchased from the [Shopware Community Store](http://store.shopware.com/en/).
 

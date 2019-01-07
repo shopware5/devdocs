@@ -84,11 +84,6 @@ not allowed:
 <changes lang="de">Erstveröffentlichung</changes>
 <changes lang="en">First release</changes> </changelog>
 
-##3. Pluign image had to bes set.
-The plugin image, which appear in the plugin mananger in the backend of shopware, had to be stored in the root path of the plugin (wherer the plugin.xml appears).
-
-The image dimension is 16x16. The image hd to be stored in png.
-
 
 ## Introduction
 This guide explains how to prepare your custom themes, wrap them in plugins that can be installed with the Shopware plugin manager and make them ready to be downloaded or purchased from the [Shopware Community Store](http://store.shopware.com/en/).

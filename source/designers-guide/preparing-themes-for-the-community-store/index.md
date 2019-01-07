@@ -11,7 +11,7 @@ menu_order: 90
 
 <div class="toc-list"></div>
 
-## Introduction Coding Standards for store plugins
+## Introduction Coding Standards
 This guide show you the required coding standard of plugins and explains how to gernerally prepare your plugins and make the ready to be downloaded or purchased from the [Shopware Community Store](http://store.shopware.com/en/).
 
 ##1. All required meta data had to be defined in the plugin.xml
@@ -52,7 +52,7 @@ not allowed:
 <version>1</version>
 
 ###Copyright*:
-<copyright>(c) by my company ltd.</copyright>
+<copyright>(c) by my company</copyright>
 
 ###License:
 <license>proprietary</license>
@@ -82,12 +82,12 @@ not allowed:
 
 ###Changelog - changes*
 <changes lang="de">Erstveröffentlichung</changes>
-<changes lang="en">First release</changes>
+<changes lang="en">First release</changes> </changelog>
 
 ##3. Pluign image had to bes set.
 The plugin image, which appear in the plugin mananger in the backend of shopware, had to be stored in the root path of the plugin (wherer the plugin.xml appears).
 
-The image dimension is 16px x 16px. The image hd to be stored in png.
+The image dimension is 16x16. The image hd to be stored in png.
 
 
 ## Introduction

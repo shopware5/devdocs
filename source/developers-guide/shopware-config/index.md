@@ -155,6 +155,42 @@ The `frontendOptions` work similar to the `backendOptions`, you can find the ava
 
 With these options you can set the HTTP Cache base configuration. For debugging we only take a look at the `debug` option and set it to `true`. If you want to learn more about the other options you can take a closer look on the complete guide: [HTTP cache](/developers-guide/http-cache/)
 
+### Elasticsearch
+
+```
+    'es' => [
+        'prefix' => 'sw_shop', // set a prefix for the ES indices
+        'enabled' => false, // enable ES
+        'write_backlog' => true, // enable backlog
+        'number_of_replicas' => null, // set the number of replicase (e.g. 0 for development environments)
+        'number_of_shards' => null, // set the number of shards 
+        'total_fields_limit' => null, // set the maximum number of fields in an index
+        'max_result_window' => 10000, // set the maximum number of results per window
+        'wait_for_status' => 'green', // wait until cluster is in the specified state
+        'batchsize' => 500, // set the documents batchsize 
+        'backend' => [
+            'write_backlog' => false, // enable backlog for the backend
+            'enabled' => false, // enable ES for the backend
+        ],
+        'client' => [
+            'hosts' => [
+                'localhost:9200', // set the ES host
+            ],
+        ],
+        'logger' => [
+            'level' => $this->Environment() !== 'production' ? Logger::DEBUG : Logger::ERROR, // set the logger level (production environments should use Logger::ERROR only!)
+        ],
+        'max_expansions' => [ // set the max_expansions value of the phrase_prefix query ..
+            'name' => 2, // .. for name
+            'number' => 2, // .. for number
+        ],
+    ],
+```
+With these options you can change the elasticsearch configuration. Usually only the `enabled` and `client` options are needed to setup a runnable elasticsearch configuration. 
+The `max_result_window` option (since SW 5.5.2) can be useful if you're having more than 10000 products per category. For this case you should increase the value to a bit more than the product amount of these categories. 
+The `max_expansions` option comes with SW 5.5.5 and allows you to change the ES expansions value of the `phrase_prefix` query for `name` and `number`. This can be useful if you want to show more results while searching e.g. for an product number like "SW1000". By default only products with an up to two-digit longer number will be shown as well (e.g. SW1000XX). Increase the value for `max_expansions` to also get products with more than a two-digit longer product number. 
+You can use this option to set own fields for a `phrase_prefix` query as well. For example `'manufacturer.name' => 4` would be possible to search for products which start with the given manufacturer's name or an up to four characters longer name. 
+
 ## Example development config
 
 ```

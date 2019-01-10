@@ -44,7 +44,7 @@ The Composer Shopware project template relies on environment variables to config
 either set those directly (this is recommended on production environments e.g. to not store credentials on disk) or
 using a `.env` file in the project root. To see which variables are supported, have a look at the `.env.example` file.
 
-You can also have a `.env` file created for you! Simply run `./app/bin/install.sh` inside your new project directory to have a little installer-script ask you all necessary information.
+You can also have a `.env` file created for you! Simply run `./app/install.sh` inside your new project directory to have a little installer-script ask you all necessary information.
 
 If you need to configure other values in the `config.php` (e.g. the error or session handler), you can find the file in 
 the `app/config/` directory.

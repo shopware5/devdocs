@@ -679,6 +679,19 @@ class SwagAttribute
     }
 }
 ```
+<div class="alert alert-warning">
+<strong>Note:</strong> The model must contain minimum one of the following fields to correctly display the item in the backend.
+
+* label
+* name
+* title
+* number
+* description
+* value
+
+If this is not done, the entry is displayed with the value `null` and works not properly.
+</div>
+
 If no individual view defined, shopware uses the `Shopware.form.field.Grid` class for multi selections.
 In case the attribute is configured as single selection type, the `Shopware.form.field.SingleSelection` class is used.
 If it is necessary to define which data has to be displayed in the selection elements, it is simply possible to extend the `Shopware.attribute.AbstractEntityFieldHandler` class to handle the attribute and extend the `Shopware.form.field.Grid` to modify the displayed data:

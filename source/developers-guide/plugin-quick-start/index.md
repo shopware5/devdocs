@@ -42,7 +42,7 @@ On the left you can see Shopware's default directory structure, as you will find
 
 **recovery**: Our web-based update and install tool can be found here.
 
-**snippets**: Contains Shopware snippets for frontend and backend in a simple INI format. Snippets will automatically be deployed to database during installation. (Not in release packages)
+**snippets**: Contains Shopware snippets for frontend and backend in a simple INI format. Snippets will automatically be deployed to the database during installation. (Not in release packages)
 
 **tests**: PHPUnit and Mink tests
 
@@ -173,41 +173,21 @@ A smarty block will usually look like this:
 # Writing our first little plugin
 The following example will show how to write a very simple plugin, which extends the frontend and adds a little "slogan" to the page.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-   <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-       <label lang="de">Slogan des Tages</label>
-       <label lang="en">Slogan of the day</label>
-   
-       <version>1.0.0</version>
-       <copyright>(c) by shopware AG</copyright>
-       <license>MIT</license>
-       <link>http://store.shopware.com</link>
-       <author>shopware AG</author>
-       <compatibility minVersion="5.3.0"/>
-   
-       <changelog version="1.0.0">
-           <changes lang="de">Erstveröffentlichung</changes>
-           <changes lang="en">First release</changes>
-       </changelog>
-   </plugin>
-```
-These are only "metadata" and optional.
-
-<div class="alert alert-info">
-<strong>Use a valid version</strong>
-
-The returned version has to be compatible with the [php version_compare](http://php.net/version_compare) function, otherwise, Shopware cannot detect any possible updates.
-</div>
-
-
 ## Plugin Name
 
 The plugin name must be fashioned according to the [PHP variable name rules](http://php.net/manual/language.variables.basics.php) and should always be prefixed with your developer prefix so it's unique in the Shopware universe.
-To submit plugins to the [shopware store](http://store.shopware.com/) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
+To submit plugins to the [shopware store](https://store.shopware.com/en) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
 In the following examples the developer prefix "Swag" will be used (short for shopware AG).
+
+## Plugin Info
+
+Provide meta information about your plugin with the `plugin.xml` file. Read the chapter [plugin metadata](#plugin-metadata) for more information.
+
+## Plugin Icon
+
+To make it easier to identify you plugin in the plugin manager module in the backend, you should provide a `plugin.png` file in your plugin root directory.
+This small icon must have a size of 16x16px.
 
 ## The plugin base file
 The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed
@@ -218,14 +198,14 @@ plugin by intention.
 
 ```php
  <?php
- 
+
  namespace SwagSloganOfTheDay;
- 
+
  use Shopware\Components\Plugin;
- 
+
  class SwagSloganOfTheDay extends Plugin
  {
- 
+
  }
 ```
 
@@ -502,92 +482,91 @@ After clearing the cache, your frontend might look like this:
 
 You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagSloganOfTheDay.zip">here</a>.
 
-
 ### The plugin base file methods
 In the next case we create a simple plugin that extends the s_articles_attributes table using the attribute crud service. 
 
 ```php
- <?php
- 
- namespace SwagQuickStart;
- 
- use Shopware\Components\Plugin;
- use Shopware\Components\Plugin\Context\ActivateContext;
- use Shopware\Components\Plugin\Context\DeactivateContext;
- use Shopware\Components\Plugin\Context\InstallContext;
- use Shopware\Components\Plugin\Context\UninstallContext;
- use Shopware\Components\Plugin\Context\UpdateContext;
- use Shopware\Bundle\AttributeBundle\Service\TypeMapping;
- 
- class SwagQuickStart extends Plugin
- {
-     public function install(InstallContext $installContext)
-     {
-         // create a new attribute using the attribute crud service
-         $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
-         $attributeCrudService->update(
+<?php
+
+namespace SwagQuickStart;
+
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\ActivateContext;
+use Shopware\Components\Plugin\Context\DeactivateContext;
+use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
+use Shopware\Components\Plugin\Context\UpdateContext;
+use Shopware\Bundle\AttributeBundle\Service\TypeMapping;
+
+class SwagQuickStart extends Plugin
+{
+    public function install(InstallContext $installContext)
+    {
+        // create a new attribute using the attribute crud service
+        $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+        $attributeCrudService->update(
             's_articles_attributes',
             'quick_start',
             // possible types you can find in: /.../engine/Shopware/Bundle/AttributeBundle/Service/TypeMapping.php
             TypeMapping::TYPE_STRING
-         );
-         
-         // this attribute is implemented in a later version of the plugin
-         // so we have to implement the update method. See below.
-         $attributeCrudService->update(
+        );
+
+        // this attribute is implemented in a later version of the plugin
+        // so we have to implement the update method. See below.
+        $attributeCrudService->update(
             's_articles_attributes',
             'quick_start_guid',
             TypeMapping::TYPE_STRING
         );
-     }
- 
-     public function uninstall(UninstallContext $uninstallContext)
-     {
-         // If the user wants to keep his data we will not delete it while uninstalling the plugin
-         if ($uninstallContext->keepUserData()) {
-             return;
-         }
- 
-         $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
- 
-         $attributeCrudService->delete('s_articles_attributes', 'quick_start_guid');
-         $attributeCrudService->delete('s_articles_attributes', 'quick_start');
- 
-         // clear cache
-         $uninstallContext->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
-     }
- 
-     public function update(UpdateContext $updateContext)
-     {
-         $currentVersion = $updateContext->getCurrentVersion();
-         $updateVersion = $updateContext->getUpdateVersion();
- 
-         if (version_compare($currentVersion, '1.0.2', '<=')) {
-             $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
-             $attributeCrudService->update(
-                 's_articles_attributes',
-                 'quick_start_guid',
-                 'string'
-             );
-         }
- 
-         if (version_compare($currentVersion, '1.0.5', '<=')) {
-             // do update for version
-         }
-     }
- 
-     public function activate(ActivateContext $activateContext)
-     {
-         // on plugin activation clear the cache
-         $activateContext->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);         
-     }
- 
-     public function deactivate(DeactivateContext $deactivateContext)
-     {
-         // on plugin deactivation clear the cache
-         $deactivateContext->scheduleClearCache(DeactivateContext::CACHE_LIST_ALL);
-     }
- }
+    }
+
+    public function uninstall(UninstallContext $uninstallContext)
+    {
+        // If the user wants to keep his data we will not delete it while uninstalling the plugin
+        if ($uninstallContext->keepUserData()) {
+            return;
+        }
+
+        $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+    
+        $attributeCrudService->delete('s_articles_attributes', 'quick_start_guid');
+        $attributeCrudService->delete('s_articles_attributes', 'quick_start');
+
+        // clear cache
+        $uninstallContext->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
+    }
+
+    public function update(UpdateContext $updateContext)
+    {
+        $currentVersion = $updateContext->getCurrentVersion();
+        $updateVersion = $updateContext->getUpdateVersion();
+
+        if (version_compare($currentVersion, '1.0.2', '<=')) {
+            $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
+            $attributeCrudService->update(
+                's_articles_attributes',
+                'quick_start_guid',
+                'string'
+            );
+        }
+    
+        if (version_compare($currentVersion, '1.0.5', '<=')) {
+            // do update for version
+        }
+    }
+
+    public function activate(ActivateContext $activateContext)
+    {
+        // on plugin activation clear the cache
+        $activateContext->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);         
+    }
+
+    public function deactivate(DeactivateContext $deactivateContext)
+    {
+        // on plugin deactivation clear the cache
+        $deactivateContext->scheduleClearCache(DeactivateContext::CACHE_LIST_ALL);
+    }
+}
 ```
 
 Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin. 
@@ -880,29 +859,93 @@ You can use the CLI to install the plugin with extended error messages: <code>ph
 </div>
 
 ## Plugin Metadata 
- 
-Entries can be separated with semicolons when documenting multiple changes in the changelog.
+
+To provide meta information about your plugin you need a `plugin.xml` file.
+If you want to sell your plugin via the [Community Store](https://store.shopware.com/en) the entries marked with `*` are required.
 
 Example `plugin.xml`:
- 
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label lang="de">Slogan des Tages</label>
-    <label lang="en">Slogan of the day</label>
+   <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+       <label lang="de">Slogan des Tages</label>
+       <label lang="en">Slogan of the day</label>
 
-    <version>1.0.0</version>
-    <link>http://example.org</link>
-    <author>shopware AG</author>
-    <compatibility minVersion="5.3.0" />
+       <version>1.0.1</version>
+       <copyright>(c) by shopware AG</copyright>
+       <license>MIT</license>
+       <link>https://store.shopware.com/en</link>
+       <author>shopware AG</author>
+       <compatibility minVersion="5.3.0"/>
 
-    <changelog version="1.0.0">
-        <changes lang="de">Farbe geändert; Schriftgröße geändert;</changes>
-        <changes lang="en">changed color; changed font-size;</changes>
-    </changelog>
-</plugin>
+       <changelog version="1.0.1">
+           <changes lang="de">Farbe geändert; Schriftgröße geändert;</changes>
+           <changes lang="en">changed color; changed font-size;</changes>
+       </changelog>
+
+       <changelog version="1.0.0">
+           <changes lang="de">Erstveröffentlichung</changes>
+           <changes lang="en">First release</changes>
+       </changelog>
+   </plugin>
 ```
+
+### Label *
+
+The label will be displayed in the plugin manager module in the Shopware backend as plugin name.
+Describe in short what your plugin is about. Use the `lang` attribute to translate the label.
+If you want to sell your plugin in the store, you should provide at least a german and an english translation.
+If you want to distribute only in the german or in the international store only german/english is required.
+
+### Version *
+
+<div class="alert alert-info">
+<strong>Use a valid version</strong>
+
+The returned version has to be compatible with the [php version_compare](http://php.net/version_compare) function, otherwise, Shopware cannot detect any possible updates.
+</div>
+
+| valid | invalid |
+|-------|---------|
+| `<version>1.0.0</version>` | `<version>v1.0.0</version>`
+| | `<version>v1.0</version>` |
+| | `<version>1.0</version>` |
+| | `<version>1</version>` |
+
+### Copyright *
+
+Set a copyright for your plugin here.
+
+### License *
+
+Set the license model you want to use for your plugin. Examples: `<license>MIT</license>`, `<license>proprietary</license>`
+
+### Link
+
+Set a link to your homepage, so that shop owners could reach your homepage from the plugin manager module.
+
+### Author *
+
+Set your name or the name of your company here.
+
+### Compatibility *
+
+With which Shopware versions is your plugin compatible?
+You can set a minimum and maximum Shopware version with attributes.
+Example: `<compatibility minVersion="5.3.0" maxVersion="5.4.7"/>`
+For the Shopware version apply the same rules as for the plugin [version](#version-)
+Note: As you use the new plugin system the minimum Shopware version is always at least `5.2.0`
+
+### Changelog *
+
+Maintain your changelog within the `plugin.xml`.
+Create a new entry for each released version.
+Each changelog entry has a version attribute, which must match the [version](#version-) of the plugin.
+The changes have a `lang` attribute, so you could provide translations for your changelog.
+Multiple changes can be separated with semicolons.
+If you want to sell your plugin in the store, you should provide at least a german and an english translation.
+If you want to distribute only in the german or in the international store only german/english is required.
 
 ## Require other plugins
 If you need other plugins to be installed, then you are able to define them in your plugin.xml file like this
@@ -923,7 +966,6 @@ If you need other plugins to be installed, then you are able to define them in y
 ## Plugin Configuration / Forms
 
 Backend plugin configuration can be extended by `Resources/config.xml` file.
-
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1117,7 +1159,6 @@ Example `Resources/cronjob.xml`:
         <interval>86400</interval>
         <disableOnError>true</disableOnError>
     </cronjob>
-
 </cronjobs>
 ```
 

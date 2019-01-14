@@ -16,7 +16,7 @@ redirect:
 indexed: true
 group: System Guides
 menu_title: Sessions
-menu_order: 70
+menu_order: 80
 ---
 
 Shopware uses the database for session handling by default. This article will explain configuration options and
@@ -54,9 +54,9 @@ controller by calling the function `session_write_close()` manually, before doin
 ## Available session adapters
 The following list will explain the session adapters Shopware supports by default
 
-### Memcache
-Memcache is a popular cache server, that also can be used for sessions. As it supports session locking as well, we
-recommend Memcache for bigger setups with high traffic.
+### Memcached
+Memcached is a popular cache server, that also can be used for sessions. As it supports session locking as well, we
+recommend Memcached for bigger setups with high traffic.
 
 #### Install
 
@@ -98,6 +98,7 @@ have a stand alone memcache instance in place:
 ### Redis
 Redis is a popular key/value storage, that easily can be clustered for redundancy. It does not support session locking,
 however.
+When using a single redis instance with multiple Shopware installations (e.g. for staging environments) it would be wise to use separate prefixes for each installation. Otherwise, your session keys could be re-used between your installations and race conditions or strange session-related behavior may occur. A prefix can be configured using the connection uri. Please consult the official [phpredis documentation](https://github.com/phpredis/phpredis#php-session-handler).
 
 #### Install
 

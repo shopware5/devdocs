@@ -39,10 +39,10 @@ In the following example you have to create new components which you have regist
 To keep this tutorial simple, you'll find the final `app.js` below. After each section, you can uncomment the appropriate component.
 
 ```php
-Ext.define('Shopware.apps.SwagProduct', {
+Ext.define('Shopware.apps.SwagProductListingExtension', {
     extend: 'Enlight.app.SubApplication',
 
-    name:'Shopware.apps.SwagProduct',
+    name:'Shopware.apps.SwagProductListingExtension',
 
     loadPath: '{url action=load}',
     bulkLoad: true,
@@ -90,17 +90,17 @@ You have to make the following changes to your application:
 * Configuration of the info panel in the listing window
 * Registration of the info panel in the `app.js`
 
-First, you have to implement the new view component. Put the following code into `Views/backend/swag_product/view/list/extensions/info.js`:
+First, you have to implement the new view component. Put the following code into `Resources/views/backend/swag_product/view/list/extensions/info.js`:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.extensions.Info', {
     extend: 'Shopware.listing.InfoPanel',
     alias:  'widget.product-listing-info-panel',
     width: 270,
 
     configure: function() {
         return {
-            model: 'Shopware.apps.SwagProduct.model.Product'
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product'
         };
     }
 });
@@ -111,7 +111,7 @@ The only prerequisite for the `Shopware.listing.InfoPanel` component is the conf
 Through this configuration, the info panel is able to create the appropriate template for every field, which will then be displayed in a `Ext.view.View`. Afterwards, you have to add the info panel extension to the listing window. For this, you have to implement the `extensions` option, containing the alias of the info panel component as `xtype`, within the `configure()` method:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.Window', {
     extend: 'Shopware.window.Listing',
     alias: 'widget.product-list-window',
     height: 340,
@@ -146,13 +146,13 @@ The `Shopware.listing.InfoPanel` extension creates a display element for each fi
 Inside of the `configure()` method, you can control in which way and in which order a field is displayed. Use the `fields` option like in the `Shopware.grid.Panel` or the form fields in the `Shopware.model.Container`:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Info', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.extensions.Info', {
     extend: 'Shopware.listing.InfoPanel',
     ...
 
     configure: function() {
         return {
-            model: 'Shopware.apps.SwagProduct.model.Product',
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product',
             fields: {
                 name: null,
                 description: null
@@ -182,7 +182,7 @@ Ext.define('...view.list.extensions.Info', {
     ...
     configure: function() {
         return {
-            model: 'Shopware.apps.SwagProduct.model.Product',
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product',
             fields: {
                 name: '<p style="padding: 2px">' +
                          'Der Produktname lautet: ' +
@@ -209,7 +209,7 @@ Ext.define('...view.list.extensions.Info', {
         var me = this;
 
         return {
-            model: 'Shopware.apps.SwagProduct.model.Product',
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product',
             fields: {
                 name: '...',
                 description: me.createDescriptionField
@@ -240,7 +240,7 @@ Ext.define('...view.list.extensions.Info', {
 
     configure: function() {
         return {
-            model: 'Shopware.apps.SwagProduct.model.Product'
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product'
         };
     },
 
@@ -269,7 +269,7 @@ Ext.define('...view.list.extensions.Info', {
 
 </div>
 
-You can find a more detailed list of all available `Ext.XTemplates` features in the official [ExtJS documentation](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.XTemplate).
+You can find a more detailed list of all available `Ext.XTemplates` features in the official [ExtJS documentation](http://docs.sencha.com/extjs/4.1.1/#!/api/Ext.XTemplate).
 
 ## Shopware.listing.FilterPanel
 
@@ -281,18 +281,18 @@ The implementation of the filter panel is identical to the info panel. You have 
 * Configuration of the filter panel in the listing window
 * Registration of the filter panel in the `app.js`
 
-First, you have to implement the new view component. Put the following code into `Views/backend/swag_product/view/list/extensions/filter.js`:
+First, you have to implement the new view component. Put the following code into `Resources/iews/backend/swag_product/view/list/extensions/filter.js`:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.extensions.Filter', {
     extend: 'Shopware.listing.FilterPanel',
     alias:  'widget.product-listing-filter-panel',
     width: 270,
 
     configure: function() {
         return {
-            controller: 'SwagProduct',
-            model: 'Shopware.apps.SwagProduct.model.Product'
+            controller: 'SwagProductListingExtension',
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product'
         };
     }
 });
@@ -306,7 +306,7 @@ The `Shopware.listing.FilterPanel` requires the following two parameters:
 After you've registered the component in the `app.js`, you can enable the extension in the `extensions` option using the alias of the component as `xtype`:
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.Window', {
     extend: 'Shopware.window.Listing',
     alias: 'widget.product-list-window',
     height: 340,
@@ -315,8 +315,8 @@ Ext.define('Shopware.apps.SwagProduct.view.list.Window', {
 
     configure: function() {
         return {
-            listingGrid: 'Shopware.apps.SwagProduct.view.list.Product',
-            listingStore: 'Shopware.apps.SwagProduct.store.Product',
+            listingGrid: 'Shopware.apps.SwagProductListingExtension.view.list.Product',
+            listingStore: 'Shopware.apps.SwagProductListingExtension.store.Product',
 
             extensions: [
                 { xtype: 'product-listing-filter-panel' }
@@ -351,15 +351,15 @@ The generated fields are similar to the generated fields in the detail window. T
 Sometimes you don't want to filter every field of the model. Because of that, the `Shopware.listing.FilterPanel` allows you to configure and limit the displayed fields.
 
 ```php
-Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
+Ext.define('Shopware.apps.SwagProductListingExtension.view.list.extensions.Filter', {
     extend: 'Shopware.listing.FilterPanel',
     alias:  'widget.product-listing-filter-panel',
     width: 270,
 
     configure: function() {
         return {
-            controller: 'SwagProduct',
-            model: 'Shopware.apps.SwagProduct.model.Product',
+            controller: 'SwagProductListingExtension',
+            model: 'Shopware.apps.SwagProductListingExtension.model.Product',
             fields: {
                 name: {},
                 taxId: 'Steuersatz',
@@ -382,7 +382,7 @@ Ext.define('Shopware.apps.SwagProduct.view.list.extensions.Filter', {
 
 The configuration of the filter fields is similar to the column of the `Shopware.grid.Panel` and form fields of the `Shopware.model.Container`.
 
-#### Configure SQL comparsion
+#### Configure SQL comparison
 
 Since Shopware 5.3.0 it is possible to define your own SQL query 
 expression for comparision. This configuration option is available when 

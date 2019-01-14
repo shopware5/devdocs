@@ -12,18 +12,19 @@ group: Developer Guides
 subgroup: Developing plugins
 ---
 
-The [Doctrine framework](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/) has been integrated since Shopware 4 and offers the possibility of centrally defining the database structure in PHP. In addition, Doctrine offers the ability to centrally define all queries in a single system, called `Repositories`, to be used later at various points in the system.
+The [Doctrine framework](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/) has been integrated since Shopware 4 and offers the possibility of centrally defining the database structure in PHP.
+In addition, Doctrine offers the ability to centrally define all queries in a single system, called `Repositories`, to be used later at various points in the system.
 
-In order to create models for your plugin, you should create a directory named `Models` and call `$this->registerCustomModels()` in your bootstrap's `install()` method to automatically register them.
+In order to create models for your plugin, you should create a directory named `Models`.
 
 <div class="toc-list"></div>
 
 ## Namespaces
 
-Shopware models make use of the PHP namespaces. This makes it possible to create your own article model in a plugin, without interfering with the default Shopware article model. With classes defined in other namespaces, it is not always necessary to use the full namespace. We can *include* them with an `use` statement:
+Shopware models make use of the PHP namespaces. This makes it possible to create your own product model in a plugin, without interfering with the default Shopware product model. With classes defined in other namespaces, it is not always necessary to use the full namespace. We can *include* them with an `use` statement:
 
 ```php
-namespace Shopware\CustomModels\MyPluginName;
+namespace MyPluginName\Models;
 
 use Symfony\Component\Validator\Constraints as Assert,
     Doctrine\Common\Collections\ArrayCollection,
@@ -82,29 +83,65 @@ To find more in depth documentation about Doctrine events, please refer to the o
 
 When a model object is first added to the database, the `prePersist` and `postPersist` events on the model are triggered. These are passed on to the Shopware event system so that they can be handled.
 
-**Event subscriber**
 ```php
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::prePersist',
-    'prePersistArticle'
-);
+<?php
 
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::postPersist',
-    'postPersistArticle'
-);
-```
+namespace SwagModel\Subscriber;
 
-**Event listener**
-```php
-public function prePersistArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
-}
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Events;
+use Shopware\Components\Model\ModelManager;
+use Shopware\Models\Article\Article;
 
-public function postPersistArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
+class ModelSubscriber implements EventSubscriber
+{
+    /**
+     * Event subscriber
+     * 
+     * {@inheritdoc}
+     */
+    public function getSubscribedEvents()
+    {
+        return [
+           Events::prePersist,
+           Events::postPersist,
+        ];
+    }
+    
+    /**
+     * Event listeners
+     */
+
+    /**
+     * @param LifecycleEventArgs $arguments
+     */
+    public function prePersist(LifecycleEventArgs $arguments)
+    {
+        /** @var ModelManager $modelManager */
+        $modelManager = $arguments->getEntityManager();
+
+        $model = $arguments->getEntity();
+
+        if(!$model instanceof Article) {
+            return;
+        }
+
+        // modify product data
+    }
+
+    /**
+     * @param LifecycleEventArgs $arguments
+     */
+    public function postPersist(LifecycleEventArgs $arguments)
+    {
+        /** @var ModelManager $modelManager */
+        $modelManager = $arguments->getEntityManager();
+
+        $model = $arguments->getEntity();
+
+        // modify models or do some other fancy stuff
+    }
 }
 ```
 
@@ -113,26 +150,44 @@ Once a model has been added to the database, the `preUpdate` and `postUpdate` ev
 
 **Event subscriber**
 ```php
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::preUpdate',
-    'preUpdateArticle'
-);
-
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::postUpdate',
-    'postUpdateArticle'
-);
+public function getSubscribedEvents()
+{
+    return [
+       Events::preUpdate,
+       Events::postUpdate,
+    ];
+}
 ```
 **Event listener**
 ```php
-public function preUpdateArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
+/**
+ * @param LifecycleEventArgs $arguments
+ */
+public function preUpdate(LifecycleEventArgs $arguments)
+{
+    /** @var ModelManager $modelManager */
+    $modelManager = $arguments->getEntityManager();
+
+    $model = $arguments->getEntity();
+
+    if(!$model instanceof Article) {
+        return;
+    }
+
+    // modify product data
 }
 
-public function postUpdateArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
+/**
+ * @param LifecycleEventArgs $arguments
+ */
+public function postUpdate(LifecycleEventArgs $arguments)
+{
+    /** @var ModelManager $modelManager */
+    $modelManager = $arguments->getEntityManager();
+
+    $model = $arguments->getEntity();
+
+    // modify models or do some other fancy stuff
 }
 ```
 
@@ -141,32 +196,62 @@ Once a model is removed from the database, the `preRemove` and `postRemove` even
 
 **Event subscriber**
 ```php
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::preRemove',
-    'preRemoveArticle'
-);
+ /**
+ * {@inheritdoc}
+ */
+public function getSubscribedEvents()
+{
+    return [
+       Events::preRemove,
+       Events::postRemove,
+    ];
+}
 
-$this->subscribeEvent(
-    'Shopware\Models\Article\Article::postRemove',
-    'postRemoveArticle'
-);
 ```
 
 **Event listener**
 ```php
-public function preRemoveArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
-}
+    /**
+     * @param LifecycleEventArgs $arguments
+     */
+    public function preRemove(LifecycleEventArgs $arguments)
+    {
+        /** @var ModelManager $modelManager */
+        $modelManager = $arguments->getEntityManager();
 
-public function postRemoveArticle(Enlight_Event_EventArgs $arguments) {
-    $modelManager = $arguments->get('entityManager');
-    $model = $arguments->get('entity');
-}
+        $model = $arguments->getEntity();
+
+        if(!$model instanceof Article) {
+            return;
+        }
+
+        // modify product data
+    }
+
+    /**
+     * @param LifecycleEventArgs $arguments
+     */
+    public function postRemove(LifecycleEventArgs $arguments)
+    {
+        /** @var ModelManager $modelManager */
+        $modelManager = $arguments->getEntityManager();
+
+        $model = $arguments->getEntity();
+
+        // modify models or do some other fancy stuff
+    }
+```
+ 
+Each event subscriber class is registered in the `services.xml` with the `doctrine.event_subscriber` tag.
+
+```xml
+<service id="swag_model.subscriber.models_subscriber" class="SwagModel\Subscriber\ModelSubscriber">
+    <tag name="doctrine.event_subscriber"/>
+</service>
 ```
 
 ## Example Plugin
 
 You can download an example plugin here, which shows you the basic structure and registration of your own models in your plugin.
 
-[Download SwagModelPlugin.zip](/exampleplugins/SwagModelPlugin.zip)
+[Download SwagModelPlugin.zip](/exampleplugins/SwagModel.zip)

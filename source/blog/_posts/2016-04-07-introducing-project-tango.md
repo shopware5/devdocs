@@ -42,7 +42,7 @@ The constructor application uses all the sensors to create a 3D mesh of the spac
 
 When you're done with the capturing you can save the mesh to the SD card and view it in the constructor app. You can virtually move through the created mesh by using the touch screen. All meshes are primary saved as ```.srb``` files, but you can choose to export a mesh to common file types like ```.obj``` or ```.ply```. You can transfer the files to your computer to import them to Unity or use it in other 3D applications.
 
-The features of the device really got me excited. The way of how the device capture objects in real time can bring a whole new level to augmented reality applications and 3D creation. This kind of device can fill a hole in the process of realizing new concepts like <a href="https://vimeo.com/73953211" target="_blank">virtual shopping</a> or <a href="https://developers.shopware.com/blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#3d-products" target="_blank">visualizing 3D products</a>.
+The features of the device really got me excited. The way of how the device capture objects in real time can bring a whole new level to augmented reality applications and 3D creation. This kind of device can fill a hole in the process of realizing new concepts like <a href="https://vimeo.com/73953211" target="_blank">virtual shopping</a> or <a href="{{ site.url }}/blog/2016/02/11/projects-of-the-first-internal-hackathon-in-2016/#3d-products" target="_blank">visualizing 3D products</a>.
 
 If you want to learn more about Project Tango you should visit the <a href="https://www.google.com/atap/project-tango/" target="_blank">official website</a>.
 

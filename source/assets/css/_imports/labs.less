@@ -1,0 +1,110 @@
+.topic--overview {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 30px 30px;
+    align-items: center;
+    align-content: center;
+
+    .topic {
+        display: grid;
+        height: 120px;
+        padding: 15px;
+        align-content: center;
+        align-items: center;
+        background: @bg-color;
+        border-bottom: 4px solid;
+        text-align: center;
+        color: @text-color;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+            color: #fff;
+
+            .topic--icon svg {
+                fill: #fff;
+            }
+        }
+    }
+
+    .topic--label {
+        display: inline-block;
+        vertical-align: middle;
+        font-weight: 600;
+    }
+
+    .topic--icon {
+        display: block;
+        max-width: 64px;
+        margin: 0 auto 15px;
+
+        svg {
+            fill: @text-color;
+        }
+    }
+
+    .topic--vision {
+        border-color: @text-color;
+
+        &:hover {
+            background: @text-color;
+        }
+    }
+
+    .topic--playground {
+        border-color: @highlight-color-red;
+
+        &:hover {
+            background: @highlight-color-red;
+        }
+    }
+
+    .topic--github {
+        border-color: @highlight-color-light-blue;
+
+        &:hover {
+            background: @highlight-color-light-blue;
+        }
+    }
+
+    .topic--docu {
+        border-color: @highlight-color-blue;
+
+        &:hover {
+            background: @highlight-color-blue;
+        }
+    }
+}
+
+@media screen and (min-width: @viewport-s) {
+    .topic--overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-width: @viewport-m) {
+    .landingpage .hero--text {
+        margin: 0 auto;
+    }
+
+    .topic--overview {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: @viewport-l) {
+    .landingpage--headline {
+        font-size: 58px;
+        line-height: 61px;
+    }
+}
+
+@media screen and (min-width: @viewport-xl) {
+    .topic--overview {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

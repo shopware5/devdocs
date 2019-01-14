@@ -5,7 +5,7 @@ github_link: sysadmins-guide/shopware-cluster-setup/index.md
 indexed: true
 group: System Guides
 menu_title: Cluster setup
-menu_order: 80
+menu_order: 90
 ---
 Installing and running Shopware on a single server LAMP stack is easy to accomplish and a common solution for small and
 mid size customers. When it comes to high performance and high reliability, however, having a clustered, redundant
@@ -127,7 +127,7 @@ Scaling:
 Elasticsearch is a so called "no sql" storage, a non relational database engine, which is very efficient in searching
 and filtering big catalogues. For that reason it can optionally be used, if you have many articles in your shop
 or if there are special requirements for filtering and searching. Shopware generally recommends using Elasticsearch
-if more then ~140000 articles are in place. Even with less articles your overall system performance might profit from
+if more then ~140000 articles are in place. Even with fewer articles your overall system performance might profit from
 using Elasticsearch, as filtering and search queries will usually generate quite some load on the database and
 have a low cache hit rate.
 Additional information regarding [Elasticsearch are available here](/sysadmins-guide/elasticsearch-setup/).
@@ -160,7 +160,7 @@ budget of the customer. For that reason there are a lot of variations in the set
 
 ### Caching on the appserver
 In some cases you might want to consider moving the cache layer to the appservers themselves. In that case the
-appserver would include varnish, apache and the Shopware application. This will keep the overal infrastructure
+appserver would include varnish, apache and the Shopware application. This will keep the overall infrastructure
 smaller, but will force you to optimize the appserver for varnish *and* the webserver / application.
 
 As an alternative you could also remove the varnish cache entirely and only rely on Shopware's built in HTTP cache.
@@ -182,7 +182,7 @@ and the sourcecode itself.
 
 ### Invalidating caches
 Since Shopware 5.2.0 you are able to configure multiple HTTP reverse proxies (e.g. varnish). So whenever the HTTP cache
-is cleared or certain pages needs to be invalidated, Shopware will distribute this BAN and PURGE requests to all configured
+is cleared or certain pages need to be invalidated, Shopware will distribute this BAN and PURGE requests to all configured
 caches.
 
 This does not yet apply for clearing caches like attribute cache, proxy caches, object caches etc. You can clear those caches
@@ -210,7 +210,7 @@ After deploying Shopware from VCS, installing plugins or generating themes from 
 admin server should be synced to all the appservers. `rsync` is a commonly used tool for this kind of task -
 but you could also consider using [lsyncd](https://github.com/axkibe/lsyncd), which is an extension to `rsync` and
 watches and syncs directories automatically.
-As most shop setups are quite individual and will include custom plugins, there is no finite list of directories that needs
+As most shop setups are quite individual and will include custom plugins, there is no finite list of directories that need
 to be synced. Generally all files / directories of the Shopware setup should be synced across the appservers.
 The following directories, however, need special treatment:
 

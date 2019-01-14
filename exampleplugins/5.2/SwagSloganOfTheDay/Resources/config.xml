@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <element type="text" scope="locale">
+            <name>swagSloganContent</name>
+            <label lang="de">Dein Slogan</label>
+            <label lang="en">Your slogan</label>
+            <description lang="de">Dieser Slogan wird in in der Storefront angezeigt</description>
+            <description lang="en">This slogan will be shown on the storefront</description>
+        </element>
+        <element type="select" scope="locale">
+            <name>swagSloganFontSize</name>
+            <label lang="de">Schriftgröße</label>
+            <label lang="en">Font size</label>
+            <value>12</value>
+            <store>
+                <option>
+                    <value>12</value>
+                    <label>12px</label>
+                </option>
+                <option>
+                    <value>18</value>
+                    <label>18px</label>
+                </option>
+                <option>
+                    <value>24</value>
+                    <label>24px</label>
+                </option>
+            </store>
+        </element>
+        <element type="boolean" scope="locale">
+            <name>swagSloganItalic</name>
+            <label lang="de">Kursiv</label>
+            <label lang="en">Italic</label>
+            <value>false</value>
+        </element>
+    </elements>
+</config>

@@ -34,7 +34,7 @@ see the [5.2 plugin guide](/developers-guide/plugin-system).
 
 ### SwagBannerApi.php
 
-```
+```php
 <?php
 
 namespace SwagBannerApi;
@@ -74,8 +74,14 @@ class SwagBannerApi extends Plugin
 This is our plugin bootstrap which subscribes to two events. For the one thing it uses the
 `Enlight_Controller_Dispatcher_ControllerPath_Api` event to register the API controller and for 
 the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register an additional namespace for 
-our plugin. We do that, because then the API manager class can load our resource
-with `\Shopware\Components\Api\Manager::getResource('Banner')`.
+our plugin. We do that, because then the API manager class can load our resource with `\Shopware\Components\Api\Manager::getResource('Banner')`.
+Since `Shopware 5.2.17` the last part is not necessary anymore. You can simply use the services.xml file to register new resources to Shopware.
+
+```xml
+<!-- Register new resource as service -->
+<service id="shopware.api.example" class="SwagBannerApi\Components\Api\Resource\Example"/>
+```
+You even have the possibility to decorate existing resources. For more information about that, have a look here: [Extend API resource](/developers-guide/rest-api/extend-api-resource/)
 
 ### Components/Api/Resource/Banner.php
 The resource gets called by our controller. Every controller action relies on one method of our resource. 
@@ -89,7 +95,7 @@ We recommend using doctrine models in the resource, because it allows you to use
 `create()` and `update()` method to write the data directly. `fromArray()` searches for the setter methods of the 
 attributes and saves the values to the variables which saves you time and code.
 
-```
+```php
 <?php
 
 namespace Shopware\Components\Api\Resource;
@@ -288,7 +294,7 @@ You should name your actions after this schema:
 | deleteAction       | delete request | `id`         |
 
 
-```
+```php
 <?php
 
 /**
@@ -410,12 +416,12 @@ this technique.
 
 ### GET
 Getting one banner by its id.
-```
+```php
 $client->get('banner/1');
 ```
 
 Result:
-```
+```json
 {
   "success": true,
   "data": {
@@ -435,12 +441,12 @@ Result:
 ### GET(List)
 Get a list of banners. With the optional `limit` parameter, it is possible to specify how many banner you want the 
 API to return.
-```
+```php
 $client->get('banner');
 ```
 
 Result
-```
+```json
 {
   "success": true,
   "data": {
@@ -487,15 +493,14 @@ Result
 ### PUT
 To update a banner it is always required to provide the id of the banner. In this example, we will update the 
 `description` of the banner with id 1.
-```
+```php
 $client->put('banner/1', [
    'description' => 'New description'
 ]);
 ```
 
 Result:
-```
-{
+```json
 {
   "success": true,
   "data": {
@@ -508,7 +513,7 @@ Result:
 ### POST
 Create a new banner
 
-```
+```php
 $client->post('banner', [
     'description' => 'Shopware-Example-Banner1',
     'image' => 'media/image/41/f8/25/Blog-Koffer.jpg',
@@ -519,7 +524,7 @@ $client->post('banner', [
 ```
 
 Result:
-```
+```json
 {
   "success": true,
   "data": {
@@ -532,12 +537,12 @@ Result:
 ### DELETE
 Delete one banner identified by its id. In this case we delete the banner with id 1.
 
-```
+```php
 $client->delete('banner/1');
 ```
 
 Result:
-```
+```json
 {
   "success": true
 }
@@ -545,5 +550,3 @@ Result:
 
 ## Download plugin ##
 The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagBannerApi.zip">here</a>.
-
-

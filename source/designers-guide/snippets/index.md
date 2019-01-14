@@ -45,7 +45,7 @@ If you use this feature, your snippets will no longer require an explicit declar
 
 You can optionally still declare the namespace in that snippet. The namespace declared in the snippets takes precedence over the file's global namespace. Use this if you need to reuse, in your current namespace, a snippet from another namespace. Keep in mind that this is not recommended, as later changes to that snippet will impact multiple points of your plugin, potentially causing undesired consequences.
 
-Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` directory will have the `theme/<theme name>` prefix automatically added to them.
+Remember that the namespaces of snippets that are defined by using `.ini` files in your theme's `_private` directory will have the `themes/<theme name>` prefix automatically added to them.
 
 ### Using snippets
 
@@ -58,6 +58,60 @@ While snippets are mostly used to translate plain text, they are flexible enough
 ```
 {s name="frontend/checkout/cart/separate_dispatch"}<strong>bold example text</strong>{/s}
 ```
+
+### Using smarty variables and functions in snippets
+
+With smarty you have access to config variables, view variables and you can even use modifiers and functions. With this you have the possibility to make your snippets more adaptive.
+
+Here are some examples what's possible:
+
+Instead of changing the name in each snippet make use of the config variable:
+```
+Hello to the new {config name=shopName} Shop!
+```
+
+Instead of changing the year of the copyright every year, make use of a smarty modifier:
+```
+Copyright {"%Y"|strftime} {config name=shopName}
+```
+
+Determine the output of your snippets with "if-queries":
+```
+{if $sArticle.length}L{$sArticle.length} {/if}{if $sArticle.width}B{$sArticle.width} {/if}{if $sArticle.height}H{$sArticle.height} {/if}cm
+```
+
+
+### Using dynamic snippets
+
+You are able to create snippets which use dynamic snippet names. This could be useful if you only have a value/name stored in variable, but you need a translation of that value/name.
+
+Example: You have an attribute on your product (attr1, combobox) with the following contents selectable (value => content):
+* light => Light
+* medium => Medium
+* hard => Hard
+
+But those values in the combobox are not translatable. For this purpose you can generate dynamic snippets depending on the value of your attribute.
+
+The following smarty code shows how it works.
+```
+{$name = "DetailDataHardness"|cat:$sArticle.attr1}
+{$namespace = "frontend/detail/data"}
+{$sArticle.attr1|snippet:$name:$namespace}
+```
+
+DetailDataHardness is the name of the snippet in your snippet manager and will be concatinated with the value of your attribute and will be stored as variable in `$name`.
+
+In our example we will get three new snippets called:
+* DetailDataHardnesslight
+* DetailDataHardnessmedium
+* DetailDataHardnesshard
+
+As with every snippet, we need to select the namespace, stored in `$namespace`.
+
+After this we use the smarty modifier `snippet` and set the `$name` and `$namespace`.
+
+In your snippet manager you can now edit the translations of the dynamically generated snippets.
+
 
 ### Understanding snippet handling
 
@@ -94,8 +148,9 @@ The above example configuration values represent the default values that are use
 While developing with snippets, you need to declare them in your template files and, later on, assign them values besides the default ones. These values can be set inside .ini files:
 
 <div class="alert alert-warning">
-<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme, the namespace will not match the default namespace of your template files, to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will be prefixed with <code>themes/<theme name>/</code>.<br>
-<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/<theme name>/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme. The namespace can either be set for the whole file (affecting the namespaces of all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
+<strong>Note:</strong> When you create <code>.ini</code> files in the <code>_private</code> directory of your theme (/themes/Frontend/<THEME>/_private), the namespace will not match the default namespace of your template files, to avoid namespace collision. The namespace of all snippets from the <code>.ini</code> files will be prefixed with <code>themes/THEMENAME/</code>.<br>
+<strong>Example:</strong> <code>_private/snippets/frontend/index/shop-navigation.ini</code> will require the <code>themes/THEMENAME/frontend/index/shop-navigation</code> namespace in order to work properly inside your theme.<br /><br />
+In this example the snippet tag has to be <code>{s name="SnippetName" namespace="themes/THEMENAME/frontend/index/shop-navigation"}</code>.<br /><br />The namespace can either be set for the whole file by using the {namespace} tag as described above (affecting the namespaces of all snippets, which will possibly break the default Shopware snippets) or can be set manually for each snippet tag.
 </div>
 
 ```
@@ -168,6 +223,22 @@ A few things to keep in mind when using this approach:
 ### Snippets during plugin installation
 
 If your plugin/theme uses snippets, they should be placed inside the corresponding directory in your plugin/theme. If that is done correctly, when the plugin is installed in another Shopware installation, those snippets will be automatically imported from the .ini file into the database. This minimizes the number of file reads in production environments, maximizing performance.
+
+For plugins, place the .ini files below the following directory:
+
+```
+PluginDirectory
+    Resources
+        snippets
+```
+
+For themes, place the .ini files below the following directory:
+
+```
+ThemeDirectory
+    _private
+        snippets
+```
 
 ## Snippets during installation/production phases
 ![Backend snippet administration](admin.jpg)

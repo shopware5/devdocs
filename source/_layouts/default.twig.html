@@ -12,16 +12,32 @@
     {% endblock %}
 
     {% if page.menu_chapter %}
-    <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex" />
     {% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
-    <link rel="stylesheet" href='//fonts.googleapis.com/css?family=Open+Sans:700,600,400' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css">
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/open-sans-font.css')) }}" />
+    <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/highlight-github-gist.min.css')) }}" />
     <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/docsearch.min.css')) }}" />
     <link rel="stylesheet" href="{{ site.url }}/{{ versioned(theme_path('assets/css/basic.css')) }}"  media="screen">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-57x57.png')) }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-60x60.png')) }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-72x72.png')) }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-76x76.png')) }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-114x114.png')) }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-120x120.png')) }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-144x144.png')) }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-152x152.png')) }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-180x180.png')) }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/apple-icon-precomposed.png')) }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/android-icon-192x192.png')) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/favicon-32x32.png')) }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/favicon-96x96.png')) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/favicon-16x16.png')) }}">
+    <link rel="shortcut icon" href="{{ site.url }}/{{ versioned(theme_path('assets/favicons/favicon.ico')) }}">
 
     <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/blog/atom.xml"
           title="Shopware Developer blog feed"/>
@@ -37,7 +53,7 @@
         </a>
 
         <a href="{{ site.url }}/" title="Shopware Developer Documentation" class="logo">
-            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/logo-devdocs.png')) }}" />
+            <img src="{{ site.url }}/{{ versioned(theme_path('assets/img/shopware_developers_logo_white.svg')) }}" />
         </a>
 
     </header>
@@ -91,6 +107,7 @@
         </div>
     </nav>
 
+    {% block content_main %}
     <div class="devdocs content">
 
         <section id="search-results" style="display: none;">
@@ -147,29 +164,35 @@
         </div>
 
         <div class="clearfix"></div>
+        <a href="#0" class="dev-top">Top</a>
     </div>
+    {% endblock %}
+
 
     <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer--container">
-            <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
-            <div class="footer--links">
-                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
-                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+    {% block footer_main %}
+        <footer class="main-footer">
+            <div class="footer--container">
+                <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    {% endblock %}
 </div>
 
-<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.min.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/highlight.min.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/highlight-lang-less.min.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/anchor.min.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.expandCode.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.toc.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.offcanvas.js')) }}"></script>
 <script src="{{ site.url }}/{{ versioned(theme_path('assets/js/app.js')) }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/jquery.backtotop.js')) }}"></script>
+<script src="{{ site.url }}/{{ versioned(theme_path('assets/js/docsearch.min.js')) }}"></script>
 
 {% block scripts_after %}
 {% endblock %}

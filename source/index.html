@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: start
 title: Shopware Developer Documentation
 generator: pagination
 pagination:
@@ -7,33 +7,6 @@ pagination:
 use:
 - posts
 ---
-
-<div class="front-teaser">
-    <a href="{{ site.url }}/plugin-guide/" class="teaser teaser-plugins">
-        <span class="teaser--headline">Developing Plugins</span>
-    </a>
-
-    <a href="{{ site.url }}/theme-guide/" class="teaser teaser-themes">
-        <span class="teaser--headline">Developing Themes</span>
-    </a>
-</div>
-
-<div class="profession--selection">
-    <a href="{{ site.url }}/sysadmins-guide/" class="profession--teaser teaser--sys">
-        <span class="profession--icon icon--sys"></span>
-        <span class="profession--name">System Guides</span>
-    </a>
-
-    <a href="{{ site.url }}/developers-guide/" class="profession--teaser teaser--dev">
-        <span class="profession--icon icon--dev"></span>
-        <span class="profession--name">Developer Guides</span>
-    </a>
-
-    <a href="{{ site.url }}/designers-guide/" class="profession--teaser teaser--design">
-        <span class="profession--icon icon--design"></span>
-        <span class="profession--name">Frontend Guides</span>
-    </a>
-</div>
 
 <h2><a href="{{ site.url }}/blog/">Recent blog posts</a></h2>
 
@@ -51,51 +24,12 @@ use:
 
         <div class="post-desc">
             {% if post.meta.excerpt %}
-            {{ post.meta.excerpt }}
+                {{ post.meta.excerpt }}
             {% else %}
-            {% set summary_array = post.blocks.content|raw|striptags|split(' ')%}
-            {{ summary_array|slice(0,40)|join(' ') }}...
+                {% set summary_array = post.blocks.content|raw|striptags|split(' ')%}
+                {{ summary_array|slice(0,40)|join(' ') }}...
             {% endif %}
         </div>
     </article>
     {% endfor %}
 </div>
-
-<h2>Community</h2>
-
-<div class="community--links">
-    <a href="http://forum.shopware.com" target="_blank" class="link link--forum">
-        <span class="link--label"><b>Forum</b></span>
-    </a>
-    <a href="https://issues.shopware.com" target="_blank" class="link link--tracker">
-        <span class="link--label"><b>Issue Tracker</b></span>
-    </a>
-    <a href="https://twitter.com/shopware" target="_blank" class="link link--twitter">
-        <span class="link--label">Shopware<br />on <b>Twitter</b></span>
-    </a>
-    <a href="https://github.com/shopware/shopware" target="_blank" class="link link--github">
-        <span class="link--label">Shopware<br />on <b>Github</b></span>
-    </a>
-    <a href="https://github.com/shopwareLabs" target="_blank" class="link link--labs">
-        <span class="link--label">Shopware <b>Labs</b></span>
-    </a>
-    <a href="{{ site.url }}/contributing/irc/" class="link link--IRC">
-        <span class="link--label">IRC channel <b>#shopware</b></span>
-    </a>
-</div>
-
-<h2>Latest changes</h2>
-
-{% for historyDate, historyArticles in page.docHistory %}
-
-<div class="history-item" style="margin-bottom:30px">
-    <h4 class="history-item--date">{{ historyDate|date("F jS Y") }}</h4>
-
-    <ul class="history-item--articles">
-        {% for articleTitle, articleLink in historyArticles %}
-            <li class="history-item--article"><a href="{{ articleLink }}">{{ articleTitle }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-
-{% endfor %}

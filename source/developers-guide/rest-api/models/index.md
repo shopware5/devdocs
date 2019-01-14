@@ -25,6 +25,7 @@ subgroup: REST API
 | company                  | string                |                                                    |                             |
 | department               | string                |                                                    |                             |
 | salutation               | string                |                                                    |                             |
+| title                    | string                |                                                    |                             |
 | firstname                | string                |                                                    |                             |
 | lastname                 | string                |                                                    |                             |
 | street                   | string                |                                                    |                             |
@@ -121,6 +122,7 @@ subgroup: REST API
 | releaseDate         | date/time             |                                                 |
 | active              | boolean               |                                                 |
 | shippingFree        | boolean               |                                                 |
+| esd                 | object                | **[Esd](#esd)**                                 |
 
 ## Billing
 
@@ -267,6 +269,47 @@ subgroup: REST API
 | symbolPosition      | integer                  |                                                 |
 | position              | integer                  |                                                 |
 
+## Customer
+
+* **Model:** Shopware\Models\Customer\Customer
+* **Table:** s_user
+
+### Structure
+
+| Field                 | Type                  | Original object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| number                | string                |                                                 |
+| groupKey              | string (foreign key)  | **[CustomerGroup](#customer-group)**            |
+| paymentId             | integer (foreign key) | **[Payment](#payment)**                         |
+| shopId                | string (foreign key)  | **[Shop](#shop)**                               |
+| priceGroupId          | integer (foreign key) | **[PriceGroup](#price-group)**                  |
+| encoderName           | string                |                                                 |
+| hashPassword          | string                |                                                 |
+| active                | boolean               |                                                 |
+| email                 | string                |                                                 |
+| firstLogin            | date/time             |                                                 |
+| lastLogin             | date/time             |                                                 |
+| accountMode           | integer               |                                                 |
+| confirmationKey       | string                |                                                 |
+| sessionId             | string                |                                                 |
+| newsletter            | boolean               |                                                 |
+| validation            | string                |                                                 |
+| affiliate             | boolean               |                                                 |
+| paymentPreset         | integer               |                                                 |
+| languageId            | integer (foreign key) | **[Shop](#shop)**                               |
+| referer               | string                |                                                 |
+| internalComment       | string                |                                                 |
+| failedLogins          | integer               |                                                 |
+| lockedUntil           | date/time             |                                                 |
+| salutation            | string                |                                                 |
+| title                 | string                |                                                 |
+| firstname             | string                |                                                 |
+| lastname              | string                |                                                 |
+| birthday              | date                  |                                                 |
+| defaultBillingAddress | integer (foreign key) | **[Billing](#address)**                         |
+| defaultShippingAddress| integer (foreign key) | **[Shipping](#address)**                        |
+
 ## Customer Attribute
 
 * **Model:** Shopware\Models\Attribute\Customer
@@ -276,8 +319,8 @@ subgroup: REST API
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| customerId             | integer (foreign key) | **[Customer](../api-resource-customer/)**        |
+| id                  | integer (primary key) |                                                 |
+| customerId          | integer (foreign key) | **[Customer](#customer)**                       |
 
 ## Customer Group
 
@@ -289,7 +332,7 @@ subgroup: REST API
 
 | Field                 | Type                  | Original object                                 |
 |-----------------------|-----------------------|-------------------------------------------------|
-| id                     | integer (primary key) |                                                 |
+| id                    | integer (primary key) |                                                 |
 | key                   | string                |                                                 |
 | name                  | string                |                                                 |
 | tax                   | boolean               |                                                 |
@@ -308,11 +351,11 @@ subgroup: REST API
 
 ### Structure
 
-| Field            | Type                   | Original Object |
-|------------------|-----------------------|-----------------|
-| id               | integer (primary key) |                 |
-| discount         | integer               |                 |
-| value            | integer               |                 |
+| Field                 | Type                  | Original Object                                 |
+|-----------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| discount              | integer               |                                                 |
+| value                 | integer               |                                                 |
 
 ## Debit
 
@@ -321,14 +364,14 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| customerId          | integer (foreign key) |                                                 |
-| account              | string                  |                                                    |
-| bankCode              | string                  |                                                    |
-| bankName              | string                  |                                                    |
-| accountHolder          | string                  |                                                    |
+| Field               | Type                    | Original object                                 |
+|---------------------|-------------------------|-------------------------------------------------|
+| id                  | integer (primary key)   |                                                 |
+| customerId          | integer (foreign key)   |                                                 |
+| account             | string                  |                                                 |
+| bankCode            | string                  |                                                 |
+| bankName            | string                  |                                                 |
+| accountHolder       | string                  |                                                 |
 
 ## Dispatch
 
@@ -375,7 +418,7 @@ subgroup: REST API
 | date                 | date/time              |                                                 |
 | typeId              | integer (foreign key) | **[DocumentType](#document-type)**                |
 | customerId          | integer (foreign key) | **[Customer](#customer)**                        |
-| orderId              |    integer (foreign key) | **[Order](#order)**                                |
+| orderId              |    integer (foreign key) | **[Order](../api-resource-orders/)**                                |
 | amount              | double                  |                                                 |
 | documentId          | integer (foreign key) |                                                 |
 | hash                  | string                   |                                                    |
@@ -427,6 +470,31 @@ subgroup: REST API
 | name                  | string                |                                                       |
 | file                  | string                |                                                       |
 | size                  | int                   |                                                       |
+
+## Esd
+
+* **Model:** Shopware\Models\Article\Esd
+* **Table:** s_articles_esd
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| file                  | string                |                                                       |
+| reuse                 | boolean               |                                                       |
+| hasSerials            | boolean               |                                                       |
+| serials               | object array          | **[EsdSerial](#esd-serial)**                          |
+
+## ESD-Serial
+
+* **Model:** Shopware\Models\Article\EsdSerial
+* **Table:** s_articles_esd_serials
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| serialnumber          | string                |                                                       |
 
 ## Image
 
@@ -561,6 +629,30 @@ subgroup: REST API
 | position              | integer                  |                                                 |
 | group                    | string                  |                                                 |
 | sendMail              | boolean                  |                                                 |
+
+## Payment
+
+* **Model:** Shopware\Models\Payment\Payment
+* **Table:** s_core_paymentmeans
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| name          | string |                                                 |
+| description      | string                  |                                                    |
+| template              | string                  |                                                    |
+| hide                  | boolean                  |                                                    |
+| additionalDescription                  | string                  |                                                    |
+| debitPercent          | float                  |                                                    |
+| surcharge              | integer                  |                                                    |
+| surchargeString          | string                  |                                                    |
+| position              | integer              |                                                    |
+| active              | boolean              |                                                    |
+| esdActive              | boolean              |                                                    |
+| mobileInactive              | boolean              |                                                    |
+| pluginId              | integer              |                                                    |
 
 ## Payment Data
 

@@ -9,7 +9,7 @@ tags:
 indexed: true
 group: System Guides
 menu_title: Varnish setup
-menu_order: 60
+menu_order: 70
 ---
 
 <div class="toc-list"></div>
@@ -26,7 +26,7 @@ This configuration requires at least version 4.0 of Varnish and at least version
 The PHP based reverse proxy has to be disabled, which can be done by adding the following section to your `config.php`:
 
 ```
-'httpCache' => array(
+'httpcache' => array(
     'enabled' => false,
 ),
 ```
@@ -150,6 +150,13 @@ sub vcl_recv {
     # Mitigate httpoxy application vulnerability, see: https://httpoxy.org/
     unset req.http.Proxy;
 
+    # Strip query strings only needed by browser javascript. Customize to used tags.
+    if (req.url ~ "(\?|&)(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=") {
+        # see rfc3986#section-2.3 "Unreserved Characters" for regex
+        set req.url = regsuball(req.url, "(pk_campaign|piwik_campaign|pk_kwd|piwik_kwd|pk_keyword|pixelId|kwid|kw|adid|chl|dv|nk|pa|camid|adgid|cx|ie|cof|siteurl|utm_[a-z]+|_ga|gclid)=[A-Za-z0-9\-\_\.\~]+&?", "");
+    }
+    set req.url = regsub(req.url, "(\?|\?&|&)$", "");
+
     # Normalize query arguments
     set req.url = std.querysort(req.url);
 
@@ -235,10 +242,9 @@ sub vcl_recv {
         return (pass);
     }
 
-    # Do not cache these paths.
-    if (req.url ~ "^/backend" ||
-        req.url ~ "^/backend/.*$") {
-
+    # Always pass these paths directly to php without caching
+    # Note: virtual URLs might bypass this rule (e.g. /en/checkout)
+    if (req.url ~ "^/(checkout|account|backend)(/.*)?$") {
         return (pass);
     }
 
@@ -266,7 +272,11 @@ sub vcl_hash {
 
 sub vcl_hit {
     if (obj.http.X-Shopware-Allow-Nocache && req.http.cookie ~ "nocache=") {
-        set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1");
+        if (obj.http.X-Shopware-Allow-Nocache && req.http.cookie ~ "slt=") {
+            set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1, slt");
+        } else {
+            set req.http.X-Cookie-Nocache = regsub(req.http.Cookie, "^.*?nocache=([^;]*);*.*$", "\1");
+        }
         if (std.strstr(req.http.X-Cookie-Nocache, obj.http.X-Shopware-Allow-Nocache)) {
             return (pass);
         }
@@ -327,6 +337,11 @@ sub vcl_deliver {
     ## unset the headers, thus remove them from the response the client sees
     unset resp.http.X-Shopware-Allow-Nocache;
     unset resp.http.X-Shopware-Cache-Id;
+    
+    # remove link header, if session is already started to save client resources
+    if (req.http.cookie ~ "session-") {
+    	unset resp.http.Link;
+    }
 
     # Set a cache header to allow us to inspect the response headers during testing
     if (obj.hits > 0) {
@@ -347,4 +362,8 @@ The proxy is not recognized as a "[trusted proxy](https://developers.shopware.co
 
 ### Error message "Reverse proxy returned invalid status code"
 This message appears when automatic cache invalidation fails. A proxy (mostly the SSL Proxy) didn't forward the BAN or PURGE request to the cache. Storing the cache proxy's IP (e.g. http://127.0.01/) should solve the problem. [Backend configuration](/developers-guide/http-cache/#backend)
-If the problem still persists, investigate on the actual status code the proxy returns. Code 405 indicates, that the appserver is not permitted to purge the cache, code 404 indicates, that the proxy's IP is wrong or not accessible by the appserver. 
+If the problem still persists, investigate on the actual status code the proxy returns. Code 405 indicates, that the appserver is not permitted to purge the cache, code 404 indicates, that the proxy's IP is wrong or not accessible by the appserver.
+
+### Varnish has no hits when using HTTP Authenticate or Authorization
+
+If you are using any kind of HTTP authentication or authorisation please be aware, that by default our Varnish configuration ignores these request and does not cache them! If you want to use Varnish combined with HTTP authentication, you can use a webserver which handles the authentication beforehand and unsets the corresponding headers ("Authenticate" and "Authorization").

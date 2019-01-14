@@ -3,6 +3,8 @@ set -o nounset
 set -o errexit
 set -o pipefail
 
+rm -rf ./output_*
+
 sculpinBin="./vendor/bin/sculpin"
 
 PORT=${1:-8000}

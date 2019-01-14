@@ -70,6 +70,51 @@ protected $css = array(
 );
 ```
 
+### Discard JavaScript/CSS from other Themes
+
+<div class="alert alert-warning">
+Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding Less/JavaScript, 
+defined by another theme.
+</div>
+
+When you want to develop a completely new theme,
+it might be a good idea to discard the styling defined
+by the Shopware Responsive theme.
+
+You can do so by adding the following code to your ```Theme.php```:
+
+```php
+    protected $discardedLessThemes = [\Shopware\Themes\Responsive\Theme::class];
+```
+
+It's also possible to discard Javascript files:
+
+```php
+    protected $discardedJavascriptThemes = [\Shopware\Themes\Responsive\Theme::class];
+```
+
+To have an unique identifier, you have to use the full class name of the Theme,
+you would like to discard. You get this by navigating to the theme folder
+located at themes/{the-theme-name}/ and opening the Theme.php. Locate the namespace at the top of the file.
+
+For the Bare theme the namespace looks like this:
+
+```php
+    namespace Shopware\Themes\Bare;
+```
+
+Add the name of the class (always `Theme`) to it to get the complete name.
+You will have to use:
+
+```php
+\Shopware\Themes\Bare\Theme::class
+```
+
+in your own Theme.php if you want to discard the Less or JavaScript of the Bare theme. 
+
+Of course you can discard multiple themes. You have to recompile the themes 
+after changing these two configuration options.  
+
 ## Customizing the theme configuration
 
 It's possible to add custom configuration options to your theme. Using this method, the user can fully customize the theme without having to edit any CSS files.

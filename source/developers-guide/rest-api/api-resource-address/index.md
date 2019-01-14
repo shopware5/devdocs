@@ -71,7 +71,7 @@ To get a list of all addresses, simply query:
 | Shopware\Models\Customer\Address   | s_user_addresses     |
 
 
-This API call returns an array of elements, one for each address. Each of these elements has the same structure like a single element above.
+This API call returns an array of elements, one for each address. Each of these elements has the same structure like a single element above, but without the detailed customer data.
 
 Appended to the above mentioned list, you will also find the following data:
 
@@ -108,6 +108,13 @@ Appended to the above mentioned list, you will also find the following data:
 | state                    | int (foreign key)     |                                                      |
 | attribute                | array                 |                                                      |
 
+
+## PUT (update)
+
+<div class="alert alert-warning">
+<strong>Note:</strong> Changing a customer id on addresses is not supported, you can leave the customer id out of the
+request, or just set the same customer id which owns the address.
+</div>
 
 ## DELETE
 To delete an address, simply call the specified resource with the `DELETE` operation as the following example shows:

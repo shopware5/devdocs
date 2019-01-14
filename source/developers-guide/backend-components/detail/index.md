@@ -17,9 +17,9 @@ This tutorial is part of a series that covers the Shopware Backend Components. I
 
 We will take the plugin result from the last tutorial as basis for this tutorial. If you don't have it already, you can download this plugin here: [SwagProductListing.zip](/exampleplugins/SwagProductListing.zip)
 
-The `Shopware.window.Detail` for the detail window was implemented in `Views/backend/swag_product/view/detail/window.js`.
+The `Shopware.window.Detail` for the detail window was implemented in `Resources/views/backend/swag_product_detail/view/detail/window.js`.
 
-The `Shopware.model.Container` for more detailed configuration of the detail window in `Views/backend/swag_product/view/list/window.js`.
+The `Shopware.model.Container` for more detailed configuration of the detail window in `Resources/views/backend/swag_product_detail/view/list/window.js`.
 
 <div class="toc-list"></div>
 
@@ -27,12 +27,12 @@ The `Shopware.model.Container` for more detailed configuration of the detail win
 The `Shopware.window.Detail` component, hereinafter referred to as detail window, is the entry to manage a record in detail and is defined as `detailWindow` in the `Shopware.grid.Panel`. The `Shopware.grid.Panel` calls the detail window with a single record. This is the only requirement for this component to work. The detail window will then create the view based on the `Shopware.data.Model`. That's why we create a relation in the `configure()` method right inside of the `Shopware.data.Model`.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.model.Product', {
     extend: 'Shopware.data.Model',
     configure: function() {
         return {
-            controller: 'SwagProduct',
-            detail: 'Shopware.apps.SwagProduct.view.detail.Product'
+            controller: 'SwagProductDetail',
+            detail: 'Shopware.apps.SwagProductDetail.view.detail.Product'
         };
     },
     fields: [
@@ -46,7 +46,7 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 The event handling of the `Shopware.window.Detail` and `Shopware.model.Container` components are managed by the `Shopware.detail.Controller`. This controller will be created and mapped by the `Shopware.window.Detail` automatically. To prevent duplicated event names, every event will be prefixed. The prefix will be determined by the class name of the given record.
 
 **Example**:  
-The class name of the given record is `Shopware.apps.SwagProduct.model.Product`. The event prefix will then be `product`.
+The class name of the given record is `Shopware.apps.SwagProductDetail.model.Product`. The event prefix will then be `product`.
 
 All events are now prefixed like this:
 
@@ -63,7 +63,7 @@ In this section of the tutorial, we'll focus on the `Shopware.model.Container`, 
 The base for the form generation is the `Shopware.data.Model` instance provided in the `record` property. By default, you have to create every field manually except for the `id` property. This should result in a faster application. Furthermore, only one field set will be created by default.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.model.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.model.Product', {
     extend: 'Shopware.data.Model',
     configure: { ... },
     fields: [
@@ -87,12 +87,12 @@ Ext.define('Shopware.apps.SwagProduct.model.Product', {
 Based on the field types, different default Shopware form fields will be created. Because a model can contain many more fields than those seen above, you can decide whether a field should be displayed alone or inside a field set. You can use the `fieldSets` configuration option to group them according to your needs. The `fieldSets` parameter is an array of objects, each containing a `title` and `fields`. The `title` is the title of the field set whereas the property `fields` is an object of the desired fields defined as its keys.
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
     extend: 'Shopware.model.Container',
     alias: 'widget.product-detail-container',
     configure: function() {
         return {
-            controller: 'SwagProduct',
+            controller: 'SwagProductDetail',
             fieldSets: [{
                 title: 'Product data',
                 fields: {
@@ -122,14 +122,14 @@ Like in the previous tutorial, the order of the field sets and fields is importa
 The `fields` property may not only be used for limitation - it can also be used to configure the field even more precisely. You can also specify additional configuration parameters for the filed:
 
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
     extend: 'Shopware.model.Container',
     alias: 'widget.product-detail-container',
     padding: 20,
 
     configure: function() {
         return {
-            controller: 'SwagProduct',
+            controller: 'SwagProductDetail',
             fieldSets: [{
                 title: 'Product data',
                 fields: {
@@ -168,7 +168,7 @@ Ext.define('...view.detail.Product', {
    alias: 'widget.product-detail-container',
    configure: function() {
       return {
-         controller: 'SwagProduct',
+         controller: 'SwagProductDetail',
          fieldSets: [{
             title: 'Product data',
             fields: {
@@ -213,7 +213,7 @@ Ext.define('...view.detail.Product', {
    alias: 'widget.product-detail-container',
    configure: function() {
       return {
-         controller: 'SwagProduct',
+         controller: 'SwagProductDetail',
          fieldSets: [{
             title: 'Product data',
             fields: {
@@ -256,7 +256,7 @@ In this section of this tutorial you will learn how to easily extend the `Shopwa
 * through override of the methods
 * through the ExtJS event system
 
-The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller in `swag_product/controller/main.js`.
+The following examples will show you both ways. To use the ExtJS event system, you need your own ExtJS Controller. Here, we use our main controller in `swag_product_detail/controller/main.js`.
 
 ### Create a Toolbar Button
 To add a new button to the toolbar, you have to extend the toolbar elements of the `Shopware.window.Detail`. The toolbar will be created by the `createToolbar()` method. The actual elements will be created by the `createToolbarItems()` method.
@@ -281,7 +281,7 @@ You can now choose to extend them by either overriding the method or using the e
 
 **Through method overriding**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Window', {
     extend: 'Shopware.window.Detail',
     alias: 'widget.product-detail-window',
     title : '{s name=title}Product details{/s}',
@@ -307,7 +307,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
 **Through the event system**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
     extend: 'Enlight.app.Controller',
     init: function() {
         var me = this;
@@ -335,7 +335,7 @@ Ext.define('Shopware.apps.SwagProduct.controller.Main', {
 
 ### Implement a sidebar
 
-To implement a sidebar, you have to extend the product's `Shopware.model.Container` component in `swag_product/view/detail/product.js`. The elements of the `Shopware.model.Container` will be created by the `createItems()` method:
+To implement a sidebar, you have to extend the product's `Shopware.model.Container` component in `swag_product_detail/view/detail/product.js`. The elements of the `Shopware.model.Container` will be created by the `createItems()` method:
 
 ```javascript
 createItems: function() {
@@ -361,7 +361,7 @@ createItems: function() {
 },
 ```
 
-Now, to implement the actual sidebar, you have either to override the `createItems()` method in `Views/backend/swag_product/view/detail/product.js` or subscribe to the event `product-after-create-items` in the main controller. Additionally, you should change the layout of the product container to `hbox`:
+Now, to implement the actual sidebar, you have either to override the `createItems()` method in `Resources/views/backend/swag_product_detail/view/detail/product.js` or subscribe to the event `product-after-create-items` in the main controller. Additionally, you should change the layout of the product container to `hbox`:
 
 ```javascript
 Ext.define('...view.detail.Product', {
@@ -379,7 +379,7 @@ In the following example, we've removed the `configure()` method, since you don'
 
 **Through method overriding**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Product', {
     extend: 'Shopware.model.Container',
     alias: 'widget.product-detail-container',
     ...
@@ -420,7 +420,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Product', {
 
 **Through the event system**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {
@@ -518,7 +518,7 @@ To complete the implementation, you can override the `createTabItems()` method a
 
 **Through method overriding**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
+Ext.define('Shopware.apps.SwagProductDetail.view.detail.Window', {
     extend: 'Shopware.window.Detail',
     alias: 'widget.product-detail-window',
     title : '{s name=title}Product details{/s}',
@@ -545,7 +545,7 @@ Ext.define('Shopware.apps.SwagProduct.view.detail.Window', {
 
 **Through the event system**
 ```javascript
-Ext.define('Shopware.apps.SwagProduct.controller.Main', {
+Ext.define('Shopware.apps.SwagProductDetail.controller.Main', {
     extend: 'Enlight.app.Controller',
 
     init: function() {

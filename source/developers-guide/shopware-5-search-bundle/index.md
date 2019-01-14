@@ -39,12 +39,12 @@ This small example shows how the product number search can be used.
 
 ## Reference to SearchBundleDBAL
 As already described, the `Shopware\Bundle\SearchBundle` defines only how product lists are selected and which conditions and sorting criteria are used to restrict or modify the result set.
-The `SearchBundle` contains no specify search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
+The `SearchBundle` contains no specific search engine implementation, like `Doctrine\ORM` or `PDO`, and can't be used as standalone search mechanism.
 As default for the `ProductNumberSearch`, Shopware uses `Shopware\Bundle\SearchBundleDBAL`, which implements the interfaces required by `Shopware\Bundle\SearchBundle` to use it as product search implementation.
 The `Shopware\Bundle\SearchBundleDBAL` is based on the `Doctrine\DBAL\Query\Builder`.
 
 ## ShopContextInterface
-A `ShopContext` contains all shop related data for the current request. (shop id and details, customer group, ...) For more information, see `Shopware\Bundle\StoreFrontBundle\README.md`
+A `ShopContext` contains all shop related data for the current request. (shop id and details, customer group, ...) For more information, see `Shopware\Bundle\SearchBundle\README.md`
 
 This context is used in all Shopware bundle services, and can be accessed by getting the `context_service` from the DI container.
 
@@ -76,7 +76,7 @@ Shopware contains the following core conditions:
 - `CustomerGroupCondition` - *Products which are not blocked for the provided customer group*
 - `HasPriceCondition` - *Products which have a defined default customer group price*
 - `ImmediateDeliveryCondition` - *Products which are available for immediate delivery*
-- `ManufacturerCondition` - *Products from one of the provided manufactures *
+- `ManufacturerCondition` - *Products from one of the provided manufactures*
 - `PriceCondition` - *Products whose price is within the provided price range*
 - `ProductAttributeCondition` - *Dynamic condition which can be used to restrict the result by specify product attribute*
 - `PropertyCondition` - *Products which have one of the provided product property values*
@@ -137,16 +137,15 @@ You can find a installable ZIP package of an attribute example plugin <a href="{
 The following example shows how the default `SearchBundleDBAL` implementation handles conditions.
 Each condition inside the `SearchBundleDBAL` is handled by their own `ConditionHandler`.
 Each `ConditionHandler` must implement the `Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface`
-The `Shopware_SearchBundleDBAL_Collect_Condition_Handlers` event can be used to register a condition handler class:
+You may register your own ConditionHandler via the `services.xml` of your plugin:
 
-```php
-//register condition handlers for dbal search implementation
-Shopware()->Events()->addListener(
-   'Shopware_SearchBundleDBAL_Collect_Condition_Handlers',
-   function() {
-      return new CategoryConditionHandler();
-   }
-);
+```xml
+<!-- register condition handlers for dbal search implementation -->
+<services>
+    <service class="YourPlugin\SearchBundleDBAL\Condition\CategoryConditionHandler" id="your_plugin.search_bundle_dbal.condition.category_condition_handler">
+        <tag name="condition_handler_dbal"/>
+    </service>
+</services>
 ```
 
 Each condition handler has to implement two methods:
@@ -154,6 +153,19 @@ Each condition handler has to implement two methods:
 2. `generateCondition` - Handles the condition and extends the provided query
 
 ```php
+<?php
+
+namespace YourPlugin;
+
+use Shopware\Bundle\SearchBundleDBAL\ConditionHandlerInterface;
+use Shopware\Bundle\SearchBundleDBAL\QueryBuilder;
+
+use Shopware\Bundle\SearchBundle\ConditionInterface;
+use Shopware\Bundle\SearchBundle\Condition\CategoryCondition;
+use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
+
+use Doctrine\DBAL\Connection;
+
 class CategoryConditionHandler implements ConditionHandlerInterface
 {
     public function supportsCondition(ConditionInterface $condition)
@@ -310,7 +322,7 @@ class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterf
 
 ## Optimized Batch Search
 
-As of Shopware 5.3, it is possible to search for multiple critera objects at once. In addition, the fetch process for products will be minimized by fetching a product number only once. An optimization service will then try to optimize the search request by combining identical criteria objects into one. So there will be less search requests for identical criterias.
+As of Shopware 5.3, it is possible to search for multiple critera objects at once. In addition, the fetch process for products will be minimized by fetching a product number only once. An optimization service will then try to optimize the search request by combining identical criteria objects into one. So there will be fewer search requests for identical criterias.
 
 Another advantage is that you won't get the same results with identical searches.
 

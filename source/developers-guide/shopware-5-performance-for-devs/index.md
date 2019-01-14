@@ -36,6 +36,11 @@ You can learn more about Shopware's HTTP cache, its configuration options, behav
 
 Like mentioned before, the built in HTTP Cache is based on a PHP implementation, which is simple but has less than optimal performance. Should your site require it and your server support it, you can use tools like Varnish, which require additional installation and configuration steps, but can take full advantage of your server's capabilities to improve your shop's performance. We provide official [Varnish configuration](/sysadmins-guide/varnish-setup/) support for Enterprise customers.
 
+## ESI tags
+Excessive use of ESI tags can be a big performance problem. Especially if the cache hit rate is very low or they are completely uncached. ESI tags should be used with great care. 
+You can learn more about ESI tags and there implications by reading this [article](/blog/2016/07/11/on-action-tags/#slow-esi-tags).
+
+
 ## Theme Cache
 
 ### How the theme cache works
@@ -48,7 +53,7 @@ In Shopware 5, along with the introduction of the new theme system, we created t
 - All CSS and JavaScript files are merged into single .css and .js files
 - The resulting files are minimized
 
-This results in less server requests, less bandwidth usage and faster response times to the client. Both the core and plugin CSS and JavaScript files can be handled by both the LESS compiler and the theme cache. For info on how you can register your plugin resources to be handled by them, please refer to the [Theme startup guide](/designers-guide/theme-startup-guide).
+This results in fewer server requests, less bandwidth usage and faster response times to the client. Both the core and plugin CSS and JavaScript files can be handled by both the LESS compiler and the theme cache. For info on how you can register your plugin resources to be handled by them, please refer to the [Theme startup guide](/designers-guide/theme-startup-guide).
 
 Please keep in mind that the theme cache is only used when using Shopware 5 themes. If you choose to use a Shopware 4 template in a Shopware 5 installation, your assets will not be compressed by the theme cache. Also, the CSS/JavaScript cache files are shared across all language shops of each shop. Different subshop have different cache content.
 

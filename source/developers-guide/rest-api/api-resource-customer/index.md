@@ -51,6 +51,9 @@ It is required to parametrize this API call. The following parameters are availa
 | hashPassword          | string                |                                                                                 |
 | active                | boolean                |                                                                                |
 | email                 | string                |                                                                                |
+| doubleOptInConfirmDate | date/time            |                                                                                   |
+| doubleOptInEmailSentDate | date/time            |                                                                                   |
+| doubleOptInRegister | boolean          |                                                                                   |
 | firstLogin            | date/time                |                                                                                |
 | lastLogin             | date/time                |                                                                                |
 | accountMode           | integer                |                                                                                |
@@ -66,9 +69,9 @@ It is required to parametrize this API call. The following parameters are availa
 | failedLogins          | integer                |                                                                                |
 | lockedUntil           | date/time                |                                                                                |
 | attribute             | object                | **[CustomerAttribute](../models/#customer-attribute)**                            |
-| billing               | object                | **[Billing](../models/#billing)**                                                |
+| billing               | object                | **[Billing](../models/#address)**                                                |
 | paymentData           | array                    | **[PaymentData](../models/#payment-data)**                                        |
-| shipping              | object                | **[Shipping](../models/#shipping)**                                            |
+| shipping              | object                | **[Shipping](../models/#address)**                                            |
 | debit                 | object                | **[Debit](../models/#debit)**                                                    |
 
 ## GET (List)
@@ -97,6 +100,9 @@ This API call returns an array of elements, one for each customer. Each of these
 | hashPassword            | string                |                                                                                 |
 | active                | boolean                |                                                                                |
 | email                    | string                |                                                                                |
+| doubleOptInConfirmDate | date/time            |                                                                                   |
+| doubleOptInEmailSentDate | date/time            |                                                                                   |
+| doubleOptInRegister | boolean          |                                                                                   |
 | firstLogin            | date/time                |                                                                                |
 | lastLogin                | date/time                |                                                                                |
 | accountMode            | integer                |                                                                                |
@@ -121,7 +127,11 @@ Appended to the above mentioned list, you will also find the following data:
 
 ## POST (create) and PUT (update)
 
-To `POST` or `PUT` content, use the same data as provided in the GET operation.
+To `POST` or `PUT` content, use the same data as provided in the GET operation. Only exceptions are for `POST` as following:
+
+| Field            | Type           | Comment                                                             |
+|------------------|----------------|---------------------------------------------------------------------|
+| sendOptinMail    | boolean        | Used to decide if an necessary optin confirmation mail will be sent |
 
 ## DELETE
 

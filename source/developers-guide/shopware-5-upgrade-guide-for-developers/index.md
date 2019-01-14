@@ -17,7 +17,513 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
-## Shopware 5.3 RC 2
+## Shopware 5.5
+
+### System requirements changes
+
+<div class="alert alert-info">
+
+The IonCube Loader requirement has been dropped! Starting with Shopware 5.5, only unencrypted plugins are supported.
+Before removing the IonCube Loader from your server environment, please make sure no encrypted plugins are installed anymore.
+
+</div>
+
+The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**. Please be aware that
+PHP 5.6 and PHP 7.0 reach their "end of life" (the end of the official support by the PHP Group) by the end of the year.
+Shopware will drop support for those versions of PHP with the next minor version.
+
+For performance and compatibility reasons, we recommend using **PHP 7.2**. Since encrypted plugins are no longer supported
+and the IonCube Loader therefore is no longer a requirement, an update to the latest version of PHP is now possible.
+
+The minimum MySQL version still is MySQL 5.5, but **MySQL 8.0** is now supported as well. Since the extended support of
+MySQL 5.5 ends in December 2018, Shopware will drop the support for this version soon thereafter.
+
+### Unencrypted Plugins
+
+Starting with Shopware 5.5, IonCube encryption of plugins is being discontinued and only unencrypted plugins are
+supported in Shopware 5.5.
+
+The Shopware LicenseManager plugin still is compatible with Shopware 5.5 to not break any existing installations, it is
+nevertheless being discontinued together with the encryption of plugins. So, if you are currently using the
+Shopware LicenseManager in your plugin, you have to remove the license check in order to upload a Shopware 5.5
+compatible version of your plugin to the Shopware Store.
+
+### Removal of deprecated code
+
+Shopware 5.5 removes a lot of old, deprecated code. If you're updating from Shopware < v5.4.5, you might want to consider
+updating on the latest version of 5.4 first: versions 5.4.5 onwards show deprecation warnings in development mode if a
+deprecated function is being called. Alternatively you can change the loglevel in your `config.php` by configuring:
+
+```php
+...
+'logger' => [
+    'level' => \Shopware\Components\Logger::DEBUG
+],
+...
+```
+
+The most relevant changes are:
+
+- The methods `ModelManager::addAttribute` and `ModelManager::removeAttribute` were removed. Use `\Shopware\Bundle\AttributeBundle\Service\CrudService::update` instead.
+- The legacy models `Shopware\Models\Customer\Billing` and `Shopware\Models\Customer\Shipping` aren't available anymore.
+The same is true for their references in the `Customer` model (customer.billing, customer.shipping) and the repository
+`Shopware\Models\Customer\BillingRepository`. The matching tables `s_user_billingaddress`, `s_user_shippingaddress`
+and their attribute tables `s_user_billingaddress_attributes` and `s_user_shippingaddress_attributes` won't be removed
+on upgrade until Shopware 5.6, but they won't be kept in sync anymore.
+- Old conversion classes got removed: `Shopware_Components_Convert_Csv`, `Shopware_Components_Convert_Excel` and `Shopware_Components_Convert_Xml`
+- The action `\Shopware_Controllers_Widgets_Listing::ajaxListingAction` was removed. Use `Shopware_Controllers_Widgets_Listing::listingCountAction` instead.
+
+For a complete overview check the **Removals** part of the <a href="https://github.com/shopware/shopware/blob/5.5/UPGRADE-5.5.md#removals">Upgrade.md</a>. 
+
+### MySQL 8 workaround
+
+Due to a mixture of MySQL 8 and Doctrine constraints, the column `s_core_documents.ID` will be renamed to
+`s_core_documents.id` on the fly if MySQL 8 is being used. To be able to do that, the service `\Shopware\Components\Compatibility\LegacyDocumentIdConverter`
+was introduced, which is checked in the file `engine/Shopware/Models/Order/Document/Document.php` to determine if
+a Doctrine model with uppercase or lowercase `id` needs to be used.
+
+If you need to reference this column in your own model, we recommend to use the same workaround there. You can use the
+same service (see above) with id `legacy_documentid_converter` for that.
+
+The reason for this workaround is that MySQL 8 forces ids in foreign key constraints to be lower case.
+
+This is a problem in current systems since we have an uppercase `ID` in table `s_order_documents`.
+MySQL doesn't care if we use `ID` in the table and `id` in the constraint, but Doctrine needs both to be written 
+in the same way. On new installations of Shopware 5.5 this is already the case, both are lowercase there.
+
+So in order to support MySQL 8 on updates from older Shopware versions we need to change the case of the `id` column
+in `s_order_documents`, which breaks support of blue/green deployments as older versions of Shopware (< 5.5) need
+that column to be uppercase.
+
+Since this change is only really necessary if you are using MySQL 8, it is only enforced when a MySQL 8 server is
+detected. A downgrade to an older Shopware installation wouldn't be possible anyway in that case, as Shopware 5.4
+does not support MySQL 8 yet.
+
+If you want to make this migration offline, there is the command `sw:migrate:mysql8` to check if the migration was
+executed and do so if you want.
+
+The column `s_core_documents.id` will be lowercase from Shopware 5.6 forward.
+
+### Library updates
+
+- Updated `Symfony` to version 3.4.15 LTS. Some nice, new features are <a href="https://symfony.com/blog/new-in-symfony-3-4-simpler-injection-of-tagged-services" target="_blank">Simpler injection of tagged services</a> or <a href="https://symfony.com/blog/new-in-symfony-3-4-lazy-commands" target="_blank">Command Lazyloading</a>.
+- Updated `jQuery` to 3.3.1.  You can see the <a href="https://jquery.com/upgrade-guide/3.0/" target="_blank">jQuery update guide</a>
+    for a list of important and breaking changes and links to the migration plugin.
+    In Shopware, the relevant changes were:
+    - Changing `.delegate()` to `.on()`
+    - Using `.prop()` instead of `.addAttribute()` or `.removeAttribute()`
+    - Using `JSON.parse()` instead of `$.parseJSON()`
+    - `$.ajax` is returning a `Deferred` object from now on and the callback method property for the failure behaviour is now called `error` instead of `failure`
+- Updated `league/flysystem` to 1.0.45
+- Updated `Mpdf` to 7.0.3
+- Updated `doctrine/common` to 2.7.3
+- Updated `beberlei/assert` to 2.9.2
+
+### Basket refactoring
+
+To improve basket performance and ease of use for plugin developers, the `sBasket` class was refactored slightly
+while still being compatible with existing plugins as much as possible.
+
+The most relevant change is in regards to the following blocks in `themes/Frontend/Bare/frontend/checkout/cart_item.tpl`
+which were moved to their own files:
+* `frontend_checkout_cart_item_product`
+* `frontend_checkout_cart_item_premium_product`
+* `frontend_checkout_cart_item_voucher`
+* `frontend_checkout_cart_item_rebate`
+* `frontend_checkout_cart_item_surcharge_discount`
+
+These five blocks were moved to their own template files in `themes/Frontend/Bare/frontend/checkout/` to optimize the include process:
+* `cart_item_product.tpl`
+* `cart_item_premium_product.tpl`
+* `cart_item_rebate.tpl`
+* `cart_item_voucher.tpl`
+* `cart_item_surcharge_discount.tpl`
+
+Also, the following templates no longer extend `cart_item.tpl` but include the logic themselves and have their own subtemplates:
+* `confirm_item_premium_product.tpl`
+* `confirm_item_product.tpl`
+* `confirm_item_rebate.tpl`
+* `confirm_item_surcharge_discount.tpl`
+* `confirm_item_voucher.tpl`
+* `finish_item_premium_product.tpl`
+* `finish_item_product.tpl`
+* `finish_item_voucher.tpl`
+
+If your theme extends one of the contained blocks, you'll have to change the filename it extends from.
+
+The following classes were added to simplify changes to the checkout process by plugins:
+* Added struct `Shopware\Components\Cart\Struct\CartItemStruct` to represent items in the cart during calculation
+* Added public function `sBasket::updateCartItems` to provide a new way of interacting with cart updates
+
+### Proportional tax calculation
+
+The proportional tax calculation allows to calculate multiple taxes for all fees, vouchers, discounts etc in baskets
+containing items with e.g. 19% and 7% tax. This feature needs to be activated in *Settings*, *Checkout*, *Proportional calculation of tax positions*.
+For the proportional tax calculation to work with vouchers and modes of dispatch, be sure to set the mode of tax calculation to "auto detection" in their settings
+
+The following changes were made to implement this feature:
+
+* Added `Shopware\Components\Cart\ProportionalTaxCalculator` to calculate proportional taxes for the cart items
+* Added `Shopware\Components\Cart\BasketHelper` to to add items to the cart that need to be calculation in a proportional way
+* Added `Shopware\Components\Cart\ProportionalCartMerger` to merge proportional cart items into one cart item
+* Added new filter event to modify proportional vouchers `Shopware_Modules_Basket_AddVoucher_VoucherPrices`
+* Added new column `invoice_shipping_tax_rate` to `s_order`, to save exact dispatch shipping tax rate. If the proportional
+calculation is disabled, this field is `null` and shipping tax rate will be calculated like before
+* Added new column `is_proportional_calculation` to `s_order`, which defines that the order is made with proportional items
+
+### Elasticsearch
+
+Shopware 5.5 supports Elasticsearch versions 2.x, 5.x and 6.x.
+
+<div class="alert alert-info">
+
+Important: After the update to 5.5 you have to reindex your Elasticsearch indices.
+
+</div>
+
+Shopware works with index aliases to allow multiple indices to exist in parallel and switch between them if necessary.
+Should an index with the name of an alias (e.g. `shop_1`) already exist, it will now be deleted automatically so that
+the new alias can be created without error.
+
+To support Elasticsearch 6 it was necessary to split the existing index into multiple indices for different document types
+(product, property). If you're using `sw:es:analyze` and `sw:es:switch:alias`, you now need to also provide the parameter
+document type that you want to analyze or switch the index of.
+
+### Elasticsearch backend
+
+A new `EsBackendBundle` was added to index and search for products, customers and orders in the backend. New `config.php`
+parameters where added for that, the `es` array of parameters now contains a new key `backend`:
+
+```
+'es' => [
+    ...
+    'backend' => [
+        'write_backlog' => false,
+        'enabled' => false,
+    ],
+    ...
+],
+```
+
+To activate Elasticsearch in the backend, simply change `backend.enabled` to `true` and use the `sw:es:backend:index:populate`
+command to populate the necessary indices. If you also enabled the `backend.write_log`, you can use `sw:es:backend:sync`
+periodically after that to keep the index in sync.
+
+### Changed execution model of `replace` hooks
+
+When multiple `replace` hooks exist for one method, up to Shopware 5.4 (incl.) each of these hooks were called
+sequentially with every hook having the opportunity to call `executeParent()`. Hence, if this happened, the original (parent)
+implementation got called multiple times, leading to unexpected behaviours.
+
+In Shopware 5.5 the execution model was changed to a decorative type of implementation: If more than one `replace` hook
+exists for a function, calling `executeParent()` inside the hook will execute the next `replace` hook of said function. Only
+the last `replace` hook will then call the original implementation on `executeParent()`.
+ 
+### Filesystem abstraction layer
+
+As of Shopware 5.5, the use of direct file system access methods (like e.g. `fopen()`, `file()`, `is_readable()` and many more)
+is being discouraged. Instead, we rely on the library <a href="https://github.com/thephpleague/flysystem" target="_blank">FlySystem</a>
+as a generic file system abstraction layer. This allows a lot of flexibility in regards to where files are being stored.
+E.g. Documents and Sitemap files can now also served from S3 or Google Cloud. We added support for Amazon Web Services
+and Google Cloud Platform for the moment but this layer will help us in the future to support more cloud services.
+
+Multiple instances of this abstraction classes are available to plugins. The services with the ids `shopware.filesystem.public`
+and `shopware.filesystem.private` are available to Shopware itself and to all plugins that are active. These services are
+used to access a shared "folder" in which files can be stored that should be shared between Shopware and plugins.
+The service `shopware.filesystem.public.url_generator` can be used for generating a URL to a file in the public filesystem.
+
+The `shopware.filesystem.public` file system is intended for files that need to be accessible to clients directly, e.g.
+images, product manuals etc. while `shopware.filesystem.private` is for files that need to be available throughout Shopware
+(e.g. invoice pdfs, ESDs like software), but are not to be accessed by a browser directly without any authentication.
+
+This is a simple example of how a file can be written using the new system:
+
+```php
+$fileName = 'HelloWorld.txt';
+$contents = 'Uploaded by Shopware using FlySystem';
+
+$filesystem = $this->container->get('shopware.filesystem.private');
+if ($filesystem->has($fileName)) {
+    $filesystem->delete($fileName);
+}
+
+$filesystem->write($fileName, $contents);
+```
+
+Plugins can access their own filesystems which are instantiated and made available automatically by retrieving them from
+the DIC:
+    * `plugin_name.filesystem.public`
+    * `plugin_name.filesystem.private`
+
+### Routing
+
+SEO support for some AJAX routes defined in the template `themes/Frontend/Bare/frontend/index/index.tpl` has been removed for performance reasons. If you need SEO URLs for the following routes, you can override the block 
+`frontend_index_header_javascript` and re-enable them by removing the `_seo=false`-attribute from the `{url controller=...}`-call.
+
+The affected routes are:
+
+- `/checkout/ajaxCart`
+- `/register/index`
+- `/checkout/addArticle`
+- `/widgets/Listing/ajaxListing`
+- `/checkout/ajaxAmount`
+- `/address/ajaxSelection`
+- `/address/ajaxEditor`
+
+### Sitemap
+
+<div class="alert alert-info">
+
+Important: Large shops with many entities should consider switching to cronjob generation instead of live generation after the upgrade
+
+</div>
+
+To support more than 50.000 URLs that are allowed in one `sitemap.xml` file, Shopware now adds a `sitemap_index.xml`,
+which itself contains links to one or more `sitemap.xml`. The sitemap files can be created by cronjob, live or using
+the command `sw:generate:sitemap`.
+
+If you need to add some links to the sitemap coming from a plugin, you can simply create a service implementing the interface
+`\Shopware\Bundle\SitemapBundle\UrlProviderInterface` and give it the DIC tag `sitemap_url_provider`. The sitemap exporter
+will collect your service using the tag and export the URLs it provides along with the others.
+
+### Dynamic cache invalidation
+
+The cache duration of the HTTP cache for shopping worlds, product detail pages, categories or blog pages is now being
+calculated dynamically, should an entity be changed automatically at a certain point in time. An example would be a 
+new shopping world on the frontpage or a category that goes live at noon. Normally it wouldn't be visible till the 
+HTTP cache expires or is cleaned manually.
+
+Now, the cache time is calculated dynamically so that it expires at the correct point in time.
+
+If you want to implement this feature for your own element, you only need to provide a service that implements the 
+interface `Shopware\Components\HttpCache\CacheTimeServiceInterface` and then tag this service in the `services.xml` with
+the tag `invalidation_date_provider`. It will then be picked up and called automatically.
+
+### Cache warmer
+
+Up to now, the cache warmer relied on seo urls, but that did only cover a small amount of possible urls which can be found
+in shopware. With these changes, developers doesn't have to add unnecessary new seo urls to warm them for the cache.
+In addition, the performance and amount of urls were greatly improved to cover the most content of shopware by itself.
+
+By implementing `HttpCache\UrlProvider\UrlProviderInterface` to a new service with the tag `cache_warmer.url_provider`
+developers can now easily add their own url providers for the cache warmer. Note that CLI commands can't be extended by
+Plugins, so adding UrlProviders can only be used by the `--extensions` parameter to only warm all non-Shopware extensions
+or warming the full cache. To add these functions to the backend module, you have to extend the `httpCache` property like this:
+
+```
+//{block name="backend/performance/view/main/multi_request_tasks"}
+//{$smarty.block.parent}
+Ext.override(Shopware.apps.Performance.view.main.MultiRequestTasks, {
+    initComponent: function () {
+        this.httpCache.myNewProvider = {
+            providerLabel: 'myNewProvider',
+            requestUrl: '{url controller="Performance" action="warmUpCache" resource=myNewProvider}',
+        };
+
+        this.callParent(arguments);
+    }
+});
+//{/block}
+```
+
+As mentioned in the change log, the CLI command also offers new parameters. They can be used combined to call the providers
+independently. However, you still don't have to add any parameters to warm up everything.
+
+| Parameter             | Short | Description                                   |
+| --------------------- | ----- | --------------------------------------------- |
+| --category            | -j    | Warm up categories                            |
+| --emotion             | -o    | Warm up emotions                              |
+| --blog                | -g    | Warm up blog                                  |
+| --manufacturer        | -m    | Warm up manufacturer pages                    |
+| --static              | -t    | Warm up static pages                          |
+| --product             | -p    | Warm up products                              |
+| --variantswitch       | -d    | Warm up variant switch of configurators       |
+| --productwithnumber   | -z    | Warm up products with number parameter        |
+| --productwithcategory | -y    | Warm up producss with category parameter      |
+| --extensions          | -x    | Warm up all URLs provided by other extensions | 
+ 
+
+## Shopware 5.4
+
+<div class="alert alert-info">
+
+### SSL Encryption
+
+The mixed SSL encryption mode in the shop configuration has been removed. As of 5.4, the SSL encryption can only be
+enabled or disabled globally. Shops using the mixed SSL encryption setting will automatically be upgraded to full
+SSL encryption. Deprecated table columns and methods have been removed.
+
+To learn more about the server configuration changes to switch to the full SSL encryption, please refer to [Redirect all requests to equivalent HTTPS domain](http://en.community.shopware.com/_detail_1864.html).
+
+</div>
+
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**, though **PHP 7.x is highly encouraged**.
+
+### Removal of JSONP requests
+
+Shopware 5.4 removes all JSONP requests and replaces them with regular AJAX requests. The response type was changed to
+standard HTML mostly (with one exception being JSON without the JSONP-callback, see below).
+
+These actions now return HTML directly:
+- Shopware/Controllers/Frontend/AjaxSearch.php
+    - `indexAction`
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxCartAction`
+- Shopware/Controllers/Frontend/Compare.php
+    - `addArticleAction`
+    - `deleteArticleAction`
+    - `deleteAllAction`
+    - `getListAction`
+    - `indexAction`
+    - `overlayAction`
+- Shopware/Controllers/Frontend/Note.php
+    - `ajaxAddAction`
+- Shopware/Controllers/Widgets/Listing.php 
+    - `ajaxListingAction`
+    
+This action still returns JSON but doesn't use the JSONP-type function call.
+- Shopware/Controllers/Frontend/Checkout.php
+    - `ajaxAmountAction`
+
+### POST on data modification
+
+Also, to be more HTTP compliant, all request that change any data on the server were changed to be made using the HTTP POST verb.
+These methods are:
+
+* Basket actions
+    - `addArticle`
+    - `addAccessories`
+    - `addPremium`
+    - `changeQuantity`
+    - `deleteArticle`
+    - `setAddress`
+    - `ajaxAddArticle`
+    - `ajaxAddArticleCart`
+    - `ajaxDeleteArticle`
+    - `ajaxDeleteArticleCart`
+
+* Checkout actions:
+    - `finish`
+
+### Variants in listing
+
+It is now possible to allow displaying and filtering of variants in the listing. This new filter can be activated in the
+backend filter settings and defines which groups are filterable and which of those will be expanded in the listing.
+
+The basic product box size is increased by 45px (from 231px to 276px) to allow the variants to display which of the
+options filtered match for the current variant. If the customer e.g. filters for the colors red and blue and the
+expanding of colors is active, each variant listed shows a little "**Color: red**" or "**Color: blue**" tag to identify
+what variant this is.     
+
+A new block `frontend_listing_box_variant_description` was added in file `themes/Frontend/Bare/frontend/listing/product-box/box-basic.tpl`
+to allow modifications of the default way the options of the variant shown are displayed. 
+
+### Sold out variants
+
+Shop owners can now mark individual variants as “sold out”. The flag `laststock` in table `s_articles` is still 
+available but a new column `laststock int(1) NOT NULL DEFAULT '0'` in table `s_articles_details` has been introduced
+to allow selling off of variants.
+
+The current behaviour for main products stays the same, the new flag is being checked when variants are shown in listings 
+and on detail pages.
+
+This new flag is part of the configurator templates that are applied to variants, so regeneration of variants use the
+default setting for this flag from the configurator template that is responsible for this product.
+
+Please make sure to also check for this new flag if you handle variants in your plugins or happen to read or write from 
+the `s_articles_details` table. Also take the flag into account when checking for stock quantity.  
+
+### Smarty
+
+#### Security mode
+
+The `config.php` option `['template_security']['enabled'] => false` for disabling smarty security got removed.
+
+#### Link flags
+
+The flags `forceSecure` and `sUseSSL` for forcing the smarty `{url controller=...}`-helper to use SSL are deprecated.
+They are now without function, whether the link uses SSL or not depends on the global "Use SSL" setting.
+
+### Routing
+
+Some AJAX routes generated in the template `themes/Frontend/Bare/frontend/index/index.tpl` check for existing SEO URLs. This
+behaviour has been deprecated for performance reasons and SEO support for the routes defined in the template will be 
+removed in 5.5. If you want to disable SEO support for this routes, you can override the block 
+`frontend_index_ajax_seo_optimized` and set the variable `$ajaxSeoSupport` to `false`.
+
+The affected routes are:
+
+- `/checkout/ajaxCart`
+- `/register/index`
+- `/checkout/addArticle`
+- `/widgets/Listing/ajaxListing`
+- `/checkout/ajaxAmount`
+- `/address/ajaxSelection`
+- `/address/ajaxEditor`
+
+### DIC
+
+There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
+dependency. If you are interested in developing Shopware using Composer, have a look at the <a href="{{ site.url }}/developers-guide/shopware-composer/">documentation</a>
+ and the Shopware [Composer project](https://github.com/shopware/composer-project).
+
+#### Shopware Version
+
+The usage of the constants `Shopware::VERSION`, `Shopware::VERSION_TEXT` and `Shopware::REVISION` has been deprecated. 
+They have been replaced with the following parameters in the DIC:
+
+- `shopware.release.version`
+    The version of the Shopware installation (e.g. '5.4.0')
+- `shopware.release.version_text`
+    The version_text of the Shopware installation (e.g. 'RC1')
+- `shopware.release.revision`
+    The revision of the Shopware installation (e.g. '20180081547')
+
+A new service was added in the DIC containing all parameters above 
+- `shopware.release`
+    A new struct of type `\Shopware\Components\ShopwareReleaseStruct` containing all parameters above
+
+To be compatible with most versions of Shopware, please use the `config` service from the DIC for the time being:
+```
+    $this->container->get('config')->get('version') === Shopware::VERSION; # => true
+    $this->container->get('config')->get('version_text') === Shopware::VERSION_TEXT; # => true
+    $this->container->get('config')->get('revision') === Shopware::REVISION; # => true
+```
+
+#### New paths
+
+Several paths have been added to the DIC:
+
+- `shopware.plugin_directories.projectplugins` 
+    Path to project specific plugins, see [Composer project](https://github.com/shopware/composer-project)
+- `shopware.template.templatedir`
+    Path to the themes folder
+- `shopware.app.rootdir`
+    Path to the root of your project
+- `shopware.app.downloadsdir`
+    Path to the downloads folder
+- `shopware.app.documentsdir`
+    Path to the generated documents folder
+- `shopware.web.webdir`
+    Path to the web folder
+- `shopware.web.cachedir`
+    Path to the web-cache folder 
+
+These paths are configurable in the `config.php`, see `engine/Shopware/Configs/Default.php` for defaults
+
+### Mpdf
+
+Mpdf has been updated to v6.1.4 and it's namespace has been registered in the Composer autoloader. You don't need to 
+include the `mpdf.php` library as you used to in previous versions, you can just use `new mPDF();` to create a new instance.
+
+### Discard JavaScript/CSS from other Themes
+
+Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding Less/JavaScript, defined by another theme.
+Find out more at <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">Custom theme configuration</a>.
+
+## Shopware 5.3
 
 <div class="alert alert-info">
 
@@ -34,7 +540,17 @@ To learn more about the server configuration changes to switch to the full SSL e
 
 </div>
 
-### Smarty security mode
+### System requirements changes
+
+The minimum PHP version still is **PHP 5.6.4 or higher**.
+
+### Internet Explorer 10 support
+
+Version 5.3 does not support IE10 anymore.
+
+### Smarty
+
+#### Security mode
 
 We have activated the Smarty security mode globally with 5.3:
 [https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
@@ -57,7 +573,7 @@ return [
 ];
 ```
 
-#### Disable template loading
+##### Disable template loading
 
 To disable the automatic template loading, the loadTemplate function was often used without parameters. 
 This does not work with version 5.3 anymore. To disable the automatic loading of templates, only the setNoRender function can be used:
@@ -78,7 +594,7 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 }
 ```
 
-#### Load templates from non-registered directories
+##### Load templates from non-registered directories
 
 In security mode, it is only possible to load templates from registered directories
 
@@ -99,66 +615,29 @@ class Shopware_Controllers_Frontend_Test extends Enlight_Controller_Action
 }
 ```
 
-### Additions
+###### Unknown {s} tag error
+In the past, this error has occurred on some systems and results to an 500 internal server error. This is based on the problem that template files included, which are not inside a registered directory. In a production environment shopware prevents the exceptions to be displayed (config.php), which results that the rendering process are not aborted.
+The following scenarios can occur:
 
-* Added `selecttree` and `combotree` config elements for plugins
-* Added backend configuration option for the newsletter to configure if a captcha is required to subscribe to the newsletter
-* Added two new Smarty blocks for menu and menu item overwrite possibility to the account sidebar
-* Added LiveReload mode for the default grunt which reloads your browser window automatically after the grunt compilation was successful
-* Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
-* Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
-* Added new search builder class `Shopware\Components\Model\SearchBuilder`
-* Added new search builder as `__construct` parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
-* Added new `FunctionNode` for IF-ELSE statements in ORM query builder
-* Added `/address` to robots.txt 
-* Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
-* Added `Shopware\Components\Template\Security` class for all requests.
-* Added whitelist for allowed php functions and php modifiers in smarty
-    * `template_security.php_modifiers`
-    * `template_security.php_functions`
+- Default config 
+No exceptions no errors should be displayed. This results to an apache error log entry with the unknown {s} tag error
+- phpsettings.display_errors = 1
+The {s} tag error will be displayed in the store front
+- front.throwExceptions = true
+The original exception with the `unsecure template directory` will be displayed:
+```
+Uncaught SmartyException: directory 'custom/plugins/.../Views/test_index.tpl' not allowed by security setting
+```
 
-### Changes
+To see all configurable options see [config.php settings documentation](https://developers.shopware.com/developers-guide/shopware-config/) 
 
-* Changed return values so the array keys are now the respective country/state IDs in `\Shopware\Bundle\StoreFrontBundle\Service\Core\LocationService::getCountries`
-* Moved the removal of the whole cache folder after the removal of the `.js` and `.css` files for better handling of huge caches in the `clear_cache.sh` script
-* Changed `Shopware_Controllers_Widgets_Listing::streamSliderAction` to `Shopware_Controllers_Widgets_Listing::streamAction`
-* Changed `Shopware_Controllers_Widgets_Listing::productSliderAction` to `Shopware_Controllers_Widgets_Listing::productsAction`
-* Changed snippet `DetailBuyActionAdd` in `snippets/frontend/detail/buy.ini`, it now contains <span> tags
-* Changed snippet `ListingBuyActionAdd` in `snippets/frontend/listing/box_article.ini`, it now contains another <span> tag
-* Merged `account/sidebar.tpl` and `account/sidebar_personal.tpl`
-* Moved snippets from `account/sidebar_personal.ini` to `account/sidebar.ini`
-* Changed `Enlight_Hook_ProxyFactory` to use [ocramius/proxy-manager](https://github.com/Ocramius/ProxyManager) for generating proxy classes
+#### Rendering
 
-### Removals
-
-* Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
-* Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
-
-## Shopware 5.3 RC 1
-
-### System requirements changes
-
-The minimum PHP version still is **PHP 5.6.4 or higher**.
-
-### Internet Explorer 10 support
-
-Version 5.3 does not support IE10 anymore.
-
-### New basket signature
-
-Improvements in basket on security and query manipulation as described in [5.3 signature](/developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
-
-### Product votes
-
-Added opportunity to display product votes only in sub shop where they posted. This behavior can be configured over the backend configuration module.
-
-### Smarty Rendering
-
-#### Form module in the backend
+##### Form module in the backend
 
 Smarty functions in form templates have been disabled. Also no new variables can be added to the template.
 
-##### Example
+**Example**
 
 ```
 {sElement.name} // works
@@ -168,7 +647,7 @@ Smarty functions in form templates have been disabled. Also no new variables can
 {sElement.value[$key]|currency} // does not work
 ```
 
-#### Tracking Code
+##### Tracking Code
 
 Smarty rendering has been disabled for this section. All variables have been removed with one exception. The variable `{$offerPosition.trackingcode}` is a placeholder now. To generate tracking urls, use the following pattern:
 
@@ -177,6 +656,36 @@ https://gls-group.eu/DE/de/paketverfolgung?match={$offerPosition.trackingcode}
 
 <a href="https://gls-group.eu/DE/de/paketverfolgung?match={$offerPosition.trackingcode}" onclick="return !window.open(this.href, 'popup', 'width=500,height=600,left=20,top=20');" target="_blank">{$offerPosition.trackingcode}</a>
 ```
+
+##### Extending listing templates
+
+We've changed the way when product listing templates will be loaded. In order to respond with a JSON object, the template must be rendered even before the response will be sent. Therefore you have to subscribe to the `PreDispatch` event to register your templates in time. In case you are used to `extendsTemplate`, you have to update your plugin as this won't work anymore. Learn more on how to extends templates <a href="{{site.url}}/developers-guide/shopware-5-plugin-update-guide/#template-extensions">here</a>.
+
+**Example Plugin**
+
+```php
+<?php
+public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Action_PreDispatch_Frontend' => 'onListing',
+        'Enlight_Controller_Action_PreDispatch_Widgets' => 'onListing',
+    ];
+}
+
+public function onListing(\Enlight_Event_EventArgs $args)
+{
+    $this->container->get('template')->addTemplateDir(__DIR__ . '/Resources/views');
+}
+```
+
+### New basket signature
+
+Improvements in basket on security and query manipulation as described in [5.3 signature](/developers-guide/payment-plugin/#new-signature-in-shopware-5.3-and-later).
+
+### Product votes
+
+Added opportunity to display product votes only in sub shop where they posted. This behavior can be configured over the backend configuration module.
 
 ### Attribute label translations
 
@@ -340,7 +849,8 @@ public function generatePartialFacet(
     //...
 ```
 
-#### Elastic search
+#### Elasticsearch
+
 In the elastic search implementation the current filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by this filter.
 This behavior is checked using the the `Criteria->hasBaseCondition` statement:
 ```
@@ -536,7 +1046,7 @@ A new table ```s_core_auth_config``` is added for storing MediaManager settings 
 * Join on `s_core_tax` in `Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch`
 
 #### Methods
-The follwing methods have been removed:
+The following methods have been removed:
 
 * `Shopware\Models\Order\Repository::getBackendOrdersQueryBuilder()`
 * `Shopware\Models\Order\Repository::getBackendOrdersQuery()`
@@ -796,6 +1306,24 @@ The follwing methods have been removed:
 * Added `Shopware\Bundle\SearchBundleDBAL\VariantHelper` which joins all variants for dbal search
 * Added smarty blocks `frontend_checkout_shipping_payment_core_button_top` and `frontend_checkout_shipping_payment_core_button_top` for shipping
 * Added new Interface for facet result template switch `Shopware\Bundle\SearchBundle\TemplateSwitchable`
+* Added `selecttree` and `combotree` config elements for plugins
+* Added backend configuration option for the newsletter to configure if a captcha is required to subscribe to the newsletter
+* Added two new Smarty blocks for menu and menu item overwrite possibility to the account sidebar
+* Added LiveReload mode for the default grunt which reloads your browser window automatically after the grunt compilation was successful
+* Added `nofollow` attribute to all links in the block `frontend_account_menu` since these links are now visible in the frontend if the account dropdown menu is activated
+* Added `type` parameter to `Shopware_Controllers_Widgets_Listing::productSliderAction` and `Shopware_Controllers_Widgets_Listing::productsAction` which allows to load product sliders or product boxes.
+* Added new search builder class `Shopware\Components\Model\SearchBuilder`
+* Added new search builder as `__construct` parameter in `Shopware\Bundle\AttributeBundle\Repository\Searcher\GenericSearcher`
+* Added new `FunctionNode` for IF-ELSE statements in ORM query builder
+* Added `/address` to robots.txt 
+* Added snippet `DetailBuyActionAddName` in `snippets/frontend/detail/buy.ini`
+* Added `Shopware\Components\Template\Security` class for all requests.
+* Added whitelist for allowed php functions and php modifiers in smarty
+    * `template_security.php_modifiers`
+    * `template_security.php_functions`
+* Added new column `do_not_split` to table `s_search_fields`. Activate to store the values of this field as given into the search index. If not active, the default behaviour is used
+* Added new service `shopware_storefront.price_calculator` which calculates the product price. Was formerly a private method in `shopware_storefront.price_calculation_service`
+* Added service `shopware_media.extension_mapping` to provide a customizable whitelist for media file extensions and their type mapping
 * Changed theme path for new plugins from `/resources` into `/Resources`
 * Changed sorting of `Shopware.listing.FilterPanel` fields
 * Changed database column `s_articles_vote`.`answer_date` to allow `NULL` values
@@ -833,6 +1361,15 @@ The follwing methods have been removed:
 * Changed behavior of the tracking url rendering. See below for more information
 * Changed text color and height of `.filter--active` in `themes/Frontend/Responsive/frontend/_public/src/less/_components/filter-panel.less`
 * Changed database column `s_articles_details.instock` to allow `NULL` values and default to `0`
+* Changed return values so the array keys are now the respective country/state IDs in `\Shopware\Bundle\StoreFrontBundle\Service\Core\LocationService::getCountries`
+* Moved the removal of the whole cache folder after the removal of the `.js` and `.css` files for better handling of huge caches in the `clear_cache.sh` script
+* Changed `Shopware_Controllers_Widgets_Listing::streamSliderAction` to `Shopware_Controllers_Widgets_Listing::streamAction`
+* Changed `Shopware_Controllers_Widgets_Listing::productSliderAction` to `Shopware_Controllers_Widgets_Listing::productsAction`
+* Changed snippet `DetailBuyActionAdd` in `snippets/frontend/detail/buy.ini`, it now contains <span> tags
+* Changed snippet `ListingBuyActionAdd` in `snippets/frontend/listing/box_article.ini`, it now contains another <span> tag
+* Merged `account/sidebar.tpl` and `account/sidebar_personal.tpl`
+* Moved snippets from `account/sidebar_personal.ini` to `account/sidebar.ini`
+* Changed `Enlight_Hook_ProxyFactory` to use [ocramius/proxy-manager](https://github.com/Ocramius/ProxyManager) for generating proxy classes
 * Backend customer listing is now loaded in `Shopware_Controllers_Backend_CustomerQuickView`
 * Refactored backend customer module. Please take a look into the different template files to see what has changed.
 * Removed import / export module
@@ -849,6 +1386,9 @@ The follwing methods have been removed:
     * `SORTING_SEARCH_RANKING`
 * Removed route `/backend/performance/listingSortings`
 * Removed route `/backend/customer/getList`
+* Removed event `Shopware_Plugins_HttpCache_ShouldNotCache`
+* Removed `eval` from block `frontend_forms_index_headline` in `index.tpl` of `themes\Frontend\Bare\frontend\forms` for `$sSupport.text`
+* Removed cleanupPlugins from `Shopware\Bundle\PluginInstallerBundle\Service`
 
 ## Shopware 5.2
 
@@ -856,7 +1396,7 @@ The follwing methods have been removed:
 
 The required PHP version is now **PHP 5.6.4 or higher**. Please check your system configuration and update your PHP version if necessary. If you are using a PHP version prior to 5.6.4 there will be errors.
 
-The required IonCube Loader version was bumped to 5.0 or higher.
+The required ionCube Loader version was bumped to 5.0 or higher.
 
 ### Shopping worlds
 
@@ -925,7 +1465,7 @@ The account section and registration have been refactored to continue the refact
     * Uses the new service `shopware_account.register_service`
     * Methods of core class `\sAdmin` regarding the registration have been removed without substitution.
     * Templates may have been rewritten
-        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
+        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
 
 ### Address management
 
@@ -943,7 +1483,7 @@ The address management allows a customer to manage more than only one address wh
 * Selecting another address in the checkout results in a change of the session key `checkoutBillingAddressId` or `checkoutShippingAddressId` with the corresponding address id. After the order has been saved, the session keys will be reset.
 * The customer api endpoint now uses the structure of the address model, instead of the billing or shipping model
 * The checkout templates have been rewritten which results in changed and removed blocks.
-    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.2/UPGRADE-5.2.md).
+    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
 
 To learn more about the new address service, refer to the [Address Management Guide](/developers-guide/address-management-guide).
 
@@ -1060,7 +1600,7 @@ attributeForm.saveAttribute(record.get('id'), function (successful) {
 
 This call will send a new request which saves all attributes for this item.
 
-To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware/shopware/blob/5.2/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
+To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
 
 ### Library updates
 
@@ -1644,7 +2184,7 @@ public function install()
 public function onCollect() {
     return new ArrayCollection([
         new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_plugin_table', 'mediaID'),
-        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path');
+        new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('my_other_plugin_table', 'mediaPath', 'path'),
         new \Shopware\Bundle\MediaBundle\Struct\MediaPosition('s_core_templates_config_values', 'value', 'path', MediaPosition::TYPE_SERIALIZE),
     ]);
 }
@@ -1730,8 +2270,8 @@ The new responsive template is not supported in Internet Explorer 8 and below. T
 #### MySQL 5.1
 MySQL 5.1 is no longer supported in Shopware 5. The required Version of MySQL for Shopware 5 is 5.5 or above.
 
-#### IonCube Loader
-IonCube Loader requirement has been upped to version 4.6.0. Notice that you only need the IonCube Loader if you are using plugins from the Shopware Store.
+#### ionCube Loader
+ionCube Loader requirement has been upped to version 4.6.0. Notice that you only need the ionCube Loader if you are using plugins from the Shopware Store.
 
 ### Major Breaks
 * `Street number` data was moved into the `Street`field
@@ -1762,7 +2302,7 @@ For this operation we recommend the console command `sw:thumbnail:generate` to a
     * `Shopware\Models\Article\Configurator\PriceSurcharged` replaced by `Shopware\Models\Article\Configurator\PriceVariation`
 * The new Shopware core selects all required data for `sGetArticleById`, `sGetPromotionById` and `sGetArticlesByCategory`. Several internal methods and events are no longer used by those functions.
 * Moved `engine/core/class/*` to `engine/Shopware/Core/*`
-* Renamed `ENV` to `SHOPWARE_ENV` to avoid accidentally set `ENV` variable, please update your .htaccess if you use a custom envirenment or you are using the staging plugin
+* Renamed `ENV` to `SHOPWARE_ENV` to avoid accidentally set `ENV` variable, please update your .htaccess if you use a custom environment or you are using the staging plugin
 * All downloaded dummy plugins are now installed in the engine/Shopware/Plugins/Community directory.
 * Replaced `orderbydefault` configuration by `defaultListingSorting`. The `orderbydefault` configuration worked with a plain sql input which is no longer possible. The `defaultListingSorting` contains now one of the default `sSort` parameters of a listing. If you want to reintegrate your old statement you can simple create a small plugin. You can find more information [here.](/developers-guide/shopware-5-search-bundle/)
 

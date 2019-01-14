@@ -29,6 +29,7 @@ $api->post('translations', [
         'shopId' => 2,           # s_core_shops.id
         'data' => [
                 'name' => 'Dummy translation',
+                '__attribute_attr1' => 'Dummy attribute translation'
         ...
     ]
 ]);
@@ -44,6 +45,7 @@ $client->put('translations/200', [ #  s_articles.id
         'shopId' => 2,             # s_core_shops.id
         'data' => [
                 'name' => 'Dummy translation',
+                '__attribute_attr1' => 'Dummy attribute translation'
         ...
     ]
 ]);
@@ -72,7 +74,7 @@ $api->post('translations/6', [  # s_filter.id
         'type' => 'propertygroup',
         'shopId' => 2,          # s_core_shops.id
         'data' => [
-            'groupName' => 'Dummy translation Edited',
+            'groupName' => 'Dummy translation edited',
         ]
 ]);
 ```
@@ -99,7 +101,7 @@ $api->post('translations/1', [  # s_filter_options.id
         'type' => 'propertyoption',
         'shopId' => 2,          # s_core_shops.id
         'data' => [
-            'optionName' => 'Dummy translation Edited',
+            'optionName' => 'Dummy translation edited',
         ]
 ]);
 ```
@@ -126,7 +128,33 @@ $api->post('translations/166', [ # s_filter_values.id
         'type' => 'propertyvalue',
         'shopId' => 2,           # s_core_shops.id
         'data' => [
-            'optionValue' => 'Dummy translation Edited',
+            'optionValue' => 'Dummy translation edited',
         ]
+]);
+```
+
+
+## Example 9 - Updating multiple translations (batch mode)
+
+```php
+<?php
+$api->put('translations', [
+    [
+        'key' => 177, # s_filter_values.id
+        'type' => 'propertyvalue',
+        'shopId' => 2,           # s_core_shops.id
+        'data' => [
+            'optionValue' => 'Dummy translation edited',
+        ]
+    ],
+    [
+        'key' => 178, # s_filter_values.id
+        'type' => 'propertyvalue',
+        'shopId' => 2,           # s_core_shops.id
+        'data' => [
+            'optionValue' => 'Another dummy translation edited',
+        ]
+    ],
+      
 ]);
 ```

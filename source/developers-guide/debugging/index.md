@@ -10,7 +10,7 @@ indexed: true
 group: Developer Guides
 subgroup: General Resources
 menu_title: Debugging Shopware
-menu_order: 30
+menu_order: 35
 ---
 
 Writing and extending software is only a part of a developer's daily work. Debugging and bug fixing is another relevant part one needs to take care of.
@@ -67,14 +67,22 @@ This might be very useful, as Xdebug might reduce the overall performance of you
 
 If you are debugging a CLI command, you can also use Xdebug. Use `export XDEBUG_CONFIG="idekey=PHPSTORM"` prior to running your PHP CLI command and make sure that PhpStorm is listening for Xdebug connections. Again, this feature is not exclusive to PhpStorm, and might be supported in other IDEs.
 
+### Xdebug and IonCube Loader
+
+Please note, that Xdebug and IonCube Loader has some issues. With PHP 5.x, both extensions won't work at the same time, as long as encrypted plugins are activated. The debugger won't stop at your breakpoints and/or the whole request may crash. Disabling all encrypted plugins will solve the problem.
+
+However, since PHP 7.0 the compatiblity has improved. You're able to use Xdebug, IonCube Loader and encrypted plugins all together. Xdebug will stop at your breakpoints and everything is fine. You're not able to debug encrypted source code, of course. All encrypted code will just be skipped.
+
+It's imported that the IonCube Loader extension is loaded BEFORE the Xdebug extension in your `php.ini`. For more troubleshooting consider the [PHPStorm manual](https://confluence.jetbrains.com/display/PhpStorm/Troubleshooting+PhpStorm+debugging#TroubleshootingPhpStormdebugging-DebuggingwithionCubeinstalled).
+
 ### Monolog
 
 Shopware makes use of the Monolog logger, which allows you to log into files, databases, emails or FirePHP. By default a `CoreLogger` and a `PluginLogger` are set up for usage:
 
 ```
-Shopware()->PluginLogger()->info("my info");
-Shopware()->PluginLogger()->warning("my warning");
-Shopware()->PluginLogger()->error("my error");
+Shopware()->Container()->get('pluginlogger')->info("my info");
+Shopware()->Container()->get('pluginlogger')->warning("my warning");
+Shopware()->Container()->get('pluginlogger')->error("my error");
 ```
 
 These calls will render the messages "my info", "my warning" and "my error" to the file `logs/plugin_production-YYY-MM-DD.log`. Depending on the logger configuration, you could force monolog to only show info messages if a warning or error occurs later (two fingers crossed handler), which might also be a huge benefit in productive environments. If multiple plugins write to the "PluginLogger", creating own loggers with other persistence backends is also an option.
@@ -114,12 +122,12 @@ exit();
 Instead, you should use the Doctrine debug helper to print / log complex objects: 
 
 ```
-$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop())
+$result = \Doctrine\Common\Util\Debug::dump(Shopware()->Shop(), 2, true, false);
 // now safely log $result with your preferred logger
 ```
 
 ### shopware-profiler
-The [shopware-profiler](https://github.com/shyim/shopware-profiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
+The [FroshProfiler](https://github.com/FriendsOfShopware/FroshProfiler) is a plugin that adds a developer toolbar to your shop and provides some useful debugging features as:
 * showing registered and called events
 * viewing of database operations and their results
 * providing various template information such as variables and which files were loaded
@@ -167,7 +175,7 @@ After clearing the cache and reloading the backend, the "debug" ExtJS file is in
 
 In many cases, you will have no alternative but to debug using `console.log()` calls in your Javascript code. The following list should help you narrow down the error:
 
-* Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Views/backend/my_plugin/view/window` should be `Shopware.apps.MyPlugin.view.Window`
+* Invalid class names: The name of your ExtJS class (in the `define` call) must match your directory path. E.g. `Resources/views/backend/my_plugin/view/window` should be `Shopware.apps.MyPlugin.view.Window`
 * Referencing a wrong xtype: Whenever you use `xtype` to reference a ExtJS class, you should double check if the referenced xtype actually exists.
 * Not registering the components: As ExtJS must actually know your components, you need to either register them in the `app.js` file or (when extending pre-existing modules) include them using Smarty and extending the original original applications `app.js` block.
 * Missing call to `callParent(arguments);`: When implementing your own components in ExtJS, you will overwrite base-components a lot. When you are implementing a constructor like `initComponent` or `init` you should call `callParent(arguments);` so that ExtJS can handle the base component's logic.

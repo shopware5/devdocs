@@ -187,7 +187,18 @@ $.plugin('example', {
         * ```value : Mixed``` - Value for the provided key
     * Setter method which overrides the value of the provided key with the provided value.
 * ```applyDataAttributes()```
-    * Fetches the provided configuration keys and overrides the values based on the elements ```data``` attributes.
+    * **Arguments**
+        * ```[shouldDeserialize : Boolean = undefined]``` - Tries to parse the 
+        given string values and returns the right value if its successful. 
+        Supports boolean, null, number, json, string. This feature is enabled by default.
+        Pass `false` to deactivate parsing.
+        * ```[ignoreList : Array = []]``` - A list of options which will be excluded
+         when applying the data attributes to the corresponding options. Introduced with Shopware 5.3.7
+    * Fetches the provided configuration keys and overrides the values based on
+        the elements ```data``` attributes. Hint: You don't need to convert
+        ([camel|pascal](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case 
+        java script variable names to ([dash|hyphend|kebab](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles))-case 
+        html attribute names.
     
 ## Global jQuery event observer
 
@@ -290,6 +301,10 @@ StateManager.registerBreakpoint({
 });
 ```
 
+### Class properties
+* ```EventEmitter```
+    * Class constructor for an [`EventEmitter`](#the-eventemitter)
+
 ### Class methods
 * ```init()```
     * **Arguments**
@@ -370,6 +385,44 @@ StateManager.registerBreakpoint({
         * ```softError : Boolean``` - Truthy to return the provided property when no vendor was found, otherwise the method returns ```null```
     * Tests the provided CSS style property on an empty div with all vendor properties.
 
+## The EventEmitter
+The EventEmitter is a utility class, offering a simple base-class for event driven architecture. Currently the EventEmitter is used as the basis for the StateManager, but you can use it to let your own objects emit events.
+
+An object which inherits from the EventEmitter exposes the functionality of subscribing and listening to events. Much like the [global event observer](#global-jquery-event-observer).
+
+### Class methods
+* ```on()```
+    * **Arguments**
+        * ```eventName : String``` - The name of the event which to listen to
+        * ```callback : Function``` - The function which should be called, when the event is triggered
+        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
+    * Add an event listener
+    * Chainable
+* ```once()```
+    * **Arguments**
+        * ```eventName : String``` - The name of the event which to listen to
+        * ```callback : Function``` - The function which should be called, when the event is triggered
+        * ```context : Any``` - An optional context, which to bind the callback to. e.g. `this`
+    * Behaves exactly like on, expect that the listener gets removed after the callback has been called once
+    * Chainable
+* ```off()```
+    * **Arguments**
+        * ```eventName : String``` - Optional, the name used for subscribing
+        * ```callback : Function``` - Optional, the callback used for subscribing
+        * ```context : Any``` - Optional, the context used for subscribing
+    * Removes an event listener. It tries to find the listener you added by the parameters you've given. E.g. if there's a listener matching the `eventName` and the `callback` you've given, but not the `context` (if you've given one) the listener won't be removed. If you only supply the eventName, all listeners of that event will be removed. If you supply no parameters all event listeners will be removed.
+    * Chainable
+* ```trigger()```
+    * **Arguments**
+        * ```eventName : String``` - The name of the event to trigger
+    * Triggers an event.
+    * Chainable
+* ```destroy()```
+    * Can be called to clean up.
+    * Chainable
+    
+
+
 ## Working with stateful jQuery plugins
 The combination of the StateManager paired with the jQuery plugin base class provides an easy-to-use way to register jQuery plugins for certain state. That provides us with the ability to provide different behavior for components based on the current active state. For example the Offcanvas menu plugin is only active on mobile devices (states "xs" and "s") and is disabled on tablets and desktop pc's.
 
@@ -396,6 +449,24 @@ $.plugin('myPlugin', {
 StateManager.addPlugin('.my-selector', 'myPlugin', {
     'speed': 2000
 }, [ 'xs', 's' ]);
+```
+Or pass the configuration via html `data` attributes and call the `applyDataAttributes()` method in our `init()` method. 
+
+```html
+<div class="my-selector" data-myStringVar="myOverwrittenValue" myBooleanVar=true></div>
+```
+
+```javascript
+$.plugin('myPlugin', {
+  defaults: {
+        myStringVar: 'myStandardValue',
+        myBooleanVar: false
+    },
+    init: function() {
+        var me = this;
+        me.applyDataAttributes();
+    }
+}); 
 ```
 
 If you need to pass modified configuration to your plugin for a specific viewport, you can use the following pattern:

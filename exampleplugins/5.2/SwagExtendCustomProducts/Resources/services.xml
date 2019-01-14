@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="swag_extend_custom_products.subscriber.backend"
+                 class="SwagExtendCustomProducts\Subscriber\Backend">
+            <argument>%swag_extend_custom_products.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="swag_extend_custom_products.subscriber.frontend"
+                 class="SwagExtendCustomProducts\Subscriber\Frontend">
+            <argument>%swag_extend_custom_products.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="swag_extend_custom_products.subscriber.type_factory"
+                 class="SwagExtendCustomProducts\Subscriber\TypeFactory">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator"
+                 class="SwagExtendCustomProducts\Decorators\FileTypeWhiteListDecorator"
+                 decorates="custom_products.file_upload.file_type_whitelist"
+                 public="false">
+            <argument type="service" id="swag_extend_custom_products.file_upload.file_type_whitelist_decorator.inner"/>
+        </service>
+    </services>
+</container>

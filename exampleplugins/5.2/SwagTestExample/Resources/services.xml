@@ -6,9 +6,8 @@
 
     <services>
         <service id="swag_test_example.test_service" class="SwagTestExample\Service\TestExampleService">
-            <argument type="service" id="shopware_storefront.list_product_service" />
-            <argument type="service" id="shopware_storefront.context_service" />
+            <argument type="service" id="shopware_storefront.list_product_service"/>
+            <argument type="service" id="shopware_storefront.context_service"/>
         </service>
-
     </services>
 </container>

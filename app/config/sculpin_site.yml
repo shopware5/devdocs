@@ -4,12 +4,18 @@ github_enabled: true
 default_date_format: "F jS, Y"
 
 authors:
+  dk:
+      name: Dominic Klein
+      title: Developer
+      bio: I work at shopware and do on-site as well as online trainings for developers. Besides that I look after our enterprise customers with focus on technical subjects.
+      github: https://github.com/elkmod
   nd:
       name: Niklas Dzösch
       title: Developer / Developer Evangelist
       twitter: http://twitter.com/ndzoesch
       github: https://github.com/ndzoesch
       bio: I am the shopware developer evangelist as of 2017 and a core developer at shopware.
+
   bc:
       name: Benjamin Cremer
       title: Developer && Developer Advocate
@@ -41,6 +47,7 @@ authors:
       github: https://github.com/Phil23
       url: https://www.facebook.com/phil.schuch
       bio: I am a web-developer in the frontend department of shopware. I test new technologies to create forward thinking user experience.
+
   sf:
       name: Sven Finke
       title: Developer Connect
@@ -85,10 +92,40 @@ authors:
         title: Product Manager Core
         twitter: https://twitter.com/MarcelSchmaeing
         github: https://github.com/MarcelSchmaeing
-        bio: I am a product manager working at the main product shopware. I'm intreseted in every process, workflow or tool which makes the development process faster and better to create the best value for the product.
+        bio: I am a product manager working at the main product shopware. I'm interested in every process, workflow or tool which makes the development process faster and better to create the best value for the product.
 
   ps:
         name: Patrick Stahl
         title: Developer
         twitter: https://twitter.com/BlackVersuss
         github: https://github.com/PaddyS
+
+  tn:
+      name: Thomas Eiling
+      title: Developer
+      twitter: https://twitter.com/teiling88
+      github: https://github.com/teiling88
+      url: http://thomas-eiling.de
+      bio: I am a Developer in the Enterprise team. I'm interested in code quality, testing and to automatize everything which is possible.
+
+  lh:
+      name: Linus Holtstiege
+      title: Enterprise Developer
+      twitter: https://twitter.com/linushstge
+      github: https://github.com/linushstge
+      url: https://hstge.me
+      bio: I am a Developer in the Enterprise team. I'm interested in frontend development, continous delivery and build processing.
+
+  cr:
+      name: Christian Rades
+      title: Developer
+      github: https://github.com/Christian-Rades
+      bio: I am a Developer in the Enterprise team. I'm interested in distributed applications, continous delivery and functional programming.
+
+  rc:
+      name: Raphael Emmerich
+      title: Enterprise Developer
+      twitter: https://twitter.com/emmer_91
+      github: https://github.com/emmer91
+      url: http://raphael-emmerich.de
+      bio: I am a Developer in the Enterprise team. I'm interested in code quality, testing and functional programming.

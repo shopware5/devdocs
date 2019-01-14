@@ -9,7 +9,7 @@ We are now on day 8 of our project 99 Papercuts, with 7 days to go.
 From now until Monday, 19th September, you can participate in our [99 Papercuts Project](https://developers.shopware.com/99-paper-cuts/) and make Shopware better - one papercut at a time.
 
 The feedback so far has been pretty good; we've already received several contributions and [merged](https://github.com/shopware/shopware/pulls?q=is%3Apr+%5BPapercut%5D+is%3Aclosed) a good amount of pull requests.
-We also noticed increased activity in our [IRC Channel](/contributing/irc/), where you can get in touch with the Community.
+We also noticed increased activity in our [IRC Channel](/community/irc/), where you can get in touch with the Community.
 
 You can help by reviewing the [open](https://github.com/shopware/shopware/pulls?utf8=%E2%9C%93&q=%3Apr%20is%3Aopen%20%5BPapercut%5D) pull requests and providing feedback.
 

@@ -2,12 +2,16 @@
 layout: default
 title: Implementing your own captcha
 github_link: developers-guide/implementing-your-own-captcha/index.md
+shopware_version: 5.3.0
 tags:
   - captcha
   - recaptcha
   - example
 indexed: true
-shopware_version: 5.3.0
+group: Developer Guides
+subgroup: General Resources
+menu_title: Captcha
+menu_order: 120
 ---
 
 <div class="toc-list"></div>
@@ -90,7 +94,7 @@ class SwagReCaptcha extends Plugin
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     
     <label lang="de">Google ReCaptcha</label>
     <label lang="en">Google ReCaptcha</label>
@@ -218,13 +222,14 @@ The interface you are implementing defines three methods:
 In the case of ReCaptcha we need to make a call to Google from php, so `Guzzle` is injected into the constructor,
 as well as `Shopware_Components_Config` since it needs the ReCaptcha sitekey and secret.
 
-## Creating a backend menu
+## Creating the plugin configuration
 
-With the new plugin system, creating a backend config is fairly simple: Inside the `Resources` folder create a new file `config.xml` with the following content.
+With the new plugin system, creating a plugin configuration is fairly simple: Inside the `Resources` folder create a new file `config.xml` with the following content.
  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/config.xsd">
     <elements>
         <element required="true" type="text">
             <name>sitekey</name>

@@ -4,10 +4,14 @@ namespace SwagTestExample\Models;
 
 class TestModel
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $name;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $description;
 
     /**

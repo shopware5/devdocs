@@ -53,7 +53,7 @@ Single category details can be retrieved via the category ID:
 | blog                | boolean               |                                                                               |
 | path                | string                |                                                                               |
 | showFilterGroups    | boolean               |                                                                               |
-| external            | boolean               |                                                                               |
+| external            | string                |                                                                               |
 | hideFilter          | boolean               |                                                                               |
 | hideTop             | boolean               |                                                                               |
 | changed             | DateTime              |                                                                               |
@@ -65,6 +65,7 @@ Single category details can be retrieved via the category ID:
 | customerGroups      | array                 |                                                                               |
 | childrenCount       | integer               |                                                                               |
 | articleCount        | integer               |                                                                               |
+| translations        | object array          | **[Translation](../models/#translation)**                                     |
 
 ## GET (List)
 
@@ -114,9 +115,9 @@ Appended to the above mentioned list, you will also find the following data:
 |---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
 | name (required)     | string                  |                                                      |                                                                                |
 | id                   | integer (primary key) | If null, a new entity will be created                 | `s_category.id`                                                                  |
-| parent              | object                | Required if no parentId is provided                  | **[Category](../models/#category)**                                             |
-| parentId            | integer               |                                                      | `s_category.id`                                                                 |
+| parentId            | integer               | The field `parent` can be used with the same value as well | `s_category.id`                                                             |
 | position            | integer               |                                                      |                                                                                  |
+| metaTitle           | string                |                                                         |                                                                                  |
 | metaKeywords        | string                |                                                         |                                                                                  |
 | metaDescription      | string                  |                                                      |                                                                                  |
 | cmsHeadline          | string                  |                                                      |                                                                                  |
@@ -125,16 +126,48 @@ Appended to the above mentioned list, you will also find the following data:
 | path                | string                  |                                                      |                                                                                  |
 | active               | boolean                  |                                                      |                                                                                  |
 | blog                | boolean                  |                                                         |                                                                                  |
-| showFilterGroup      | boolean                  |                                                      |                                                                                  |
+| showFilterGroup      | boolean                  | Only for SW < 5.2 |                                                                                  |
 | external             | string                  |                                                      |                                                                                  |
+| externalTarget             | string                  | `_blank` or `_parent` |                                                                                  |
 | hideFilter           | boolean                  |                                                      |                                                                                  |
+| facetIds           | string                  |                                                      |                                                                                  |
+| hideSortings           | boolean                  |                                                      |                                                                                  |
 | hideTop              | boolean                  |                                                      |                                                                                  |
-| noViewSelect        | boolean                  |                                                      |                                                                                  |
+| noViewSelect        | boolean                  | Only for SW < 5.2 |                                                                                  |
+| productBoxLayout        | string                  | `extend`, `basic`, `minimal`, `image` or `list` |                                                                                  |
 | changed             | date/time              |                                                      |                                                                                  |
-| added               | date/time              |                                                      |                                                                                  |
 | attribute           | array                  | Array with optional indexes from 1-6 and its values |                                                                                  |
-| media                | array                  | Array with either `mediaId` or `link` property |                                                                                  |
+| media                | object                  | Array with either `mediaId` or `link` property |                                                                                  |
+| translations         | array                  | Array with either `shopId` `link` property and fields that should be translated | **[Translation](../models/#translation)**                                        |
 
+### Example (POST)
+* Creates a new sub category with parent category id 3 and multiple properties 
+```javascript
+{
+	"name": "My Category",
+	"parent": 3,
+	"position": 1,
+	"metaTitle": "My Category Meta Title",
+	"metaKeywords": "my,category,meta,keywords",
+	"metaDescription": "My Category Meta Description",
+	"cmsHeadline": "The Category",
+	"cmsText": "Discover the advantages of an api created category",
+	"active": true,
+	"blog": false,
+	"external": "",
+	"externalTarget": "",
+	"hideFilter": false,
+	"facetIds": "|2|3|",
+	"hideSortings": false,
+	"sortingIds": "|1|2|",
+	"hideTop": true,
+	"productBoxLayout": "minimal",
+	"changed": "2018-01-01 18:00:00",
+	"media": {
+		"link": "https://my-image-url/path/to/image.jpg"
+	}
+}
+```
 
 ## DELETE
 To delete a cache, simply call the specified resource with the `DELETE` operation as the following example shows:

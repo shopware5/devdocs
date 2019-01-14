@@ -14,10 +14,10 @@ redirect:
   - /sysadmins-guide/optimize-performance/
 group: System Guides
 menu_title: Performance Guide
-menu_order: 40
+menu_order: 50
 ---
 
-In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new addictions, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
+In this document we detail performance related settings that you can set in your server to get the most out of it. Some of them were already part of previous Shopware releases, which we complemented with new dependencies, for optimized performance and scalability. In most cases, it's assumed that you have already installed and configured Shopware on your server, and that it's running properly. This document does not cover configuration options *needed* by Shopware (for example, increasing PHP's `memory_limit` to an acceptable level), and focus only on making an already working system perform better.
 
 <div class="alert alert-warning">
 <strong>Note:</strong> This guide only covers system configuration optimizations, and does not cover Shopware's configuration itself. However, there are several configuration options inside Shopware itself that you can use to improve you shop's performance. Please refer to the <a href="/developers-guide/shopware-5-performance-for-devs/">Shopware 5 performance guide for developers</a> for more details on this subject.
@@ -88,9 +88,7 @@ The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx 
 
 ## PHP
 
-Shopware 5.0 has PHP 5.4 as minimum requirement, which is, at the time of the release, the oldest supported PHP version. However, PHP 5.4 support will be dropped during Shopware 5's lifetime, and the minimum requirement will be raised to PHP 5.5. As such, we recommend using, whenever possible, PHP 5.5 or higher, not only for performance reasons, but also to ensure your system will support future releases of Shopware 5.
-
-At the time of this publication, the latest stable PHP version was 5.6, which includes several performance optimizations over PHP 5.5. As such, we recommend that you use PHP 5.6 whenever possible.
+At the time of this publication, the latest stable PHP version was 7.2, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.2 whenever possible, though Shopware currenty still supports PHP 5.6. That support will be dropped when the official maintenance for PHP 5.6 ends.
 
 ### Opcode cache
 

@@ -26,6 +26,22 @@ This list is not complete. If you miss something important, feel free to open a 
 ## Templating
 Have a look here for a <a href="http://community.shopware.com/files/downloads/templatecheatsheeten-12249471.pdf" target="_blank">Smarty Cheat-Sheet</a>
 
+### Disable Smarty Rendering
+```php
+$this->Front()->Plugins()->ViewRenderer()->setNoRender();
+```
+
+### Add json Rendering
+Useful for ajax calls
+```php
+$this->Front()->Plugins()->Json()->setRenderer();
+```
+
+### Dynamic snippet names / namespaces
+```smarty
+{"Snippet Content"|snippet:$dynamicName:$dynamicNamespace}
+```
+
 ## Events and hooks
 Use your main plugin class or a subscriber class which implements the `\Enlight\Event\SubscriberInterface` to register new events or hooks
 
@@ -73,10 +89,19 @@ $attributeCrudService->update(
     
 );
 ```
+### Naming - Attribute generation
+If you get the `Error: Unrecognized field: my_field` when querying for your attribute it could be that you forgot to generate the attribute models:
+```php
+$this->container()->get('models')->generateAttributeModels();
+```
+or ran into naming issues:
+* the field name gets __lower cased__ before added to the database
+* when using underscores(`_`) in field names they must be queried in __camel case__
+
 ### Delete existing attribute
 ```php
 $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
-$attributeCrudService->update('s_articles_attributes', 'swag_test_attribute');
+$attributeCrudService->delete('s_articles_attributes', 'swag_test_attribute');
 ```
 ### Translate label, help text, support text
 create `SwagTest\Resources\snippets\backend\attribute_columns.ini`

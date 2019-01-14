@@ -36,7 +36,7 @@ Following types are supported:
 
 | Unified type        | SQL type           | Backend view  |
 | ------------- |:-------------:| -----:|
-| string            | VARCHAR(500)  | Ext.form.field.Text
+| string            | TEXT          | Ext.form.field.Text
 | text              | TEXT          | Ext.form.field.TextArea
 | html              | MEDIUMTEXT    | Shopware.form.field.TinyMCE
 | integer           | INT(11)       | Ext.form.field.Number
@@ -108,6 +108,26 @@ class SwagAttribute extends Plugin
 }
 ```
 
+### Set a default value
+```php
+<?php
+
+namespace SwagAttribute;
+
+use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\InstallContext;
+
+class SwagAttribute extends Plugin
+{
+    public function install(InstallContext $context)
+    {
+        $service = $this->container->get('shopware_attribute.crud_service');
+        $service->update('s_articles_attributes', 'my_integer', 'integer', [], null, false, 3);
+    }
+}
+```
+Creates a new attribute `my_integer` with the default value `3`. Please notice that default values will only be shown in the backend if you're using SW 5.5.4 or higher. In addition to that, please keep in mind that MySQL allows default values for none text/blob columns only. 
+
 ### Delete an existing attribute
 ```
 <?php
@@ -115,6 +135,8 @@ class SwagAttribute extends Plugin
 namespace SwagAttribute;
 
 use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\UninstallContext;
+
 
 class SwagAttribute extends Plugin
 {
@@ -308,7 +330,7 @@ class SwagAttribute extends Plugin
         /** @var \Enlight_View_Default $view */
         $view = $arguments->getSubject()->View();
 
-        $view->addTemplateDir($this->getPath() . '/Views/');
+        $view->addTemplateDir($this->getPath() . '/Resources/views/');
 
         $view->extendsTemplate('backend/swag_attribute/Shopware.attribute.Form.js');
     }
@@ -369,7 +391,7 @@ Ext.define('Shopware.attribute.Form-SwagAttribute', {
 ```
 
 This example only shows a small validation to `allowBlank: false` and defines a minimum string length of 10. ExtJS supports different validation functions for an `Ext.form.field.Base`, for more information see:
-[ExtJs Docs](http://docs.sencha.com/extjs/4.1.3/#!/api/Ext.form.field.VTypes)
+[ExtJs Docs](http://docs.sencha.com/extjs/4.1.1/#!/api/Ext.form.field.VTypes)
 
 ### Define own backend view
 In some cases it is required to define an own view for the backend attribute which is not kind of the default view elements.
@@ -657,6 +679,19 @@ class SwagAttribute
     }
 }
 ```
+<div class="alert alert-warning">
+<strong>Note:</strong> The model must contain minimum one of the following fields to correctly display the item in the backend.
+
+* label
+* name
+* title
+* number
+* description
+* value
+
+If this is not done, the entry is displayed with the value `null` and works not properly.
+</div>
+
 If no individual view defined, shopware uses the `Shopware.form.field.Grid` class for multi selections.
 In case the attribute is configured as single selection type, the `Shopware.form.field.SingleSelection` class is used.
 If it is necessary to define which data has to be displayed in the selection elements, it is simply possible to extend the `Shopware.attribute.AbstractEntityFieldHandler` class to handle the attribute and extend the `Shopware.form.field.Grid` to modify the displayed data:
@@ -819,7 +854,7 @@ class SwagShoeSize extends Plugin
 ```
 
 ### Adding an input element for the attribute to the registration form
-We create the template `Resources/Views/frontend/register/personal_fieldset.tpl` and extend the block where we want the input to show up. The attribute is persisted automatically along with the registered customer.
+We create the template `Resources/views/frontend/register/personal_fieldset.tpl` and extend the block where we want the input to show up. The attribute is persisted automatically along with the registered customer.
 
 ```
 {extends file="parent:frontend/register/personal_fieldset.tpl"}
@@ -837,7 +872,7 @@ We create the template `Resources/Views/frontend/register/personal_fieldset.tpl`
 **Attention**: Although the field names are defined in snake_case when created using the CRUD-service, you need to use camelCase in name attributes. This is necessary due to the way the internally used FormBuilder works. 
 
 ### Show attributes in the frontend
-Attributes are loaded automatically with the entity they belong to. To display the shoesize in the account we create `Resources/Views/frontend/account/index.tpl`:
+Attributes are loaded automatically with the entity they belong to. To display the shoesize in the account we create `Resources/views/frontend/account/index.tpl`:
  
 ```
 {extends file="parent:frontend/account/index.tpl"}
@@ -939,17 +974,17 @@ To display the data in the account section, add the following source code to a t
 ```
 {extends file="parent:frontend/account/index.tpl"}
 {block name="frontend_account_index_welcome"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
-	{$data = $sUserData.additional.user}
+    {$data = $sUserData.additional.user}
 
-	<h2>Recommended variants for you</h2>
+    <h2>Recommended variants for you</h2>
 
-	{action module=widgets controller=listing action=products numbers=$data.recommendedvariants type=slider}
+    {action module=widgets controller=listing action=products numbers=$data.recommendedvariants type=slider}
 
-	<h2>Recommended stream</h2>
+    <h2>Recommended stream</h2>
 
-	{action module=widgets controller=listing action=stream streamId=$data.recommendedstream type=slider} 
+    {action module=widgets controller=listing action=stream streamId=$data.recommendedstream type=slider} 
 
 {/block}
 ```
@@ -958,17 +993,17 @@ To display a list of product boxes, the `type=slider` property has to be removed
 ```
 {extends file="parent:frontend/account/index.tpl"}
 {block name="frontend_account_index_welcome"}
-	{$smarty.block.parent}
+    {$smarty.block.parent}
 
-	{$data = $sUserData.additional.user}
+    {$data = $sUserData.additional.user}
 
-	<h2>Recommended variants for you</h2>
+    <h2>Recommended variants for you</h2>
 
-	{action module=widgets controller=listing action=products numbers=$data.recommendedvariants productBoxLayout='list'}
+    {action module=widgets controller=listing action=products numbers=$data.recommendedvariants productBoxLayout='list'}
 
-	<h2>Recommended stream</h2>
+    <h2>Recommended stream</h2>
 
-	{action module=widgets controller=listing action=stream streamId=$data.recommendedstream productBoxLayout='image'} 
+    {action module=widgets controller=listing action=stream streamId=$data.recommendedstream productBoxLayout='image'} 
 {/block}
 ```
 

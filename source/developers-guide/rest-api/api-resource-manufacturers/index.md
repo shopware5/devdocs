@@ -97,7 +97,7 @@ Appended to the above mentioned list, you will also find the following data:
 |---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
 | name (required)     | string                  |                                                      |                                                                                |
 | id                   | integer (primary key) | If null, a new entity will be created                 | `s_articles_supplier.id`                                                                  |
-| image                | array                  | Array with either `mediaId` or `link` property |                                                                                  |
+| image                | array                  | Array with either `mediaId` or `link` property; can be null or an empty object to delete an image assignment from an existing manufacturer |                                                                                  |
 | link          | string                  |                                                      |                                                                                  |
 | description              | string                  |                                                      |                                                                                  |
 | metaTitle                | string                |                                                                                 | |
@@ -105,6 +105,32 @@ Appended to the above mentioned list, you will also find the following data:
 | metaDescription                | string                |                                                                                 | |
 | changed             | date/time              |                                                      |                                                                                  |
 | attribute           | array                  | Array with optional indexes from 1-6 and its values |                                                                                  |
+
+### Examples
+#### POST
+* Adds a new manufacturer with an image
+* **http://my-shop-url/api/manufacturers**
+
+```javascript
+{
+	"name": "My manufacturer with image",
+	"image":
+		{
+			"link": "http://my-image-url/path/to/image.png"
+		}
+}
+```
+
+#### PUT
+* Changes the manufacturers name and deletes the image assignment
+* **http://my-shop-url/api/manufacturers/1**
+
+```javascript
+{
+	"name": "My manufacturer without image",
+	"image": null
+}
+```
 
 
 ## DELETE

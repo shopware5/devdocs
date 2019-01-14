@@ -28,6 +28,17 @@ class HistoryListener implements EventSubscriberInterface
     ];
 
     /**
+     * Key is the site where the history data will be added as `docHistory`
+     * The value may be a prefix to filter the history by path
+     *
+     * @var array
+     */
+    private $historyRoots = [
+        '/source/index.html' => '',
+        '/source/labs/index.html' => 'source/labs/'
+    ];
+
+    /**
      * @param string $projectDir
      * @param SourcePermalinkFactoryInterface $permalinkFactory
      */
@@ -42,9 +53,9 @@ class HistoryListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Sculpin::EVENT_BEFORE_RUN => 'dumpGitHistory',
-        );
+        ];
     }
 
     /**
@@ -54,12 +65,16 @@ class HistoryListener implements EventSubscriberInterface
     {
         /** @var SourceInterface $source */
         foreach ($event->allSources() as $source) {
-            if (preg_match('#/source/index.html$#i', $source->file()->getPathname())) {
-                if ($source->data()->get('docHistory')) {
-                    return;
+            foreach ($this->historyRoots as $page => $prefix) {
+                if (!preg_match('#'.$page.'$#i', $source->file()->getPathname())) {
+                    continue;
                 }
 
-                $this->addHistoryToSource($source, $event->allSources());
+                if ($source->data()->get('docHistory')) {
+                    continue;
+                }
+
+                $this->addHistoryToSource($source, $event->allSources(), $prefix);
             }
         }
     }
@@ -67,14 +82,19 @@ class HistoryListener implements EventSubscriberInterface
     /**
      * @param SourceInterface $source
      * @param array $sources
+     * @param string $prefix
      */
-    private function addHistoryToSource(SourceInterface $source, array $sources)
+    private function addHistoryToSource(SourceInterface $source, array $sources, $prefix = '')
     {
         $data = $this->fetchGitHistory();
         $history = [];
 
         foreach ($data as $key => $item) {
             foreach ($item['articles'] as $articleKey => $article) {
+                if ($prefix && strpos($article, $prefix) !== 0) {
+                    continue;
+                }
+
                 $resource = $this->findArticle($sources, $article);
 
                 if (!$resource) {
@@ -155,7 +175,7 @@ class HistoryListener implements EventSubscriberInterface
             $commitDateProcess = new Process(sprintf('git show --pretty=%%ct %s', $commit), $this->projectDir);
             $commitDateProcess->run();
 
-            $commitDate = trim($commitDateProcess->getOutput());
+            $commitDate = (int) trim($commitDateProcess->getOutput());
 
             $latestHash = $commit;
 

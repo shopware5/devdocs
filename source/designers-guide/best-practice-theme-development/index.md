@@ -29,7 +29,7 @@ LESS and Grunt are based on Node.js, which makes it necessary to have [Node.js](
 
 ```bash
 sudo apt-get update
-sudo apt-get install nodejs-legacy npm
+sudo apt-get install nodejs npm
 ```
 
 ### Install Node.js/npm on Mac OS X
@@ -88,10 +88,13 @@ We have installed everything that we need to start working with Grunt. The defau
 
 ```bash
 grunt
-grunt --shopId 1 # optionally specify shopId
+grunt --shopId=1 # optionally specify shopId
 ```
 
 ![Grunt Screenshot](grunt-screenshot.png)
+
+### Development Task
+Since Shopware 5.5.4 there is a development grunt task, which will compile LESS and Javascript files without starting to watch them afterwards.
 
 ## New in Shopware 5.3 - LiveReload & modularized grunt tasks
 

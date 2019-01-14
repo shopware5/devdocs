@@ -70,7 +70,7 @@ As part of the restructuring of the theme, we updated the list of browsers which
 * Firefox version 29 or above
 * Safari, Mac OS X only. Support for the windows version has been discontinued
 * Opera version 15 with Blink engine or above
-* Internet Explorer version 9 or above
+* Internet Explorer version 9 or above (with Shopware 5.3 Internet Explorer version 11)
 
 Please keep in mind that older browsers don't support all available HTML5 and CSS3 features.
 
@@ -134,6 +134,13 @@ class Theme extends \Shopware\Components\Theme
     protected $license = 'MIT';
 }
 ```
+
+<div class="alert alert-warning">
+    Since Shopware 5.4, it's possible to manipulate the chain of inheritance by discarding 
+    Less/JavaScript, defined by another theme. You can find detailed information 
+    <a href="{{ site.url }}/designers-guide/configuration-using-theme-php/#discard-javascript/css-from-other-themes">here</a>.
+</div>
+
 
 ### Adding javascript files to your theme
 Working with compressors isn't always as easy as adding the files to your HTML structure using ```script``` tags. The built-in javascript compressor is as easy as this and perfectly suited your workflow as a web developer.

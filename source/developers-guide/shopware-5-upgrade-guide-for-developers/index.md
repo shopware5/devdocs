@@ -331,7 +331,7 @@ independently. However, you still don't have to add any parameters to warm up ev
 
 | Parameter             | Short | Description                                   |
 | --------------------- | ----- | --------------------------------------------- |
-| --category            | -j    | Warm up categories                            |
+| --category            | -k    | Warm up categories                            |
 | --emotion             | -o    | Warm up emotions                              |
 | --blog                | -g    | Warm up blog                                  |
 | --manufacturer        | -m    | Warm up manufacturer pages                    |

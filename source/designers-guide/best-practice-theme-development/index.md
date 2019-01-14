@@ -96,6 +96,10 @@ grunt --shopId=1 # optionally specify shopId
 ### Development Task
 Since Shopware 5.5.4 there is a development grunt task, which will compile LESS and Javascript files without starting to watch them afterwards.
 
+```bash
+grunt development
+```
+
 ## New in Shopware 5.3 - LiveReload & modularized grunt tasks
 
 In Shopware 5.3 we added a couple of new features to our Grunt integration. First of all we've added a LiveReload mode which automatically reloads your browser when the Grunt compilation is successful which should speed up your workflow quite a bit.
@@ -117,7 +121,7 @@ Please install the Chrome Add-On called ["LiveReload"](https://chrome.google.com
 4. After you save your changes, the LiveReload plugin automatically requests the compiled file and injects it into your shop.
 
 ### Modularized Grunt tasks
-The next big improve are the modularized Grunt tasks. We're using auto-loading for Grunt plugins and a JIT (Just in Time) plugin loader which allows us to separate the different tasks and configurations into separate files. 
+The next big improve are the modularized Grunt tasks. We're using auto-loading for Grunt plugins and a JIT (Just in Time) plugin loader which allows us to separate the different tasks and configurations into separate files.
 
 ![Grunt Screenshot](grunt-modularized.png)
 

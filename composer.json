@@ -1,13 +1,13 @@
 {
     "require": {
-        "sculpin/sculpin": "2.1.1",
+        "sculpin/sculpin": "2.1.2",
         "dflydev/embedded-composer": "^1.0@dev",
         "bcremer/sculpin-less-bundle": "~0.1",
         "bcremer/sculpin-commonmark-bundle": "^0.4.0",
         "mavimo/sculpin-redirect-bundle": "@dev",
-        "webuni/commonmark-table-extension": "^0.6.0",
+        "webuni/commonmark-table-extension": "^0.9.0",
         "janbuecker/sculpin-meta-navigation-bundle": "^0.4",
-        "ivopetkov/html5-dom-document-php": "^0.4.1"
+        "ivopetkov/html5-dom-document-php": "^1.1.0"
     },
     "autoload": {
         "psr-4": {

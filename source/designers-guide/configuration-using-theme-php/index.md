@@ -322,7 +322,7 @@ Use HTML and CSS in your file to style and describe the information as you want.
 
 ## Configuration sets
 
-With every theme configuration you have the ability to create custom configuration sets. Inside those configuration sets you can apply a specific value to each configuration field using the `setValues()` method. In this example the color field gets a hex value for red and the font size field gets an increased value of 20px:
+With every theme configuration you have the ability to create custom configuration sets. Inside those configuration sets you can apply a specific value to each configuration field using the `setValues()` method. It is important that you add in the header of your `Theme.php` following use instructions, `use Doctrine\Common\Collections\ArrayCollection;` and `use Shopware\Components\Theme\ConfigSet;`. These are not available in the standard. In this example the color field gets a hex value for red and the font size field gets an increased value of 20px:
 
 ```php
 public function createConfigSets(ArrayCollection $collection)

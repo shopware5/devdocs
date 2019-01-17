@@ -52,7 +52,7 @@ To enable Elasticsearch (provided it's already installed, configured and running
         'enabled' => true,
         'number_of_replicas' => null,
         'number_of_shards' => null,
-        'version' => '5.6.5'
+        'version' => '5.6.5',
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -78,7 +78,7 @@ return [
         'enabled' => true,
         'number_of_replicas' => null,
         'number_of_shards' => null,
-        'version' => '5.6.5'
+        'version' => '5.6.5',
         'client' => [
             'hosts' => [
                 'localhost:9200'

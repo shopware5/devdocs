@@ -97,7 +97,7 @@ With Shopware 5, the new `StoreFrontBundle` was introduced. It will allow you to
 This way, adding additional filters, sorters and conditions is very easy - even though the changed mindset behind this
 components might seem confusing at first.
 
-By running `sw plugin:create --haveFilters SwagFilterTest` you can easily create the boilerplate code for a simple example
+By running `sw plugin:create --haveFilter SwagFilterTest` you can easily create the boilerplate code for a simple example
 which you can then extend to your needs:
 
 ```

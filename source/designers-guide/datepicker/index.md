@@ -27,7 +27,7 @@ To add a datepicker to your template, this piece of html will suffice:
 <input type="text"
    name="yourName"
    id="yourID"
-   placeholder="Select a date..."
+   placeholder="{s name="datePickerInputPlaceholder" namespace="frontend/index/datepicker"}Select a date...{/s}"
    data-datepicker="true" />
 ```
 
@@ -42,7 +42,7 @@ Like most of our jQuery plugins, the datepicker may be configured through data a
 <input type="text"
     name="yourName"
     id="yourID"
-    placeholder="Select a date..."
+    placeholder="{s name="datePickerInputPlaceholder" namespace="frontend/index/datepicker"}Select a date...{/s}"
     data-datepicker="true"
     data-mode="single"
     data-enableTime="true"

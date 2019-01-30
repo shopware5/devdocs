@@ -519,6 +519,12 @@ subgroup: REST API
 | parentId              | integer               |                                                         |
 | mediaId               | integer               | **[Media](../api-resource-media/)**                    |
 
+<div class="alert alert-info">
+
+The field `path` has to be the local path to the image, seen from the root of the Shopware installation. There is an additional, internal helper field `link`, which allows to supply a URL that is being downloaded and converted to the `path` field internally. See the [product examples](https://developers.shopware.com/developers-guide/rest-api/examples/article/#further-examples] for an example.
+
+</div>
+
 ## Link
 
 * **Model:** Shopware\Models\Article\Link

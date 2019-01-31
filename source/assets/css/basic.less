@@ -416,15 +416,53 @@ nav.navi--main:after {
 }
 
 .navi--backlink-mobile {
+    font-family: 'Brandon', Arial, sans-serif;
+    font-weight: 400;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    margin: 0;
+    color: #fff;
+    background-color: hsla(0, 0%, 100%, .05);
+    cursor: pointer;
+    transition: all .3s cubic-bezier(.25, .2, .45, 1);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
     a {
-        left: -14px;
-    }
-    i {
-        font-size: 10px;
-        display: inline-block;
-        transform: translateY(-3px);
-        line-height: 10px;
-        left: -14px;
+        font-family: 'Brandon', Arial, sans-serif;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        margin: 0;
+        padding: 0 !important;
+        color: #fff;
+        background-color: hsla(0, 0%, 100%, .05);
+        cursor: pointer;
+        transition: all .3s cubic-bezier(.25, .2, .45, 1);
+        &:hover {
+            background-color:  hsla(0,0%,100%,.1);
+            transition: all .3s cubic-bezier(.25,.2,.45,1);
+            i {
+                left: -24px;
+            }
+        }
+        i {
+            height: 60px;
+            font-size: 10px;
+            display: inline-block;
+            transform: translateY(-3px);
+            line-height: 10px;
+            text-align: center;
+            margin: 0;
+            position: relative;
+            left: -14px;
+            transition: left .3s cubic-bezier(.25, .2, .45, 1);
+        }
     }
 }
 
@@ -439,7 +477,7 @@ nav.navi--main:after {
         font-weight: 400;
         display: block;
         height: 60px;
-        line-height: 60px;
+        line-height: 68px;
         text-align: center;
         margin: 0;
         color: #fff;

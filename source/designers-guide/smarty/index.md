@@ -39,7 +39,7 @@ To start with, we use Smarty to output the data we receive from the shop system.
 **Example:** *Variable output*
 
 ```html
-<h2>{$sArticle.name}</h2>
+<h2>{$sArticle.articleName}</h2>
 ```
 
 This short example will output the content of the variable in a normal `<h2>` element. The dividing `.` in the variable name is used for accessing sub-values. As shown in this example, a template variable may not only be of a simple `string` or `number` type, but also of a large set of data, a so called `array`. In our example we have a template variable called `sArticle`, which is an `array` containing several fields, including the field `name`. Template variables can be nested even deeper. You may find something like `{$sArticle.image.thumbnails[0].source}` in our template code. All fields of an `array` can also be accessed with the `[]` syntax you may know from PHP.
@@ -90,7 +90,7 @@ To handle a larger set of data, like a list of products, we can create dynamic o
 ```html
 <ul>
     {foreach $sArticles as $item}
-        <li>{$item.name}</li>
+        <li>{$item.articleName}</li>
     {/foreach}
 </ul>
 ```

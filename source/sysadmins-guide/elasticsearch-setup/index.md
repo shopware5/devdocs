@@ -53,6 +53,7 @@ To enable Elasticsearch (provided it's already installed, configured and running
         'number_of_replicas' => null,
         'number_of_shards' => null,
         'version' => '5.6.5',
+        'dynamicMappingEnabled' => true,
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -79,6 +80,7 @@ return [
         'number_of_replicas' => null,
         'number_of_shards' => null,
         'version' => '5.6.5',
+        'dynamicMappingEnabled' => true,
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -108,6 +110,32 @@ return [
     'es' => [
         ...
         'version' => '5.6.5',
+    ]
+];
+```
+
+
+### Define Elasticsaerch Dynamic Mapping
+
+By default, Shopware enables the dynamic mapping option.
+By this, fields can be added dynamically to a document or to inner objects within a document, just by indexing a document containing the new field.
+
+The problem with this option is, that Shopware provides floats and integers to Elasticsearch.
+So Elasticsearch uses the first detect field mapping for dynamic fields and can't change it then.
+This is the reason why sometimes products are indexed and sometimes not.
+
+With disabling dynamicMapping, you have to provide a mapping for every Field which is used in Elasticsearch. Only then the field will be indexed.
+This will fix the type issues and product will get indexed.
+
+Take a look [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic.html) for more information.
+
+```php
+<?php
+return [
+    ...
+    'es' => [
+        ...
+        'dynamicMappingEnabled' => true,
     ]
 ];
 ```

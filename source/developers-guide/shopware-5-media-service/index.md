@@ -133,13 +133,56 @@ Using the MediaService allows Shopware to better cope with problems like the one
 
 By default, adapters for local and FTP based file systems are included since Shopware 5.1.
 
+### Bullt-in Adapters since Shopware 5.5
+
+* Amazon S3
+* Google Cloud Platform
+
+**Example Configuration S3**
+
+```php
+'cdn' => [
+    'backend' => 's3',
+    'adapters' => [
+        's3' => [
+            'type' => 's3',
+            'mediaUrl' => 'YOUR_S3_OR_CLOUDFRONT_ENDPOINT',
+            'bucket' => 'YOUR_S3_BUCKET_NAME',
+            'region' => 'YOUR_S3_REGION',
+            'credentials' => [
+                'key' => 'YOUR_AWS_KEY',
+                'secret' => 'YOUR_AWS_SECRET'
+            ]
+        ]
+    ]
+]
+```
+
+
+**Example Configuration GCP**
+
+```php
+'cdn' => [
+    'backend' => 'gcp',
+    'adapters' => [
+        'gcp' => [
+            'type' => 'gcp',
+            'mediaUrl' => 'YOUR_GCP_PUBLIC_URL',
+            'bucket' => 'YOUR_GCP_BUCKET',
+            'projectId' => 'YOUR_GCP_PROJECT_ID',
+            'keyFilePath' => 'PATH_TO_GCP_KEY_FILE',
+        ]
+    ]
+]
+```
+
 ### Existing Adapters
 
 You can download and install the following provider plugins just like any other Shopware plugin. Keep in mind that no official support will be provided for these plugins.
 
-* [Amazon S3](https://github.com/shopwareLabs/SwagMediaS3)
+* [Amazon S3](https://github.com/shopwareLabs/SwagMediaS3) - Required only on < 5.5
 * [Microsoft Azure](https://github.com/shopwareLabs/SwagMediaAzure)
-* [Google Cloud Platform](https://github.com/shopwareLabs/SwagMediaGCP)
+* [Google Cloud Platform](https://github.com/shopwareLabs/SwagMediaGCP) - Required only on < 5.5
 * [SFTP](https://github.com/shopwareLabs/SwagMediaSFTP)
 
 ### Build your own adapter

@@ -15,6 +15,14 @@ menu_order: 90
 
 Should you wish to, you can have your plugin run a license check when used in a Shopware shop. This will ensure that the target shop has permission to use your plugin. This document covers the steps necessary to implement this check.
 
+<div class="alert alert-info">
+
+The license check works only for plugins for Shopware versions older than 5.5.0.
+If you want your plugin to be compatible with Shopware 5.5, no license check should be implemented.
+Read [here](/developers-guide/shopware-5-upgrade-guide-for-developers/#system-requirements-changes) more about that.
+
+</div>
+
 ## Requesting the license check
 
 To request a license check, you must first login into your [Shopware account](http://account.shopware.com) and request a license validation in the detail page of your plugin. Once you have done so, you will be given a code snippet similar to this:

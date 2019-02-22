@@ -40,20 +40,20 @@ This API call requires one of the following parameters to be defined:
 
 #### Optional Parameters
 Optional parameters can be provided:
-* language `id` or `locale` (from `s_core_locales`). If used, the returned info will be provided in the specified language (if available)
+* language `id` or `shop` (from `s_core_shops`). If used, the returned info will be provided in the specified language (if available)
 * `considerTaxInput`: By default, all returned prices are net values. If the boolean `considerTaxInput` is set to true, gross values will be returned instead.
 
 | Identifier       | Parameter | DB column              | Example call                             |
 |------------------|-----------|------------------------|------------------------------------------|
-| language         | id        | s_core_locales         | /api/articles/2?language=de_DE           |
+| language         | id        | s_core_shops           | /api/articles/2?language=3               |
 | considerTaxInput | boolean   |                        | /api/articles/2?considerTaxInput=true    |
 
 You can use one or more of these parameters together.
 
 Here is an example of a parametrized URL:
 
-* **http://my-shop-url/api/articles/2?considerTaxInput=true&language=de_DE**
-* **http://my-shop-url/api/articles/SW10003?useNumberAsId=true&considerTaxInput=true&language=de_DE**
+* **http://my-shop-url/api/articles/2?considerTaxInput=true&language=3**
+* **http://my-shop-url/api/articles/SW10003?useNumberAsId=true&considerTaxInput=true&language=3**
 
 #### Return value
 

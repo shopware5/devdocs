@@ -443,7 +443,7 @@ class VimeoComponentHandler implements ComponentHandlerInterface
 
     public function handle(ResolvedDataCollection $collection, Element $element, ShopContextInterface $context)
     {
-        // do some handle logic and fill the element data, which will be available in your template
+        // do some handle logic and fill the element data, which will be available in your template under $Data.key
         $element->getData()->set('key', 'value');
     }
 }

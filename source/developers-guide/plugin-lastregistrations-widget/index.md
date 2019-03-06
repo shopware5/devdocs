@@ -157,7 +157,7 @@ class Shopware_Controllers_Backend_SwagLastRegistrationsWidget extends Shopware_
     }
 }
 ```
-The controller has only an __getLastRegistrationsAction__ function which creates an sql query to fetch the last registered users and adds them to the view.
+The controller has only an __listAction__ function which creates an sql query to fetch the last registered users and adds them to the view.
 
 ## ExtJS Part ##
 ### Resources/views/backend/index/swag_last_registrations/app.js

@@ -97,7 +97,7 @@ is called. In the app.js we add our own stores, models etc.
     }
  ```
  The __install()__ method creates a new widget Entity and adds it to our plugin. It is important to set the same
- __name__ as in our view alias(`Resources/views/backend/index/swag_last_registrations/view/main.js`)
+ __name__ as in our view alias(`Resources/views/backend/index/swag_last_registrations/view/main.js`) as well as adding a snippet for this __name__ under `Resources/snippets/backend/widget/labels.ini`.
 
 `uninstall()`
 ```

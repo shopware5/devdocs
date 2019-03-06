@@ -305,6 +305,7 @@ The rest should be self explanatory. For more help take a look at the __ExtJS do
 
 ### Resources/views/backend/index/swag_last_registrations/store/account.js
 ```
+//
 Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.store.Account', {
     /**
      * Extends the default Ext Store
@@ -333,6 +334,7 @@ Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.store.Account', {
 
 ### Resources/views/backend/index/swag_last_registrations/model/account.js
 ```
+//
 Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.model.Account', {
 
     extend: 'Ext.data.Model',

@@ -247,6 +247,11 @@ sub vcl_recv {
     if (req.url ~ "^/(checkout|account|backend)(/.*)?$") {
         return (pass);
     }
+    
+    # Workaround for Basket Widget Caching and Compare. Will be fixed with https://issues.shopware.com/issues/SW-23673
+    if (req.url ~ "^/\?module=widgets&controller=checkout&action=info$" || req.url ~ "^/\?module=widgets&controller=compare$") {
+        return (pass);
+    }
 
     return (hash);
 }

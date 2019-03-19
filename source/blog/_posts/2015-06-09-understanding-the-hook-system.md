@@ -19,7 +19,7 @@ menu_order: 50
 ---
 
 Shopware was built with plugin developers in mind, so there are powerful ways to modify the default behaviour of the system 
-without loosing backward compatibility. In this post I want to discuss the technical details of Shopware's hook system.
+without losing backward compatibility. In this post I want to discuss the technical details of Shopware's hook system.
 
 ## Hook?
 Generally there are several ways to extend Shopware. By default we distinguish *global events*, *application events* and *hooks*

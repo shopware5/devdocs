@@ -134,7 +134,7 @@ text field should be changed ComboBox with preset titles.
 In order to do so, we need to know where the original text field is created. This happens in
 `themes/Backend/ExtJs/backend/customer/view/detail/window.js` in the method `createPersonalFieldSet`. This method
 will return all fields for the right side of the billing info overview as a FieldSet. In order to modify this method, we subscribe to
-the `PostDispatchSecure` event of the customer controller in the service,xml:
+the `PostDispatchSecure` event of the customer controller in the service.xml:
 
 ```xml
 <container xmlns="http://symfony.com/schema/dic/services"

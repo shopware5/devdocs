@@ -67,7 +67,7 @@ The Response object contains the result of the called method and has the followi
 ```js
 {
     "jsonrpc": "2.0",
-    "result": [ "some": "data" ],
+    "result": { "some": "data" },
     "error": null,
     "component": "main",
     "instance": "550e8400-e29b-11d4-a716-446655440000",

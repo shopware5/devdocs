@@ -76,7 +76,7 @@ class Product extends ModelEntity
     private $name;
 
     /**
-     * @var integer $active
+     * @var boolean $active
      *
      * @ORM\Column(type="boolean")
      */

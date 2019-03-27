@@ -181,7 +181,7 @@ class Product extends ModelEntity
 
 
     /**
-     * @param int $active
+     * @param bool $active
      */
     public function setActive($active)
     {
@@ -189,7 +189,7 @@ class Product extends ModelEntity
     }
 
     /**
-     * @return int
+     * @return bool
      */
     public function getActive()
     {

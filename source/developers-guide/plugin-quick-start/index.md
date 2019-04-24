@@ -572,7 +572,7 @@ class SwagQuickStart extends Plugin
 Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin. 
 Like:`->scheduleClearCache()`, `->getCurrentVersion()`, `->getUpdateVersion()`, or `->keepUserData()`.
 
-### The clear cache method. 
+### The clear cache method
 ```php
 $context->scheduleClearCache(InstallContext::CACHE_LIST_ALL);
 ```

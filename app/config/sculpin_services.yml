@@ -12,7 +12,6 @@ services:
     shopware_devdocs.twig_extension:
         class: Shopware\Devdocs\TwigExtension
         arguments:
-            - @sculpin_theme.theme_twig_extension
             - %kernel.environment%
         tags:
             - { name: twig.extension }

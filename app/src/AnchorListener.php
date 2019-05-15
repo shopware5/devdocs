@@ -1,6 +1,7 @@
 <?php
 namespace Shopware\Devdocs;
 
+use IvoPetkov\HTML5DOMDocument;
 use Sculpin\Core\Event\SourceSetEvent;
 use Sculpin\Core\Sculpin;
 use Sculpin\Core\Source\SourceInterface;
@@ -11,16 +12,16 @@ class AnchorListener implements EventSubscriberInterface
     /**
      * @var string[]
      */
-    private $usedAnchors = array();
+    private $usedAnchors = [];
 
     /**
      * {@inheritDoc}
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Sculpin::EVENT_AFTER_FORMAT => 'afterFormat',
-        );
+        ];
     }
 
     public function afterFormat(SourceSetEvent $event)
@@ -63,7 +64,7 @@ class AnchorListener implements EventSubscriberInterface
             return;
         }
 
-        $dom = new \IvoPetkov\HTML5DOMDocument();
+        $dom = new HTML5DOMDocument();
         $dom->loadHTML($content);
         if (!$dom) {
             return;

@@ -20,9 +20,9 @@ class AlgoliaIndexListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Sculpin::EVENT_AFTER_RUN => 'afterRun',
-        );
+        ];
     }
 
     /**
@@ -32,18 +32,18 @@ class AlgoliaIndexListener implements EventSubscriberInterface
     public function __construct(Client $client, $indexName)
     {
         $this->index = $client->initIndex($indexName);
-        $this->index->setSettings(array(
-            "attributesToIndex" => array("title", "tags", "unordered(body)"),
-            'attributesForFaceting' => array('tags')
-        ));
+        $this->index->setSettings([
+            'attributesToIndex' => ['title', 'tags', 'unordered(body)'],
+            'attributesForFaceting' => ['tags']
+        ]);
     }
 
     /**
-     * @param \Sculpin\Core\Event\SourceSetEvent $event
+     * @param SourceSetEvent $event
      */
     public function afterRun(SourceSetEvent $event)
     {
-        $documents = array();
+        $documents = [];
         /** @var AbstractSource $item */
         foreach ($event->allSources() as $item) {
             if ($item->data()->get('indexed')) {
@@ -65,15 +65,15 @@ class AlgoliaIndexListener implements EventSubscriberInterface
      */
     private function parseSource(AbstractSource $source)
     {
-        $document = array(
+        $document = [
             'objectID' => sha1($source->sourceId()),
             'title' => $source->data()->get('title'),
             'body'  => strip_tags($source->content()),
             'url'   => rtrim($source->permalink()->relativeUrlPath(), '/').'/',
             'date' => $source->data()->get('calculated_date'),
-        );
+        ];
 
-        $tags = (is_array($source->data()->get('tags'))) ? $source->data()->get('tags') : array();
+        $tags = is_array($source->data()->get('tags')) ? $source->data()->get('tags') : [];
         if ($tags) {
             $document['tags'] = $tags;
         }

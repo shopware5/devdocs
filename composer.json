@@ -7,7 +7,12 @@
         "mavimo/sculpin-redirect-bundle": "@dev",
         "webuni/commonmark-table-extension": "^0.9.0",
         "janbuecker/sculpin-meta-navigation-bundle": "^0.4",
-        "ivopetkov/html5-dom-document-php": "^1.1.0"
+        "ivopetkov/html5-dom-document-php": "^1.1.0",
+        "symfony/config": "2.8.50",
+        "symfony/dependency-injection":  "2.8.50",
+        "symfony/event-dispatcher": "2.8.50",
+        "symfony/http-kernel": "2.8.51",
+        "twig/twig": "1.37.1"
     },
     "autoload": {
         "psr-4": {

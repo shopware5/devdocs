@@ -10,9 +10,9 @@
         </service>
 
         <service id="shopware_search.algolia.listener" class="Shopware\Devdocs\AlgoliaBundle\AlgoliaIndexListener">
-            <argument type="service" id="shopware_search.algolia.client" />
+            <argument type="service" id="shopware_search.algolia.client"/>
             <argument>%algolia.index_name%</argument>
-            <tag name="kernel.event_subscriber" />
+            <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 

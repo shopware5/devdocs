@@ -2,8 +2,6 @@
 
 namespace Shopware\Devdocs;
 
-use Sculpin\Bundle\ThemeBundle\ThemeTwigExtension;
-
 class TwigExtension extends \Twig_Extension
 {
     /**
@@ -11,32 +9,16 @@ class TwigExtension extends \Twig_Extension
      */
     private $environment;
 
-    /**
-     * @var ThemeTwigExtension
-     */
-    private $twigThemeExtension;
-
-    public function __construct(ThemeTwigExtension $twigThemeExtension, $environment)
+    public function __construct($environment)
     {
-        $this->twigThemeExtension = $twigThemeExtension;
-        $this->environment        = $environment;
-    }
-
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
-    public function getName()
-    {
-        return __CLASS__;
+        $this->environment = $environment;
     }
 
     public function getFunctions()
     {
-        return array(
-            'versioned' => new \Twig_Function_Method($this, 'versioned'),
-        );
+        return [
+            new \Twig_SimpleFunction('versioned', [$this, 'versioned']),
+        ];
     }
 
     /**
@@ -45,14 +27,14 @@ class TwigExtension extends \Twig_Extension
      */
     public function versioned($resource)
     {
-        $parts  = pathinfo($resource);
-        $version = ($this->environment === 'prod') ? '.'.time() : '';
+        $parts = pathinfo($resource);
+        $version = ($this->environment === 'prod') ? '.' . time() : '';
 
         return $parts['dirname']
-        .'/'
-        .$parts['filename']
-        .$version
-        .'.'
-        .$parts['extension'];
+            . '/'
+            . $parts['filename']
+            . $version
+            . '.'
+            . $parts['extension'];
     }
 }

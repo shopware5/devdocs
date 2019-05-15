@@ -18,9 +18,9 @@ class SearchIndexListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             Sculpin::EVENT_AFTER_RUN => 'afterRun',
-        );
+        ];
     }
 
     /**
@@ -32,11 +32,11 @@ class SearchIndexListener implements EventSubscriberInterface
     }
 
     /**
-     * @param \Sculpin\Core\Event\SourceSetEvent $event
+     * @param SourceSetEvent $event
      */
     public function afterRun(SourceSetEvent $event)
     {
-        $documents = array();
+        $documents = [];
         /** @var AbstractSource $item */
         foreach ($event->allSources() as $item) {
             if ($item->data()->get('indexed')) {
@@ -60,14 +60,14 @@ class SearchIndexListener implements EventSubscriberInterface
      */
     private function parseSource(AbstractSource $source)
     {
-        $tags = (is_array($source->data()->get('tags'))) ? $source->data()->get('tags') : array();
+        $tags = is_array($source->data()->get('tags')) ? $source->data()->get('tags') : [];
 
-        $document = array(
+        $document = [
             'title' => $source->data()->get('title'),
             'body'  => strip_tags($source->content()),
             'tags'  => implode(', ', $tags),
             'url'   => rtrim($source->permalink()->relativeUrlPath(), '/').'/',
-        );
+        ];
 
         return $document;
     }

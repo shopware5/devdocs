@@ -42,7 +42,7 @@ you could initialize the __shop context__ to make currencies available. To prepa
 ```php
 <?php
 
-require __DIR__ . '/../../../../../Tests/Functional/bootstrap.php';
+require __DIR__ . '/../../../../../tests/Functional/bootstrap.php';
 ```
 
 <div class="alert alert-warning">

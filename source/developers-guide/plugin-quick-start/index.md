@@ -108,7 +108,7 @@ Shopware as an open source shopping system uses many well known libraries. We us
 Other well known libraries are also used and included in Shopware, like Guzzle HTTP client, Doctrine, Smarty, Monolog and Phpunit, so that most developers should feel quite comfortable regarding the used technologies.
 The actual HTTP stack of Shopware is currently powered by Zend Framework which Shopware uses with a thin layer called `Enlight` on top. As we plan to move towards Symfony step by step, Enlight might come in handy as a transitional framework.
 
-## Hooking into the system
+## Hooking into the system with events
 Shopware uses plugins to extend the base systems. Changes in the core are never required and never recommended.
 Extensions of the core system can basically be separated into logical extensions, data extensions and template extensions.
 

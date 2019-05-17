@@ -3736,8 +3736,8 @@ u.class:hover {
 }
 @font-face {
   font-family: 'shopware_website';
-  src: url('../fonts/shopware.eot?-g83jdd');
-  src: url('../fonts/shopware.eot?#iefix-g83jdd') format('embedded-opentype'), url('../fonts/shopware.woff?-g83jdd') format('woff'), url('../fonts/shopware.ttf?-g83jdd') format('truetype'), url('../fonts/shopware.svg?-g83jdd#shopware') format('svg');
+  src: url('../fonts/shopware.woff2?@-g83jde') format('woff2'),
+  url('../fonts/shopware.woff?-g83jde') format('woff'), url('../fonts/shopware.ttf?-g83jde') format('truetype'), url('../fonts/shopware.svg?-g83jde#shopware') format('svg');
   font-weight: normal;
   font-style: normal;
 }

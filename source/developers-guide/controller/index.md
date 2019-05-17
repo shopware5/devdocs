@@ -217,6 +217,9 @@ class ExtendListing implements SubscriberInterface
 }
 ```
 
+Since Shopware 5.6 it is also possible to extend or exchange Shopware controllers over the DI Container. You can find a example for decorating a service [here](https://developers.shopware.com/developers-guide/plugin-quick-start/#decorate-a-service).
+
+
 In addition to that, you can also extend `public` and `protected` methods in any controller using the Shopware hook system.
 
 ## Controllers and caching

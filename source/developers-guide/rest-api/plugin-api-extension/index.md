@@ -75,12 +75,13 @@ This is our plugin bootstrap which subscribes to two events. For the one thing i
 `Enlight_Controller_Dispatcher_ControllerPath_Api` event to register the API controller and for 
 the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register an additional namespace for 
 our plugin. We do that, because then the API manager class can load our resource with `\Shopware\Components\Api\Manager::getResource('Banner')`.
-Since `Shopware 5.2.17` the last part is not necessary anymore. You can simply use the services.xml file to register new resources to Shopware.
-
+Since `Shopware 5.2.17`, both parts are not necessary anymore. You can simply use the services.xml file to register new resources to Shopware.
 ```xml
 <!-- Register new resource as service -->
 <service id="shopware.api.example" class="SwagBannerApi\Components\Api\Resource\Example"/>
 ```
+The API controller will be found via auto-registration. Please refer to the [Controllers chapter](developers-guide/controller/#plugin-controllers) for further information about the controller naming convention.
+
 You even have the possibility to decorate existing resources. For more information about that, have a look here: [Extend API resource](/developers-guide/rest-api/extend-api-resource/)
 
 ### Components/Api/Resource/Banner.php

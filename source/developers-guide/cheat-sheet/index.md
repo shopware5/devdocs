@@ -24,14 +24,17 @@ This list is not complete. If you miss something important, feel free to open a 
 </div>
 
 ## Templating
+
 Have a look here for a <a href="http://community.shopware.com/files/downloads/templatecheatsheeten-12249471.pdf" target="_blank">Smarty Cheat-Sheet</a>
 
 ### Disable Smarty Rendering
+
 ```php
 $this->Front()->Plugins()->ViewRenderer()->setNoRender();
 ```
 
 ### Add json Rendering
+
 Useful for ajax calls
 ```php
 $this->Front()->Plugins()->Json()->setRenderer();
@@ -43,9 +46,11 @@ $this->Front()->Plugins()->Json()->setRenderer();
 ```
 
 ## Events and hooks
+
 Use your main plugin class or a subscriber class which implements the `\Enlight\Event\SubscriberInterface` to register new events or hooks
 
 ### Events
+
 ```php
 public static function getSubscribedEvents()
 {
@@ -62,6 +67,7 @@ public static function getSubscribedEvents()
 The `POSITION` defines the execution order of the event listener methods. The default value is `0`. The higher the number, the later the event listener method is executed. For example a position like `-10` will be executed quite early. On the contrary a position like `10` quite late.
 
 ### Hooks
+
 types: before / after / replace
 ```php
 public static function getSubscribedEvents()
@@ -73,7 +79,9 @@ public static function getSubscribedEvents()
 ```
 
 ## Attributes
+
 ### Creating a new attribute / update an existing attribute
+
 ```php
 $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
 $attributeCrudService->update(
@@ -90,6 +98,7 @@ $attributeCrudService->update(
 );
 ```
 ### Naming - Attribute generation
+
 If you get the `Error: Unrecognized field: my_field` when querying for your attribute it could be that you forgot to generate the attribute models:
 ```php
 $this->container()->get('models')->generateAttributeModels();
@@ -99,11 +108,14 @@ or ran into naming issues:
 * when using underscores(`_`) in field names they must be queried in __camel case__
 
 ### Delete existing attribute
+
 ```php
 $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
 $attributeCrudService->delete('s_articles_attributes', 'swag_test_attribute');
 ```
+
 ### Translate label, help text, support text
+
 create `SwagTest\Resources\snippets\backend\attribute_columns.ini`
 ```
 [en_GB]
@@ -242,7 +254,7 @@ $tool->dropSchema($classes);
 
 ### QueryBuilder
 
-select some data
+Select some data
 ```php
 $builder = $this->container->get('models')->createQueryBuilder();
 $builder->select(['product', 'mainVariant'])
@@ -251,9 +263,49 @@ $builder->select(['product', 'mainVariant'])
     ->where('product.id = :productId')
     ->setParameter('productId', 2);
     
-// array with \Shopware\Models\Article\Article objects
+// Array with \Shopware\Models\Article\Article objects
 $objectData = $builder->getQuery()->getResult();
 
-// array with arrays
+// Array with arrays
 $arrayData = $builder->getQuery()->getArrayResult();
+```
+
+### Loading attributes when they are missing in the template
+
+Sometimes the attributes from an Entity are missing in the template on certain actions. To load them, just register a `PostDispatch` event on the controller or module in question to add your custom logic. You can then extract the id of the entity you are interested in, load it's attributes and assign them to the view.
+
+Say you want to load the attributes of an order on the account's order page:
+
+```php
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Account' => 'onFrontendPostDispatchAccount'
+        ];
+    }
+
+    public function onFrontendPostDispatchAccount(\Enlight_Controller_ActionEventArgs $args)
+    {
+        // We only need to load the attributes if we're on the 'order' page
+        if ($args->getRequest()->getActionName() !== 'orders') {
+            return;
+        }
+
+        $view = $controller->View();
+
+        // Fetch the order information from the template
+        $orders = $view->getAssign('sOpenOrders')
+
+        // This service allows easy loading of attributes
+        $service = $this->container->get('shopware_attribute.data_loader');
+
+        $attributes = [];
+        foreach ($orders as $order) {
+            // We use the service to load the attributes of each order by the order's id from the table 's_order_attributes' and store it in an array
+            $attributes[$order['id']] = $service->load('s_order_attributes', $order['id']);
+        }
+
+        $view->assign('order_attributes', $attributes);
+    }
+}
 ```

@@ -97,6 +97,7 @@ $attributeCrudService->update(
     
 );
 ```
+
 ### Naming - Attribute generation
 
 If you get the `Error: Unrecognized field: my_field` when querying for your attribute it could be that you forgot to generate the attribute models:
@@ -127,6 +128,46 @@ s_articles_attributes_swag_test_attribute_helpText = "English help text"
 s_articles_attributes_swag_test_attribute_label = "Deutsches Label"
 s_articles_attributes_swag_test_attribute_supportText = "Deutscher Supporttext"
 s_articles_attributes_swag_test_attribute_helpText = "Deutscher Hilfetext"
+```
+
+### Load attributes when they are missing in the template
+
+Sometimes the attributes from an Entity are missing in the template on certain actions. To load them, just register a `PostDispatch` event on the controller or module in question to add your custom logic. You can then extract the id of the entity you are interested in, load it's attributes and assign them to the view.
+
+Say you want to load the attributes of an order on the account's order page:
+
+```php
+    public static function getSubscribedEvents()
+    {
+        return [
+            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Account' => 'onFrontendPostDispatchAccount'
+        ];
+    }
+
+    public function onFrontendPostDispatchAccount(\Enlight_Controller_ActionEventArgs $args)
+    {
+        // We only need to load the attributes if we're on the 'order' page
+        if ($args->getRequest()->getActionName() !== 'orders') {
+            return;
+        }
+
+        $view = $controller->View();
+
+        // Fetch the order information from the template
+        $orders = $view->getAssign('sOpenOrders')
+
+        // This service allows easy loading of attributes
+        $service = $this->container->get('shopware_attribute.data_loader');
+
+        $attributes = [];
+        foreach ($orders as $order) {
+            // We use the service to load the attributes of each order by the order's id from the table 's_order_attributes' and store it in an array
+            $attributes[$order['id']] = $service->load('s_order_attributes', $order['id']);
+        }
+
+        $view->assign('order_attributes', $attributes);
+    }
+}
 ```
 
 ## Plugin configuration
@@ -268,44 +309,4 @@ $objectData = $builder->getQuery()->getResult();
 
 // Array with arrays
 $arrayData = $builder->getQuery()->getArrayResult();
-```
-
-### Loading attributes when they are missing in the template
-
-Sometimes the attributes from an Entity are missing in the template on certain actions. To load them, just register a `PostDispatch` event on the controller or module in question to add your custom logic. You can then extract the id of the entity you are interested in, load it's attributes and assign them to the view.
-
-Say you want to load the attributes of an order on the account's order page:
-
-```php
-    public static function getSubscribedEvents()
-    {
-        return [
-            'Enlight_Controller_Action_PostDispatchSecure_Frontend_Account' => 'onFrontendPostDispatchAccount'
-        ];
-    }
-
-    public function onFrontendPostDispatchAccount(\Enlight_Controller_ActionEventArgs $args)
-    {
-        // We only need to load the attributes if we're on the 'order' page
-        if ($args->getRequest()->getActionName() !== 'orders') {
-            return;
-        }
-
-        $view = $controller->View();
-
-        // Fetch the order information from the template
-        $orders = $view->getAssign('sOpenOrders')
-
-        // This service allows easy loading of attributes
-        $service = $this->container->get('shopware_attribute.data_loader');
-
-        $attributes = [];
-        foreach ($orders as $order) {
-            // We use the service to load the attributes of each order by the order's id from the table 's_order_attributes' and store it in an array
-            $attributes[$order['id']] = $service->load('s_order_attributes', $order['id']);
-        }
-
-        $view->assign('order_attributes', $attributes);
-    }
-}
 ```

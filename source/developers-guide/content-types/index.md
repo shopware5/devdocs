@@ -14,11 +14,11 @@ Content Types allows users to create own simple entities with a crud, own api an
 
 ## General
 
-Content types can be created using an interface in the administration in "Settings" => "Content Types" or with a 'contenttypes.xml' in the Resources folder of your Plugin. If a content-type is created using a plugin, it can't be modified in the administration. In this guide we will create a content-type using a plugin.
+Content Types can be created using an interface in the administration in "Settings" => "Content Types" or with a 'contenttypes.xml' in the Resources folder of your Plugin. If a Content Type is created using a plugin, it can't be modified in the administration. In this guide we will create a Content Type using a plugin.
 
 ## Creating a content type
 
-A plugin content type can be created with a 'Resources/contenttypes.xml' in your plugin directory. A XML file can contain multiple content types.
+A plugin Content Type can be created with a 'Resources/contenttypes.xml' in your plugin directory. A XML file can contain multiple Content Types.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -30,11 +30,11 @@ xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Bundle/ContentTypeBun
 </contentTypes>
 ```
 
-Now we add a content type in the types tag.
+Now we add a Content Type in the `types` tag.
 
-A content type needs as requirement a typeName (technical name, will be used for the controllers, table, etc. with the Prefix 'Custom'), a name for the Menu and Storefront if enabled.
+A Content Type needs as a requirement a typeName (technical name, will be used for the controllers, table, etc. with the Prefix 'Custom'), a name for the Menu and Storefront if enabled.
 
-In this example we will create a content type with the technical name 'myFancyContentType', display name 'My awesome content types' with a single field 'name' as textfield.
+In this example we will create a Content Type with the technical name 'AwesomeRecipeContentType', display name 'My most favorite recipes by name' with a single field 'name' as textfield.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -42,8 +42,8 @@ In this example we will create a content type with the technical name 'myFancyCo
 xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Bundle/ContentTypeBundle/Resources/contenttypes.xsd">
     <types>
         <type>
-            <typeName>myFancyContentType</typeName>
-            <name>My awesome content types</name>
+            <typeName>AwesomeRecipeContentType</typeName>
+            <name>My most favorite recipes by name</name>
             <fieldSets>
                 <fieldSet>
                     <field name="name" type="text">
@@ -90,50 +90,50 @@ With '[technicalName]-grid' can you create an association to a multi selection o
 
 | Name                     | Description                                                                                                                             |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| typeName                 | technical name of the content type                                                                                                      |
-| name                     | display name                                                                                                                            |
-| showInFrontend           | create a frontend controller, allow usage of emotion element. Requires viewTitleFieldName, viewDescriptionFieldName, viewImageFieldName |
-| menuIcon                 | menu icon                                                                                                                               |
-| menuPosition             | menu position                                                                                                                           |
-| menuParent               | parent controller name                                                                                                                  |
-| viewTitleFieldName       | fieldname for title fields in storefront                                                                                                |
-| viewDescriptionFieldName | fieldname for description fields in storefront                                                                                          |
-| viewImageFieldName       | fieldname for image fields in storefront                                                                                                |
-| seoUrlTemplate           | seo URL template for the url generation                                                                                                 |
+| typeName                 | Technical name of the content type                                                                                                      |
+| name                     | Display name                                                                                                                            |
+| showInFrontend           | Create a frontend controller, allow usage of emotion element. Requires viewTitleFieldName, viewDescriptionFieldName, viewImageFieldName |
+| menuIcon                 | Menu icon                                                                                                                               |
+| menuPosition             | Menu position                                                                                                                           |
+| menuParent               | Parent controller name                                                                                                                  |
+| viewTitleFieldName       | Fieldname for title fields in storefront                                                                                                |
+| viewDescriptionFieldName | Fieldname for description fields in storefront                                                                                          |
+| viewImageFieldName       | Fieldname for image fields in storefront                                                                                                |
+| seoUrlTemplate           | SEO URL template for the URL generation                                                                                                 |
 ### Possible tags in '<field>'
 | Name          | Description                                                   |
 |---------------|---------------------------------------------------------------|
-| name          | technical fieldname in table                                  |
-| label         | label for the user                                            |
-| type          | field type                                                    |
-| helpText      | field helpText                                                |
-| description   | field description                                             |
-| translateable | field is translateable?                                       |
-| required      | field is required?                                            |
-| options       | can be used to pass variables to extjs                        |
-| custom        | can be used to store custom variables                         |
-| store         | options for combobox selection                                |
-| showListing   | show the field in the extjs listing window                    |
-| searchAble    | field should be searchable in the extjs listing window search |
+| name          | Technical fieldname in table                                  |
+| label         | Label for the user                                            |
+| type          | Field type                                                    |
+| helpText      | Field helpText                                                |
+| description   | Field description                                             |
+| translateable | Field is translateable?                                       |
+| required      | Field is required?                                            |
+| options       | Can be used to pass variables to extjs                        |
+| custom        | Can be used to store custom variables                         |
+| store         | Options for combobox selection                                |
+| showListing   | Show the field in the extjs listing window                    |
+| searchAble    | Field should be searchable in the extjs listing window search |
 
 ## Accesing using the API
 
-All content types gets automaticly a generated api endpoint. It will be accessible with '/api/Custom[TechnicalName]' (e.g '/api/CustomMyFancyContentType') and follows the default shopware api schema.
+All Content Types have an API endpoint generated automatically. It will be accessible using the route '/api/Custom[TechnicalName]' (e.g '/api/CustomAwesomeRecipeContentType') and follows the default Shopware API schema.
 
 In default, it reads the data in raw format, without resolving the associated data and translation.
 
-To resolve the associations, can you pass a GET parameter '?resolve=1' and to load the translations, can you pass a GET parameter '?loadTranslations=1' to the list and get one call.
+To resolve the associations, you can pass a GET parameter '?resolve=1'. To load the translations, can you pass a GET parameter '?loadTranslations=1' to the list and get one call.
 
-The past data to create or update has to be in the raw format. Multi selection fields values has to been splitted by pipe (e.g '|1|2|').
+The data being passed to create or update an entity has to be in the raw format. Multi selection fields values have to been splitted by pipe (e.g '|1|2|').
 
 ## Usage internal in PHP
 
-### Getting the content type configuration
-The content type configuration will be saved as struct of type 'Shopware\Bundle\ContentTypeBundle\Structs\Type'. To get the configuration of your content type you can use the service 'shopware.bundle.content_type.type_provider' and call the method 'getType' with your technical name.
+### Getting the Content Type configuration
+The Content Type configuration will be saved as struct of type 'Shopware\Bundle\ContentTypeBundle\Structs\Type'. To get the configuration of your Content Type you can use the service 'shopware.bundle.content_type.type_provider' and call the method 'getType' with your technical name.
 
-### Fetching the content type data
+### Fetching the Content Type data
 
-Every content types get an own Repository which implements the interface 'Shopware\Bundle\ContentTypeBundle\Services\RepositoryInterface'. They are dynamically registered in the di with following scheme 'shopware.bundle.content_type.[technicalName]'.
+Every Content Types has an own Repository which implements the interface 'Shopware\Bundle\ContentTypeBundle\Services\RepositoryInterface'. These repositories are registered dynamically in the DI with following naming scheme 'shopware.bundle.content_type.[technicalName]'.
 
 #### Example usages
 
@@ -158,20 +158,20 @@ var_dump($result->items); // Fetched data
 // Delete a record
 $repository->delete($id);
 
-// if a id is passed in $data, it will be updated, otherwise it will create a new record
+// If an id is passed in $data, it will be updated, otherwise it will create a new record
 $repository->save($data);
 ```
 
 ## Displaying in Frontend
 
-To enable the frontend controller, you have to set 'showInFrontend' in the 'type' to 'true' and fill the fields 'viewTitleFieldName', 'viewDescriptionFieldName', 'viewImageFieldName'.
+To enable the Frontend controller, you have to set 'showInFrontend' in the 'type' to 'true' and fill the fields 'viewTitleFieldName', 'viewDescriptionFieldName', 'viewImageFieldName'.
 
-These view fields will be used for SEO information in '<head>', listing of the contents and in the emotion world.
+These view fields will be used for SEO information in the '<head>'-tag, as well as in the listing of the contents and in the emotion world.
 
-The controller name is like in the API generated with the same schema 'Custom[TechnicalName]'.
-In default tries the controller to load the template in the default directory structure (frontend/controller/action.tpl), if that template is missing it fallback to the folder 'frontend/content_type/action.tpl).
+The controller name is generated, like in the API, with the same schema 'Custom[TechnicalName]'.
+By default the controller tries to load the template in the default directory structure (`frontend/controller/action.tpl`) and if that template is missing, it willl fall back to the folder `frontend/content_type/action.tpl`).
 
-In the default template only fields are visible in the frontend, which implements the interface 'Shopware\Bundle\ContentTypeBundle\Field\TemplateProvidingFieldInterface'
+In the default template, only fields are visible in the frontend, which implements the interface 'Shopware\Bundle\ContentTypeBundle\Field\TemplateProvidingFieldInterface'
 
 ## Translation in Backend
 
@@ -244,7 +244,7 @@ Overview of the methods
 | getExtjsOptions | Returns an array of options for the extjs configuration |
 | isMultiple | Returns that this field holds multiple values |
 
-After the creating of the class, we have to register our new Field in the 'services.xml' with the tag 'shopware.bundle.content_type.field' and a 'fieldName'.
+After the creating of the class, we have to register our new field in the 'services.xml' with the tag 'shopware.bundle.content_type.field' and a 'fieldName'.
 
 ```xml
 <service id="Shopware\Bundle\ContentTypeBundle\Field\MediaField" class="Shopware\Bundle\ContentTypeBundle\Field\MediaField">
@@ -252,13 +252,13 @@ After the creating of the class, we have to register our new Field in the 'servi
 </service>
 ```
 
-The 'fieldName' is the unique identifier of your new field and can be used in the 'contenttypes.xml'. This also extends the selection in the extjs interface for the creation of a content type.
+The 'fieldName' is the unique identifier of your new field and can be used in the 'contenttypes.xml'. This also extends the selection in the extjs interface for the creation of a Content Type.
 
 ### ResolveableFieldInterface
 
-If you want to populate the data after it has been read from the Database, can you implement to your field the interface 'Shopware\Bundle\ContentTypeBundle\Field\ResolveableFieldInterface'.
+If you want to populate the data after it has been read from the database, can you implement the interface 'Shopware\Bundle\ContentTypeBundle\Field\ResolveableFieldInterface' in your field .
 
-This interface requires, that you have to implement the method getResolver. In the getResolver method have you to return a service id of your resolver. The resolver will handle the processing of the saved data.
+This interface requires that you have to implement the method `getResolver`. In the `getResolver` method have you to return a service id of your resolver. The resolver will handle the processing of the saved data.
 
 ```php
 public static function getResolver(): string
@@ -269,9 +269,9 @@ return MediaResolver::class;
 
 ### Resolver
 
-A resolver has to extend 'Shopware\Bundle\ContentTypeBundle\FieldResolver\AbstractResolver' and registered in the DI container. The abstract class requires that you implement the method 'resolve'. The content type's repository reads all information from the database and then adds all fields that has to been resolved in the Resolver using the 'add' method, defined in the 'AbstractResolver'. After all ids added, it will call the 'resolve()' method where the Resolver should fetch and store the data by the added ids.
+A resolver has to extend 'Shopware\Bundle\ContentTypeBundle\FieldResolver\AbstractResolver' and needs to be registered in the DI container. The abstract class requires that you implement the method 'resolve'. The Content Type's repository reads all information from the database and then adds all fields that have to be resolved in the resolver using the 'add' method, defined in the 'AbstractResolver'. After all IDs are added, it will call the 'resolve()' method where the Resolver should fetch and store the data by the added IDs.
 
-Here we have an example for the 'MediaField'
+Here we have an example for the 'MediaField':
 
 ```php
 public function resolve(): void
@@ -286,9 +286,9 @@ $this->resolveIds = [];
 }
 ```
 
-We have in the 'resolveIds' property all requested ids of the values. After the fetching we write the data back into the 'storage' property with the keys we had in 'propertyIds'.
+The 'resolveIds' property contains all requested IDs of the values. After fetching these, we write the data back into the 'storage' property with the keys we had in 'propertyIds'.
 In the last step the Repository loads the values back from the 'get' method implemented by the 'AbstractResolver' with the values in the 'storage' property.
-This concept also has a simple cache inside, if the requested id is already in the 'storage' proeprty, it won't be added to the 'resolveIds' property.
+This concept also has a simple cache inside, if the requested ID is already in the 'storage' proeprty, it won't be added to the 'resolveIds' property.
 
 ### TemplateProvidingFieldInterface
 

@@ -16,7 +16,7 @@ Content Types allows users to create own simple entities with a crud, own api an
 
 Content Types can be created using an interface in the administration in "Settings" => "Content Types" or with a 'contenttypes.xml' in the Resources folder of your Plugin. If a Content Type is created using a plugin, it can't be modified in the administration. In this guide we will create a Content Type using a plugin.
 
-## Creating a content type
+## Creating a Content Type
 
 A plugin Content Type can be created with a 'Resources/contenttypes.xml' in your plugin directory. A XML file can contain multiple Content Types.
 
@@ -86,7 +86,7 @@ With '[technicalName]-field' can you create an association to a single selection
 
 With '[technicalName]-grid' can you create an association to a multi selection of content type 'technicalName'
 
-### Possible tags in the '<type>' tag
+### Possible tags in the '&lt;type&gt;' tag
 
 | Name                     | Description                                                                                                                             |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
@@ -100,7 +100,7 @@ With '[technicalName]-grid' can you create an association to a multi selection o
 | viewDescriptionFieldName | Fieldname for description fields in storefront                                                                                          |
 | viewImageFieldName       | Fieldname for image fields in storefront                                                                                                |
 | seoUrlTemplate           | SEO URL template for the URL generation                                                                                                 |
-### Possible tags in '<field>'
+### Possible tags in '&lt;field&gt;'
 | Name          | Description                                                   |
 |---------------|---------------------------------------------------------------|
 | name          | Technical fieldname in table                                  |
@@ -166,7 +166,7 @@ $repository->save($data);
 
 To enable the Frontend controller, you have to set 'showInFrontend' in the 'type' to 'true' and fill the fields 'viewTitleFieldName', 'viewDescriptionFieldName', 'viewImageFieldName'.
 
-These view fields will be used for SEO information in the '<head>'-tag, as well as in the listing of the contents and in the emotion world.
+These view fields will be used for SEO information in the '&lt;head&gt;'-tag, as well as in the listing of the contents and in the emotion world.
 
 The controller name is generated, like in the API, with the same schema 'Custom[TechnicalName]'.
 By default the controller tries to load the template in the default directory structure (`frontend/controller/action.tpl`) and if that template is missing, it willl fall back to the folder `frontend/content_type/action.tpl`).
@@ -190,9 +190,9 @@ To translate the extjs field names can you create a new snippet file in namespac
 
 | Snippet-Name | Description |
 |----------------------|------------------------------|
-| IndexMetaDescription | meta description in '<head>' |
-| IndexMetaImage | meta image in '<head>' |
-| IndexMetaTitle | meta title in '<head>' |
+| IndexMetaDescription | meta description in '&lt;head&gt;' |
+| IndexMetaImage | meta image in '&lt;head&gt;' |
+| IndexMetaTitle | meta title in '&lt;head&gt;' |
 
 ## Creating a new Field
 

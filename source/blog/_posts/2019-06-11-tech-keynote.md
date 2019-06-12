@@ -35,13 +35,13 @@ In order to set the potential of those dimensions free, complexity must be reduc
 
 Enabling people to use the new technologies also implies, that we need to reduce legal barriers. By switching to the more permissive MIT license, shopware clearly commits to the open source community.
 
-For me, this is the philosophy behind Shopware 6: We enjoy new technologies and are excited to try them out. But the developers and merchants are the ones, who are truly innovative in their everyday projects. And they do neither need a tight e-commerce corset nor a spaceship toolbox. They need a reliable foundation on which to build. An that's Shopware 6: Simple, flexible, state of the art and open source.
+For me, this is the philosophy behind Shopware 6: We enjoy new technologies and are excited to try them out. But the developers and merchants are the ones, who are truly innovative in their everyday projects. And they do neither need a tight e-commerce corset nor a spaceship toolbox. They need a reliable foundation on which to build. And that's Shopware 6: Simple, flexible, state of the art and open source.
 
 # Tech
 
 Now let's have a look at the technology. The most obvious change is the switch to Symfony, for sure. Symfony is probably the most popular PHP framework and has shaped a whole generation of developers. By using Symfony in Shopware, we make sure, that it becomes easier to onboard developers on Shopware 6.
 
-For the same reason, we are switching from ExtJS to VueJS as a javascript framework for our new admin. VueJS describes itself as a "progressive and incrementally adoptable" framework. For us this means, that it can be tailored to our needs and requiremends. And again: We are convinced, that it makes it easier to onboard new developers to Shopware 6.
+For the same reason, we are switching from ExtJS to VueJS as a javascript framework for our new admin. VueJS describes itself as a "progressive and incrementally adoptable" framework. For us this means, that it can be tailored to our needs and requirements. And again: We are convinced, that it makes it easier to onboard new developers to Shopware 6.
 
 ## DAL
 

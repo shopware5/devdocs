@@ -47,7 +47,7 @@ For the same reason, we are switching from ExtJS to VueJS as a javascript framew
 
 Another major change is the new data abstraction layer (DAL). This is a layer between your database storage and the actual application and takes care of all your data operations - be it reads, writes, searches or aggregations.  
 
-![DAL schema](../img/dal.png)
+![DAL schema](/blog/img/dal.png)
 
 In Shopware 5 we introduced a similar layer for read operations only for products in the storefront. We found, that it made Shopware much more understandable and predictable for the development community. But in difference to the product services in Shopware 5, the DAL takes care of all entities and all kind of data access. For that reason, no more custom SQL queries should be required anymore. Furthermore, the DAL can also take care of syncing various storages: In modern e-commerce infrastructures you will easily find ElasticSearch and Redis in addition to MySQL. The DAL can be used to sync those storages, so that MySQL is used as a primary storage but ElasticSearch is always kept in sync. And there are even more functionalities such as versioning or translations, that you can make use of easily:
 
@@ -139,7 +139,7 @@ A new tool for merchants are the so called "shopping experiences". With this too
 
 There a dozens of prefabricated blocks, which show you all kind of combinations between images, texts, sliders, videos and commerce components. You can just pick the block, that comes closest to your imagination and drop it to the designer. This designer will always give you a realistic overview of how the shopping experience could look like in the frontend. At the same time it allows you to configure the elements to your needs: You can edit texts, swap elements with others or rearrange blocks. Every block is responsive by default. So you don't need to think about viewports and columns any more.
 
-![data mapping with the CMS](../img/cms-data-mapping.png)
+![data mapping with the CMS](/blog/img/cms-data-mapping.png)
 
 What makes the shopping experience so powerful is the fact, that every page you created this way, can be used as a layout for category pages, product pages or landing pages. You can even dynamically reference properties of those pages. For example: If you create a layout for categories, you can dynamically reference the category's name. For a product layout, you could dynamically reference an image of the product or its description.
 

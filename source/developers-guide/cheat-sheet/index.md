@@ -150,7 +150,9 @@ Say you want to load the attributes of an order on the account's order page:
         if ($args->getRequest()->getActionName() !== 'orders') {
             return;
         }
-
+        
+        // Retrieve the controller-object from the event arguments to access the view parameters
+        $controller = $args->get('subject');
         $view = $controller->View();
 
         // Fetch the order information from the template

@@ -181,7 +181,7 @@ We recommend running this command every 24 hours, at a time when you server expe
 
 While this guide is not meant to cover the technical details of the integration implementation in depth, there are some concepts that you need to keep in mind when configuring the integration between Shopware and Elasticsearch. The first, and probably most important, is that Elasticsearch is NOT a MySQL replacement. Although they provide, to some extent, similar features, Elasticsearch is and should be seen as a complement to a DBMS, not as a replacement. As such, you will still require a running MySQL instance, and its configuration will still greatly affect Shopware's performance in most actions.
 
-Another vital detail you should keep in mind when using Elasticsearch with Shopware 5.1 is that the data stored in Elasticsearch is a duplicate of the data already present in your Shopware 5 database. Whenever changes are made to your data (for example, you edit an article description), that information is saved to MySQL and, only later, to Elasticsearch.
+Another vital detail you should keep in mind when using Elasticsearch with Shopware is that the data stored in Elasticsearch is a duplicate of the data already present in your Shopware 5 database. Whenever changes are made to your data (for example, you edit an article description), that information is saved to MySQL and, only later, to Elasticsearch.
 
 ### Using and understanding the data synchronization mechanism
 
@@ -193,7 +193,7 @@ The asynchronous propagation of change to Elasticsearch is implemented using an 
 
 #### The synchronization process
 
-These events are handled by a CLI command included in Shopware 5.1, which you can execute using the following line:
+These events are handled by a CLI command included in Shopware, which you can execute using the following line:
 
 ```
 php bin/console sw:es:backlog:sync

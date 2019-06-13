@@ -49,7 +49,7 @@ mv composer-installation/{app,bin,Plugins,vendor,composer.json,shopware.php} ./
 mv composer-installation/.env.example ./.env
 ```
 
-The directories `custom`, `files`, `media`, `themes`, `var` and `web` are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have plugins in `engine/Shopware/Plugins/Community` or `engine/Shopware/Plugins/Local` they must be moved to ```./Plugins```!
+The directories `custom`, `files`, `media`, `themes`, `var` and `web` are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have plugins in `engine/Shopware/Plugins/Community` or `engine/Shopware/Plugins/Local` they must be moved to ```./Plugins```! Now we can delete the old `engine` directory because from now on the Shopware core files will be provided by the `shopware/shopware` composer package inside the `vendor` directory.
 
 After that we should reduce the .env file. Please use your database credentials from your `config.php`. If you have further config settings there move them to `app/config/config.php` and delete the `config.php` afterwards. The `.env` file should look like the following: 
 

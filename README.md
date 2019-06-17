@@ -49,6 +49,16 @@ If you want, you can customize the behavior of the toc list as well. You can def
 <div class="toc-list" data-depth="1" data-headline="Awesome table of contents"></div>
 ```
 
+## Hiding blog posts from search engines
+
+To add a `<meta name="robots" content="noindex, nofollow" />` to your blog post,
+you have to add the following frontmatter entry to your blog post:
+
+```yaml
+robots:
+    hide: true
+```
+
 ## Version History
 To create a version history table, you simply have to add a `history` array to your metadata.
 

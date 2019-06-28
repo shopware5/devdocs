@@ -17,6 +17,388 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.6
+
+### System requirements changes
+
+The **minimum PHP version** has been increased to **PHP 7.2 or higher**. We’ve also added support for **PHP 7.3** and
+encourage you to use the latest version. Due to this change, Shopware will start using real types instead of typehints on new
+services or interfaces, as well as on private methods.
+
+Existing services available for decoration, as well as hookable public or protected methods won't be strongly typed though,
+to not break compatibility in plugins. 
+
+The **minimum MySQL version is MySQL 5.7**, support for MySQL 5.5 and MySQL 5.6 has been dropped.
+
+The **minimum Elasticsearch version is 6.6**, support for Elasticsearch 2.0 and 5.0 has been dropped due to the 
+underlying library being used. Support for **Elasticsearch 7.0** has been added.
+
+### Library updates
+
+* Updated `Symfony` to 3.4.29
+* Updated `jQuery` to 3.4.1
+* Updated `doctrine/dbal` and `doctrine/orm` to 2.6.3 and `doctrine/common` to 2.10.0 
+* Updated `mpdf/mpdf` to 7.1.9
+* Updated `league/flysystem` to 1.0.46
+
+### Content Types
+
+Content Types are something similar to attributes, but for complete entities. You can create your own custom entities
+with all necessary fields using an XML file (provided by a plugin) or all by yourself in the backend.
+The main idea of this feature is to provide a possibility to easily create custom entities like recipes, store lists or
+job listings without having to write any code.
+
+A new entity can be defined by a list of fields. Some of them are meta fields (like `name`, `description` or an icon), others
+describe the essence of a content type, e.g. `Ingredients`, `Directions`, `Nutrition Facts`, `Preparation Time` and
+an image for a recipe.
+
+Each defined entity comes with the following capabilities:
+
+- a table with `s_custom_` prefix
+- a backend menu and controller for managing the entries (e.g. creating new or modifying existing recipes)
+- ACL resources for this backend menu
+- a repository service with `shopware.bundle.content_type.`**type_name**
+- an API controller for all CRUD operations (Custom**type_name** e.g. `CustomRecipe`)
+- (if explicitly enabled) a frontend controller with listing and detail views
+
+All custom entities are also accessible in templates using a new smarty function `fetchContent`
+
+Example
+```html
+{fetchContent type=recipe assign=recipes filter=[['property' => 'name', 'value' => 'Spaghetti Bolognese']]}
+
+{foreach $recipes as $recipe}
+    {$recipe.name}
+{/foreach}
+```
+
+The backend fields and titles can be translated using snippet namespace `backend/customYOURTYPE/main`.
+
+Plugins can provide their own entities using an XML schema at `Resources/contenttypes.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<contentTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Bundle/ContentTypeBundle/Resources/contenttypes.xsd">
+    <types>
+        <type>
+            <typeName>store</typeName>
+            <name>Stores</name>
+            <fieldSets>
+                <fieldSet>
+                    <field name="name" type="text">
+                        <label>Name</label>
+                        <showListing>true</showListing>
+                    </field>
+                    <field name="address" type="text">
+                        <label>Address</label>
+                        <showListing>false</showListing>
+                    </field>
+                    <field name="country" type="text">
+                        <label>Country</label>
+                        <showListing>false</showListing>
+                    </field>
+                </fieldSet>
+            </fieldSets>
+        </type>
+    </types>
+</contentTypes>
+```
+
+You can find more information and details (e.g. regarding available field types) in the [Developer Docs](https://developers.shopware.com/developers-guide/content-types/).
+
+### The request and response instances in Shopware now extend from Symfony Request / Response.
+
+`Enlight_Controller_Request_RequestHttp` is now extending `Symfony\Component\HttpFoundation\Request` and
+`Enlight_Controller_Response_ResponseHttp` extends `Symfony\Component\HttpFoundation\Response`.
+
+This allows you to use the Symfony Request properties you might be more familiar with, like the `ParameterBag`s
+`\Symfony\Component\HttpFoundation\Request::$attributes`, `\Symfony\Component\HttpFoundation\Request::$query`, 
+`\Symfony\Component\HttpFoundation\Request::$cookies`, `\Symfony\Component\HttpFoundation\Request::$headers` and many more.
+
+#### Updating your code using Rector
+
+[Rector](https://getrector.org/) is a reconstructor tool which does instant upgrades and instant refactoring of your code.
+We have contributed some packages to allow you to update your plugin automatically to new versions of Shopware, at least
+partially automatic. To see which Rectors are available at this point in time, see the [Rectors Overview](https://github.com/rectorphp/rector/blob/master/docs/AllRectorsOverview.md#shopware),
+this list will grow over time.
+
+To upgrade your plugin code, just run the following command after installing Rector:
+
+```bash
+php bin/rector process --level=shopware56 custom/plugins/MyPlugin -a autoload.php
+```
+
+### Controller Registration using DI-Tag
+
+To allow for easier testing of controllers, Shopware now supports controllers as a service: they can be defined like any
+other service in the DIC and registered as a controller using the DI tag `shopware.controller`. This DI tag needs the
+attributes `module` and `controller` to map them into Shopware's routing infrastructure. These controllers are also lazy-loaded.
+
+#### Example DI
+
+```xml
+<service id="swag_example.controller.frontend.test" class="SwagExample\Controller\Frontend\Test">
+    <argument type="service" id="dbal_connection"/>
+    
+    <tag name="shopware.controller" module="frontend" controller="test"/>
+</service>
+```
+
+#### Example Controller
+
+```php
+<?php
+
+namespace SwagExample\Controller\Frontend;
+
+use Doctrine\DBAL\Connection;
+
+class Test extends \Enlight_Controller_Action
+{
+    private $connection;
+
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+        parent::__construct();
+    }
+
+    public function indexAction()
+    {
+        // Do something with $this->connection
+    }
+    
+    public function detailAction(int $productNumber = null, ListProductServiceInterface $listProductService, ContextServiceInterface $contextService)
+    {
+        if (!$productNumber) {
+            throw new \RuntimeException('No product number provided');
+        }
+        
+        $this->View()->assign('product', $listProductService->getList([$productNumber], $contextService->getShopContext()));
+    }
+}
+```
+### Autowiring of controller actions parameters
+
+The new controllers tagged with `shopware.controller` tag, can now have parameters in action methods. Possible parameters are
+
+* Services (e.g `ListProductService $listProductService`)
+* $request (e.g `Request $request`)
+* Request parameters, e.g `myAction(int $limit = 0)`, filled by requesting `/myaction?limit=5`
+
+
+### Custom validation of order numbers (SKU)
+
+Up to now, the validation of order numbers (or SKUs) was done in form of a Regex-Assertion in the Doctrine model at
+`Shopware\Models\Article\Detail::$number`. That solution was not flexible and didn't allow any modifications of said
+regex, let alone a complete custom implementation of a validation.
+ 
+Now, a new constraint `Shopware\Components\Model\DBAL\Constraints\OrderNumber` is used instead, which is a wrapper
+around `\Shopware\Components\OrderNumberValidator\RegexOrderNumberValidator`.
+
+This way you can either change the regex which is being used for validation by defining one yourself in the `config.php`:
+```php
+<?php
+return [
+    'product' => [
+        'orderNumberRegex' => '/^[a-zA-Z0-9-_.]+$/' // This is the default
+    ],
+    'db' => [...],
+]
+``` 
+Or you can create your own implementation of the underlying interface
+`Shopware\Components\OrderNumberValidator\OrderNumberValidatorInterface` and use it for the validation by simply
+decorating the current service with id `shopware.components.ordernumber_validator` and e.g. query some API.
+
+### Definition of MySQL version in config
+
+It is now possible to define the MySQL version being used in the `config.php` as part of the Doctrine default configuration.
+The version can be determined by running the SQL query `SELECT version()`, the result needs to be provided in the `db.serverVersion` config:
+
+```php
+<?php
+return [
+     ...
+     'db' => [
+         ...
+         'serverVersion' => '5.7.24',
+     ],
+];
+```
+Providing this value via config makes it unnecessary for Doctrine to figure the version out by itself,
+thus reducing the number of database calls Shopware makes per request by one.
+
+If you are running a MariaDB database, you should prefix the `serverVersion` with `mariadb`- (e.g.: `mariadb-10.2.12`).
+
+### Payment Token
+
+Some internet security software packages recognize requests to domains of payment providers and open a new clean browser
+without cookies out of security concerns. After returning from the payment provider, the customer then will be
+redirected to the home page, because this new browser instance does not contain the previous session.
+
+For this reason there is now a service to generate a token, which can be added to the returning url
+(e.g `/payment_paypal/return?paymentId=test123&swPaymentToken=abc123def`). This parameter will be resolved in a
+PreDispatch-event by the `\Shopware\Components\Cart\PaymentTokenSubscriber`: If the user is not logged in, but the URL
+contains a valid token, the user will get back his former session and will be redirected to the original URL,
+but without the token
+
+Example implementation:
+
+```php
+<?php
+
+use \Shopware\Components\Cart\PaymentTokenService;
+
+class MyPaymentController extends Controller {
+
+    public function gatewayAction()
+    {
+        // Do some payment things
+        $token = $this->get('shopware.components.cart.payment_token')->generate();
+        
+        $returnParameters = [
+            'controller' => 'payment_paypal',
+            'action' => 'return',
+            PaymentTokenService::TYPE_PAYMENT_TOKEN => $token
+        ];
+        $returnLink = $this->router->assemble($returnParameters);
+        
+        $redirectUrl = $this->paymentProviderApi->createPayment($this->getCart(), $returnLink);
+        
+        $this->redirect($redirectUrl);
+    }
+}
+```
+
+### Replaced Codemirror with Ace-Editor
+
+Codemirror has been replaced with the [Ace-Editor](https://ace.c9.io/). For compatibility reason, Ace-Editor supports all xtypes / classes from Codemirror.
+
+The following modes are available:
+- css
+- html
+- javascript
+- json
+- less
+- mysql
+- php
+- sass
+- scss
+- smarty
+- sql
+- text
+- xml
+- xquery
+
+The Ace-Editor has some advantages over the previous editor:
+- It provides syntax validation (see [Improved ExtJs Error Reporter in Backend](#improved-extjs-error-reporter-in-backend))
+- It supports autocompletion
+- It is faster
+
+You can see the autocompletion in action in the mail templates of Shopware 5.6: It autompletes the available Smarty
+variables and tags like `if` or `foreach`. This might be extended to other areas as well in future releases.
+
+If you are interested in implementing this functionality in your own plugin, you'll first have to
+[register a `completer`-callback](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L107) function.
+This [`callback`](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L193) determines if an autocompletion could be possible (by performing some [sanity checks](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L197)) and doing an AJAX-request containing the relevant text portion of the editor. 
+
+The backend now can respond with a data structure containing the relevant autocompletion suggestions. How these are
+to be determined depends on your use case and underlying data structures. The `MailBundle` uses an
+`\Shopware\Bundle\MailBundle\AutoCompleteResolver` that pipes the given text through multiple
+`\Shopware\Bundle\MailBundle\AutocompleteResolver\Resolver`s, each checking for specific possible completions.
+
+### Improved ExtJs Error Reporter in Backend
+
+When an error occurred in the JavaScript of the Backend, the Error Reporter that pops up in these cases often wasn't
+very helpful since the stacktrace being shown in such cases can be overwhelming.
+
+Thanks to the new [Ace-Editor](#replaced-codemirror-with-ace-editor), the Error Reporter can now show you the exact
+position where the error occurred in the code and give you a hint what you might be able to do about it.
+
+### ExtJs Developer-Mode
+
+ExtJs developer mode loads a developer-version file of ExtJs to provide code documentation, warnings and better
+error messages. This mode can be enabled using this snippet in the `config.php`:
+
+```php
+'extjs' => [
+    'developer_mode' => true
+]
+```
+
+### Improved Robots.txt
+
+The `robots.txt` generation has been reworked and now shows all links from all language shops.
+To remove or add entries overwrite the blocks `frontend_robots_txt_disallows_output`, `frontend_robots_txt_allows_output` and call methods `setAllow`, `setDisallow`, `removeAllow`, `removeDisallow` on the `$robotsTxt` service.
+
+Example:
+
+```smarty
+{block name="frontend_robots_txt_disallows_output"}
+    {$robotsTxt->removeDisallow('/ticket')}
+    {$smarty.block.parent}
+{/block}
+```
+
+### Plugin specific logger
+
+There is a new logger service for each plugin.
+The service ID of the plugin specific logger is a combination of the plugin's service prefix (lower case plugin name) and `.logger`.
+For example: when a plugin's name is `SwagPlugin` the specific logger can be accessed via `swag_plugin.logger`.
+
+This logger will now write into the logs directory (`var/logs`) using a rotating file pattern like the other logger services.
+The settings for the logger can be configured using the DI parameters `swag_plugin.logger.level`(defaults to shopware
+default logging level) and `swag_plugin.logger.max_files` (defaults to 14 like other Shopware loggers).
+
+In our example, the logger would write into a file like `var/log/swag_plugin_production-2019-03-06.log`.
+
+Support for easier log message writing is enabled, so `key` => `value` arrays can be used like this:
+
+```php
+<?php
+
+$logger->fatal("An error is occured while requesting {module}/{controller}/{action}", $controller->Request()->getParams());
+```
+
+### Custom Sorting of products in categories
+
+Products in a category can now be sorted "by hand". This specific sorting can also be created using the categories API resource.
+
+They will be applied when the associated sorting has been selected in the storefront. Not manually sorted products will
+use the configured normal fallback sorting.
+
+To create a custom sorting, find your category in the Category backend module and click the new tab `Custom Sorting`.
+
+Two display modes are available: a normal listview and a more frontend-like grid view.
+
+### HTTP2 Server Push Support
+
+HTTP2 Server Push allows Shopware to push certain resources to the browser without it even requesting them. To do so,
+Shopware creates `Link`-headers for specified resources, informing Apache or Nginx to push these files to the browser.
+Server Push is supported since
+[Apache 2.4.18](https://httpd.apache.org/docs/2.4/mod/mod_http2.html#h2push) and
+[nginx 1.13.9](https://www.nginx.com/blog/nginx-1-13-9-http2-server-push/#http2_push).
+
+These resources are only pushed on the very first request of a client. After that, the files should be cached in the
+browser and don't need to be transmitted anymore. The presence of a `session`-cookie is used to determine if a push is necessary.
+
+The Smarty function `{preload}` is used to define in the template which resource are to be pushed and as what.
+
+Example for CSS:
+```html
+<link href="{preload file={$stylesheetPath} as="style"}" media="all" rel="stylesheet" type="text/css" />
+```
+
+Example for Javascript:
+```html
+<script src="{preload file={link file='somefile.js'} as="script"}"></script>
+```
+
+Server Push can be enabled in the `Various` section of the `Cache/Performance` settings. Please do not enable
+Server Push support if you are using Google's Pagespeed module: It creates custom CSS and Javascript files for the browser,
+replacing the ones Shopware contains in the HTML. So pushing the original files to the browser leads to an unnecessary overhead.
+
 ## Shopware 5.5
 
 ### System requirements changes

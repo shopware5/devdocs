@@ -21,7 +21,7 @@ With __Shopware 5.3__ we introduced shopping world / emotion presets. This tutor
 can be contributed to the Community Store like any other plugin. You just have to set a special flag in your Account settings for deployment, so that your plugin gets marked as emotion preset.
 
 ### Qualification
-Before getting started with this tutorial, it is recommended to become familiar with creating Shopware plugins first, since this guide will only point out the extras for creating a __custom emotion preset plugin__. For further information on developing plugins see [our plugin guides](plugin-guide/).
+Before getting started with this tutorial, it is recommended to become familiar with creating Shopware plugins first, since this guide will only point out the extras for creating a __custom emotion preset plugin__. For further information on developing plugins see [our plugin guides](/plugin-guide).
 
 ## Plugin Structure
 The structure of the example plugin is as follows:
@@ -39,7 +39,7 @@ As you can see in the example plugin, which you can find at the end of this arti
 required for the preset import during plugin installation.
 
 We have some simple getters here that are required to be implemented. With this getters all information
-of your preset will be collected during installation. 
+of your preset will be collected during installation.
 
 The `getPresetData()` method uses a simple helper class that gets the json data from our export and replaces a path placeholder `__ASSETPATH__` we are using
 with the actual path to the assets inside our plugin.
@@ -109,7 +109,7 @@ private function getPresetInstances()
 }
 ```
 
-During installation we pass an array of `PresetMetaDataInterfaces` to the `PresetInstaller`. 
+During installation we pass an array of `PresetMetaDataInterfaces` to the `PresetInstaller`.
 
 For uninstallation we just use the __technical__ name of our emotion preset.
 

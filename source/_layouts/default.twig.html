@@ -12,7 +12,9 @@
     {% endblock %}
 
     {% if page.menu_chapter %}
-        <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex" />
+    {% elseif page.robots.hide == true %}
+    <meta name="robots" content="noindex, nofollow" />
     {% endif %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">

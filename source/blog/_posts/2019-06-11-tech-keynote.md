@@ -8,6 +8,9 @@ tags:
 categories: 
 - dev
 
+robots:
+    hide: true
+
 authors: [dn]
 github_link: /blog/_posts/2019-06-11-tech-keynote.md
 

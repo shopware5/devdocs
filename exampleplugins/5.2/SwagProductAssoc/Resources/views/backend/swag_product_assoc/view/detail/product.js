@@ -5,9 +5,34 @@ Ext.define('Shopware.apps.SwagProductAssoc.view.detail.Product', {
     alias: 'widget.product-detail-container',
     padding: 20,
 
-    configure: function() {
+    configure: function () {
         return {
             controller: 'SwagProductAssoc',
+            fieldSets: [
+                {
+                    title: '',
+                    fields: {
+                        name: {
+
+                        },
+                        taxId: {
+                            allowBlank: false
+                        },
+                        active: {
+
+                        },
+                        description: {
+
+                        },
+                        descriptionLong: {
+
+                        },
+                        lastStock: {
+
+                        }
+                    }
+                },
+            ]
 //            associations: [ 'variants', 'categories', 'attribute' ]
         };
     }

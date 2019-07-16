@@ -135,7 +135,7 @@ return [
     ...
     'es' => [
         ...
-        'dynamicMappingEnabled' => true,
+        'dynamic_mapping_enabled' => true,
     ]
 ];
 ```

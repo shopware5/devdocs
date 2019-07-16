@@ -66,8 +66,8 @@ With associations, the links between the different models can be defined in Doct
 If you have difficulty deciding when to use `@ORM\OneToMany` or when to use `@ORM\ManyToOne`, there is a little trick that can help you. In the `@ORM\OneToMany` and `@ORM\ManyToOne` associations, you can simply enter the model names and replace the word "_To_" with "_Has_".
 
 **Examples**  
-* `@ORM\One` **Article** Has Many **Details**  
-* `@ORM\Many` **Article** Has One **Supplier**
+* `@ORM\Many` **Article** Has Many **Details**  
+* `@ORM\One` **Article** Has One **Supplier**
 
 _The name of the model is always on the left side of the model, with which the association is defined._
 

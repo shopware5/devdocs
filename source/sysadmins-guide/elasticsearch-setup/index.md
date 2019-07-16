@@ -53,7 +53,7 @@ To enable Elasticsearch (provided it's already installed, configured and running
         'number_of_replicas' => null,
         'number_of_shards' => null,
         'version' => '5.6.5',
-        'dynamicMappingEnabled' => true,
+        'dynamic_mapping_enabled' => true,
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -80,7 +80,7 @@ return [
         'number_of_replicas' => null,
         'number_of_shards' => null,
         'version' => '5.6.5',
-        'dynamicMappingEnabled' => true,
+        'dynamic_mapping_enabled' => true,
         'client' => [
             'hosts' => [
                 'localhost:9200'
@@ -135,7 +135,7 @@ return [
     ...
     'es' => [
         ...
-        'dynamicMappingEnabled' => true,
+        'dynamic_mapping_enabled' => true,
     ]
 ];
 ```

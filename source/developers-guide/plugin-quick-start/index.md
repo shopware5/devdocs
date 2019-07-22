@@ -1188,3 +1188,41 @@ Other plugins can be accessed via the `getPlugins()` method of the kernel.
 $swagExample = $this->container->get('kernel')->getPlugins()['SwagExample'];
 $path = $swagExample->getPath();
 ```
+
+## Adding acl privilege dependencies
+
+When creating a new ACL resource for your custom backend application you can define possible dependencies that privileges of your new application to  existing/other resources and privileges. 
+This relations helps the shop owner while selecting your resource privilege to select all other required privileges. To achieve this, create a new plugin migration for table `s_core_acl_privilege_requirements` and insert your resource privilege id into the column `privilege_id` and your resource id into column `required_privilege_id` your acl resource needs.
+
+Example migration
+
+```php
+<?php
+
+namespace SwagExamplePlugin\Migrations;
+
+use Shopware\Components\Migrations\AbstractPluginMigration;
+
+class Migration1 extends AbstractPluginMigration
+{
+    public function up($modus): void
+    {
+        // Acl resource privilege "my_new_module_acl_name" with name "create" needs "create" privilege from acl resource "article"
+        $sql = <<<SQL
+SET @myResourceId = (SELECT id FROM s_core_acl_resources WHERE name = "my_new_module_acl_name");
+SET @myResourcePrivilegeId = (SELECT id FROM s_core_acl_privileges WHERE name = "create" AND resourceID = @myResourceId);
+
+SET @neededResourceId = (SELECT id FROM s_core_acl_resources WHERE name = "article");
+SET @neededPrivilegeId = (SELECT id FROM s_core_acl_privileges WHERE name = "read" AND resourceID = @neededResourceId);
+
+INSERT INTO s_core_acl_privilege_requirements (privilege_id, required_privilege_id) VALUES(@myResourcePrivilegeId, @neededPrivilegeId);
+SQL;
+
+        $this->addSql($sql);
+    }
+
+    public function down(bool $keepUserData): void
+    {
+    }
+}
+```

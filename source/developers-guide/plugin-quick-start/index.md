@@ -1191,7 +1191,7 @@ $path = $swagExample->getPath();
 
 ## Adding acl privilege dependencies
 
-When creating a new ACL resource for your custom backend application you can define possible dependencies that privileges of your new application to  existing/other resources and privileges. 
+When creating a new ACL resource for your custom backend application you can define possible dependencies that the privileges of your new application has to existing/other resources and privileges. 
 This relations helps the shop owner while selecting your resource privilege to select all other required privileges. To achieve this, create a new plugin migration for table `s_core_acl_privilege_requirements` and insert your resource privilege id into the column `privilege_id` and your resource id into column `required_privilege_id` your acl resource needs.
 
 Example migration

@@ -1209,13 +1209,13 @@ class Migration1 extends AbstractPluginMigration
     {
         // Acl resource privilege "my_new_module_acl_name" with name "create" needs "create" privilege from acl resource "article"
         $sql = <<<SQL
-SET @myResourceId = (SELECT id FROM s_core_acl_resources WHERE name = "my_new_module_acl_name");
-SET @myResourcePrivilegeId = (SELECT id FROM s_core_acl_privileges WHERE name = "create" AND resourceID = @myResourceId);
+SET @myResourceId = (SELECT id FROM `s_core_acl_resources` WHERE name = "my_new_module_acl_name");
+SET @myResourcePrivilegeId = (SELECT id FROM `s_core_acl_privileges` WHERE name = "create" AND resourceID = @myResourceId);
 
-SET @neededResourceId = (SELECT id FROM s_core_acl_resources WHERE name = "article");
-SET @neededPrivilegeId = (SELECT id FROM s_core_acl_privileges WHERE name = "read" AND resourceID = @neededResourceId);
+SET @neededResourceId = (SELECT id FROM `s_core_acl_resources` WHERE name = "article");
+SET @neededPrivilegeId = (SELECT id FROM `s_core_acl_privileges` WHERE name = "read" AND resourceID = @neededResourceId);
 
-INSERT INTO s_core_acl_privilege_requirements (privilege_id, required_privilege_id) VALUES(@myResourcePrivilegeId, @neededPrivilegeId);
+INSERT INTO `s_core_acl_privilege_requirements` (privilege_id, required_privilege_id) VALUES(@myResourcePrivilegeId, @neededPrivilegeId);
 SQL;
 
         $this->addSql($sql);

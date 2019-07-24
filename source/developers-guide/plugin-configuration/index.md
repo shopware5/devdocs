@@ -273,6 +273,11 @@ Define and create your own ExtJs data store for the backend Plugin configuration
     }
     }).create();//new ]]>
             </store>
+            <options>
+                <valueField>id</valueField>
+                <displayField>name</displayField>
+                <isCustomStore>true</isCustomStore>
+            </options>
 </element>
 ```
 Note that the `//new ` is an important hack to load the store

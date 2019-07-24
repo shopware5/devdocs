@@ -110,7 +110,7 @@ class Shopware_Controllers_Frontend_SwagEvents extends Enlight_Controller_Action
             'SwagEvent_Controller_indexAction', // give the event a unique name and add the payload
             [
                 'payload' => 123,
-                'payload2' => 'more Payload'
+                'payload2' => 'more Payload',
             ]
         );
         
@@ -137,7 +137,7 @@ $this->container->get('events')->notify(
     'SwagEvent_Controller_Index_After_Do_Some_Magic',
     [
         'payload' => 123,
-        'payload2' => 'more Payload'
+        'payload2' => 'more Payload',
     ]
 );
 ```
@@ -194,8 +194,8 @@ $this->container->get('events')->notify(
     'SwagEvent_Controller_notifyAction',
     [
         'payload' => 123,
-        'payload2' => 'more Payload'
-        'yourPayload' => 'LoremIpsum' 
+        'payload2' => 'more Payload',
+        'yourPayload' => 'LoremIpsum', 
     ]
 );
 ```

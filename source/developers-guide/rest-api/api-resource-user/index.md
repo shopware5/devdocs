@@ -166,8 +166,8 @@ If you want to create a user, you can send a POST request to /users/
 
 *Example code:*
 ```php
-$client->get('users', [
-    'roleId' => 6,
+$client->post('users', [
+    'roleId' => 1,
     'localeId' => 1,
     'username' => 'example',
     'name' => 'test',

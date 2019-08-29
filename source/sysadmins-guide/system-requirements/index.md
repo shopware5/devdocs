@@ -12,12 +12,10 @@ menu_order: 10
 ### Webserver 
 
 - Linux-based operating system with Apache 2.2 or 2.4 web server with enabled  `mod_rewrite` module and ability to override options in `.htaccess` files
-- PHP 5.6.4 or higher*
-- MySQL 5.5 or higher
+- PHP 7.2.0 or higher
+- MySQL 5.7 or higher
 - Possibility to set up cron jobs
 - Minimum 4 GB available hard disk space
-
- (\*) PHP 5.6.0 - 5.6.3 are not compatible caused by a [session bug](https://bugs.php.net/bug.php?id=68331)
 
 ### Required PHP extensions:
 
@@ -57,6 +55,7 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
 - When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
+- For enabling the HSTS header, Apache's `header` module is necessary. Simply add the line `Header always set Strict-Transport-Security "max-age=31536000"` to your .htaccess
 
 ### Other requirements
 

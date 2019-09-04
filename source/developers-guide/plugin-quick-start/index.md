@@ -189,6 +189,30 @@ Provide meta information about your plugin with the `plugin.xml` file. Read the 
 To make it easier to identify you plugin in the plugin manager module in the backend, you should provide a `plugin.png` file in your plugin root directory.
 This small icon must have a size of 16x16px.
 
+## Plugin helper class SloganPrinter
+
+To have a clean structure and readability in our plugin, we sort out functionality in a separate class at: `custom/plugins/SwagSloganOfTheDay/Components/SloganPrinter.php` where the slogan-texts get returned.
+
+```php
+ <?php
+
+ namespace SwagSloganOfTheDay\Components;
+
+ class SloganPrinter
+ {
+    public function getSlogan()
+    {
+        $slogans = [
+            'An apple a day keeps the doctor away',
+            'Let’s get ready to rumble',
+            'A rolling stone gathers no moss',
+        ];
+
+        return array_rand(array_flip($slogans));
+    }
+ }
+```
+
 ## The plugin base file
 The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed
 in either `custom/plugins/SwagSloganOfTheDay` or `custom/project/SwagSloganOfTheDay` if it is a project-specific
@@ -409,13 +433,13 @@ Now our plugin's `index.tpl` might look like this:
         }
         .slogan {
             {if $italic}font-style:italic;{/if}
-            font-size:{$sloganSize}px;
+            font-size:{$swagSloganFontSize}px;
         }
     </style>
 
 
     <div class="slogan-box">
-        <span class="slogan">{$slogan}</span>
+        <span class="slogan">{$swagSloganContent}</span>
     </div>
     
     {$smarty.block.parent}

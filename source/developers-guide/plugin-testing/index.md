@@ -46,7 +46,7 @@ require __DIR__ . '/../../../../../tests/Functional/bootstrap.php';
 ```
 
 <div class="alert alert-warning">
-The path to this file depends on wheter you are using the <b>legacy plugin system</b> or the <b>new 5.2 Plugin system</b>.
+The path to this file depends on whether you are using the <b>legacy plugin system</b> or the <b>new 5.2 Plugin system</b>.
 </div>
 
 The helper bootstrap starts the testing kernel and makes several functions like `Shopware()` available for you. You can then use the __service container__.
@@ -57,7 +57,7 @@ You can then place your test which could look like this:
 ```php
 <?php
 
-class CalculatorTest extends Shopware\Components\Test\Plugin\TestCase
+class CalculatorTest extends Shopware\Tests\Functional\Components\Plugin\TestCase
 {
     protected static $ensureLoadedPlugins = [
         'MyPlugin' => [

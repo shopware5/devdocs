@@ -253,3 +253,17 @@ With Shopware 5.3 it is possible to use [redis](https://redis.io/) as cache adap
 ]
 ```
 Be aware, that for Zend_Cache::CLEANING_MODE_ALL the cache implementation will issue "FLUSHDB" and therefore clear the current redis db index. For that reason, the db index for the cache should not be used for persistent data. 
+
+## Changing MySQL Timezone
+With Shopware 5.6.2 it is possible to define a custom timezone for the connection of your Shopware instance.
+
+```
+    'db' => [
+        'username' => 'someuser',
+        'password' => 'somedb',
+        ...
+        timezone' => null, // Something like: 'UTC', 'Europe/Berlin', '-09:30',
+    ],
+    ...
+```
+Please check the system info in your Shopware backend after changing this value to make sure the timezone is known to MySQL (use a relative offset if in doubt) and that there is no time difference between PHP and MySQL.

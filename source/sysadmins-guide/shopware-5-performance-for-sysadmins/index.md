@@ -88,7 +88,7 @@ The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx 
 
 ## PHP
 
-At the time of this publication, the latest stable PHP version was 7.2, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.2 whenever possible, though Shopware currenty still supports PHP 5.6. That support will be dropped when the official maintenance for PHP 5.6 ends.
+At the time of this publication, the latest stable PHP version was 7.3, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.3 whenever possible, though Shopware currenty still supports PHP 7.2. Please check the supported PHP versions of your Shopware version before updating PHP.
 
 ### Opcode cache
 

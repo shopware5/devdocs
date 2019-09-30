@@ -68,11 +68,11 @@ sudo apt-get install memcached
 
 Also the [PHP memcached extension](https://pecl.php.net/package/memcached) has to be installed.
 
-For Debian/Ubuntu based distributions you can just install the `php5-memcached` package:
+For Debian/Ubuntu based distributions you can just install the `php-memcached` package:
 
 
 ```bash
-sudo apt-get install php5-memcached
+sudo apt-get install php-memcached
 ```
 
 For other distributions you can [compile](http://php.net/manual/en/memcached.installation.php) the extension by yourself.
@@ -84,15 +84,15 @@ In this example the memcache server was installed locally ("localhost") on the a
 have a stand alone memcache instance in place:
 
 ```php
-'session' => array(
+'session' => [
     'save_handler' => 'memcached',
     'save_path' => "localhost:11211",
-),
+],
 
-'backendsession' => array(
+'backendsession' => [
     'save_handler' => 'memcached',
     'save_path' => "localhost:11211",
-),
+],
 ```
 
 ### Redis
@@ -120,17 +120,16 @@ sudo apt-get install php-redis
 In this example the redis server is running locally (127.0.0.1) on port 6379:
 
 ```php
-'session' => array(
+'session' => [
     'save_handler' => 'redis',
     'save_path' => "tcp://127.0.0.1:6379",
-),
+],
 
-'backendsession' => array(
+'backendsession' => [
     'save_handler' => 'redis',
     'save_path' => "tcp://127.0.0.1:6379",
-),
+],
 ```
-
 
 ### File
 The "file" session adapter also supports session locking and will create sessions on the file system of each app server.
@@ -156,23 +155,23 @@ The database session handler is Shopware's default session handler.
 #### Configuration
 
 ```php
-'session' => array(
+'session' => [
     'save_handler' => 'db',
-),
+],
 
-'backendsession' => array(
+'backendsession' => [
     'save_handler' => 'db',
-),
+],
 ```
 
 #### Disable locking
 As of Shopware 5.2.13, you can disable the session locking for the database handler:
 
 ```php
-'session' => array(
+'session' => [
     'save_handler' => 'db',
     'locking' => false
-)
+]
 ```
 
 #### Blocking transactions

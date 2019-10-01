@@ -404,11 +404,29 @@ subgroup: REST API
 | bindTimeFrom           | integer                  |                                                 |
 | bindTimeTo            | integer                  |                                                 |
 | bindInStock            | integer                  |                                                 |
+| bindLastStock            | integer                  |                                                 |
 | bindWeekdayFrom        | integer                  |                                                 |
-| bindPriceTo            | integer                  |                                                 |
+| bindWeekdayTo        | integer                  |                                                 |
+| bindWeightFrom        | decimal                  |                                                 |
+| bindWeightTo        | decimal                  |                                                 |
+| bindPriceFrom        | decimal                  |                                                 |
+| bindPriceTo            | decimal                  |                                                 |
 | bindSql                | string                  |                                                 |
 | statusLink            | string                  |                                                 |
 | calculationSql         | string                  |                                                 |
+| attribute         | object/null                  | **[DispatchAttribute](#dispatch-attribute)**        |
+
+## Dispatch Attribute
+
+* **Model:** Shopware\Models\Attribute\Dispatch
+* **Table:** s_premium_dispatch_attributes
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| dispatchId      | integer (foreign key) |                                                 |
 
 ## Document
 

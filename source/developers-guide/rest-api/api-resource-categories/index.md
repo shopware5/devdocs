@@ -170,7 +170,7 @@ Appended to the above mentioned list, you will also find the following data:
 ```
 
 ## DELETE
-To delete a cache, simply call the specified resource with the `DELETE` operation as the following example shows:
+To delete a category, simply call the specified resource with the `DELETE` operation as the following example shows:
 
 * **(DELETE) http://my-shop-url/api/categories/id**
 

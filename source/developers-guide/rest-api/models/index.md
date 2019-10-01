@@ -806,19 +806,21 @@ The field `path` has to be the local path to the image, seen from the root of th
 
 ## Shipping
 
-* **Model:** Shopware\Models\Customer\Shipping
-* **Table:** s_user_shippingaddress
+* **Model:** Shopware\Models\Order\Shipping
+* **Table:** s_order_shippingaddress
 
 ### Structure
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
-| customerId             | integer (foreign key) | **[Customer](../api-resource-customer/)**       |
+| orderId                    | integer (primary key) |                                                 |
+| customerId             | integer (foreign key) | **[Customer](#customer)**       |
 | countryId             | integer (foreign key) | **[Country](#country)**                         |
 | stateId             | integer (foreign key) | **[State](#state)**                             |
 | company              | string                  |                                                    |
 | department          | string                  |                                                    |
+| title               | string                  |                                                    |
 | salutation          | string                  |                                                    |
 | number              | string                  |                                                    |
 | firstName              | string                  |                                                    |
@@ -826,19 +828,23 @@ The field `path` has to be the local path to the image, seen from the root of th
 | street              | string                  |                                                    |
 | zipCode              | string                  |                                                    |
 | city                  | string                  |                                                    |
-| attribute              | object                  |    **[SippingAttribute](#shipping-attribute)**        |
+| additionalAddressLine1 | string                  |                                                    |
+| additionalAddressLine2 | string                  |                                                    |
+| country              | object                  |    **[Country](#country)**        |
+| state              | object                  |    **[State](#state)**        |
+| attribute              | object                  |    **[ShippingAttribute](#shipping-attribute)**        |
 
 ## Shipping Attribute
 
-* **Model:** Shopware\Models\Attribute\CustomerShipping
-* **Table:** s_user_shippingaddress_attributes
+* **Model:** Shopware\Models\Attribute\OrderBilling
+* **Table:** s_order_shippingaddress_attributes
 
 ### Structure
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
-| customerShippingId  | integer (foreign key) |                                                 |
+| orderShippingId  | integer (foreign key) |                                                 |
 | text1                  | string                  |                                                    |
 | text2                  | string                  |                                                    |
 | text3                  | string                  |                                                    |

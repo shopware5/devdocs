@@ -126,19 +126,21 @@ subgroup: REST API
 
 ## Billing
 
-* **Model:** Shopware\Models\Customer\Billing
-* **Table:** s_user_billingaddress
+* **Model:** Shopware\Models\Order\Billing
+* **Table:** s_order_billingaddress
 
 ### Structure
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
+| orderId             | integer (foreign key) |                                                 |
 | customerId             | integer (foreign key) |                                                 |
 | countryId             | integer (foreign key) | **[Country](#country)**                         |
 | stateId             | integer (foreign key) |                                                 |
 | company              | string                  |                                                    |
 | department          | string                  |                                                    |
+| title                | string                  |                                                    |
 | salutation          | string                  |                                                    |
 | number              | string                  |                                                    |
 | firstName              | string                  |                                                    |
@@ -146,23 +148,26 @@ subgroup: REST API
 | street              | string                  |                                                    |
 | zipCode              | string                  |                                                    |
 | city                  | string                  |                                                    |
+| additionalAddressLine1 | string                  |                                                    |
+| additionalAddressLine2 | string                  |                                                    |
 | phone                  | string                  |                                                    |
-| fax                  | string                  |                                                    |
 | vatId                  | string                  |                                                    |
+| country              | object                  |    **[Country](#country)**                           |
+| state              | object/null                  |    **[State](#state)**      |
 | birthday              | date/time              |                                                    |
 | attribute              | object                  |    **[BillingAttribute](#billing-attribute)**      |
 
 ## Billing Attribute
 
-* **Model:** Shopware\Models\Attribute\CustomerBilling
-* **Table:** s_user_billingaddress_attributes
+* **Model:** Shopware\Models\Attribute\OrderBilling
+* **Table:** s_order_billingaddress_attributes
 
 ### Structure
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
-| customerBillingId      | integer (foreign key) |                                                 |
+| orderBillingId      | integer (foreign key) |                                                 |
 | text1                  | string                  |                                                    |
 | text2                  | string                  |                                                    |
 | text3                  | string                  |                                                    |
@@ -892,7 +897,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 | Field                 | Type                  | Original object                                 |
 |-----------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
-| countryId             | integer (foreign key) | **[Country](../api-resource-countries/)**       |
+| countryId             | integer (foreign key) | **[Country](#country)**       |
 | position              | integer               |                                                 |
 | name                  | string                |                                                 |
 | shortCode             | string                |                                                 |

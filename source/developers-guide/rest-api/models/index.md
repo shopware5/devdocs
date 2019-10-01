@@ -887,7 +887,6 @@ The field `path` has to be the local path to the image, seen from the root of th
 | baseUrl              | string                  |                                                 |
 | hosts                  | string                  |                                                 |
 | secure              | boolean                  |                                                 |
-| alwaysSecure          | boolean                  |                                                 |
 | secureHost          | string                  |                                                 |
 | secureBasePath      | string                  |                                                 |
 | default              | boolean                  |                                                 |

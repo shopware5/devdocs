@@ -135,9 +135,9 @@ array(
 When handling snippets while rendering templates, the following workflow is used:
 
 + If `readFromDb` is `true`, Shopware will look for your snippet value in the database
-+ If the snippet is not present in the database, has a default value set and `writeToDb` is `true`, Shopware will write that value into the database.
++ If the snippet is not present in the database, has set a default value and `writeToDb` is `true`, Shopware will write that value into the database.
 + If `readFromIni` is `true`, Shopware will look for your snippet value in your .ini files.
-+ If the snippet is not present in the .ini file, has a default value set and `writeToIni` is `true`, Shopware will write that value into an .ini file.
++ If the snippet is not present in the .ini file, has set a default value and `writeToIni` is `true`, Shopware will write that value into an .ini file.
 
 The additional `showSnippetPlaceholder` (introduced in Shopware 5.0.2) option allows you to specify how you want Shopware to display empty and undefined snippets (snippets that are declared in your template files, but are not defined or defined as empty in your database and/or .ini files). By default, these snippets are displayed as an empty string, which is recommended for production environments. If you set this option to `true`, these snippets will be rendered as their name wrapped in hash signs. This makes it easier for you to identify and handle missing or empty snippets during development.
 

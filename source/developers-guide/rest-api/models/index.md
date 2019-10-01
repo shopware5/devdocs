@@ -444,7 +444,7 @@ subgroup: REST API
 
 ## Document Type
 
-* **Model:** Shopware\Models\Order\Document\Type
+* **Model:** Shopware\Models\Document\Document
 * **Table:** s_order_documents
 
 ### Structure

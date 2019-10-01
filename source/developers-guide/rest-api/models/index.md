@@ -636,7 +636,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
 | id                    | integer (primary key) |                                                 |
-| description            | string                  |                                                 |
+| name            | string                  |                                                 |
 | position              | integer                  |                                                 |
 | group                    | string                  |                                                 |
 | sendMail              | boolean                  |                                                 |
@@ -708,6 +708,21 @@ The field `path` has to be the local path to the image, seen from the root of th
 | iban                  | string                  |                                                 |
 | amount              | string                  |                                                 |
 | createdAt              | date/time              |                                                 |
+
+## Payment Status
+
+* **Model:** Shopware\Models\Order\Status
+* **Table:** s_core_states
+
+### Structure
+
+| Field               | Type                  | Original object                                 |
+|---------------------|-----------------------|-------------------------------------------------|
+| id                    | integer (primary key) |                                                 |
+| name            | string                  |                                                 |
+| position              | integer                  |                                                 |
+| group                    | string                  |                                                 |
+| sendMail              | boolean                  |                                                 |
 
 ## Price
 

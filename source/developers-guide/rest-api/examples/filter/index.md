@@ -15,13 +15,10 @@ subgroup: REST API
 In this article, you will find examples of the provided resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
 Please read the page covering the **[category API resource](/developers-guide/rest-api/api-resource-categories/)** if you haven't yet, to get more information about the category resource and the data it provides.
 
-These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
-
-
 ## Filter by language
 
 In this article you can read more about the filter function. The filter functionality is for limiting the result.
-  
+
 ```php
 $translationResource->getList(0, 10, array(
     array('property' => 'translation.shopId', 'value' => 2)
@@ -38,7 +35,7 @@ $translationResource->getList(0, 1, array(
 ));
 ```
 
-<b>Example output:</b>
+**Example output:**
 
 ```php
 array('total' => 246, 'data' => array(
@@ -71,4 +68,26 @@ array('total' => 246, 'data' => array(
         'shopId' => '2'
     )
 ));
+```
+
+## Example 1 - Filter products by name
+
+{% include 'api_badge.twig' with {'route': '/api/articles?filter[name]=Lorem', 'method': 'GET'} %}
+
+{% include 'api_badge.twig' with {'route': '/api/articles?filter[0][property]=name&filter[0][value]=Ipsum%', 'method': 'GET'} %}
+
+{% include 'api_badge.twig' with {'route': '/api/articles?filter[0][property]=name&filter[0][expression]=LIKE&filter[0][value]=%Dolor%', 'method': 'GET'} %}
+
+### Result
+
+```json
+{
+    "data": [
+        {},
+        {},
+        {}
+    ],
+    "success": true,
+    "total": 3
+}
 ```

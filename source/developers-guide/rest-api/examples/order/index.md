@@ -16,18 +16,16 @@ subgroup: REST API
 In this article you can read more about using the orders resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
 Please read **[Orders](/developers-guide/rest-api/api-resource-orders/)** if you did not yet, to get more information about the orders resource and the data it provides.
-Also we are using the API client of the following document **[API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
 
 ## Example 1 - Load all orders
 This example shows you how to get all orders of the shop. You may also limit the result count by providing a limit parameter.
 
-```
-$client->get('orders');
-$client->get('orders?limit=20'); //Will only get 20 orders
-```
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'GET'} %}
+
+{% include 'api_badge.twig' with {'route': '/api/orders?limit=20', 'method': 'GET'} %}
 
 ### Result
-```
+```json
 {
    "data":[
       {
@@ -160,14 +158,13 @@ $client->get('orders?limit=20'); //Will only get 20 orders
 
 To load a specific order, you have to provide either the identifier or the number of the order.
 
-```
-$client->get('orders/15');
-$client->get('orders/2002?useNumberAsId=true');
-```
+{% include 'api_badge.twig' with {'route': '/api/orders/15', 'method': 'GET'} %}
+
+{% include 'api_badge.twig' with {'route': '/api/orders/2002?useNumberAsId=true', 'method': 'GET'} %}
 
 ### Result
 
-```
+```json
 {
    "data":{
       "id":15,
@@ -548,39 +545,35 @@ $client->get('orders/2002?useNumberAsId=true');
 ## Example 3 - Update an order
 **Currently, it's only possible to update the following fields of an order:**
 
-```
-paymentStatusId
-orderStatusId
-trackingCode
-comment
-transactionId
-clearedDate
-```
+- `paymentStatusId`
+- `orderStatusId`
+- `trackingCode`
+- `comment`
+- `transactionId`
+- `clearedDate`
 
-This example shows you how to update those fields:
-```
-$date = new DateTime();
-$date->modify('+10 days');
-$date = $date->format(DateTime::ISO8601);
+This example shows you how to update those fields, dates should be
+encoded according to the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard:
 
-$client->put('orders/15',  array(
-    'paymentStatusId' => 10,
-    'orderStatusId' => 8,
-    'trackingCode' => '237948723894789234',
-    'comment' => 'Neuer Kommentar',
-    'transactionId' => '0',
-    'clearedDate' => $date
-));
+{% include 'api_badge.twig' with {'route': '/api/orders/15', 'method': 'PUT', 'body': true} %}
+```json
+{
+    "paymentStatusId": 10,
+    "orderStatusId": 8,
+    "trackingCode": "237948723894789234",
+    "comment": "Neuer Kommentar",
+    "transactionId": "0",
+    "clearedDate": "2019-10-18T17:58:17+0000"
+}
 ```
 
 ### Result
 
-```
-(
-    [id] => 2
-    [location] => http://www.yourdomain.com/api/orders/2
-)
-
+```json
+{
+  "id": 2,
+  "location": "https://shop.example.com/api/orders/2"
+}
 ```
 
 ## Example 4 - Creating an order
@@ -591,152 +584,142 @@ This example shows you how to create an order. Currently all referenced entities
 
 If some field is missing from the request or some id provided does not exist, an exception is returned accordingly.
 
-```
-$client->post('orders', [
-    "customerId" => 1,
-    "paymentId" => 4,
-    "dispatchId" => 9,
-    "partnerId" => "",
-    "shopId" => 1,
-    "invoiceAmount" => 201.86,
-    "invoiceAmountNet" => 169.63,
-    "invoiceShipping" => 0,
-    "invoiceShippingNet" => 0,
-    "orderTime" => "2012-08-31 08:51:46",
-    "net" => 0,
-    "taxFree" => 0,
-    "languageIso" => "1",
-    "currency" => "EUR",
-    "currencyFactor" => 1,
-    "remoteAddress" => "217.86.205.141",
-    "details" => [[
-        "articleId" => 220,
-        "taxId" => 1,
-        "taxRate" => 19,
-        "statusId" => 0,
-        "articleNumber" => "SW10001",
-        "price" => 35.99,
-        "quantity" => 1,
-        "articleName" => "Versandkostenfreier Artikel",
-        "shipped" => 0,
-        "shippedGroup" => 0,
-        "mode" => 0,
-        "esdArticle" => 0,
-    ], [
-        "articleId" => 219,
-        "taxId" => 1,
-        "taxRate" => 19,
-        "statusId" => 0,
-        "articleNumber" => "SW10185",
-        "price" => 54.9,
-        "quantity" => 1,
-        "articleName" => "Express Versand",
-        "shipped" => 0,
-        "shippedGroup" => 0,
-        "mode" => 0,
-        "esdArticle" => 0,
-    ], [
-        "articleId" => 197,
-        "taxId" => 1,
-        "taxRate" => 19,
-        "statusId" => 0,
-        "articleNumber" => "SW10196",
-        "price" => 34.99,
-        "quantity" => 2,
-        "articleName" => "ESD Download Artikel",
-        "shipped" => 0,
-        "shippedGroup" => 0,
-        "mode" => 0,
-        "esdArticle" => 1,
-    ]],
-    "documents" => [],
-    "billing" => [
-        "id" => 2,
-        "customerId" => 1,
-        "countryId" => 2,
-        "stateId" => 3,
-        "company" => "shopware AG",
-        "salutation" => "mr",
-        "firstName" => "Max",
-        "lastName" => "Mustermann",
-        "street" => "Mustermannstra\u00dfe 92",
-        "zipCode" => "48624",
-        "city" => "Sch\u00f6ppingen",
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'POST', 'body': true} %}
+```json
+{
+    "customerId": 1,
+    "paymentId": 4,
+    "dispatchId": 9,
+    "partnerId": "",
+    "shopId": 1,
+    "invoiceAmount": 201.86,
+    "invoiceAmountNet": 169.63,
+    "invoiceShipping": 0,
+    "invoiceShippingNet": 0,
+    "orderTime": "2012-08-31 08:51:46",
+    "net": 0,
+    "taxFree": 0,
+    "languageIso": "1",
+    "currency": "EUR",
+    "currencyFactor": 1,
+    "remoteAddress": "217.86.205.141",
+    "details": [
+        {
+            "articleId": 220,
+            "taxId": 1,
+            "taxRate": 19,
+            "statusId": 0,
+            "articleNumber": "SW10001",
+            "price": 35.99,
+            "quantity": 1,
+            "articleName": "Versandkostenfreier Artikel",
+            "shipped": 0,
+            "shippedGroup": 0,
+            "mode": 0,
+            "esdArticle": 0
+        },
+        {
+            "articleId": 219,
+            "taxId": 1,
+            "taxRate": 19,
+            "statusId": 0,
+            "articleNumber": "SW10185",
+            "price": 54.9,
+            "quantity": 1,
+            "articleName": "Express Versand",
+            "shipped": 0,
+            "shippedGroup": 0,
+            "mode": 0,
+            "esdArticle": 0
+        },
+        {
+            "articleId": 197,
+            "taxId": 1,
+            "taxRate": 19,
+            "statusId": 0,
+            "articleNumber": "SW10196",
+            "price": 34.99,
+            "quantity": 2,
+            "articleName": "ESD Download Artikel",
+            "shipped": 0,
+            "shippedGroup": 0,
+            "mode": 0,
+            "esdArticle": 1
+        }
     ],
-    "shipping" => [
-        "id" => 2,
-        "countryId" => 2,
-        "stateId" => 3,
-        "customerId" => 1,
-        "company" => "shopware AG",
-        "salutation" => "mr",
-        "firstName" => "Max",
-        "lastName" => "Mustermann",
-        "street" => "Mustermannstra\u00dfe 92",
-        "zipCode" => "48624",
-        "city" => "Sch\u00f6ppingen"
-    ],
-    "paymentStatusId" => 17,
-    "orderStatusId" => 0
-]);
+    "documents": [],
+    "billing": {
+        "id": 2,
+        "customerId": 1,
+        "countryId": 2,
+        "stateId": 3,
+        "company": "shopware AG",
+        "salutation": "mr",
+        "firstName": "Max",
+        "lastName": "Mustermann",
+        "street": "Mustermannstra\\u00dfe 92",
+        "zipCode": "48624",
+        "city": "Sch\\u00f6ppingen"
+    },
+    "shipping": {
+        "id": 2,
+        "countryId": 2,
+        "stateId": 3,
+        "customerId": 1,
+        "company": "shopware AG",
+        "salutation": "mr",
+        "firstName": "Max",
+        "lastName": "Mustermann",
+        "street": "Mustermannstra\\u00dfe 92",
+        "zipCode": "48624",
+        "city": "Sch\\u00f6ppingen"
+    },
+    "paymentStatusId": 17,
+    "orderStatusId": 0
+}
 ```
 
 ### Result
 
-```
-(
-    [id] => 60
-    [location] => http://www.yourdomain.com/api/orders/60
-)
+```json
+{
+  "id": 60,
+  "location": "https://shop.example.com/api/orders/60"
+}
 ```
 
 ## Further examples
 
+### Filter by `paymentStatusId`
+
+{% include 'api_badge.twig' with {'route': '/api/orders?filter[cleared]=0', 'method': 'GET'} %}
+
+### Filter by `orderStatusId`
+
+{% include 'api_badge.twig' with {'route': '/api/orders?filter[status]=0', 'method': 'GET'} %}
+
+### Filter by `clearedDate`
+
+{% include 'api_badge.twig' with {'route': '/api/orders?filter[0][property]=clearedDate&filter[0][expression]=>=&filter[0][value]=2012-10-14', 'method': 'GET'} %}
+
+### Change status
+
+{% include 'api_badge.twig' with {'route': '/api/orders/1', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "paymentStatusId": 12,
+  "clearedDate": "2012-10-17"
+}
 ```
-// filter by paymentStatusId
-$filterByPaymentStatus = array(
-    array(
-        'property' => 'cleared',
-        'value'    => 0
-    ),
-);
 
-// filter by orderStatusId
-$filterByOrderStatus = array(
-    array(
-        'property' => 'status',
-        'value'    => 0
-    ),
-);
+### Change status using the `orderNumber` as identifier
 
-// filter by clearedDate
-$filterByClearedDate = array(
-    array(
-        'property' => 'clearedDate',
-        'expression' => '>=',
-        'value'    => '2012-10-14'
-    ),
-);
-
-$params = array(
-    'filter' => $filterByPaymentStatus
-);
-
-$client->get('orders', $params);
-
-
-// Change status
-$updateOrder = array(
-    'paymentStatusId' => 12,
-    'clearedDate' => '2012-10-17',
-);
-
-//Using ordernumber as identifier
-$params = array(
-    'useNumberAsId' => true
-);
-
-$client->put('orders/20001', $updateOrder, $params);
+{% include 'api_badge.twig' with {'route': '/api/orders/20001?useNumberAsId=true', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "paymentStatusId": 12,
+  "clearedDate": "2012-10-17"
+}
 ```
 
 **[Back to overview](../#examples)**

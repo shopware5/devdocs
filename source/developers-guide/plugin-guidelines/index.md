@@ -16,7 +16,7 @@ subgroup: Developing plugins
 There are some issues we come across frequently, when reviewing plugins for the
 community store. This document is intended to help plugin developers implement
 plugins according to
-[our quality guidelines](https://docs.shopware.com/de/plugin-standard-community-store).
+[our quality guidelines](https://docs.shopware.com/en/plugin-standard-for-community-store).
 We hope the examples provided here will be helpful, please feel free to submit
 corrections and suggestions to our
 [devdocs repository](https://github.com/shopware/devdocs/)

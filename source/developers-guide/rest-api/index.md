@@ -116,157 +116,29 @@ To connect to the REST API, you need a client application.
 As REST is widely used as an inter-application communication protocol,
 several client applications and integration libraries already exist,
 both free and commercially, for different platforms and languages.
-The following class illustrates a fully functional (yet basic)
-implementation of a REST client. Note that this example code is not maintained,
-and it's highly recommended that you don't use it in production environments.
 
-```
-<?php
-class ApiClient
+The examples shown in this documentation will work with
+any HTTP-Client. There's a variety of command-line or GUI applications which can
+be used for testing, and the standard library of your programming
+language of choice most likely includes a compatible HTTP-Client as well.
+
+Every example will be accompanied with a badge like this:
+
+{% include 'api_badge.twig' with {'route': '/api/articles/4', 'method': 'GET'} %}
+
+The first part shows the HTTP-request method and the second part shows
+the route.
+
+Some requests come with a body containing additional data like product information,
+these will have a code section attached to them and look like this:
+
+{% include 'api_badge.twig' with {'route': '/api/articles/4', 'method': 'PUT', 'body': true} %}
+
+```json
 {
-    const METHOD_GET = 'GET';
-    const METHOD_PUT = 'PUT';
-    const METHOD_POST = 'POST';
-    const METHOD_DELETE = 'DELETE';
-    protected $validMethods = [
-        self::METHOD_GET,
-        self::METHOD_PUT,
-        self::METHOD_POST,
-        self::METHOD_DELETE,
-    ];
-    protected $apiUrl;
-    protected $cURL;
-
-    public function __construct($apiUrl, $username, $apiKey)
-    {
-        $this->apiUrl = rtrim($apiUrl, '/') . '/';
-        //Initializes the cURL instance
-        $this->cURL = curl_init();
-        curl_setopt($this->cURL, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->cURL, CURLOPT_FOLLOWLOCATION, false);
-        curl_setopt($this->cURL, CURLOPT_USERAGENT, 'Shopware ApiClient');
-        curl_setopt($this->cURL, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
-        curl_setopt($this->cURL, CURLOPT_USERPWD, $username . ':' . $apiKey);
-        curl_setopt(
-            $this->cURL,
-            CURLOPT_HTTPHEADER,
-            ['Content-Type: application/json; charset=utf-8']
-        );
-    }
-
-    public function call($url, $method = self::METHOD_GET, $data = [], $params = [])
-    {
-        if (!in_array($method, $this->validMethods)) {
-            throw new Exception('Invalid HTTP-Methode: ' . $method);
-        }
-        $queryString = '';
-        if (!empty($params)) {
-            $queryString = http_build_query($params);
-        }
-        $url = rtrim($url, '?') . '?';
-        $url = $this->apiUrl . $url . $queryString;
-        $dataString = json_encode($data);
-        curl_setopt($this->cURL, CURLOPT_URL, $url);
-        curl_setopt($this->cURL, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($this->cURL, CURLOPT_POSTFIELDS, $dataString);
-        $result = curl_exec($this->cURL);
-        $httpCode = curl_getinfo($this->cURL, CURLINFO_HTTP_CODE);
-
-        return $this->prepareResponse($result, $httpCode);
-    }
-
-    public function get($url, $params = [])
-    {
-        return $this->call($url, self::METHOD_GET, [], $params);
-    }
-
-    public function post($url, $data = [], $params = [])
-    {
-        return $this->call($url, self::METHOD_POST, $data, $params);
-    }
-
-    public function put($url, $data = [], $params = [])
-    {
-        return $this->call($url, self::METHOD_PUT, $data, $params);
-    }
-
-    public function delete($url, $params = [])
-    {
-        return $this->call($url, self::METHOD_DELETE, [], $params);
-    }
-
-    protected function prepareResponse($result, $httpCode)
-    {
-        echo "<h2>HTTP: $httpCode</h2>";
-        if (null === $decodedResult = json_decode($result, true)) {
-            $jsonErrors = [
-                JSON_ERROR_NONE => 'No error occurred',
-                JSON_ERROR_DEPTH => 'The maximum stack depth has been reached',
-                JSON_ERROR_CTRL_CHAR => 'Control character issue, maybe wrong encoded',
-                JSON_ERROR_SYNTAX => 'Syntaxerror',
-            ];
-            echo '<h2>Could not decode json</h2>';
-            echo 'json_last_error: ' . $jsonErrors[json_last_error()];
-            echo '<br>Raw:<br>';
-            echo '<pre>' . print_r($result, true) . '</pre>';
-
-            return;
-        }
-        if (!isset($decodedResult['success'])) {
-            echo 'Invalid Response';
-
-            return;
-        }
-        if (!$decodedResult['success']) {
-            echo '<h2>No Success</h2>';
-            echo '<p>' . $decodedResult['message'] . '</p>';
-            if (array_key_exists('errors', $decodedResult) && is_array($decodedResult['errors'])) {
-                echo '<p>' . join('</p><p>', $decodedResult['errors']) . '</p>';
-            }
-
-            return;
-        }
-        echo '<h2>Success</h2>';
-        if (isset($decodedResult['data'])) {
-            echo '<pre>' . print_r($decodedResult['data'], true) . '</pre>';
-        }
-
-        return $decodedResult;
-    }
+  "name": "New name"
 }
 ```
-
-### Creating the API client
-To successfully use this client, we need to initialize it.
-When creating it, we give the client an API URL, an user name and the API key.
-
-```
-$client = new ApiClient(
-    //URL of shopware REST server
-    'http://www.ihredomain.de/api',
-    //Username
-    'myUsername',
-    //User's API-Key
-    'myAPIKey'
-);
-```
-
-### Triggering a call with the API client
-The newly created client now gives us the ability to call all resources.
-The first parameter describes the resource that should be queried.
-As the client already knows the resource's URL,
-we don't need to provide that information again and can use only
-the resource's URI.
-
-So, for example, the article with the ID `3` can be queried like so:
-
-```
-$client->get('articles/3');
-```
-
-When creating or updating data, a second parameter needs to be given
-to these calls. This parameter must be an array containing the data
-which should be changed or created.
 
 ## Communicating with the API
 
@@ -278,7 +150,7 @@ The date must be in ISO 8601 format.
 
 More info about ISO can be found here:
 
-* [ISO_8601](http://en.wikipedia.org/wiki/ISO_8601)
+* [ISO_8601](https://en.wikipedia.org/wiki/ISO_8601)
 
 ### Date formatting in PHP
 ```
@@ -322,8 +194,6 @@ var date = new Date(string);
 Every API comes with a set of default parameters which can be used
 to modify the given result. All parameters can be combined in a single request.
 
-The following examples are snippets for our API client above.
-
 #### Filter
 
 Filtering a results can be done using the `filter` parameter in your request.
@@ -338,59 +208,56 @@ Each filter can have the following properties:
 
 **Example: Active articles with at least 1 pseudo sale**
 
-```
-$params = [
-    'filter' => [
-        [
-            'property' => 'pseudoSales',
-            'expression' => '>=',
-            'value' => 1
-        ],
-        [
-            'property' => 'active',
-            'value' => 1
-        ]
+{% include 'api_badge.twig' with {'route': '/api/articles', 'method': 'GET', 'body': true} %}
+```json
+{
+    "filter": [
+        {
+            "property": "pseudoSales",
+            "expression": ">=",
+            "value": 1
+        },
+        {
+            "property": "active",
+            "value": 1
+        }
     ]
-];
-
-$client->get('articles', $params);
+}
 ```
 
 **Example: Active articles or articles containing "beach" in their name**
 
-```
-$params = [
-    'filter' => [
-        [
-            'property' => 'name',
-            'value' => '%beach%',
-            'operator' => 1
-        ],
-        [
-            'property' => 'active',
-            'value' => 1
-        ]
+{% include 'api_badge.twig' with {'route': '/api/articles', 'method': 'GET', 'body': true} %}
+```json
+{
+    "filter": [
+        {
+            "property": "name",
+            "value": "%beach%",
+            "operator": 1
+        },
+        {
+            "property": "active",
+            "value": 1
+        }
     ]
-];
-
-$client->get('articles', $params);
+}
 ```
 
 **Example: Orders from customer which email address is "test@example.com"**
 
 Keep in mind, that the related entity must be joined in the query builder.
 
-```
-$params = [
-    'filter' => [
-        [
-            'property' => 'customer.email',
-            'value' => 'test@example.com'
-        ]
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'GET', 'body': true} %}
+```json
+{
+    "filter": [
+        {
+            "property": "customer.email",
+            "value": "test@example.com"
+        }
     ]
-];
-
-$client->get('orders', $params);
+}
 ```
 
 #### Sort
@@ -405,27 +272,32 @@ Each sorting can have the following properties:
 
 **Example: Sort by article name**
 
-```
-$params = [
-    'sort' => [
-        ['property' => 'name']
+{% include 'api_badge.twig' with {'route': '/api/articles', 'method': 'GET', 'body': true} %}
+```json
+{
+    "sort": [
+        {
+            "property": "name"
+        }
     ]
-];
-
-$client->get('articles', $params);
+}
 ```
 
 **Example: First, sort by order time and then by invoice amount in descending order**
 
-```
-$params = [
-    'sort' => [
-        ['property' => 'orderTime'],
-        ['property' => 'invoiceAmount', 'direction' => 'DESC']
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'GET', 'body': true} %}
+```json
+{
+    "sort": [
+        {
+            "property": "orderTime"
+        },
+        {
+            "property": "invoiceAmount",
+            "direction": "DESC"
+        }
     ]
-];
-
-$client->get('orders', $params);
+}
 ```
 
 #### Limit / Offset
@@ -436,24 +308,21 @@ The limiting uses the parameter `limit`, the offset `start`.
 
 **Example: Retrieve the first 50 results**
 
-```
-$params = [
-    'limit' => 50
-];
-
-$client->get('orders', $params);
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'GET', 'body': true} %}
+```json
+{
+  "limit": 50
+}
 ```
 
 **Example: Retrieve 50 results, skipping the first 20**
 
-```
-$params = [
-    'limit' => 50,
-    'start' => 20
-];
-
-$client->get('orders', $params);
-```
+{% include 'api_badge.twig' with {'route': '/api/orders', 'method': 'GET', 'body': true} %}
+```json
+{
+  "limit": 50,
+  "start": 20
+}
 
 ## Models
 

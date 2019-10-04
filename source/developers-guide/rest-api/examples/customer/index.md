@@ -17,21 +17,17 @@ subgroup: REST API
 In this article, you will find examples of the customer resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
 Please read the page covering the **[customer API resource](/developers-guide/rest-api/api-resource-customer)** if you haven't yet, to get more information about the customer resource and the data it provides.
 
-These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
-
 ## Example 1 - Get all customers
 
 In this example, you can see how it's possible to get a list of all customers in a shop and how to limit the result to a fixed number.
 
-```
-$client->get('customers');
-$client->get('customers?limit=20');
+{% include 'api_badge.twig' with {'route': '/api/customers', 'method': 'GET'} %}
 
-```
+{% include 'api_badge.twig' with {'route': '/api/customers?limit=20', 'method': 'GET'} %}
 
 ### Result
 
-```
+```json
 {
     "data":[
         {
@@ -103,16 +99,14 @@ $client->get('customers?limit=20');
 
 ```
 
-## Example 2 - Get a specific customer
+## Example 2 - Get a specific customer account
 
-This example shows you how to get a customer by its id
+This example shows you how to get a customer account by its id
 
-```
-$client->get('customers/1');
-```
+{% include 'api_badge.twig' with {'route': '/api/customers/1', 'method': 'GET'} %}
 
 ### Result
-```
+```json
 {
     "data":{
         "number": "20001",
@@ -248,81 +242,82 @@ $client->get('customers/1');
 }
 ```
 
-## Example 3 - Create customer
+## Example 3 - Create a customer account
 
-This shows you how to create a minimalistic customer:
+This shows you how to create a minimalistic customer account:
 
+{% include 'api_badge.twig' with {'route': '/api/customers', 'method': 'POST', 'body': true} %}
+```json
+{
+    "email": "meier@mail.de",
+    "firstname": "Max",
+    "lastname": "Meier",
+    "salutation": "mr",
+    "billing": {
+        "firstname": "Max",
+        "lastname": "Meier",
+        "salutation": "mr",
+        "street": "Musterstrasse 55",
+        "city": "Sch\\u00f6ppingen",
+        "zipcode": "48624",
+        "country": 2
+    }
+}
 ```
-$client->post('customers',  array(
-    'email' => 'meier@mail.de',
-    'firstname' => 'Max',
-    'lastname' => 'Meier',
-    'salutation' => 'mr',
-    'billing' => array(
-        'firstname' => 'Max',
-        'lastname' => 'Meier',
-        'salutation' => 'mr',
-        'street' => 'Musterstrasse 55',
-        'city' => 'Sch\u00f6ppingen',
-        'zipcode' => '48624',
-        'country' => 2
-    )
-));
+
+### Result
+
+```json
+{
+  "id": 15,
+  "location": "https://shop.example.com/api/customers/15"
+}
 ```
 
-## Example 4 - Create customer with Double-Opt-In confirmation
+## Example 4 - Create customer account with Double-Opt-In confirmation
 
 This examples shows how to add a minimalistic customer using `'doubleOptinRegister' => true` to register him during
 Double-Opt-In and `'sendOptinMail' => true` to send him the required E-Mail with a confirmation link to complete his registration:
 
+{% include 'api_badge.twig' with {'route': '/api/customers', 'method': 'POST', 'body': true} %}
+```json
+{
+    "email": "meier@mail.de",
+    "firstname": "Max",
+    "lastname": "Meier",
+    "salutation": "mr",
+    "doubleOptinRegister": true,
+    "sendOptinMail": true,
+    "billing": {
+        "firstname": "Max",
+        "lastname": "Meier",
+        "salutation": "mr",
+        "street": "Musterstrasse 55",
+        "city": "Sch\\u00f6ppingen",
+        "zipcode": "48624",
+        "country": 2
+    }
+}
 ```
-$client->post('customers',  array(
-    'email' => 'meier@mail.de',
-    'firstname' => 'Max',
-    'lastname' => 'Meier',
-    'salutation' => 'mr',
-    'doubleOptinRegister' => true,
-    'sendOptinMail' => true,
-    'billing' => array(
-        'firstname' => 'Max',
-        'lastname' => 'Meier',
-        'salutation' => 'mr',
-        'street' => 'Musterstrasse 55',
-        'city' => 'Sch\u00f6ppingen',
-        'zipcode' => '48624',
-        'country' => 2
-    )
-));
-```
-
-
 
 ### Result
 
-If the customer was created successfully this will be returned:
-
-```
-Array
-(
-    [id] => 15
-    [location] => http://www.ihredomain.de/api/customers/15
-)
+```json
+{
+  "id": 16,
+  "location": "https://shop.example.com/api/customers/16"
+}
 ```
 
-## Example 5 - Update specific customer
+## Example 5 - Update a specific customer account
 
-It's possible to update a customer by passing its identifier and the new fields.
-
-```
-$client->put('customers/1', array(
-    'email' => 'new@mail.de'
-));
-
+{% include 'api_badge.twig' with {'route': '/api/customers/1', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "email": "updated@example.com"
+}
 ```
 
-## Example 6 - Delete a specific customer
+## Example 6 - Delete a specific customer account
 
-```
-$client->delete('customers/1');
-
-```
+{% include 'api_badge.twig' with {'route': '/api/customers/12', 'method': 'DELETE'} %}

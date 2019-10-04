@@ -1,0 +1,97 @@
+.api-badge {
+
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+
+    & + pre, & + .code-wrapper pre {
+        margin-top: 0;
+
+        code.hljs {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    & + p {
+        margin-top: 1rem;
+    }
+
+    .method, .route {
+        display: block;
+        padding: .25rem .5rem;
+        box-sizing: border-box;
+    }
+
+    .method {
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .route {
+        width: 100%;
+        color: @text-color;
+        border-radius: 0 5px 5px 0;
+    }
+
+    &.body {
+        .method {
+            border-radius: 5px 0 0 0;
+        }
+
+        .route {
+            border-radius: 0 5px 0 0;
+        }
+
+        .route::after {
+            content: 'request-body attached';
+            display: inline-block;
+            position: relative;
+            float: right;
+            font-size: .8rem;
+            line-height: 1.5rem;
+            color: rgba(0, 0, 0, .2);
+        }
+    }
+
+    &-get {
+        .method {
+            background-color: @highlight-color-blue;
+        }
+
+        .route {
+            background-color: lighten(@highlight-color-blue, 40%);
+        }
+    }
+
+    &-post {
+        .method {
+            background-color: @highlight-color-green;
+        }
+
+        .route {
+            background-color: lighten(@highlight-color-green, 30%);
+        }
+    }
+
+    &-put {
+        .method {
+            background-color: @highlight-color-yellow;
+        }
+
+        .route {
+            background-color: lighten(@highlight-color-yellow, 30%);
+        }
+    }
+
+    &-delete {
+        .method {
+            background-color: @highlight-color-red;
+        }
+
+        .route {
+            background-color: lighten(@highlight-color-red, 40%);
+        }
+    }
+}

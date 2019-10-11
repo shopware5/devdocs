@@ -1,6 +1,7 @@
 # Shopware Development Documentation
 
 ## Install
+
 This site is generated with [Sculpin][2], a PHP based static site generator.
 
 First you have to [install Sculpin][3] and run the install command in the project directory.
@@ -10,7 +11,7 @@ This can be done via the `init.sh` shell script in the project root.
 ./init.sh
 ```
 
-This will download sculpin and install the required dependencies.
+This will download Sculpin and install the required dependencies.
 
 ## Running the website locally
 
@@ -37,6 +38,7 @@ It is important to put the plugin into the proper Frontend/Backend/Core subdirec
 [3]: https://sculpin.io/download
 
 ## Table of contents in your markdown documents
+
 You have the ability to generate a table of content list for your document. Simply place the following code into your document and a table of contents will appear there magically:
 
 ```
@@ -60,6 +62,7 @@ robots:
 ```
 
 ## Version History
+
 To create a version history table, you simply have to add a `history` array to your metadata.
 
 Example:
@@ -100,6 +103,7 @@ These variables are automatically exported during the Travis-CI build for every 
 
 
 ## CSS helper classes
+
 We added a bunch of CSS helper classes which should help you to build simple layouts.
 
 ### Warning box

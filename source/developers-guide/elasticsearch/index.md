@@ -53,7 +53,7 @@ The following list contains all relevant events, interfaces and public API calls
 | HandlerInterface                                  | Allows handling criteria parts in ES number searches
 | ResultHydratorInterface                           | Allows hydrating ES number search results
 
-| DI Container service                              | Description
+| DI container service                              | Description
 |---------------------------------------------------|-----------------------------
 | shopware_elastic_search.client                    | ES client for communication
 | shopware_elastic_search.client.logger             | Logs specific ES requests and their responses
@@ -64,7 +64,7 @@ The following list contains all relevant events, interfaces and public API calls
 | shopware_search_es.search_term_query_builder      | Builds the search query for product searches
 | shopware_es_backend.indexer                       | Starts backend indexing process for all shops
 
-| DI Container tag                                  | Description
+| DI container tag                                  | Description
 |---------------------------------------------------|-----------------------------
 | shopware_elastic_search.data_indexer              | Registers a new data indexer
 | shopware_elastic_search.mapping                   | Registers a new data mapping

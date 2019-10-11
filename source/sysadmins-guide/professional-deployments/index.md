@@ -77,7 +77,7 @@ scripts later by integrating them into a CI/CD system like Jenkins, Bamboo or ot
 It is often also a good idea to redefine basic settings which could be changed by users to sane defaults with 
 each deploy. Examples could be the mailer configuration, thumbnail sizes or controller caching times for the HTTP cache.
 
-In Shopware 5.5.2, there is a new config value which allows you to have the plugins loaded in a predictable way during the di container build process. This is important if you use multiple app servers because the current behavior is based on the underlying file system and might differ between machines. Add the following code snippet to your config.php file and the plugins are loaded alphabetical:   
+In Shopware 5.5.2, there is a new config value which allows you to have the plugins loaded in a predictable way during the DI container build process. This is important if you use multiple app servers because the current behavior is based on the underlying file system and might differ between machines. Add the following code snippet to your config.php file and the plugins are loaded alphabetical:   
 
 ```php
     'backward_compatibility' => [

@@ -13,5 +13,5 @@ else
     $composerBin self-update
 fi
 
-echo "Installing sculpin dependencies"
+echo "Installing Sculpin dependencies"
 $composerBin install --no-dev

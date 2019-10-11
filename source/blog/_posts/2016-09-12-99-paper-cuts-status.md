@@ -6,7 +6,7 @@ authors: [bc]
 
 We are now on day 8 of our project 99 Papercuts, with 7 days to go.
 
-From now until Monday, 19th September, you can participate in our [99 Papercuts Project](https://developers.shopware.com/99-paper-cuts/) and make Shopware better - one papercut at a time.
+From now until Monday, 19th September, you can participate in our 99 Papercuts Project and make Shopware better - one papercut at a time.
 
 The feedback so far has been pretty good; we've already received several contributions and [merged](https://github.com/shopware/shopware/pulls?q=is%3Apr+%5BPapercut%5D+is%3Aclosed) a good amount of pull requests.
 We also noticed increased activity in our [IRC Channel](/community/irc/), where you can get in touch with the Community.
@@ -37,7 +37,5 @@ Tickets have already been created in our Issue Tracker, and we have no schedulin
 ## Get involved and participate
 Now it's your turn. Find a papercut bug that bothers you and try to fix it.
 
-<a href="{{ site.url }}/99-paper-cuts/">
-    <img style="width: 80%; margin: auto; display:block" src="{{ site.url }}/99-paper-cuts/img/paper-cuts-logo.png">
-</a>
+<img style="width: 80%; margin: auto; display:block" src="/blog/img/99-paper-cuts/paper-cuts-logo.png">
 

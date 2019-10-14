@@ -2616,7 +2616,7 @@ The **third** parameter selects the `s_media` column you are referencing to. The
     * Added library [zendframework/zend-escaper](https://github.com/zendframework/zend-escaper)
     * New interface: `\Shopware\Components\Escaper\EscaperInterface`
     * Default implementation: `\Shopware\Components\Escaper\Escaper`, uses `Zend\Escaper`
-    * Available in DI-Container: `shopware.escaper`
+    * Available in DI container: `shopware.escaper`
     * Smarty Modifiers:
         * escapeHtml
         * escapeHtmlAttr

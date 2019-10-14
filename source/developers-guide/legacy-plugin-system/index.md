@@ -146,9 +146,9 @@ class SearchBundleSubscriber implements SubscriberInterface
 }
 ```
 
-### Access to the DI-Container
+### Access to the DI container
 
-Inside the plugin bootstrap the DI-Container can be accessed via `$this->get()`
+Inside the plugin bootstrap the DI container can be accessed via `$this->get()`
 
 ```php
     public function install(\Enlight_Controller_EventArgs $args)

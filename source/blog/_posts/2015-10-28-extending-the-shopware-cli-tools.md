@@ -36,7 +36,7 @@ In these first steps, we will explain how we created the `DataGenerator` extensi
 
 As the Shopware CLI tools are designed to be extended, we started by creating our own extension directory. We called it `DataGenerator`, and you can find it inside the `src/Extensions/Shopware` directory. Next, we declared our extension. That was done using the `Bootstrap.php`. The file itself is not very big, but has some relevant content:
 
-+ `class Bootstrap implements ContainerAwareExtension, ConsoleAwareExtension`: the `Bootstrap` class name and implementing `ConsoleAwareExtension` are both required. As we plan on using the DI Container, we also implement the optional `ContainerAwareExtension` interface.
++ `class Bootstrap implements ContainerAwareExtension, ConsoleAwareExtension`: the `Bootstrap` class name and implementing `ConsoleAwareExtension` are both required. As we plan on using the DI container, we also implement the optional `ContainerAwareExtension` interface.
 + `public function setContainer(ContainerBuilder $container)`: this is where we specify our services that will be available in the DI container. Don't worry about its content for now.
 + `public function getConsoleCommands()`: this is where we declared our custom command. Our DataGenerator extension has only one command, but each extension can have as many commands as we (reasonably) want.
 
@@ -46,7 +46,7 @@ Now that the `Bootstrap.php` file has declared our extension, it's time to imple
 
 Implementing any command in the Shopware CLI tools is as easy as [creating a Symfony Console Command](http://symfony.com/doc/current/cookbook/console/console_command.html). If you have used Symfony's Console Commands before, you will feel right at home. 
 
-We created a `src/Extensions/Shopware/Command` directory to house our custom `CreateDataCommand.php` file. The command itself has no Shopware specific logic: this is a pure Symfony2 Console Command implementation. The only feature we added is that, by extending the `ShopwareCli\Command\BaseCommand` class, we automatically inject the DI Container into the command. If your custom command doesn't need the DI Container, feel free to skip this intermediate abstract class, and have your command directly extend the Symfony's `Symfony\Component\Console\Command\Command` class, like any Symfony Console Command would. 
+We created a `src/Extensions/Shopware/Command` directory to house our custom `CreateDataCommand.php` file. The command itself has no Shopware specific logic: this is a pure Symfony2 Console Command implementation. The only feature we added is that, by extending the `ShopwareCli\Command\BaseCommand` class, we automatically inject the DI container into the command. If your custom command doesn't need the DI container, feel free to skip this intermediate abstract class, and have your command directly extend the Symfony's `Symfony\Component\Console\Command\Command` class, like any Symfony Console Command would. 
 
 Next, we implemented some empty stub methods to make our command respect the requirements of the abstract class it implements, and voila, we had a fully functional command that did... absolutely nothing. 
 
@@ -58,7 +58,7 @@ In the next steps, we will discuss how we implemented the Data Generator. This i
 
 ### The Command class
 
-As a rule of thumb, the Command class shouldn't do much besides handling input validation and delegating work to actual worker services. If you take a closer look at all the existing Command classes in the Shopware CLI Tools, you will see that all of them parse and validate the input the user provides (or should have provided), and then make extensive usage of the DI Container and its services to do the actual actions the command is supposed to do.
+As a rule of thumb, the Command class shouldn't do much besides handling input validation and delegating work to actual worker services. If you take a closer look at all the existing Command classes in the Shopware CLI Tools, you will see that all of them parse and validate the input the user provides (or should have provided), and then make extensive usage of the DI container and its services to do the actual actions the command is supposed to do.
 
 ### The Services directory
 

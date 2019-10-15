@@ -216,3 +216,7 @@ The plugin uses widgets to embed templates. Widgets are self-contained parts of 
 In this case, an HTTP request is triggered internally within the system, resulting in widgets being completely dynamic elements which are not cached.
 
 For further information read this blog: <a href="{{ site.url }}/blog/2016/07/11/on-action-tags/">On action tags</a>
+
+
+## Custom Smarty plugins
+To register custom smarty plugins please see <a href="{{ site.url }}/designers-guide/smarty/#register-custom-smarty-plugins">register custom smarty plugins</a>

@@ -217,40 +217,6 @@ In this case, an HTTP request is triggered internally within the system, resulti
 
 For further information read this blog: <a href="{{ site.url }}/blog/2016/07/11/on-action-tags/">On action tags</a>
 
-## Custom smarty plugins ##
 
-Please refer to <a href="https://www.smarty.net/docs/en/plugins.tpl">https://www.smarty.net/docs/en/plugins.tpl</a> for documentation on how to create smarty plugins.
-
-**Notice:** Smarty plugins are not working inside mail templates
-
-#### Register smarty plugins in custom theme ####
-To add your custom smarty modifiers or functions in your custom theme, just create the PHP file inside the directory `themes/Frontend/ThemeName/_private/smarty`.
-
-
-#### Register smarty plugins in shopware plugin ####
-
-To specify your custom plugins directory inside your shopware plugin you can use the `CompilerPass` to add your own directory:
-
-```php
-<?php
-namespace PluginName\Components\CompilerPass;
-
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-/**
- * Class AddTemplatePluginDirCompilerPass
- */
-class AddTemplatePluginDirCompilerPass implements CompilerPassInterface
-{
-    /**
-     * You can modify the container here before it is dumped to PHP code.
-     *
-     * @param ContainerBuilder $container
-     */
-    public function process(ContainerBuilder $container)
-    {
-        $template = $container->getDefinition('template');
-        $template->addMethodCall('addPluginsDir', ['directory/name']);
-    }
-}
-```
+## Custom Smarty plugins
+To register custom smarty plugins please see <a href="{{ site.url }}/designers-guide/smarty/#register-custom-smarty-plugins">register custom smarty plugins</a>

@@ -199,6 +199,49 @@ In Shopware 5 we added the ability to register your own custom Smarty plugins in
 **Example:** *Path to custom Smarty plugins*
 
 ```
-/_private/smarty/function.markdown.php
-/_private/smarty/modifier.picture.php
+themes/Frontend/ThemeName/_private/smarty/function.markdown.php
+themes/Frontend/ThemeName/_private/smarty/modifier.picture.php
+```
+**Notice:** Smarty plugins are not working inside mail templates
+
+### Register custom smarty plugins in a Shopware plugin
+
+To specify your custom smarty plugin directory inside your Shopware plugin you can use the `CompilerPass` to add your own directory:
+
+```php
+<?php
+namespace PluginName\Components\CompilerPass;
+
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+/**
+ * Class AddTemplatePluginDirCompilerPass
+ */
+class AddTemplatePluginDirCompilerPass implements CompilerPassInterface
+{
+    /**
+     * You can modify the container here before it is dumped to PHP code.
+     *
+     * @param ContainerBuilder $container
+     */
+    public function process(ContainerBuilder $container)
+    {
+        $template = $container->getDefinition('template');
+        $template->addMethodCall('addPluginsDir', ['directory/name']);
+    }
+}
+```
+
+Register CompilerPass class in `build` method in plugin boostrap class:
+
+```php
+/**
+ * @param ContainerBuilder $container
+ */
+public function build(ContainerBuilder $container)
+{
+    parent::build($container);
+
+    $container->addCompilerPass(new AddTemplatePluginDirCompilerPass());
+}
 ```

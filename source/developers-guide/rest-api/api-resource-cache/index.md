@@ -84,13 +84,18 @@ To delete all caches, simply call
 * **(DELETE) http://my-shop-url/api/caches**
 
 without providing a cache id. You can also supply a list of caches to be deleted.
-```php
-$restClient->delete(
-    'caches',
-    array(
-        array('id' => 'opcache'),
-        array('id' => 'config'),
-        array('id' => 'http')
-    )
-);
+
+{% include 'api_badge.twig' with {'route': '/api/caches', 'method': 'DELETE', 'body': true} %}
+```json
+[
+    {
+        "id": "opcache"
+    },
+    {
+        "id": "config"
+    },
+    {
+        "id": "http"
+    }
+]
 ```

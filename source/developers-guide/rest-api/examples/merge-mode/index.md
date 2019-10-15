@@ -17,102 +17,130 @@ subgroup: REST API
 In this article, you will find examples of the provided resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
 Please read the page covering the **[category API resource](/developers-guide/rest-api/api-resource-categories/)** if you haven't yet, to get more information about the category resource and the data it provides.
 
-These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
-
-
 It is possible to change the default behavior of the API to process associated data.
 
 ## API merge Mode (Data merge)
 
-<b>Example situation:</b>
-* There exists a product with two images in the database. <code>Artikel-ID: 1</code> and <code>Bild-ID: 2, 3</code>
+**Example situation:**
+* There exists a product with two images in the database. `product-id: 1` and `image-id: [2, 3]`
 * The first example overwrites the images with two new images.
 * The second example adds two new images.
 
 ### Example request 1: (overwrite)
-```php
-// PUT /api/articles/1
-array(
-    '__options_images' => array('replace' => true),
-    'images' => array(
-        112 => array(
-            'mediaId' => 112,
-            'main' => 1,
-        ),
-        113 => array(
-            'mediaId' => 113,
-            'main' => '2',
-        )
-    ),
-);
+
+{% include 'api_badge.twig' with {'route': '/api/articles/1', 'method': 'PUT', 'body': true} %}
+```json
+{
+    "__options_images": {
+        "replace": true
+    },
+    "images": {
+        "112": {
+            "mediaId": 112,
+            "main": 1
+        },
+        "113": {
+            "mediaId": 113,
+            "main": "2"
+        }
+    }
+}
 ```
 
 ### Example request 2: (Merge)
 
-```php
-// PUT /api/articles/1
-array(
-    '__options_images' => array('replace' => false),
-    'images' => array(
-        114 => array(
-            'mediaId' => 114,
-            'main' => 2,
-        ),
-        115 => array(
-            'mediaId' => 115,
-            'main' => '2',
-        )
-    ),
-);
+{% include 'api_badge.twig' with {'route': '/api/articles/1', 'method': 'PUT', 'body': true} %}
+```json
+{
+    "__options_images": {
+        "replace": false
+    },
+    "images": {
+        "114": {
+            "mediaId": 114,
+            "main": 2
+        },
+        "115": {
+            "mediaId": 115,
+            "main": "2"
+        }
+    }
+}
 ```
 
-## The following collection implements the "merge mode"
+## Entities implementing the "merge mode"
 
-```php
-$articleData = array(
-    // default: replace
-    '__options_categories' => array('replace' => true),
-    'categories' => array(
-        array('id' => 13)
-    ),
-    // default: replace
-    '__options_related' => array('replace' => true),
-    'related' => array(
-        array('id' => 13)
-    ),
-    // default: replace
-    '__options_similar' => array('replace' => true),
-    'similar' => array(
-        array('id' => 13)
-    ),
-    // default: replace
-    '__options_downloads' => array('replace' => true),
-    'downloads' => array(
-        array('id' => 13)
-    ),
-    // default: replace
-    '__options_customerGroups' => array('replace' => true),
-    'customerGroups' => array(
-        array('id' => 13)
-    ),
-    // default: merge
-    '__options_images' => array('replace' => false),
-    'images' => array(
-        array('id' => 13)
-    ),
-    // default: replace
-    '__options_variants' => array('replace' => true),
-    'variants' => array(
-        array(
-            'id' => 13
-        )
-    ),
-    'mainDetail' => array(
-        // default: replace
-        '__options_prices' => array('replace' => true),
-        'prices' => array(
-             
-        )
-    )
-);
+The following list contains all entities implementing the merge mode.
+The replace value given here represents the default value which is used
+when no value for `replace` is given in the request body.
+
+A default value of `replace: true` means, that the existing entity should
+be overwritten, `replace: false` means, that the existing entities should
+be merged with the new ones provided in the API-request.
+
+```json
+{
+    "__options_categories": {
+        "replace": true
+    },
+    "categories": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_related": {
+        "replace": true
+    },
+    "related": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_similar": {
+        "replace": true
+    },
+    "similar": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_downloads": {
+        "replace": true
+    },
+    "downloads": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_customerGroups": {
+        "replace": true
+    },
+    "customerGroups": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_images": {
+        "replace": false
+    },
+    "images": [
+        {
+            "id": 13
+        }
+    ],
+    "__options_variants": {
+        "replace": true
+    },
+    "variants": [
+        {
+            "id": 13
+        }
+    ],
+    "mainDetail": {
+        "__options_prices": {
+            "replace": true
+        },
+        "prices": []
+    }
+}
 ```

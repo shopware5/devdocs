@@ -409,17 +409,10 @@ This resource supports the following operations:
 If you want to access this resource, simply query the following URL:
 * http://my-shop-url/api/banner
 
-The following examples assume you are using the provided
-**[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**. One of its advantages is that, 
-instead of providing query arguments directly in the URL, you can do so by means of method argument.
-The client application will, internally, handle the full URL generation. You can also place variables using
-this technique.
-
 ### GET
 Getting one banner by its id.
-```php
-$client->get('banner/1');
-```
+
+{% include 'api_badge.twig' with {'route': '/api/banner/1', 'method': 'GET'} %}
 
 Result:
 ```json
@@ -442,9 +435,8 @@ Result:
 ### GET(List)
 Get a list of banners. With the optional `limit` parameter, it is possible to specify how many banner you want the 
 API to return.
-```php
-$client->get('banner');
-```
+
+{% include 'api_badge.twig' with {'route': '/api/banner', 'method': 'GET'} %}
 
 Result
 ```json
@@ -494,10 +486,12 @@ Result
 ### PUT
 To update a banner it is always required to provide the id of the banner. In this example, we will update the 
 `description` of the banner with id 1.
-```php
-$client->put('banner/1', [
-   'description' => 'New description'
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/banner/1', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "description": "New description"
+}
 ```
 
 Result:
@@ -514,14 +508,15 @@ Result:
 ### POST
 Create a new banner
 
-```php
-$client->post('banner', [
-    'description' => 'Shopware-Example-Banner1',
-    'image' => 'media/image/41/f8/25/Blog-Koffer.jpg',
-    'link' => 'www.shopware.com',
-    'linkTarget' => '_blank',
-    'categoryId' => '3',
-]);
+{% include 'api_badge.twig' with {'route': '/api/banner', 'method': 'POST', 'body': true} %}
+```json
+{
+    "description": "Shopware-Example-Banner1",
+    "image": "media\/image\/41\/f8\/25\/Blog-Koffer.jpg",
+    "link": "www.shopware.com",
+    "linkTarget": "_blank",
+    "categoryId": "3"
+}
 ```
 
 Result:
@@ -538,9 +533,7 @@ Result:
 ### DELETE
 Delete one banner identified by its id. In this case we delete the banner with id 1.
 
-```php
-$client->delete('banner/1');
-```
+{% include 'api_badge.twig' with {'route': '/api/banner/1', 'method': 'DELETE'} %}
 
 Result:
 ```json

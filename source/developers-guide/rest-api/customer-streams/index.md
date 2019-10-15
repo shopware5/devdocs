@@ -15,9 +15,6 @@ subgroup: REST API
 In this article, you will find examples which demonstrate how to create, delete, get and index **[Customer Streams](/developers-guide/customer-streams-extension)** and how to rebuild the search index. For each scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
 Please read the page covering the **[REST API Basics](/developers-guide/rest-api/)** if you haven't yet.
 
-These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
-
-
 ## Build Search Index
 To assure high performance, even when working with large data sets,
 all customer must be indexed regularly. The index is basically a cache which
@@ -30,13 +27,16 @@ contains all information which are needed for the Customer Stream module.
 
 
 *Example code:*
-```php
-$client->post('customer_streams', [
-    'buildSearchIndex' => true
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/customer_streams', 'method': 'POST', 'body': true} %}
+```json
+{
+  "buildSearchIndex": true
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "success": true
@@ -67,16 +67,20 @@ Define a new dynamic stream.
 | indexStream         | boolean      |                     | Stream will be index if set to true                                     |
 
 *Example code:*
-```php
-$client->post('customer_streams', [
-    'name' => 'Dynamic api stream',
-    'static' => false,
-    'description' => 'Stream created over the api which will be indexed immediately',
-    'conditions' => '{"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition":{"operator":"=","minimumOrderCount":1}}',
-    'indexStream' => true
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/customer_streams', 'method': 'POST', 'body': true} %}
+```json
+{
+    "name": "Dynamic api stream",
+    "static": false,
+    "description": "Stream created over the api which will be indexed immediately",
+    "conditions": "{\"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition\":{\"operator\":\"=\",\"minimumOrderCount\":1}}",
+    "indexStream": true
+}
 ```
+
 *Example output:*
+
 ```json
 {
     "success": true,
@@ -102,16 +106,22 @@ Define a new static stream and assign customers to it.
 
 
 *Example code:*
-```php
-$client->post('customer_streams', [
-    'name' => 'Static api stream',
-    'static' => true,
-    'description' => 'Static stream created over the api',
-    'customers' => [1,2]
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/customer_streams', 'method': 'POST', 'body': true} %}
+```json
+{
+    "name": "Static api stream",
+    "static": true,
+    "description": "Static stream created over the api",
+    "customers": [
+        1,
+        2
+    ]
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "success": true,
@@ -131,13 +141,15 @@ $client->post('customer_streams', [
 
 *Example code:*
 
-```php
-$client->put('customer_streams/' . (int) $response['data']['id'], [
-    'indexStream' => true,
-]);
+{% include 'api_badge.twig' with {'route': '/api/customer_streams/42', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "indexStream": true
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "success": true,
@@ -165,14 +177,17 @@ You can also define an offset/limit to process the stream in chunks.
 | sortings            | string array |                     | Sorting handler which will be applied to the result set                |
 
 *Example code:*
-```php
-$client->get('customer_streams/6', [
-    'conditions' => '{"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition":{"operator":"=>","minimumOrderCount":1}}',
-    'sortings' => '{"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Sorting\\\\NumberSorting":{"direction":"DESC"}}'
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/customer_streams/6', 'method': 'GET', 'body': true} %}
+```json
+{
+    "conditions": "{\"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Condition\\\\HasOrderCountCondition\":{\"operator\":\"=>\",\"minimumOrderCount\":1}}",
+    "sortings": "{\"Shopware\\\\Bundle\\\\CustomerSearchBundle\\\\Sorting\\\\NumberSorting\":{\"direction\":\"DESC\"}}"
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "data": [
@@ -211,9 +226,8 @@ $client->get('customer_streams/6', [
 List all streams and their attributes.
 
 *Example code:*
-```php
-$client->get('customer_streams/');
-```
+
+{% include 'api_badge.twig' with {'route': '/api/customer_streams', 'method': 'GET'} %}
 
 *Example output:*
 ```json

@@ -27,9 +27,6 @@ For each scenario, we provide an example of the data
 which is required, as well as an exemplary response.
 Please read the page covering the **[REST API Basics](/developers-guide/rest-api/)** if you haven't yet.
 
-These examples assume you are using the provided **[demo API client](/developers-guide/rest-api/#using-the-rest-api-in-your-own-application)**.
-
-
 ## Get a list of users
 If you want to get multiple user at once, you can call the /users endpoint.
 
@@ -43,18 +40,23 @@ If you want to get multiple user at once, you can call the /users endpoint.
 
 
 *Example code:*
-```php
-$client->get('users', [
-    'limit' => 10, // limit the number of users to 10
-    'start' => 1, // skip the first one
-    'sort' => [
-        ['property' => 'username', 'direction' => 'DESC']
+
+{% include 'api_badge.twig' with {'route': '/api/users', 'method': 'GET', 'body': true} %}
+```json
+{
+    "limit": 10,
+    "start": 1,
+    "sort": [
+        {
+            "property": "username",
+            "direction": "DESC"
+        }
     ]
-    
-]);
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "total": 2,
@@ -102,17 +104,17 @@ $client->get('users', [
 
 Attention: The properties apiKey, sessionId and password are missing,
 if the API user neither has the update nor the create privilege.
-+
+
 ## Get one user
 If you want to get detailed information about a specific user,
 you can call /users/{userId}
 
-
 *Example code:*
-```php
-$client->get('users/2', []);
-```
+
+{% include 'api_badge.twig' with {'route': '/api/users/2', 'method': 'GET'} %}
+
 *Example output:*
+
 ```json
 {
     "data": {
@@ -143,13 +145,16 @@ If you want to update a user, you can send a PUT request to /users/{userId}
 
 
 *Example code:*
-```php
-$client->put('users/2', [
-    'username' => 'test2'
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/users/2', 'method': 'PUT', 'body': true} %}
+```json
+{
+  "username": "test2"
+}
 ```
 
 *Example output:*
+
 ```json
 {
     "success": true,
@@ -163,25 +168,27 @@ $client->put('users/2', [
 ## Create a new user
 If you want to create a user, you can send a POST request to /users/
 
-
 *Example code:*
-```php
-$client->post('users', [
-    'roleId' => 1,
-    'localeId' => 1,
-    'username' => 'example',
-    'name' => 'test',
-    'email' => 'test@example.org',
-    'active' => 1,
-    'extendedEditor' =>  false,
-    'disabledCache' => false
-]);
+
+{% include 'api_badge.twig' with {'route': '/api/users', 'method': 'POST', 'body': true} %}
+```json
+{
+    "roleId": 1,
+    "localeId": 1,
+    "username": "example",
+    "name": "test",
+    "email": "test@example.org",
+    "active": 1,
+    "extendedEditor": false,
+    "disabledCache": false
+}
 ```
 
 Note: If you do not pass a password, the API will generate a
 secure password and send it in the response.
 
 *Example output:*
+
 ```json
 {
     "success": true,
@@ -198,9 +205,7 @@ If you want to update a user, you can send a DELETE request to /users/{userId}
 
 *Example code:*
 
-```php
-$client->delete('users/2', []);
-```
+{% include 'api_badge.twig' with {'route': '/api/users/2', 'method': 'DELETE'} %}
 
 *Example output:*
 ```json

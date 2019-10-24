@@ -501,7 +501,11 @@ into a plugin's `config.xml`.
                           Shopware.Msg.createGrowlMessage(response.statusText, response.responseText)
                         },
                         failure: function (response) {
-                          Shopware.Msg.createGrowlMessage(response.statusText, response.responseText)
+                          if (response.status === 404) {
+                            Shopware.Msg.createGrowlMessage('Plugin Manager', 'Please activate plugin before testing api.');
+                          } else {
+                            Shopware.Msg.createGrowlMessage(response.statusText, response.responseText)
+                          }
                         }
                       });
                     }

@@ -131,24 +131,6 @@ In this example the redis server is running locally (127.0.0.1) on port 6379:
 ],
 ```
 
-### File
-The "file" session adapter also supports session locking and will create sessions on the file system of each app server.
-For that reason, it is not recommended to be used in cluster setups, as it will then require mechanisms for syncing or
-session stickiness. Also ever read / write of session data will access the hard drive of the server - and might therefore
-slow down response times.
-
-#### Configuration
-
-```php
-'session' => array(
-    'save_handler' => 'file',
-),
-
-'backendsession' => array(
-    'save_handler' => 'file',
-),
-```
-
 ### Database
 The database session handler is Shopware's default session handler.
 

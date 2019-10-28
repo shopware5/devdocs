@@ -21,8 +21,8 @@ This example adds a sub-category to category 3
 {% include 'api_badge.twig' with {'route': '/api/categories', 'method': 'POST', 'body': true} %}
 ```json
 {
-  "parentId": 3,
-  "name": "Test-category"
+  "name": "Test-category",
+  "parentId": 3
 }
 ```
 
@@ -32,6 +32,7 @@ This example adds a sub-category to category 3
 ```json
 {
   "name": "Test-category",
+  "parentId": 3,
   "metaDescription": "metaTest",
   "metaKeywords": "keywordTest",
   "cmsHeadline": "headlineTest",
@@ -51,6 +52,7 @@ This example adds a sub-category to category 3
 ```json
 {
   "name": "Test-category",
+  "parentId": 3,
   "attribute": {
     "1": "Attr1"
   },

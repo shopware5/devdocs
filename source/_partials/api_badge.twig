@@ -1,8 +1,13 @@
 <div class="api-badge api-badge-{{ method|lower }} {% if body %}body{% endif %}">
-  <span class="method">
-    {{ method }}
-  </span>
-  <span class="route">
-    {{ route|raw }}
-  </span>
+    <span class="method">
+        {{ method }}
+    </span>
+    <span class="route">
+        {{ route|raw }}
+    </span>
+    {% if body %}
+        <i class="icon-copy" title="Copy raw request body">
+            <span></span>
+        </i>
+    {% endif %}
 </div>

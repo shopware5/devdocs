@@ -78,13 +78,13 @@ We currently support two authentication mechanisms:
 
 The Digest access authentication is based on a simple
 challenge-response paradigm. The Digest scheme challenges
-using a nonce value. A valid response contains a checksum 
-(by default MD5) of the username, the password, 
+using a nonce value. A valid response contains a checksum
+(by default MD5) of the username, the password,
 the given nonce value, the HTTP method, and the requested URI.
 
 This ensures, that the password is never sent as plain text.
 
-You can find a detailed explanation of the digest access authentication 
+You can find a detailed explanation of the digest access authentication
 [here](https://tools.ietf.org/html/rfc2617#page-6)
 and [here](https://en.wikipedia.org/wiki/Digest_access_authentication).
 
@@ -204,7 +204,7 @@ Each filter can have the following properties:
 * property (Required)
 * value (Required)
 * expression (Default: `LIKE`, available: all MySQL expressions)
-* operator (If set, concats the filter using `OR` instead of `AND`) 
+* operator (If set, concats the filter using `OR` instead of `AND`)
 
 **Example: Active articles with at least 1 pseudo sale**
 
@@ -323,6 +323,7 @@ The limiting uses the parameter `limit`, the offset `start`.
   "limit": 50,
   "start": 20
 }
+```
 
 ## Models
 

@@ -42,7 +42,7 @@ controller should be cached for how long? The `Controller` column contains the c
 The `time` column the caching time in seconds (TTL). Only controllers / pages in this will be cached at all.
 * [Controller tags not to be cached](/blog/2015/02/11/understanding-the-shopware-http-cache/#nocache-tags): Do
 not cache these controllers if the user session has a certain state. The rule of thumb is: if a user is logged in, the
-`price` tag is active, if some items are in the cart or the `checkout` tag is active. So, as you can see, Shopware will not
+`price` tag is active, if some items are in the cart, the `checkout` tag is active. So, as you can see, Shopware will not
 cache listing pages of logged in users - they might have different prices. See the link before for more details.
 
 

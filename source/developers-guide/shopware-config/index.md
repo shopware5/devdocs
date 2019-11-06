@@ -262,7 +262,7 @@ With Shopware 5.6.2 it is possible to define a custom timezone for the connectio
         'username' => 'someuser',
         'password' => 'somedb',
         ...
-        timezone' => null, // Something like: 'UTC', 'Europe/Berlin', '-09:30',
+        date.timezone' => null, // Something like: 'UTC', 'Europe/Berlin', '-09:30',
     ],
     ...
 ```

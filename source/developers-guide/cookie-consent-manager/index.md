@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Register a cookie to the cookie consent manager
-github_link: developers-guide/register-cookies/index.md
+github_link: developers-guide/cookie-consent-manager/index.md
 shopware_version: 5.6.3
 indexed: true
 tags:

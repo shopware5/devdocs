@@ -1,6 +1,7 @@
 .api-badge {
 
     display: flex;
+    position: relative;
     width: 100%;
     box-sizing: border-box;
 
@@ -35,6 +36,27 @@
         border-radius: 0 5px 5px 0;
     }
 
+    .icon-copy {
+        display: inline-block;
+        position: absolute;
+        right: 1rem;
+        font-size: .8rem;
+        line-height: 1.5rem;
+        color: rgba(0, 0, 0, .33);
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(0, 0, 0, .66);
+        }
+
+        span {
+            font: @main-font 'Brandon', Arial, sans-serif;
+            font-weight: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+    }
+
     &.body {
         .method {
             border-radius: 5px 0 0 0;
@@ -42,16 +64,6 @@
 
         .route {
             border-radius: 0 5px 0 0;
-        }
-
-        .route::after {
-            content: 'request-body attached';
-            display: inline-block;
-            position: relative;
-            float: right;
-            font-size: .8rem;
-            line-height: 1.5rem;
-            color: rgba(0, 0, 0, .2);
         }
     }
 

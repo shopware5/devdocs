@@ -60,7 +60,8 @@ class ComfortCookie extends Plugin
         $collection = new CookieCollection();
         $collection->add(new CookieStruct(
             'comfort',
-            'My very own comfort cookie',
+            '/^comfort$/',
+            'Matches with only "comfort"',
             CookieGroupStruct::COMFORT
         ));
 
@@ -77,20 +78,35 @@ which is the main event to register your cookie.
 In the event listener, in this case called `addComfortCookie`, you have to create an instance of a `\Shopware\Bundle\CookieBundle\CookieCollection`.
 Afterwards, you'll have to add at least one instance of a `\Shopware\Bundle\CookieBundle\Structs\CookieStruct`.
 
-The `CookieStruct` requires two parameters, we highly suggest to use all three of them though.
-The first parameter being the cookie's name. This is not just a technical name, but actually the name of the cookie itself.
-If your plugin provides a cookie named `foo`, you'll have to use `foo` in that parameter as well.
+The `CookieStruct` requires three parameters, we highly suggest to use all four of them though.
+The first parameter represents the cookie's technical name, which will be used for saving the current 'active' state of your cookie.
 
-**But there's one more thing to it:**<br />The name being used only has to match the beginning of the actual cookie's name.
-For example, a default Shopware cookie is the `session` cookie, whose actual name consist of `session-` as well as the dynamic shop ID.
-For this reason, we can't just go for a simple "equals" name check, but instead have to check for the prefix to match.
-Thus, our default cookie is registered using the name `session`.
+Very important for you is the second parameter, which is the RegEx to match your cookie.
+This way you can deal with dynamic cookie names like `session-1`. Just try to be as precise as possible here,
+since you **probably** do not want to match multiple cookies with just one RegEx.
+In the example mentioned above, only cookies with the exact name `comfort` would be matched, neither `comfortCookie` nor `myComfort`.
 
-Another example:
-If your plugin introduces two new cookies with the names `my-plugin_foo` and `my-plugin_bar`,
-you could register both of them just using the name `my-plugin`.
+If you really want to match multiple cookies with a single `CookieStruct`, go ahead and use a more open RegEx:
+```php
+new CookieStruct(
+    'comfort',
+    '/^swag/',
+    'Every cookie prefixed with "swag"',
+    CookieGroupStruct::COMFORT
+)
+```
 
-The second parameter represents the label being shown in cookie consent manager for your cookie.
+Even when there's no common prefix, you could a RegEx capturing group to group up your cookies:
+```php
+new CookieStruct(
+    'comfort',
+    '/^(foo|bar)/',
+    'All cookies starting with either "foo" or "bar"',
+    CookieGroupStruct::COMFORT
+)
+```
+
+The third parameter represents the label being shown in the cookie consent manager for your cookie.
 Make sure to add translations here, e.g. like this:
 ```php
 public function addComfortCookie(): CookieCollection
@@ -100,6 +116,7 @@ public function addComfortCookie(): CookieCollection
     $collection = new CookieCollection();
     $collection->add(new CookieStruct(
         'comfort',
+        '/^comfort$/',
         $pluginNamespace->get('my_cookie_label'),
         CookieGroupStruct::COMFORT
     ));
@@ -108,7 +125,7 @@ public function addComfortCookie(): CookieCollection
 }
 ```
 
-The third parameter is optional and represents your cookie's group. If none is applied, the "Others" group is used.
+The fourth parameter is optional and represents your cookie's group. If none is applied, the "Others" group is used.
 You can find all default groups as constants in the `\Shopware\Bundle\CookieBundle\Structs\CookieGroupStruct`.
 Also, have a look at the next headline to figure out how to register your cookie group, if necessary.
 

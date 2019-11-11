@@ -113,7 +113,7 @@ As you can see, a Shopware CLI command is very similar to a Symfony 3 command. Y
 ## Add completion for commands
 
 Shopware uses [stecman/symfony-console-completion](https://github.com/stecman/symfony-console-completion) to add completion features you might already know from other CLI.
-This composer package automatically adds completion to any command about the option names.
+This composer package automatically adds completion for options and names to any command.
 Some option names need values like the `--batch` option from `sw:plugin:update`, so the package can not recognize the allowed values automatically.
 To add support for option value and argument completion you need to implement the interface `Stecman\Component\Symfony\Console\BashCompletion\Completion\CompletionAwareInterface`.
 Both methods the interface expects (`completeOptionValues` and `completeArgumentValues`) behave similarly as they both expect all possible values for the option respectively argument at the cursor position to offer for completion returned as array.

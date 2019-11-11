@@ -2,7 +2,7 @@
 layout: default
 title: Cheat-Sheet for developers
 github_link: developers-guide/cheat-sheet/index.md
-shopware_version: 5.3.0
+shopware_version: 5.6.0
 tags:
   - cheat-sheet
   - developers
@@ -312,3 +312,11 @@ $objectData = $builder->getQuery()->getResult();
 // Array with arrays
 $arrayData = $builder->getQuery()->getArrayResult();
 ```
+
+## Activate completion in shell
+
+```sh
+source <(bin/console _completion --generate-hook)
+```
+
+For details on implementing completion for custom commands see the [CLI commands page](/developers-guide/shopware-5-cli-commands/#add-completion-for-commands).

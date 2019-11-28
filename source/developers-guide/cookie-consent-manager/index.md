@@ -209,3 +209,35 @@ There might be the need to check for your cookie state with every single page-re
 You can actually check the active state of your cookie in javascript at any given point in time, using the global method `$.getCookiePreference(cookieName)`.
 This will return either `true` or `false`, depending on your cookie's active state. If your cookie is unknown yet and thus not saved in the preferences,
 `false` will be returned as well.
+
+## Dealing with the LocalStorage
+
+If your plugin also saves data into the LocalStorage, this might be a legal issue as well.
+The consent manager itself neither prevents saving data into the LocalStorage nor does it delete or modify data being saved there, at least not with Shopware 5.6.3.
+
+You can still use the consent manager to deal with this issue by simply registering another dummy cookie consisting of a random RegEx, so it matches no actual cookie, and a proper label.
+
+```php
+public function addComfortCookie(): CookieCollection
+{
+    $pluginNamespace = $this->container->get('snippets')->getNamespace('my_plugins_snippet_namespace');
+
+    $collection = new CookieCollection();
+    $collection->add(new CookieStruct(
+        'allow_local_storage',
+        '/^match_no_cookie_DJ7ra9WMy8$/',
+        'Saving statistical data into the LocalStorage',
+        CookieGroupStruct::COMFORT
+    ));
+
+    return $collection;
+}
+```
+
+This way, your customers will be able to allow saving data into the LocalStorage and you can check for its active status in your javascript code.
+
+```js
+if ($.getCookiePreference('allow_local_storage')) {
+    // Save data into LocalStorage
+}
+```

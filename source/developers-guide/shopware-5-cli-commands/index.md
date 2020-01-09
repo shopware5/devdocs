@@ -109,3 +109,54 @@ EOF
 ```
 
 As you can see, a Shopware CLI command is very similar to a Symfony 3 command. You can use any of the features provided by the Symfony Console component, like you would in Symfony 3 itself.
+
+## Add completion for commands
+
+Shopware uses [stecman/symfony-console-completion](https://github.com/stecman/symfony-console-completion) to add completion features you might already know from other CLI.
+This composer package automatically adds completion for options and names to any command.
+Some option names need values like the `--batch` option from `sw:plugin:update`, so the package can not recognize the allowed values automatically.
+To add support for option value and argument completion you need to implement the interface `Stecman\Component\Symfony\Console\BashCompletion\Completion\CompletionAwareInterface`.
+Both methods the interface expects (`completeOptionValues` and `completeArgumentValues`) behave similarly as they both expect all possible values for the option respectively argument at the cursor position to offer for completion returned as array.
+For example for the `--batch` option you can simply write:
+```php
+public function completeOptionValues($optionName, CompletionContext $context)
+{
+    if ($optionName === 'batch') {
+        return ['active', 'inactive'];
+    }
+
+    return [];
+}
+```
+In case of simple filename expansion you implement it like this:
+```php
+public function completeArgumentValues($argumentName, CompletionContext $context)
+{
+    if ($argumentName === 'file') {
+        return $this->completeInDirectory();
+    }
+
+    return [];
+}
+```
+
+## Use completion in shell
+
+If you change your working directory to the project root you just have to execute the generated shell code like this:
+```sh
+source <(bin/console _completion --generate-hook)
+```
+This can be easily added to your `.profile` file.
+In case you have to use custom php parameters for the `bin/console` application you just add an alias and register the completion also for this alias.
+Therefore you save the generated shell code and look for the rows that look similar to the following snippet and duplicate line 5:
+```sh
+alias console-debug="php -dzend_extension=xdebug.so ${PROJECT_ROOT}/bin/console"
+
+if [ "$(type -t _get_comp_words_by_ref)" == "function" ]; then
+    complete -F _console_12345567890abcdef_complete "console";
+    complete -F _console_12345567890abcdef_complete "console-debug";
+else
+    >&2 echo "Completion was not registered for console:";
+    >&2 echo "The 'bash-completion' package is required but doesn't appear to be installed.";
+fi;
+```

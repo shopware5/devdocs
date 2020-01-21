@@ -191,6 +191,24 @@ The `max_result_window` option (since SW 5.5.2) can be useful if you're having m
 The `max_expansions` option comes with SW 5.5.5 and allows you to change the ES expansions value of the `phrase_prefix` query for `name` and `number`. This can be useful if you want to show more results while searching e.g. for an product number like "SW1000". By default only products with an up to two-digit longer number will be shown as well (e.g. SW1000XX). Increase the value for `max_expansions` to also get products with more than a two-digit longer product number. 
 You can use this option to set own fields for a `phrase_prefix` query as well. For example `'manufacturer.name' => 4` would be possible to search for products which start with the given manufacturer's name or an up to four characters longer name. 
 
+### Media whitelist
+
+In this setting, you can specify which file extensions are also permitted via a form so that they can be sent to your shop.
+
+```
+    'media' => [
+        'whitelist' => [],
+    ],
+```
+
+As an example, your configuration could look like this if you want to allow that: Text, CSV, Excel, Numbers, Word and Pages documents are allowed to be sent via a form.
+
+```
+    'media' => [
+        'whitelist' => ['txt', 'csv', 'xls', 'xlsx', 'numbers', 'csv', 'doc', 'docx', 'pages'],
+    ],
+```
+
 ## Example development config
 
 ```

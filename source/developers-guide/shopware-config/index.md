@@ -201,7 +201,7 @@ In this setting, you can specify which file extensions are also permitted via a 
     ],
 ```
 
-As an example, your configuration could look like this if you want to allow that: Text, CSV, Excel, Numbers, Word and Pages documents are allowed to be sent via a form.
+As an example, your configuration could look like this if you want that Text, CSV, Excel, Numbers, Word and Pages documents are allowed to be sent via a form.
 
 ```
     'media' => [

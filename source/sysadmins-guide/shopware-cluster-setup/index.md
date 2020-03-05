@@ -216,7 +216,6 @@ The following directories, however, need special treatment:
 
 **No syncing**:
 * `/var/cache`: Handled individually on every appserver, no syncing
-* `/web`: Handled individually on every appserver, no syncing needed as of Shopware 5.2
 
 **Larger directories**:
 * `/files`: Synced to each appserver or shared storage. Depends on installed plugins  and used Shopware featured such as ESD etc.
@@ -227,6 +226,7 @@ The following directories, however, need special treatment:
 * `/themes/Frontend`: Changed when new themes are created from the admin panel
 * `/media`: Changed when new images / videos / media are uploaded in the admin panel
 * `/files`: Changed when ESD items are uploaded or order documents are generated
+* `/web`: Sitemap generation
 
 ## Additional resources
 * [Shopware system requirements](/sysadmins-guide/system-requirements/)

@@ -264,6 +264,11 @@ nav.navi--main:after {
 
             &.is--active {
                 padding-bottom: 10px;
+
+                ul.navi--sub-1-tree {
+                    height: auto;
+                    border: none;
+                }
             }
 
             .navi--link {
@@ -272,7 +277,7 @@ nav.navi--main:after {
                 color: rgba(255, 255, 255, 0.95);
                 font-weight: 500;
                 position: relative;
-                font-size: 17px;
+                font-size: 1.2rem;
                 z-index: 10;
                 border-left: 3px solid rgba(255, 255, 255, 0);
                 background-color: rgba(255, 255, 255, 0);
@@ -293,16 +298,15 @@ nav.navi--main:after {
                     border-left: 3px solid rgba(255, 255, 255, 1);
                     font-weight: 600;
                 }
+
+                .icon-external-link {
+                    margin: 0.2rem 0 0 0;
+                    float: right;
+                    opacity: 0.75;
+                }
             }
 
-            &.is--active {
-                ul.navi--sub-tree {
-                    height: auto;
-                    border: none;
-                 }
-            }
-
-            ul.navi--sub-tree {
+            ul.navi--sub-1-tree {
                 .transition(all 0.4s ease-out);
                 height: 0;
                 overflow: hidden;
@@ -311,11 +315,11 @@ nav.navi--main:after {
                     margin-bottom: 5px;
                 }
 
-                li.navi--sub-chapter {
+                li.navi--sub-1-chapter {
                     .navi--link {
-                        font-size: 16px;
+                        font-size: 1rem;
                         color: rgba(255, 255, 255, 0.55);
-                        padding: 5px 15px 5px 38px;
+                        padding: 5px 15px 5px 50px;
                         font-weight: 500;
                         z-index: 5;
 
@@ -348,17 +352,17 @@ nav.navi--main:after {
                     }
 
                     &.is--active {
-                        ul.navi--sub-tree {
+                        ul.navi--sub-2-tree {
                             height: auto;
                         }
                     }
 
-                    ul.navi--sub-tree {
+                    ul.navi--sub-1-tree, ul.navi--sub-2-tree, ul.navi--sub-3-tree {
                         .transition(all 0.4s ease-out);
                         height: 0;
                         overflow: hidden;
 
-                        li.navi--sub-chapter {
+                        li.navi--sub-1-chapter {
                             .navi--link {
                                 font-size: 15px;
                                 color: rgba(255, 255, 255, 0.33);
@@ -388,7 +392,7 @@ nav.navi--main:after {
                             }
                         }
 
-                        &.is--numbered li.navi--sub-chapter .navi--link {
+                        &.is--numbered li.navi--sub-1-chapter .navi--link {
                             &:before {
                                 display: block;
                                 width: 20px;
@@ -405,6 +409,31 @@ nav.navi--main:after {
 
                             }
                         }
+                    }
+                }
+            }
+
+            ul.navi--sub-2-tree {
+                li.navi--sub-2-chapter {
+
+                    &.is--active {
+                        ul.navi--sub-3-tree {
+                            height: auto;
+                        }
+                    }
+
+                    .navi--link {
+                        font-size: 1rem;
+                        padding-left: 62px;
+                    }
+                }
+            }
+
+            ul.navi--sub-3-tree {
+                li.navi--sub-3-chapter {
+                    .navi--link {
+                        font-size: 1rem;
+                        padding-left: 74px;
                     }
                 }
             }

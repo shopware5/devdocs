@@ -2982,30 +2982,25 @@
         },
         {
             "name": "webignition/disallowed-character-terminated-string",
-            "version": "2.0",
+            "version": "1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/disallowed-character-terminated-string.git",
-                "reference": "1c35b8bacbb2e76837c0aa8538dc2468a1f10e6e"
+                "reference": "25d12868c82b56bc0d04278e31594385ba4dddc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/disallowed-character-terminated-string/zipball/1c35b8bacbb2e76837c0aa8538dc2468a1f10e6e",
-                "reference": "1c35b8bacbb2e76837c0aa8538dc2468a1f10e6e",
+                "url": "https://api.github.com/repos/webignition/disallowed-character-terminated-string/zipball/25d12868c82b56bc0d04278e31594385ba4dddc4",
+                "reference": "25d12868c82b56bc0d04278e31594385ba4dddc4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12.3",
-                "phpunit/phpunit": "~8.0",
-                "squizlabs/php_codesniffer": "^3.5"
+                "php": ">=5.3.0"
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "webignition\\DisallowedCharacterTerminatedString\\": "src"
+                "psr-0": {
+                    "": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3015,7 +3010,7 @@
             "authors": [
                 {
                     "name": "Jon Cram",
-                    "email": "webignition@gmail.com"
+                    "email": "jon@webignition.net"
                 }
             ],
             "description": "A string terminated by one or more disallowed characters",
@@ -3024,7 +3019,7 @@
                 "string",
                 "terminated"
             ],
-            "time": "2019-12-20T15:52:44+00:00"
+            "time": "2012-07-16T21:29:50+00:00"
         },
         {
             "name": "webignition/internet-media-type",

@@ -165,6 +165,11 @@ public function uninstall(UninstallContext $context): void
         $this->removeAllTables();
         $this->someOtherDestructiveMethod();
     }
+    
+    // Clear only cache when switching from active state to uninstall
+    if ($context->getPlugin()->getActive()) {
+        $context->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
+    }
 }
 ```
 

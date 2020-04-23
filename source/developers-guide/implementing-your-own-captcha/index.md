@@ -215,7 +215,7 @@ The interface you are implementing defines three methods:
      - Has to be unique
  - `validate(Enlight_Controller_Request_Request $request)`
      - This method will ingest the form post request after it is send.
-       It has to return true or false, indicating wether the captcha was solved correctly or not.
+       It has to return true or false, indicating whether the captcha was solved correctly or not.
  - `getTemplateData()`
      - Has to return an array which will be assigned to your smarty template.
      

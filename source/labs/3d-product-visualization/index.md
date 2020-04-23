@@ -27,7 +27,7 @@ The [SwagThreeSixty plugin](https://github.com/shopwareLabs/SwagThreeSixtyViewer
 - Supports different types of lights
     - Point light, Spot light & Hemisperic light
 - Supports basic shapes
-    - Cyclinder, Box & Ground Plane
+    - Cylinder, Box & Ground Plane
 - Supports different materials for basic shapes
     - Diffuse, Specular & Ambient color / texture
     - Bump map support
@@ -41,7 +41,7 @@ The [SwagThreeSixty plugin](https://github.com/shopwareLabs/SwagThreeSixtyViewer
 ### Why have we created a 3D editor?
 Before we're jumping straight into the plugin, I would like to explain why we've added a 3D editor instead of a simple upload ability for 3D models. A 3D model is just a single part of a 3D scene, next to things like the environment or the lighting, both of which are crucially important for a realistic display of your products. That is why we decided to provide a solution that seamlessly allows you to create everything necessary to present 3D representations of your products in your shop.
 
-A scene contains a camera which looks onto your product, you have different lights in place, for example a hemisphere light for enviormental illumination and a spot light which is giving your project the correct lighting, as well as a backdrop or even other 3D models which you're using to put your product into the right context.
+A scene contains a camera which looks onto your product, you have different lights in place, for example a hemisphere light for environmental illumination and a spot light which is giving your project the correct lighting, as well as a backdrop or even other 3D models which you're using to put your product into the right context.
 
 ## Technical background
 The editor is using [babylon.js](https://www.babylonjs.com/), a JavaScript framework for building 3D games with HTML5. WebGL, WebVR & Web Audio initiallly created by Microsoft. It helps you to streamline the development of 3D content in the browser. The framework itself it full-featured and includes a rich & in-depth documentation.
@@ -95,7 +95,7 @@ The minimum and maximum zoom factors can be controlled using the *"lower radius 
 The camera can automatically rotate around the given pivot. To do so, enable the checkbox *"Auto Rotate"*. The value of the *"Auto Rotate Speed"* defines the increment of the *"alpha"* value of the camera per frame. Please keep in mind we're aiming for 60 frames per second, so the value shouldn't be too high otherwise the camera would spin around the target like crazy.
 
 #### Anti-Aliasing
-The camera also features anti-aliasing in 2 different intensities. The first option is *"FXAA"* (Fast Approximate Anti-Aliasing) which applies the smoothing as a per-pixel effect. In our internal tests the perfomance impact was low and we used it in almost every scene we've created. The second option is *"FSAA 4x"* (Full Scene Anti-Aliasing) with a 4x sampling of the scene. This type of anti-aliasing super-samples each full frame and renders it with four times the display resolution and then down-samples it to match the display resolution again. In our internal test we found out this type has a strong negative impact on performance and should only be used with very lightweight scenes and low poly 3D models, as otherwise the viewer would feel sluggish to the user, especially on lower end devices.
+The camera also features anti-aliasing in 2 different intensities. The first option is *"FXAA"* (Fast Approximate Anti-Aliasing) which applies the smoothing as a per-pixel effect. In our internal tests the performance impact was low and we used it in almost every scene we've created. The second option is *"FSAA 4x"* (Full Scene Anti-Aliasing) with a 4x sampling of the scene. This type of anti-aliasing super-samples each full frame and renders it with four times the display resolution and then down-samples it to match the display resolution again. In our internal test we found out this type has a strong negative impact on performance and should only be used with very lightweight scenes and low poly 3D models, as otherwise the viewer would feel sluggish to the user, especially on lower end devices.
 
 ## Lights
 The next topic we are going to talk about are lights. We've added different types of lights which are having a different purpose. The following types are supported by our editor:
@@ -202,7 +202,7 @@ The *"Diameter Top"* property lets you define the width of the cylinder at the t
 
 The *"Diameter Bottom"* property lets you define the width of the cylinder at the bottom of the element.
 
-The property *"Tesselation"* is another interesting property of the cylinder. It defines how many sides should be created on the *Y*-axis. A lower value creates a hexagonal cyclinder instead of a round one.
+The property *"Tesselation"* is another interesting property of the cylinder. It defines how many sides should be created on the *Y*-axis. A lower value creates a hexagonal cylinder instead of a round one.
 
 The property *"Height Subdivs"* defines the resolution of the cylinder model. This property is mainly to optimize the performance and don't need to be changed by you in almost any case.
 
@@ -234,7 +234,7 @@ The ground / plane geometry element is the most simplest element available in th
 
 The *"Width"* property defines the size of the *X*-axis. The *"Height"* property defines the size of the ground on the *Z*-axis. It may be confusing up first cause the term "height" usually refers to the *Y*-axis, but not in this case.
 
-The setting *"Subdivs"* is similar to the *"Height Subdiv"* setting of the cylinder. It defines how many verticies are forming the ground plane. This is mainly for perfomance optimization and you don't have to change the value in most cases.
+The setting *"Subdivs"* is similar to the *"Height Subdiv"* setting of the cylinder. It defines how many verticies are forming the ground plane. This is mainly for performance optimization and you don't have to change the value in most cases.
 
 ### Basic geometry texture & color settings
 The basic geometry elements are coming with a bunch of different settings you can adjust to get the perfect result for the texture. Let's take a closer look at those settings:

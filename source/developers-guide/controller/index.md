@@ -194,7 +194,7 @@ class ExtendListing implements SubscriberInterface
     /**
      *  The install method of your plugin base file
      */
-    public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return [
             'Enlight_Controller_Action_PostDispatchSecure_Listing_Index' => 'onListingIndex'

@@ -385,7 +385,7 @@ The configuration of the filter fields is similar to the column of the `Shopware
 #### Configure SQL comparison
 
 Since Shopware 5.3.0 it is possible to define your own SQL query 
-expression for comparision. This configuration option is available when 
+expression for comparison. This configuration option is available when 
 using the `Shopware.listing.FilterPanel`. An implementation for the `>=` 
 operator could look like this:
 

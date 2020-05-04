@@ -188,7 +188,7 @@ In the previous example, for academic purposes, we assumed that our __Redis__ in
 </service>
 ```
 
-This implementation is very similar to the one presented before. However, if you look closely, you will notice that the default __shopware_storefront.list_product_service__ implementation is not discarded, but passed to the __RedisProductService__ constructor as an argument via the `<argument>` tag. It is important to append the `.inner` to the id here - this way the original service is adressed instead of our own implementation of it.
+This implementation is very similar to the one presented before. However, if you look closely, you will notice that the default __shopware_storefront.list_product_service__ implementation is not discarded, but passed to the __RedisProductService__ constructor as an argument via the `<argument>` tag. It is important to append the `.inner` to the id here - this way the original service is addressed instead of our own implementation of it.
 
 ```php
 <?php

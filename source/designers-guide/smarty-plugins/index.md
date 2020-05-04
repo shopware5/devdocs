@@ -130,7 +130,7 @@ Example: *example of a call to instant downloads*
  
 You also have the option to pass on to the controller parameters. For this example, we'll extend the call to instant downloads with the parameter sParam with the value test.
 
-Exmaple: *call to instant download with parameter*
+Example: *call to instant download with parameter*
 ``` 
 {* A link to instant downloads *}
 <a href="{url controller='account' action='downloads' sParam='test'}" title="Open instant downloads with parameter">

@@ -662,7 +662,7 @@ infos.
 ### Registering a controller
 
 Controllers are loaded automatically if you use the directories `PluginBaseDirectory/Controllers/(Frontend | Backend | Api | Widgets)/YourController.php`.
-Because of that a manual controller registration is not neccessary.
+Because of that a manual controller registration is not necessary.
 
 Notice that when you create a controller you have to register a template directory  manually as well. 
 This is needed, as it makes sure, that all your templates are available in the controller - so the automatic template loading will work.

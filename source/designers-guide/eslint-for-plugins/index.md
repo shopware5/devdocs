@@ -74,7 +74,7 @@ npm run lint
 Using ESLint can cause trouble at first. The following tips & tricks should help you out.
 
 #### Using global variables in your plugin
-You're usually working with external libaries or configurations which are defined in a template file. As mentioned before ESLint is a static code analyses tool, therefore you have declare any used globals at the top at of the file which is using the library / configuration:
+You're usually working with external libraries or configurations which are defined in a template file. As mentioned before ESLint is a static code analyses tool, therefore you have declare any used globals at the top at of the file which is using the library / configuration:
 
 ```
 /* global jQuery */

@@ -31,7 +31,7 @@ Shopware performance optimization should start long before you install Shopware 
 
 - `Processor`: Different hosting providers and plans provide different options. More than speed, the key value here is the number of cores. Each core works separately from each other, meaning that the more you have, the more concurrent requests your shop will be able to handle. This is particularly relevant if you expect periods of high traffic on your shop (for example, a highly anticipated product release that causes an abnormal flow of requests to your shop) or you expect to frequently have multiple dozens of simultaneous requests on your shop. As a rule of thumb, even for small shops, a dual core processor is recommended.
 
-- `Memory`: Memory is used by all parts of your system. Not only does Shopware consume memory, but so does your server's operating system, your database server, your web server, and any other application your server might be running. Additionally, in the sections bellow, we will cover different caching configurations, that you can use to speed up Shopware, at the expense of additional memory. So, even if your Shopware installation runs with minimal memory configurations like 1 or 2 GBs, it's recommended that you consider adding additional memory to your setup, especially if you plan on using other applications on your server simultaneously, or if you want to configure the caching features described below.
+- `Memory`: Memory is used by all parts of your system. Not only does Shopware consume memory, but so does your server's operating system, your database server, your web server, and any other application your server might be running. Additionally, in the sections below, we will cover different caching configurations, that you can use to speed up Shopware, at the expense of additional memory. So, even if your Shopware installation runs with minimal memory configurations like 1 or 2 GBs, it's recommended that you consider adding additional memory to your setup, especially if you plan on using other applications on your server simultaneously, or if you want to configure the caching features described below.
 
 - `Hard drive`: Aside from disk space, which does not affect performance (unless the disk is full or close to it), hard drives are differentiated by their nature into one of two categories: `hard disc drive` (HDD) and `solid state drives` (SSD). The former are more commonly available, especially in entry level hosting solutions, but are gradually being phased out by most providers in favor of the latter, which are usually more expensive but offer significantly better performance. As the price difference between the two has been declining over the last few years, it's now possible to find hosting solution that use the faster SSD technology even for budget-level hosting solutions.
 
@@ -88,7 +88,7 @@ The [following post](http://nginx.com/blog/tuning-nginx/) on the official nginx 
 
 ## PHP
 
-At the time of this publication, the latest stable PHP version was 7.3, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.3 whenever possible, though Shopware currenty still supports PHP 7.2. Please check the supported PHP versions of your Shopware version before updating PHP.
+At the time of this publication, the latest stable PHP version was 7.3, which includes several performance optimizations over PHP 7.0 and PHP 5.6. As such, we recommend that you use PHP 7.3 whenever possible, though Shopware currently still supports PHP 7.2. Please check the supported PHP versions of your Shopware version before updating PHP.
 
 ### Opcode cache
 
@@ -122,7 +122,7 @@ PHP 5.4 does not include a opcode cache out of the box, but you can (and we reco
 
 #### APC configuration
 
-You should check your `phpinfo()` output to determine if APC is installed and enabled. Installing and enabling APC depends on your system, but you can find information about this on related support sites or forums. You can find more details about APC configuration on the [project configuration page](http://php.net/manual/en/apc.configuration.php). Bellow you can see some of the most commonly customized values:
+You should check your `phpinfo()` output to determine if APC is installed and enabled. Installing and enabling APC depends on your system, but you can find information about this on related support sites or forums. You can find more details about APC configuration on the [project configuration page](http://php.net/manual/en/apc.configuration.php). Below you can see some of the most commonly customized values:
 
 - `apc.shm_segments`: The number of memory segments allocated to APC. Typically you want 1 (default value). Increasing this value will multiply the memory consumption of APC, so you should be careful if you decide to change this value
 

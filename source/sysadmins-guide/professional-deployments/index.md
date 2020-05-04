@@ -45,7 +45,7 @@ and workflows.
 
 Deployments should be as automatic as possible to prevent any chance of human error. It is generally a good idea to
 not simply replace or update your webroot on the production system. Rather create a fresh clone of the latest production
-release from your VCS, maybe run some automated tests to make sure no basic errors occured and just switch the webroot
+release from your VCS, maybe run some automated tests to make sure no basic errors occurred and just switch the webroot
 of your webserver to point to your new release. Shared resources (like images, documents etc.) can be offloaded to a
 CDN or themselves be included in your webroot by file system links.
 

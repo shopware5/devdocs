@@ -26,7 +26,7 @@ As mentioned, the jQuery plugin base class was built up with the best practices 
 * Support for jQuery's method chaining
 * Namespacing of events
 * Built-in functionality to remove event listeners
-* Preventing multiple instanciation on the same element
+* Preventing multiple instantiation on the same element
 * Custom expression to check if an element uses a specific plugin
 * Automatically binding the plugin to the element using jQuery's ```data```-method
 
@@ -102,7 +102,7 @@ $.plugin('example', {
              * In the condition we're using the custom expression of the plugin
              * to terminate if the element uses our plugin.
              * Additionally you see that we're using the variable "this.$el" which
-             * is the element that has instanciated the plugin.
+             * is the element that has instantiated the plugin.
              */
             if(me.$el.is('plugin-example')) {
                 
@@ -142,7 +142,7 @@ $.plugin('example', {
 * ```_name : String```
     * Name of the plugin. 
 * ```$el : jQuery```
-    * The HTMLElement which instanciated the plugin as a jQuery object.
+    * The HTMLElement which instantiated the plugin as a jQuery object.
 * ```opts : Object```
     * Result of the default configuration and the provided user configuration. Keep in mind that calling the ```this.applyDataAttributes()``` method overrides the property values in the object.
 * ```_events : Array```
@@ -154,7 +154,7 @@ $.plugin('example', {
 * ```destroy()```
     * Template method which destroys the plugin. Usually, you remove classes and event listeners which you've added to the element. The method should be implemented in your plugin, especially when you plan to provide the plugin functionality only for certain states.
 * ```update()```
-    * Template method which will be called when a certain state was entered / left to update the behavior of the plugin. This method is only necessary when you use the StateManager to instanciate the plugin.
+    * Template method which will be called when a certain state was entered / left to update the behavior of the plugin. This method is only necessary when you use the StateManager to instantiate the plugin.
 * ```_destroy()```
     * Private method which iterates over the registered event listeners in the ```_events``` property of the plugin. Additionally, the method removes the in-memory binding of the plugin to the element using jQuery's ```removeData()``` method and fires an event on the globally available observer.
 * ```_on()```
@@ -174,7 +174,7 @@ $.plugin('example', {
         * ```event : String | Array``` - One or more space-separated event types
     * Applies the event namespace to the provided event types.
 * ```getElement()```
-    * Getter method for the element which instanciate the plugin.
+    * Getter method for the element which instantiate the plugin.
 * ```getOptions()```
     * Getter method for the merged configuration object.
 * ```getOption()```

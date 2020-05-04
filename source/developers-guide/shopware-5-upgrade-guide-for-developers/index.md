@@ -358,7 +358,7 @@ Support for easier log message writing is enabled, so `key` => `value` arrays ca
 ```php
 <?php
 
-$logger->fatal("An error is occured while requesting {module}/{controller}/{action}", $controller->Request()->getParams());
+$logger->fatal("An error is occurred while requesting {module}/{controller}/{action}", $controller->Request()->getParams());
 ```
 
 ### Custom Sorting of products in categories
@@ -1853,10 +1853,10 @@ The account section and registration have been refactored to continue the refact
 
 <div class="alert alert-info">
 <strong>Important tasks after updating to Shopware 5.2</strong><br/>
-Existing adresses including their attributes have been migrated into <code>s_user_addresses</code>. Please verify that all addresses have been merged completely. Addresses have been read from <code>s_user_billingaddress</code>, <code>s_user_shippingaddress</code>, <code>s_order_billingaddress</code>, <code>s_order_shippingaddress</code>.
+Existing addresses including their attributes have been migrated into <code>s_user_addresses</code>. Please verify that all addresses have been merged completely. Addresses have been read from <code>s_user_billingaddress</code>, <code>s_user_shippingaddress</code>, <code>s_order_billingaddress</code>, <code>s_order_shippingaddress</code>.
 </div>
 
-The address management allows a customer to manage more than only one address which gets changed with every order. The customer is now able to create more address, e.g. for home and work, and use them later on in an order without loosing all existing address data. He can just change the reference to the default billing address, instead of changing it entirely.
+The address management allows a customer to manage more than only one address which gets changed with every order. The customer is now able to create more address, e.g. for home and work, and use them later on in an order without losing all existing address data. He can just change the reference to the default billing address, instead of changing it entirely.
 
 * Shopware versions prior to 5.2 were using the tables `s_user_billingaddress` and `s_user_shippingaddress` which have now been marked as deprecated as well as their associated models `\Shopware\Models\Customer\Billing` and `\Shopware\Models\Customer\Shipping`. Their association in `\Shopware\Models\Customer\Customer` will be removed with Shopware version 5.3. Please use `s_user_addresses` and it's model `\Shopware\Models\Customer\Address` instead.
     * Changes to the new model will automatically be synchronised with the old models.

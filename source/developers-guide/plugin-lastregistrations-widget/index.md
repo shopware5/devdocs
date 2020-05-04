@@ -39,7 +39,7 @@ As always in the new plugin system we set our metadata in the `plugin.xml`
 </plugin>
 
 ```
-Since we use the new system for our plugin we set the `compability minVersion` to `5.2.0`.
+Since we use the new system for our plugin we set the `compatibility minVersion` to `5.2.0`.
 
 ## Plugin bootstrap file ##
 ### SwagLastRegistrationsWidget.php

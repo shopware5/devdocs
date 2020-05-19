@@ -1,6 +1,6 @@
 <?php
 
-namespace SwagProductListing\Subscriber;
+namespace SwagController\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 

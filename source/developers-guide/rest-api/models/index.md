@@ -196,7 +196,7 @@ subgroup: REST API
 
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key  |                                                       |
+| id                    | integer (primary key) |                                                       |
 | description           | string                |                                                       |
 | name                  | string                |                                                       |
 | position              | integer               |                                                       |
@@ -224,7 +224,7 @@ subgroup: REST API
 
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key  |                                                       |
+| id                    | integer (primary key) |                                                       |
 | name                  | string                |                                                       |
 | public                | boolean               |                                                       |
 | type                  | integer               |                                                       |
@@ -528,7 +528,7 @@ subgroup: REST API
 
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key  |                                                       |
+| id                    | integer (primary key) |                                                       |
 | articleId             | integer (foreign key) | **[Article](../api-resource-article/)**               |
 | articleDetailId       | integer (foreign key) | **[Detail](#article-detail)**                         |
 | description           | string                |                                                       |
@@ -783,7 +783,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 
 | Field                 | Type                  | Original object                                 |
 |-----------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key  |                                                 |
+| id                    | integer (primary key) |                                                 |
 | name                  | string                |                                                 |
 | position              | integer               |                                                 |
 | comparable            | boolean               |                                                 |

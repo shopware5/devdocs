@@ -2,9 +2,8 @@
 layout: default
 title: Shopware IRC Channel
 github_link: community/irc/index.md
-indexed: true
-menu_title: IRC Channel
-menu_order: 40
+indexed: false
+menu_title: 
 group: Community
 redirect: 
   - /contributing/irc/
@@ -12,7 +11,7 @@ redirect:
 
 ## The shopware IRC channel is discontinued
 
-*It is replaced by Gitter.* Please use <a href="{{ site.url }}/community/gitter">this guide</a> to connect and (re)join the awesome shopware community via chat!
+*It is replaced by Slack.* Please use <a href="https://slack.shopware.com">invite link</a> to connect and (re)join the awesome shopware community via chat!
 
 ## Why was  IRC discontinued?
 

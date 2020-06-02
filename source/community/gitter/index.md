@@ -2,13 +2,16 @@
 layout: default
 title: Shopware Gitter Channel
 github_link: community/gitter/index.md
-indexed: true
-menu_title: Gitter
-menu_order: 10
+indexed: false
+menu_title: 
 group: Community
 redirect: 
   - /contributing/gitter/
 ---
+
+## The shopware Gitter channel is discontinued
+
+*It is replaced by Slack.* Please use <a href="https://slack.shopware.com">invite link</a> to connect and (re)join the awesome shopware community via chat!
 
 The official chatroom for shopware is [shopware/shopware](https://gitter.im/shopware/shopware?utm_source=share-link&utm_medium=link&utm_campaign=share-link) on `gitter.im`. 
 

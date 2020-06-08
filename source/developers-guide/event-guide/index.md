@@ -217,22 +217,14 @@ public function notifyUntilAction()
     $stop = $this->container->get('events')->notifyUntil(
         'SwagEvent_Controller_notifyUntilAction',
         [
-            // Edit the stop boolean and see the different behavior.
-            'stop' => false
+            'someData' => $someData
         ]
     );
 
     if ($stop) {
-        echo '<pre>';
-        var_export('Stop is true');
-        echo '<br />';
         return;
     }
 
-    echo '<pre>';
-    var_export('Stop is false');
-    echo '<br />';
-    
     echo 'Do some magic';
 }
 
@@ -241,9 +233,10 @@ Now imagine, you subscribed to the `SwagEvent_Controller_Index_After_Do_Some_Mag
 ```php
 public function onNotifyUntil(\Enlight_Event_EventArgs $args)
 {
-    $stop = $args->get('stop');
+    $someData = $args->get('someData');
 
-    if ($stop) {
+    // Some condition
+    if ($someData === true) {
         // if you return some result you stop the callStack
         return true;
     }

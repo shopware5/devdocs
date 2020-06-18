@@ -7,7 +7,7 @@ This site is generated with [Sculpin][2], a PHP based static site generator.
 First you have to [install Sculpin][3] and run the install command in the project directory.
 This can be done via the `init.sh` shell script in the project root.
 
-```
+```bash
 ./init.sh
 ```
 
@@ -15,13 +15,14 @@ This will download Sculpin and install the required dependencies.
 
 ## Running the website locally
 
-```
+```bash
 ./watch.sh
 ```
 
 This will start a local webserver at <http://localhost:8000/>.
 You can use a different port like so:
-```
+
+```bash
 ./watch.sh 8001
 ```
 
@@ -41,13 +42,13 @@ It is important to put the plugin into the proper Frontend/Backend/Core subdirec
 
 You have the ability to generate a table of content list for your document. Simply place the following code into your document and a table of contents will appear there magically:
 
-```
+```html
 <div class="toc-list"></div>
 ```
 
 If you want, you can customize the behavior of the toc list as well. You can define the text of the headline using the attribute `data-headline` and you can define the max depth of headlines you wanna include into the list with the attribute `data-depth`:
 
-```
+```html
 <div class="toc-list" data-depth="1" data-headline="Awesome table of contents"></div>
 ```
 
@@ -66,8 +67,8 @@ robots:
 To create a version history table, you simply have to add a `history` array to your metadata.
 
 Example:
-```
 
+```yaml
 ---
 layout: default
 indexed: true
@@ -77,7 +78,6 @@ history:
   2015-11-23: added frontend documentation
   2016-01-01: documented millenium bug
 ---
-
 ```
 
 ## Algolia Search Configuration
@@ -108,7 +108,7 @@ We added a bunch of CSS helper classes which should help you to build simple lay
 
 ### Warning box
 
-```
+```html
 <div class="alert alert-warning">
 This is a warning
 </div>
@@ -116,26 +116,27 @@ This is a warning
 
 ### Centering of content
 
-```
+```html
 <div class="center">
 </div>
 ```
 
 Alternative:
-```
+
+```html
 <div class="is--center">
 </div>
 ```
 
 ### Floating images
 
-```
+```html
 <div class="is-float-left">
     <img src="sample.png" alt="Sample image" />
 </div>
 ```
 
-```
+```html
 <div class="is-float-right">
     <img src="sample.png" alt="Sample image" />
 </div>

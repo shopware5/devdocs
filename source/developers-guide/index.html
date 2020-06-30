@@ -11,19 +11,19 @@ menu_style: bullet
 
     <div class="dev-guide"><img src="header.svg"/></div>
 
-        {% if page.title is defined %}
-    <h1 class="is-center">
-        {{ page.title }}
-    </h1>
+    {% if page.title is defined %}
+        <h1 class="is-center">
+            {{ page.title }}
+        </h1>
     {% endif %}
 
     <div class="info guide is-center">
 
         {% if page.shopware_version %}
-        <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
-                            <span class="versionDisc">as of version</span>
-                            <span class="versionBadge">{{ page.shopware_version }}</span>
-                        </span>
+            <span class="version clearfix" data-shopware-version="{{ page.shopware_version }}">
+                <span class="versionDisc">as of version</span>
+                <span class="versionBadge">{{ page.shopware_version }}</span>
+            </span>
         {% endif %}
 
     </div>
@@ -39,9 +39,13 @@ menu_style: bullet
 
             <div class="col small">
                 <div class="udemy-teaser">
-                    <a href="https://www.udemy.com/developer-training-basic-english/" target="_blank" ><div class="udemy-teaser--screenshot"></div></a>
+                    <a href="https://www.udemy.com/course/developer-training-basic-english/" target="_blank">
+                        <div class="udemy-teaser--screenshot"></div>
+                    </a>
                     <h2>Video Developer Training</h2>
-                    <div class="button"><a href="https://www.udemy.com/developer-training-basic-english/" target="_blank" >Enrol now for free</a></div>
+                    <div class="button">
+                        <a href="https://www.udemy.com/course/developer-training-basic-english/" target="_blank">Enrol now for free</a>
+                    </div>
                 </div>
             </div>
 
@@ -56,7 +60,7 @@ menu_style: bullet
             <a class="col" href="/developers-guide/tutorials/"><h2>Tutorials</h2>Learning by doing</a>
             <a class="col" href="/developers-guide/backend-and-extjs/"><h2>Backend and ExtJS</h2>Interface and Modules</a>
             <a class="col" href="/developers-guide/rest/"><h2>Rest API</h2>Introduction and Resources</a>
-            <a class="col" href="https://www.udemy.com/developer-training-basic-english/" target="_blank" ><h2>Video Trainings</h2>Basic and Expert</a>
+            <a class="col" href="https://www.udemy.com/course/developer-training-basic-english/" target="_blank"><h2>Video Trainings</h2>Basic and Expert</a>
         </div>
     </div>
 
@@ -65,23 +69,33 @@ menu_style: bullet
 
         <div class="gitter-headline center">
             <h3>Shopware developer chat</h3>
-            <p>Slack is a free chat where you are able to chat immediately - <a href="{{ site.url }}/blog/2017/09/29/shopware-goes-gitter/#search-results" target="_blank">read more.</a></p>
+            <p>Slack is a free chat where you are able to chat immediately - <a href="https://www.shopware.com/en/news/an-introduction-to-the-shopware-community-slack/" target="_blank">read more.</a></p>
         </div>
 
         <div class="row">
 
             <div class="col small">
-                <a href="https://slack.shopware.com" target="_blank"><div class="gitter--screenshot"></div></a>
+                <a href="https://slack.shopware.com" target="_blank">
+                    <div class="gitter--screenshot"></div>
+                </a>
             </div>
 
             <div class="col medium">
                 <div class="gitter--dialog">
-                    <a href="https://slack.shopware.com" target="_blank"><div class="avatar-one"></div></a>
-                    <div class="chat"><small>Michael Telgmann @Telgi</small><br>Slack channels are public and save history indefinitely. Right?</div>
+                    <a href="https://slack.shopware.com" target="_blank">
+                        <div class="avatar-one"></div>
+                    </a>
+                    <div class="chat">
+                        <small>Michael Telgmann @Telgi</small><br>Slack channels are public and save history indefinitely. Right?
+                    </div>
                 </div>
                 <div class="gitter--dialog">
-                    <a href="https://slack.shopware.com" target="_blank"><div class="avatar-two"></div></a>
-                    <div class="chat"><small>dnoegel @dnoegel</small><br>Be careful. There be dragons. On the other hand, you don't need that icky bouncer anymore. ;)</div>
+                    <a href="https://slack.shopware.com" target="_blank">
+                        <div class="avatar-two"></div>
+                    </a>
+                    <div class="chat">
+                        <small>dnoegel @dnoegel</small><br>Be careful. There be dragons. On the other hand, you don't need that icky bouncer anymore. ;)
+                    </div>
                 </div>
             </div>
 
@@ -90,6 +104,5 @@ menu_style: bullet
         </div>
 
     </div>
-
 
 </div>{# END START GUIDE #}

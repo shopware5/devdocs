@@ -26,7 +26,7 @@ but I think they should be helpful, if you are wondering which way to go.
 ## Cleaning up the Bootstrap.php
 The `Bootstrap.php` file, as the main entry point of every plugin, tends to be bloated in many plugins I've seen. There isn't
 actually a good reason for this. The fact that there is a `Bootstrap.php` doesn't mean that you have to put all
-you plugin's logic into it.
+your plugin's logic into it.
 
 
 ### Install / update
@@ -189,7 +189,7 @@ public function registerNamespaces()
 ```
 
 It will register the namespace `Shopware\Plugins\MyPlugin` to the current plugin directory. Instead of calling this
-from the `onStartDispatch` callback, you can also call it in the `afterInit` method of you plugin. Either way: once you have
+from the `onStartDispatch` callback, you can also call it in the `afterInit` method of your plugin. Either way: once you have
 this call in place, creating a service is really easy:
 
 ```

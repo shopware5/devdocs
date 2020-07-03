@@ -66,7 +66,7 @@ Shopware uses [Smarty](http://en.wikipedia.org/wiki/Smarty) as template engine. 
 ### Controller auto-registration
 
 The auto-registration is available in Shopware 5.2.7 or above.
-To make use of it, create a file like `SwagControllerExample/Controllers/(Backend|Frontend|Widgets|Api)/MyController.php` 
+To make use of it, create a file like `SwagControllerExample/Controllers/(Backend|Frontend|Widgets|Api)/MyController.php`
 and follow our controller naming conventions. After that, you'll be able to call `MyController`.
 The registration of the template would be done, i.e. in the `preDispatch()`-Method of your controller.
 
@@ -76,7 +76,7 @@ class Shopware_Controllers_Frontend_MyController extends \Enlight_Controller_Act
     public function preDispatch()
     {
         $pluginPath = $this->container->getParameter('swag_controller_example.plugin_dir');
-        
+
         $this->get('template')->addTemplateDir($pluginPath . '/Resources/views/');
         $this->get('snippets')->addConfigDir($pluginPath . '/Resources/snippets/');
     }
@@ -122,7 +122,7 @@ These events will be emitted whenever a controller action is about to be called 
 ```xml
 <container xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="swag_slogan_of_the_day.subscriber.frontend" 
+        <service id="swag_slogan_of_the_day.subscriber.frontend"
             class="SwagSloganOfTheDay\Subscriber\FrontendSubscriber">
             <tag name="shopware.event_subscriber"/>
         </service>
@@ -186,7 +186,7 @@ Provide meta information about your plugin with the `plugin.xml` file. Read the 
 
 ## Plugin Icon
 
-To make it easier to identify you plugin in the plugin manager module in the backend, you should provide a `plugin.png` file in your plugin root directory.
+To make it easier to identify your plugin in the plugin manager module in the backend, you should provide a `plugin.png` file in your plugin root directory.
 This small icon must have a size of 16x16px.
 
 ## Plugin helper class SloganPrinter
@@ -303,7 +303,7 @@ The slogan itself is randomly selected in the `getSlogan` method. This could eas
 
 Subscriber classes implements the SubscriberInterface
 
-A Subscriber class is registered as a service in the services.xml and are identified for Shopware via the Subscriber tag. 
+A Subscriber class is registered as a service in the services.xml and are identified for Shopware via the Subscriber tag.
 ```xml
 <tag name="shopware.event_subscriber" />
 ```
@@ -367,7 +367,7 @@ In order to create the plugin configuration, we will need to implement the `Reso
 </config>
 ```
 
-In this case two config elements are added - a `select` element with the name "swagSloganFontSize" which will draw a combobox in the plugin configuration. The content of the combobox is defined in the "store" element. 
+In this case two config elements are added - a `select` element with the name "swagSloganFontSize" which will draw a combobox in the plugin configuration. The content of the combobox is defined in the "store" element.
 Additionally we ar able to define a label for the configuration using the "label" property and a default value using the "value" property.
 
 As a second config element we add a `boolean` element. It is called "swagSloganItalic", enabled by default and has the label "Italic".
@@ -408,7 +408,7 @@ SwagResource
 │       │   │   └── *.js
 │       │   └── *.js
 │       └── less
-│           └── all.less 
+│           └── all.less
 └── SwagResource.php
 ```
 
@@ -416,7 +416,7 @@ SwagResource
 
 So far we have set up the plugin - but where does the actual template extension come from?
 
-We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Resources/views/frontend/index/index.tpl` file. 
+We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Resources/views/frontend/index/index.tpl` file.
 This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
 
 Now our plugin's `index.tpl` might look like this:
@@ -441,7 +441,7 @@ Now our plugin's `index.tpl` might look like this:
     <div class="slogan-box">
         <span class="slogan">{$swagSloganContent}</span>
     </div>
-    
+
     {$smarty.block.parent}
 {/block}
 ```
@@ -451,7 +451,7 @@ The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopw
 ```smarty
 {block name="frontend_index_navigation_categories_top_include"}
     ...
-    
+
     {$smarty.block.parent}
 {/block}
 ```
@@ -507,7 +507,7 @@ After clearing the cache, your frontend might look like this:
 You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagSloganOfTheDay.zip">here</a>.
 
 ### The plugin base file methods
-In the next case we create a simple plugin that extends the s_articles_attributes table using the attribute crud service. 
+In the next case we create a simple plugin that extends the s_articles_attributes table using the attribute crud service.
 
 ```php
 <?php
@@ -552,7 +552,7 @@ class SwagQuickStart extends Plugin
         }
 
         $attributeCrudService = $this->container->get('shopware_attribute.crud_service');
-    
+
         $attributeCrudService->delete('s_articles_attributes', 'quick_start_guid');
         $attributeCrudService->delete('s_articles_attributes', 'quick_start');
 
@@ -573,7 +573,7 @@ class SwagQuickStart extends Plugin
                 'string'
             );
         }
-    
+
         if (version_compare($currentVersion, '1.0.5', '<=')) {
             // do update for version
         }
@@ -582,7 +582,7 @@ class SwagQuickStart extends Plugin
     public function activate(ActivateContext $activateContext)
     {
         // on plugin activation clear the cache
-        $activateContext->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);         
+        $activateContext->scheduleClearCache(ActivateContext::CACHE_LIST_ALL);
     }
 
     public function deactivate(DeactivateContext $deactivateContext)
@@ -593,7 +593,7 @@ class SwagQuickStart extends Plugin
 }
 ```
 
-Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin. 
+Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin.
 Like:`->scheduleClearCache()`, `->getCurrentVersion()`, `->getUpdateVersion()`, or `->keepUserData()`.
 
 ### The clear cache method
@@ -735,7 +735,7 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
     public function build(ContainerBuilder $container)
     {
         $fancyVariable = 'some-fancy-variable';
-        
+
         $container->setParameter('swag_slogan_of_the_day.fancy_variable', $fancyVariable);
         $container->addCompilerPass(new SloganCompilerPass());
 
@@ -828,7 +828,7 @@ SwagEmotion
 │   │       └── widgets
 │   │           └── emotion
 │   │               └── components
-│   │                   └── emotion_vimeo.tpl   
+│   │                   └── emotion_vimeo.tpl
 │   └── services.xml
 └──SwagEmotion.php
 ```
@@ -875,14 +875,14 @@ You can find the schemas of the xml files in `engine/Shopware/Components/Plugin/
  - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
  - **cronjob.xml:** Defines cronjobs installed with the plugin.
  - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
- - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog. 
- 
+ - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog.
+
 <div class="alert alert-warning">
 At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will receive an exception. <br/>
 You can use the CLI to install the plugin with extended error messages: <code>php ./bin/console sw:plugin:install SwagSloganOfTheDay -v</code>
 </div>
 
-## Plugin Metadata 
+## Plugin Metadata
 
 To provide meta information about your plugin you need a `plugin.xml` file.
 If you want to sell your plugin via the [Community Store](https://store.shopware.com/en) the entries marked with `*` are required.
@@ -1066,11 +1066,11 @@ There are two unique constraints:
 
 Additionally, the order is fixed. The value tag must be defined before the label tag(s).
 
-There must be at least one option tag and inside each option tag there must be at least one value and one label tag. 
+There must be at least one option tag and inside each option tag there must be at least one value and one label tag.
 
 ### add additional options
 
-With the `options` element you are able to customize your input field for your plugin configuration. 
+With the `options` element you are able to customize your input field for your plugin configuration.
 
 Example:
 ```xml
@@ -1215,7 +1215,7 @@ $path = $swagExample->getPath();
 
 ## Adding acl privilege dependencies
 
-When creating a new ACL resource for your custom backend application you can define possible dependencies that the privileges of your new application has to existing/other resources and privileges. 
+When creating a new ACL resource for your custom backend application you can define possible dependencies that the privileges of your new application has to existing/other resources and privileges.
 This relations helps the shop owner while selecting your resource privilege to select all other required privileges. To achieve this, create a new plugin migration for table `s_core_acl_privilege_requirements` and insert your resource privilege id into the column `privilege_id` and your resource id into column `required_privilege_id` your acl resource needs.
 
 Example migration

@@ -53,22 +53,6 @@ $ bin/console sw:media:optimize --info
 
 By default, the optimizer will search files within the `media` directory. Additionally, the first argument can be another path. So if your media files are placed in `web/media`, you can provide `web/media` as first argument for this command.
 
-### Filter files by creation date
-
-A full scan of files can take a long time to complete. For that, there is a `--modified` (`-m`) option to filter a range by providing a [PHP compatible time string](https://secure.php.net/manual/en/datetime.formats.php). Here are some examples:
-
-#### Files of the last 24 hours
-
-```bash
-$ bin/console sw:media:optimize --modified="after 24 hours ago"
-```
-
-#### Files of the last 2 weeks
-
-```bash
-$ bin/console sw:media:optimize --modified="after 2 weeks ago"
-```
-
 ### Skip initial scan
 
 To provide an accurate progress bar of the task, it counts all files within the directory beforehand. In cases of large media libraries, you can skip that initial scan by adding the option `--skip-scan`. The optimisation process will start immediately.

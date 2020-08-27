@@ -17,6 +17,67 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 <div class="toc-list"></div>
 
+## Shopware 5.7
+
+### System requirements changes
+
+The **minimum PHP version** has been increased to **PHP 7.3 or higher**.  We’ve also added support for **PHP 8.0** and
+encourage you to use the latest version.
+
+The **minimum Elasticsearch version is 7.0**, support for Elasticsearch 6 has been dropped due to the 
+underlying library being used.
+
+### Core changes
+
+We have migrated the Session system from Zend Session to Symfony Session. This change is transparent to plugin
+developers, the access using `Enlight_Session_Namespace` didn't change. The actual Symfony session is attached to the
+`Request` (`$request->getSession()`) now. Apart from this we've changed the way plugins could influence the cores config
+values, this is [not possible anymore](https://issues.shopware.com/issues/SW-24385), so please make sure that your
+plugins do not rely on this behaviour.
+
+#### Deprecations
+
+We've [removed](https://github.com/shopware/shopware/commit/b2709e5fd57432e92f6921dddddb76a2f7f5d0b2) all deprecations
+marked for removal with v5.7.0.
+
+#### Development tools
+
+You may use composer v2 now, support has been added with this version. Furthermore we've removed the `psh.phar` tool for
+Shopware development, it has been replaced by a
+[Makefile](https://github.com/shopware/shopware/blob/5.7/Makefile) which may now be used for development tasks like
+starting the testsuite.
+
+#### Snippets
+
+Snippet names **can not** be defined without quotes `"` anymore. To refactor the snippets in your plugin, you may
+use the following regular expression to search for the now invalid syntax:
+
+```regexp
+\{s[\s.A-Za-z="_\/]*name=([A-Za-z\/_]*)
+```
+
+```diff
+diff a/example.tpl b/example.tpl
+--- a/example.tpl
++++ b/example.tpl
+- {* Old syntax *}
+- {s name=foo_bar}
++ {* New syntax *}
++ {s name="foo_bar"}
+```
+
+### Library updates
+
+* Updated `Symfony` to 4.4 LTS
+* Updated `mpdf/mpdf` to 8.0.7
+* Updated `guzzlehttp/guzzle` to 7.0.1
+* Updated `monolog/monolog` to 2.0.1
+* Migrated components to Laminas
+
+### Changes due Library updates
+
+* All services are private by default. A workaround for this could be changing the default to public. 
+
 ## Shopware 5.6
 
 ### System requirements changes

@@ -297,6 +297,12 @@ First of all we can extract the reference of the executed frontend controller us
 
 Now we want to inject our own template directory to Shopware using the `addTemplateDir` method. It takes a path of a template directory as parameter. Whenever rendering a template, Shopware will now automatically check your `View` directory for extensions and load them dynamically.
 
+<div class="alert alert-warning">
+<strong>Be careful with sensitive data!</strong>
+
+Please be aware not to assign sensitive data to the Template on events like global events like PostDispatch. The view variables are shared accross multiple renders. The JsonRenderer as example will sent all variables to the client.
+</div>
+
 Finally we want to assign some configuration to the template - in this case a slogan, a flag that indicates if the slogan should be italic or not and the font size of the slogan. For assignments `$view->assign('name', 'value')` is used - this way we will be able to access it in the Smarty template using `{$name}`.
 
 The slogan itself is randomly selected in the `getSlogan` method. This could easily be moved to a plugin configuration text field, so that the shop owner can enter his slogans line by line. But as seen above, we already picked the best ones.

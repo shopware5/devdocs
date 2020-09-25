@@ -300,7 +300,7 @@ Now we want to inject our own template directory to Shopware using the `addTempl
 <div class="alert alert-warning">
 <strong>Be careful with sensitive data!</strong>
 
-Please be aware not to assign sensitive data to the Template on events like global events like PostDispatch. The view variables are shared accross multiple renders. The JsonRenderer as example will sent all variables to the client.
+Please make sure that you not assign sensitive data to the template on global events like PostDispatch. The view variables are shared accross multiple renders. The JsonRenderer for example will send all variables to the client.
 </div>
 
 Finally we want to assign some configuration to the template - in this case a slogan, a flag that indicates if the slogan should be italic or not and the font size of the slogan. For assignments `$view->assign('name', 'value')` is used - this way we will be able to access it in the Smarty template using `{$name}`.

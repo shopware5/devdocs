@@ -1,4 +1,4 @@
-# Shopware Development Documentation
+# Shopware Development Documentation - Best for Developers
 
 ## Install
 

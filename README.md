@@ -28,7 +28,7 @@ You can use a different port like so:
 
 ## Automatic Plugin Packaging
 
-Foreach Plugin in the `exampleplugins` directory a corresponding ZIP package will be created that can be installed via the shopware plugin manager.
+For each Plugin in the `exampleplugins` directory a corresponding ZIP package will be created that can be installed via the shopware plugin manager.
 It is important to put the plugin into the proper Frontend/Backend/Core subdirectory.
 
 ### Example

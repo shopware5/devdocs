@@ -33,7 +33,7 @@ It is important to put the plugin into the proper Frontend/Backend/Core subdirec
 
 ### Example
 
-`exampleplugins/Frontend/SwagSloganOfTheDay/` will result in `exampleplugins/SwagSloganOfTheDay.zip` in the generated output directory. Please not that the subdirectory is not part of the resulting directory/filename.
+`exampleplugins/Frontend/SwagSloganOfTheDay/` will result in `exampleplugins/SwagSloganOfTheDay.zip` in the generated output directory. Please note that the subdirectory is not part of the resulting directory/filename.
 
 [2]: https://sculpin.io/
 [3]: https://sculpin.io/download
@@ -46,7 +46,7 @@ You have the ability to generate a table of content list for your document. Simp
 <div class="toc-list"></div>
 ```
 
-If you want, you can customize the behavior of the toc list as well. You can define the text of the headline using the attribute `data-headline` and you can define the max depth of headlines you wanna include into the list with the attribute `data-depth`:
+If you want, you can customize the behaviour of the toc list as well. You can define the text of the headline using the attribute `data-headline` and you can define the max depth of headlines you wanna include into the list with the attribute `data-depth`:
 
 ```html
 <div class="toc-list" data-depth="1" data-headline="Awesome table of contents"></div>

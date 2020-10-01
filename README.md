@@ -141,3 +141,6 @@ Alternative:
     <img src="sample.png" alt="Sample image" />
 </div>
 ```
+
+Hope this helps you.
+Stay tuned for future endevours.

@@ -99,8 +99,8 @@ The following table shows the fields, types and original objects of this array.
 | links               | object array          | **[Link](../models/#link)**                        |
 | downloads           | object array          | **[Download](../models/#download)**                |
 | categories          | object array          | **[Category](../models/#category)**                |
-| similar             | object array          | **[Similar](../models/#similar)**                  |
-| related             | object array          | **[Related](../models/#related)**                  |
+| similar             | object array          | **[Similar](../models/#similar-(get))**                  |
+| related             | object array          | **[Related](../models/#related-(get))**                  |
 | details             | object array          | **[Detail](../models/#article-detail)**            |
 | translations        | object array          | **[Translation](../models/#translation)**          |
 
@@ -186,8 +186,8 @@ Here is an example of a parametrized URL:
 | configuratorSet       | object                |                                                                               | **[ConfiguratorSet](../models/#configurator-set)**  |
 | downloads             | object array          |                                                                               | **[Download](../models/#download)**                 |
 | categories            | object array          |                                                                               | **[Category](../models/#category)**                 |
-| similar               | object array          |                                                                               | **[Similar](../models/#similar)**                   |
-| related               | object array          |                                                                               | **[Related](../models/#related)**                   |
+| similar               | object array          |                                                                               | **[Similar](../models/#similar-(put,-post))**                   |
+| related               | object array          |                                                                               | **[Related](../models/#related-(put,-post))**                   |
 | variants              | object array          |                                                                               | **[Detail](../models/#article-detail)**             |
 
 ### PUT (update)

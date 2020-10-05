@@ -826,7 +826,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 | id                    | integer (primary key) |                                                 |
 | value                 | string                |                                                 |
 
-## Related
+## Related (GET)
 
 * **Table:** s_articles_relationships
 
@@ -835,7 +835,18 @@ The field `path` has to be the local path to the image, seen from the root of th
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id                    | integer (foreign key) | **[Article](../api-resource-article/)**               |
-| name                  | string                |                                                       |
+| name                  | string                | Article name                                          |
+
+## Related (PUT, POST)
+
+* **Table:** s_articles_relationships
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id                    | integer (foreign key) | **[Article](../api-resource-article/)**               |
+| number                | string                | Article number                                        |
 
 ## Shipping
 
@@ -914,7 +925,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 
 **The locale is only available for languageSubShops.**
 
-## Similar
+## Similar (GET)
 
 * **Table:** s_articles_similar
 
@@ -923,7 +934,18 @@ The field `path` has to be the local path to the image, seen from the root of th
 | Field                 | Type                  | Original object                                       |
 |-----------------------|-----------------------|-------------------------------------------------------|
 | id                    | integer (foreign key) | **[Article](../api-resource-article/)**               |
-| name                  | string                |                                                       |
+| name                  | string                | Article name                                                      |
+
+## Similar (PUT, POST)
+
+* **Table:** s_articles_similar
+
+### Structure
+
+| Field                 | Type                  | Original object                                       |
+|-----------------------|-----------------------|-------------------------------------------------------|
+| id                    | integer (foreign key) | **[Article](../api-resource-article/)**               |
+| number                | string                | Article number                                        |
 
 ## State
 

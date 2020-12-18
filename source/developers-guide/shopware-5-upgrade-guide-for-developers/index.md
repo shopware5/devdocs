@@ -177,19 +177,6 @@ This allows you to use the Symfony Request properties you might be more familiar
 `\Symfony\Component\HttpFoundation\Request::$attributes`, `\Symfony\Component\HttpFoundation\Request::$query`, 
 `\Symfony\Component\HttpFoundation\Request::$cookies`, `\Symfony\Component\HttpFoundation\Request::$headers` and many more.
 
-#### Updating your code using Rector
-
-[Rector](https://getrector.org/) is a reconstructor tool which does instant upgrades and instant refactoring of your code.
-We have contributed some packages to allow you to update your plugin automatically to new versions of Shopware, at least
-partially automatic. To see which Rectors are available at this point in time, see the [Rectors Overview](https://github.com/rectorphp/rector/blob/master/docs/AllRectorsOverview.md#shopware),
-this list will grow over time.
-
-To upgrade your plugin code, just run the following command after installing Rector:
-
-```bash
-php bin/rector process --level=shopware56 custom/plugins/MyPlugin -a autoload.php
-```
-
 ### Controller Registration using DI-Tag
 
 To allow for easier testing of controllers, Shopware now supports controllers as a service: they can be defined like any

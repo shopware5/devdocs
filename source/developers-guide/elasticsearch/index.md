@@ -1191,7 +1191,7 @@ class SearchTermQueryBuilder implements SearchTermQueryBuilderInterface
         $query = $this->decoratedQueryBuilder->buildQuery($context, $term);
 
         $matchQuery = new MultiMatchQuery(
-            ['attributes.properties.swag_es_product.my_name'],
+            ['attributes.swag_es_product.my_name'],
             $term
         );
         $query->add($matchQuery, BoolQuery::SHOULD);
@@ -1262,7 +1262,7 @@ The new `SearchTermQueryBuilder` now adds an additional `MultiMatchQuery` for th
 
 ```php
 $matchQuery = new MultiMatchQuery(
-    ['attributes.properties.swag_es_product.my_name'],
+    ['attributes.swag_es_product.my_name'],
     $term
 );
 $query->add($matchQuery, BoolQuery::SHOULD);
@@ -1320,7 +1320,7 @@ ONGR\ElasticsearchDSL\Query\BoolQuery Object
                                 (
                                     [fields] => Array
                                         (
-                                            [0] => attributes.properties.swag_es_product.my_name
+                                            [0] => attributes.swag_es_product.my_name
                                         )
 
                                     [query] => Spachtel

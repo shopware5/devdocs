@@ -58,6 +58,8 @@ xsi:noNamespaceSchemaLocation="../../../../engine/Shopware/Bundle/ContentTypeBun
 ```
 
 After the plugin installation and activation, will be a new menu entry in the 'Content' section.
+Alternatively, this command can be used to update the configuration for an installed plugin:
+`bin/console sw:content:type:sync`
 
 ### Default elements
 

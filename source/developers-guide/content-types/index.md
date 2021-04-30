@@ -102,6 +102,9 @@ With '[technicalName]-grid' can you create an association to a multi selection o
 | viewDescriptionFieldName | Fieldname for description fields in storefront                                                                                          |
 | viewImageFieldName       | Fieldname for image fields in storefront                                                                                                |
 | seoUrlTemplate           | SEO URL template for the URL generation                                                                                                 |
+| sortField                | Fieldname to sort on                                                                                                 |
+| sortDirection            | Sorting direction                                                                                       |
+
 ### Possible tags in '&lt;field&gt;'
 | Name          | Description                                                   |
 |---------------|---------------------------------------------------------------|

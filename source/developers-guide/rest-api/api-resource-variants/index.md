@@ -32,7 +32,7 @@ You can retrieve the variants data by providing the specific id
 | Identifier        | Parameter            | Database Column                      | Example call                                                            |
 |-------------------|-------------------|-------------------------------------|-------------------------------------------------------------------------|
 | Detail id            | id                | `s_articles_details.id`              | /api/variants/2                                                            |
-| Detail number        | number            | `s_articles_details.ordernumber`       | /api/variants/SW10003?useNumberAsId=true                                |
+| Detail number        | number            | `s_articles_details.ordernumber`       | /api/variants/?SW10003&useNumberAsId=true                                |
 
 Option parameters can be provided:
 * `considerTaxInput`: By default, all returned prices are net values. If the boolean `considerTaxInput` is set to true, gross values will be returned instead.
@@ -121,7 +121,7 @@ To put data to a variant, simply provide one of the following parameters to iden
 | Identifier        | Parameter        | Database Column                    | Example Call                                        |
 |-------------------|---------------|-----------------------------------|---------------------------------------------------|
 | Detail Id            | id            | `s_articles_details.id`            | /api/variants/2                                    |
-| Detail number        | number        | `s_articles_details.ordernumber`    | /api/variants/SW10003?useNumberAsId=true            |
+| Detail number        | number        | `s_articles_details.ordernumber`    | /api/variants/?SW10003&useNumberAsId=true            |
 
 **The data is the same as shown in the POST operation.**
 
@@ -164,7 +164,7 @@ To delete a variant, simply provide one of the following parameters to identify 
 | Identifier        | Parameter        | Database Column                    | Example Call                                        |
 |-------------------|---------------|-----------------------------------|---------------------------------------------------|
 | Detail Id            | id            | `s_articles_details.id`            | /api/variants/2                                    |
-| Detail number        | number        | `s_articles_details.ordernumber`    | /api/variants/SW10003?useNumberAsId=true            |
+| Detail number        | number        | `s_articles_details.ordernumber`    | /api/variants/?SW10003&useNumberAsId=true            |
 
 ## DELETE (Stack)
 

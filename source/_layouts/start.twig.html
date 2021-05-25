@@ -323,7 +323,8 @@
             <div class="copyright">{{ "now"|date("Y") }} © shopware AG - All rights reserved</div>
             <div class="footer--links">
                 <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
-                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a> |
+                <a id="show-consent" href="#" title="Cookie settings">Cookie settings</a>
             </div>
         </div>
     </footer>
@@ -344,12 +345,11 @@
 {% block scripts_after %}
 {% endblock %}
 
+{% include 'usercentrics.twig' %}
+
 {% if site.google_tag_manager_id %}
 <!-- Google Tag Manager -->
-<noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id={{site.google_tag_manager_id}}" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<script>(function (w, d, s, l, i) {
+<script type="text/plain" data-usercentrics="Google Tag Manager">(function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({
         'gtm.start': new Date().getTime(), event: 'gtm.js'

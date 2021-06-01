@@ -1,0 +1,32 @@
+// keyframes.less
+
+.keyframes(@name, @roules) {
+  @-webkit-keyframes @name {
+    @roules();
+  }
+  @keyframes @name {
+    @roules();
+  }
+}
+
+@keyframe--spin: {
+  from {
+    .rotate(0);
+  }
+  to {
+    .rotate(360deg);
+  }
+};
+
+@keyframe--spin-reverse: {
+  from {
+    .rotate(360deg);
+  }
+  to {
+    .rotate(0);
+  }
+};
+
+.keyframes(keyframe--spin, @keyframe--spin);
+
+.keyframes(keyframe--spin-reverse, @keyframe--spin-reverse);

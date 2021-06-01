@@ -1,0 +1,539 @@
+// emotions.less
+
+// Mixin for creating column sets for emotion items.
+.createColumnSizes(@n, @i: 1) when (@i =< @n) {
+
+  &.emotion--mode-resize {
+    &.emotion--column-@{n} .column--@{i} {
+      width: (100% / @n * @i);
+    }
+  }
+
+  &.emotion--mode-masonry {
+    &.emotion--column-@{n} .column--@{i} {
+      width: 100%;
+    }
+  }
+
+  @media screen and(min-width: @phoneLandscapeViewportWidth) {
+    @columns: 2;
+    &.emotion--mode-masonry {
+      &.emotion--column-@{n} .column--@{i} when (@i <= @columns) {
+        width: (100% / @columns * @i);
+      }
+    }
+  }
+
+  @media screen and(min-width: @tabletViewportWidth) {
+    @columns: 3;
+    &.emotion--mode-masonry {
+      &.emotion--column-@{n} .column--@{i} when (@i <= @columns) {
+        width: (100% / @columns * @i);
+      }
+    }
+  }
+
+  @media screen and(min-width: @tabletLandscapeViewportWidth) {
+    @columns: 3;
+    &.emotion--mode-masonry {
+      &.emotion--column-@{n} .column--@{i} when (@i <= @columns) {
+        width: (100% / @columns * @i);
+      }
+    }
+  }
+
+  @media screen and(min-width: @desktopViewportWidth) {
+    &.emotion--mode-masonry {
+      &.emotion--column-@{n} .column--@{i} {
+        width: (100% / @n * @i);
+      }
+    }
+  }
+
+  .createColumnSizes(@n, (@i + 1));
+}
+
+
+// Content fullscreen mode
+.content-main.is--fullscreen {
+  .box-shadow(none);
+  max-width: none;
+  padding: 0;
+  margin: 0;
+
+  .col--emotion {
+    max-width: 2200px;
+    margin: 0 auto;
+    float: none;
+  }
+
+  .content,
+  .content-main--inner {
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .content--breadcrumb,
+  .listing--wrapper,
+  .tagcloud--content,
+  .last-seen-products {
+    display: none;
+  }
+}
+
+// Emotion content
+.content--emotions {
+  display: block;
+  .unitize-padding(0, 10, 20, 10);
+  width: 100%;
+  display: inline-block;
+}
+
+.col--emotion {
+  .unitize-padding(10, 50, 10, 50);
+  width: 100%;
+}
+
+// Emotion show listing link
+.emotion--show-listing {
+  .unitize-margin(20, 0);
+}
+
+// Emotion wrapper
+.emotion--wrapper {
+  .unitize(min-height, 200);
+  .unitize-padding(0, 10, 20, 10);
+  display: block;
+  margin: 0 auto;
+
+  .icon--loading-indicator {
+    .unitize-width(21);
+    .unitize-height(21);
+    .unitize-padding(50, 0);
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    box-sizing: content-box;
+
+    &:before {
+      .border-radius(100%);
+      .animation(keyframe--spin 1s linear infinite);
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: block;
+      content: "";
+      border-width: 2px;
+      border-style: solid;
+      border-color: #333 #CCC #CCC #CCC;
+    }
+  }
+}
+
+// Emotion container
+.emotion--container {
+  .clearfix();
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 0; left: 0;
+
+  &.emotion--mode-resize {
+    .transition(transform 0.3s ease-out);
+  }
+
+  // Create the width based on the number of columns the item uses.
+  .createColumnSizes(1);  // Container with one column
+  .createColumnSizes(2);  // Container with two columns
+  .createColumnSizes(3);  // Container with three columns
+  .createColumnSizes(4);  // Container with four columns
+  .createColumnSizes(5);  // Container with five columns
+  .createColumnSizes(6);  // Container with six columns
+  .createColumnSizes(7);  // Container with seven columns
+  .createColumnSizes(8);  // Container with eight columns
+  .createColumnSizes(9);  // Container with nine columns
+  .createColumnSizes(10); // Container with ten columns
+  .createColumnSizes(11); // Container with eleven columns
+  .createColumnSizes(12); // Container with twelve columns
+}
+
+// Emotion element
+.emotion--element {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.column--12 {
+  .default-landinpage--text {
+    padding: 0;
+  }
+}
+
+// Banner element
+.emotion--banner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .banner--content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  .banner--link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner--mapping {
+    display: block;
+    position: absolute;
+    margin: auto;
+  }
+
+  .banner--mapping-link {
+    position: absolute;
+    display: block;
+    z-index: 110;
+    background: rgba(0,0,0,0);
+  }
+}
+
+// Banner-Slider element
+.emotion--banner-slider {
+  width: 100%;
+  height: 100%;
+
+  .banner-slider--title {
+    .unitize-padding(10, 20);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 100;
+    color: #fff;
+    font-weight: @font-bold-weight;
+    background: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+
+  .banner-slider--container,
+  .banner-slider--slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner-slider--item {
+    height: 100%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  .banner-slider--link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// Product-Slider element
+.emotion--product-slider {
+  width: 100%;
+  height: 100%;
+
+  .product-slider--content {
+    .unitize-padding(20, 20);
+  }
+
+  .product-slider--arrow {
+    &.arrow--next { border-right: 0 none; }
+    &.arrow--prev { border-left: 0 none; }
+  }
+}
+
+// Product-Box element
+.emotion--product {
+  width: 100%;
+  height: 100%;
+
+  .product--box {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    float: none;
+
+    .box--content {
+      .unitize-padding(10, 10);
+    }
+
+    .product--info {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .product--image {
+      height: 70%;
+
+      &.is--large {
+        height: 100%;
+      }
+    }
+
+    .product--title {
+      height: 15%;
+      text-overflow: ellipsis;
+    }
+
+    .product--price-info {
+      height: 15%;
+    }
+  }
+}
+
+// Category-Teaser element
+.emotion--category-teaser {
+  width: 100%;
+  height: 100%;
+
+  .category-teaser--link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  .category-teaser--title {
+    .unitize-padding(10, 20);
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0; left: 0;
+    color: #fff;
+    font-weight: @font-bold-weight;
+    background: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// Manufacturer element
+.emotion--manufacturer {
+  width: 100%;
+  height: 100%;
+
+  .manufacturer--content {
+    .unitize-padding(10, 20, 0, 20);
+  }
+
+  .manufacturer--slider {
+    height: 100%;
+
+    .arrow--next {
+      .unitize(-20, 16, right);
+      border-right: 0 none;
+    }
+    .arrow--prev {
+      .unitize(-20, 16, left);
+      border-left: 0 none;
+    }
+  }
+
+  .manufacturer--item {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .manufacturer--link {
+    .unitize(font-size, 18);
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: @text-color;
+    font-weight: @font-bold-weight;
+
+    &:hover {
+      color: @link-color;
+    }
+  }
+
+  .manufacturer--image {
+    margin: auto;
+  }
+}
+
+// YouTube element
+.emotion--youtube {
+  width: 100%;
+  height: 100%;
+}
+
+// Video element
+.emotion--video {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  video::-moz-media-controls,
+  video::-webkit-media-controls {
+    bottom: 15%;
+  }
+
+  .video--element {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1000;
+  }
+
+  .video--cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1300;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #000;
+    text-align: center;
+
+    .video--play-icon {
+      .unitize-width(100);
+      .unitize-height(100);
+      .unitize(font-size, 100);
+      .unitize(font-size, 100);
+      display: block;
+      position: absolute;
+      top: 0; bottom: 0;
+      right: 0; left: 0;
+      margin: auto;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+      color: #fff;
+    }
+  }
+
+  .video--play-btn {
+    .transition();
+    .unitize(top, 25);
+    .unitize(right, 25);
+    .unitize(line-height, 40);
+    .unitize(font-size, 21);
+    .unitize-width(42);
+    .unitize-height(42);
+    .border-radius(100%);
+    position: absolute;
+    cursor: pointer;
+    color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    z-index: 1200;
+  }
+
+  .video--text {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    z-index: 1100;
+    color: #fff;
+    text-align: center;
+
+    &.no--events {
+      pointer-events: none;
+    }
+  }
+}
+
+// Iframe element
+.emotion--iframe {
+  width: 100%;
+  height: 100%;
+}
+
+// Blog element
+.emotion--blog {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .blog--container {
+    height: 100%;
+    margin: 0 0 0 -1%;
+  }
+
+  .blog--entry {
+    height: 100%;
+    padding-left: 1%;
+    overflow: hidden;
+  }
+
+  .blog--image {
+    height: 40%;
+    width: 100%;
+    display: block;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 2%;
+  }
+
+  .blog--title {
+    .unitize(font-size, 14);
+    display: block;
+    font-weight: @font-bold-weight;
+    color: @text-color-dark;
+    margin-bottom: 2%;
+
+    &:hover {
+      color: @link-color;
+    }
+  }
+
+  .blog--description {
+    .unitize(font-size, 14);
+    .unitize(line-height, 20);
+    color: @text-color;
+  }
+}
+
+// HTML element
+.emotion--html {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and(min-width: @tabletViewportWidth) {
+  .col--emotion {
+    .unitize-padding(70, 30, 0, 30);
+
+  }
+}

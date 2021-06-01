@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 343 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Styleguide-doppel</title>
+<defs>
+<path id="h" d="m160.19 1.2285l120.5 44.875c11.627 4.33 19.842 14.815 21.265 27.14l2.0499 17.756h-160v-78.526c0-6.6274 5.3726-12 12-12 1.4298 0 2.8481 0.25552 4.188 0.75452z"/>
+<path id="b" d="m274 112h-270.22"/>
+<filter id="j" x="-1.5%" y="-50%" width="103.6%" height="225%">
+<feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+<feOffset dx="2" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+<feMorphology in="SourceAlpha" radius="3" result="shadowInner"/>
+<feOffset dx="2" dy="2" in="shadowInner" result="shadowInner"/>
+<feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"/>
+<feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0"/>
+</filter>
+<rect id="f" x="53" y="82" width="255" height="35" rx="17.5"/>
+<path id="e" d="m189.27 2.4232l15.205 5.3149c4.1987 1.4677 6.4964 6.3192 5.1322 10.836l-7.4105 24.536c-2.7285 9.0341-11.748 13.978-20.145 11.043-8.3973-2.9353-12.993-12.638-10.264-21.673l7.4105-24.536c1.3642-4.517 5.8738-6.989 10.072-5.5214z"/>
+<path id="d" d="m160.19 1.2285l120.5 44.875c11.627 4.33 19.842 14.815 21.265 27.14l2.0499 17.756h-160v-78.526c0-6.6274 5.3726-12 12-12 1.4298 0 2.8481 0.25552 4.188 0.75452z"/>
+<path id="a" d="m274 112h-270.22"/>
+<filter id="i" x="-1.5%" y="-50%" width="103.6%" height="225%">
+<feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+<feOffset dx="2" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+<feMorphology in="SourceAlpha" radius="3" result="shadowInner"/>
+<feOffset dx="2" dy="2" in="shadowInner" result="shadowInner"/>
+<feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"/>
+<feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0"/>
+</filter>
+<rect id="c" x="53" y="82" width="255" height="35" rx="17.5"/>
+<path id="g" d="m189.27 2.4232l15.205 5.3149c4.1987 1.4677 6.4964 6.3192 5.1322 10.836l-7.4105 24.536c-2.7285 9.0341-11.748 13.978-20.145 11.043-8.3973-2.9353-12.993-12.638-10.264-21.673l7.4105-24.536c1.3642-4.517 5.8738-6.989 10.072-5.5214z"/>
+</defs>
+<g fill="none" fill-rule="evenodd">
+<g transform="translate(34 11)" opacity=".50476">
+<use fill="#95D2FF" fill-rule="evenodd" xlink:href="#h"/>
+<path d="m148.5 86.5h150.45l-1.4708-12.74c-1.2289-10.644-8.3242-19.7-18.365-23.439l-120.5-44.875c-0.83744-0.31187-1.7239-0.47158-2.6175-0.47158-4.1421 0-7.5 3.3579-7.5 7.5v74.026z" stroke="#0049FF" stroke-width="9"/>
+<g stroke-linecap="round">
+<use fill="black" filter="url(#j)" xlink:href="#b"/>
+<use stroke="#189EFF" stroke-opacity=".3" stroke-width="6" xlink:href="#b"/>
+</g>
+<use fill="#92B1FF" fill-rule="evenodd" xlink:href="#f"/>
+<rect x="57" y="86" width="247" height="27" rx="13.5" stroke="#0049FF" stroke-width="8"/>
+<g transform="translate(160 24)" opacity=".95346" stroke="#0049FF" stroke-linecap="round" stroke-width="7">
+<path d="m9.2094 48.138l36.376-37.189"/>
+<path d="m0.52625 21.507l21.029-21.499"/>
+<path d="m39.6 48.138l27.169-27.776"/>
+<path d="m69.991 48.138l17.959-18.36"/>
+<path d="m100.38 48.138l11.819-12.083"/>
+<path d="m0.40118 22.95l27.261 27.87"/>
+<path d="m17.767 9.6343l39.547 40.431"/>
+<path d="m48.158 9.6343l39.547 40.431"/>
+<path d="m100.26 31.827l18.051 18.454"/>
+</g>
+<g transform="translate(190.5 28.5) rotate(6) translate(-190.5 -28.5)">
+<use fill="#FFDB47" fill-rule="evenodd" xlink:href="#e"/>
+<path d="m190.59-1.3527l15.205 5.3149c6.2696 2.1916 9.6111 9.247 7.6414 15.769l-7.4105 24.536c-3.371 11.162-14.693 17.368-25.294 13.662-10.468-3.6592-16.108-15.566-12.774-26.605l7.4105-24.536c2.0068-6.6445 8.8192-10.379 15.222-8.1408z" stroke="#0049FF" stroke-width="8"/>
+</g>
+</g>
+<g transform="translate(14 29)">
+<use fill="#95D2FF" fill-rule="evenodd" xlink:href="#d"/>
+<path d="m148.5 86.5h150.45l-1.4708-12.74c-1.2289-10.644-8.3242-19.7-18.365-23.439l-120.5-44.875c-0.83744-0.31187-1.7239-0.47158-2.6175-0.47158-4.1421 0-7.5 3.3579-7.5 7.5v74.026z" stroke="#0049FF" stroke-width="9"/>
+<g stroke-linecap="round">
+<use fill="black" filter="url(#i)" xlink:href="#a"/>
+<use stroke="#189EFF" stroke-opacity=".3" stroke-width="6" xlink:href="#a"/>
+</g>
+<use fill="#92B1FF" fill-rule="evenodd" xlink:href="#c"/>
+<rect x="57" y="86" width="247" height="27" rx="13.5" stroke="#0049FF" stroke-width="8"/>
+<g transform="translate(160 24)" opacity=".95346" stroke="#0049FF" stroke-linecap="round" stroke-width="7">
+<path d="m9.2094 48.138l36.376-37.189"/>
+<path d="m0.52625 21.507l21.029-21.499"/>
+<path d="m39.6 48.138l27.169-27.776"/>
+<path d="m69.991 48.138l17.959-18.36"/>
+<path d="m100.38 48.138l11.819-12.083"/>
+<path d="m0.40118 22.95l27.261 27.87"/>
+<path d="m17.767 9.6343l39.547 40.431"/>
+<path d="m48.158 9.6343l39.547 40.431"/>
+<path d="m100.26 31.827l18.051 18.454"/>
+</g>
+<g transform="translate(190.5 28.5) rotate(6) translate(-190.5 -28.5)">
+<use fill="#FFDB47" fill-rule="evenodd" xlink:href="#g"/>
+<path d="m190.59-1.3527l15.205 5.3149c6.2696 2.1916 9.6111 9.247 7.6414 15.769l-7.4105 24.536c-3.371 11.162-14.693 17.368-25.294 13.662-10.468-3.6592-16.108-15.566-12.774-26.605l7.4105-24.536c2.0068-6.6445 8.8192-10.379 15.222-8.1408z" stroke="#0049FF" stroke-width="8"/>
+</g>
+</g>
+</g>
+</svg>

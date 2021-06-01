@@ -1,781 +1,883 @@
-<!DOCTYPE html><html class="no-js" lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>REST API - Models</title><meta name="description" content="REST API - Models"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="theme-color" content="#26556f"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github-gist.min.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.1515505375.css"><link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.1515505375.css" media="screen"><link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed"></head><body>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>REST API - Models</title>
+
+        <meta name="description" content="REST API - Models">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#26556f">
+
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1622532189" media="screen">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1622532189">
+    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1622532189">
+    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1622532189">
+
+    <link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed">
+</head>
+
+<body>
 <div class="wrapper">
 
-    <header class="header--main"><a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+    <header class="header--main">
+
+        <a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
             <i class="icon-list"></i>
         </a>
 
         <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
-            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.1515505375.svg"></a>
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1622532189">
+        </a>
 
-    </header><div id="searchBox">
+    </header>
+
+    <div id="searchBox">
         <form action="#" method="get" id="search-form">
-            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off"><button id="search-action"></button>
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+            <button id="search-action"></button>
         </form>
     </div>
 
-    <nav class="navi--main" data-offcanvas="true"><div class="navi--content">
-            <ul class="navi--tree"><li class="navi--chapter is--active">
-                    <a href="/developers-guide/" class="navi--link is--active has--children">
-                       Developer Guides
+    <nav class="navi--main" data-offcanvas="true">
+        <div class="navi--content">
+            <ul class="navi--tree">
+                <li class="navi--chapter is--active">
+                    <a href="/" class="navi--link has--children">
+                        Shopware 5
                     </a>
-
-                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
-
-                            <a class="navi--link has--children" href="/plugin-guide/">
-                                Developing plugins
+                    <ul class="navi--sub-1-tree">
+                        
+                        <li class="navi--sub-1-chapter is--active">
+                            <a href="/developers-guide/" class="navi--link is--active has--children">
+                                Developer Guides
                             </a>
 
-                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/plugin-guide/">
+                                        Developing plugins
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--numbered">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-quick-start/">
-                                                Quick start guide
+                                                Quick Startup Guide
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/example-plugin/">
-                                                Storefront extension
+                                                Example plugin
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/controller/">
                                                 Controllers
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link is--active" href="/developers-guide/models/">
                                                 Models
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-guidelines/">
+                                                Plugin guidelines
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/event-guide/">
                                                 Events
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-list/">
+                                                Event list
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/services/">
                                                 Services
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-configuration/">
                                                 Plugin configuration
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-testing/">
                                                 Plugin testing
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-license/">
                                                 Plugin License
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
                                                 Plugin update guide
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
                                                 Extend an existing plugin
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
                                                 The legacy Plugin System
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
 
-                            <a class="navi--link has--children" href="/developers-guide/general-resources/">
-                                General Resources
-                            </a>
+                                    <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                        General Resources
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/cheat-sheet/">
                                                 Cheat-Sheet
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/phpstorm/">
                                                 Setting up PhpStorm
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
                                                 Upgrade Guide
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
                                                 Performance Guide
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/developers-guide/debugging/">
-                                                Debugging Shopware
-                                            </a>
-                                        </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/coding-standards/">
                                                 Coding Standards
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-composer/">
+                                                Using composer with Shopware
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/elasticsearch/">
                                                 Elasticsearch
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-config/">
                                                 config.php settings
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
                                                 Hooks
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
                                                 SEO Engine
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
                                                 MediaService
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/http-cache/">
                                                 HTTP Cache
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/address-management-guide/">
                                                 Address Management
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/attribute-system/">
                                                 Attributes
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/content-types/">
+                                                Content-Types
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/csrf-protection/">
                                                 CSRF Protection
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/developers-guide/dic-tags/">
-                                                Dependency Injection Tags
-                                            </a>
-                                        </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
                                                 CLI commands
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
-                                                Captcha
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
                                                 SearchBundle
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
                                                 Service extensions
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/entity-relationship-model/">
                                                 Entity relationship model
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/password-encoder/">
                                                 Password encoder
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
                                                 Global variables in templates
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/media-optimizer/">
                                                 Media Optimizer
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
+                                                Register a cookie to the cookie consent manager
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/customer-streams-extension/">
                                                 Customer - Search &amp; Streams
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/product-export/">
                                                 Product exports
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
 
-                            <a class="navi--link has--children" href="/developers-guide/tutorials/">
-                                Tutorials
-                            </a>
+                                    <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                        Tutorials
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
                                                 Create custom shopping worlds elements
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
                                                 Create custom digital publishing elements
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
                                                 Create custom emotion preset plugin
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
                                                 Create your own backend widget
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/payment-plugin/">
                                                 Create custom payment plugin
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-slugify/">
                                                 Create custom url slugger
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/risk-rules/">
                                                 Risk Rules
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
                                                 Vagrant and PHPStorm
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
 
-                            <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
-                                Backend and ExtJS
-                            </a>
+                                    <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                        Backend and ExtJS
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-extension/">
                                                 Extending the backend
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/basics/">
                                                 Basics
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/listing/">
                                                 Listing
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/detail/">
                                                 Detail
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/associations/">
                                                 Associations
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
                                                 Listing extensions
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
                                                 Batch processes
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-statistics-extension/">
+                                                Statistics extension
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
                                                 Lightweight backend modules
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/backend-icons/">
                                                 Backend icon set
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/backend-escaping/">
                                                 Backend escaping
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter is--active">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter is--active">
 
-                            <a class="navi--link is--active has--children" href="/developers-guide/rest/">
-                                REST API
-                            </a>
+                                    <a class="navi--link is--active has--children" href="/developers-guide/rest/">
+                                        REST API
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/">
                                                 REST API Basics
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
                                                 The article resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
                                                 The customer resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
                                                 The order resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
                                                 The translation resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
                                                 The category resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
                                                 The media resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
                                                 The merge mode
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
                                                 The cache resources
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
                                                 The batch mode
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
                                                 The user resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
-                                                Customer Streams
-                                            </a>
-                                        </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
                                                 Filter
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
                                                 Payment
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link is--active" href="/developers-guide/rest-api/models/">
                                                 Models
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
                                                 Create your own endpoint
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
                                                 Extend a REST API resource
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/rest-api/faq/">
                                                 REST API FAQ
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                            </ul></li>
+                                                                            </ul>
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
 
-                
-                <li class="navi--chapter">
-                    <a href="/designers-guide/" class="navi--link has--children">
-                       Frontend Guides
-                    </a>
-
-                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
-
-                            <a class="navi--link has--children" href="/theme-guide/">
-                                Developing Themes
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/designers-guide/" class="navi--link has--children">
+                                Frontend Guides
                             </a>
 
-                                                            <ul class="navi--sub-tree is--numbered"><li class="navi--sub-chapter">
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/theme-guide/">
+                                        Developing Themes
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--numbered">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/theme-startup-guide/">
                                                 Theme Startup Guide
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/getting-started/">
                                                 Getting started with templating
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/smarty/">
                                                 Getting started with Smarty
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/less/">
                                                 Getting started with LESS
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
                                                 Using CSS and JavaScript
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
                                                 Using the theme default components
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
                                                 jQuery plugins &amp; the StateManager
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
                                                 Custom theme configuration
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
-                                                Preparing themes for the community store
+                                                Preparing themes for the Community Store
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
 
-                            <a class="navi--link has--children" href="/designers-guide/general-resources/">
-                                General Resources
-                            </a>
+                                    <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                        General Resources
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
                                                 ESLint for plugins
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/javascript-coding-style/">
                                                 Javascript Coding Style
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/styletile/">
                                                 UI Components
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/snippets/">
                                                 Snippet Management
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/designers-guide/datepicker/">
-                                                Datepicker
-                                            </a>
-                                        </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/external-resources/">
                                                 Embedding external resources
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/responsive-images/">
                                                 Responsive images
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/smarty-plugins/">
                                                 Smarty Plugins
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
                                                 Using the Grunt watcher
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
                                                 Modify jQuery plugins
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
                                                 Managing dependencies with Bower
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
                                                 Managing dependencies with NPM
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
                                                 Legacy template development
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/how-to-use-karma/">
                                                 Testing with Karma
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                                <li class="navi--sub-chapter">
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
 
-                            <a class="navi--link has--children" href="/designers-guide/tutorials/">
-                                Tutorials
-                            </a>
+                                    <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                        Tutorials
+                                    </a>
 
-                                                            <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
                                                 How to find smarty blocks
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/custom-templates/">
                                                 Adding custom templates
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/custom-listing-page/">
                                                 Example: Custom listing page
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/custom-detail-page/">
                                                 Example: Custom Detail page
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
                                                 Edit newsletter and document templates
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
                                                 Google PageSpeed
                                             </a>
                                         </li>
-                                                                            <li class="navi--sub-chapter">
-                                            <a class="navi--link" href="/designers-guide/browser-notice/">
-                                                Outdated browser notification
-                                            </a>
-                                        </li>
-                                                                            <li class="navi--sub-chapter">
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
                                                 Range slider algorithm
                                             </a>
                                         </li>
-                                                                    </ul></li>
-                                            </ul></li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
 
-                
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/community/" class="navi--link has--children">
+                                Community
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/community/contribution-guideline/">
+                                        Contribution Guideline
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/community/contributing-code/">
+                                        Contributing Code
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/labs/" class="navi--link has--children">
+                                Labs
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/labs/3d-product-visualization/">
+                                        3D Product visualization
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/sysadmins-guide/" class="navi--link has--children">
+                                System Guides
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                        System requirements
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                        Installation Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                        Update Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/professional-deployments/">
+                                        Professional Deployments
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                        Performance Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                        Elasticsearch setup
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                        Varnish setup
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                        Sessions
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                        Cluster setup
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/blog/" class="navi--link">
+                                Blog
+                            </a>
+
+                                                    </li>
+
+                                            </ul>
+                </li>
+            </ul>
+            <ul class="navi--tree">
                 <li class="navi--chapter">
-                    <a href="/community/" class="navi--link has--children">
-                       Community
+                    <a href="https://docs.shopware.com/en/shopware-platform-dev-en" class="navi--link">
+                        <span>
+                            Shopware 6
+                        </span>
+                        <span>
+                            <i class="icon-external-link"></i>
+                        </span>
                     </a>
+                </li>
+            </ul>
+            <ul class="navi--tree">
+                <li class="navi--chapter navi--backlink-mobile">
+                    <a href="https://en.shopware.com" class="navi--link"><i class="icon--arrow-left"></i> Back to shopware.com</a>
+                </li>
+                <li class="navi--backlink">
+                    <a href="https://en.shopware.com"><i class="icon--arrow-left"></i>Back to shopware.com</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
+        <div class="devdocs content">
 
-                            <a class="navi--link" href="/community/gitter/">
-                                Gitter
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/community/contribution-guideline/">
-                                Contribution Guideline
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/community/contributing-code/">
-                                Contributing Code
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/community/irc/">
-                                IRC Channel
-                            </a>
-
-                                                    </li>
-                                            </ul></li>
-
-                
-                <li class="navi--chapter">
-                    <a href="/labs/" class="navi--link has--children">
-                       Labs
-                    </a>
-
-                                        <ul class="navi--sub-tree is--bulleted"><li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/3d-product-visualization/">
-                                3D Product visualization
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/shopping-cart-and-ordering-processes/">
-                                Shopping Cart &amp; ordering processes
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/new-administration/">
-                                New administration
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/internationalization/">
-                                Internationalization
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/api/">
-                                API
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/labs/housekeeping/">
-                                Housekeeping
-                            </a>
-
-                                                    </li>
-                                            </ul></li>
-
-                
-                <li class="navi--chapter">
-                    <a href="/sysadmins-guide/" class="navi--link has--children">
-                       System Guides
-                    </a>
-
-                                        <ul class="navi--sub-tree"><li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/system-requirements/">
-                                System requirements
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/installation-guide/">
-                                Installation Guide
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/update-guide/">
-                                Update Guide
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
-                                Performance Guide
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
-                                Elasticsearch setup
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
-                                Varnish setup
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/sessions/">
-                                Sessions
-                            </a>
-
-                                                    </li>
-                                                <li class="navi--sub-chapter">
-
-                            <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
-                                Cluster setup
-                            </a>
-
-                                                    </li>
-                                            </ul></li>
-
-                
-                <li class="navi--chapter">
-                    <a href="/blog/" class="navi--link">
-                       Blog
-                    </a>
-
-                                    </li>
-
-                            </ul></div>
-    </nav><div class="devdocs content">
-
-        <section id="search-results" style="display: none;"><h2 class="search-results--headline" id="search-results">Search results</h2>
+        <section id="search-results" style="display: none;">
+            <h2 class="search-results--headline" id="search-results">Search results</h2>
 
             <div class="entries"></div>
-        </section><div class="inner-container">
+        </section>
+
+        <div class="inner-container">
 
             <div class="info">
 
@@ -792,1806 +894,3973 @@
 
 <h2 id="address">Address</h2>
 
-<ul><li>
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Customer\Address</li>
 <li>
 <strong>Table:</strong> s_user_addresses</li>
-</ul><h3 id="structure">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-<td></td>
-</tr><tr><td>company</td>
+</tr>
+<tr>
+<td>company</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>department</td>
+</tr>
+<tr>
+<td>department</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>salutation</td>
+</tr>
+<tr>
+<td>salutation</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>firstname</td>
+</tr>
+<tr>
+<td>title</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>lastname</td>
+</tr>
+<tr>
+<td>firstname</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>street</td>
+</tr>
+<tr>
+<td>lastname</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>zipcode</td>
+</tr>
+<tr>
+<td>street</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>city</td>
+</tr>
+<tr>
+<td>zipcode</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>phone</td>
+</tr>
+<tr>
+<td>city</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>vatId</td>
+</tr>
+<tr>
+<td>phone</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>additionalAddressLine1</td>
+</tr>
+<tr>
+<td>vatId</td>
 <td>string</td>
 <td></td>
-<td></td>
-</tr><tr><td>additionalAddressLine2</td>
+</tr>
+<tr>
+<td>additionalAddressLine1</td>
 <td>string</td>
 <td></td>
+</tr>
+<tr>
+<td>additionalAddressLine2</td>
+<td>string</td>
 <td></td>
-</tr><tr><td>country</td>
+</tr>
+<tr>
+<td>country</td>
 <td>int (foreign key)</td>
 <td><strong><a href="../models/#country">Country</a></strong></td>
-<td></td>
-</tr><tr><td>state</td>
+</tr>
+<tr>
+<td>state</td>
 <td>int (foreign key)</td>
 <td><strong><a href="#state">State</a></strong></td>
-<td></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>attribute</td>
 <td>array</td>
 <td></td>
-<td></td>
-</tr></tbody></table><h2 id="area">Area</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="area">Area</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Country\Area</li>
 <li>
 <strong>Table:</strong> s_core_countries_areas</li>
-</ul><h3 id="structure-0">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-0">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>countries</td>
+</tr>
+<tr>
+<td>countries</td>
 <td>object array</td>
 <td><strong><a href="#country">Country</a></strong></td>
-</tr></tbody></table><h2 id="article-attribute">Article Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="article-attribute">Article Attribute</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Attribute\Article</li>
 <li>
 <strong>Table:</strong> s_articles_attributes</li>
-</ul><h3 id="structure-1">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-1">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>attr1</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>attr1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr2</td>
+</tr>
+<tr>
+<td>attr2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr3</td>
+</tr>
+<tr>
+<td>attr3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr4</td>
+</tr>
+<tr>
+<td>attr4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr5</td>
+</tr>
+<tr>
+<td>attr5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr6</td>
+</tr>
+<tr>
+<td>attr6</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr7</td>
+</tr>
+<tr>
+<td>attr7</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr8</td>
+</tr>
+<tr>
+<td>attr8</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr9</td>
+</tr>
+<tr>
+<td>attr9</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr10</td>
+</tr>
+<tr>
+<td>attr10</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr11</td>
+</tr>
+<tr>
+<td>attr11</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr12</td>
+</tr>
+<tr>
+<td>attr12</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr13</td>
+</tr>
+<tr>
+<td>attr13</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr14</td>
+</tr>
+<tr>
+<td>attr14</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr15</td>
+</tr>
+<tr>
+<td>attr15</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr16</td>
+</tr>
+<tr>
+<td>attr16</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr17</td>
+</tr>
+<tr>
+<td>attr17</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr18</td>
+</tr>
+<tr>
+<td>attr18</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr19</td>
+</tr>
+<tr>
+<td>attr19</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr20</td>
+</tr>
+<tr>
+<td>attr20</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>articleDetailId</td>
+</tr>
+<tr>
+<td>articleDetailId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#article-detail">Detail</a></strong></td>
-</tr></tbody></table><h2 id="article-detail">Article Detail</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="article-detail">Article Detail</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Detail</li>
 <li>
 <strong>Table:</strong> s_articles_details</li>
-</ul><h3 id="structure-2">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-2">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>number</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>supplierNumber</td>
+</tr>
+<tr>
+<td>supplierNumber</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>additionalText</td>
+</tr>
+<tr>
+<td>additionalText</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>weight</td>
+</tr>
+<tr>
+<td>weight</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>width</td>
+</tr>
+<tr>
+<td>width</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>len</td>
+</tr>
+<tr>
+<td>len</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>height</td>
+</tr>
+<tr>
+<td>height</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>ean</td>
+</tr>
+<tr>
+<td>ean</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>purchaseUnit</td>
+</tr>
+<tr>
+<td>purchaseUnit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>descriptionLong</td>
+</tr>
+<tr>
+<td>descriptionLong</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>referenceUnit</td>
+</tr>
+<tr>
+<td>referenceUnit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>packUnit</td>
+</tr>
+<tr>
+<td>packUnit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>shippingTime</td>
+</tr>
+<tr>
+<td>shippingTime</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>prices</td>
+</tr>
+<tr>
+<td>prices</td>
 <td>object array</td>
 <td><strong><a href="#price">Price</a></strong></td>
-</tr><tr><td>configuratorOptions</td>
+</tr>
+<tr>
+<td>configuratorOptions</td>
 <td>object array</td>
 <td><strong><a href="#configurator-option">ConfiguratorOption</a></strong></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>attribute</td>
 <td>object</td>
 <td><strong><a href="#article-attribute">Attribute</a></strong></td>
-</tr><tr><td>id</td>
+</tr>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>unitId</td>
+</tr>
+<tr>
+<td>unitId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>kind</td>
+</tr>
+<tr>
+<td>kind</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>inStock</td>
+</tr>
+<tr>
+<td>inStock</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>minPurchase</td>
+</tr>
+<tr>
+<td>minPurchase</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>purchaseSteps</td>
+</tr>
+<tr>
+<td>purchaseSteps</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>maxPurchase</td>
+</tr>
+<tr>
+<td>maxPurchase</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>releaseDate</td>
+</tr>
+<tr>
+<td>releaseDate</td>
 <td>date/time</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>shippingFree</td>
+</tr>
+<tr>
+<td>shippingFree</td>
 <td>boolean</td>
 <td></td>
-</tr></tbody></table><h2 id="billing">Billing</h2>
+</tr>
+<tr>
+<td>esd</td>
+<td>object</td>
+<td><strong><a href="#esd">Esd</a></strong></td>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Customer\Billing</li>
+<h2 id="billing">Billing</h2>
+
+<ul>
 <li>
-<strong>Table:</strong> s_user_billingaddress</li>
-</ul><h3 id="structure-3">Structure</h3>
+<strong>Model:</strong> Shopware\Models\Order\Billing</li>
+<li>
+<strong>Table:</strong> s_order_billingaddress</li>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-3">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerId</td>
+</tr>
+<tr>
+<td>orderId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>countryId</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>integer (foreign key)</td>
+<td></td>
+</tr>
+<tr>
+<td>countryId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#country">Country</a></strong></td>
-</tr><tr><td>stateId</td>
+</tr>
+<tr>
+<td>stateId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>company</td>
+</tr>
+<tr>
+<td>company</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>department</td>
+</tr>
+<tr>
+<td>department</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>salutation</td>
+</tr>
+<tr>
+<td>title</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>number</td>
+</tr>
+<tr>
+<td>salutation</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>firstName</td>
+</tr>
+<tr>
+<td>number</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>lastName</td>
+</tr>
+<tr>
+<td>firstName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>street</td>
+</tr>
+<tr>
+<td>lastName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>zipCode</td>
+</tr>
+<tr>
+<td>street</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>city</td>
+</tr>
+<tr>
+<td>zipCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>phone</td>
+</tr>
+<tr>
+<td>city</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>fax</td>
+</tr>
+<tr>
+<td>additionalAddressLine1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>vatId</td>
+</tr>
+<tr>
+<td>additionalAddressLine2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>birthday</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>vatId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td>object</td>
+<td><strong><a href="#country">Country</a></strong></td>
+</tr>
+<tr>
+<td>state</td>
+<td>object/null</td>
+<td><strong><a href="#state">State</a></strong></td>
+</tr>
+<tr>
+<td>birthday</td>
 <td>date/time</td>
 <td></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>attribute</td>
 <td>object</td>
 <td><strong><a href="#billing-attribute">BillingAttribute</a></strong></td>
-</tr></tbody></table><h2 id="billing-attribute">Billing Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Attribute\CustomerBilling</li>
+<h2 id="billing-attribute">Billing Attribute</h2>
+
+<ul>
 <li>
-<strong>Table:</strong> s_user_billingaddress_attributes</li>
-</ul><h3 id="structure-4">Structure</h3>
+<strong>Model:</strong> Shopware\Models\Attribute\OrderBilling</li>
+<li>
+<strong>Table:</strong> s_order_billingaddress_attributes</li>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-4">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerBillingId</td>
+</tr>
+<tr>
+<td>orderBillingId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>text1</td>
+</tr>
+<tr>
+<td>text1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text2</td>
+</tr>
+<tr>
+<td>text2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text3</td>
+</tr>
+<tr>
+<td>text3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text4</td>
+</tr>
+<tr>
+<td>text4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text5</td>
+</tr>
+<tr>
+<td>text5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text6</td>
+</tr>
+<tr>
+<td>text6</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="category">Category</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="category">Category</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Category\Category</li>
 <li>
 <strong>Table:</strong> s_categories</li>
-</ul><h3 id="structure-5">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-5">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="configurator-group">Configurator Group</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="configurator-group">Configurator Group</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Configurator\Group</li>
 <li>
 <strong>Table:</strong> s_article_configurator_groups</li>
-</ul><h3 id="structure-6">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-6">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="configurator-option">Configurator Option</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="configurator-option">Configurator Option</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Configurator\Option</li>
 <li>
 <strong>Table:</strong> s_article_configurator_options</li>
-</ul><h3 id="structure-7">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-7">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>groupId</td>
+</tr>
+<tr>
+<td>groupId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#configurator-group">ConfiguratorGroup</a></strong></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="configurator-set">Configurator Set</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="configurator-set">Configurator Set</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Configurator\Set</li>
 <li>
 <strong>Table:</strong> s_article_configurator_sets</li>
-</ul><h3 id="structure-8">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-8">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>public</td>
+</tr>
+<tr>
+<td>public</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>type</td>
+</tr>
+<tr>
+<td>type</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>groups</td>
+</tr>
+<tr>
+<td>groups</td>
 <td>object array</td>
 <td><strong><a href="#configurator-group">ConfiguratorGroup</a></strong></td>
-</tr></tbody></table><h2 id="country">Country</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="country">Country</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Country\Country</li>
 <li>
 <strong>Table:</strong> s_core_countries</li>
-</ul><h3 id="structure-9">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-9">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>iso</td>
+</tr>
+<tr>
+<td>iso</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>isoName</td>
+</tr>
+<tr>
+<td>isoName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>shippingFree</td>
+</tr>
+<tr>
+<td>shippingFree</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>taxFree</td>
+</tr>
+<tr>
+<td>taxFree</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>taxFreeUstId</td>
+</tr>
+<tr>
+<td>taxFreeUstId</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>taxFreeUstIdChecked</td>
+</tr>
+<tr>
+<td>taxFreeUstIdChecked</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>iso3</td>
+</tr>
+<tr>
+<td>iso3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>displayStateInRegistration</td>
+</tr>
+<tr>
+<td>displayStateInRegistration</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>forceStateInRegistration</td>
+</tr>
+<tr>
+<td>forceStateInRegistration</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>areaId</td>
+</tr>
+<tr>
+<td>areaId</td>
 <td>integer    (foreign key)</td>
 <td><strong><a href="#area">Area</a></strong></td>
-</tr><tr><td>states</td>
+</tr>
+<tr>
+<td>states</td>
 <td>object array</td>
 <td><strong><a href="#state">State</a></strong></td>
-</tr></tbody></table><h2 id="currency">Currency</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="currency">Currency</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Shop\Currency</li>
 <li>
 <strong>Table:</strong> s_core_currencies</li>
-</ul><h3 id="structure-10">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-10">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>currency</td>
+</tr>
+<tr>
+<td>currency</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>default</td>
+</tr>
+<tr>
+<td>default</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>factor</td>
+</tr>
+<tr>
+<td>factor</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>symbol</td>
+</tr>
+<tr>
+<td>symbol</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>symbolPosition</td>
+</tr>
+<tr>
+<td>symbolPosition</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="customer-attribute">Customer Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="customer">Customer</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Customer\Customer</li>
+<li>
+<strong>Table:</strong> s_user</li>
+</ul>
+
+<h3 id="structure-11">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>groupKey</td>
+<td>string (foreign key)</td>
+<td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
+</tr>
+<tr>
+<td>paymentId</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#payment">Payment</a></strong></td>
+</tr>
+<tr>
+<td>shopId</td>
+<td>string (foreign key)</td>
+<td><strong><a href="#shop">Shop</a></strong></td>
+</tr>
+<tr>
+<td>priceGroupId</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#price-group">PriceGroup</a></strong></td>
+</tr>
+<tr>
+<td>encoderName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>hashPassword</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>firstLogin</td>
+<td>date/time</td>
+<td></td>
+</tr>
+<tr>
+<td>lastLogin</td>
+<td>date/time</td>
+<td></td>
+</tr>
+<tr>
+<td>accountMode</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>confirmationKey</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>sessionId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>newsletter</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>validation</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>affiliate</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>paymentPreset</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>languageId</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#shop">Shop</a></strong></td>
+</tr>
+<tr>
+<td>referer</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>internalComment</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>failedLogins</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>lockedUntil</td>
+<td>date/time</td>
+<td></td>
+</tr>
+<tr>
+<td>salutation</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>firstname</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>defaultBillingAddress</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#address">Billing</a></strong></td>
+</tr>
+<tr>
+<td>defaultShippingAddress</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#address">Shipping</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="customer-attribute">Customer Attribute</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Attribute\Customer</li>
 <li>
 <strong>Table:</strong> s_user_attributes</li>
-</ul><h3 id="structure-11">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-12">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerId</td>
+</tr>
+<tr>
+<td>customerId</td>
 <td>integer (foreign key)</td>
-<td><strong><a href="../api-resource-customer/">Customer</a></strong></td>
-</tr></tbody></table><h2 id="customer-group">Customer Group</h2>
+<td><strong><a href="#customer">Customer</a></strong></td>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="customer-group">Customer Group</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Customer\Group</li>
 <li>
 <strong>Table:</strong> s_core_customergroups</li>
-</ul><h3 id="structure-12">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-13">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>key</td>
+</tr>
+<tr>
+<td>key</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>tax</td>
+</tr>
+<tr>
+<td>tax</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>taxInput</td>
+</tr>
+<tr>
+<td>taxInput</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>mode</td>
+</tr>
+<tr>
+<td>mode</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>discount</td>
+</tr>
+<tr>
+<td>discount</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>minimumOrder</td>
+</tr>
+<tr>
+<td>minimumOrder</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>minimumOrderSurcharge</td>
+</tr>
+<tr>
+<td>minimumOrderSurcharge</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>basePrice</td>
+</tr>
+<tr>
+<td>basePrice</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>percent</td>
+</tr>
+<tr>
+<td>percent</td>
 <td>double</td>
 <td></td>
-</tr></tbody></table><h2 id="customer-group-surcharge">Customer Group Surcharge</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="customer-group-surcharge">Customer Group Surcharge</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Customer\Discount</li>
 <li>
 <strong>Table:</strong> s_customergroups_discounts</li>
-</ul><h3 id="structure-13">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-14">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original Object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>discount</td>
+</tr>
+<tr>
+<td>discount</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>value</td>
+</tr>
+<tr>
+<td>value</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="debit">Debit</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="debit">Debit</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Customer\Debit</li>
 <li>
 <strong>Table:</strong> s_user_debit</li>
-</ul><h3 id="structure-14">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-15">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerId</td>
+</tr>
+<tr>
+<td>customerId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>account</td>
+</tr>
+<tr>
+<td>account</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankCode</td>
+</tr>
+<tr>
+<td>bankCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankName</td>
+</tr>
+<tr>
+<td>bankName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>accountHolder</td>
+</tr>
+<tr>
+<td>accountHolder</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="dispatch">Dispatch</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="dispatch">Dispatch</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Dispatch\Dispatch</li>
 <li>
 <strong>Table:</strong> s_premium_dispatch</li>
-</ul><h3 id="structure-15">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-16">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>type</td>
+</tr>
+<tr>
+<td>type</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>comment</td>
+</tr>
+<tr>
+<td>comment</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>calculation</td>
+</tr>
+<tr>
+<td>calculation</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>surchargeCalculation</td>
+</tr>
+<tr>
+<td>surchargeCalculation</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>taxCalculation</td>
+</tr>
+<tr>
+<td>taxCalculation</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>shippingFree</td>
+</tr>
+<tr>
+<td>shippingFree</td>
 <td>decimal</td>
 <td></td>
-</tr><tr><td>multiShopId</td>
+</tr>
+<tr>
+<td>multiShopId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#shop">Shop</a></strong></td>
-</tr><tr><td>customerGroupId</td>
+</tr>
+<tr>
+<td>customerGroupId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
-</tr><tr><td>bindShippingFree</td>
+</tr>
+<tr>
+<td>bindShippingFree</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindTimeFrom</td>
+</tr>
+<tr>
+<td>bindTimeFrom</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindTimeTo</td>
+</tr>
+<tr>
+<td>bindTimeTo</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindInStock</td>
+</tr>
+<tr>
+<td>bindInStock</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindWeekdayFrom</td>
+</tr>
+<tr>
+<td>bindLastStock</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindPriceTo</td>
+</tr>
+<tr>
+<td>bindWeekdayFrom</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bindSql</td>
+</tr>
+<tr>
+<td>bindWeekdayTo</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>bindWeightFrom</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>bindWeightTo</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>bindPriceFrom</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>bindPriceTo</td>
+<td>decimal</td>
+<td></td>
+</tr>
+<tr>
+<td>bindSql</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>statusLink</td>
+</tr>
+<tr>
+<td>statusLink</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>calculationSql</td>
+</tr>
+<tr>
+<td>calculationSql</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="document">Document</h2>
+</tr>
+<tr>
+<td>attribute</td>
+<td>object/null</td>
+<td><strong><a href="#dispatch-attribute">DispatchAttribute</a></strong></td>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="dispatch-attribute">Dispatch Attribute</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Attribute\Dispatch</li>
+<li>
+<strong>Table:</strong> s_premium_dispatch_attributes</li>
+</ul>
+
+<h3 id="structure-17">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>dispatchId</td>
+<td>integer (foreign key)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="document">Document</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Order\Document\Document</li>
 <li>
 <strong>Table:</strong> s_order_documents</li>
-</ul><h3 id="structure-16">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-18">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>date</td>
+</tr>
+<tr>
+<td>date</td>
 <td>date/time</td>
 <td></td>
-</tr><tr><td>typeId</td>
+</tr>
+<tr>
+<td>typeId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#document-type">DocumentType</a></strong></td>
-</tr><tr><td>customerId</td>
+</tr>
+<tr>
+<td>customerId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#customer">Customer</a></strong></td>
-</tr><tr><td>orderId</td>
+</tr>
+<tr>
+<td>orderId</td>
 <td>integer (foreign key)</td>
-<td><strong><a href="#order">Order</a></strong></td>
-</tr><tr><td>amount</td>
+<td><strong><a href="../api-resource-orders/">Order</a></strong></td>
+</tr>
+<tr>
+<td>amount</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>documentId</td>
+</tr>
+<tr>
+<td>documentId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>hash</td>
+</tr>
+<tr>
+<td>hash</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>type</td>
+</tr>
+<tr>
+<td>type</td>
 <td>object</td>
 <td><strong><a href="#document-type">DocumentType</a></strong></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>attribute</td>
 <td>object</td>
 <td><strong><a href="#document-attribute">DocumentAttribute</a></strong></td>
-</tr></tbody></table><h2 id="document-attribute">Document Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="document-attribute">Document Attribute</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Attribute\Document</li>
 <li>
 <strong>Table:</strong> s_order_documents_attributes</li>
-</ul><h3 id="structure-17">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-19">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>documentId</td>
+</tr>
+<tr>
+<td>documentId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr></tbody></table><h2 id="document-type">Document Type</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Order\Document\Type</li>
+<h2 id="document-type">Document Type</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Document\Document</li>
 <li>
 <strong>Table:</strong> s_order_documents</li>
-</ul><h3 id="structure-18">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-20">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>template</td>
+</tr>
+<tr>
+<td>template</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>numbers</td>
+</tr>
+<tr>
+<td>numbers</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>left</td>
+</tr>
+<tr>
+<td>left</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>right</td>
+</tr>
+<tr>
+<td>right</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>top</td>
+</tr>
+<tr>
+<td>top</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>bottom</td>
+</tr>
+<tr>
+<td>bottom</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>pageBreak</td>
+</tr>
+<tr>
+<td>pageBreak</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="download">Download</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="download">Download</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Download</li>
 <li>
 <strong>Table:</strong> s_articles_downloads</li>
-</ul><h3 id="structure-19">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-21">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>file</td>
+</tr>
+<tr>
+<td>file</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>size</td>
+</tr>
+<tr>
+<td>size</td>
 <td>int</td>
 <td></td>
-</tr></tbody></table><h2 id="image">Image</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="esd">Esd</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Article\Esd</li>
+<li>
+<strong>Table:</strong> s_articles_esd</li>
+</ul>
+
+<h3 id="structure-22">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>reuse</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>hasSerials</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>serials</td>
+<td>object array</td>
+<td><strong><a href="#esd-serial">EsdSerial</a></strong></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="esd-serial">ESD-Serial</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Article\EsdSerial</li>
+<li>
+<strong>Table:</strong> s_articles_esd_serials</li>
+</ul>
+
+<h3 id="structure-23">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>serialnumber</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="image">Image</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Image</li>
 <li>
 <strong>Table:</strong> s_articles_img</li>
-</ul><h3 id="structure-20">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-24">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>articleDetailId</td>
+</tr>
+<tr>
+<td>articleDetailId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#article-detail">Detail</a></strong></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>path</td>
+</tr>
+<tr>
+<td>path</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>main</td>
+</tr>
+<tr>
+<td>main</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>width</td>
+</tr>
+<tr>
+<td>width</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>height</td>
+</tr>
+<tr>
+<td>height</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>relations</td>
+</tr>
+<tr>
+<td>relations</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>extension</td>
+</tr>
+<tr>
+<td>extension</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>parentId</td>
+</tr>
+<tr>
+<td>parentId</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>mediaId</td>
+</tr>
+<tr>
+<td>mediaId</td>
 <td>integer</td>
 <td><strong><a href="../api-resource-media/">Media</a></strong></td>
-</tr></tbody></table><h2 id="link">Link</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<div class="alert alert-info">
+<p>The field <code>path</code> has to be the local path to the image, seen from the root of the Shopware installation. There is an additional, internal helper field <code>link</code>, which allows to supply a URL that is being downloaded and converted to the <code>path</code> field internally. See the [product examples](https://developers.shopware.com/developers-guide/rest-api/examples/article/#further-examples] for an example.</p>
+</div>
+
+<h2 id="link">Link</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Link</li>
 <li>
 <strong>Table:</strong> s_articles_information</li>
-</ul><h3 id="structure-21">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-25">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>link</td>
+</tr>
+<tr>
+<td>link</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>target</td>
+</tr>
+<tr>
+<td>target</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="locale">Locale</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="locale">Locale</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Shop\Locale</li>
 <li>
 <strong>Table:</strong> s_core_locales</li>
-</ul><h3 id="structure-22">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-26">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>locale</td>
+</tr>
+<tr>
+<td>locale</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>language</td>
+</tr>
+<tr>
+<td>language</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>territory</td>
+</tr>
+<tr>
+<td>territory</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="order-attribute">Order Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="order-attribute">Order Attribute</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Attribute\OrderDetail</li>
 <li>
 <strong>Table:</strong> s_order_attributes</li>
-</ul><h3 id="structure-23">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-27">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>orderId</td>
+</tr>
+<tr>
+<td>orderId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>attribute1</td>
+</tr>
+<tr>
+<td>attribute1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute2</td>
+</tr>
+<tr>
+<td>attribute2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute3</td>
+</tr>
+<tr>
+<td>attribute3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute4</td>
+</tr>
+<tr>
+<td>attribute4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute5</td>
+</tr>
+<tr>
+<td>attribute5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute6</td>
+</tr>
+<tr>
+<td>attribute6</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="order-detail">Order Detail</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="order-detail">Order Detail</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Order\Detail</li>
 <li>
 <strong>Table:</strong> s_order_detail</li>
-</ul><h3 id="structure-24">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-28">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>orderId</td>
+</tr>
+<tr>
+<td>orderId</td>
 <td>string</td>
 <td><strong><a href="../api-resource-order/">Order</a></strong></td>
-</tr><tr><td>articleId</td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>taxId</td>
+</tr>
+<tr>
+<td>taxId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#tax">Tax</a></strong></td>
-</tr><tr><td>taxRate</td>
+</tr>
+<tr>
+<td>taxRate</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>statusId</td>
+</tr>
+<tr>
+<td>statusId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#order-status">Status</a></strong></td>
-</tr><tr><td>number</td>
+</tr>
+<tr>
+<td>number</td>
 <td>string (foreign key)</td>
 <td><strong><a href="../api-resource-order/">Order</a></strong></td>
-</tr><tr><td>articleNumber</td>
+</tr>
+<tr>
+<td>articleNumber</td>
 <td>string (foreign key)</td>
 <td><strong><a href="#article-detail">ArticleDetail</a></strong></td>
-</tr><tr><td>price</td>
+</tr>
+<tr>
+<td>price</td>
 <td>double</td>
 <td></td>
-</tr><tr><td>quantity</td>
+</tr>
+<tr>
+<td>quantity</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>articleName</td>
+</tr>
+<tr>
+<td>articleName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>shipped</td>
+</tr>
+<tr>
+<td>shipped</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>shippedGroup</td>
+</tr>
+<tr>
+<td>shippedGroup</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>releaseDate</td>
+</tr>
+<tr>
+<td>releaseDate</td>
 <td>date/time</td>
 <td></td>
-</tr><tr><td>mode</td>
+</tr>
+<tr>
+<td>mode</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>esdArticle</td>
+</tr>
+<tr>
+<td>esdArticle</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>config</td>
+</tr>
+<tr>
+<td>config</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>ean</td>
+</tr>
+<tr>
+<td>ean</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>unit</td>
+</tr>
+<tr>
+<td>unit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>packUnit</td>
+</tr>
+<tr>
+<td>packUnit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>attribute</td>
 <td>object</td>
 <td><strong><a href="#order-detail-attribute">OrderDetailAttribute</a></strong></td>
-</tr></tbody></table><h2 id="order-detail-attribute">Order Detail Attribute</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="order-detail-attribute">Order Detail Attribute</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Attribute\OrderDetail</li>
 <li>
 <strong>Table:</strong> s_order_attributes</li>
-</ul><h3 id="structure-25">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-29">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>orderDetailId</td>
+</tr>
+<tr>
+<td>orderDetailId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#order-detail">OrderDetail</a></strong></td>
-</tr><tr><td>attribute1</td>
+</tr>
+<tr>
+<td>attribute1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute2</td>
+</tr>
+<tr>
+<td>attribute2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute3</td>
+</tr>
+<tr>
+<td>attribute3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute4</td>
+</tr>
+<tr>
+<td>attribute4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute5</td>
+</tr>
+<tr>
+<td>attribute5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute6</td>
+</tr>
+<tr>
+<td>attribute6</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="order-status">Order Status</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="order-status">Order Status</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Order\Status</li>
 <li>
 <strong>Table:</strong> s_core_states</li>
-</ul><h3 id="structure-26">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-30">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>group</td>
+</tr>
+<tr>
+<td>group</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>sendMail</td>
+</tr>
+<tr>
+<td>sendMail</td>
 <td>boolean</td>
 <td></td>
-</tr></tbody></table><h2 id="payment">Payment</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="payment">Payment</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Payment\Payment</li>
 <li>
 <strong>Table:</strong> s_core_paymentmeans</li>
-</ul><h3 id="structure-27">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-31">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>template</td>
+</tr>
+<tr>
+<td>template</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>hide</td>
+</tr>
+<tr>
+<td>hide</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>additionalDescription</td>
+</tr>
+<tr>
+<td>additionalDescription</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>debitPercent</td>
+</tr>
+<tr>
+<td>debitPercent</td>
 <td>float</td>
 <td></td>
-</tr><tr><td>surcharge</td>
+</tr>
+<tr>
+<td>surcharge</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>surchargeString</td>
+</tr>
+<tr>
+<td>surchargeString</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>esdActive</td>
+</tr>
+<tr>
+<td>esdActive</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>mobileInactive</td>
+</tr>
+<tr>
+<td>mobileInactive</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>pluginId</td>
+</tr>
+<tr>
+<td>pluginId</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table><h2 id="payment-data">Payment Data</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="payment-data">Payment Data</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Customer\PaymentData</li>
 <li>
 <strong>Table:</strong> s_core_payment_data</li>
-</ul><h3 id="structure-28">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-32">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>paymentMeanId</td>
+</tr>
+<tr>
+<td>paymentMeanId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>useBillingData</td>
+</tr>
+<tr>
+<td>useBillingData</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankName</td>
+</tr>
+<tr>
+<td>bankName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bic</td>
+</tr>
+<tr>
+<td>bic</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>iban</td>
+</tr>
+<tr>
+<td>iban</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>accountNumber</td>
+</tr>
+<tr>
+<td>accountNumber</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankCode</td>
+</tr>
+<tr>
+<td>bankCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>accountHolder</td>
+</tr>
+<tr>
+<td>accountHolder</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>createdAt</td>
+</tr>
+<tr>
+<td>createdAt</td>
 <td>date/time</td>
 <td></td>
-</tr></tbody></table><h2 id="payment-instance">Payment Instance</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="payment-instance">Payment Instance</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Payment\PaymentInstance</li>
 <li>
 <strong>Table:</strong> s_core_payment_instance</li>
-</ul><h3 id="structure-29">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-33">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>firstName</td>
+</tr>
+<tr>
+<td>firstName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>lastName</td>
+</tr>
+<tr>
+<td>lastName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>address</td>
+</tr>
+<tr>
+<td>address</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>zipCode</td>
+</tr>
+<tr>
+<td>zipCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>city</td>
+</tr>
+<tr>
+<td>city</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankName</td>
+</tr>
+<tr>
+<td>bankName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bankCode</td>
+</tr>
+<tr>
+<td>bankCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>accountNumber</td>
+</tr>
+<tr>
+<td>accountNumber</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>accountHolder</td>
+</tr>
+<tr>
+<td>accountHolder</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>bic</td>
+</tr>
+<tr>
+<td>bic</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>iban</td>
+</tr>
+<tr>
+<td>iban</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>amount</td>
+</tr>
+<tr>
+<td>amount</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>createdAt</td>
+</tr>
+<tr>
+<td>createdAt</td>
 <td>date/time</td>
 <td></td>
-</tr></tbody></table><h2 id="price">Price</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="payment-status">Payment Status</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Order\Status</li>
+<li>
+<strong>Table:</strong> s_core_states</li>
+</ul>
+
+<h3 id="structure-34">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>group</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>sendMail</td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="price">Price</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Price</li>
 <li>
 <strong>Table:</strong> s_articles_prices</li>
-</ul><h3 id="structure-30">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>customerGroupKey</td>
-<td>string (foreign key)</td>
-<td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
-</tr><tr><td>customerGroup</td>
-<td>object</td>
-<td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
-</tr><tr><td>articleDetailsId</td>
-<td>integer (foreign key)</td>
-<td><strong><a href="#article-detail">Detail</a></strong></td>
-</tr><tr><td>articleId</td>
-<td>integer (foreign key)</td>
-<td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>id</td>
-<td>integer (primary key)</td>
-<td></td>
-</tr><tr><td>from</td>
-<td>integer/string</td>
-<td></td>
-</tr><tr><td>to</td>
-<td>string</td>
-<td></td>
-</tr><tr><td>price</td>
-<td>double</td>
-<td></td>
-</tr><tr><td>pseudoPrice</td>
-<td>double</td>
-<td></td>
-</tr><tr><td>basePrice</td>
-<td>double</td>
-<td></td>
-</tr><tr><td>percent</td>
-<td>double</td>
-<td></td>
-</tr></tbody></table><h2 id="price-group">Price Group</h2>
-
-<ul><li>
-<strong>Table:</strong> s_core_pricegroups</li>
-</ul><h3 id="structure-31">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>int (primary key)</td>
-<td></td>
-</tr><tr><td>description</td>
-<td>string</td>
-<td></td>
-</tr></tbody></table><h2 id="property-group">Property Group</h2>
-
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Property\Group</li>
-<li>
-<strong>Table:</strong> s_filter</li>
-</ul><h3 id="structure-32">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key</td>
-<td></td>
-</tr><tr><td>name</td>
-<td>string</td>
-<td></td>
-</tr><tr><td>position</td>
-<td>integer</td>
-<td></td>
-</tr><tr><td>comparable</td>
-<td>boolean</td>
-<td></td>
-</tr><tr><td>sortMode</td>
-<td>integer</td>
-<td></td>
-</tr></tbody></table><h2 id="property-group-attribute">Property Group Attribute</h2>
-
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Attribute\PropertyGroup</li>
-<li>
-<strong>Table:</strong> s_filter</li>
-</ul><h3 id="structure-33">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key)</td>
-<td></td>
-</tr><tr><td>propertyGroupId</td>
-<td>integer (foreign key)</td>
-<td></td>
-</tr></tbody></table><h2 id="property-group-option">Property Group Option</h2>
-
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Property\Option</li>
-<li>
-<strong>Table:</strong> s_filter_options</li>
-</ul><h3 id="structure-34">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
-<td>integer (primary key)</td>
-<td></td>
-</tr><tr><td>name</td>
-<td>string</td>
-<td></td>
-</tr><tr><td>filterable</td>
-<td>boolean</td>
-<td></td>
-</tr></tbody></table><h2 id="property-value">Property Value</h2>
+</ul>
 
 <h3 id="structure-35">Structure</h3>
 
-<table><thead><tr><th>Field</th>
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>valueNumeric</td>
-<td>double</td>
-<td></td>
-</tr><tr><td>position</td>
-<td>integer</td>
-<td></td>
-</tr><tr><td>optionId</td>
-<td>integer</td>
-<td></td>
-</tr><tr><td>id</td>
-<td>integer (primary key)</td>
-<td></td>
-</tr><tr><td>value</td>
-<td>string</td>
-<td></td>
-</tr></tbody></table><h2 id="related">Related</h2>
-
-<ul><li>
-<strong>Table:</strong> s_articles_relationships</li>
-</ul><h3 id="structure-36">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customerGroupKey</td>
+<td>string (foreign key)</td>
+<td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
+</tr>
+<tr>
+<td>customerGroup</td>
+<td>object</td>
+<td><strong><a href="#customer-group">CustomerGroup</a></strong></td>
+</tr>
+<tr>
+<td>articleDetailsId</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#article-detail">Detail</a></strong></td>
+</tr>
+<tr>
+<td>articleId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>name</td>
-<td>string</td>
-<td></td>
-</tr></tbody></table><h2 id="shipping">Shipping</h2>
-
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Customer\Shipping</li>
-<li>
-<strong>Table:</strong> s_user_shippingaddress</li>
-</ul><h3 id="structure-37">Structure</h3>
-
-<table><thead><tr><th>Field</th>
-<th>Type</th>
-<th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerId</td>
+</tr>
+<tr>
+<td>from</td>
+<td>integer/string</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>pseudoPrice</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>basePrice</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>percent</td>
+<td>double</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="price-group">Price Group</h2>
+
+<ul>
+<li>
+<strong>Table:</strong> s_core_pricegroups</li>
+</ul>
+
+<h3 id="structure-36">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="property-group">Property Group</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Property\Group</li>
+<li>
+<strong>Table:</strong> s_filter</li>
+</ul>
+
+<h3 id="structure-37">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>comparable</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>sortMode</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="property-group-attribute">Property Group Attribute</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Attribute\PropertyGroup</li>
+<li>
+<strong>Table:</strong> s_filter</li>
+</ul>
+
+<h3 id="structure-38">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>propertyGroupId</td>
 <td>integer (foreign key)</td>
-<td><strong><a href="../api-resource-customer/">Customer</a></strong></td>
-</tr><tr><td>countryId</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="property-group-option">Property Group Option</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Property\Option</li>
+<li>
+<strong>Table:</strong> s_filter_options</li>
+</ul>
+
+<h3 id="structure-39">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>filterable</td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="property-value">Property Value</h2>
+
+<h3 id="structure-40">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valueNumeric</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>optionId</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="related-(get)">Related (GET)</h2>
+
+<ul>
+<li>
+<strong>Table:</strong> s_articles_relationships</li>
+</ul>
+
+<h3 id="structure-41">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="../api-resource-article/">Article</a></strong></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Article name</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="related-(put,-post)">Related (PUT, POST)</h2>
+
+<ul>
+<li>
+<strong>Table:</strong> s_articles_relationships</li>
+</ul>
+
+<h3 id="structure-42">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="../api-resource-article/">Article</a></strong></td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>Article number</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="shipping">Shipping</h2>
+
+<ul>
+<li>
+<strong>Model:</strong> Shopware\Models\Order\Shipping</li>
+<li>
+<strong>Table:</strong> s_order_shippingaddress</li>
+</ul>
+
+<h3 id="structure-43">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>integer (primary key)</td>
+<td></td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="#customer">Customer</a></strong></td>
+</tr>
+<tr>
+<td>countryId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#country">Country</a></strong></td>
-</tr><tr><td>stateId</td>
+</tr>
+<tr>
+<td>stateId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#state">State</a></strong></td>
-</tr><tr><td>company</td>
+</tr>
+<tr>
+<td>company</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>department</td>
+</tr>
+<tr>
+<td>department</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>salutation</td>
+</tr>
+<tr>
+<td>title</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>number</td>
+</tr>
+<tr>
+<td>salutation</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>firstName</td>
+</tr>
+<tr>
+<td>number</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>lastName</td>
+</tr>
+<tr>
+<td>firstName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>street</td>
+</tr>
+<tr>
+<td>lastName</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>zipCode</td>
+</tr>
+<tr>
+<td>street</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>city</td>
+</tr>
+<tr>
+<td>zipCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attribute</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>additionalAddressLine1</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>additionalAddressLine2</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
 <td>object</td>
-<td><strong><a href="#shipping-attribute">SippingAttribute</a></strong></td>
-</tr></tbody></table><h2 id="shipping-attribute">Shipping Attribute</h2>
+<td><strong><a href="#country">Country</a></strong></td>
+</tr>
+<tr>
+<td>state</td>
+<td>object</td>
+<td><strong><a href="#state">State</a></strong></td>
+</tr>
+<tr>
+<td>attribute</td>
+<td>object</td>
+<td><strong><a href="#shipping-attribute">ShippingAttribute</a></strong></td>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
-<strong>Model:</strong> Shopware\Models\Attribute\CustomerShipping</li>
+<h2 id="shipping-attribute">Shipping Attribute</h2>
+
+<ul>
 <li>
-<strong>Table:</strong> s_user_shippingaddress_attributes</li>
-</ul><h3 id="structure-38">Structure</h3>
+<strong>Model:</strong> Shopware\Models\Attribute\OrderBilling</li>
+<li>
+<strong>Table:</strong> s_order_shippingaddress_attributes</li>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-44">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>customerShippingId</td>
+</tr>
+<tr>
+<td>orderShippingId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>text1</td>
+</tr>
+<tr>
+<td>text1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text2</td>
+</tr>
+<tr>
+<td>text2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text3</td>
+</tr>
+<tr>
+<td>text3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text4</td>
+</tr>
+<tr>
+<td>text4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text5</td>
+</tr>
+<tr>
+<td>text5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>text6</td>
+</tr>
+<tr>
+<td>text6</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="shop">Shop</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="shop">Shop</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Shop\Shop</li>
 <li>
 <strong>Table:</strong> s_core_shops</li>
-</ul><h3 id="structure-39">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-45">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>mainId</td>
+</tr>
+<tr>
+<td>mainId</td>
 <td>integer (foreign key)</td>
 <td></td>
-</tr><tr><td>categoryId</td>
+</tr>
+<tr>
+<td>categoryId</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="#category">Category</a></strong></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>title</td>
+</tr>
+<tr>
+<td>title</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>position</td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>host</td>
+</tr>
+<tr>
+<td>host</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>basePath</td>
+</tr>
+<tr>
+<td>basePath</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>baseUrl</td>
+</tr>
+<tr>
+<td>baseUrl</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>hosts</td>
+</tr>
+<tr>
+<td>hosts</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>secure</td>
+</tr>
+<tr>
+<td>secure</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>alwaysSecure</td>
-<td>boolean</td>
-<td></td>
-</tr><tr><td>secureHost</td>
+</tr>
+<tr>
+<td>secureHost</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>secureBasePath</td>
+</tr>
+<tr>
+<td>secureBasePath</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>default</td>
+</tr>
+<tr>
+<td>default</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>customerScope</td>
+</tr>
+<tr>
+<td>customerScope</td>
 <td>boolean</td>
 <td></td>
-</tr><tr><td>locale</td>
+</tr>
+<tr>
+<td>locale</td>
 <td>object</td>
 <td><strong><a href="#locale">Locale</a></strong></td>
-</tr></tbody></table><p><strong>The locale is only available for languageSubShops.</strong></p>
+</tr>
+</tbody>
+</table>
 
-<h2 id="similar">Similar</h2>
+<p><strong>The locale is only available for languageSubShops.</strong></p>
 
-<ul><li>
+<h2 id="similar-(get)">Similar (GET)</h2>
+
+<ul>
+<li>
 <strong>Table:</strong> s_articles_similar</li>
-</ul><h3 id="structure-40">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-46">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (foreign key)</td>
 <td><strong><a href="../api-resource-article/">Article</a></strong></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
-<td></td>
-</tr></tbody></table><h2 id="state">State</h2>
+<td>Article name</td>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="similar-(put,-post)">Similar (PUT, POST)</h2>
+
+<ul>
+<li>
+<strong>Table:</strong> s_articles_similar</li>
+</ul>
+
+<h3 id="structure-47">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Original object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer (foreign key)</td>
+<td><strong><a href="../api-resource-article/">Article</a></strong></td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>Article number</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="state">State</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Country\State</li>
 <li>
 <strong>Table:</strong> s_core_countries_states</li>
-</ul><h3 id="structure-41">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-48">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>countryId</td>
+</tr>
+<tr>
+<td>countryId</td>
 <td>integer (foreign key)</td>
-<td><strong><a href="../api-resource-countries/">Country</a></strong></td>
-</tr><tr><td>position</td>
+<td><strong><a href="#country">Country</a></strong></td>
+</tr>
+<tr>
+<td>position</td>
 <td>integer</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>shortCode</td>
+</tr>
+<tr>
+<td>shortCode</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>active</td>
+</tr>
+<tr>
+<td>active</td>
 <td>boolean</td>
 <td></td>
-</tr></tbody></table><h2 id="supplier">Supplier</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="supplier">Supplier</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Supplier</li>
 <li>
 <strong>Table:</strong> s_articles_supplier</li>
-</ul><h3 id="structure-42">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-49">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>image</td>
+</tr>
+<tr>
+<td>image</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>link</td>
+</tr>
+<tr>
+<td>link</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>metaTitle</td>
+</tr>
+<tr>
+<td>metaTitle</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>metaDescription</td>
+</tr>
+<tr>
+<td>metaDescription</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>metaKeywords</td>
+</tr>
+<tr>
+<td>metaKeywords</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="tax">Tax</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="tax">Tax</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Tax\Tax</li>
 <li>
 <strong>Table:</strong> s_core_tax</li>
-</ul><h3 id="structure-43">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-50">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>id</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
 <td>integer (primary key)</td>
 <td></td>
-</tr><tr><td>tax</td>
+</tr>
+<tr>
+<td>tax</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr></tbody></table><h2 id="translation">Translation</h2>
+</tr>
+</tbody>
+</table>
 
-<ul><li>
+<h2 id="translation">Translation</h2>
+
+<ul>
+<li>
 <strong>Model:</strong> Shopware\Models\Article\Translation</li>
 <li>
 <strong>Table:</strong> s_core_translation, s_articles_translations</li>
-</ul><h3 id="structure-44">Structure</h3>
+</ul>
 
-<table><thead><tr><th>Field</th>
+<h3 id="structure-51">Structure</h3>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
 <th>Type</th>
 <th>Original object</th>
-</tr></thead><tbody><tr><td>metaTitle</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metaTitle</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr1</td>
+</tr>
+<tr>
+<td>attr1</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr2</td>
+</tr>
+<tr>
+<td>attr2</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr3</td>
+</tr>
+<tr>
+<td>attr3</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr4</td>
+</tr>
+<tr>
+<td>attr4</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr5</td>
+</tr>
+<tr>
+<td>attr5</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr6</td>
+</tr>
+<tr>
+<td>attr6</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr7</td>
+</tr>
+<tr>
+<td>attr7</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr8</td>
+</tr>
+<tr>
+<td>attr8</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr9</td>
+</tr>
+<tr>
+<td>attr9</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr10</td>
+</tr>
+<tr>
+<td>attr10</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr11</td>
+</tr>
+<tr>
+<td>attr11</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr12</td>
+</tr>
+<tr>
+<td>attr12</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr13</td>
+</tr>
+<tr>
+<td>attr13</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr14</td>
+</tr>
+<tr>
+<td>attr14</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr15</td>
+</tr>
+<tr>
+<td>attr15</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr16</td>
+</tr>
+<tr>
+<td>attr16</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr17</td>
+</tr>
+<tr>
+<td>attr17</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr18</td>
+</tr>
+<tr>
+<td>attr18</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr19</td>
+</tr>
+<tr>
+<td>attr19</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>attr20</td>
+</tr>
+<tr>
+<td>attr20</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>name</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>description</td>
+</tr>
+<tr>
+<td>description</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>descriptionLong</td>
+</tr>
+<tr>
+<td>descriptionLong</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>keywords</td>
+</tr>
+<tr>
+<td>keywords</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>packUnit</td>
+</tr>
+<tr>
+<td>packUnit</td>
 <td>string</td>
 <td></td>
-</tr><tr><td>shopId</td>
+</tr>
+<tr>
+<td>shopId</td>
 <td>integer</td>
 <td></td>
-</tr></tbody></table></div>
+</tr>
+</tbody>
+</table>
+
+                    </div>
 
         <div class="clearfix"></div>
+        <a href="#0" class="dev-top">Top</a>
     </div>
     
+
     <!-- Footer -->
-            <footer class="main-footer"><div class="footer--container">
-                <div class="copyright">2018 © shopware AG - All rights reserved</div>
+            <footer class="main-footer">
+            <div class="footer--container">
+                <div class="copyright">2021 © shopware AG - All rights reserved</div>
                 <div class="footer--links">
                     <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
-                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a> |
+                    <a id="show-consent" href="#" title="Cookie settings">Cookie settings</a>
                 </div>
             </div>
-        </footer></div>
+        </footer>
+    </div>
 
-<script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/languages/less.min.js"></script><script src="https://developers.shopware.com/assets/js/anchor.min.1515505375.js"></script><script src="https://developers.shopware.com/assets/js/jquery.expandCode.1515505375.js"></script><script src="https://developers.shopware.com/assets/js/jquery.toc.1515505375.js"></script><script src="https://developers.shopware.com/assets/js/jquery.offcanvas.1515505375.js"></script><script src="https://developers.shopware.com/assets/js/app.1515505375.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><!-- Google Tag Manager --><noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-5ZGXBG" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<script>(function (w, d, s, l, i) {
+<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/app.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1622532189"></script>
+
+
+<script id="usercentrics-cmp" data-settings-id="65ynhGFvE" src="https://app.usercentrics.eu/browser-ui/latest/bundle.js" defer></script>
+<style id="usercentrics-styles">
+    [data-testid="uc-container"] {
+        --font-family: 'Brandon Text', 'Brandon', 'Arial', sans-serif;
+        --primary-color: #189eff;
+        --primary-color-fade: #189eff11;
+        --primary-color-fade-hover: #189eff22;
+        --border-color: #60718244;
+        --icon-color: #607182bb;
+        --text-color: #607182;
+        --link-color: #142432cc;
+        --headline-color: #142432;
+        --bg-color: #f8f9fd;
+    }
+
+    /* Modal
+    ----------------------------------- */
+    .modal,
+    [data-testid="uc-default-wall"] {
+        padding: 20px 20px 15px;
+        border: none;
+        max-width: 700px;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+    }
+    .modal-overlay,
+    [data-testid="uc-container"] > div:first-of-type {
+        background: rgba(20,36,50,0.8);
+        opacity: 1;
+    }
+
+    /* Head
+    ----------------------------------- */
+    .logo,
+    [data-testid="uc-header"] > div:first-of-type > div {
+        height: 38px;
+        max-height: 38px;
+    }
+    .logo-spacer,
+    [data-testid="uc-header"] > div:nth-child(2) {
+        height: 36px;
+    }
+
+    /* Language Button
+    ----------------------------------- */
+    .language-button,
+    [data-testid="uc-language-container"] [data-testid="uc-language-button"] {
+        border-radius: 4px 4px 0 0;
+        border-color: var(--border-color, #60718244);
+    }
+    .language-button:last-child,
+    [data-testid="uc-language-container"] [data-testid="uc-language-button"]:last-child {
+        border-radius: 4px;
+    }
+    .language-text,
+    [data-testid="uc-language-button"] > div {
+        padding-left: 5px;
+        padding-right: 14px;
+        font-weight: 500;
+        font-family: var(--font-family);
+        color: var(--text-color, #607182);
+    }
+    .language-arrow,
+    [data-testid="uc-language-button"] > i {
+        border-width: 0 1px 1px 0;
+        border-color: var(--icon-color, #607182bb);
+        padding: 3px;
+    }
+    .language-dropdown,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu"] {
+        border-radius: 0 0 4px 4px;
+        border: solid var(--border-color, #60718244);
+        border-width: 0 1px 1px 1px;
+        box-shadow: unset;
+    }
+    .language-dropdown-item,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"] {
+        font-weight: 500;
+        font-family: var(--font-family);
+        color: #607182AA;
+        border-width: 1px 0 0 0;
+        border-color: var(--border-color, #60718244);
+        transition: unset !important;
+    }
+    .language-dropdown-item:first-child,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"]:first-child {
+        border-top: 0;
+    }
+    .language-dropdown-item:hover,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"]:hover {
+        background-color: var(--primary-color-fade, #189eff11);
+        color: var(--primary-color, #189eff);
+    }
+
+    /* Text
+    ----------------------------------- */
+    .headline,
+    [data-testid="uc-header"] > h1 {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--headline-color, #142432);
+    }
+    .description,
+    [data-testid="uc-header"] div:nth-of-type(4) {
+        font-weight: 400;
+        line-height: 1.72;
+        color: var(--text-color, #607182);
+    }
+    .text-spacer,
+    [data-testid="uc-header"] div:nth-of-type(6) {
+        height: 20px;
+    }
+
+    /* Anchor Link
+    ----------------------------------- */
+    .anchor-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"],
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"],
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"] a {
+        padding-top: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--link-color, #142432cc);
+        transition: unset;
+    }
+    .anchor-link:hover,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"]:hover,
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"]:hover a {
+        text-decoration: underline;
+        color: var(--primary-color, #189eff);
+    }
+    .anchor-link-icon,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"] > i,
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"] > i {
+        display: none;
+    }
+    .anchor-link,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"] {
+        margin-right: 14px;
+        padding-right: 14px;
+        border-right: 1px solid var(--border-color, #60718244);
+    }
+
+    /* Button
+    ----------------------------------- */
+    .button-accept-all,
+    [data-testid="uc-container"] [data-testid="uc-accept-all-button"] {
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: #fff;
+    }
+    .button-save-settings,
+    [data-testid="uc-container"] [data-testid="uc-save-button"] {
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        background-color: var(--primary-color-fade, #189eff11);
+        color: var(--primary-color, #189eff);
+    }
+    .button-save-settings:hover,
+    [data-testid="uc-container"] [data-testid="uc-save-button"]:hover {
+        background-color: var(--primary-color-fade-hover, #189eff22);
+        color: var(--primary-color, #189eff);
+    }
+
+    /* More Settings :: Tabs
+    ----------------------------------- */
+    .tabs,
+    [data-testid="uc-container"]  [data-testid="uc-tabs"] [aria-label="SettingsTabs"] {
+        border-bottom: 1px solid #ececec;
+    }
+    .tab,
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-categories"],
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-services"] {
+        padding: 8px 0 16px;
+        position: relative;
+        top: 1px;
+        font-weight: 500;
+        background: none;
+        color: var(--text-color, #607182);
+    }
+    .tab,
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-categories"][aria-selected="true"],
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-services"][aria-selected="true"] {
+        padding: 8px 0 16px;
+        font-weight: 600;
+        color: var(--primary-color, #189eff);
+    }
+
+    /* More Settings :: Panels
+    ----------------------------------- */
+    .panel-list,
+    [data-testid="uc-container"] [data-testid="uc-panel-categories"],
+    [data-testid="uc-container"] [data-testid="uc-panel-services"] {
+        background-color: var(--bg-color, #f8f9fd);
+    }
+    .panel-box,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] {
+        padding: 20px;
+    }
+    .panel-box-border,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button {
+        border-bottom: none;
+    }
+    .panel-headline,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button > div:first-of-type {
+        color: var(--headline-color, #142432);
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .panel-description,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button > div:nth-of-type(2) {
+        margin-top: 12px;
+        color: var(--text-color, #607182);
+        line-height: 1.62;
+    }
+    .panel-expandable-box,
+    [data-testid="uc-container"] [data-testid="uc-panel-categories"] [data-testid="uc-expandable-card"],
+    [data-testid="uc-container"] [data-testid="uc-panel-services"] [data-testid="uc-expandable-card"] {
+        border: 1px solid var(--border-color, #60718244);
+        box-shadow: none;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+    .panel-expandable-label,
+    [data-testid="uc-container"] [data-testid="uc-expandable-content"] label {
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-color, #607182);
+    }
+
+    /* Footer
+    ----------------------------------- */
+    .footer,
+    [data-testid="uc-container"] footer {
+        border-top: none;
+    }
+    .powered-by,
+    [data-testid="uc-container"] footer [data-testid="uc-footer"] > div:nth-of-type(2) {
+        font-size: 11px;
+        letter-spacing: 0.01em;
+        color: var(--text-color, #607182);
+        opacity: .75;
+    }
+    .tabs-footer,
+    [data-testid="uc-container"] [data-testid="uc-default-settings"] > div:first-of-type {
+        border-bottom: 1px solid #ececec;
+    }
+</style>
+
+<script>
+    // Inject styles
+    $(document).ready(function() {
+        const user = document.getElementById('usercentrics-root');
+        const styles = document.getElementById('usercentrics-styles');
+        user.shadowRoot.append(styles);
+    });
+
+    // Function to open consent modal
+    const consentButton = document.getElementById('show-consent');
+    if (consentButton) {
+        consentButton.addEventListener('click', function(){
+            UC_UI.showSecondLayer();
+        });
+    }
+
+    let userCentricsCalls = 0;
+    let userCentrics = null;
+    window.addEventListener('ucEvent', function(e) {
+        if (e.detail.event === 'consent_status' && userCentricsCalls <= 0) {
+            userCentrics = e.detail;
+        }
+        if (userCentrics !== e.detail && userCentricsCalls <= 1) {
+            location.reload();
+        }
+        userCentricsCalls++;
+    });
+</script>
+
+<!-- Google Tag Manager -->
+<script type="text/plain" data-usercentrics="Google Tag Manager">(function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({
         'gtm.start': new Date().getTime(), event: 'gtm.js'
@@ -2602,4 +4871,8 @@
     j.src =
             '//www.googletagmanager.com/gtm.js?id=' + i + dl;
     f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'dataLayer', 'GTM-5ZGXBG');</script><!-- End Google Tag Manager --></body></html>
+})(window, document, 'script', 'dataLayer', 'GTM-WJKMNPS');</script>
+<!-- End Google Tag Manager -->
+
+</body>
+</html>

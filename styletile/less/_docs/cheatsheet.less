@@ -1,0 +1,108 @@
+@import (reference) '../all.less';
+
+body.cheatsheet {
+  section {
+    h2, .h2,
+    h3, .h3 {
+      margin-bottom: 0;
+    }
+    h6, .h6 {
+      margin-bottom: 1em;
+      letter-spacing: 0.02em;
+    }
+    a {
+      &[href] {
+        cursor: pointer;
+      }
+      > h3, .h3 {
+        .cubic();
+
+        [class*="icon--"] {
+          font-size: 12px;
+          position: relative;
+          top: -2px;
+          left: 10px;
+          color: @border-color;
+          .cubic();
+        }
+        &:hover {
+          color: @blue;
+
+          [class*="icon--"] {
+            left: 16px;
+            color: @blue;
+          }
+        }
+      }
+    }
+    ul {
+      margin: 15px 0 20px;
+
+      li {
+        line-height: 1.3;
+        border-left: 2px solid @border-color;
+        padding: 3px 2px 8px 20px;
+
+        a {
+          color: inherit;
+        }
+        &.main {
+          font-weight: 600;
+          color: @blue;
+          border-left-color: @blue;
+        }
+      }
+      &.list--inline {
+        li {
+          display: inline-block;
+          margin: 5px;
+          padding: 0;
+          border: 0;
+          line-height: 2;
+
+          a {
+            padding: 4px 10px;
+            border: 1px solid @border-color;
+            background-color: fade(@border-color, 40);
+            font-size: 13px;
+            .border-radius();
+
+            &:hover {
+              border-color: @blue;
+              background-color: @blue;
+              color: @white;
+            }
+          }
+        }
+      }
+    }
+    .searchable nav {
+      margin: 10px -5px 0;
+    }
+    &#icons {
+      li {
+        i {
+          &.icon--mail {
+            font-size: 12px;
+            position: relative;
+            top: -1px;
+          }
+          &.icon--arrow-up,
+          &.icon--arrow-down {
+            font-size: 10px;
+            margin-left: -1px;
+          }
+          &.icon--arrow-left,
+          &.icon--arrow-right {
+            margin: 0 3px;
+          }
+        }
+        span {
+          padding-left: 12px;
+          position: relative;
+          top: -2px;
+        }
+      }
+    }
+  }
+}

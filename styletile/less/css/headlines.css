@@ -1,0 +1,78 @@
+.new h1,
+.new h2,
+.new h3,
+.new h4,
+.new h5,
+.new h6,
+.new .h1,
+.new .h2,
+.new .h3,
+.new .h4,
+.new .h5,
+.new .h6 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  max-width: none;
+}
+.new h2,
+.new .h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.new h3.label--new {
+  margin-bottom: 15px;
+  margin-bottom: .9375rem;
+  margin-top: 10px;
+  margin-top: .625rem;
+}
+.new h1.is--company,
+.new .h1.is--company {
+  margin-bottom: 3vw;
+  font-size: 8vw;
+  line-height: 1.375;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+  text-transform: uppercase;
+}
+.new h2.is--company,
+.new .h2.is--company {
+  margin-bottom: 2vw;
+  font-size: 4.5vw;
+  line-height: 1.25;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 5px;
+  letter-spacing: .3125rem;
+}
+@media (min-width: 30em) {
+  .new h1.is--company,
+  .new .h1.is--company {
+    margin-bottom: 2vw;
+    font-size: 6vw;
+    line-height: 1.375;
+  }
+  .new h2.is--company,
+  .new .h2.is--company {
+    margin-bottom: 1.375vw;
+    font-size: 3.3vw;
+    line-height: 1.25;
+  }
+}
+@media (min-width: 64em) {
+  .new h1.is--company,
+  .new .h1.is--company {
+    margin-bottom: 20px;
+    font-size: 58px;
+    font-size: 3.625rem;
+    letter-spacing: 10px;
+    letter-spacing: .625rem;
+    line-height: 1.375;
+  }
+  .new h2.is--company,
+  .new .h2.is--company {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}

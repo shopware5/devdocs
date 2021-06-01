@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="shopware">
+    <meta name="robots" content="index,follow">
+    <meta name="revisit-after" content="28 days">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#142432">
+    <meta name="application-name" content="Shopware Styletile Documentation">
+    <meta name="msapplication-window" content="width=1024;height=768">
+    <meta name="msapplication-navbutton-color" content="#142432">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#142432">
+    <meta itemprop="copyrightHolder" content="Shopware Styletile Documentation">
+    <meta itemprop="copyrightYear" content="2017">
+    <meta itemprop="isFamilyFriendly" content="True">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Shopware Styletile Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+    <link rel="apple-touch-icon-precomposed" href="favicons/apple-icon-precomposed.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+
+    <!-- Styles -->
+    <link href="css/font.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/highlight/phpstorm.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/all.min.css" media="all" rel="stylesheet" type="text/css">
+
+    <title itemprop="name">
+        Variables – Shopware 5.3 Styletile Documentation
+    </title>
+</head>
+<body class="modules">
+    <div class="page-wrap">
+        <div class="open-menu" data-toggle="opened">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <aside class="new">
+            <div class="logo">
+                <a href="index.html" class="desktop"><img src="images/shopware_developers_styletile_logo_white.svg" width="120" height="120" /></a>
+                <a href="index.html" class="mobile"><img src="images/shopware_developers_styletile_logo_horizontal_white.svg" height="44" /></a>
+            </div>
+            <div class="search">
+                <input type="search" class="search" placeholder="Search the navigation">
+            </div>
+
+            <!-- Nav -->
+            <nav class="scroll">
+                <div class="h6">Overview</div>
+                <ul>
+                    <li>
+                        <a class="folder preview" href="preview.html">Preview</a>
+                    </li>
+                    <li>
+                        <a class="folder cheatsheet" href="cheatsheet.html">Cheatsheet</a>
+                        <ul>
+                            <li><a href="cheatsheet.html#components">Components</a></li>
+                            <li><a href="cheatsheet.html#mixins">Mixins</a></li>
+                            <li><a href="cheatsheet.html#variables">Variables</a></li>
+                            <li><a href="cheatsheet.html#icons">Icons</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="h6">Documentation</div>
+                <ul>
+                    <li>
+                        <a class="folder components" href="components.html">_components</a>
+                        <ul>
+                            <li><a href="components.html#alert">alert</a></li>
+                            <li><a href="components.html#badge">badge</a></li>
+                            <li><a href="components.html#button">button</a></li>
+                            <li><a href="components.html#checkbox">checkbox</a></li>
+                            <li><a href="components.html#collapse">collapse</a></li>
+                            <li><a href="components.html#collapse-cart">collapse-cart</a></li>
+                            <li><a href="components.html#container">container</a></li>
+                            <li><a href="components.html#datepicker">datepicker</a></li>
+                            <li><a href="components.html#delivery-information">delivery-information</a></li>
+                            <li><a href="components.html#emotions">emotions</a></li>
+                            <li><a href="components.html#fields">fields</a></li>
+                            <li><a href="components.html#filter-panel">filter-panel</a></li>
+                            <li><a href="components.html#flags">flags</a></li>
+                            <li><a href="components.html#form">form</a></li>
+                            <li><a href="components.html#icon-set">icon-set</a></li>
+                            <li><a href="components.html#image-gallery">image-gallery</a></li>
+                            <li><a href="components.html#image-slider">image-slider</a></li>
+                            <li><a href="components.html#image-zoom">image-zoom</a></li>
+                            <li><a href="components.html#labels">labels</a></li>
+                            <li><a href="components.html#last-seen-products">last-seen-products</a></li>
+                            <li><a href="components.html#lightbox">lightbox</a></li>
+                            <li><a href="components.html#lists">lists</a></li>
+                            <li><a href="components.html#loading-indicator">loading-indicator</a></li>
+                            <li><a href="components.html#menu-scroller">menu-scroller</a></li>
+                            <li><a href="components.html#modal">modal</a></li>
+                            <li><a href="components.html#navigation-list">navigation-list</a></li>
+                            <li><a href="components.html#offcanvas-button">offcanvas-button</a></li>
+                            <li><a href="components.html#offcanvas-menu">offcanvas-menu</a></li>
+                            <li><a href="components.html#overlay">overlay</a></li>
+                            <li><a href="components.html#panel">panel</a></li>
+                            <li><a href="components.html#product-quick-view">product-quick-view</a></li>
+                            <li><a href="components.html#product-slider">product-slider</a></li>
+                            <li><a href="components.html#range-slider">range-slider</a></li>
+                            <li><a href="components.html#ribbon">ribbon</a></li>
+                            <li><a href="components.html#tab-menu">tab-menu</a></li>
+                            <li><a href="components.html#tables">tables</a></li>
+                            <li><a href="components.html#tag-cloud">tag-cloud</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder mixins" href="mixins.html">_mixins</a>
+                        <ul>
+                            <li><a href="mixins.html#unitize">unitize</a></li>
+                            <li><a href="mixins.html#animation">animation</a></li>
+                            <li><a href="mixins.html#appearance">appearance</a></li>
+                            <li><a href="mixins.html#backface-visibility">backface-visibility</a></li>
+                            <li><a href="mixins.html#border-radius">border-radius</a></li>
+                            <li><a href="mixins.html#box-shadow">box-shadow</a></li>
+                            <li><a href="mixins.html#box-sizing">box-sizing</a></li>
+                            <li><a href="mixins.html#clear-button-style">clear-button-style</a></li>
+                            <li><a href="mixins.html#clearfix">clearfix</a></li>
+                            <li><a href="mixins.html#column-count">column-count</a></li>
+                            <li><a href="mixins.html#cursor">cursor</a></li>
+                            <li><a href="mixins.html#hyphens">hyphens</a></li>
+                            <li><a href="mixins.html#icon-element">icon-element</a></li>
+                            <li><a href="mixins.html#keyframes">keyframes</a></li>
+                            <li><a href="mixins.html#linear-gradient">linear-gradient</a></li>
+                            <li><a href="mixins.html#opacity">opacity</a></li>
+                            <li><a href="mixins.html#rotate">rotate</a></li>
+                            <li><a href="mixins.html#scale">scale</a></li>
+                            <li><a href="mixins.html#tap-highlight-color">tap-highlight-color</a></li>
+                            <li><a href="mixins.html#touch-callout">touch-callout</a></li>
+                            <li><a href="mixins.html#transform-origin">transform-origin</a></li>
+                            <li><a href="mixins.html#transform-style">transform-style</a></li>
+                            <li><a href="mixins.html#transform">transform</a></li>
+                            <li><a href="mixins.html#transition">transition</a></li>
+                            <li><a href="mixins.html#translate">translate</a></li>
+                            <li><a href="mixins.html#user-select">user-select</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder modules" href="modules.html">_modules</a>
+                        <ul>
+                            <li><a href="modules.html#account">account</a></li>
+                            <li><a href="modules.html#blog">blog</a></li>
+                            <li><a href="modules.html#breadcrumb">breadcrumb</a></li>
+                            <li><a href="modules.html#cart">cart</a></li>
+                            <li><a href="modules.html#compare">compare</a></li>
+                            <li><a href="modules.html#configurator">configurator</a></li>
+                            <li><a href="modules.html#confirm">confirm</a></li>
+                            <li><a href="modules.html#cookie-permission">cookie-permission</a></li>
+                            <li><a href="modules.html#custom">custom</a></li>
+                            <li><a href="modules.html#detail">detail</a></li>
+                            <li><a href="modules.html#finish">finish</a></li>
+                            <li><a href="modules.html#footer">footer</a></li>
+                            <li><a href="modules.html#forms">forms</a></li>
+                            <li><a href="modules.html#global">global</a></li>
+                            <li><a href="modules.html#header">header</a></li>
+                            <li><a href="modules.html#home">home</a></li>
+                            <li><a href="modules.html#last-viewed">last-viewed</a></li>
+                            <li><a href="modules.html#listing">listing</a></li>
+                            <li><a href="modules.html#main-navigation">main-navigation</a></li>
+                            <li><a href="modules.html#newsletter">newsletter</a></li>
+                            <li><a href="modules.html#note">note</a></li>
+                            <li><a href="modules.html#payment">payment</a></li>
+                            <li><a href="modules.html#product-box">product-box</a></li>
+                            <li><a href="modules.html#register">register</a></li>
+                            <li><a href="modules.html#search">search</a></li>
+                            <li><a href="modules.html#sidebar">sidebar</a></li>
+                            <li><a href="modules.html#sitemap">sitemap</a></li>
+                            <li><a href="modules.html#tell-a-friend">tell-a-friend</a></li>
+                            <li><a href="modules.html#top-seller">top-seller</a></li>
+                        </ul>
+                    </li>
+                    <li class="is--active">
+                        <a class="folder variables active">_variables</a>
+                        <ul>
+                            <li><a href="#structure">structure</a></li>
+                            <li><a href="#typography">typography</a></li>
+                            <li><a href="#zindex">zindex</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="help">
+                <a href="https://developers.shopware.com/"><i class="icon--arrow-left"></i> Developer Documentation</a>
+            </div>
+        </aside>
+
+        <!-- Variables -->
+        <section class="dp--wrapper container step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <i class="icon-left"><img src="images/system/variables.svg" /></i>
+                        <h1 class="h2">_variables</h1>
+                        <p>
+                            The _variables directory contains the imports to all variables shopware uses.<br/>
+                            Most variables are controllable by using the backend theme manager.<br/>
+                            More precise designations are commented inside the documents.
+                        </p>
+                    </div>
+                    <div class="col-12 has--border-gray spacer--small">
+                        <div class="col-inner">
+                            <h4>Remember!</h4>
+                            <p>With these variables you can quickly edit the feeling of your whole site. Bear in mind that these can make huge differences if used continuously.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Structure -->
+        <section class="dp--wrapper container step" id="structure">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_variables/structure.less">view file</a>
+                        <h2>Structure</h2>
+                        <p>The variables define the widths for the different viewports</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">@phoneLandscapeViewportWidth    // Viewport Phone (landscape)    (Default: 480px)
+@tabletViewportWidth            // Viewport Tablet               (Default: 768px)
+@tabletLandscapeViewportWidth   // Viewport Tablet (landscape)   (Default: 1024px)
+@desktopViewportWidth           // Viewport Desktop              (Default: 1260px)
+</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="dp--wrapper container step" id="typography">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_variables/typography.less">view file</a>
+                        <h2>Typography</h2>
+                        <p>The variables define the sizes and weights for typographic elements</p>
+                        <hr>
+                        <p>The values can be changed with the backend theme manager. Find the 'Configurate theme' button and select the tab 'Color configuration'. There are color values as well as typograhpy values defined.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// Base configuration
+@font-size-base         // customise in Theme Manager (Default: 14)
+@font-base-weight       // customise in Theme Manager (Default: 500)
+@font-light-weight      // customise in Theme Manager (Default: 300)
+@font-base-stack        // customise in Theme Manager (Default: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif)
+@font-headline-stack    // customise in Theme Manager (Default: @font-base-stack)
+
+// Headling font sizes
+@font-size-h1           // customise in Theme Manager (Default: 26)
+@font-size-h2           // customise in Theme Manager (Default: 21)
+@font-size-h3           // customise in Theme Manager (Default: 18)
+@font-size-h4           // customise in Theme Manager (Default: 16)
+@font-size-h5           // customise in Theme Manager (Default: @font-size-base)
+@font-size-h6           // customise in Theme Manager (Default: 12)
+
+// Shopware font directory
+@font-directory         // font-directory folder (Default: "../../fonts/")
+
+// Open Sans font directory
+@OpenSansPath           // "Open Sans" font-directory folder (Default: "./../fonts/open-sans-fontface")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Z-Index -->
+        <section class="dp--wrapper container step" id="zindex">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_variables/zindex.less">view file</a>
+                        <h2>Z-Index</h2>
+                        <p>The Z-Index variables describe the different z-index values used nearly everywhere</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand no--shadow">
+                        <pre><code class="less on--white">// badge.less
+@zindex-badge: 500;
+
+// checkbox.less
+@zindex-checkbox-state: 60;
+@zindex-checkbox-element: 65;
+
+// collapse.less
+@zindex-collapse-content: 1000;
+@zindex-collapse-header: 1100;
+@zindex-collapse-content-collapsed: 1200;
+@zindex-collapse-header-active: 1300;
+
+// collapse-cart.less
+@zindex-collapse-cart: 3000;
+@zindex-collapse-cart-offcanvas: 8000;
+
+// datepicker.less
+@zindex-datepicker: 8100;
+
+// emotions.less
+@zindex-emotion-mapping-link: 110;
+@zindex-emotion-image-slider-title: 100;
+@zindex-emotion-product-slider-content: 400;
+@zindex-emotion-product-slider-title: 500;
+@zindex-emotion-overlay: 1000;
+@zindex-emotion-video-element: 1000;
+@zindex-emotion-video-text: 1100;
+@zindex-emotion-video-play-btn: 1200;
+@zindex-emotion-video-cover: 1300;
+
+// filter-panel.less
+@zindex-filter-panel-flyout: 500;
+@zindex-filter-panel-flyout-collapsed: 800;
+@zindex-filter-panel-checkbox: 65;
+@zindex-filter-panel-checkbox-state: 60;
+@zindex-filter-panel-radio: 65;
+@zindex-filter-panel-radio-state: 60;
+@zindex-filter-panel-media-checkbox: 65;
+@zindex-filter-panel-rating-star: 65;
+
+// image-gallery.less
+@zindex-image-gallery-button: 1;
+
+// image-slider.less
+@zindex-image-slider: 1000;
+@zindex-image-slider-arrow: 1000;
+
+// image-zoom.less
+@zindex-image-zoom-flyout: 2500;
+
+// loading-indicator.less
+@zindex-loading-indicator: 6000;
+
+// menu-scroller.less
+@zindex-menu-scroller-arrow: 750;
+
+// modal.less
+@zindex-modalbox: 7000;
+
+// offcanvas-menu.less
+@zindex-offcanvas: 8000;
+@zindex-offcanvas-higher-viewport: 1000;
+
+// overlay.less
+@zindex-overlay: 5000;
+
+// panel.less
+@zindex-panel-arrow: 2000;
+@zindex-panel-link: 2000;
+
+// product-slider.less
+@zindex-product-slider: 750;
+
+// === MODULES ===
+
+// cart.less
+@zindex-cart-product-image-element: 500;
+@zindex-cart-premium-product-badge: 750;
+
+// deprecated variable (spelling fixed)
+@zindex-cart-premium-prodict-badge: 750;
+
+// compare.less
+@zindex-compare-list: 4000;
+
+// configurator.less
+@zindex-configurator-option-label: 500;
+@zindex-configurator-option-input: 1000;
+
+// detail.less
+@zindex-detail-notification-field-focus: 1;
+
+// footer.less
+@zindex-footer-newsletter-field-focus: 1;
+
+// header.less
+@zindex-header-search-form: 3000;
+@zindex-header-search-button: 2;
+@zindex-header-search-results: 3500;
+@zindex-header-language-flag: 900;
+@zindex-header-service-list: 3500;
+@zindex-header-navigation-dropdown: 3500;
+
+// listing.less
+@zindex-listing-filter-header: 1100;
+@zindex-listing-filter-header-active: 1300;
+
+// product-box.less
+@zindex-product-box-image-element: 500;
+@zindex-product-box-product-badge: 750;
+
+// sidebar.less
+@zindex-sidebar-language-flag: 900;
+@zindex-sidebar-offcanvas-overlay: 1200;
+@zindex-sidebar-offcanvas-overlay-background: 1100;
+@zindex-sidebar-offcanvas-higher-viewport: 1000;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- End -->
+        <section class="dp--wrapper container step last--step spacer">
+            <div class="section--inner">
+                <div class="row animate animate--late">
+                    <div class="col col-12 is--text-centered">
+                        <span class="h3">Navigate back</span>
+                    </div>
+                    <div class="col col-12">
+                        <div class="highlight-box spacer--small is--position-center">
+                            <div class="prev--arrow"></div>
+                            <i class="icon-left"><img src="images/system/modules.svg" /></i>
+                            <div>
+                                <h6>modules</h6>
+                                <p class="is--xs">Within the _modules directory you’ll find the seperate modules, like the cart.</p>
+                            </div>
+                            <a href="modules.html"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar File -->
+        <aside class="file">
+            <a class="close"></a>
+            <a class="download" download></a>
+            <span class="download--tooltip">Download the file</span>
+            <pre><code class="less on--dark"></code></pre>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer--container">
+            <div class="copyright">2017 © shopware AG - All rights reserved</div>
+            <div class="footer--links">
+                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a>
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                <a href="https://github.com/shopware/shopware" target="_blank" title="Find Shopware on GitHub">GitHub</a>
+                <a href="https://de.shopware.com/" target="_blank" title="Visit our homepage and download Shopware for free">Shopware.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/highlight.pack.js"></script>
+    <script src="js/designpattern.min.js"></script>
+    <script src="js/docs.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

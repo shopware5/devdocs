@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <title>Modal</title>
+    <style>
+        body {
+            padding: 15px;
+            background-color: #fff;
+            font-weight: 400;
+        }
+        .js--overlay {
+            opacity: .8;
+            display: block;
+            cursor: pointer;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+<div class="js--modal sizing--content" style="width: 600px; height: auto; display: block; top: 33%; opacity: 1;">
+    <div class="header">
+        <div class="title">This is the header</div>
+    </div>
+    <div class="content">
+        This is the content
+    </div>
+
+    <div class="btn icon--cross is--small btn--grey modal--close">
+    </div>
+</div>
+
+</body>
+<script src="../js/modernizr.js"></script>
+<script src="../js/main.js"></script>
+</html>

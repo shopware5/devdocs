@@ -1,0 +1,152 @@
+@import (reference) '../all.less';
+
+// Klassisch
+
+.dp--wrapper {
+  .accordion {
+    position: relative;
+
+    + .accordion {
+      border-top: 1px solid @border-color;
+    }
+    &.is--active {
+      .accordion--title {
+        color: @blue;
+
+        .icon--arrow-down {
+          color: @blue;
+          transform: rotateX(180deg);
+        }
+      }
+      .accordion--content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  .accordion--title {
+    position: relative;
+    padding: 26px 0 26px 30px;
+    font-size: 20px;
+    font-weight: 500;
+    color: @gray-dark;
+    cursor: pointer;
+    .cubic(color, .1s);
+
+    .icon--arrow-down {
+      font-size: 7px;
+      top: 34px;
+      left: 0;
+      color: @border-color-dark;
+      position: absolute;
+      transform: rotateX(0);
+      .cubic(all);
+    }
+    &:hover {
+      color: @blue;
+    }
+  }
+
+  .accordion--content {
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    padding: 0 30px 30px;
+    font-size: 17px;
+    line-height: 2;
+    .appear();
+  }
+
+  // Liste
+  .accordion--tabs {
+    .accordion--tab {
+      position: relative;
+      z-index: 1;
+
+      ul {
+        margin: 0 -4px;
+      }
+      li {
+        display: inline-block;
+        margin: 4px 4px 0;
+        padding: 4px 14px;
+        font-size: 13px;
+        line-height: 2;
+        cursor: pointer;
+        border: 1px solid @border-color;
+        .border-radius(4px);
+        .cubic();
+
+        &.is--active {
+          font-weight: 600;
+          border-color: @blue;
+          background-color: @blue;
+
+          &, &:hover {
+            color: @white;
+            background-color: @blue;
+          }
+        }
+        &:hover {
+          background-color: fade(@border-color, 40);
+        }
+      }
+      &.is--fluid {
+        li {
+          position: relative;
+          border: none;
+          z-index: 1;
+          .cubic();
+
+          &, &:hover,
+          &.is--active {
+            background-color: transparent;
+          }
+        }
+        .fluid--navigation-tab {
+          box-sizing: content-box;
+          display: inline-block;
+          font-size: 13px;
+          padding: 4px 14px;
+          background-color: @blue;
+          position: absolute;
+          top: 0;
+          left: 0;
+          .border-radius(4px);
+          .cubic();
+        }
+      }
+    }
+    .accordion--contents {
+      box-sizing: content-box;
+      position: relative;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid @border-color;
+      overflow: hidden;
+
+      > *[data-accordion] {
+        position: absolute;
+        padding-top: 2rem;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+        .cubic(transform .35s);
+
+        &.is--active {
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+        &.is--next {
+          transform: translateX(-60px);
+          opacity: 0;
+        }
+        &.is--prev {
+          transform: translateX(60px);
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

@@ -3,1579 +3,785 @@
     <title><![CDATA[Shopware Developers]]></title>
     <link href="https://developers.shopware.com/atom.xml" rel="self"/>
     <link href="https://developers.shopware.com/"/>
-    <updated>2018-01-09T13:42:33+00:00</updated>
+    <updated>2021-06-01T07:23:07+00:00</updated>
     <id>https://developers.shopware.com/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
         <entry>
-        <title type="html"><![CDATA[Exclusive Enterprise Developer Training]]></title>
-        <link href="https://developers.shopware.com/blog/2018/01/09/exclusive-enterprise-developer-training"/>
-        <updated>2018-01-09T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/01/09/exclusive-enterprise-developer-training</id>
-        <content type="html"><![CDATA[<p><img src="/blog/img/2017-11-08-exclusive-enterprise-dev-training/banner.png" alt="banner" /></p>
+        <title type="html"><![CDATA[Shopware Tech Keynote]]></title>
+        <link href="https://developers.shopware.com/blog/2019/06/11/shopware-tech-keynote/"/>
+        <updated>2019-06-11T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2019/06/11/shopware-tech-keynote/</id>
+        <content type="html"><![CDATA[<h1>Shopware Tech Keynote</h1>
 
-<h1>Exclusive Enterprise Developer Training - Only five places remaining</h1>
+<p>Shopware Community Day 2019 was the first time, we had two keynotes at the same time: The main keynote by our CEO and co-founder Sebastian Hamann - and the tech keynote by myself. For me it was a great honor and pleasure to give you a technical overview of Shopware 6; in this blog post, I want to summarize my thoughts about Shopware 6</p>
 
-<p>In this one-day workshop, you will get insight into the technology behind Shopware Enterprise, namely the Shopware Accelerator “B2B Suite”. Led by the developers who created the software itself, you will learn everything about this key feature, including practical application. This training is designed for experienced developers who already have the “Shopware Certified Developer” certificate.</p>
+<h1>Why we went Shopware 6</h1>
 
-<h2>Info:</h2>
+<p>Shopware 6 is a complete rewrite of Shopware. Of course we didn't reinvent the wheel for things, that we were happy with in Shopware 5; at the same time we wanted to improve many topics we have not been able to address in Shopware 5.</p>
 
-<h3>Date</h3>
+<p>Furthermore we thought a lot, how E-Commerce might look like in a few years, which requirements we might need to address - and which customer segments we want to reach. We quickly found, that it was not about hype technologies - but about creating a broad foundation, that small and smallest merchants as well as enterprise merchants could be successful with. In addition to many technological considerations this especially means, that merchants needs to know what customers want - perhaps without the customers knowing, what they want.</p>
 
-<p>February 23, 2018</p>
-
-<h3>Time</h3>
-
-<p>Check-in: From 8:30 am</p>
-
-<p>Start: 9 am</p>
-
-<p>End: 5 pm</p>
-
-<h3>Location:</h3>
-
-<p>shopware AG</p>
-
-<p>Ebbinghoff 10 </p>
-
-<p>48624 Schöppingen</p>
-
-<p>Germany</p>
-
-<h3>Fee:</h3>
-
-<p>795 Euro per person</p>
-
-<h2>Registration</h2>
-
-<p>Please send an email to sales@shopware.com</p>
-
-<h2>What you can expect</h2>
+<p>In order to reach existing and new customers, I pointed out three dimensions in my keynote:</p>
 
 <ul>
-<li>Training held in English</li>
-<li>Intro to the Enterprise architecture</li>
-<li>Working with the B2B Suite</li>
-<li>Intro to the order management</li>
-<li>Intro to the user management</li>
-<li>Extending the UI</li>
+<li>Internationalisation</li>
+<li>New channels</li>
+<li>Customer loyalty</li>
 </ul>
 
-<h2>Target group</h2>
+<p>In Shopware 6 we placed great emphasis on these dimensions. For internationalisation we have new concepts for translations (and inheritance of translations). Also handling of gross and net prices as well as prices per currency has improved. The new SalesChannel concept allows for a new perspective on additional channels such as eBay, Amazon, Instagram etc. The new RuleBuilder allows you to address every SalesChannel specifically - and is also a powerful regarding customer loyalty, as you can shape very individual customer segments and address any customer exactly as you want to.</p>
 
-<ul>
-<li>Experienced PHP developers</li>
-<li>max. 5 participants</li>
-</ul>
+<p>In order to set the potential of those dimensions free, complexity must be reduced. Merchants need to be able to try out new things and want to quickly identify failures and successes in order to learn from their experiences. At the same time enabling creativity and speed also means, that developers want to know, which direction to go. &quot;Everything is possible somehow&quot; is not a sentence, that will help you to create awesome software. That's why we reconsidered how e.g. our data model should look like, how extensions should take place and how developers want to work with the shopping cart.</p>
 
-<h2>Requirements</h2>
+<p>Enabling people to use the new technologies also implies, that we need to reduce legal barriers. By switching to the more permissive MIT license, shopware clearly commits to the open source community.</p>
 
-<ul>
-<li>Basic knowledge of Doctrine</li>
-<li>Basic knowledge of Smarty</li>
-<li>Basic Knowledge of ExtJS</li>
-</ul>
+<p>For me, this is the philosophy behind Shopware 6: We enjoy new technologies and are excited to try them out. But the developers and merchants are the ones, who are truly innovative in their everyday projects. And they do neither need a tight e-commerce corset nor a spaceship toolbox. They need a reliable foundation on which to build. And that's Shopware 6: Simple, flexible, state of the art and open source.</p>
 
-<h2>Services</h2>
+<h1>Tech</h1>
 
-<ul>
-<li>One-day training</li>
-<li>Fully equipped computer</li>
-<li>catering
- </li>
-</ul>
+<p>Now let's have a look at the technology. The most obvious change is the switch to Symfony, for sure. Symfony is probably the most popular PHP framework and has shaped a whole generation of developers. By using Symfony in Shopware, we make sure, that it becomes easier to onboard developers on Shopware 6.</p>
+
+<p>For the same reason, we are switching from ExtJS to VueJS as a javascript framework for our new admin. VueJS describes itself as a &quot;progressive and incrementally adoptable&quot; framework. For us this means, that it can be tailored to our needs and requirements. And again: We are convinced, that it makes it easier to onboard new developers to Shopware 6.</p>
+
+<h2>DAL</h2>
+
+<p>Another major change is the new data abstraction layer (DAL). This is a layer between your database storage and the actual application and takes care of all your data operations - be it reads, writes, searches or aggregations.</p>
+
+<p><img src="/blog/img/dal.png" alt="DAL schema" /></p>
+
+<p>In Shopware 5 we introduced a similar layer for read operations only for products in the storefront. We found, that it made Shopware much more understandable and predictable for the development community. But in difference to the product services in Shopware 5, the DAL takes care of all entities and all kind of data access. For that reason, no more custom SQL queries should be required anymore. Furthermore, the DAL can also take care of syncing various storages: In modern e-commerce infrastructures you will easily find ElasticSearch and Redis in addition to MySQL. The DAL can be used to sync those storages, so that MySQL is used as a primary storage but ElasticSearch is always kept in sync. And there are even more functionalities such as versioning or translations, that you can make use of easily:</p>
+
+<pre><code class="language-php">class ProductManufacturerDefinition extends EntityDefinition
+{
+    public function getEntityName(): string
+    {
+        return 'product_manufacturer';
+    }
+
+    protected function defineFields(): FieldCollection
+    {
+        return new FieldCollection([
+            (new IdField('id', 'id'))-&gt;addFlags(new PrimaryKey(), new Required()),
+            new VersionField(),
+
+            new FkField('media_id', 'mediaId', MediaDefinition::class),
+            new StringField('link', 'link'),
+            new TranslatedField('name'),
+            new TranslatedField('description'),
+            new TranslatedField('customFields'),
+
+            new ManyToOneAssociationField('media', 'media_id', MediaDefinition::class, 'id', true),
+            (new OneToManyAssociationField('products', ProductDefinition::class, 'product_manufacturer_id', 'id'))-&gt;addFlags(new RestrictDelete(), new ReverseInherited('manufacturer')),
+            (new TranslationsAssociationField(ProductManufacturerTranslationDefinition::class, 'product_manufacturer_id'))-&gt;addFlags(new Required()),
+        ]);
+    }
+}
+
+</code></pre>
+
+<p>The above example show, how to define a product manufacturer entity with various translatable fields and relations to e.g. media and products. For more details please have a look at <a href="https://docs.shopware.com/en/shopware-platform-dev-en/internals/core/data-abstraction-layer/definition">the description in our documentation</a>.</p>
+
+<h2>Extensions</h2>
+
+<p>If you are already familiar with the Shopware 5 plugin system, I've good news for your: Many of the patterns will look familiar to you.</p>
+
+<pre><code>&lt;project root&gt;
+└── custom
+    └── plugins
+        └── PluginQuickStart
+            ├── src
+            │   ├── Controller
+            │   │   └── MyController.php
+            │   ├── Resources
+            │   │   ├── config
+            │   │   │   ├── config.xml
+            │   │   │   ├── routes.xml
+            │   │   │   └── services.xml
+            │   ├── Service
+            │   │   └──  MyService.php
+            │   ├── Subscriber
+            │   │   └── MySubscriber.php
+            │   └── PluginQuickStart.php
+            └── composer.json
+</code></pre>
+
+<p>So you still have a base plugin file, where you can implement various methods to define the behaviour of your plugin during installation or uninstallation. Creating new services or extending existing ones is possible using the <code>service.xml</code> definition file. And if you want to use events, you can write the same kind of subscribers, you've been using in Shopware 5, too. For more details, have a look at our <a href="https://docs.shopware.com/en/shopware-platform-dev-en/internals/plugins/plugin-quick-start?category=shopware-platform-dev-en/internals/plugins">plugin quickstart guide</a>.</p>
+
+<h2>Summary</h2>
+
+<p>All in all a lot of things have changed in Shopware 6. But we are convinced, that this will make things easier for you in the long run. If you are looking for additional resources, have a look at our <a href="https://docs.shopware.com/en/shopware-platform-dev-en">documentation</a> or our <a href="https://www.shopware.com/en/academy/online-trainings/">training program</a>. There are a lot of free remote trainings, that will help to get started with Shopware 6.</p>
+
+<h1>Business Models</h1>
+
+<p>Talking about &quot;business models&quot; in a tech keynote might seem a little strange. But if we really want to understand, what kind of requirements are relevant for our development community, we had to understand, what kind of requirements you get in projects - and where things became tedious in the past.</p>
+
+<h2>RuleBuilder</h2>
+
+<p>The RuleBuilder is a whole new concept regarding customer targeting. In Shopware 5 (and many other e-commerce systems) you will just find some kind of &quot;groups&quot; that can be used for pricing, promotion, content, category restrictions, countries etc. The more usecases one had, the more complicated it became to maintain all the groups.</p>
+
+<p>The RuleBuilder goes another approach: It allows you to create complex and nested rules that describe a customer you want to address for a certain usecase. This not only make easier to create &quot;dynamic groups&quot; (e.g. a group of all customers older than 18 or a group with all customers from a certain area) but also makes it easier to  give those customers special pricing, special content or restrict orders / payments / shipments for them.</p>
+
+<p>The new RuleBuilder allows Shopware 6 to meet requirements that would have required a custom extension in the past.</p>
+
+<h2>New Cart</h2>
+
+<p>One of the earliest parts of Shopware 6 is the new cart. Actually the first concepts where created in 2016. We analyzed many usecases where people had to modify the cart in order to meet the merchant's requirements.</p>
+
+<p>As the new RuleBuilder can also be used to create price definitions, price handling becomes much more flexible with the new cart. Not only is the cart much more powerful when it comes to the question which customer gets which price: it also is more flexible regarding threshold prices per currency and handling of gross / net prices.</p>
+
+<p>Another big topic was database performance. On the one hand, you want to make sure, that during the cart process all pricing and stock information is consistent and correct and no order is possibly lost. On the other hand, you want to reduce the impact of the cart onto the database as much as possible, as this critical part of most e-commerce-systems is notoriously known for its heavy write operations. This is why the new cart is much more lightweight and reduces read / write operations as much as possible. The price, to which this comes, are conventions regarding the information you should / could access with your extensions.</p>
+
+<h2>Shopping experiences</h2>
+
+<p>A new tool for merchants are the so called &quot;shopping experiences&quot;. With this tool, it becomes easier to create unique and appealing content for the online shop. Of course - as you might now it from shopping worlds in Shopware 5 - you can create content. But the shopping experiences set another focus:</p>
+
+<p>There a dozens of prefabricated blocks, which show you all kind of combinations between images, texts, sliders, videos and commerce components. You can just pick the block, that comes closest to your imagination and drop it to the designer. This designer will always give you a realistic overview of how the shopping experience could look like in the frontend. At the same time it allows you to configure the elements to your needs: You can edit texts, swap elements with others or rearrange blocks. Every block is responsive by default. So you don't need to think about viewports and columns any more.</p>
+
+<p><img src="/blog/img/cms-data-mapping.png" alt="data mapping with the CMS" /></p>
+
+<p>What makes the shopping experience so powerful is the fact, that every page you created this way, can be used as a layout for category pages, product pages or landing pages. You can even dynamically reference properties of those pages. For example: If you create a layout for categories, you can dynamically reference the category's name. For a product layout, you could dynamically reference an image of the product or its description.</p>
+
+<p>And for the future, we are planning more functionalities, which will come in handy in many projects: E.g. editorial workflows for content pages or versioning.</p>
+
+<h1>Conclusion</h1>
+
+<p>Of course this can just be a glimps of the new technologies, functionalities and concepts in Shopware 6. But what makes this awesome from my perspective is the fact, that based on our experiences with small, medium and large e-commerce projects we asked ourselves: What do customers want? What do merchants need? What do you need as a developer? This common theme makes Shopware 6 more fun to use - and more powerful in projects.
+At the SCD 19 we released the developer preview of Shopware 6. With this version we want to collect your feedback as a developer. Feel free to check out our <a href="https://github.com/shopware/platform">Shopware 6 repository on Github</a> and give us feedback.</p>
 ]]></content>
     </entry>
         <entry>
-        <title type="html"><![CDATA[On testing strategies]]></title>
-        <link href="https://developers.shopware.com/blog/2017/11/17/on-testing-strategies"/>
-        <updated>2017-11-17T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/11/17/on-testing-strategies</id>
-        <content type="html"><![CDATA[<p>In this post I want to introduce you to the kind of strategies we evaluated to secure the functionality of the Shopware B2B-Suite.</p>
+        <title type="html"><![CDATA[What is phive and why you should use it!]]></title>
+        <link href="https://developers.shopware.com/blog/2018/11/30/what-is-phive-and-why-you-should-use-it/"/>
+        <updated>2018-11-30T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/11/30/what-is-phive-and-why-you-should-use-it/</id>
+        <content type="html"><![CDATA[<p>At the beginning of this year we decided to create a new enterprise accelerator for our enterprise eco system. The so called Pricing Engine. With this new project we evaluated the PHAR Installation and Verification Environment (PHIVE) to manage all our *.phar dev tools.</p>
 
-<p>When we set of to write the B2B-Suite we as a team set a few technical goals we wanted to achieve. One of them was to embrace automatic testing at its fullest and harness the potential implied by it:</p>
+<p>Normally we store our dev tools in the document root of our git repository. As an example in the B2B-Suite we have seven several phar files (deptrac, phpDocumentator, phpcpd, phploc, phpstan, psh and security-checker). With phive we can manage all our dev tools with a phive.xml file. As you can see in the below example, you can define the version which should be used, the position where it should be placed and at last if it should be a symlink or a real copy of the phar file. Normally phive downloads the specific phar file and symlinks it in the place where it has to be.</p>
 
-<ul>
-<li>Allow refactoring even a day before release</li>
-<li>Help instill trust into the stability of the application for our customers</li>
-<li>Create a good application architecture that feels about right for the complexity introduced</li>
-</ul>
-
-<h2>The Application</h2>
-
-<p>First we take a look at a fairly standard application design. We need this to have a shared base for the comparision of the different testing strategies. This model omits the framework and data structures which are not essential for our evaluation.</p>
-
-<p>We have a controller, that uses a domain service and two auxiliary services to handle requests. The services themselves have dependencies on other services or storage implementations.</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/standard-application.svg" /></p>
-
-<p>So how should we test this? Let's discuss some strategies:</p>
-
-<h2>Testing Strategy: Functional testing only</h2>
-
-<p>Many projects out there use acceptance tests as their only way of automated testing. So why is it a bad idea? One word: Performance! Functional tests use a real browser to check the application. Even high performance applications have response times of at least 50ms, excluding the JavaScript execution time you are quickly at 500ms or more - for a <strong>single page</strong>. So let's math with an average of 250ms per page:</p>
-
-<table>
-<thead>
-<tr>
-<th>Page Loads</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>250 ms</td>
-</tr>
-<tr>
-<td>5</td>
-<td>1 min</td>
-</tr>
-<tr>
-<td>10</td>
-<td>2 min</td>
-</tr>
-<tr>
-<td>50</td>
-<td>10 min</td>
-</tr>
-<tr>
-<td>100</td>
-<td>20 min</td>
-</tr>
-<tr>
-<td>400</td>
-<td>1 hr</td>
-</tr>
-</tbody>
-</table>
-
-<p>Now you have to ask yourself: Do you want to maintain this? Is it useful? Creating an application that has 400 different click paths is quite easy, but waiting an hour to validate every single change is tedious at least and at worst it stops being helpful quickly.</p>
-
-<p>The main advantage is that - at least for settled applications - introducing testing late in a development flow makes this a quick win because usually you have to write the least amount of code for this. And even if the Structure of your source code does not allow to easily introduce testing into every layer, these tests at least tend to solidify the basic functionality. So this is possible by just introducing a single layer on top of your application:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/application-functional-testing.svg" /></p>
-
-<p><strong>Good:</strong></p>
-
-<ul>
-<li>Gives you 99% certainty that the application works correctly.</li>
-<li>Adds minimal code to maintain.</li>
-</ul>
-
-<p><strong>Bad:</strong></p>
-
-<ul>
-<li>Takes a long time even for small applications</li>
-<li>Does not help developers</li>
-<li>Does nothing to your application architecture, but add a few css classes</li>
-<li>Usually very fragile, small changes tend to have an unreasonably big impact (you change a buttons position and the login breaks)</li>
-</ul>
-
-<p><strong>Verdict:</strong> Run!</p>
-
-<h2>Testing Strategy: The Pyramid</h2>
-
-<p>There is a testing pyramid favored by people like Robert C. Martin, it looks like this:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/unit-test-pyramid.svg" /></p>
-
-<p>&quot;A Testing Pyramid that puts the focus on <strong>unit tests</strong> proposes to write a few integration tests and if really necessary few functional test. So for our example application this looks like this:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/standard-application-with-pyramid.svg" /></p>
-
-<p>So what do we have here? We have a Unit Test for each class of the application. Each dependency is mocked so we can test the code of a single service in absolute isolation. This is the core of your test suite: The unit tests! Now we need to integrate in a few places, I personally would propose that <code>MyService</code> and <code>ContextProvider</code> should be integrated with their subsidiary services, so we add this:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/standard-application-with-pyramid-integration.svg" /></p>
-
-<p>These two integration tests that integrate the central services with their storage. Last but not least we have a small functional test for our controller.</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/standard-application-with-pyramid-functional.svg" /></p>
-
-<p>Pyramid successfully implemented!</p>
-
-<p>But this did not work for us. Since we use minimal Integration tests and mock all outputs of the dependencies we quickly found ourselves in a place where the test suite did not produce certain edge cases correctly. Mocks are simply a lie in your system. Let's take a closer look at <code>MyServiceTest</code>:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/mocking-error.svg" /></p>
-
-<p>The Problem is the dependency between the mocks and the actual implementations. Although one can connect them through a <em>realization</em> arrow, mocks treat real implementations like interfaces. So if the signature does not change, but the result itself changes over time a mock will not catch this error. And changing the result over time is quite easy:</p>
-
-<p>At first a method might look like this:</p>
-
-<pre><code class="language-php">public function isValidResponseCode(int $code): bool
-{
-    return in_array($code, [200, 300]);
-}
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;phive xmlns=&quot;https://phar.io/phive&quot;&gt;
+  &lt;phar name=&quot;php-cs-fixer&quot; version=&quot;^2.12.2&quot; installed=&quot;2.13.0&quot; location=&quot;./tools/php-cs-fixer&quot; copy=&quot;true&quot;/&gt;
+  &lt;phar name=&quot;shopwarelabs/psh&quot; version=&quot;^1.2.0&quot; installed=&quot;1.2.0&quot; location=&quot;psh&quot; copy=&quot;true&quot;/&gt;
+  &lt;phar name=&quot;phpstan&quot; version=&quot;^0.10.1&quot; installed=&quot;0.10.3&quot; location=&quot;./tools/phpstan&quot; copy=&quot;true&quot;/&gt;
+  &lt;phar name=&quot;shopwarelabs/sw-cli-tools&quot; version=&quot;^0.0.1&quot; installed=&quot;0.0.1&quot; location=&quot;./tools/sw&quot; copy=&quot;true&quot;/&gt;
+&lt;/phive&gt;
 </code></pre>
 
-<p>And then gets changed to this:</p>
+<p>This sounds very interesting isn't it? But how difficult is it to create a new software project and use phive for managing all dev tools?</p>
 
-<pre><code class="language-php">public function isValidResponseCode(int $code): bool
-{
-    return in_array($code, [200, 300, 202, 303]);
-}
+<h2>Setup a new Project with phive</h2>
+
+<p>The question is very easy to answer, it is as easy as to create a new composer project. As a preparation we have to install phive on our system. To do it use the snippet below:</p>
+
+<pre><code class="language-bash">wget -O phive.phar https://phar.io/releases/phive.phar
+wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc
+gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
+gpg --verify phive.phar.asc phive.phar
+chmod +x phive.phar
+sudo mv phive.phar /usr/local/bin/phive
 </code></pre>
 
-<p>Boom, a mock will never automatically produce this result, but for all means it will keep the test suite green. There are certain other problems with mocks, so... Time for an excurse:</p>
+<p>After the installation we can easily install php-cs-fixer with <code>phive install php-cs-fixer</code>. In this example php-cs-fixer is an alias and corresponds to the GitHub repository <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">FriendsOfPHP/PHP-CS-Fixer</a>. You can find alternative installation instructions below:</p>
 
-<hr />
-
-<h2>Excurse: Mocking</h2>
-
-<p>All I really can say about mocking is this: it is a pain in the ass! There are currently a few contenders for mocking in PHPUnit tests and they all work internally the same way and are kind of awful. So lets say we have a class called <code>Something</code> that has a method called <code>getResponse</code> and we want it to return <code>'foo'</code> for our test, how would we accomplish this through mocking?</p>
-
-<pre><code class="language-php">class Something {
-    public function getResponse(): string {
-        return 'bar';
-    }
-}
+<pre><code class="language-bash">phive install php-cs-fixer
+phive install FriendsOfPHP/PHP-CS-Fixer
+phive install https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.13.1/php-cs-fixer.phar
 </code></pre>
 
-<h4>PHPUnit Mocks</h4>
+<p>You can use the already mentioned alias, or an github repository with a maintained release section or the direct url to the specific file.</p>
 
-<p>The default for PHPUnit Mocks is to use the built in Mocking Framework. This usually looks like this:</p>
+<h2>Own phar files</h2>
 
-<pre><code class="language-php">class SomeTest extends PHPUnit_Framework_TestCase {
-
-    public function test_something()
-    {
-        // create a mock
-        $stub = $this-&gt;createMock(Something::class);
-
-        // Configure the mock
-        $stub-&gt;method('getResponse')
-             -&gt;willReturn('foo');
-
-        $this-&gt;assertEquals('foo', $stub-&gt;getResponse());
-    }
-}
-</code></pre>
-
-<p>Cool? No! Actually there are a few problems with that:</p>
+<p>To install own phar files with phive you have several ways to achieve this:</p>
 
 <ul>
-<li>If you refactor the <code>getResponse</code> method no IDE will match this with this string automatically.</li>
-<li>When you write this you have to remember what the <code>getResponse</code> Method was called. The IDE will not help you here.</li>
-<li>
-<code>'foo'</code> is a totally made up value. As you can see the real implementation is not able to create this value, so why is there a test that checks against impossible values?</li>
+<li>GitHub Releases (phive install username/project)</li>
+<li>registered alias on phar.io (phive install alias)</li>
+<li>explicit url (phive install https://server/file-1.0.0.phar)</li>
 </ul>
 
-<h4>Prophecy</h4>
-
-<p>Prophecy is part of the newer generation of mocking frameworks. It has a two step approach, where you first configure the mock and then create the result. So how would this look like?</p>
-
-<pre><code class="language-php">class SomeTest extends PHPUnit_Framework_TestCase {
-
-    public function test_something()
-    {
-        // create a prophet
-        $prophet = $this-&gt;prophesize(Something::class);
-
-        // Configure the prophet
-        $prophet-&gt;getResponse()
-             -&gt;willReturn('foo');
-
-        // create the mock
-        $stub = $prophet-&gt;reveal();
-
-        $this-&gt;assertEquals('foo', $stub-&gt;getResponse());
-    }
-}
-</code></pre>
-
-<p>Cool? A little bit cooler at least. It is possible to annotate the real class for prophets, at least. But other then that it has the same issues as <code>PHPUnit Mocks</code>.</p>
-
-<h4>Just use PHP</h4>
-
-<p>Of course we can create mocks with the built in features of the language itself. Just like this:</p>
-
-<pre><code class="language-php">class SomeTest extends PHPUnit_Framework_TestCase {
-
-    public function test_something()
-    {
-        // create a prophet
-        $stub = new class extends Something {
-            public function getResponse(): string {
-                return 'foo';
-            }
-        };
-
-        $this-&gt;assertEquals('foo', $stub-&gt;getResponse());
-    }
-}
-</code></pre>
-
-<p>Although this is by far my favorite approach because the IDE can help you best with this approach, it still is messy.</p>
-
-<p><strong>It is impossible to get <code>foo</code> as a return value from the tested method</strong> This means that tests with Mocks tend to use made up values that can diverge quite heavily from real data.</p>
-
-<hr />
-
-<p>So how did the pyramid fair for us?</p>
-
-<p><strong>Good:</strong></p>
+<p>We will have a more detailed look in the GitHub Releases way and we will use <a href="https://github.com/shopwareLabs/psh">psh</a> as an example for that. We have the following requirements:</p>
 
 <ul>
-<li>Helps during development, creates entry points for every possible error</li>
-<li>Always fast to execute</li>
-<li>Creates extremely well designed classes</li>
+<li>GPG Key for your project</li>
+<li>GPG Key must be public available on the SKS Keyservers</li>
+<li>already generated phar file.</li>
 </ul>
 
-<p><strong>Bad:</strong></p>
+<p>If all requirements fit we open the console and go to our project directory where the phar file is stored. Now we will use this command <code>gpg -u psh@example.com --detach-sign --output psh.phar.asc psh.phar</code> to sign our generated phar file. After that we have a new file psh.phar.asc. Both files has to be uploaded to our existing version under https://github.com/shopwareLabs/psh/releases. That was all the work we needed for that. If you want access your phar file via url you have to store the .asc file in the same directory.</p>
 
-<ul>
-<li>Almost doubles the amount of code in your project</li>
-<li>Mocks need to be changed in sync with their loosely coupled subjects</li>
-<li>Produces false positives</li>
-<li>Creates sometimes awkward to integrate classes</li>
-</ul>
-
-<p><strong>Verdict:</strong> Can be better...</p>
-
-<h2>Testing Strategy: The Diamond</h2>
-
-<p>There is a third strategy, that puts all the effort into Integration tests. This looks something like that:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/test-diamond.svg" /></p>
-
-<p>I have color coded the application diagram to show you how we interpreted the diamond:</p>
-
-<ul>
-<li>
-<strong>Green:</strong> No dependencies, a test becomes automatically a <strong>unit test</strong>
-</li>
-<li>
-<strong>Yellow:</strong> Has dependencies (either on other classes, or on infrastructure) must be an <strong>integration test</strong>
-</li>
-<li>
-<strong>Blue:</strong> Is front facing so it must be a <strong>functional test</strong>
-</li>
-</ul>
-
-<p><img src="/blog/img/advantages-of-integration-testing/application-diamond-testing.svg" /></p>
-
-<p>By applying this simple ruleset we still have a one to one parity of test classes to production classes. This means that for each bug or feature there is an easy entry point in our test suite. And the test suite is therefore useful for developers and gets actively supported. If bugs are introduced during development there is usually a test that shows it immediately. If a contract between objects is changed this change is immediately available in the suite and in many cases even leads to a failing test. (depending on the test quality: see <a href="https://developers.shopware.com/blog/2017/08/24/mutation-testing/">Mutation Testing by my colleague Thomas Eiling</a>).</p>
-
-<p>So now let's take a look at our <code>MyServiceTest</code> the way it looks like in integration testing:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/my-service-integration-test.svg" /></p>
-
-<p>This test still covers all n-paths of the class <code>MyService</code>! It covers most paths in it's directly dependant classes <code>MyRepository</code> and <code>ValidationService</code> and covers a few paths in their dependencies, and so on. You can imagine this like different saturations of a color:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/my-service-integration-test-with-saturation.svg" /></p>
-
-<p>Now we no longer make up the output of any subsidiary service. We even noticed that using the real storage has virtually no impact on the test performance, but creates a huge benefit by testing the friction between these different services in our test suite at all times <a href="https://12factor.net/dev-prod-parity">(see factor X)</a>.</p>
-
-<p>The big picture then looks like this:</p>
-
-<p><img src="/blog/img/advantages-of-integration-testing/standard-application-with-diamond.svg" /></p>
-
-<p>The mocks in this case come from a specially set up database and this is the only real downside to this approach. Your fixtures may diverge from a production setting! We have seen this in the past and usually got real bugs from this. But even in these cases the problem arose from a single point of failure which is far better then mocking in every single place.</p>
-
-<p><strong>Good:</strong></p>
-
-<ul>
-<li>Helps during development, creates entry points for every possible error</li>
-<li>Almost as fast as unit tests</li>
-<li>The real data is used</li>
-<li>Creates an architecture of well integrated parts</li>
-</ul>
-
-<p><strong>Bad:</strong></p>
-
-<ul>
-<li>Almost doubles the amount of code in your project</li>
-<li>Fixture data will never show 100% production state</li>
-<li>Will also not give you a 100% certainty that everything works</li>
-</ul>
-
-<p><strong>Verdict:</strong> We use it!</p>
-
-<h2>A word on TDD</h2>
-
-<p>I personally am a huge fan of TDD and practice it almost always when developing or exploring software. This practice is not lost here. Just because you have to implement stuff that you are using does not reduce the amount of freedom you have in the 30 second cycle of test driven development. On the contrary - at least for me - it tends to create more realistic assumptions on the scope of classes. By doing almost only integration testing all my tests look and feel the same. The usual friction that occurs when combining multiple unit tested classes is by far reduced because the integration assumptions all - by definition - hold up against the real implementations.</p>
+<p>Now you can use <code>phive install shopwareLabs/psh</code> to install psh.phar. We have already <a href="https://github.com/phar-io/phar.io/commit/d88298103c9fe7a99fdc00d930f505c83b67ada0">created</a> an alias for psh so a <code>phive install psh</code> is also possible. If you want to create your own alias you just have to create a pull request for <a href="https://github.com/phar-io/phar.io">phar-io/phar.io</a></p>
 
 <h2>Conclusion</h2>
 
-<p>The Diamond seems to be the best solution to the testing strategy problem. In fact we have been and still are developing the B2B-Suite with that strategy in mind and have seen quite good results with it. Currently our complete suite takes around 3 minutes to execute which is still passable for a quick overview. None of our tests depend on its predecessor and can all be executed in isolation (which makes Mutation testing possible in the first place), so during development we usually single out a few tests to run repeatedly.</p>
+<p>Phive is a very good tool to manage the ecosystem around the needed dev tools. You escape easily the dependency hell and manage updates of your tool has never been so easy. Furthermore you save much space in your repository. The usage of OpenPGP/GnuPG secures the hole workflow of getting the needed phar files.</p>
 
-<p>The issue of software architecture comes a little short in this blog post, let me tell you why: It is a problem where tests only are a part of the solution! As you could read in a <a href="https://developers.shopware.com/blog/2016/12/05/large-scale-plugin-architecture/">previous post I published</a> where I used the actor model to create a plugin architecture there are numerous ways that need to be taken into account when creating a sustainable system architecture. Testing will help you a lot with <em>friction</em> and <em>cohesion</em> (as introduced by Robert C. Martin) but not help you derive a greater truth from this. This is a place where <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> seems to provide the better tools.</p>
-
-<p>So all in all, at least to us this is the best overall approach to develop stable software, with the least tradeoffs and the most benefits. Thanks for reading and as always feel free to get in touch and discuss with me!</p>
+<p>At the moment we uses phive only for the Pricing Engine. In the future we will integrate phive in our other projects. Who does not use phive at the moment, should start not later than now.</p>
 ]]></content>
     </entry>
         <entry>
-        <title type="html"><![CDATA[Exclusive Enterprise Developer Training]]></title>
-        <link href="https://developers.shopware.com/blog/2017/11/08/exclusive-enterprise-developer-training"/>
-        <updated>2017-11-08T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/11/08/exclusive-enterprise-developer-training</id>
-        <content type="html"><![CDATA[<p><img src="/blog/img/2017-11-08-exclusive-enterprise-dev-training/banner.png" alt="banner" /></p>
+        <title type="html"><![CDATA[Clickstream analysis with server logs]]></title>
+        <link href="https://developers.shopware.com/blog/2018/09/28/clickstream-analysis-with-server-logs/"/>
+        <updated>2018-09-28T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/09/28/clickstream-analysis-with-server-logs/</id>
+        <content type="html"><![CDATA[<p>Demographic data like server logs are more valuable than many shop user think. With server logs we identify user groups, push valuable products or do customer specific shop marketing with data lying around on the server. In this blog post I will describe how to use the data in a theoretical way with a book selling online shop.</p>
 
-<h1>Exclusive Enterprise Developer Training - Only five places remaining</h1>
+<h3>Identify the customer</h3>
 
-<p>In this one-day workshop, you will get insight into the technology behind Shopware Enterprise, namely the Shopware Accelerator “B2B Suite”. Led by the developers who created the software itself, you will learn everything about this key feature, including practical application. This training is designed for experienced developers who already have the “Shopware Certified Developer” certificate.</p>
-
-<h2>Info:</h2>
-
-<h3>Date</h3>
-
-<p>November 15, 2017</p>
-
-<h3>Time</h3>
-
-<p>Check-in: From 8:30 am
-Start: 9 am
-End: 5 pm</p>
-
-<h3>Location:</h3>
-
-<p>shopware AG
-Ebbinghoff 10 
-48624 Schöppingen
-Germany</p>
-
-<h3>Fee:</h3>
-
-<p>795 Euro per person</p>
-
-<h2>Registration</h2>
-
-<p>Please send an email to sales@shopware.com</p>
-
-<h2>What you can expect</h2>
-
-<ul>
-<li>Training held in English</li>
-<li>Intro to the Enterprise architecture</li>
-<li>Working with the B2B Suite</li>
-<li>Intro to the order management</li>
-<li>Intro to the user management</li>
-<li>Extending the UI</li>
-</ul>
-
-<h2>Target group</h2>
-
-<ul>
-<li>Experienced PHP developers</li>
-<li>max. 5 participants</li>
-</ul>
-
-<h2>Requirements</h2>
-
-<ul>
-<li>Basic knowledge of Doctrine</li>
-<li>Basic knowledge of Smarty</li>
-<li>Basic Knowledge of ExtJS</li>
-</ul>
-
-<h2>Services</h2>
-
-<ul>
-<li>One-day training</li>
-<li>Fully equipped computer</li>
-<li>catering
- </li>
-</ul>
-]]></content>
-    </entry>
-        <entry>
-        <title type="html"><![CDATA[MeetNext - a recap]]></title>
-        <link href="https://developers.shopware.com/blog/2017/10/23/meetnext-a-recap"/>
-        <updated>2017-10-23T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/10/23/meetnext-a-recap</id>
-        <content type="html"><![CDATA[<h1>Introduction</h1>
-
-<p><a href="/blog/img/2017-10-23-meetnext-recap/cody_army.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/cody_army_thumb.jpg" alt="Army of Codys" /></a></p>
-
-<h2>When</h2>
-
-<p>#MeetNext took place from October 18th to 20th</p>
-
-<h2>Where</h2>
-
-<p><a href="/blog/img/2017-10-23-meetnext-recap/campus_view.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/campus_view_thumb.jpg" alt="Germania Campus" /></a></p>
-
-<p>Münster, Germany</p>
-
-<h2>What</h2>
-
-<p>The participants were informed about the current state of the Shopware research.</p>
-
-<p>So, what is the <code>Next</code> in #MeetNext about? In a nutshell, it is the next big thing. A completely new product different to 5.x which will be developed simultaneously to Shopware 5. They will both receive patches and new features. Which leads us to the next question:</p>
-
-<h2>Why</h2>
-
-<p>Shopware is a well established, mature product. As the people who are working with Shopware know, there are a lot of things in the software that work in a certain way because it is our legacy. And we can't change it without effectively breaking the functionality of almost every plugin out there. Example: Ever wondered why products are called <code>articles</code> in shopware? Because the german word for a product is <code>Artikel</code>. Ever wondered why there are multiple terms for manufacturer? Legacy. So yeah, that's not what we want and of course there's much more, especially regarding the architecture.</p>
-
-<p>So the main reason is: We want to continue to make Shopware better, faster, ready for the future and easier to develop for. To achieve this, we have to break a lot of stuff, and we don't want to throw away all the work we and you guys out there already invested. We're always telling you, like a mantra, that we love our community. Guess what, we do this because we mean it. You're part of Shopware and we wouldn't want to have a different community.</p>
-
-<p>All that said, we want to create a second version of Shopware which only carries the good part of our legacy. We don't want to do this in the dark, doing the jack-in-the-box at some time and presenting the new and shiny brother of Shopware 5. We want to have you aboard as soon as possible. We want to hear from you if the things we are planning and implementing are what you need in the end. We want to hear what you think is a mistake, what we forgot and what is even more awesome than before.</p>
-
-<p>The #MeetNext was the first feedback event and it was, marketing speak aside, a huge success. Before we dive in, always remember you can see for yourself what is happening, either on <a href="https://github.com/shopware/shopware/tree/labs">github</a> or in the <a href="https://developers.shopware.com/labs/">documentation</a>.</p>
-
-<h1>A brief summary</h1>
-
-<p><a href="/blog/img/2017-10-23-meetnext-recap/room_overview.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/room_overview_thumb.jpg" alt="Room overview" /></a></p>
-
-<p>There were five topics:</p>
-
-<ul>
-<li>
-<a href="https://developers.shopware.com/labs/housekeeping/">housekeeping</a>
-</li>
-<li>
-<a href="https://developers.shopware.com/labs/api/">API</a>
-</li>
-<li>
-<a href="https://developers.shopware.com/labs/internationalization/">i18n</a>
-</li>
-<li>
-<a href="https://developers.shopware.com/labs/new-administration/">administration (former backend)</a>
-</li>
-<li>
-<a href="https://developers.shopware.com/labs/shopping-cart-and-ordering-processes/">basket &amp; order process</a>
-</li>
-</ul>
-
-<p>The main topics that were discussed at #MeetNext were <em>API</em>, <em>Administration</em> and <em>Basket</em>.</p>
-
-<p>If you follow the links above you can find the updated documentation.</p>
-
-<h1>The results</h1>
-
-<p>Now for the results. And by saying results we are talking about the feedback the participants gave us, sorted by topic.</p>
-
-<p>These things are the &quot;top feedback&quot;, of course there were a lot more valuable ideas, and we heard them all and wrote them down.</p>
-
-<h2>API</h2>
-
-<table>
-<thead>
-<tr>
-<th>Good things</th>
-<th>Bad things, improvements &amp; new ideas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UUIDs</td>
-<td>REST API should not be used as ERP API</td>
-</tr>
-<tr>
-<td>Foreign Keys</td>
-<td>Plugin support</td>
-</tr>
-<tr>
-<td>Error Handling</td>
-<td>No attribute support</td>
-</tr>
-<tr>
-<td>SwagQL</td>
-<td>A lot of class changes needed for structural changes</td>
-</tr>
-<tr>
-<td>Single Source Of Truth</td>
-<td>Use HTTP status codes</td>
-</tr>
-<tr>
-<td>Performance</td>
-<td>ACL</td>
-</tr>
-<tr>
-<td>Upsert/Sync</td>
-<td>Audit-Log</td>
-</tr>
-</tbody>
-</table>
-
-<h2>Basket</h2>
-
-<table>
-<thead>
-<tr>
-<th>Good things</th>
-<th>Bad things, improvements &amp; new ideas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Stateless</td>
-<td>Dynamic processor should be splitted</td>
-</tr>
-<tr>
-<td>Price &amp; tax calculation</td>
-<td>part-delivery system needs to be highly configurable</td>
-</tr>
-<tr>
-<td>Concept for deliveries</td>
-<td>Use money objects instead of floats</td>
-</tr>
-<tr>
-<td>Highly modular</td>
-<td>Priority of processors should be a dependency system</td>
-</tr>
-<tr>
-<td>Concept of processors</td>
-<td>Persist the calculations alongside an order</td>
-</tr>
-<tr>
-<td>Expandability</td>
-<td></td>
-</tr>
-<tr>
-<td>Upsert/Sync</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h2>Administration</h2>
+<p>First of all, lets divide the customers in two groups. Traditional customers buy printed books and innovative ones buy other types like audio books. To filter the customers we have to prepare the log data and bring the data together to form sessions. Sessions contain all server log entries from a specific IP address starting with the the first view of the shop until he leaves it. An access to a SuperTracker Database can help to validate and add additional attributes and characteristics to the sessions. After defining the sessions they have to be filtered into useful and useless ones. Useless sessions are caused by bots and customers with only one or two log entries who accidentally visited the shop.</p>
 
 <blockquote>
-<p><strong>Note:</strong> We're creating a new &quot;backend&quot; without extJS and we're calling it &quot;administration&quot;</p>
+<p>(Suchacka &amp; Chodak, 2017)</p>
 </blockquote>
 
-<table>
-<thead>
-<tr>
-<th>Good things</th>
-<th>Bad things, improvements &amp; new ideas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UX concept</td>
-<td>Vue.js could be too complex</td>
-</tr>
-<tr>
-<td>Routing</td>
-<td>Client-side twig rendering</td>
-</tr>
-<tr>
-<td>Less boilerpate code needed</td>
-<td>View-layer abstraction</td>
-</tr>
-<tr>
-<td>No more client-side models</td>
-<td>No Typescript</td>
-</tr>
-<tr>
-<td>Saving of changesets</td>
-<td>Huge bootstrapping process</td>
-</tr>
-<tr>
-<td>Hot-reloading</td>
-<td>Better accessibility for people with disability</td>
-</tr>
-<tr>
-<td>Upsert/Sync</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<div style='text-align:center;'>
+<img src="/blog/img/2018-09-28-clickstream-analysis-with-server-logs/framework.jpg"/>
+<h6>Association rule generation framework for a B2C website (Suchacka &amp; Chodak, 2017)</h6>
+</div>
 
-<h1>Hacking</h1>
+<h3>Classification of sessions</h3>
 
-<p>After the sessions ended, a lot of the participants started hacking and tried to break things.</p>
+<p>After the session filter, every session will be classified. Basic Classifications can be the time duration on the shop, how many pages were visited or the time duration on a specific page. These classified sessions can also be more detailed classified. The classification parameters can be wich browser was used, the login status of the customer, did the customer add some products into the basket or actually performed an order. Using the data with an A-priori algorithm, events can be identified, which improves the chances of customer orders.</p>
 
-<p>Since we didn't manage to memorize (or write down) the names of all hackers and their projects, here is a list of examples in no particular order and without credit. But the list shows two things, first how awesome Shopware next will be (short time, great projects) and how awesome the Shopware community is. Especially you guys who managed to attend #MeetNext. ;-)</p>
+<blockquote>
+<p>(Suchacka &amp; Chodak, 2017)</p>
+</blockquote>
 
-<h2>Some of the &quot;hack projects&quot;</h2>
+<h3>Result click stream analysis</h3>
+
+<div style="text-align:center;">
+<img src="/blog/img/2018-09-28-clickstream-analysis-with-server-logs/histogram.jpg"/>
+<h6>Histogram of session lengths for buying sessions for innovative and traditional customers (Suchacka &amp; Chodak, 2017)</h6>
+</div>
+
+<p>In our case traditional customer perform orders very fast and innovative customers wander longer through the shop before perform an order. Another result of the analysis determine 89 percent of innovative customers perform an order by entering the shop with a link from a search engine, add an article in the basket and open up to 45 pages on the system. Traditional customers have a tendency of 92 percent to perform an order after login in, visit 30 to 75 pages and be in the shop around 10 to 25 minutes. With these results customer group specific marketing can be performed. We can improve our page views of innovative customers by adding more optimised ads in search engines.</p>
+
+<blockquote>
+<p>(Suchacka &amp; Chodak, 2017)</p>
+</blockquote>
+
+<h3>Gender prediction</h3>
+
+<p>Another way to use the session data is to predict the customers gender and show specific landing pages to them. For gender prediction we have to classify and filter the session in other ways.  We do not want only to know how long the customer was on one page or in the shop but also in which season and on which day and month of the year. The amount of viewed products is also a possible filter for the sessions. Another group of data can be formed by display the categories and products in a binary tree view and show every switch and view of the category and product pages on this tree. With machine learning algorithm like <a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a>, <a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support Vector Machine</a>, <a href="https://en.wikipedia.org/wiki/Bayesian_network">BayesNet</a> or <a href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient Boosting Decision Trees</a>, we can predict the gender from sessions.</p>
+
+<blockquote>
+<p>(Duc Duong et al., 2016)
+(Lu et al., 2015)</p>
+</blockquote>
+
+<h3>Machine learning algorithms</h3>
 
 <ul>
-<li>Implement reactive window management in vue.js</li>
-<li>Tracing library for class performance analysis</li>
-<li>Port an existing cart-related plugin to Next</li>
-<li>Revive the old ExtJS backend and let it speak to the new API</li>
-<li>Create a different concept of component extension for vue.js</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Random_forest">Random Forest</a> is a classification method working with decision trees. Through randomising the decision tree is growing and at the end, the class with the most votes will be chosen.</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support Vector Machine</a> classifies the data with hyperplanes in the vector space of the objects.</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Bayesian_network">BayesNet</a> consists of a directed acyclic graph with various nodes and edges, which are randomised variables and conditional dependencies between the variables.</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient Boosting Decision Trees</a> create weak classifications which will be combined to one strong classification.</li>
 </ul>
 
-<h1>Visual Impressions</h1>
+<p>To choose the right method for learning with test data depends on how balanced the data is. With unbalanced Data like 80 percent women and 20 percent men, a “Cost-Sensitive Learning” method is needed to minimise the total costs and therefore get a higher statistically percentage for the right gender prediction.</p>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_00.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_00_thumb.jpg" alt="Visual impressions" /></a></p>
+<blockquote>
+<p>(Duc Duong et al., 2016)</p>
+</blockquote>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_01.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_01_thumb.jpg" alt="Visual impressions" /></a></p>
+<h3>Result of gender prediction</h3>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_02.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_02_thumb.jpg" alt="Visual impressions" /></a></p>
+<p>In the end it depends on the quality of the data and the chosen algorithm how high the percentage for the right gender prediction is. Two teams at a tournament from <a href="https://knowledgepit.fedcsis.org/contest/view.php?id=107">FPT Corporation of PAKDD’15</a> performed with the given dataset a 81,4 percent correct prediction for both gender and the other team a 95 percent correct prediction of the female and a 77 percent correct prediction of the male gender.</p>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_03.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_03_thumb.jpg" alt="Visual impressions" /></a></p>
+<blockquote>
+<p>(Duc Duong et al., 2016) (Lu et al., 2015)</p>
+</blockquote>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_04.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_04_thumb.jpg" alt="Visual impressions" /></a></p>
+<h3>Literature</h3>
 
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_05.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_05_thumb.jpg" alt="Visual impressions" /></a></p>
-
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_06.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_06_thumb.jpg" alt="Visual impressions" /></a></p>
-
-<p><a href="/blog/img/2017-10-23-meetnext-recap/impressions_07.jpg"><img src="/blog/img/2017-10-23-meetnext-recap/impressions_07_thumb.jpg" alt="Visual impressions" /></a></p>
+<ul>
+<li>Suchacka, G., &amp; Chodak, G. (2017). Using association rules to assess purchase probability in online stores. Information Systems and E-Business Management, 15(3), 751–780. https://doi.org/10.1007/s10257-016-0329-4</li>
+<li>Duc Duong, Hanh Tan, &amp; Son Pham. (2016). Customer gender prediction based on E-commerce data. In 2016 Eighth International Conference on Knowledge and Systems Engineering (KSE) (pp. 91–95). IEEE. https://doi.org/10.1109/KSE.2016.7758035</li>
+<li>Lu, S., Zhao, M., Zhang, H., Zhang, C., Wang, W., &amp; Wang, H. (2015). GenderPredictor: A Method to Predict Gender of Customers from E-commerce Website. In 2015 IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology (WI-IAT) (pp. 13–16). IEEE. https://doi.org/10.1109/WI-IAT.2015.106</li>
+</ul>
 ]]></content>
     </entry>
         <entry>
-        <title type="html"><![CDATA[Shopware goes gitter]]></title>
-        <link href="https://developers.shopware.com/blog/2017/09/29/shopware-goes-gitter"/>
-        <updated>2017-09-29T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/09/29/shopware-goes-gitter</id>
-        <content type="html"><![CDATA[<h2>A huge change for the community</h2>
+        <title type="html"><![CDATA[An Argument against Microservices]]></title>
+        <link href="https://developers.shopware.com/blog/2018/08/22/an-argument-against-microservices/"/>
+        <updated>2018-08-22T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/08/22/an-argument-against-microservices/</id>
+        <content type="html"><![CDATA[<p>Microservices... I have problems with that. And from many discussions at conferences I get the impression that I might not be the only one who's <em>not getting</em> it. So in the following article I want to attempt to deep dive into the promises behind the Microservice architecture, lament on solutions and show the costs behind it.</p>
 
-<p>For several years now, since 2011 to be precise, there is a small but vibrant chat community on freenode in the #shopware channel.</p>
+<h2>Micro What?</h2>
 
-<p>All these people chatting there have one thing in common, they are working on the Shopware ecommerce system, in one way or the other.</p>
+<p>Distributed systems are all the rage now and have been at least over the past decade. The Cloud innovation, especially in the PaaS and FaaS (= keep Moore's Law alive by increasing the number of parallel processes) area, pushes software development to create finer grained executable stacks for more and more abstract machines. Technologies invented for <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">CORBA</a>, <a href="https://en.wikipedia.org/wiki/Service-oriented_architecture">SOA</a> or <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> are joining forces in Microservices to rule the world.</p>
 
-<p>Now these times will be over. As of the end of October 2017, the IRC channel will be closed.
-If you hear a faint scream in the distance it may be one of the guys from the IRC channel who is just reading this post as you do now.</p>
+<p>Microservices are an architecture style. They are a possible solution to key demands for large scale development. Large software, large userbase, large development team, large data and so on. The central promise is that they allow for <strong>far greater scaling</strong> than any other style of architecture by reducing the need for <strong>global decisions</strong>.</p>
 
-<p><strong><strong>But!</strong></strong> of course we will not leave you alone in the dark. And we are not closing the IRC channel because we don't like people chatting.
-In fact, we love your passion for shopware and we want to communicate with you and we want you to have a platform where you can communicate directly to other people involved with Shopware.</p>
+<p>They usually get contrasted with the vast space of <strong>monolithic</strong> architecture styles =&gt; an application as a single interconnected entity of functionality.</p>
 
-<p>So, why the change? What changes? What are the consequences? Just read further, friend, and find out.</p>
+<h2>So what is a Microservice?</h2>
 
-<h2>What will change?</h2>
-
-<p>For a short period of time (read: one month) the IRC channel will stay open. During this period we will actively transfer people to <a href="https://gitter.im/shopware/shopware">Gitter</a>.</p>
-
-<p>After this, the IRC channel will be closed and all chat activity will take place on Gitter.</p>
-
-<p>If you are an IRC user by now, you can use your client for Gitter as well, just follow the steps mentioned at the end of the <a href="https://developers.shopware.com/community/gitter">contribution page</a>.
-Of course we encourage you to use the clients provided by Gitter, since most IRC clients don't handle markdown that well.</p>
-
-<p>Since there are a lot of german users, those will find a german channel to make their lifes easier.</p>
-
-<p>If you are new to the show, just <a href="https://gitter.im/shopware/shopware?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/shopware/shopware.svg" alt="Gitter" /></a>!</p>
-
-<h2>What is Gitter?</h2>
-
-<p>In case you are new to this, Gitter is a free, <a href="https://gitlab.com/gitlab-org/gitter/webapp">open source</a> chat where you login with your github or twitter account and are able to chat immediatly.
-Like IRC, but with more features and more or less integrated with our github repository. Like Slack, but more community-centric.</p>
-
-<p>If you want to know the full story, there is a nice <a href="https://en.wikipedia.org/wiki/Gitter">wikipedia article</a> about the service.</p>
-
-<p><em>One of the biggest changes for former IRC users:</em> Gitter chatrooms are public and save history indefinitely. So everything you say is wisdom for eternity.
-Or embarrassment, but this is an unusual state of mind for shopware enthusiasts. So be careful. There be dragons. On the other hand, you don't need that icky <a href="https://en.wikipedia.org/wiki/BNC_(software)">bouncer</a> anymore. ;)</p>
-
-<h2>But... why?</h2>
-
-<p>To cite the devdocs <a href="https://developers.shopware.com/community/irc">irc page</a>:</p>
+<p>If you look at the - always insightful - <a href="https://martinfowler.com/articles/microservices.html">blog of Martin Fowler</a> he describes the style as</p>
 
 <blockquote>
-<p>Since 2011, the shopware IRC channel was active and well established.<br />
-Today, IRC is a little bit nerdy and we really love it. Most of the cool kids are playing on freenode.</p>
-<p>But besides the coolness there are a few disadvantages that come with using IRC:</p>
-<ul>
-<li>No history without 3rd party software</li>
-<li>No mapping between the contributor and the IRC nick (Who is xenomorph again?)</li>
-<li>No easy access except through anonymous web IRC clients</li>
-<li>Lacks modern features like image sharing, formatting and such</li>
-</ul>
-<p>Of course, all these points are arguable.<br />
-But in the end, we wanted to have a chat community with easier access and more modern features.</p>
-<p>We hope to not lose any old IRC users (we learned to love you all at #shopware) and get many new and interesting people to join <a href="https://developers.shopware.com/community/gitter">Gitter</a>.</p>
+<p>[...] a particular way of designing software applications as suites of <strong>independently deployable services</strong> [...]</p>
 </blockquote>
 
-<h2>The transition</h2>
+<p>How would this work? When planing a green field application one typically slices the project up front in <strong>layers/components/milestones/building blocks</strong>. If you plan to create Microservices you are now free to slice these building blocks into different applications. Communication is only allowed to go through an API and in many cases publish and subscribe to an event system. These Services do not share infrastructure. They are (potentially) deployed to different servers, write to their own storage and know only about necessary peers, that they themselves only access through a well defined API. The term <em>micro</em> comes from the idea that these services themselves should be <em>really small</em> or do <em>one thing only</em>.</p>
 
-<p>First step is, the IRC channels will get +m and +s and all users will get a message similar to:</p>
+<p>A single service then has to be a fully working application, that performs a miniscule part of the workload of the whole application. Well known and published examples of this architecture styles are <a href="https://medium.com/netflix-techblog">Netflix</a> and Amazon, or eCommerce specific <a href="https://dev.otto.de/tag/self-contained-systems/">Otto Group</a> or the <a href="https://academy.spryker.com/">Spryker plattform</a>.</p>
+
+<p>Of course the devil is in the detail. But simply put Microservices reduce code coupling in favor of networking and reduce organization coordination by giving more freedom to the individual teams and developers. So let's investigate these two promises separately:</p>
+
+<h2>Reduced Coupling</h2>
+
+<p>It should be common knowledge by now, that coupling code is not only the one thing responsible for software to actually do something, but also the main cause of death for legacy systems. Systems need to be intertwined because one of the main benefits is, that existing data and functionality can be rearranged into new and interesting functionality. A byproduct of this rearrangement usually is friction, because the original system was not designed to behave in the newly implemented way. As a system gains new capabilities it internally starts to accumulate more and more friction. When handling this friction outweighs the time spent on the actual feature implementation you are in trouble.</p>
+
+<p>This insight is not only well known, but also a quite old. And of course multiple - not mutually exclusive - strategies are available to prevent this already: <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a>, <a href="http://alistair.cockburn.us/Hexagonal+architecture">Ports &amp; Adapters</a>, <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a>, <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, <a href="https://medium.com/mindorks/how-to-write-clean-code-lessons-learnt-from-the-clean-code-robert-c-martin-9ffc7aef870c">Clean Code</a> and many other sources try to help you here.</p>
+
+<p>Microservices now add three main strategies for prevention.</p>
+
+<p><strong>Services share the least viable amount of information with each other.</strong> If executed correctly, this is a very good thing! <a href="https://en.wikipedia.org/wiki/Information_hiding">Information hiding</a> is by no means a new concept, and by no means a solved problem. Microservices effectively try to achieve this, by making the process simply <strong>more painful</strong>, than it was in the past. If you need an API, that contains additional information this needs additional planning and agreement between the developers. However the incentive still is to create a too broad interface if not checked otherwise.</p>
+
+<p><em>Verdict: Adding pain is an interesting concept, but by no means a sufficient guarantee for good design.</em></p>
+
+<p><strong>Make services small, so they can easily be replaced</strong> Also a nice idea! Create a service in hours or days, if it doesn't add the expected value, just discard it. If a service that is currently not owned needs changes, the next developer can start at a green field, if he so chooses - just the API needs to be the same. I would bet you have done this countless times in the past, but without calling it service. Reengineering a class, a namespace, a feature. This is not new. Our programming languages actually have constructs for this. And at least in my experience, changing the internal structure without changing the external behaviour only works to a certain degree. Imagine moving from <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> to <a href="https://martinfowler.com/bliki/CQRS.html">CQRS</a>+<a href="https://martinfowler.com/eaaDev/EventSourcing.html">ES</a> for a single building block. This either has consequences for external usage or just adds friction.</p>
+
+<p><em>Verdict: Really no help</em></p>
+
+<p><strong>Use unreliable communication technologies so that all coupling is taken with a grain of salt.</strong> This one is interesting: Networking adds the problem of delays, retries, unavailabilities to something that a monolith would do and guarantee in process. Failure tolerant networking adds the ability to silence functionality by only removing a single service without having to change anything else about the system. But there is a tradeoff: There needs to be an enforced convention to secure all applications behave like this and you need documentation to know which service needs to be killed for this. Exactly the thing you are now missing for your existing application, too. If you want to enforce methodologies like this I would make a case, that it is actually easier to do it through static analysis in a monolith.</p>
+
+<p><em>Verdict: Has a desirable effect on your architecture.</em></p>
+
+<p>Microservices effectively reduce coupling mainly by making it harder to use common abstractions across a project. Since these are all different applications you need some kind of package management system to achieve code sharing. But more on that in the next chapter.</p>
+
+<p>Ok, so where is the Microservice advantage exactly? Quite easily put: <strong>Best practices get enforced through pain</strong>. If you don't behave according to common wisdom they show bugs very early. But basically - at least I would argue - there are not that many benefits to a monolith from a software architecture standpoint here.</p>
+
+<h2>Freedom for teams</h2>
+
+<p>Developers, developers, developers!!! Maybe Microservices show strengths here? As <a href="https://en.wikipedia.org/wiki/Conway's_law">Conway's Law</a> states.</p>
 
 <blockquote>
-<p>Come join us and <a href="https://gitter.im/shopware/shopware?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/shopware/shopware.svg" alt="Gitter" /></a></p>
+<p>&quot;organizations which design systems ... are constrained to produce designs which are copies of the communication structures of these organizations.&quot; - M. Conway</p>
 </blockquote>
 
-<p>From then on, every user who joins the IRC channel will automatically be notified of the new situation.</p>
+<p>While this abstract definition might be a little hard to grasp, there is a very good example that showcases the effect your organizational structure has on the software you produce:</p>
 
-<p>After one month, the channel will become invite only.</p>
-]]></content>
-    </entry>
-        <entry>
-        <title type="html"><![CDATA[Ajax Panel]]></title>
-        <link href="https://developers.shopware.com/blog/2017/09/25/ajax-panel"/>
-        <updated>2017-09-25T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/09/25/ajax-panel</id>
-        <content type="html"><![CDATA[<p>In this blog post I want to present the concept of our ajax based panel system which we use in our B2B-Suite.
-In the B2B-Suite we had to develop a backend user interface inside the Shopware frontend.</p>
+<blockquote>
+<p>&quot;If you have four groups working on a compiler, you'll get a 4-pass compiler.&quot; - E. S. Raymond</p>
+</blockquote>
 
-<p>On a single page in a typical backend view you may find:</p>
+<p>... because communication is most intense inside the team and gets sparser and sparser the further away another team is organization wise. Microservices are the logical conclusion to this. There needs to be a formal way to negotiate API interfaces between teams and that's it. This actually solves a real problem in software development: <strong>Scale</strong> If you ever started a green field project with a projection for more then two developers and a initial runtime of more then a year you should know how hard it is to get everyone working. Huge Silicon Valley corporations want to start projects with hundreds of developers or maintain flagship products with even more people. Communication becomes an overhead that delays a product significantly think of it like an expression of the big upfront design antipattern. The more people you have that need to work the more expensive it becomes to negotiate a single decision.</p>
 
-<ul>
-<li>list of entities</li>
-<li>form to enter new data</li>
-<li>list of related entities</li>
-<li>some statistics</li>
-</ul>
+<p>By giving the highest degree of freedom to your teams the structure of your software changes, too. Dependencies in such a huge product can no longer be organized like a top down tree but are in fact more like a <strong>bee hive</strong>. Microservices can potentially be even more than that. The hive is multinational! Your services can be written in any language, come from any source and as long as network communication is possible you are fine. In extreme cases there can and will be C code communicating happily with a PHP script that notifies a Python app that provides data for Node app. Every one of these apps is self contained and uses a different set of tools for its build, deployment, integration and monitoring. Yeah!</p>
 
-<p>Serving all this data from a single controller action may already be hard, now imagine the sheer number of parameters you may
-have to exchange with this single action when you want to enable pagination, validation and searching on this single page,
-through this single action.</p>
+<p>Now imagine something is broken. How can you inspect, debug and fix any issue in such a system? You need conventions!</p>
 
-<p>This is pretty much the reason why stateless services and statefull frontends are an important topic in todays web development.
-And it is exactly the reason why we created the ajax panel. It provides us with the means to load local states from the
-server and create a rich ui.</p>
+<blockquote>
+<p>&quot;With great power comes great responsibility&quot; - B. Parker</p>
+</blockquote>
 
-<p>We evaluated different frameworks to achieve this target. AngularJS and Vue.JS were possible frameworks which allows
-two way data binding and statefull frontend access.</p>
+<p>If you want to base each new service on different technology you will find that your Microservices have multiple different solutions to the same common problem. <a href="https://en.wikipedia.org/wiki/Not_invented_here"><em>Not invented here</em></a> is the built-in result from this approach to team organizations.</p>
 
-<p><img src="/blog/img/ajax-panel-abstract.svg" alt="image"></p>
+<p>To stay with the bee hive metaphor: Even they grow over time from just a founding queen.</p>
 
-<p>The small controller actions don't respond with the full page dom tree anymore. Each controller is only responsible for a
-specific panel content.</p>
+<p>In the end the freedom simply does not come for free. Where does scale outweigh central technical decision management? Some huge companies that develop concurrently on a single product of course have good reasons to go into that direction. And in the wild you will find scaled back solutions (e.g. single programming language, central logging and monitoring, centrally enforced architecture, even single process) that try to get the pros without the cons. But what is left in these cases?</p>
 
-<p>One ouf our targets was also to use most of the already existing dependencies instead of adding new frameworks just for
-the B2B-Suite. We use jQuery because it is a base dependency of Shopware 5.</p>
+<h2>Problems arise</h2>
 
-<p>We decided to develop our own lightweight frontend framework on top of jQuery which allows asynchronous HTTP requests for our frontend.
-The main target of this framework is to execute asynchronous calls and render the response in a given and zoned DOM element by using an event.
-The behaviour is very similar to angular's <a href="https://github.com/angular/zone.js">zone.js</a>.</p>
+<p>I get hyped by talks on conferences. Either watching them directly live or in recording. But Microservices tend to tickle a nerve, where I constantly ask myself: &quot;What aren't they talking about?&quot; Microservices add pressure on sophisticated technological solutions, where a monolith can get away with far less effort. Take logging for example. While a single process application may be inspectable through a file log initially, a distributed system can not.</p>
 
-<h2>Code Example</h2>
+<p>Or how do you secure, that the negotiated API interfaces actually work? Integration tests of course! All neighboring services must be integrated with one another, through the network, which means a lot of of tests for a lot of of services with a lot of of communication.</p>
 
-<p>The base structure of our ajax panel index action looks like this:</p>
+<p>How will developers set up the application locally? Docker containers of course! Each Service runs in its own container, comes usually with at least one storage container. Also: Somewhere is a routing configuration.</p>
 
-<pre><code class="language-html">&lt;div class=&quot;ajax-panel&quot; data-url=&quot;http://domain.tld/ajax-panel-controller&quot; data-id=&quot;example&quot;&gt;&lt;/div&gt;
-</code></pre>
+<p>Scaling - contrary to common belief - is an issue too. There may be many independent services that need to be scaled appropriately to improve the overall performance of the application.</p>
 
-<p>On page load our jQuery ajax panel plugin will search for the class <code>ajax-panel</code> and use the data attribute <code>data-url</code>.
-If this attribute contains a valid url the jQuery plugin will perform an asynchronous http request on the attribute url.
-If the response is signed with a HTTP Status Code of 200 the response will be rendered back in the original zoned div with the data-id <code>example</code>.</p>
+<p>While all these issues are of course solvable, they will block development resources. They may delay the product significantly. They are the real <strong>cost of Microservices</strong>.</p>
 
-<h2>Response Example</h2>
+<h2>The PHP factor</h2>
 
-<p>The ajax panel controller action responds with the content of the ajax panel element and moves the dom structure inside the given element.
-The response could be like:</p>
+<p>Actually we are developing PHP here. PHP is single threaded, shared nothing, often stateless function execution at it's heart. So when we talk about scaling we actually do not mean the application itself but the limits in the infrastructure. MySQL too slow? Use ElasticSearch! Webserver responds too slow? Put a load balancer in front of two! Horizontal scaling is actually not that hard in PHP.</p>
 
-<pre><code class="language-html">&lt;span&gt;Example Ajax Content&lt;/span&gt;
-</code></pre>
+<p>Oh and while we are at it. The <em>Deployment Monolith Antipattern</em> is solvable through package management too. Just look at the shopware plugin store. PHP is an interpreted language, source changes in production are actually not the hardest problem.</p>
 
-<p>After the response is rendered in the parent Ajax Panel <code>div</code> the full dom structure will look like this:</p>
+<h2>Benefits in cherry picking</h2>
 
-<pre><code class="language-html">&lt;div class=&quot;ajax-panel&quot; data-url=&quot;http://domain.tld/ajax-panel-controller&quot; data-id=&quot;example&quot;&gt;
+<p>Of course I do not want to discard the whole notion of Microservices. There is value, but there are also other options. From a technical standpoint I would argue that projects usually do not fail because the test suite was too sophisticated, the documentation too helpful, or the architecture was too clear and predictable.</p>
 
-    &lt;span&gt;Example Ajax Content&lt;/span&gt;
+<p>And there are real world benefits to all of them! Good old static code analysis will help you greatly with dependency management and finally this can all be part of the global CI process.</p>
 
-&lt;/div&gt;
-</code></pre>
+<p>And it even might be necessary to create different applications for parts of your problem. Maybe the requirements for a single part of your application are so drastically different that this becomes necessary. Feel free to use concepts from Microservices. <strong>Hybridization</strong> of architecture is not necessarily a bad thing.</p>
 
-<h2>Ajax Panel Plugins</h2>
+<p>Problem solved? Well there are still the organizational difficulties...</p>
 
-<p>After we build our first views we run in several problems. The biggest problem was, that we want to use jQuery in the
-response's rendered content. We decided to develop an own plugin loader for our ajax panel which loads automatically
-JavaScript plugins after the panel load. We throw many events for third party plugins that developers can use for their
-own plugin. Also the shopware default plugins can be registered in the ajax panel.</p>
+<h2>Alternative: (Micro-)Kernel</h2>
 
-<p>To achieve this approach we added an optional <code>data-plugins</code> attribute which can contain multiple JavaScript plugins:</p>
+<p>Microservices and monoliths are on opposing sides of the static dependency spectrum. While a monolith is interconnected and interdependent, a Microservice is <em>(almost)</em> not. Well this spectrum does not only consist of black and white. My favorite alternative is the kernel style. A kernel represents a core domain of an application. In our case eCommerce. This kernel then provides an extension mechanism for others to extend, alter and replace these core concepts. A plugin system if you want.</p>
 
-<pre><code class="language-html">&lt;div class=&quot;ajax-panel&quot; data-url=&quot;[..]&quot; data-id=&quot;[..]&quot; data-plugins=&quot;examplePlugin&quot;&gt;&lt;/div&gt;
-</code></pre>
+<p>Apart from the basic eCommerce workflows the kernel provides the technical groundwork for all plugins to use. It contains a deployment mechanism, package management and lays the technological groundwork for the necessary infrastructure coupling. Most importantly it provides <strong>the base quality of the product as a whole</strong>.</p>
 
-<h2>Basic Ajax Panel Plugin</h2>
+<p>In a company driven by Conways law the natural limit for a kernel is the amount of features a single team can handle. A basic runtime that shares a technical and functional base for everyone to harness. One arranges orthogonal features in orthogonal teams and creates a core, that is owned and used by everyone. The viability of this approach is proven by big and small companies alike, think operating system vendors, framework vendors and the like. There is however a critical situation when a kernel's size outgrows the team. A need for action arises. A split is necessary.</p>
 
-<p>Our JavaScript example plugin code looks like that:</p>
-
-<pre><code class="language-javascript">/**
- * Remove all elements with triggerSelector Class
- */
-$.plugin('b2bAjaxPanelExamplePlugin', {
-    defaults: {
-        triggerSelector: '.should--removed'
-    },
-
-    init: function () {
-        var me = this;
-        me._on(document, 'b2b--ajax-panel_loaded', $.proxy(me.addClasses, me));
-    },
-
-    addClasses: function (event, eventData) {
-        var $panel = $(eventData.panel);
-
-        $panel
-            .find(me.defaults.triggerSelector)
-            .remove();
-    },
-
-    destroy: function() {
-        var me = this;
-        me._destroy();
-    }
-});
-</code></pre>
-
-<h2>Dependencies</h2>
-
-<p>With the ajax panel we build a lightweight frontend framework which only depends on jQuery. Shopware delivers jQuery in the
-Responsive theme, so we don't need to require any addional component. Awesome, isn't it?</p>
+<p>Conway's insight should mean that an organization in order to produce software needs to be fluid enough to support good design. So if an application changes the communication and therefore team structure needs to be changed in the best interest of the product.</p>
 
 <h2>Conclusion</h2>
 
-<p>Our Ajax Panel is a complete flexible and lightweight framework with many possibilities and jQuery as a single dependency.
-The panel can be handled with simple data attributes and additional plugins allows to use JavaScript plugins.
-We use this technology in our B2B-Suite in each module very succesfully.</p>
+<p>From a technical standpoint there is no clear benefit in using Microservices as the main application design. They just have the potential to add risk and cost to a project. In my opinion this style just complicates stuff from the get go. Sizing is a really hard problem in software and I have seen many applications, that where surprisingly large in relation to the work they actually performed. If you have a fairly simple problem to solve a single developer will be faster to fix it then twenty. Or as we say:</p>
+
+<blockquote>
+<p>Not everybody is Netflix</p>
+</blockquote>
+
+<p>If in the past you were not able to create a good application through concepts of OOP, why would you be able to create such a thing by adding layers of indirection on top of the actual problem. If the application design rots, there is no reason to expect adding networking to the communication will help. Microservices are by no means automatically cheaper in development or maintenance than a monolith. So when investing into new technology, maybe one should rather invest in solving the actuall problems of the past, directly.</p>
+
+<p>That's it for my rant. Thanks for reading!</p>
 ]]></content>
     </entry>
         <entry>
-        <title type="html"><![CDATA[Mutation Testing]]></title>
-        <link href="https://developers.shopware.com/blog/2017/08/24/mutation-testing"/>
-        <updated>2017-08-24T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/08/24/mutation-testing</id>
+        <title type="html"><![CDATA[An easy example how to switch from classic installation to composer installation]]></title>
+        <link href="https://developers.shopware.com/blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/"/>
+        <updated>2018-07-25T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/</id>
+        <content type="html"><![CDATA[<div class="alert alert-warning">
+Before you start please make a backup of your whole shop system!
+</div>
+
+<p>In this blog post you will learn how to change your Shopware classic installation to the composer installation. I already mentioned it in the shopware <a href="https://www.youtube.com/watch?v=oUME-FnlUKE">livestream</a> (a format you should know ;-) ).</p>
+
+<p>The requirements are very easy to fulfill. We need Shopware in the latest Version of 5.4. Nothing more.</p>
+
+<h3>Clean up classic installation</h3>
+
+<p>So let's start. Please go into the shopware root directory and delete some files and directories which are no longer needed from the classic installation:</p>
+
+<pre><code class="language-bash">rm -rv bin recovery vendor composer.* shopware.php
+</code></pre>
+
+<h3>Create composer installation</h3>
+
+<p>Now we create a new composer project with the following command:</p>
+
+<pre><code class="language-bash">composer create-project shopware/composer-project composer-installation \ 
+    --no-interaction --stability=dev
+</code></pre>
+
+<p>You should receive an error message like the following because we didn't create a .env file:</p>
+
+<pre><code class="language-bash">Could not load .env file
+Script ./app/post-update.sh handling the post-update-cmd event returned with error code 1
+</code></pre>
+
+<h3>Merge classic and composer installation</h3>
+
+<p>The command creates a new directory composer-installation wich contains all needed files for our composer installation. After that we have to move some files and directories stored in the new directory a level up with this commands:</p>
+
+<pre><code class="language-bash">mv composer-installation/{app,bin,Plugins,vendor,composer.json,shopware.php} ./
+mv composer-installation/.env.example ./.env
+</code></pre>
+
+<p>The directories <code>custom</code>, <code>files</code>, <code>media</code>, <code>themes</code>, <code>var</code> and <code>web</code> are equal with the composer installation so we can still use them and don't lose our files, plugins and themes. If you have plugins in <code>engine/Shopware/Plugins/Community</code> or <code>engine/Shopware/Plugins/Local</code> they must be moved to <code>./Plugins</code>! Now we can delete the old <code>engine</code> directory because from now on the Shopware core files will be provided by the <code>shopware/shopware</code> composer package inside the <code>vendor</code> directory.</p>
+
+<p>After that we should reduce the .env file. Please use your database credentials from your <code>config.php</code>. If you have further config settings there move them to <code>app/config/config.php</code> and delete the <code>config.php</code> afterwards. The <code>.env</code> file should look like the following:</p>
+
+<pre><code># Database credentials
+DB_HOST=localhost
+DB_DATABASE=shopware
+DB_USERNAME=root
+DB_PASSWORD=root
+DB_PORT=3306
+
+# This variable is checked by Shopware
+DATABASE_URL=mysql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}
+
+# Environment
+SHOPWARE_ENV=&quot;production&quot;
+</code></pre>
+
+<p>The next step is to set your database credentials as an environment variable. An example virtual host configuration can be found bellow:</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+        ...
+        SetEnv DB_USERNAME &quot;root&quot;
+        SetEnv DB_PASSWORD &quot;root&quot;
+        SetEnv DB_DATABASE &quot;shopware&quot;
+        SetEnv DB_HOST &quot;localhost&quot;
+        SetEnv DB_PORT &quot;3306&quot;
+        SetEnv SHOPWARE_ENV &quot;dev&quot;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>The last step is to uninstall the Shopware Auto Update Plugin. If you try an update with this Plugin, it will not work correctly and harm your Installation. You can uninstall the SwagUpdate Plugin via the following command:</p>
+
+<pre><code class="language-bash">./bin/console sw:plugin:uninstall SwagUpdate
+</code></pre>
+
+<h2>Conclusion</h2>
+
+<p>The switch from classic installation to the new composer installation is not very difficult. Please use it if you want to achieve easier deployment and shopware updates. Our colleague Soner aka shyim develops an extension for the composer project to handle community store plugins as a composer dependency. If you are interested please have a look <a href="https://github.com/shyim/store-plugin-installer">here</a>.</p>
+]]></content>
+    </entry>
+        <entry>
+        <title type="html"><![CDATA[An anecdote about pair programming]]></title>
+        <link href="https://developers.shopware.com/blog/2018/06/07/an-anecdote-about-pair-programming/"/>
+        <updated>2018-06-07T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/06/07/an-anecdote-about-pair-programming/</id>
+        <content type="html"><![CDATA[<p>When we decided to rebuild a central piece of our Merchant Integration Architecture, I was assigned to write a new component, that handles asynchronous function calls through event queueing.
+So from the get go it was assumed that this was quite a large task. After having completed a rough prototype to interact with our queue service, I hit a problem with deciding how to proceed.
+There were many paths that needed to be worked on: error handling, at least once execution, backing up the queue to our database, et cetera.
+So I asked for ideas during our daily stand-up meeting, our team lead suggested to team up with a colleague who's out of work to try <a href="http://www.extremeprogramming.org/rules/pair.html">pair programming</a>.</p>
+
+<h2>Parallel Thinking</h2>
+
+<p>At first we both had doubts about the benefits of sitting at the same computer, working at the same task and fighting over the keyboard.
+But we quickly realized that the thought process was streamlined even though the typing speed remained the same.</p>
+
+<p>It's a well known fact, that in any moderately complex project or component there are many possible paths to think about. Generally this isn't a problem.
+The developer figures out a <a href="https://en.wikipedia.org/wiki/Happy_path">happy path</a> and thinks about the obvious edge cases, then they write down this path as code and add handling for the edge cases.</p>
+
+<p>Here the first advantage of pair programming takes effect: any two people don't exactly think the same. For example:
+I tried to handle errors by writing a time stamp to the database and having an external script run periodically to re-queue eligible events. But then my coworker came up with the idea to simply use the build in delay ability of our
+queue service. This is the strength of <em>parallel thinking</em>. While I was occupied thinking how to structure my code and where to put it, he had a whole different path in mind.
+And the synthesis of these two ideas turned out to be the ideal structure for our use case.</p>
+
+<h2>It's not only the lines of code that count</h2>
+
+<p>&quot;Figuring out solutions together is nice but a single dev could have done it by themselves.&quot;, some of you might say.</p>
+
+<p>But coming up with solutions, arguably the most fun part of the job, is by far not the only time sink developing software. Another significant source of delays and frustration are bugs.
+And im not strictly talking about the ones being found by QA or customers, that need intensive research and tracing to fix. I mean those tiny bugs that keep the tests from succeeding and the dev from continuing their work.</p>
+
+<p>Here pair programming helps out again. Not only can two pairs of eyes see more than one, also two brains can hold more context than one. But what is context in this case?</p>
+
+<p>By context I mean the mental picture a developer has about the code while working on it. It consists of:</p>
+
+<ul>
+<li>Landmarks (central &amp; important pieces of code)</li>
+<li>Call paths leading into and out of the code</li>
+<li>Well known pitfalls</li>
+<li>Limitations (real or imagined)</li>
+</ul>
+
+<p>This picture may not be accurate but it's the framework in which the dev actually makes changes to the code.</p>
+
+<p>Having two people keeping track of and building their context, instead of one, leads to many otherwise hard to find bugs being found in matter of minutes sometimes even instantly. That might sound overblown but I lost track of
+how many time as soon a local test failed one of us went &quot;Ahh that's the problem&quot; and fixed something that was hard to see, like this:</p>
+
+<pre><code class="language-php">class Foo {
+
+    /**
+     * @var string
+    **/
+    private $prefix;
+
+    /**
+     * @var array
+    **/
+    private $config;
+
+    /**
+     * @var SomeService
+    **/
+    private $someService;
+
+    /**
+     * @var array
+    **/
+    private $stringVariations;
+
+    public function __construct(array $config, SomeService $someService, string $prefix, string $str) 
+    {
+        $this-&gt;config = $config;
+        $this-&gt;stringVariations = $this-&gt;createStringVariations($str);
+        $this-&gt;someService = $someService;
+        $this-&gt;prefix = $prefix;
+    }
+
+    private function createStringVariations(string $str): array
+    {
+       $arr = [];
+       for($i = 1; i&lt; 5; $i++) {
+           
+           $arr[] = $this-&gt;prefix . $str . $i;
+       }
+       
+       return $arr;
+    }
+}
+</code></pre>
+
+<p>A problem like this caused really weird behavior locally and in the failing tests, but my coworker spotted it right away:</p>
+
+<p>The lines <code>$this-&gt;stringVariations = $this-&gt;createStringVariations($str);</code> and
+<code>$this-&gt;prefix = $prefix;</code> simply had to be swapped.</p>
+
+<p>This bug was an artifact left over from a round of refactoring that simply was not present in my mind because I worked on the <code>createStringVariations</code> method before running the tests.</p>
+
+<p>These things make pair programming itself enjoyable and productive for the developers actively participating. But lets switch gears and talk about the effects on the team.</p>
+
+<h2>Islands made of knowledge</h2>
+
+<p>As is often the case every member of our team knows some parts of the project better than others and this is fine. But when this specialisation develops too far, it leads to pretty big problems.</p>
+
+<p>In the extreme case the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> drops to 1 and should somebody be absent no progress can be made.
+Even before the problem escalates that much, it will reduce the ability of the team to spread the work load properly.
+Because not every team member can handle every task, some team members will inevitably get more work assigned than others. This can stall progress while leaving a part of the team bored.</p>
+
+<p>Pair programming prevents this by simply involving two developers. The effects of that are obvious. My coworker and I both know the component we wrote well, and already briefed other team members on it.</p>
+
+<h2>Logistics &amp; Agility</h2>
+
+<p>Now for something that's well known: Most agile developers are not writing code nonstop through their workday.</p>
+
+<p>Of course this is not a bad thing, great ideas can spring from meetings and team performance is best evaluated through dialogue between its members.</p>
+
+<p>Nonetheless meetings are not necessarily relevant to the current task of the developer and these meetings therefore seem to stop progress for their duration.
+At least in our case there were quite a few days when either I or my coworker were held up in meetings or one of us had a day off.</p>
+
+<p>Regardless we were able to keep the pace up, because the other one of us was still free to work on the task.
+This was one of the really big speedups that pair programming gave to us.</p>
+
+<h1>Epilogue</h1>
+
+<p>Once we finished the component feedback from the team was very positive.
+Together we managed to write a core component that performs well and is easy to adapt to changes.
+Even though it took two developers 3 weeks to finish a task that would have taken 4 weeks by a single one   .</p>
+
+<p>It's not only the result that convinced us to use pair programming in the future.
+It also felt very productive and the steady progress throughout the development process satisfied the whole team.</p>
+
+<p>Although this post describes the success we had with pair programming, pair programming should be seen for what it is: just another technique to help you and your team.
+It may not help your team as much as it helped us. It may not be needed for the size of tasks you regularly encounter. And you may not be comfortable with taking the backseat when writing code.
+Due to these very valid concerns, I think every team should judge pair programming themselves.</p>
+
+<p>Still don't be put off at first and give a try the next time you are in a tight spot.</p>
+]]></content>
+    </entry>
+        <entry>
+        <title type="html"><![CDATA[Thoughtram Angular Master Class at Shopware]]></title>
+        <link href="https://developers.shopware.com/blog/2018/03/20/thoughtram-angular-master-class-at-shopware/"/>
+        <updated>2018-03-20T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/03/20/thoughtram-angular-master-class-at-shopware/</id>
+        <content type="html"><![CDATA[<p>For three days, from <strong>20th to 22nd June 2018</strong> Shopware will host an awesome event that is all about <a href="https://angularjs.org/">AngularJS</a>.</p>
+
+<p>During these three days, you'll build a real-world Angular application, learning everything you need to call yourself an angular master! It's fun, and if you plan to do something with angular anytime soon, you definitely should join.</p>
+
+<p>What will you learn?</p>
+
+<ul>
+<li>Components and Modules</li>
+<li>Fetching data using Http</li>
+<li>Advanced Dependency Injection</li>
+<li>Basic Forms</li>
+<li>Observables deep-dive</li>
+<li>Architectural patterns</li>
+<li>Component communication</li>
+<li>ContentChildren and ViewChildren</li>
+<li>
+<a href="http://ngrx.github.io/"><strong>ngrx</strong></a>
+</li>
+</ul>
+
+<p>More information about the event can be found on the thoughtram <a href="http://thoughtram.io/angular-master-class.html">website</a> and <a href="https://blog.thoughtram.io/announcements/2018/02/07/announcing-angular-master-class-at-shopware.html">blog</a>. Do yourself a favour, check it out!</p>
+
+<p>...ok, if you've made it so far, you probably want to attend the event.</p>
+
+<p>Tickets can be bought via <a href="https://www.eventbrite.de/e/angular-master-class-shopware-tickets-42705611634">eventbrite</a> - and you get <strong>15% off</strong>!</p>
+
+<p>Just enter the promitional code <code>ANGULAR_SHOPWARE</code> when ordering your ticket via <a href="https://www.eventbrite.de/e/angular-master-class-shopware-tickets-42705611634">eventbrite</a>:</p>
+
+<iframe width="100%" height="355" src="//eventbrite.de/tickets-external?eid=42705611634&amp;ref=etckt" frameborder="0" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+
+<p>Be quick - while I'm writing this, only 4 tickets are left!</p>
+]]></content>
+    </entry>
+        <entry>
+        <title type="html"><![CDATA[New: Get your template or developer certification online]]></title>
+        <link href="https://developers.shopware.com/blog/2018/03/15/new-get-your-template-or-developer-certification-online/"/>
+        <updated>2018-03-15T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/03/15/new-get-your-template-or-developer-certification-online/</id>
+        <content type="html"><![CDATA[<p>Interested in sharing your Shopware expertise with potential clients? Why not make it official - you can now take the exam to become a certified Shopware developer or template designer and developer online. Not only does a certificate increase your opportunities as a developer, but it’s proof of your expertise and ability to develop innovative solutions for Shopware. Equipped with everything you need to know to pass, our free trainings on Udemy are the perfect way to prepare for the exam. Those who are looking to become re-certified can also do so online.</p>
+
+<p>After booking the certification, you will receive an email with a link to the test and your individual access data. You do not have to take the test straight away - you are free to determine when and where to take the exam. There are between 19 and 20 questions for each test. You can find out what minimum score is required in order to pass plus further information about the certification on our FAQ page.</p>
+
+<p><strong><a href="https://en.shopware.com/academy/online-trainings/faq/">To the FAQ page</a></strong></p>
+
+<p>After passing the test, your certificate will be made available for download in your account. The certificate will automatically appear in the partner listing and on your partner detail page, permitting you have an existing partner profile on the Shopware website. Your certificates help Shopware customers identify which partner is best suited for their project needs. If you are a plugin manufacturer, your certificate appears in your profile in the Community Store. Next to having an impact on your trust level, your certification affects whether your plugin qualifies for bronze, silver or gold. Every certificate is valid for 18 months. You will automatically receive a notification before your certificate is set to expire.</p>
+
+<p><strong><a href="https://en.shopware.com/academy/online-trainings/">Register to become certified today</a></strong></p>
+]]></content>
+    </entry>
+        <entry>
+        <title type="html"><![CDATA[Free Online Course: Shopware Developer Basic Training]]></title>
+        <link href="https://developers.shopware.com/blog/2018/01/31/free-online-course-shopware-developer-basic-training/"/>
+        <updated>2018-01-31T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/01/31/free-online-course-shopware-developer-basic-training/</id>
+        <content type="html"><![CDATA[<p><a href="https://www.udemy.com/developer-training-basic-english"><img src="/blog/img/udemy_dev_basic_training.jpg" alt="Udemy Developer Basic Training Banner" /></a></p>
+
+<p>Interested in learning the basics of Shopware development? Or have you always wanted to create a plugin for Shopware? You now have the opportunity to dive into the technology behind Shopware 5 in our free course on Udemy, where you’ll be taken through the fundamentals of working with one of Europe’s leading open source eCommerce platforms.</p>
+
+<p>The course starts with setting up multiple shop configurations for different system environments and takes you through creating your first plugin from scratch. The result should serve as a foundation so that you can gradually extend the plugin by applying more knowledge throughout the remainder of the course.</p>
+
+<p>While creating new pages and setting up a redirection for unauthenticated users, you will
+cover topics like:</p>
+
+<ul>
+<li>Controllers and routing</li>
+<li>Templates</li>
+<li>Events</li>
+<li>Using the service container</li>
+</ul>
+
+<p>Two examples will round off the course by using what you’ve learned to create a new service and implement the plugin lifecycle methods.</p>
+
+<p>Your trainer will be Dominic Klein, Core Developer at Shopware.</p>
+
+<p> 
+<a href="https://www.udemy.com/developer-training-basic-english">Enrol now and start writing your first plugin!</a></p>
+]]></content>
+    </entry>
+        <entry>
+        <title type="html"><![CDATA[How to use Environment Variables for Plugin Configuration]]></title>
+        <link href="https://developers.shopware.com/blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/"/>
+        <updated>2018-01-23T00:00:00+00:00</updated>
+        <id>https://developers.shopware.com/blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/</id>
         <content type="html"><![CDATA[<div class="alert alert-info">
-Anyone who is just searching for the example source code and does not want to read the complete blog post, <a href="https://github.com/teiling88/mutation-testing">here it is.</a>
+Anyone who is just searching for the example source code and does not want to read the complete blog post, <a href="https://github.com/teiling88/shopware-environment-variables">here it is.</a>
 </div>
 
-<p>In this blog post I want to present the concept of mutation testing and a simple example with <a href="https://github.com/humbug/humbug">humbug</a> for you. A few months ago, we have reached the 100 % code coverage goal in our actual project, the <a href="https://docs.enterprise.shopware.com/b2b-suite/">b2b-suite</a>. But what does this number stand for? Yes it <strong><em>only</em></strong> says you created enough unit-tests to execute every single line of code in your application. Nothing more. In the following sections I will create a simple class which is completely covered with unit tests. After that we will improve the tests and show how mutation testing can support us there.</p>
+<p>This blog post describes a small proof of concept how we can handle different plugin configurations for multi stage environments. I use our Paypal plugin as an example and will overwrite the two config values <code>paypalUsername</code> and <code>paypalPassword</code>.</p>
 
-<h2>Create an example class and unit tests</h2>
+<h2>Preparation</h2>
 
-<p>Let us have a look on this simple comparison example class:</p>
+<p>At first, we have to create our environment variables. For a quick test, I added the environment variables to my <code>.htaccess</code> file:</p>
 
-<pre><code class="language-php">&lt;?php declare(strict_types=1);
-
-class Comparison
-{
-    public function isGreaterThan(int $x, int $y): bool
-    {
-        return $x &gt; $y;
-    }
-
-    public function isSmallerThan(int $x, int $y): bool
-    {
-        return $x &lt; $y;
-    }
-}
+<pre><code>SetEnv paypalUsername EnvPayPalUsername
+SetEnv paypalPassword EnvPaypalPassword
 </code></pre>
 
-<p>To create a unit-test to reach 100 % coverage is very simple. See the example below:</p>
+<p>I recommend for a production environment to set this kind of environment variables in your vhosts configuration file to protect you for unintentionally changes. After creating our environment variables we should make them available via the dependency injection container.
+You have to add the following lines to your config.php:</p>
 
-<pre><code class="language-php">&lt;?php declare(strict_types=1);
-
-class ComparisonTest extends PHPUnit\Framework\TestCase
-{
-    private $comparison;
-
-    public function setUp()
-    {
-        $this-&gt;comparison = new Comparison();
-    }
-
-    public function test_isGreaterThan()
-    {
-        self::assertTrue($this-&gt;comparison-&gt;isGreaterThan(5, 3));
-    }
-
-    public function test_isSmallerThan()
-    {
-        self::assertTrue($this-&gt;comparison-&gt;isSmallerThan(3, 5));
-    }
-}
+<pre><code class="language-php">&lt;?php return [
+    'db' =&gt; [...],
+    'custom' =&gt;
+        [
+            'paypalUsername' =&gt; getenv('paypalUsername'),
+            'paypalPassword' =&gt; getenv('paypalPassword'),
+        ],
+];
 </code></pre>
 
-<p>The execution of these unit tests creates the following output:</p>
+<p>With this addition our environment variables are available as parameter in the %shopware.custom% array.</p>
 
-<pre><code>OK (2 tests, 2 assertions)
+<h2>Plugin Installation</h2>
 
+<p>In the last step we can install the ShopwareEnvironmentVariables plugin and extend our mapping in: <a href="https://github.com/teiling88/shopware-environment-variables/blob/master/Reader.php#L35">Reader</a> If you don't know the name of the configuration element, you can easily create a small debug statement in the Reader.php.</p>
 
-Code Coverage Report:   
-  2017-08-22 12:42:16   
-                        
- Summary:               
-  Classes: 100.00% (1/1)
-  Methods: 100.00% (2/2)
-  Lines:   100.00% (2/2)
+<h1>Conclusion</h1>
 
-Comparison
-  Methods: 100.00% (2/2)   Lines: 100.00% (2/2)
-
-</code></pre>
-
-<p>So we created a class with two methods which are covered by tests. We could think this class is bullet proof and every invalid change will be discovered from our test. But really? What if some developer adds a small equal sign to our methods? Our new <code>Comparison</code> class looks like this:</p>
-
-<pre><code class="language-php">&lt;?php declare(strict_types=1);
-
-class Comparison
-{
-    public function isGreaterThan(int $x, int $y): bool
-    {
-        return $x &gt;= $y;
-    }
-
-    public function isSmallerThan(int $x, int $y): bool
-    {
-        return $x &lt;= $y;
-    }
-}
-</code></pre>
-
-<p>And the result of our unit test is the same like above. Every test passed. But now false positive results are possible . If we use the method <code>isGreaterThan</code> with the parameters <code>$x = 5; $y = 5;</code> we will get true as return value instead of the supposed false value.</p>
-
-<p>So what happened? At the moment we only test the happy execution path of these methods and don't observe of the threshold values. For every developer it is obviously that 5 is greater than 3 and 3 is smaller than 5. So we create this kind of test. But how we have to improve our test to cover oll existing threshold values?</p>
-
-<p>First, we should test the nearest combination of parameters which causes an false return value. In our example methods we can easily use the equal number for <code>$x</code> and <code>$y</code>. After that we should test the farthest combination which causes a true return value. For this we can easily use the PHP constants <code>PHP_INT_MAX</code> and <code>PHP_INT_MIN</code>. The new created test can be seen below:</p>
-
-<pre><code class="language-php">&lt;?php declare(strict_types=1);
-
-class ComparisonTest extends PHPUnit\Framework\TestCase
-{
-    // ...
-
-    public function test_isGreaterThan()
-    {
-        self::assertTrue($this-&gt;comparison-&gt;isGreaterThan(5, 3));
-        self::assertFalse($this-&gt;comparison-&gt;isGreaterThan(4, 4));
-        self::assertTrue($this-&gt;comparison-&gt;isGreaterThan(PHP_INT_MAX, PHP_INT_MIN));
-    }
-
-    public function test_isSmallerThan()
-    {
-        self::assertTrue($this-&gt;comparison-&gt;isSmallerThan(3, 5));
-        self::assertFalse($this-&gt;comparison-&gt;isSmallerThan(4, 4));
-        self::assertTrue($this-&gt;comparison-&gt;isSmallerThan(PHP_INT_MIN, PHP_INT_MAX));
-    }
-}
-</code></pre>
-
-<h2>Mutation Testing</h2>
-
-<p>In this small example it is very easy to find the needed test range and threshold values. But how does it work in bigger applications with hundred of classes and thousand lines of code? I guess in the most cases only the happy path will be tested. So how can mutation testing help us to create better tests?</p>
-
-<p>The basic concept of mutation testing sounds very easy. You change comparison statements as an example from <code>===</code> to <code>!==</code> or changes return values of methods like <code>return true;</code> to <code>return false;</code>. This new versions of your application are called &quot;mutants&quot;. After your change you execute the test suite. If the suite fails your tests &quot;killed the mutant&quot;. This means your tests detected the wrong behaviour.</p>
-
-<p>Mutation testing introduces a new quality score the so-called &quot;Mutation Score Indicator&quot;. This score is the ratio of the number of Dead Mutants over all created Mutants. Usually this score is calculated like the code coverage in percent.</p>
-
-<p>In order to make this kind of testing automatically we can use <a href="https://github.com/humbug/humbug">humbug</a> for that. Humbug has a wide range of mutators like the described mutations above. A good overview can be found <a href="https://github.com/humbug/humbug#mutators">here</a>.</p>
-
-<p>So let us revert the new assertions and execute humbug for the first time. Humbug executes phpunit in the first place. After that it will create the mutants and execute the test suite again for every created mutant. To improve the execution time humbug only uses those test classes which cover the specific file and line on which the mutation was inserted.</p>
-
-<p>Humbug creates the following output:</p>
-
-<pre><code>Humbug has completed the initial test run successfully.
-Tests: 2 Line Coverage: 100.00%
-
-Humbug is analysing source files...
-
-Mutation Testing is commencing on 1 files...
-(.: killed, M: escaped, S: uncovered, E: fatal error, T: timed out)
-
-M.M.
-
-4 mutations were generated:
-       2 mutants were killed
-       0 mutants were not covered by tests
-       2 covered mutants were not detected
-       0 fatal errors were encountered
-       0 time outs were encountered
-
-Metrics:
-    Mutation Score Indicator (MSI): 50%
-    Mutation Code Coverage: 100%
-    Covered Code MSI: 50%
-</code></pre>
-
-<p>As we can see, humbug created 4 mutations, 2 mutants were killed and 2 mutants were not detected. So let us have a look at the generated mutations which are not detected:</p>
-
-<pre><code class="language-php">    public function isGreaterThan(int $x, int $y): bool
-    {
-        return $x &gt;= $y;
-    }
-    
-    public function isSmallerThan(int $x, int $y): bool
-    {
-        return $x &lt;= $y;
-    }    
-</code></pre>
-
-<p>Humbug automatically detects the same issues which we found above manually. If we add the new assertions which we already created above we should reach an Mutation Score Indicator of 100%. The created output stands below:</p>
-
-<pre><code>Humbug has completed the initial test run successfully.
-Tests: 2 Line Coverage: 100.00%
-
-Humbug is analysing source files...
-
-Mutation Testing is commencing on 1 files...
-(.: killed, M: escaped, S: uncovered, E: fatal error, T: timed out)
-
-....
-
-4 mutations were generated:
-       4 mutants were killed
-       0 mutants were not covered by tests
-       0 covered mutants were not detected
-       0 fatal errors were encountered
-       0 time outs were encountered
-
-Metrics:
-    Mutation Score Indicator (MSI): 100%
-    Mutation Code Coverage: 100%
-    Covered Code MSI: 100%
-</code></pre>
-
-<h2>Conclusion</h2>
-
-<p>Mutation Testing especially humbug is a powerful tool to rate the quality of your unit tests. It checks the hole test suite and gives you the safety that your created tests are useful. Our b2b-suite has at the moment a Mutation Score Indicator of 79%. So I think there is some space left for improvements ;-).</p>
-
-<p>If you are interested in the source code, it can be found <a href="https://github.com/teiling88/mutation-testing">here</a>.</p>
-]]></content>
-    </entry>
-        <entry>
-        <title type="html"><![CDATA[Quick Tip: Custom fonts in the TinyMCE editor]]></title>
-        <link href="https://developers.shopware.com/blog/2017/08/09/quick-tip-custom-fonts-in-the-tinymce-editor"/>
-        <updated>2017-08-09T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/08/09/quick-tip-custom-fonts-in-the-tinymce-editor</id>
-        <content type="html"><![CDATA[<p><img src="/blog/img/custom-font-example.png" alt="Screenshot Storefront" /></p>
-
-<p><em>Custom font example in the Shopware storefront</em></p>
-
-<p>Lately we're getting more &amp; more requests on how to register / add custom fonts to the TinyMCE WYSIWYG editor in the Shopware administration. The editor is used throughout every Shopware module where you can insert HTML text, therefore it would be handy to have your own fonts in there.</p>
-
-<p>We've created an open source Shopware plugin called <code>SwagTinyMceCustomFont</code> which covers your needs. It allows you to integrate custom fonts from <a href="https://fonts.google.com/">Google Fonts</a>. The plugin automatically loads the font in the administration interface as well as in the storefront of your shop.</p>
-
-<p>You can find the plugin as well as the feature overview, installation guide and usage example on GitHub on: <a href="https://github.com/shopwareLabs/SwagTinyMceCustomFont">https://github.com/shopwareLabs/SwagTinyMceCustomFont</a>.</p>
-]]></content>
-    </entry>
-        <entry>
-        <title type="html"><![CDATA[SEO URLs in plugins]]></title>
-        <link href="https://developers.shopware.com/blog/2017/07/24/seo-urls-in-plugins"/>
-        <updated>2017-07-24T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/07/24/seo-urls-in-plugins</id>
-        <content type="html"><![CDATA[<p>In the world of eCommerce, SEO is a very important and recurrent topic.
-Thus, Shopware offers some tools to create a SEO friendly shop by default, including SEO friendly URLs.
-Make sure to have a look at the following SEO blog post, covering detailed information for the Shopware SEO engine: <a href="/blog/2015/08/11/the-shopware-seo-engine/">The Shopware SEO engine</a></p>
-
-<p>But for now, how do we actually create proper SEO URLs for our custom plugins?</p>
-
-<p>It must have been about a year ago when I stumbled across the same issue while reworking our premium plugin
-<a href="http://store.shopware.com/en/swagproductadvisor/shopping-advisor.html">Shopping advisor</a>.</p>
-
-<p>In this blog post, I want to provide a short tutorial on how to implement custom SEO URLs for your plugins.
-I'll also attach an example plugin for both Shopware 5.3 and 5.2 at the end of the tutorial.</p>
-
-<h2>Generating a SEO URL for a custom controller</h2>
-
-<p>For this short tutorial I will use a very basic plugin based on the new plugin system.</p>
-
-<h3>The scenario</h3>
-
-<p>As an example, I would like to create a glossary plugin.</p>
-
-<p>Using the glossary plugin, the shop owner should be able to create a description for a word.
-The plugin will provide an overview, showing all given words and their description.</p>
-
-<p>To store those, I created a table with the name <code>s_glossary</code> and the columns <code>id</code>, <code>word</code> and <code>description</code>.</p>
-
-<p>Later in this tutorial we also want to add a detail page, only showing a given word and its respective description.</p>
-
-<p>Let's assume the basic plugin structure contains a registered Frontend controller called <code>Glossary</code>, as well as the mentioned
-database table.</p>
-
-<h3>Let's get started</h3>
-
-<p>For the glossary overview, we would implement an <code>indexAction</code> in our <code>Glossary</code> controller to handle the overview.
-In order to call our action now, we'd open the following URL: <code>http://myShop.com/glossary/</code></p>
-
-<p>That URL looks smooth and SEO friendly already, doesn't it?</p>
-
-<p>What happens, if we want the glossary page to be internationally available?
-For your german customers, you would want the glossary to be available using <code>http://myShop.com/glossar/</code> as well.</p>
-
-<p>This can and should be done using SEO URLs.</p>
-
-<p>First of all, SEO URLs in Shopware are stored in the database table <code>s_core_rewrite_urls</code>.
-We could just create a new entry in that table during the installation process of the plugin.
-That would actually work for now.</p>
-
-<p>Yet, we want to create those SEO URLs depending on the 'refresh strategies' configuration.</p>
-
-<p>This configuration can be found in the backend: <code>Configuration &gt; Cache/performance &gt; Settings &gt; SEO &gt; Refresh strategy</code>.
-Our SEO URLs are generated in three different ways, being configurable in the backend.</p>
-
-<p>Available options are:</p>
-
-<ul>
-<li>Manually</li>
-<li>Via cronjob</li>
-<li>Live</li>
-</ul>
-
-<p>Again, refer to this blog post to get more detailed information on how those work: <a href="/blog/2015/08/11/the-shopware-seo-engine/">The Shopware SEO engine</a></p>
-
-<p>As each of the options mentioned above requires slightly different plugin logic, I'll explain them step by step.</p>
-
-<h3>Implement logic for 'Via cronjob'</h3>
-
-<div class="alert alert-danger" role="error">
-    The following code is only compatible with Shopware version 5.3 or higher.
-</div>
-
-<p>In <strong>Shopware 5.3</strong> we implemented a new event to SEO URL generation using the cronjob. <br />
-Everytime the cronjob <code>RefreshSeoIndex</code> is triggered, the method <code>onRefreshSeoIndex</code> in <a href="https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php#L134">engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php</a> is called. <br />
-It now contains a new notify event called <code>Shopware_CronJob_RefreshSeoIndex_CreateRewriteTable</code>, which we will use to add our own SEO URL generation process.
-The event is called once for each shop after every other SEO URL (e.g. Products, Categories, ...) has been generated for this shop.</p>
-
-<pre><code>public static function getSubscribedEvents()
-{
-    return [
-        'Shopware_CronJob_RefreshSeoIndex_CreateRewriteTable' =&gt; 'createGlossaryRewriteTable'
-    ];
-}
-
-public function createGlossaryRewriteTable()
-{
-    /** @var \sRewriteTable $rewriteTableModule */
-    $rewriteTableModule = Shopware()-&gt;Container()-&gt;get('modules')-&gt;sRewriteTable();
-    
-    // Insert new rewrite URL for our custom controller
-    $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary', 'glossary/');
-}
-</code></pre>
-
-<p>In the example mentioned above, we would create a new rewrite URL for each shop.
-Of course, in this code we could and should now build our logic to create the translated rewrite URLs, e.g. <code>http://myShop.com/glossar</code>, which would be the german translation for it.</p>
-
-<h3>Implement logic for 'Live'</h3>
-
-<p>This option does <strong>not</strong> mean, that with each and every request the SEO URLs are re-generated.
-You can configure the refresh interval in the backend under <code>Configuration &gt; Cache/performance &gt; Settings &gt; SEO &gt; Refresh strategy</code>.</p>
-
-<p>Basically, whenever a request is sent to the shop and the response is about to be sent back, Shopware checks if it's time to re-generate the SEO URLs.
-In only that case (refresh strategy is 'live' AND the interval has passed), the method <code>sCreateRewriteTable</code> from our core module <a href="https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Core/sRewriteTable.php#L220">sRewriteTable</a> is called.</p>
-
-<p>This method only generates the SEO URLs for the <strong>currently</strong> active shop.</p>
-
-<p>Therefore we could use an after hook on the method mentioned above.
-The code to actually insert our URL into the database is the same, so we can just re-use the same code with a different event.</p>
-
-<pre><code>public static function getSubscribedEvents()
-{
-    return [
-        'Shopware_CronJob_RefreshSeoIndex_CreateRewriteTable' =&gt; 'createGlossaryRewriteTable',
-        'sRewriteTable::sCreateRewriteTable::after' =&gt; 'createGlossaryRewriteTable',
-    ];
-}
-
-public function createGlossaryRewriteTable()
-{
-    /** @var \sRewriteTable $rewriteTableModule */
-    $rewriteTableModule = Shopware()-&gt;Container()-&gt;get('modules')-&gt;sRewriteTable();
-    $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary', 'glossary/');
-}
-</code></pre>
-
-<p>That's it for the live mode.</p>
-
-<h3>Implement logic for 'Manual'</h3>
-
-<div class="alert alert-danger" role="error">
-    The following code is only compatible with Shopware version 5.3 or higher.
-</div>
-
-<div class="is-float-right">
-    <img alt="Overview of the SEO URL concept" src="/blog/img/manual-seo-generation-win.png">
-    <div><em>The manual SEO URL generation window</em></div>
-</div>
-
-<p>This is where things become a little tricky.
-The manual URL generation is actually handled in ExtJs, generating the URLs in a batch mode.</p>
-
-<p>You can choose a batch size, which defines how many URLs should be generated with each request.</p>
-
-<p>We want to have our own progress bar at the bottom of the window now to generate our SEO URLs for the currently selected shop in batch mode.</p>
-
-<p>First of all we have to extend the file <a href="https://github.com/shopware/shopware/blob/5.3/themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js#L83">themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js</a>.
-We have to extend the property 'seo', which contains all progress bars, their snippets and, most important, the request URL to be called for each batch call to generate the SEO URLs.</p>
-
-<p>So, let's overwrite the ExtJs window.
-I won't go into detail on how to extend an ExtJs file. Refer to this guide about <a href="/developers-guide/backend-extension/#example-#1:-simple-extension">extending the backend</a> instead.</p>
-
-<p><em>Register new event:</em></p>
-
-<pre><code>public static function getSubscribedEvents()
-{
-    return [
-        ...
-        'Enlight_Controller_Action_PostDispatch_Backend_Performance' =&gt; 'loadPerformanceExtension'
-    ];
-}
-</code></pre>
-
-<p><br /></p>
-
-<p><em>The respective listener:</em></p>
-
-<pre><code>public function loadPerformanceExtension(\Enlight_Controller_ActionEventArgs $args)
-{
-    $subject = $args-&gt;getSubject();
-    $request = $subject-&gt;Request();
-
-    if ($request-&gt;getActionName() !== 'load') {
-        return;
-    }
-
-    $subject-&gt;View()-&gt;addTemplateDir(__DIR__ . '/Resources/views/');
-    $subject-&gt;View()-&gt;extendsTemplate('backend/performance/view/glossary.js');
-}
-</code></pre>
-
-<p>With Shopware 5.3 we implemented a new method called <code>addProgressBar</code> to <code>multi_request_tasks.js</code>.
-As the first parameter you have to provide an object containing an 'initialText' to be shown initially, a 'progressText' to be shown while generating the SEO URLs
-and a 'requestUrl' to be called with each step in the batch processing.
-The second parameter has to be a name for the new progress bar - we need this one later.
-The third parameter should be the target. Possible values are 'seo' and 'httpCache'. As we want to create a new progress bar to the SEO window, we'll use 'seo' here obviously.</p>
-
-<pre><code>//{block name=&quot;backend/performance/view/main/multi_request_tasks&quot; append}
-Ext.define('Shopware.apps.Performance.view.main.Glossary', {
-    override: 'Shopware.apps.Performance.view.main.MultiRequestTasks',
-
-    initComponent: function() {
-        this.addProgressBar(
-            {
-                initialText: 'Glossary URLs',
-                progressText: '[0] of [1] glossary URLs',
-                requestUrl: '{url controller=glossary action=generateSeoUrl}'
-            },
-            'glossary',
-            'seo'
-        );
-
-        this.callParent(arguments);
-    }
-});
-//{/block}
-</code></pre>
-
-<p>Once we refresh the backend and probably clear the cache, the SEO window should now contain our new progress bar.
-Now we need to create our backend controller and a <code>generateSeoUrlAction</code>.</p>
-
-<p>With each AJAX request for the batch processing, we'll get a shopId, an offset and a limit to properly generate our SEO URLs.
-We can ignore offset and the limit <strong>for the moment</strong>, since there is only a single URL to be generated for each shop.
-Just remember them for later in this tutorial.</p>
-
-<p><em>Controllers/Backend/Glossary.php</em></p>
-
-<pre><code>&lt;?php
-
-class Shopware_Controllers_Backend_Glossary extends Shopware_Controllers_Backend_ExtJs
-{
-    public function generateSeoUrlAction()
-    {
-        $shopId = $this-&gt;Request()-&gt;getParam('shopId');
-
-        /** @var Shopware_Components_SeoIndex $seoIndex */
-        $seoIndex = $this-&gt;container-&gt;get('SeoIndex');
-        $seoIndex-&gt;registerShop($shopId);
-
-        /** @var sRewriteTable $rewriteTableModule */
-        $rewriteTableModule = $this-&gt;container-&gt;get('modules')-&gt;RewriteTable();
-        $rewriteTableModule-&gt;baseSetup();
-        $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary', 'glossary/');
-
-        $this-&gt;View()-&gt;assign(['success' =&gt; true]);
-    }
-}
-</code></pre>
-
-<p>We're fetching the shopId, register a shop using the given shopId and then simply insert our rewrite URL again.</p>
-
-<p>Now there's one more thing missing.
-Once we select a shop in the backend SEO module, an AJAX call is sent to collect the total counts of URLs to be created with each progress bar.
-Our glossary URLs are not collected yet, so the module can't handle our glossary URLs properly yet.</p>
-
-<p>To collect the URLs, the <code>getCountAction</code> of the <a href="https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Controllers/Seo.php#L72">SEO controller</a> is called.
-Thankfully it provides a filter event <code>Shopware_Controllers_Seo_filterCounts</code> to properly add our own counts. For this we need to use the name we used earlier for the progress bar.</p>
-
-<pre><code>public static function getSubscribedEvents()
-{
-    return [
-        ...
-        'Shopware_Controllers_Seo_filterCounts' =&gt; 'addGlossaryCount'
-    ];
-}
-
-public function addGlossaryCount(\Enlight_Event_EventArgs $args)
-{
-    $counts = $args-&gt;getReturn();
-
-    $counts['glossary'] = 1;
-
-    return $counts;
-}
-</code></pre>
-
-<p>Currently, there's only a single URL to be generated for each shop, so we'll just return a static 1.</p>
-
-<p>So, now let's try it.
-If you've implemented everything properly, it should work perfectly now.</p>
-
-<h2>Custom parameters in SEO URL</h2>
-
-<p>Now we've implemented a simple SEO URL generation for our glossary plugin.
-The overview is now supported by SEO friendly URLs and we even generate those URLs in a proper way, depending on the given configuration.</p>
-
-<p>Now we want to have some kind of &quot;detail&quot; page for each word.
-When calling this detailed page, we only see a single word with its related description.</p>
-
-<p>For this we need a new action in our <strong>Frontend</strong> Controller, e.g. &quot;detailAction&quot;.
-We could call this action by using an URL like <code>http://myShop.com/glossary/detail</code>.
-In this case though, we would have to attach an ID for the word we want to show now.</p>
-
-<p>Sounds easy, let's just attach it to the URL:
-<code>http://myShop.com/glossary/detail?wordId=1</code></p>
-
-<p>This link would now display the word with the ID 1.
-Wouldn't it be cooler to have the word itself as a part of the URL now?
-E.g. you'd want to explain the word 'recursion', then the URL could look like this: <code>http://myShop.com/glossary/recursion</code></p>
-
-<p>Way better, isn't it?</p>
-
-<p>Now this already requires several changes in our code.
-First of all, every time we generate our SEO URLs, we have to iterate through all words in our database.</p>
-
-<pre><code>public function createGlossaryRewriteTable()
-{
-    /** @var \sRewriteTable $rewriteTableModule */
-    $rewriteTableModule = Shopware()-&gt;Container()-&gt;get('modules')-&gt;sRewriteTable();
-    $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary', 'glossary/');
-
-    /** @var QueryBuilder $dbalQueryBuilder */
-    $dbalQueryBuilder = $this-&gt;container-&gt;get('dbal_connection')-&gt;createQueryBuilder();
-
-    $words = $dbalQueryBuilder-&gt;select('glossary.id, glossary.word')
-        -&gt;from('s_glossary', 'glossary')
-        -&gt;execute()
-        -&gt;fetchAll(\PDO::FETCH_KEY_PAIR);
-
-    foreach ($words as $wordId =&gt; $word) {
-        $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary&amp;sAction=detail&amp;wordId=' . $wordId, 'glossary/' . $word);
-    }
-}
-</code></pre>
-
-<p>Also, we need to adjust the URL counts for the backend now.</p>
-
-<pre><code>public function addGlossaryCount(\Enlight_Event_EventArgs $args)
-{
-    $counts = $args-&gt;getReturn();
-
-    /** @var QueryBuilder $dbalQueryBuilder */
-    $dbalQueryBuilder = $this-&gt;container-&gt;get('dbal_connection')-&gt;createQueryBuilder();
-    $wordsCount = $dbalQueryBuilder-&gt;select('COUNT(glossary.id)')
-        -&gt;from('s_glossary', 'glossary')
-        -&gt;execute()
-        -&gt;fetchAll(\PDO::FETCH_COLUMN);
-
-    $counts['glossary'] = $wordsCount;
-
-    return $counts;
-}
-</code></pre>
-
-<p>Do you still remember the <code>offset</code> and the <code>limit</code> parameter from the batch processing for the SEO URLs?
-Now we do have to implement those, to only generate as many SEO URLs as configured in the batch process.</p>
-
-<pre><code>public function generateSeoUrlAction()
-{
-    ...
-
-    /** @var QueryBuilder $dbalQueryBuilder */
-    $dbalQueryBuilder = $this-&gt;container-&gt;get('dbal_connection')-&gt;createQueryBuilder();
-    $words = $dbalQueryBuilder-&gt;select('glossary.id, glossary.word')
-        -&gt;from('s_glossary', 'glossary')
-        -&gt;setMaxResults($limit)
-        -&gt;setFirstResult($offset)
-        -&gt;execute()
-        -&gt;fetchAll(\PDO::FETCH_KEY_PAIR);
-
-    foreach ($words as $wordId =&gt; $word) {
-        $rewriteTableModule-&gt;sInsertUrl('sViewport=glossary&amp;sAction=detail&amp;wordId=' . $wordId, 'glossary/' . $word);
-    }
-
-    $this-&gt;View()-&gt;assign(['success' =&gt; true]);
-}
-</code></pre>
-
-<h3>Add foreign parameters</h3>
-
-<p>While this already looks good, there's one more thing to do.
-Shopware needs to know our custom parameter &quot;<strong>wordId</strong>&quot; first.
-Otherwise our parameter would just get stripped and our SEO URL wouldn't work.</p>
-
-<p>The possible cases for parameters are handled in the <a href="https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/Routing/Generators/RewriteGenerator.php#L166">RewriteGenerator</a>.
-It has a whole lot of cases, e.g. the parameter &quot;<strong>sArticle</strong>&quot; is only allowed when used with the <strong>detail</strong> controller.</p>
-
-<p>Thankfully, since Shopware 5.2, this method provides an event to add custom parameters.</p>
-
-<p>So, let's add the event and implement our custom parameter.</p>
-
-<pre><code>public static function getSubscribedEvents()
-{
-    return [
-        ...
-        'Shopware_Components_RewriteGenerator_FilterQuery' =&gt; 'filterParameterQuery'
-    ];
-}
-</code></pre>
-
-<pre><code>public function filterParameterQuery(\Enlight_Event_EventArgs $args)
-{
-    $orgQuery = $args-&gt;getReturn();
-    $query = $args-&gt;getQuery();
-
-    if ($query['controller'] === 'glossary' &amp;&amp; isset($query['wordId'])) {
-        $orgQuery['wordId'] = $query['wordId'];
-    }
-
-    return $orgQuery;
-}
-</code></pre>
-
-<p>So, what did I do here?
-First of all, Shopware doesn't know things like &quot;controllers&quot; or &quot;actions&quot; like that.
-Due to legacy reasons, Shopware still needs them to be handled as 'sViewport', which would be the controller, and 'sAction',
-which obviously represents action.
-That's what <code>$orgQuery</code> contains: The controller mapped to 'sViewport' and the action mapped to the array element 'sAction'.
-Since <code>$orgQuery</code> will be used for assembling our SEO URL later, we need to add our parameter to it.</p>
-
-<p>Meanwhile, <code>$query</code> contains the actual request parameters as we know them.</p>
-
-<p>We only need to add our custom parameter <code>wordId</code> if both the controller equals 'glossary' and the parameter itself is set.
-In that case, we add <code>wordId</code> to <code>$orgQuery</code> and return it afterwards.</p>
-
-<h2>Example plugin</h2>
-
-<p>You can find the example plugin for <strong>Shopware 5.3</strong> <a href="https://developers.shopware.com/exampleplugins/SeoExample.zip">here</a>.</p>
-
-<p>Just to make sure: <strong>This is not a fully functional plugin as it is only supposed to be an example.</strong>
-It will create the necessary plugin table <em>s_glossary</em> with a few example words.
-This plugin does not provide a backend module to work with and the frontend templates are very slim to show the basic functionality.</p>
-
-<h3>Shopware 5.2 plugin</h3>
-
-<p>We've also created an example plugin for <strong>Shopware 5.2</strong>, which can be found <a href="https://developers.shopware.com/exampleplugins/SeoExample52.zip">here</a>.</p>
-
-<p>There's several differences, e.g. the whole <em>Resources/views/backend</em> directory is different.
-Additional to that, the logic to count the available glossary URLs had to be changed, since the event we used above was implemented with 5.3.</p>
-]]></content>
-    </entry>
-        <entry>
-        <title type="html"><![CDATA[Quick Tip: Shopping worlds without AJAX]]></title>
-        <link href="https://developers.shopware.com/blog/2017/06/26/quick-tip-shopping-worlds-without-ajax"/>
-        <updated>2017-06-26T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2017/06/26/quick-tip-shopping-worlds-without-ajax</id>
-        <content type="html"><![CDATA[<p>Today we're back with a short &amp; simple tip which allows you to load shopping worlds at any place in your store front without the need of loading them using AJAX. Do to so, please create your own frontend theme, if you haven't one in place already. Please refer to our <a href="https://developers.shopware.com/designers-guide/getting-started/#custom-themes">Templating Getting Started Guide</a> on how to create your own custom theme.</p>
-
-<p>After creating your own theme, please create a new JavaScript file in your <code>_public/src/js</code> directory &amp; place the following content into it:</p>
-
-<pre><code>window.StateManager
-    .removePlugin('.emotion--wrapper', 'swEmotionLoader')
-    .addPlugin('.emotion--wrapper:not(.emotion--non-ajax)', 'swEmotionLoader')
-    .addPlugin('.emotion--non-ajax *[data-emotion=&quot;true&quot;]', 'swEmotion');
-</code></pre>
-
-<p>We're removing the <code>swEmotionLoader</code> jQuery plugin which is the entry point for an AJAX shopping world. We're removing it because we have to modify the selector for the jQuery plugin. In the next line we're adding the same plugin but with a different selector. The selector allows us to add the class <code>emotion--non-ajax</code> to the element which should contain the shopping world later on. Last but not least, we're adding the jQuery plugin <code>swEmotion</code> to the plugin queue with our <code>emotion--non-ajax</code> class in place.</p>
-
-<p>After you've added the content to the JavaScript file, make sure you've registered the file in the <code>$javascript</code> array in your <code>Theme.php</code> file. If you need further information, please head over to our <a href="https://developers.shopware.com/designers-guide/css-and-js-files-usage/#add-javascript-files">CSS &amp; JS Files Usage Guide</a>.</p>
-
-<p>With these changes in place, you're now able to include shopping worlds literally at any place in your store front with the following code snippet:</p>
-
-<pre><code>&lt;div class=&quot;emotion--wrapper emotion--non-ajax&quot;&gt;
-    {action module=&quot;widgets&quot; controller=&quot;emotion&quot; action=&quot;index&quot; emotionId=&quot;7&quot;}
-&lt;/div&gt;
-</code></pre>
-
-<p>The argument <code>emotionId</code> in the widget call lets you choose what shopping world you would like to include. To get an overview of all available shopping worlds, please refer to the <code>s_core_emotion</code> database table.</p>
-
-<p>You may have to customize the styling of the shopping world, depending on what section of the store front you're using it.</p>
+<p>This is a very small proof of concept how to overwrite plugin configurations by environment variables. <strong>Nothing more</strong>. You can extends this proof of concept to overwrite other configurations as well.</p>
 ]]></content>
     </entry>
     </feed>

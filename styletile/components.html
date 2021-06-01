@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="shopware">
+    <meta name="robots" content="index,follow">
+    <meta name="revisit-after" content="28 days">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#142432">
+    <meta name="application-name" content="Shopware Styletile Documentation">
+    <meta name="msapplication-window" content="width=1024;height=768">
+    <meta name="msapplication-navbutton-color" content="#142432">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#142432">
+    <meta itemprop="copyrightHolder" content="Shopware Styletile Documentation">
+    <meta itemprop="copyrightYear" content="2017">
+    <meta itemprop="isFamilyFriendly" content="True">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Shopware Styletile Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+    <link rel="apple-touch-icon-precomposed" href="favicons/apple-icon-precomposed.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+
+    <!-- Styles -->
+    <link data-href="css/styles.min.css" media="all" rel="stylesheet" type="text/css" data-iframe="true">
+
+    <link href="css/font.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/highlight/phpstorm.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/all.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/open-sans.min.css" media="all" rel="stylesheet" type="text/css">
+    <style>iframe { display: none }</style>
+    <title itemprop="name">
+        Components – Shopware 5.3 Styletile Documentation
+    </title>
+</head>
+<body class="components">
+    <div class="page-wrap">
+        <div class="open-menu" data-toggle="opened">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <aside class="new">
+            <div class="logo">
+                <a href="index.html" class="desktop"><img src="images/shopware_developers_styletile_logo_white.svg" width="120" height="120" /></a>
+                <a href="index.html" class="mobile"><img src="images/shopware_developers_styletile_logo_horizontal_white.svg" height="44" /></a>
+            </div>
+            <div class="search">
+                <input type="search" class="search" placeholder="Search the navigation">
+            </div>
+
+            <!-- Nav -->
+            <nav class="scroll">
+                <div class="h6">Overview</div>
+                <ul>
+                    <li>
+                        <a class="folder preview" href="preview.html">Preview</a>
+                    </li>
+                    <li>
+                        <a class="folder cheatsheet" href="cheatsheet.html">Cheatsheet</a>
+                        <ul>
+                            <li><a href="cheatsheet.html#components">Components</a></li>
+                            <li><a href="cheatsheet.html#mixins">Mixins</a></li>
+                            <li><a href="cheatsheet.html#variables">Variables</a></li>
+                            <li><a href="cheatsheet.html#icons">Icons</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="h6">Documentation</div>
+                <ul>
+                    <li class="is--active">
+                        <a class="folder components active">_components</a>
+                        <ul>
+                            <li><a href="#alert">alert</a></li>
+                            <li><a href="#badge">badge</a></li>
+                            <li><a href="#button">button</a></li>
+                            <li><a href="#checkbox">checkbox</a></li>
+                            <li><a href="#collapse">collapse</a></li>
+                            <li><a href="#collapse-cart">collapse-cart</a></li>
+                            <li><a href="#container">container</a></li>
+                            <li><a href="#datepicker">datepicker</a></li>
+                            <li><a href="#delivery-information">delivery-information</a></li>
+                            <li><a href="#emotions">emotions</a></li>
+                            <li><a href="#fields">fields</a></li>
+                            <li><a href="#filter-panel">filter-panel</a></li>
+                            <li><a href="#flags">flags</a></li>
+                            <li><a href="#form">form</a></li>
+                            <li><a href="#icon-set">icon-set</a></li>
+                            <li><a href="#image-gallery">image-gallery</a></li>
+                            <li><a href="#image-slider">image-slider</a></li>
+                            <li><a href="#image-zoom">image-zoom</a></li>
+                            <li><a href="#labels">labels</a></li>
+                            <li><a href="#last-seen-products">last-seen-products</a></li>
+                            <li><a href="#lightbox">lightbox</a></li>
+                            <li><a href="#lists">lists</a></li>
+                            <li><a href="#loading-indicator">loading-indicator</a></li>
+                            <li><a href="#menu-scroller">menu-scroller</a></li>
+                            <li><a href="#modal">modal</a></li>
+                            <li><a href="#navigation-list">navigation-list</a></li>
+                            <li><a href="#offcanvas-button">offcanvas-button</a></li>
+                            <li><a href="#offcanvas-menu">offcanvas-menu</a></li>
+                            <li><a href="#overlay">overlay</a></li>
+                            <li><a href="#panel">panel</a></li>
+                            <li><a href="#product-quick-view">product-quick-view</a></li>
+                            <li><a href="#product-slider">product-slider</a></li>
+                            <li><a href="#range-slider">range-slider</a></li>
+                            <li><a href="#ribbon">ribbon</a></li>
+                            <li><a href="#tab-menu">tab-menu</a></li>
+                            <li><a href="#tables">tables</a></li>
+                            <li><a href="#tag-cloud">tag-cloud</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder mixins" href="mixins.html">_mixins</a>
+                        <ul>
+                            <li><a href="mixins.html#unitize">unitize</a></li>
+                            <li><a href="mixins.html#animation">animation</a></li>
+                            <li><a href="mixins.html#appearance">appearance</a></li>
+                            <li><a href="mixins.html#backface-visibility">backface-visibility</a></li>
+                            <li><a href="mixins.html#border-radius">border-radius</a></li>
+                            <li><a href="mixins.html#box-shadow">box-shadow</a></li>
+                            <li><a href="mixins.html#box-sizing">box-sizing</a></li>
+                            <li><a href="mixins.html#clear-button-style">clear-button-style</a></li>
+                            <li><a href="mixins.html#clearfix">clearfix</a></li>
+                            <li><a href="mixins.html#column-count">column-count</a></li>
+                            <li><a href="mixins.html#cursor">cursor</a></li>
+                            <li><a href="mixins.html#hyphens">hyphens</a></li>
+                            <li><a href="mixins.html#icon-element">icon-element</a></li>
+                            <li><a href="mixins.html#keyframes">keyframes</a></li>
+                            <li><a href="mixins.html#linear-gradient">linear-gradient</a></li>
+                            <li><a href="mixins.html#opacity">opacity</a></li>
+                            <li><a href="mixins.html#rotate">rotate</a></li>
+                            <li><a href="mixins.html#scale">scale</a></li>
+                            <li><a href="mixins.html#tap-highlight-color">tap-highlight-color</a></li>
+                            <li><a href="mixins.html#touch-callout">touch-callout</a></li>
+                            <li><a href="mixins.html#transform-origin">transform-origin</a></li>
+                            <li><a href="mixins.html#transform-style">transform-style</a></li>
+                            <li><a href="mixins.html#transform">transform</a></li>
+                            <li><a href="mixins.html#transition">transition</a></li>
+                            <li><a href="mixins.html#translate">translate</a></li>
+                            <li><a href="mixins.html#user-select">user-select</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder modules" href="modules.html">_modules</a>
+                        <ul>
+                            <li><a href="modules.html#account">account</a></li>
+                            <li><a href="modules.html#blog">blog</a></li>
+                            <li><a href="modules.html#breadcrumb">breadcrumb</a></li>
+                            <li><a href="modules.html#cart">cart</a></li>
+                            <li><a href="modules.html#compare">compare</a></li>
+                            <li><a href="modules.html#configurator">configurator</a></li>
+                            <li><a href="modules.html#confirm">confirm</a></li>
+                            <li><a href="modules.html#cookie-permission">cookie-permission</a></li>
+                            <li><a href="modules.html#custom">custom</a></li>
+                            <li><a href="modules.html#detail">detail</a></li>
+                            <li><a href="modules.html#finish">finish</a></li>
+                            <li><a href="modules.html#footer">footer</a></li>
+                            <li><a href="modules.html#forms">forms</a></li>
+                            <li><a href="modules.html#global">global</a></li>
+                            <li><a href="modules.html#header">header</a></li>
+                            <li><a href="modules.html#home">home</a></li>
+                            <li><a href="modules.html#last-viewed">last-viewed</a></li>
+                            <li><a href="modules.html#listing">listing</a></li>
+                            <li><a href="modules.html#main-navigation">main-navigation</a></li>
+                            <li><a href="modules.html#newsletter">newsletter</a></li>
+                            <li><a href="modules.html#note">note</a></li>
+                            <li><a href="modules.html#payment">payment</a></li>
+                            <li><a href="modules.html#product-box">product-box</a></li>
+                            <li><a href="modules.html#register">register</a></li>
+                            <li><a href="modules.html#search">search</a></li>
+                            <li><a href="modules.html#sidebar">sidebar</a></li>
+                            <li><a href="modules.html#sitemap">sitemap</a></li>
+                            <li><a href="modules.html#tell-a-friend">tell-a-friend</a></li>
+                            <li><a href="modules.html#top-seller">top-seller</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder variables" href="variables.html">_variables</a>
+                        <ul>
+                            <li><a href="variables.html#structure">structure</a></li>
+                            <li><a href="variables.html#typography">typography</a></li>
+                            <li><a href="variables.html#zindex">zindex</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="help">
+                <a href="https://developers.shopware.com/"><i class="icon--arrow-left"></i> Developer Documentation</a>
+            </div>
+        </aside>
+
+        <!-- Components -->
+        <section class="dp--wrapper container step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <i class="icon-left"><img src="images/system/components.svg" /></i>
+                        <h1 class="h2">_components</h1>
+                        <p>
+                            The _components directory contains all styled component-elements of shopware.<br/>
+                            Components are typical HTML elements that have inherited styling to get you started. Every example shows you the styling that we've included in our Responsive Theme.
+                        </p>
+                        <div class="col-12 has--border-gray spacer--small">
+                            <div class="col-inner">
+                                <h4>Caution!</h4>
+                                <p>Some elements that need JavaScript functions to fully work might not work within this demo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alert -->
+        <section class="dp--wrapper container step" id="alert">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/alert.less">view file</a>
+                        <h2>Alert</h2>
+                        <p>Displays an alert box for status messages to the user</p>
+                        <hr>
+                        <p>Alerts always have to have the <span class="popover--holder"><span class="popover is--top">Use the alert to give the user any kind of update on their action.</span><a class="class">.alert</a></span> class assigned, and in addition one of four color schemes.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/alert.html" height="236"></iframe>
+                        <pre><code class="html on--white">&lt;p class="alert is-—success"&gt;Success Message&lt;/p&gt;
+&lt;p class="alert is--info"&gt;Info Message&lt;/p&gt;
+&lt;p class="alert is--warning"&gt;Warning Message&lt;/p&gt;
+&lt;p class="alert is--error"&gt;Error Message&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <p class="is--xl">With an Icon inside of the box</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/alert-icon.html" height="286"></iframe>
+                        <pre><code class="html on--white">&lt;div class="alert is--success is--rounded"&gt;
+    &lt;div class="alert--icon"&gt;
+        &lt;i class="icon--element icon--check"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="alert--content"&gt;Success message with Icon&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="alert is--info is--rounded"&gt;
+    &lt;div class="alert--icon"&gt;
+        &lt;i class="icon--element icon--info"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="alert--content"&gt;Info message with Icon&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="alert is--warning is--rounded"&gt;
+    &lt;div class="alert--icon"&gt;
+        &lt;i class="icon--element icon--warning"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="alert--content"&gt;Warning message with Icon&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="alert is--error is--rounded"&gt;
+    &lt;div class="alert--icon"&gt;
+        &lt;i class="icon--element icon--cross"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="alert--content"&gt;Error message with Icon&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Badge -->
+        <section class="dp--wrapper container step" id="badge">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/badge.less">view file</a>
+                        <h2>Badge</h2>
+                        <p>Creates a badge to display counts</p>
+                        <hr>
+                        <p>The <u class="html">&lt;span&gt;</u> can be modified with 3 different color schemes.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/badge.html" height="192"></iframe>
+                        <pre><code class="html on--white">&lt;p&gt;&lt;span class="badge is--primary"&gt;1&lt;/span&gt; Primary Badge&lt;/p&gt;
+&lt;p&gt;&lt;span class="badge is--secondary"&gt;2&lt;/span&gt; Secondary Badge&lt;/p&gt;
+&lt;p&gt;&lt;span class="badge is--minimal"&gt;3&lt;/span&gt; Minimal Badge&lt;/p&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Button -->
+        <section class="dp--wrapper container step" id="button">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/buttons.less">view file</a>
+                        <h2>Button</h2>
+                        <p>Creates a basic button</p>
+                        <hr>
+                        <p>
+                            Button type classes can be added by using multiple classes on the <span class="popover--holder"><span class="popover is--top">Buttons are important to give the user the opportunity for an action.</span><a class="class">.btn</a></span> element.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/button.html" height="442"></iframe>
+                        <pre><code class="html on--white">&lt;!-- Colours --&gt;
+&lt;a class="btn"&gt;Basic&lt;/a&gt;
+&lt;a class="btn is--primary"&gt;Primary&lt;/a&gt;
+&lt;a class="btn is--secondary"&gt;Secondary&lt;/a&gt;
+
+&lt;!-- Sizes --&gt;
+&lt;a class="btn is--large"&gt;Large button&lt;/a&gt;
+&lt;a class="btn is--medium"&gt;Medium button&lt;/a&gt;
+&lt;a class="btn is--small"&gt;Small button&lt;/a&gt;
+
+&lt;!-- Variants --&gt;
+&lt;a class="btn is--full"&gt;Full button&lt;/a&gt;
+&lt;a class="btn is--full is--center"&gt;Centered button&lt;/a&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;button class="btn">Basic button&lt;/button>
+&lt;button class="btn is--disabled">Disabled button&lt;/button>
+
+&lt;!-- Buttons with icons --&gt;
+&lt;div&gt;
+    &lt;a class="btn is--icon-left"&gt;&lt;i class="icon--percent"&gt;&lt;/i&gt;Icon left&lt;/a&gt;
+    &lt;a class="btn is--icon-right"&gt;Icon right&lt;i class="icon--percent"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkbox -->
+        <section class="dp--wrapper container step" id="checkbox">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/checkbox.less">view file</a>
+                        <h2>Checkbox</h2>
+                        <p>Checkboxes elements</p>
+                        <hr>
+                        <p>
+                            Checkbox element for selections or checkbox inside a link.
+                            Either in a span element with an <u class="html">&lt;input&gt;</u> inside or inside a <u class="html">&lt;a&gt;</u>. (Example inside a panel element).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/checkbox.html" height="118"></iframe>
+                        <pre><code class="html on--white">&lt;span class="checkbox"&gt;
+    &lt;input type="checkbox" /&gt;
+    &lt;span class="checkbox--state"&gt;&lt;/span&gt;
+&lt;/span&gt; Option (actual checkbox)&lt;br/&gt;
+
+&lt;a href="#"&gt;
+    &lt;span class="checkbox"&gt;
+        &lt;span class="checkbox--state"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/a&gt; Option (inside a link)&lt;br/&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collapse -->
+        <section class="dp--wrapper container step" id="collapse">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/collapse.less">view file</a>
+                        <h2>Collapse</h2>
+                        <p>Displays a folding box that responds if the content does not fit the element</p>
+                        <hr>
+                        <p>
+                            A collapse box for panels and text elements.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/collapse.html" height="260"></iframe>
+                        <pre><code class="html on--white">&lt;div class="collapse--header"&gt;
+    Collapse box title
+    &lt;span class="collapse--toggler"&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="collapse--content is--collapsed"&gt;
+    This content will be shown by the is--collapsed class.
+&lt;/div&gt;
+
+&lt;div class="collapse--header"&gt;
+    Collapse box title
+    &lt;span class="collapse--toggler"&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="collapse--content"&gt;
+    Lorem ipsum dolor
+&lt;/div&gt;
+
+&lt;div class="collapse--header"&gt;
+    Collapse box title
+    &lt;span class="collapse--toggler"&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="collapse--content"&gt;
+    Lorem ipsum dolor
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collapse cart -->
+        <section class="dp--wrapper container step" id="collapse-cart">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/collapse-cart.less">view file</a>
+                        <h2>Collapse cart</h2>
+                        <p>Contains the current items in the users shopping cart and the subtotal price amount</p>
+                        <hr>
+                        <p>
+                            The collapse cart element is an alternative to the offcanvas shopping cart inside shopware 5. The collapse cart displays a shopping cart dropdown element similar to the default shopware 4 cart.
+                            The Settings can be modified in the backend theme manager.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container -->
+        <section class="dp--wrapper container step" id="container">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/container.less">view file</a>
+                        <h2>Container</h2>
+                        <p>The container element is the parent element for the content section of shopware 5</p>
+                        <hr>
+                        <p>
+                            It contains the other content elements and keeps them in place.<br/>
+                            It has a set <span class="popover--holder"><span class="popover is--top">That's a part of our .unitize() function to create relative values instead of pixel values</span><a class="class">unitize-max-width</a></span> of 1260px and the .clearfix() mixin assigned.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/container.html" height="104"></iframe>
+                        <pre><code class="html on--white">&lt;div class="container"&gt;
+    &lt;p&gt;Container element&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Datepicker -->
+        <section class="dp--wrapper container step" id="datepicker">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/datepicker.less">view file</a>
+                        <h2>Datepicker</h2>
+                        <p>The container element is the parent element for the content section of shopware 5</p>
+                        <hr>
+                        <p>
+                            The datepicker is a calendar overlay tool that simplyfies the selection of dates for input elements. It creates a calendar widget that simplifies the selection of dates for date input elements.
+                            The styling includes the state styles, the styling with multiple calendars and the rtl-support.
+                            (Is based on the JQuery UI Datepicker Element).
+                            
+                            See the <a href="/designers-guide/datepicker/">designers guide</a> for previews and configuration examples.
+                        </p>
+                        <div class="spacer">
+                            <a href="http://jqueryui.com/datepicker/" target="_blank" class="btn is--secondary rounded-3">JQuery UI Documentation</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <pre><code class="html on--white">&#x3C;input type=&#x22;datetime&#x22; data-datepicker=&#x22;true&#x22;&#x3E;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delivery Information -->
+        <section class="dp--wrapper container step" id="delivery-information">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/delivery-information.less">view file</a>
+                        <h2>Delivery Information</h2>
+                        <p>Defines the delivery status for products (e.g. detail page, note)</p>
+                        <hr>
+                        <p>
+                            The styling includes the base styling and the delivery states.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/delivery-information.html" height="206"></iframe>
+                        <pre><code class="html on--white">&lt;div class="product--delivery"&gt;
+    &lt;p class="delivery--information"&gt;
+        &lt;span class="delivery--text delivery--text-available"&gt;
+            &lt;i class="delivery--status-icon delivery--status-available"&gt;&lt;/i&gt;
+            delivery--text-available
+        &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="product--delivery"&gt;
+    &lt;p class="delivery--information"&gt;
+        &lt;span class="delivery--text delivery--text-more-is-coming"&gt;
+            &lt;i class="delivery--status-icon delivery--status-more-is-coming"&gt;&lt;/i&gt;
+            delivery--text-more-is-coming
+        &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="product--delivery"&gt;
+    &lt;p class="delivery--information"&gt;
+        &lt;span class="delivery--text delivery--text-shipping-free"&gt;
+            &lt;i class="delivery--status-icon delivery--status-shipping-free"&gt;&lt;/i&gt;
+            delivery--text-shipping-free
+        &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="product--delivery"&gt;
+    &lt;p class="delivery--information"&gt;
+        &lt;span class="delivery--text delivery--text-not-available"&gt;
+            &lt;i class="delivery--status-icon delivery--status-not-available"&gt;&lt;/i&gt;
+            delivery--text-not-available
+        &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emotions -->
+        <section class="dp--wrapper container step" id="emotions">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/emotions.less">view file</a>
+                        <h2>Emotions</h2>
+                        <p>Contains the basic styles for the shopware 5 shopping worlds and its elements</p>
+                        <hr>
+                        <p>
+                            Shopware 5 provides 11 integrated elements inside the shopping worlds that can be chosen and modified inside the backend shopping world editor such as sliders, video elements and blog-articles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fields -->
+        <section class="dp--wrapper container step" id="fields">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/fields.less">view file</a>
+                        <h2>Inputfields</h2>
+                        <p>Defines the basic styling of the shopware input element types</p>
+                        <hr>
+                        <p>
+                            The styling includes the base styling and the delivery states.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/fields.html" height="444"></iframe>
+                        <pre><code class="html on--white">&lt;div&gt;
+    &lt;input type="text" placeholder="Text Input"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;input type="search" placeholder="Search Input"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;input type="password" placeholder="Password Input"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;input type="number" placeholder="Number Input"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;input type="email" placeholder="E-Mail Input"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+    &lt;input type="tel" placeholder="Phone Input"&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Selectbox</h3>
+                        <p>Creates a styled dropdown menu as a replacement for the basic select element. The plugin jquery.selectbox-replacement.js automaticly changes every select element to the slim dropdown selectbox of shopware.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/fields-select.html" height="104"></iframe>
+                        <pre><code class="html on--white">&lt;select&gt;
+    &lt;option selected="selected" disabled="disabled" value=""&gt;Disabled Option&lt;/option&gt;
+    &lt;option&gt;Option 1&lt;/option&gt;
+    &lt;option&gt;Option 2&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Panel -->
+        <section class="dp--wrapper container step" id="filter-panel">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/filter-panel.less">view file</a>
+                        <h2>Filter Panel</h2>
+                        <p>Defines the styling of the filter panel element</p>
+                        <hr>
+                        <p>
+                            The styling includes the collapsed and expanded styling and the panel component properties.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/filter-panel.html" height="180"></iframe>
+                        <pre><code class="html on--white">&lt;div class="filter-panel"&gt;
+    &lt;div class="filter-panel--flyout"&gt;
+        &lt;label class="filter-panel--title"&gt;
+            Preis
+        &lt;/label&gt;
+
+        &lt;span class="filter-panel--icon"&gt;&lt;/span&gt;
+
+        &lt;div class="filter-panel--content"&gt;
+            Lorem ipsum dolor
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Language Flags -->
+        <section class="dp--wrapper container step" id="flags">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/flags.less">view file</a>
+                        <h2>Language Flags</h2>
+                        <p>Displays a country flag the size of 14px x 11px used for language selections purposes.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/flags.html" height="106"></iframe>
+                        <pre><code class="html on--white">&lt;div class="language--flag de_DE"&gt;Deutsch&lt;/div&gt;
+&lt;div class="language--flag en_GB"&gt;English&lt;/div&gt;
+&lt;div class="language--flag nl_NL"&gt;Nederlands&lt;/div&gt;
+&lt;div class="language--flag fr_FR"&gt;Français&lt;/div&gt;
+&lt;div class="language--flag es_ES"&gt;Español&lt;/div&gt;
+&lt;div class="language--flag it_IT"&gt;Italiano&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form -->
+        <section class="dp--wrapper container step" id="form">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/form.less">view file</a>
+                        <h2>Form</h2>
+                        <p>Contains the general layout and styling for the shopware form elements and fieldsets</p>
+                        <hr>
+                        <p>The fieldset padding size is defined with the <span class="popover--holder"><span class="popover is--top">That's our function that we use to create relative values instead of pixel values</span><a>.unitize()</a></span> mixin.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/form.html" height="230"></iframe>
+                        <pre><code class="html on--white">&lt;fieldset&gt;
+    &lt;form&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Table cell&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Table cell&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Table cell&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/fieldset&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Icon Set -->
+        <section class="dp--wrapper container step" id="icon-set">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/icon-set.less">view file</a>
+                        <h2>Icon Set</h2>
+                        <p>Shopware Icon set elements</p>
+                        <hr>
+                        <p>
+                            Accessible with the <span class="popover--holder"><span class="popover is--top">We use the &lt;i&gt; for icons in general. Usually it's the markup for italic text.</span><a class="html">&lt;i&gt;</a></span> element and the <span class="popover--holder"><span class="popover is--top">Change the "class"-part to any wording you want to access different icons.</span><a class="class">.icon--class</a></span><br/>
+                            Scroll down to see all the icons or visit the Cheatsheet page to search for specific icons and an optimized look.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/icon-set.html" height="621"></iframe>
+                        <pre><code class="html on--white">&lt;!-- Example --&gt;
+&lt;i class="icon--percent"&gt;&lt;/i&gt;</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image gallery -->
+        <section class="dp--wrapper container step" id="image-gallery">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/image-gallery.less">view file</a>
+                        <h2>Image gallery</h2>
+                        <p>Defines the styles for the image gallery element</p>
+                        <hr>
+                        <p>
+                            The image gallery shows thumbnails of the product pictures in a slim slider element. It is displayed on the product detail page.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image slider -->
+        <section class="dp--wrapper container step" id="image-slider">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/image-slider.less">view file</a>
+                        <h2>Image slider</h2>
+                        <p>Defines the styles for the image slider element that is a part of the basic shopware 5 shopping world elements</p>
+                        <hr>
+                        <p>
+                            The element can be added by using the shopware 5 backend shopping world editor.
+                            The element contains thumbnail image previews, navigation dots and navigation arrows to change the current active image.
+                            It contains the viewport specific styles inside media queries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image zoom -->
+        <section class="dp--wrapper container step" id="image-zoom">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/image-zoom.less">view file</a>
+                        <h2>Image zoom</h2>
+                        <p>Defines the styles for the shopware 5 image-zoom element</p>
+                        <hr>
+                        <p>
+                            It displays a magnifying glass when hovering the article images on the product detail page.<br/>
+                            The functionality is provided by the jquery.image-zoom.js file.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Labels -->
+        <section class="dp--wrapper container step" id="labels">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/label.less">view file</a>
+                        <h2>Labels</h2>
+                        <p>Creates a label for displaying a status</p>
+                        <hr>
+                        <p>
+                            To work properly the <u class="html">&lt;span&gt;</u> needs the general <u>.label</u> and a color scheme option.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/labels.html" height="105"></iframe>
+                        <pre><code class="html on--white">&lt;span class="label success"&gt;Success!&lt;/span&gt;
+&lt;span class="label info"&gt;Info!&lt;/span&gt;
+&lt;span class="label warning"&gt;Warning!&lt;/span&gt;
+&lt;span class="label error"&gt;Error!&lt;/span&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Last seen products -->
+        <section class="dp--wrapper container step" id="last-seen-products">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/last-seen-products.less">view file</a>
+                        <h2>Last seen products</h2>
+                        <p>The slider contains a title element and a product box with the article-image and price</p>
+                        <hr>
+                        <p>
+                            The last-seen-products-element fetches the recently viewed articles of the user and displays them inside a slider-element.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <section class="dp--wrapper container step" id="lightbox">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/lightbox.less">view file</a>
+                        <h2>Lightbox</h2>
+                        <p>Defines the properties for the lightbox container and image elements</p>
+                        <hr>
+                        <p>
+                            The lightbox creates a fullscreen overlay to preview product images. Both components are required in order to make the element work properly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lists -->
+        <section class="dp--wrapper container step" id="lists">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/lists.less">view file</a>
+                        <h2>Lists</h2>
+                        <p>Example of the default styling for an unordered list</p>
+                        <hr>
+                        <p>
+                            The ul element has to have the <span class="popover--holder"><span class="popover is--top">Without the class the list won't have any indicators that it's a list.</span><a class="class">.list--unordered</a></span> class assigned in order to work properly. In addition there are 8 list style types shopware 5 provides that you can choose from.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/lists.html" height="272"></iframe>
+                        <pre><code class="html on--white">&lt;ul class="list--unordered"&gt;
+    &lt;li&gt;Default list&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--checked"&gt;
+    &lt;li&gt;is--checked&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--disc"&gt;
+    &lt;li&gt;is--disc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--arrow-right"&gt;
+    &lt;li&gt;is--arrow-right&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--star"&gt;
+    &lt;li&gt;is--star&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--cross"&gt;
+    &lt;li&gt;is--cross&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--tag"&gt;
+    &lt;li&gt;is--tag&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="list--unordered is--plus"&gt;
+    &lt;li&gt;is--plus&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading indicator -->
+        <section class="dp--wrapper container step" id="loading-indicator">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/loading-indicator.less">view file</a>
+                        <h2>Loading indicator</h2>
+                        <p>Displays a spinning circle to indicate a loading status</p>
+                        <hr>
+                        <p>
+                            Can be imported by using the <u>&lt;i&gt;</u> with the <u class="class">.icon--loading-indicator</u> class.<br/>
+                            The functionality is provided by the jquery.loading-indicator.js file.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/loading-indicator.html" height="140"></iframe>
+                        <pre><code class="html on--white">&lt;i class="icon--loading-indicator"&gt;&lt;/i&gt;
+
+&lt;!-- Static --&gt;
+&lt;body class="has--no-cssanimations"&gt;
+    &lt;div class="js--loading-indicator"&gt;
+        &lt;i class="icon--default icon--loading-indicator"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu scroller -->
+        <section class="dp--wrapper container step" id="menu-scroller">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/menu-scroller.less">view file</a>
+                        <h2>Menu scroller</h2>
+                        <p>Makes an element scrollable with extra styling</p>
+                        <hr>
+                        <p>
+                            Some styling rules can also be found in the hacks.less!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <section class="dp--wrapper container step" id="modal">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/modal.less">view file</a>
+                        <h2>Modal</h2>
+                        <p>Creates a transitioned fixed modalbox overlay that displays above all other elements</p>
+                        <hr>
+                        <p>
+                            The <span class="popover--holder"><span class="popover is--top">This gives your modal the correct height.</span><a class="class">.sizing--content</a></span> class lets the modal window get its height from the inner content.<br/>
+                            The inline styles are generated by the jquery.modal.js file.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/modal.html" height="272"></iframe>
+                        <pre><code class="html on--white">&lt;div class="js--modal sizing--content" style="width: 600px; height: auto; display: block; top: 33%; opacity: 1;"&gt;
+    &lt;div class="header"&gt;
+        &lt;div class="title"&gt;This is the header&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        This is the content
+    &lt;/div&gt;
+
+    &lt;div class="btn icon--cross is--small btn--grey modal--close"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Overlay gets created via JavaScript --&gt;
+&lt;div class="js--overlay"&gt;&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation list -->
+        <section class="dp--wrapper container step" id="navigation-list">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/navigation-list.less">view file</a>
+                        <h2>Navigation list</h2>
+                        <p>Defines a global component for navigation lists.</p>
+                        <hr>
+                        <p>
+                            Navigation lists can be extended by custom styling declarations.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/navigation-list.html" height="138"></iframe>
+                        <pre><code class="html on--white">&lt;ul class="navigation--list"&gt;
+    &lt;li class="navigation--entry is--active"&gt;
+        &lt;a class="navigation--link" href=""&gt;
+            List entry
+        &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="navigation--entry"&gt;
+        &lt;a class="navigation--link" href=""&gt;
+            &lt;span&gt;List entry&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="navigation--entry"&gt;
+        &lt;a class="navigation--link" href=""&gt;
+            &lt;span&gt;List entry&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Off-canvas menu button -->
+        <section class="dp--wrapper container step" id="offcanvas-button">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/offcanvas-button.less">view file</a>
+                        <h2>Off-Canvas menu button</h2>
+                        <p>Defines the styling of the off-canvas menu trigger button that is used for the shopping off-canvas cart</p>
+                        <hr>
+                        <p>
+                            The shopware 5 off-canvas menu can be enabled/disabled inside the shopware backend.<br/>
+                            The functionality is provided by the jquery.off-canvas-button.js file.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Off-canvas menu -->
+        <section class="dp--wrapper container step" id="offcanvas-menu">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/offcanvas-menu.less">view file</a>
+                        <h2>Off-Canvas menu</h2>
+                        <p>The off-canvas menu is the default shopping cart menu in shopware</p>
+                        <hr>
+                        <p>
+                            It is an expanding menu that displays the shopping cart at the right side of the screen and can be enabled/disabled inside the shopware 5 backend.<br/>
+                            The functionality is provided by the jquery.off-canvas-menu.js file.<br/>
+                            Is used for the necessary styling of an off-canvas menu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overlay -->
+        <section class="dp--wrapper container step" id="overlay">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/overlay.less">view file</a>
+                        <h2>Overlay</h2>
+                        <p>Creates a fixed full-screen overlay. The js--overlay element is used when a modal window is shown</p>
+                        <hr>
+                        <p>
+                            The <u class="class">.js--overlay</u> element is empty while the html of the modal box will be created just before the closing <u class="html">&lt;body&gt;</u>.<br/>
+                            The opacity of the full-screen overlay can be modified with javascript.<br/>
+                            The functionality is provided by the jquery.overlay.js file
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/overlay.html" height="180"></iframe>
+                        <pre><code class="html on--white">&lt;div class="js--overlay"&gt;&lt;/div&gt;
+
+&lt;!-- Is opened --&gt;
+&lt;div class="js--overlay is--open"&gt;&lt;/div&gt;
+
+&lt;!-- Can be closed on click --&gt;
+&lt;div class="js--overlay is--closable"&gt;&lt;/div&gt;
+
+&lt;!-- Dark theme --&gt;
+&lt;div class="js--overlay theme--dark"&gt;&lt;/div&gt;
+
+&lt;!-- Light theme --&gt;
+&lt;div class="js--overlay theme--light"&gt;&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panels -->
+        <section class="dp--wrapper container step" id="panel">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/panel.less">view file</a>
+                        <h2>Panels</h2>
+                        <p>Basic panel component for boxes and bordered containers</p>
+                        <hr>
+                        <p>
+                            The panel can be used with different content structures.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel.html" height="244"></iframe>
+                        <pre><code class="html on--white">&lt;!-- Regular Panel --&gt;
+&lt;div class="panel"&gt;
+    &lt;div class="panel--body"&gt;
+        Basic panel element
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Panel with Border --&gt;
+&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--body"&gt;
+        Basic panel with border
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Panel with Shadow --&gt;
+&lt;div class="panel has--shadow"&gt;
+    &lt;div class="panel--body"&gt;
+        Basic panel with shadow
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Header box</h3>
+                        <p>Can be used by adding the <span class="popover--holder"><span class="popover is--bottom">This is the basis for the style. Now add .primary or .secondary.</span><a class="class">.panel--header</a></span> and <u class="class">.primary</u> or <u class="class">.secondary</u> classes.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/panel-header.html" height="216"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--header primary"&gt;Panel header primary&lt;/div&gt;
+    &lt;div class="panel--header secondary"&gt;Panel header secondary&lt;/div&gt;
+    &lt;div class="panel--body"&gt;Panel body&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Title heading</h3>
+                        <p>
+                            The <span class="popover--holder"><span class="popover is--bottom">You can use .panel--title or .panel--header, but never both in one modal.</span><a class="class">.panel--title</a></span> can be used as an alternative to the .panel--header element.<br/>
+                            When using the <span class="popover--holder"><span class="popover is--top">Please add the .is--underline class as well.</span><a class="class">.panel--title</a></span> element, make sure that the
+                            <span class="popover--holder"><span class="popover is--top">Please add the .is--wide class as well.</span><a class="class">.panel--body</a></span> element has the class <u class="class">.is--wide</u> assigned in order to work properly. Also the <u class="class">.is--underline</u> class was added here.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/panel-title.html" height="216"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border"&gt;
+    &lt;h3 class="panel--title is--underline"&gt;Panel title&lt;/h3&gt;
+    &lt;div class="panel--body is--wide"&gt;Panel body&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Body variants</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-body.html" height="314"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--body is--slim"&gt;Slim panel content&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--body is--wide"&gt;Wide panel content&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--body is--flat"&gt;Flat panel content&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="panel has--border"&gt;
+    &lt;div class="panel--body is--embossed"&gt;Embossed panel content&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Action elements</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/panel-action.html" height="150"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel--actions"&gt;
+    &lt;a class="btn" href="#"&gt;Action Link&lt;/a&gt;
+    &lt;a class="btn" href="#"&gt;Action Link&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Table inside panel</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-table.html" height="180"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel--table"&gt;
+    &lt;div class="panel--tr"&gt;
+        &lt;div class="panel--th"&gt;&lt;/div&gt;
+        &lt;div class="panel--th"&gt;&lt;/div&gt;
+        &lt;div class="panel--th"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="panel--tr"&gt;
+        &lt;div class="panel--td"&gt;&lt;/div&gt;
+        &lt;div class="panel--td"&gt;&lt;/div&gt;
+        &lt;div class="panel--td"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>List inside panel</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-list.html" height="226"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border"&gt;
+    &lt;ul class="panel--list"&gt;
+        &lt;li&gt;list element 1&lt;/li&gt;
+        &lt;li class="secondary"&gt;list element 2&lt;/li&gt;
+        &lt;li class="primary"&gt;list element 3&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Dot navigation</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/panel-dot.html" height="104"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel--dot-nav"&gt;
+    &lt;a class="is--active"&gt;&lt;/a&gt;
+    &lt;a&gt;&lt;/a&gt;
+    &lt;a&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Tab navigation for tab-content panel</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-tab.html" height="226"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border"&gt;
+    &lt;ul class="panel--header  panel--tab-nav"&gt;
+        &lt;li&gt;&lt;a class="is--active"&gt;Nav entry&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a&gt;Nav entry&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="panel--body"&gt;
+        &lt;div class="panel--tab-content is--active"&gt;Active content&lt;/div&gt;
+        &lt;div class="panel--tab-content"&gt;inactive content&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Pagination navigation</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-pagination.html" height="122"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel--paging"&gt;
+    &lt;a href=""&gt;&lt;i class="icon--arrow-left"&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;a href=""&gt;1&lt;/a&gt;
+    &lt;a href=""&gt;2&lt;/a&gt;
+    &lt;a href=""&gt;...&lt;/a&gt;
+    &lt;a href=""&gt;&lt;i class="icon--arrow-right"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="dp--wrapper container half-step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <h3>Selectbox for filter selection</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/panel-select.html" height="118"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel--filter-select"&gt;
+    &lt;span class="arrow"&gt;&lt;/span&gt;
+    &lt;select name="selection" size="1"&gt;
+        &lt;option&gt;Option 1&lt;/option&gt;
+        &lt;option&gt;Option 2&lt;/option&gt;
+        &lt;option&gt;Option 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Quick View -->
+        <section class="dp--wrapper container step" id="product-quick-view">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/product-quick-view.less">view file</a>
+                        <h2>Product Quick View</h2>
+                        <p>Defines the styling of the product quick-view page</p>
+                        <hr>
+                        <p>
+                            The <u class="class">.product--quick-view</u> is an element during the checkout process in shopware 5 that displays the user the important information of his product without having to switch to the product detail page and interrupt the checkout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Slider -->
+        <section class="dp--wrapper container step" id="product-slider">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/product-slider.less">view file</a>
+                        <h2>Product Slider</h2>
+                        <p>Displays a selection of articles the user chooses inside a slim slider element</p>
+                        <hr>
+                        <p>
+                            The <span class="popover--holder"><span class="popover is--top">Don't forget the data-product-slider="true" attribute.</span><a class="class">.product-slider</a></span> uses the product box component for displaying and sliding articles.<br/>
+                            The slider has <u class="class">is--vertical</u> and <u class="class">.is--horizontal</u> properties to set the layout of the element.<br/>
+                            For initializing a product slider the outer wrapper has to have the attribute data-product-slider="true".
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/product-slider-with-product.html" height="380"></iframe>
+                        <pre><code class="html on--white">&lt;div class="product-slider" data-product-slider="true"&gt;
+    &lt;!-- The arrows gets created automatically
+    &lt;a class="product-slider--arrow arrow--next is--horizontal"&gt;&lt;/a&gt;
+    &lt;a class="product-slider--arrow arrow--prev is--horizontal"&gt;&lt;/a&gt;
+    --&gt;
+
+    &lt;div class="product-slider--container is--horizontal"&gt;
+        &lt;div class="product-slider--item"&gt;
+            &lt;!-- Product box will be placed here. --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Range Slider -->
+        <section class="dp--wrapper container step" id="range-slider">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/range-slider.less">view file</a>
+                        <h2>Range Slider</h2>
+                        <p>The range slider element lets the user filter elements by a price-span they decide on</p>
+                        <hr>
+                        <p>
+                            The slider handlers can be dragged to the numeric value that the user intends. The value is displayed below the element.<br/>
+                            The functionality is provided by the jquery.range-slider.js file.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/range-slider.html" height="158"></iframe>
+                        <pre><code class="html on--white">&lt;div class="range-slider" data-range-slider="true" data-roundpretty="false" data-labelformat="0,00€" data-suffix="" data-stepcount="100" data-stepcurve="linear" data-startmin="9.95" data-digits="2" data-startmax="129.95" data-rangemin="9.95" data-rangemax="129.95"&gt;
+    &lt;!-- The .range-slider--container gets created automatically
+    &lt;div class="range-slider--container"&gt;
+        &lt;div class="range-slider--range-bar" style="left: 0; width: 100%;"&gt;
+            &lt;div class="range-slider--handle is--min"&gt;&lt;/div&gt;
+            &lt;div class="range-slider--handle is--max"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    --&gt;
+    &lt;input type="hidden" id="min" name="min" data-range-input="min" value="9.95"&gt;
+    &lt;input type="hidden" id="max" name="max" data-range-input="max" value="129.95"&gt;
+    &lt;div class="range-slider--currency" data-range-currency="0,00 €"&gt;&lt;/div&gt;
+    &lt;div class="filter-panel--range-info"&gt;
+        &lt;span class="range-info--min"&gt;von&lt;/span&gt;
+        &lt;label class="range-info--label" for="min" data-range-label="min"&gt;9,95 €&lt;/label&gt;
+        &lt;span class="range-info--max"&gt;bis&lt;/span&gt;
+        &lt;label class="range-info--label" for="max" data-range-label="max"&gt;129,95 €&lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ribbon -->
+        <section class="dp--wrapper container step" id="ribbon">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/ribbon.less">view file</a>
+                        <h2>Ribbon</h2>
+                        <p>Creates a corner ribbon element</p>
+                        <hr>
+                        <p>
+                            A <span class="popover--holder"><span class="popover is--top">Use .is--left or .is--right for positioning.</span><a class="class">.ribbon</a></span> badge can be attached to the corner of a box.<br/>
+                            Make sure the box has the <u>position: relative;</u> property in order to keep the element at the right place.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete">
+                        <iframe src="iframe/ribbon.html" height="170"></iframe>
+                        <pre><code class="html on--white">&lt;div class="ribbon is--left"&gt;
+    &lt;p class="ribbon--content orange"&gt;Highlight!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="ribbon is--right"&gt;
+    &lt;p class="ribbon--content green"&gt;Highlight!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab menu -->
+        <section class="dp--wrapper container step" id="tab-menu">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/tab-menu.less">view file</a>
+                        <h2>Tab menu</h2>
+                        <p>Allows the creation of multiple tabs filled with content that the user can swtich between</p>
+                        <hr>
+                        <p>
+                            The functionality is provided by the jquery.tab-menu.js file.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/tab-menu.html" height="402"></iframe>
+                        <pre><code class="html on--white">&lt;div class="tab-menu--product js--tab-menu"&gt;
+    &lt;div class="tab--navigation"&gt;
+        &lt;a href="#" class="tab--link is--active" title="Tab-1" data-tabName="description"&gt;First Tab&lt;/a&gt;
+        &lt;a href="#" class="tab--link" title="Tab-2" data-tabName="rating"&gt;Second Tab&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tab--container-list"&gt;
+        &lt;div class="tab--container has--content is--active"&gt;
+            &lt;div class="tab--content"&gt;
+                &lt;div class="content--description"&gt;
+                    &lt;div class="content--title"&gt;
+                        Produktinformationen "LYNDON Laurel Wreath"
+                    &lt;/div&gt;
+                    &lt;div class="product--description" itemprop="description"&gt;
+                        &lt;p&gt;Lorem Ipsum.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="tab--container has--content"&gt;
+            &lt;div class="tab--content"&gt;
+                &lt;div class="content--description"&gt;
+                    &lt;div class="content--title"&gt;
+                        Bewertungen "LYNDON Laurel Wreath"
+                    &lt;/div&gt;
+                    &lt;div class="product--description" itemprop="rating"&gt;
+                        &lt;p&gt;Lorem Ipsum.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tables -->
+        <section class="dp--wrapper container step" id="tables">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/tables.less">view file</a>
+                        <h2>Tables</h2>
+                        <p>Defines the basic table styles</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/tables.html" height="166"></iframe>
+                        <pre><code class="html on--white">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Heading&lt;/th&gt;
+            &lt;th&gt;Heading&lt;/th&gt;
+            &lt;th&gt;Heading&lt;/th&gt;
+            &lt;th&gt;Heading&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+            &lt;td&gt;Table Content&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tagcloud -->
+        <section class="dp--wrapper container step" id="tag-cloud">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_components/tag-cloud.less">view file</a>
+                        <h2>Tagcloud</h2>
+                        <p>Shows recent keywords inside a box, ordered in importance by font-size</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete expand">
+                        <iframe src="iframe/tag-cloud.html" height="148"></iframe>
+                        <pre><code class="html on--white">&lt;div class="panel has--border tagcloud--content"&gt;
+    &lt;div class="panel--body is--wide tagcloud"&gt;
+        &lt;a href="#" title="tagcloud-item" class="tag0"&gt;Tagcloud-Item&lt;/a&gt;
+        &lt;a href="#" title="tagcloud-item" class="tag1"&gt;Tagcloud-Item&lt;/a&gt;
+        &lt;a href="#" title="tagcloud-item" class="tag2"&gt;Tagcloud-Item&lt;/a&gt;
+        &lt;a href="#" title="tagcloud-item" class="tag3"&gt;Tagcloud-Item&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        <div class="is--text-centered">
+                            <a class="btn is--secondary rounded-3 expand">Expand Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End -->
+        <section class="dp--wrapper container step last--step spacer">
+            <div class="section--inner">
+                <div class="row animate animate--late">
+                    <div class="col col-12 is--text-centered">
+                        <span class="h3">Navigate further</span>
+                    </div>
+                    <div class="col col-12">
+                        <div class="highlight-box spacer--small is--position-center">
+                            <div class="next--arrow"></div>
+                            <i class="icon-left"><img src="images/system/mixins.svg" /></i>
+                            <div>
+                                <h6>_mixins</h6>
+                                <p class="is--xs">The _mixins directory contains various standardised LESS mixins, quick to use.</p>
+                            </div>
+                            <a href="mixins.html"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar File -->
+        <aside class="file">
+            <a class="close"></a>
+            <a class="download" download></a>
+            <span class="download--tooltip">Download the file</span>
+            <pre><code class="less on--dark"></code></pre>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer--container">
+            <div class="copyright">2017 © shopware AG - All rights reserved</div>
+            <div class="footer--links">
+                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a>
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                <a href="https://github.com/shopware/shopware" target="_blank" title="Find Shopware on GitHub">GitHub</a>
+                <a href="https://de.shopware.com/" target="_blank" title="Visit our homepage and download Shopware for free">Shopware.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/highlight.pack.js"></script>
+    <script src="js/designpattern.min.js"></script>
+    <script src="js/docs.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

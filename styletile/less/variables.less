@@ -1,0 +1,60 @@
+// @import "_variables/structure";
+@import "_variables/base";
+// @import "_variables/typography";
+// @import "_variables/panels";
+// @import "_variables/forms";
+// @import "_variables/tables";
+
+// Remove Selectability
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Overwrite
+
+// MIN-WIDTH
+@phoneLandscapeViewportWidth: 30em;           // 480px  (30em)
+@tabletViewportWidth: 48em;                   // 768px  (48em)
+@gridViewportWidth: 60em;           	      // 960px  (60em)
+@tabletLandscapeViewportWidth: 64em;          // 1024px (64em)
+@desktopViewportWidth: 78.75em;               // 1260px (78.75em)
+@desktopBigViewportWidth: 87.5em;             // 1400px (87.5em)
+
+
+// MAX-WIDTH
+@phoneLandscapeViewportWidthMax: 29.9375em;   // 479px  (30em - 1px)
+@tabletViewportWidthMax: 47.9375em;           // 767px  (48em - 1px)
+@gridViewportWidthMax: 59.9375em;             // 959px  (60em - 1px)
+@tabletLandscapeViewportWidthMax: 63.9375em;  // 1023px (64em - 1px)
+@desktopViewportWidthMax: 78.6875em;          // 1259px (78.75em - 1px)
+@desktopBigViewportWidthMax: 87.4375em;       // 1399px (87.5em - 1px)
+
+@remScaleFactor: 16;
+
+// Base configuration
+@font-size-base: 16px;
+@font-base-weight: 500;
+@font-light-weight: 300;
+@font-bold-weight: 600;
+@font-base-stack: "Source Sans Pro", "Open Sans", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+@font-headline-stack: @font-base-stack;
+
+// Heading font sizes
+@font-size-h1: 26px;
+@font-size-h2: 21px;
+@font-size-h3: 18px;
+@font-size-h4: 16px;
+@font-size-h5: @font-size-base;
+@font-size-h6: 12px;
+
+// Shopware font directory
+@font-directory: "../../fonts/";
+
+// Open Sans font directory
+@OpenSansPath: "../../fonts/open-sans-fontface";

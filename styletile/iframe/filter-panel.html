@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <title>Filter Panel</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-weight: 400;
+        }
+        div + div {
+            margin-top: 10px;
+        }
+        .filter-panel--checkbox {
+            top: 5px;
+            left: 0;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div class="filter-panel filter--multi-selection filter-facet--value-list facet--manufacturer" data-filter-type="value-list" data-facet-name="manufacturer" data-field-name="s">
+    <div class="filter-panel--flyout">
+        <label class="filter-panel--title" for="s">
+            Hersteller
+        </label>
+        <span class="filter-panel--icon"></span>
+        <div class="filter-panel--content input-type--checkbox">
+            <ul class="filter-panel--option-list">
+                <li class="filter-panel--option">
+                    <div class="option--container">
+                        <span class="filter-panel--input filter-panel--checkbox">
+                            <input type="checkbox" id="__s__12" name="__s__12" value="12">
+                            <span class="input--state checkbox--state">&nbsp;</span>
+                        </span>
+                        <label class="filter-panel--label" for="__s__12">
+                            Chiemsee
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../js/modernizr.js"></script>
+<script src="../js/main.js"></script>
+</html>

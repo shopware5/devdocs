@@ -1,0 +1,54 @@
+// delivery-information.less
+
+.product--delivery {
+  .unitize(font-size, 14);
+
+  p { margin: 0; }
+
+  // Base class for the icon
+  .delivery--status-icon {
+    .unitize-variable(9); // returns the variable ```emValue```
+    .border-radius(~"@{emValue}rem");
+    .unitize-margin(0, 5, 0, 0);
+    .unitize-width(9);
+    .unitize-height(9);
+    .unitize(line-height, 10);
+    display: inline-block;
+    position: relative;
+  }
+
+  .delivery--shipping-free-icon {
+      .unitize(margin-right, 5);
+      color: @highlight-info;
+  }
+  .delivery--text-shipping-free {
+      color: @highlight-info;
+  }
+
+  .delivery--status-available {
+      background: @highlight-success
+  }
+  .delivery--text-available {
+      color: @highlight-success;
+  }
+
+  .delivery--status-more-is-coming {
+    background: @highlight-notice;
+  }
+  .delivery--text-more-is-coming {
+    color: @highlight-notice;
+  }
+
+  .delivery--status-not-available {
+    background: @highlight-error;
+  }
+
+  .delivery--text-not-available {
+    color: @highlight-error;
+  }
+
+  .delivery--text {
+    margin: 0;
+    display: inline-block;
+  }
+}

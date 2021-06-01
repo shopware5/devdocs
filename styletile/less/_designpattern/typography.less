@@ -1,0 +1,146 @@
+@import (reference) '../all';
+
+.dp--wrapper {
+
+  // Text
+
+  p {
+    line-height: 2;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+    color: @gray-dark;
+
+    &.is--xl {
+      font-size: 18px;
+      color: @gray-mid;
+    }
+    &.is--xs {
+      padding: 8px 0;
+      font-size: 15px;
+      line-height: 1.72;
+      color: @gray-mid;
+    }
+  }
+
+  // Headlines
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: @gray-dark;
+    margin-top: 0;
+    margin-bottom: .75em;
+    max-width: none;
+
+    + p {
+      font-size: 17px;
+      color: @gray-mid;
+    }
+  }
+
+  h2, .h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: .5em;
+  }
+
+  h3, .h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  h4, .h4 {
+    font-size: 21px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  h5, .h5 {
+    font-size: 19px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  h6, .h6 {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  // Listen
+  .listing--content {
+
+    // Standard
+    & {
+      ul {
+        margin: 8px 20px;
+
+        li {
+          .transition(all .2s ease);
+          position: relative;
+          list-style: none;
+
+          &:before {
+            .iconfont();
+            content: "";
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: -18px;
+            width: 5px;
+            height: 5px;
+            .border-radius(6px);
+            background-color: fade(@gray-mid, 50);
+          }
+        }
+      }
+      b, strong {
+        font-size: 16px;
+        color: @gray-mid;
+      }
+      p {
+        padding: 4px 0;
+      }
+    }
+
+    // Kein Icon oder Dot
+    &.no--list {
+      ul {
+        margin-left: 0;
+
+        li:before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: @phoneLandscapeViewportWidthMax) {
+  section.dp--wrapper {
+    p {
+      &.is--xl {
+        font-size: 15px;
+      }
+      &.is--xs {
+        font-size: 14px;
+      }
+    }
+    h2, .h2 {
+      font-size: 20px;
+      margin-bottom: 0;
+
+      + p {
+        font-size: 15px;
+      }
+    }
+    h3, .h3 {
+      font-size: 22px;
+    }
+    h4, .h4 {
+      font-size: 17px;
+      margin-bottom: .25em;
+    }
+  }
+}

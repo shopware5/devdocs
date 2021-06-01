@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="shopware">
+    <meta name="robots" content="index,follow">
+    <meta name="revisit-after" content="28 days">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#142432">
+    <meta name="application-name" content="Shopware Styletile Documentation">
+    <meta name="msapplication-window" content="width=1024;height=768">
+    <meta name="msapplication-navbutton-color" content="#142432">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#142432">
+    <meta itemprop="copyrightHolder" content="Shopware Styletile Documentation">
+    <meta itemprop="copyrightYear" content="2017">
+    <meta itemprop="isFamilyFriendly" content="True">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Shopware Styletile Documentation">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+    <link rel="apple-touch-icon-precomposed" href="favicons/apple-icon-precomposed.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="favicons/favicon.ico">
+
+    <!-- Styles -->
+    <link href="css/font.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/style.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/highlight/phpstorm.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/all.min.css" media="all" rel="stylesheet" type="text/css">
+
+    <title itemprop="name">
+        Mixins – Shopware 5.3 Styletile Documentation
+    </title>
+</head>
+<body class="mixins">
+    <div class="page-wrap">
+        <div class="open-menu" data-toggle="opened">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <aside class="new">
+            <div class="logo">
+                <a href="index.html" class="desktop"><img src="images/shopware_developers_styletile_logo_white.svg" width="120" height="120" /></a>
+                <a href="index.html" class="mobile"><img src="images/shopware_developers_styletile_logo_horizontal_white.svg" height="44" /></a>
+            </div>
+            <div class="search">
+                <input type="search" class="search" placeholder="Search the navigation">
+            </div>
+
+            <!-- Nav -->
+            <nav class="scroll">
+                <div class="h6">Overview</div>
+                <ul>
+                    <li>
+                        <a class="folder preview" href="preview.html">Preview</a>
+                    </li>
+                    <li>
+                        <a class="folder cheatsheet" href="cheatsheet.html">Cheatsheet</a>
+                        <ul>
+                            <li><a href="cheatsheet.html#components">Components</a></li>
+                            <li><a href="cheatsheet.html#mixins">Mixins</a></li>
+                            <li><a href="cheatsheet.html#variables">Variables</a></li>
+                            <li><a href="cheatsheet.html#icons">Icons</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="h6">Documentation</div>
+                <ul>
+                    <li>
+                        <a class="folder components" href="components.html">_components</a>
+                        <ul>
+                            <li><a href="components.html#alert">alert</a></li>
+                            <li><a href="components.html#badge">badge</a></li>
+                            <li><a href="components.html#button">button</a></li>
+                            <li><a href="components.html#checkbox">checkbox</a></li>
+                            <li><a href="components.html#collapse">collapse</a></li>
+                            <li><a href="components.html#collapse-cart">collapse-cart</a></li>
+                            <li><a href="components.html#container">container</a></li>
+                            <li><a href="components.html#datepicker">datepicker</a></li>
+                            <li><a href="components.html#delivery-information">delivery-information</a></li>
+                            <li><a href="components.html#emotions">emotions</a></li>
+                            <li><a href="components.html#fields">fields</a></li>
+                            <li><a href="components.html#filter-panel">filter-panel</a></li>
+                            <li><a href="components.html#flags">flags</a></li>
+                            <li><a href="components.html#form">form</a></li>
+                            <li><a href="components.html#icon-set">icon-set</a></li>
+                            <li><a href="components.html#image-gallery">image-gallery</a></li>
+                            <li><a href="components.html#image-slider">image-slider</a></li>
+                            <li><a href="components.html#image-zoom">image-zoom</a></li>
+                            <li><a href="components.html#labels">labels</a></li>
+                            <li><a href="components.html#last-seen-products">last-seen-products</a></li>
+                            <li><a href="components.html#lightbox">lightbox</a></li>
+                            <li><a href="components.html#lists">lists</a></li>
+                            <li><a href="components.html#loading-indicator">loading-indicator</a></li>
+                            <li><a href="components.html#menu-scroller">menu-scroller</a></li>
+                            <li><a href="components.html#modal">modal</a></li>
+                            <li><a href="components.html#navigation-list">navigation-list</a></li>
+                            <li><a href="components.html#offcanvas-button">offcanvas-button</a></li>
+                            <li><a href="components.html#offcanvas-menu">offcanvas-menu</a></li>
+                            <li><a href="components.html#overlay">overlay</a></li>
+                            <li><a href="components.html#panel">panel</a></li>
+                            <li><a href="components.html#product-quick-view">product-quick-view</a></li>
+                            <li><a href="components.html#product-slider">product-slider</a></li>
+                            <li><a href="components.html#range-slider">range-slider</a></li>
+                            <li><a href="components.html#ribbon">ribbon</a></li>
+                            <li><a href="components.html#tab-menu">tab-menu</a></li>
+                            <li><a href="components.html#tables">tables</a></li>
+                            <li><a href="components.html#tag-cloud">tag-cloud</a></li>
+                        </ul>
+                    </li>
+                    <li class="is--active">
+                        <a class="folder mixins active">_mixins</a>
+                        <ul>
+                            <li><a href="#unitize">unitize</a></li>
+                            <li><a href="#animation">animation</a></li>
+                            <li><a href="#appearance">appearance</a></li>
+                            <li><a href="#backface-visibility">backface-visibility</a></li>
+                            <li><a href="#border-radius">border-radius</a></li>
+                            <li><a href="#box-shadow">box-shadow</a></li>
+                            <li><a href="#box-sizing">box-sizing</a></li>
+                            <li><a href="#clear-button-style">clear-button-style</a></li>
+                            <li><a href="#clearfix">clearfix</a></li>
+                            <li><a href="#column-count">column-count</a></li>
+                            <li><a href="#cursor">cursor</a></li>
+                            <li><a href="#hyphens">hyphens</a></li>
+                            <li><a href="#icon-element">icon-element</a></li>
+                            <li><a href="#keyframes">keyframes</a></li>
+                            <li><a href="#linear-gradient">linear-gradient</a></li>
+                            <li><a href="#opacity">opacity</a></li>
+                            <li><a href="#rotate">rotate</a></li>
+                            <li><a href="#scale">scale</a></li>
+                            <li><a href="#tap-highlight-color">tap-highlight-color</a></li>
+                            <li><a href="#touch-callout">touch-callout</a></li>
+                            <li><a href="#transform-origin">transform-origin</a></li>
+                            <li><a href="#transform-style">transform-style</a></li>
+                            <li><a href="#transform">transform</a></li>
+                            <li><a href="#transition">transition</a></li>
+                            <li><a href="#translate">translate</a></li>
+                            <li><a href="#user-select">user-select</a></li>
+                            <li><a href="#vertical-align">vertical-align</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder modules" href="modules.html">_modules</a>
+                        <ul>
+                            <li><a href="modules.html#account">account</a></li>
+                            <li><a href="modules.html#blog">blog</a></li>
+                            <li><a href="modules.html#breadcrumb">breadcrumb</a></li>
+                            <li><a href="modules.html#cart">cart</a></li>
+                            <li><a href="modules.html#compare">compare</a></li>
+                            <li><a href="modules.html#configurator">configurator</a></li>
+                            <li><a href="modules.html#confirm">confirm</a></li>
+                            <li><a href="modules.html#cookie-permission">cookie-permission</a></li>
+                            <li><a href="modules.html#custom">custom</a></li>
+                            <li><a href="modules.html#detail">detail</a></li>
+                            <li><a href="modules.html#finish">finish</a></li>
+                            <li><a href="modules.html#footer">footer</a></li>
+                            <li><a href="modules.html#forms">forms</a></li>
+                            <li><a href="modules.html#global">global</a></li>
+                            <li><a href="modules.html#header">header</a></li>
+                            <li><a href="modules.html#home">home</a></li>
+                            <li><a href="modules.html#last-viewed">last-viewed</a></li>
+                            <li><a href="modules.html#listing">listing</a></li>
+                            <li><a href="modules.html#main-navigation">main-navigation</a></li>
+                            <li><a href="modules.html#newsletter">newsletter</a></li>
+                            <li><a href="modules.html#note">note</a></li>
+                            <li><a href="modules.html#payment">payment</a></li>
+                            <li><a href="modules.html#product-box">product-box</a></li>
+                            <li><a href="modules.html#register">register</a></li>
+                            <li><a href="modules.html#search">search</a></li>
+                            <li><a href="modules.html#sidebar">sidebar</a></li>
+                            <li><a href="modules.html#sitemap">sitemap</a></li>
+                            <li><a href="modules.html#tell-a-friend">tell-a-friend</a></li>
+                            <li><a href="modules.html#top-seller">top-seller</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="folder variables" href="variables.html">_variables</a>
+                        <ul>
+                            <li><a href="variables.html#structure">structure</a></li>
+                            <li><a href="variables.html#typography">typography</a></li>
+                            <li><a href="variables.html#zindex">zindex</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="help">
+                <a href="https://developers.shopware.com/"><i class="icon--arrow-left"></i> Developer Documentation</a>
+            </div>
+        </aside>
+
+        <!-- Mixins -->
+        <section class="dp--wrapper container step">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <i class="icon-left"><img src="images/system/mixins.svg" /></i>
+                        <h1 class="h2">_mixins</h1>
+                        <p>
+                            The _mixins directory contains all styled mixin-elements of shopware.<br/>
+                            Mixins can be a huge help when creating cross-browser styles or even just shorthands. Use any of the following mixins in its purest form (like .border-radius()) to get the default values with cross-browser support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unitize -->
+        <section class="dp--wrapper container step" id="unitize">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/unitize.less">view file</a>
+                        <h2>Unitize</h2>
+                        <p>
+                            Unitize is our own tool to calculation relative values like em and rem from pixel values.<br/>
+                            It's a powerful tool, see here why:
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @property {String}: The property that should be unitized (No Default)
+// @value {Number}: The pixel value (No Default)
+// @baseValue {Number}: The default browser font-size (Default: @remScaleFactor)
+.unitize(@property, @value, @baseValue);
+
+// Example
+.unitize(margin-top, 20);
+
+// Output
+margin-top: 1.25rem // @baseValue was set to 16px
+
+// Optimised unitize function
+.unitize-height(@value, @baseValue);
+.unitize-width(@value, @baseValue);
+.unitize-max-height(@value, @baseValue);
+.unitize-max-width(@value, @baseValue);
+.unitize-min-width(@value, @baseValue);
+.unitize-margin(@topValue, @rightValue, @bottomValue, @leftValue, @baseValue);
+.unitize-padding(@topValue, @rightValue, @bottomValue, @leftValue, @baseValue);
+.unitize-variable(@value, @baseValue);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=unitize/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animation -->
+        <section class="dp--wrapper container step" id="animation">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/animation.less">view file</a>
+                        <h2>Animation</h2>
+                        <p>Provides you a cross-browser compatible method to set animation values</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @value: {String}: All animation values (No Default)
+.animation(@value);
+
+// Example
+.animation(exampleAnimation 3s ease infinite);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-animation/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appearance -->
+        <section class="dp--wrapper container step" id="appearance">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/appearance.less">view file</a>
+                        <h2>Appearance</h2>
+                        <p>Provides you a cross-browser compatible method to set the appearance of the element</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @type {String}: The type you want to use (Default: none)
+.appearance(@type);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/appearance/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backface visibility -->
+        <section class="dp--wrapper container step" id="backface-visibility">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/backface-visibility.less">view file</a>
+                        <h2>Backface visibility</h2>
+                        <p>Provides you a cross-browser compatible method to set the appearance of the element</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @visibility {String}: The visibility you want to use (Default: hidden)
+.backface-visibility(@visibility);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/transform3d/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Border-radius -->
+        <section class="dp--wrapper container step" id="border-radius">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/border-radius.less">view file</a>
+                        <h2>Border-radius</h2>
+                        <p>Provides you a cross-browser compatible method to set a border-radius</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @radius {String}: The radius you want to set (Default: 3px)
+.border-radius(@radius);
+
+// Different border-radius
+// @leftTop {String}: Radius for top left corner (Default: 0)
+// @rightTop {String}: Radius for top right corner (Default: 0)
+// @rightBottom {String}: Radius for bottom right corner (Default: 0)
+// @leftBottom {String}: Radius for bottom left corner (Default: 0)
+.border-radius-multi(@leftTop, @rightTop, @rightBottom, @leftBottom);
+
+// Resetting border radius
+.reset-border-radius();</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=border-radius/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Box shadow -->
+        <section class="dp--wrapper container step" id="box-shadow">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/box-shadow.less">view file</a>
+                        <h2>Box shadow</h2>
+                        <p>Provides you a cross-browser compatible method to set a box-shadow</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @x: {Number}: Offset to the x axis (Default: 0)
+// @y: {Number}: Offset to the y axis (Default: 0)
+// @blur: {Number}: Bluring radius (Default: 5px)
+// @spread: {Number}: Spreading radius (Default: 0)
+// @shadow-color: {String}: Color of the shadow (Default: rgba(0, 0, 0, 0.2))
+.box-shadow(@x, @y, @blur, @spread, @shadow-color);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/css-boxshadow/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Box sizing -->
+        <section class="dp--wrapper container step" id="box-sizing">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/box-sizing.less">view file</a>
+                        <h2>Box sizing</h2>
+                        <p>Provides you a cross-browser compatible method to set the box-sizing which supports IE starting from version 8 to the newest one</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @box-sizing {String}: Box model, which should be used (Default: border-box)
+.box-sizing(@box-sizing);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css3-boxsizing">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clear button style -->
+        <section class="dp--wrapper container step" id="clear-button-style">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/clear-button-style.less">view file</a>
+                        <h2>Clear button style</h2>
+                        <p>Removes styles from the button element and makes it look like a text link</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">.clear-form-button();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clearfix -->
+        <section class="dp--wrapper container step" id="clearfix">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/clearfix.less">view file</a>
+                        <h2>Clearfix</h2>
+                        <p>Allows the easy integration of the floating-solution method</p>
+                        <hr>
+                        <p>
+                            The clearfix resolves the problem that occurs when two floating elements are nested inside a parent element, then sometimes the parent elements height disappears.
+                            Add the <u>.clearfix</u> class to the parent element or the <u>.clearfix()</u> mixin to the styling of your element.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">.clearfix();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Column count -->
+        <section class="dp--wrapper container step" id="column-count">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/column-count.less">view file</a>
+                        <h2>Column count</h2>
+                        <p>Provides you a cross-browser compatible method to set the appearance of the element</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @count {Number}: The amount of columns you want to set (Default: auto)
+.column-count(@count);
+
+// @type {String}: The type of breaking columns (Default: avoid)
+.column-break-inside(@count);
+                            </code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=multicolumn">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cursor -->
+        <section class="dp--wrapper container step" id="cursor">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/cursor.less">view file</a>
+                        <h2>Grabbing Cursor</h2>
+                        <p>Provides you a cross-browser compatible method to set the cursor grabbing behavior</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">.cursorGrab();
+.cursorGrabbing();</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=cursor/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hyphens -->
+        <section class="dp--wrapper container step" id="hyphens">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/hyphens.less">view file</a>
+                        <h2>Hyphens</h2>
+                        <p>Provides you a cross-browser compatible method to set the hyphenation</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @hyphenation {String}: The hyphenation that should be used (Default: auto)
+.hyphens(@hyphenation);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-hyphens/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Icon element -->
+        <section class="dp--wrapper container step" id="icon-element">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/icon-element.less">view file</a>
+                        <h2>Icon element</h2>
+                        <p>Provides you a method to set any webfont icon from the shopware icon-set as a before element</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @listIcon {String}: The icon you want to use (Default: @sw-icon-record)
+// @listIconSize {Number}: The size you want the icon to be (Default: 10)
+.icon-element(@listIcon, @listIconSize);</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keyframes -->
+        <section class="dp--wrapper container step" id="keyframes">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/keyframes.less">view file</a>
+                        <h2>Keyframes</h2>
+                        <p>Provides you a cross-browser compatible method to set a keyframe</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @name: {String}: The keyframe animation name (No Default)
+// @roules: {String}: the animation frames (No Default)
+.keyframes(@name, @roules);
+.keyframes(keyframe--spin, @keyframe--spin);
+.keyframes(keyframe--spin-reverse, @keyframe--spin-reverse);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-animation/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Linear gradient -->
+        <section class="dp--wrapper container step" id="linear-gradient">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/linear-gradient.less">view file</a>
+                        <h2>Linear gradient</h2>
+                        <p>Provides you a cross-browser compatible method to set a linear gradient which goes from top to bottom</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @start {String}: The start color of the gradient (No Default)
+// @end {String}: The end color of the gradient (No Default)
+.linear-gradient(@start, @end);
+.linear-gradient-horizontal(@start, @end)
+
+// @startFrom {String}: The starting direction of a multiple coloured background (Default: top)
+// @endTo {String}: The ending direction of a multiple coloured background (Default: bottom)
+.linear-gradient-multi(@firstPos, @firstColor, @secondPos, @secondColor, @thirdPos, @thirdColor, @startFrom, @endTo)
+
+// Basic gradients (Responsive Theme):
+.primary-gradient();
+.secondary-gradient();
+.white-gradient();</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-gradients/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opacity -->
+        <section class="dp--wrapper container step" id="opacity">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/opacity.less">view file</a>
+                        <h2>Opacity</h2>
+                        <p>Provides you a cross-browser compatible opacity which supports IE starting from version 8 to the newest one. Safari, Chrome and Firefox are supported in all versions.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @opacity: {Number}: Value of the opacity, starting from 0 to 1 (No Default)
+.opacity(@opacity);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-opacity/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rotate -->
+        <section class="dp--wrapper container step" id="rotate">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/rotate.less">view file</a>
+                        <h2>Rotate</h2>
+                        <p>
+                            Provides you a cross-browser compatible method to set a transformation which rotates the element.<br/>
+                            <strong>Keep in mind that you can not mix different transformations.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @degree {String}: The degree value you want to set (No Default)
+// Please keep in mind that you need to suffix the unit, like '90deg'
+.rotate(@rotate);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=transforms2d/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scale -->
+        <section class="dp--wrapper container step" id="scale">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/scale.less">view file</a>
+                        <h2>Scale</h2>
+                        <p>
+                            Provides you a cross-browser compatible method to set a transformation which scales the element.<br/>
+                            <strong>Keep in mind that you can not mix different transformations.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @scale-value {String}: The scale value, you want to set (No Default)
+.scale(@scale-value);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=transforms2d/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tap highlight color -->
+        <section class="dp--wrapper container step" id="tap-highlight-color">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/tap-highlight-color.less">view file</a>
+                        <h2>Tap highlight color</h2>
+                        <p>Sets the color of the highlighting when a link was clicked / tapped.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @color: {String}: The color you want to set (Default: rgba(0, 0, 0, 0))
+.tap-highlight-color(@color);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="https://developer.mozilla.org/de/docs/Web/CSS/-webkit-tap-highlight-color/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Touch callout -->
+        <section class="dp--wrapper container step" id="touch-callout">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/touch-callout.less">view file</a>
+                        <h2>Touch callout</h2>
+                        <p>Disables the default callout shown when you touch and hold a touch target</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @type {String}: The type you want to set (Default: none)
+.touch-callout(@type);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="https://developer.mozilla.org/de/docs/Web/CSS/-webkit-touch-callout/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transform origin -->
+        <section class="dp--wrapper container step" id="transform-origin">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/transform-origin.less">view file</a>
+                        <h2>Transform origin</h2>
+                        <p>Provides you a cross-browser compatible method to set the transform origin position</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @x {String}: Sets the origin position on the x axis (Default: 50%)
+// @y {String}: Sets the origin position on the y axis (Default: 50%)
+// @z {String}: Sets the origin position on the z axis (Default: 0)
+.transform-origin(@x,@y,@z);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=transforms2d/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transform style -->
+        <section class="dp--wrapper container step" id="transform-style">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/transform-style.less">view file</a>
+                        <h2>Transform style</h2>
+                        <p>Provides you a cross-browser compatible method to set a transformation style</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @style {String}: The style you want for your transformation (Default: preverse-3d)
+.transform-style(@style);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=transforms3d/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transform -->
+        <section class="dp--wrapper container step" id="transform">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/transform.less">view file</a>
+                        <h2>Transform</h2>
+                        <p>Provides you a cross-browser compatible method to set a transformation</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @transformation {String}: The transformation(s) that should be applied (No Default)
+.transform(@transformation);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=transform/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transition -->
+        <section class="dp--wrapper container step" id="transition">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/transition.less">view file</a>
+                        <h2>Transition</h2>
+                        <p>Provides you a cross-browser compatible method to set a transition</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @transition {String}: The transition setting which should animated the element (Default: all 0.3s ease-out)
+.transition(@transition);
+
+// @property {String}: The attribute(s) your transition should animate (No Default)
+.transition-property (@property);
+
+// @duration {String}: The time your transition should take to complete (No Default)
+// Please keep in mind that you need to suffix the unit, like '0.5s'
+.transition-duration (@duration);
+
+// @timing {String}: The timing-function your transition are rendered (No Default)
+.transition-timing-function (@timing);
+
+// @delay {String}: The delay setting of your transition (No Default)
+// Please keep in mind that you need to suffix the unit, like '0.5s'
+.transition-delay (@delay);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=css-transitions/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Translate -->
+        <section class="dp--wrapper container step" id="translate">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/translate.less">view file</a>
+                        <h2>Translate</h2>
+                        <p>
+                            Provides you a cross-browser compatible method to set a translation value<br/>
+                            <strong>Keep in mind, that 3d translations are needing an perspective, otherwise the translated elements get skewed up</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @x: {String}: The rotation on the x-axis
+// @y: {String}: The rotation on the y-axis
+// @z: {String}: The rotation on the z-axis
+.translate(@x, @y, @z);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=translate/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User select -->
+        <section class="dp--wrapper container step" id="user-select">
+            <div class="section--inner">
+                <div class="row">
+                    <div class="col col-12">
+                        <a class="btn is--border rounded-3 view-file" data-file="less/_mixins/user-select.less">view file</a>
+                        <h2>User select</h2>
+                        <p>Provides you a cross-browser compatible method to set a user selection mode</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 example complete no--shadow">
+                        <pre><code class="less on--white">// @type {String}: The type you want to use (Default: none)
+.user-select(@type);</code></pre>
+                        <div>
+                            <a class="btn is--mixin rounded-3 support" target="_blank" href="http://caniuse.com/#feat=user-select-none/">Browser Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End -->
+        <section class="dp--wrapper container step last--step spacer">
+            <div class="section--inner">
+                <div class="row animate animate--late">
+                    <div class="col col-12 is--text-centered">
+                        <span class="h3">Navigate further</span>
+                    </div>
+                    <div class="col col-12 col-s-6 hidden-s">
+                        <div class="highlight-box spacer--small">
+                            <div class="prev--arrow"></div>
+                            <i class="icon-left"><img src="images/system/components.svg" /></i>
+                            <div>
+                                <h6>_components</h6>
+                                <p class="is--xs">The _components directory contains all styled component-elements of shopware.</p>
+                            </div>
+                            <a href="components.html"></a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-s-6">
+                        <div class="highlight-box spacer--small">
+                            <div class="next--arrow"></div>
+                            <i class="icon-left"><img src="images/system/modules.svg" /></i>
+                            <div>
+                                <h6>_modules</h6>
+                                <p class="is--xs">Within the _modules directory you’ll find the seperate modules, like the cart.</p>
+                            </div>
+                            <a href="modules.html"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar File -->
+        <aside class="file">
+            <a class="close"></a>
+            <a class="download" download></a>
+            <span class="download--tooltip">Download the file</span>
+            <pre><code class="less on--dark"></code></pre>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer--container">
+            <div class="copyright">2017 © shopware AG - All rights reserved</div>
+            <div class="footer--links">
+                <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a>
+                <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a>
+                <a href="https://github.com/shopware/shopware" target="_blank" title="Find Shopware on GitHub">GitHub</a>
+                <a href="https://de.shopware.com/" target="_blank" title="Visit our homepage and download Shopware for free">Shopware.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/highlight.pack.js"></script>
+    <script src="js/designpattern.min.js"></script>
+    <script src="js/docs.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

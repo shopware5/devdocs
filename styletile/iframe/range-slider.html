@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+
+    <title>Range Slider</title>
+    <style>
+        body {
+            padding: 5px 10px;
+            background-color: #fff;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="range-slider" data-range-slider="true" data-roundpretty="false" data-labelformat="0,00€" data-suffix="" data-stepcount="100" data-stepcurve="linear" data-startmin="9.95" data-digits="2" data-startmax="129.95" data-rangemin="9.95" data-rangemax="129.95">
+    <input type="hidden" id="min" name="min" data-range-input="min" value="9.95">
+    <input type="hidden" id="max" name="max" data-range-input="max" value="129.95">
+    <div class="range-slider--currency" data-range-currency="0,00 €"></div>
+    <div class="filter-panel--range-info">
+        <span class="range-info--min">von</span>
+        <label class="range-info--label" for="min" data-range-label="min">9,95 €</label>
+        <span class="range-info--max">bis</span>
+        <label class="range-info--label" for="max" data-range-label="max">129,95 €</label>
+    </div>
+</div>
+
+</body>
+<script src="../js/modernizr.js"></script>
+<script src="../js/main.js"></script>
+</html>

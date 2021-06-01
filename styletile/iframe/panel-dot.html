@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Panel Dot</title>
+    <style>
+        body {
+            padding: 5px;
+            background-color: #fff;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+<div class="panel--dot-nav">
+    <a class="is--active"></a>
+    <a></a>
+    <a></a>
+</div>
+
+</body>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script>
+    $('.panel--dot-nav a').on('click', function() {
+        $('.panel--dot-nav a').removeClass('is--active');
+        $(this).addClass('is--active');
+    });
+</script>
+</html>

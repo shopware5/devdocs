@@ -1,0 +1,229 @@
+.col-1:not(.dp--wrapper) h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  padding-top: 4rem;
+  margin: 0 0 4rem;
+}
+.col-1:not(.dp--wrapper) h2.spacer--large {
+  margin-top: 4rem;
+  border-top: 1px dashed #eee;
+}
+.col-1:not(.dp--wrapper) h2.less-margin {
+  margin-bottom: 2rem;
+}
+.col-1:not(.dp--wrapper) h2 + .switch {
+  position: absolute;
+  right: 0;
+  top: 4rem;
+}
+.col-2 p,
+.col-2 img {
+  padding-right: 30px;
+}
+.new h3.label--old {
+  font-size: 17.6px;
+}
+.new h3.label--new {
+  margin-bottom: 15px;
+  margin-bottom: .9375rem;
+  margin-top: 10px;
+  margin-top: .625rem;
+  font-size: 17.6px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[class*="spacer"] {
+  position: relative;
+}
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before,
+[class*="spacer"]:before,
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after,
+[class*="spacer"]:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 0;
+  left: 0;
+  right: 30px;
+  background-color: rgba(255, 154, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.25, 0.2, 0.45, 1);
+}
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before,
+[class*="spacer"]:before {
+  top: 0;
+  transform: translateY(-100%);
+}
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after,
+[class*="spacer"]:after {
+  bottom: 0;
+  transform: translateY(100%);
+}
+h1[class*="label"]:before,
+h2[class*="label"]:before,
+h3[class*="label"]:before,
+h4[class*="label"]:before,
+h5[class*="label"]:before,
+h6[class*="label"]:before,
+[class*="spacer"][class*="label"]:before,
+h1[class*="label"]:after,
+h2[class*="label"]:after,
+h3[class*="label"]:after,
+h4[class*="label"]:after,
+h5[class*="label"]:after,
+h6[class*="label"]:after,
+[class*="spacer"][class*="label"]:after {
+  display: none;
+}
+.is--margin-highlighted h1:before,
+.is--margin-highlighted h2:before,
+.is--margin-highlighted h3:before,
+.is--margin-highlighted h4:before,
+.is--margin-highlighted h5:before,
+.is--margin-highlighted h6:before,
+.is--margin-highlighted h1:after,
+.is--margin-highlighted h2:after,
+.is--margin-highlighted h3:after,
+.is--margin-highlighted h4:after,
+.is--margin-highlighted h5:after,
+.is--margin-highlighted h6:after {
+  background-color: rgba(255, 154, 0, 0.1);
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h1:before {
+  height: 2.5rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h1:after {
+  height: 1.25rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h2:before {
+  height: 1.25rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h2:after {
+  height: 1.125rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h3:before {
+  height: .625rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h3:after {
+  height: .9375rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h4:before {
+  height: 1.25rem;
+}
+.is--margin-highlighted #headlines .col-2:not(.new) h4:after {
+  height: .3125rem;
+}
+.is--margin-highlighted #headlines .col-2.new h1:after,
+.is--margin-highlighted #headlines .col-2.new h2:after,
+.is--margin-highlighted #headlines .col-2.new h3:after,
+.is--margin-highlighted #headlines .col-2.new h4:after {
+  height: .75em;
+}
+.is--margin-highlighted #company-headlines .col-2:not(.new) h1:before {
+  height: 2.5rem;
+}
+.is--margin-highlighted #company-headlines .col-2:not(.new) h1:after {
+  height: 1.25rem;
+}
+.is--margin-highlighted #company-headlines .col-2:not(.new) h4:before {
+  height: 1.25rem;
+}
+.is--margin-highlighted #company-headlines .col-2:not(.new) h4:after {
+  height: .3125rem;
+}
+.is--margin-highlighted #company-headlines .col-2.new h1:after {
+  height: 3vw;
+}
+.is--margin-highlighted #company-headlines .col-2.new h2:after {
+  height: 2vw;
+}
+@media (min-width: 30em) {
+  .is--margin-highlighted #company-headlines .col-2.new h1:after {
+    height: 2vw;
+  }
+  .is--margin-highlighted #company-headlines .col-2.new h2:after {
+    height: 1.375vw;
+  }
+}
+@media (min-width: 64em) {
+  .is--margin-highlighted #company-headlines .col-2.new h1:after,
+  .is--margin-highlighted #company-headlines .col-2.new h2:after {
+    height: 1.25rem;
+  }
+}
+.is--margin-highlighted #combinations h3 + h4:before {
+  height: .5em;
+}
+.is--margin-highlighted #combinations h3 + h4:after {
+  height: 1.25em;
+}
+.is--margin-highlighted #combinations h4 + h5:before {
+  height: .5em;
+}
+.is--margin-highlighted #combinations h4 + h5:after {
+  height: 1.25em;
+}
+.is--margin-highlighted #combinations h5 + h6:before {
+  height: .5em;
+}
+.is--margin-highlighted #combinations h5 + h6:after {
+  height: 1.25em;
+}
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--small:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xs:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--large:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xl:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--small:after,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xs:after,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer:after,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--large:after,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xl:after {
+  background-color: rgba(255, 154, 0, 0.1);
+}
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--small:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xs:before {
+  height: 1rem;
+}
+.is--margin-highlighted #spacer .row--highlight-margin .spacer:before {
+  height: 2rem;
+}
+.is--margin-highlighted #spacer .row--highlight-margin .spacer--large:before,
+.is--margin-highlighted #spacer .row--highlight-margin .spacer-xl:before {
+  height: 4rem;
+}
+.spacer-show-pixel {
+  width: 100%;
+  position: absolute;
+  top: -1rem;
+  height: 1rem;
+  line-height: 1rem;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #ff9a00;
+  border-left: 1px solid #ff9a00;
+  background-color: rgba(255, 154, 0, 0.1);
+}

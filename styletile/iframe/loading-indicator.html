@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Loading Indicator</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-weight: 400;
+        }
+        div + div {
+            margin-top: 10px;
+        }
+        .has--no-cssanimations .js--loading-indicator {
+            display: block;
+        }
+        .has--no-cssanimations .js--loading-indicator .icon--default {
+            background-image: url(../images/loading-indicator.gif);
+        }
+    </style>
+</head>
+<body class="has--no-cssanimations">
+
+<div class="js--loading-indicator">
+    <i class="icon--default icon--loading-indicator"></i>
+</div>
+
+</body>
+<script src="../js/modernizr.js"></script>
+<script src="../js/main.js"></script>
+</html>

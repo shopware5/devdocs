@@ -1,0 +1,15 @@
+// icon-element.less
+
+.icon-element(@listIcon: @sw-icon-record, @listIconSize: 10) {
+  position: relative;
+
+  &:before {
+    .unitize-width(20, 16);
+    .unitize(@listIconSize, 16, font-size);
+    .unitize(-20, 16, left);
+    font-family: @sw-icon-fontname;
+    content: "@{listIcon}";
+    position: absolute;
+    top: 0;
+  }
+}

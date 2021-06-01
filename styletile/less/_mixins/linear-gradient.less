@@ -1,0 +1,26 @@
+// linear-gradient.less
+
+// Bare Theme
+.linear-gradient(@start, @end) {
+  background-color: @start;
+  background-image: linear-gradient(to bottom, @start 0%, @end 100%);
+}
+.linear-gradient-horizontal(@start, @end) {
+  background-image: linear-gradient(to right, @start 0%, @end 100%);
+}
+.linear-gradient-multi(@firstPos, @firstColor, @secondPos, @secondColor, @thirdPos, @thirdColor, @startFrom: top, @endTo: bottom) {
+  background-image: linear-gradient(to @endTo, @firstColor @firstPos,@secondColor @secondPos,@thirdColor @thirdPos);
+}
+
+// Responsive Theme
+.primary-gradient() {
+  .linear-gradient(@brand-primary-light, @brand-primary);
+}
+
+.secondary-gradient() {
+  .linear-gradient(@brand-secondary, @brand-secondary-dark);
+}
+
+.white-gradient() {
+  .linear-gradient(#fff, @gray-light);
+}

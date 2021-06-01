@@ -1,0 +1,237 @@
+// panel.less
+
+.panel {
+  display: block;
+  background: @panel-bg;
+
+  &.has--shadow {
+    .box-shadow(0 1px 3px 0 rgba(0, 0, 0, 0.1));
+  }
+
+  &.has--border {
+    border: 1px solid @panel-border;
+  }
+}
+
+.panel--header {
+  .unitize-padding(10, 10);
+  .unitize(@panel-header-font-size, 16, font-size);
+  background: @panel-header-bg;
+  display: block;
+  margin: 0;
+  font-weight: @font-bold-weight;
+  color: @panel-header-color;
+  border-bottom: 1px solid @panel-border;
+
+  &.secondary {
+    color: @text-color;
+    background: #fff;
+  }
+
+  &.primary {
+    color: @brand-primary;
+    background: #fff;
+  }
+}
+
+.panel--title {
+  .unitize-padding(20, 0, 0, 0);
+  .unitize-margin(0, 20);
+  .unitize(font-size, 16);
+  display: block;
+  font-weight: @font-bold-weight;
+  color: @text-color-dark;
+
+  &.is--underline {
+    .unitize-padding(20, 0, 10, 0);
+    border-bottom: 1px solid @panel-border;
+    text-decoration: none !important;
+  }
+
+  &.is--secondary {
+    color: @text-color;
+  }
+
+  &.is--primary {
+    color: @brand-primary;
+  }
+}
+
+.panel--body {
+  .unitize-padding(10, 10);
+  .unitize(font-size, 14);
+  .unitize(line-height, 24);
+  display: block;
+  position: relative;
+
+  &.has--border {
+    border: 1px solid @panel-border;
+  }
+
+  &.is--slim {
+    .unitize-padding(5, 5);
+  }
+
+  &.is--wide {
+    .unitize-padding(20, 20);
+  }
+
+  &.is--flat {
+    background: @gray;
+  }
+
+  &.is--embossed {
+    .box-shadow(inset 0 0 3px 0 rgba(0, 0, 0, 0.2));
+    background: @gray;
+  }
+}
+
+.panel--actions {
+  .unitize-padding(10, 10);
+  .unitize(line-height, 40);
+  display: block;
+
+  &.has--border {
+    .unitize-margin(10, 0, 0, 0);
+    .unitize-padding(10, 0, 0, 0);
+    border-top: 1px solid @panel-border;
+  }
+
+  &.is--slim {
+    .unitize-padding(5, 5);
+  }
+
+  &.is--wide {
+    .unitize-padding(20, 20);
+  }
+
+  .btn {
+    .unitize-margin(0, 6, 0, 0);
+  }
+}
+
+.panel--table {
+  .clearfix();
+  width: 100%;
+  display: block;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+
+  &.has--border {
+    border: 1px solid @panel-border;
+  }
+}
+
+.panel--tr {
+  .clearfix();
+  display: block;
+  width: 100%;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: @panel-border;
+
+  &:last-child {
+    border-width: 0;
+  }
+
+  &.is--odd {
+    background: darken(@panel-bg, 4%);
+  }
+
+  &.is--secondary {
+    background: darken(@panel-bg, 4%);
+  }
+
+  &.is--primary {
+    color: @brand-primary;
+  }
+}
+
+.panel--th,
+.panel--td {
+  .clearfix();
+  .unitize-padding(10, 10);
+  .unitize(font-size, 14);
+  .unitize(line-height, 24);
+  display: inline-block;
+  float: left;
+
+  &.has--border {
+    border-width: 0 1px 0 0;
+    border-style: solid;
+    border-color: @panel-border;
+
+    &:last-child {
+      border-width: 0;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.panel--th {
+  font-weight: @font-bold-weight;
+  color: @text-color-dark;
+}
+
+.panel--dot-nav {
+  .unitize-height(11);
+  position: relative;
+
+  .dot--link, a {
+    .unitize-variable(21, 16);
+    .border-radius(11px);
+    .unitize-margin(0, 5);
+    .unitize-width(11);
+    .unitize-height(11);
+    display: inline-block;
+    border: 1px solid @border-color;
+
+    &.is--active {
+      border-color: @brand-primary;
+      background: @brand-primary;
+    }
+  }
+}
+
+.panel--paging {
+  .unitize(line-height, 32);
+  display: inline-block;
+
+  .paging--link {
+    .unitize-padding(0, 10);
+    .unitize-margin(0, 1);
+    .unitize(font-size, 14);
+    .unitize(line-height, 30);
+    .border-radius();
+    .linear-gradient(@btn-default-top-bg, @btn-default-bottom-bg);
+    display: inline-block;
+    font-weight: @font-base-weight;
+    text-align: center;
+    border: 1px solid @btn-default-border-color;
+    color: @btn-default-text-color;
+
+    [class^="icon--"] {
+      .unitize(font-size, 10);
+    }
+
+    &.is--active,
+    &.is--active:hover {
+      .unitize(line-height, 32);
+      .linear-gradient(@btn-primary-top-bg, @btn-primary-bottom-bg);
+      color: @btn-primary-text-color;
+      border: 0 none;
+      font-weight: @font-bold-weight;
+      cursor: default;
+    }
+
+    &:hover {
+      background: @btn-default-hover-bg;
+      color: @btn-default-hover-text-color;
+      border-color: @btn-default-hover-border-color;
+    }
+  }
+}

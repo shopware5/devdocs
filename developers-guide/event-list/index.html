@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Shopware event list</title>
+
+        <meta name="description" content="Shopware event list">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#26556f">
+
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1622532189">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1622532189" media="screen">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1622532189">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1622532189">
+    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1622532189">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1622532189">
+    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1622532189">
+
+    <link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed">
+</head>
+
+<body>
+<div class="wrapper">
+
+    <header class="header--main">
+
+        <a href="https://developers.shopware.com/" class="offcanvas--trigger" title="Navigation">
+            <i class="icon-list"></i>
+        </a>
+
+        <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1622532189">
+        </a>
+
+    </header>
+
+    <div id="searchBox">
+        <form action="#" method="get" id="search-form">
+            <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off">
+            <button id="search-action"></button>
+        </form>
+    </div>
+
+    <nav class="navi--main" data-offcanvas="true">
+        <div class="navi--content">
+            <ul class="navi--tree">
+                <li class="navi--chapter is--active">
+                    <a href="/" class="navi--link has--children">
+                        Shopware 5
+                    </a>
+                    <ul class="navi--sub-1-tree">
+                        
+                        <li class="navi--sub-1-chapter is--active">
+                            <a href="/developers-guide/" class="navi--link is--active has--children">
+                                Developer Guides
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter is--active">
+
+                                    <a class="navi--link is--active has--children" href="/plugin-guide/">
+                                        Developing plugins
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--numbered">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-quick-start/">
+                                                Quick Startup Guide
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Example plugin
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/controller/">
+                                                Controllers
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-guidelines/">
+                                                Plugin guidelines
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link is--active" href="/developers-guide/event-list/">
+                                                Event list
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/services/">
+                                                Services
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-configuration/">
+                                                Plugin configuration
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-testing/">
+                                                Plugin testing
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-license/">
+                                                Plugin License
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-plugin-update-guide/">
+                                                Plugin update guide
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-extension-by-plugin/">
+                                                Extend an existing plugin
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/legacy-plugin-system/">
+                                                The legacy Plugin System
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/developers-guide/general-resources/">
+                                        General Resources
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/cheat-sheet/">
+                                                Cheat-Sheet
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/phpstorm/">
+                                                Setting up PhpStorm
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-upgrade-guide-for-developers/">
+                                                Upgrade Guide
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-performance-for-devs/">
+                                                Performance Guide
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/coding-standards/">
+                                                Coding Standards
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-composer/">
+                                                Using composer with Shopware
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/debugging/">
+                                                Debugging Shopware
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/elasticsearch/">
+                                                Elasticsearch
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-config/">
+                                                config.php settings
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/blog/2015/06/09/understanding-the-shopware-hook-system/">
+                                                Hooks
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/blog/2015/08/11/the-shopware-seo-engine/">
+                                                SEO Engine
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-media-service/">
+                                                MediaService
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/http-cache/">
+                                                HTTP Cache
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/address-management-guide/">
+                                                Address Management
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/attribute-system/">
+                                                Attributes
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/content-types/">
+                                                Content-Types
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/csrf-protection/">
+                                                CSRF Protection
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
+                                                SearchBundle
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/shopware-5-core-service-extensions/">
+                                                Service extensions
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/entity-relationship-model/">
+                                                Entity relationship model
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/password-encoder/">
+                                                Password encoder
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/global-variables-in-templates/">
+                                                Global variables in templates
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
+                                                Register a cookie to the cookie consent manager
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/customer-streams-extension/">
+                                                Customer - Search &amp; Streams
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/product-export/">
+                                                Product exports
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/developers-guide/tutorials/">
+                                        Tutorials
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/custom-shopping-world-elements/">
+                                                Create custom shopping worlds elements
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/digital-publishing-elements/">
+                                                Create custom digital publishing elements
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/plugin-slugify/">
+                                                Create custom url slugger
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/risk-rules/">
+                                                Risk Rules
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/vagrant-phpstorm/">
+                                                Vagrant and PHPStorm
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/developers-guide/backend-and-extjs/">
+                                        Backend and ExtJS
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-extension/">
+                                                Extending the backend
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/basics/">
+                                                Basics
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing/">
+                                                Listing
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/detail/">
+                                                Detail
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/associations/">
+                                                Associations
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/listing-extensions/">
+                                                Listing extensions
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-components/batch-processes/">
+                                                Batch processes
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-statistics-extension/">
+                                                Statistics extension
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/lightweight-backend-modules/">
+                                                Lightweight backend modules
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/backend-icons/">
+                                                Backend icon set
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/backend-escaping/">
+                                                Backend escaping
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/developers-guide/rest/">
+                                        REST API
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/">
+                                                REST API Basics
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/article/">
+                                                The article resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/customer/">
+                                                The customer resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/order/">
+                                                The order resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/translation/">
+                                                The translation resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/category/">
+                                                The category resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/media/">
+                                                The media resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/merge-mode/">
+                                                The merge mode
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/cache/">
+                                                The cache resources
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/batch/">
+                                                The batch mode
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/api-resource-user/">
+                                                The user resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/filter/">
+                                                Filter
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/customer-streams/">
+                                                Customer Streams
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/examples/payment/">
+                                                Payment
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/models/">
+                                                Models
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/plugin-api-extension/">
+                                                Create your own endpoint
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/extend-api-resource/">
+                                                Extend a REST API resource
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/rest-api/faq/">
+                                                REST API FAQ
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/designers-guide/" class="navi--link has--children">
+                                Frontend Guides
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/theme-guide/">
+                                        Developing Themes
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--numbered">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/theme-startup-guide/">
+                                                Theme Startup Guide
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/getting-started/">
+                                                Getting started with templating
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty/">
+                                                Getting started with Smarty
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/less/">
+                                                Getting started with LESS
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/css-and-js-files-usage/">
+                                                Using CSS and JavaScript
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-theme-default-components/">
+                                                Using the theme default components
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-statemanager-and-pluginbase/">
+                                                jQuery plugins &amp; the StateManager
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/configuration-using-theme-php/">
+                                                Custom theme configuration
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/preparing-themes-for-the-community-store/">
+                                                Preparing themes for the Community Store
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/designers-guide/general-resources/">
+                                        General Resources
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/eslint-for-plugins/">
+                                                ESLint for plugins
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/javascript-coding-style/">
+                                                Javascript Coding Style
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/styletile/">
+                                                UI Components
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/snippets/">
+                                                Snippet Management
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/smarty-plugins/">
+                                                Smarty Plugins
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/best-practice-theme-development/">
+                                                Using the Grunt watcher
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/modify-jquery-plugins/">
+                                                Modify jQuery plugins
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-bower/">
+                                                Managing dependencies with Bower
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/managing-third-party-dependencies-with-npm/">
+                                                Managing dependencies with NPM
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/legacy-template-development-in-shopware-5/">
+                                                Legacy template development
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/how-to-use-karma/">
+                                                Testing with Karma
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/designers-guide/tutorials/">
+                                        Tutorials
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/find-smarty-blocks/">
+                                                How to find smarty blocks
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-templates/">
+                                                Adding custom templates
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example: Custom listing page
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example: Custom Detail page
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
+                                                Edit newsletter and document templates
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/google-pagespeed-best-practise/">
+                                                Google PageSpeed
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
+                                            </a>
+                                        </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
+                                            </a>
+                                        </li>
+                                                                            </ul>
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/community/" class="navi--link has--children">
+                                Community
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/community/contribution-guideline/">
+                                        Contribution Guideline
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/community/contributing-code/">
+                                        Contributing Code
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/labs/" class="navi--link has--children">
+                                Labs
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree is--bulleted">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/labs/3d-product-visualization/">
+                                        3D Product visualization
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/sysadmins-guide/" class="navi--link has--children">
+                                System Guides
+                            </a>
+
+                                                        <ul class="navi--sub-2-tree">
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/system-requirements/">
+                                        System requirements
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/installation-guide/">
+                                        Installation Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/update-guide/">
+                                        Update Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/professional-deployments/">
+                                        Professional Deployments
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/shopware-5-performance-for-sysadmins/">
+                                        Performance Guide
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/elasticsearch-setup/">
+                                        Elasticsearch setup
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/varnish-setup/">
+                                        Varnish setup
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/sessions/">
+                                        Sessions
+                                    </a>
+
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link" href="/sysadmins-guide/shopware-cluster-setup/">
+                                        Cluster setup
+                                    </a>
+
+                                                                    </li>
+                                                            </ul>
+                                                    </li>
+
+                        
+                        <li class="navi--sub-1-chapter">
+                            <a href="/blog/" class="navi--link">
+                                Blog
+                            </a>
+
+                                                    </li>
+
+                                            </ul>
+                </li>
+            </ul>
+            <ul class="navi--tree">
+                <li class="navi--chapter">
+                    <a href="https://docs.shopware.com/en/shopware-platform-dev-en" class="navi--link">
+                        <span>
+                            Shopware 6
+                        </span>
+                        <span>
+                            <i class="icon-external-link"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navi--tree">
+                <li class="navi--chapter navi--backlink-mobile">
+                    <a href="https://en.shopware.com" class="navi--link"><i class="icon--arrow-left"></i> Back to shopware.com</a>
+                </li>
+                <li class="navi--backlink">
+                    <a href="https://en.shopware.com"><i class="icon--arrow-left"></i>Back to shopware.com</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <div class="devdocs content">
+
+        <section id="search-results" style="display: none;">
+            <h2 class="search-results--headline" id="search-results">Search results</h2>
+
+            <div class="entries"></div>
+        </section>
+
+        <div class="inner-container">
+
+            <div class="info">
+
+                
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/developers-guide/event-list/index.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
+                
+            </div>
+
+                        <h1>
+                Shopware event list
+            </h1>
+            
+            <p>If you want to hook onto Shopware you need to know the events. For more about events, see <a href="/developers-guide/event-guide/">the event guide</a>. The following list will give an overview of the existing events and how to subscribe to them.</p>
+
+<h2 id="enlight_controller_front_startdispatch">Enlight_Controller_Front_StartDispatch</h2>
+
+<h3 id="definition">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_StartDispatch',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_StartDispatch' =&gt; 'onEnlightControllerFrontStartDispatch'
+    ];
+}
+</code></pre>
+
+<h3 id="listener">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontStartDispatch(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+}
+</code></pre>
+
+<h3 id="arguments-dump">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_StartDispatch
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; 
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; 
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_routestartup">Enlight_Controller_Front_RouteStartup</h2>
+
+<h3 id="definition-0">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_StartDispatch',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-0">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_RouteStartup' =&gt; 'onEnlightControllerFrontRouteStartup'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-0">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontRouteStartup(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-0">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_RouteStartup
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 
+                    [_module] =&gt; 
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; 
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_router_route">Enlight_Controller_Router_Route</h2>
+
+<h3 id="definition-1">Definition</h3>
+
+<pre><code>public function match($pathInfo, Context $context)
+{
+    ...
+    $event = $this-&gt;eventManager-&gt;notifyUntil('Enlight_Controller_Router_Route', [
+        //'subject' =&gt; $router, @deprecated someone need it?
+        'request' =&gt; $request,
+        'context' =&gt; $context,
+    ]
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-1">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Router_Route' =&gt; 'onEnlightControllerRouteRoute'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-1">Listener</h3>
+
+<pre><code>public function onEnlightControllerRouteRoute(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Router_Default */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+}
+</code></pre>
+
+<h3 id="arguments-dump-1">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Router_Route
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Router_Default
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [separator] =&gt; /
+                    [globalParams] =&gt; Array(0)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 
+                    [_module] =&gt; 
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; 
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_routeshutdown">Enlight_Controller_Front_RouteShutdown</h2>
+
+<h3 id="definition-2">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_RouteStartup',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-2">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_RouteShutdown' =&gt; 'onEnlightControllerFrontRouteShutdown'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-2">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontRouteShutdown(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-2">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_RouteShutdown
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 
+                    [_module] =&gt; 
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; 
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_dispatchloopstartup">Enlight_Controller_Front_DispatchLoopStartup</h2>
+
+<h3 id="definition-3">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_DispatchLoopStartup',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-3">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_DispatchLoopStartup' =&gt; 'onEnlightControllerFrontDispatchLoopStartup'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-3">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontDispatchLoopStartup(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-3">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_DispatchLoopStartup
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 
+                    [_module] =&gt; 
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; 
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_predispatch">Enlight_Controller_Front_PreDispatch</h2>
+
+<h3 id="definition-4">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_PreDispatch',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-4">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_PreDispatch' =&gt; 'onEnlightControllerFrontPreDispatch'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-4">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontPreDispatch(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-4">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_PreDispatch
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; 
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; 
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_action_predispatch*">Enlight_Controller_Action_PreDispatch*</h2>
+
+<h3 id="definition-5">Definition</h3>
+
+<pre><code>public function dispatch($action)
+{
+    ...
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PreDispatch',
+        $args
+    );
+
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PreDispatch_' . $moduleName,
+        $args
+    );
+
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PreDispatch_' . $this-&gt;controller_name,
+        $args
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-5">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Action_PreDispatch_Frontend_Detail' =&gt; 'onEnlightControllerActionPreDispatchFrontendDetail'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-5">Listener</h3>
+
+<pre><code>public function onEnlightControllerActionPreDispatchFrontendDetail(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Action */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-5">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Action_PreDispatch_Frontend_Detail
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_ShopwareControllersFrontendDetailProxy
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [view] =&gt; Enlight_View_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [controller_name] =&gt; Frontend_Detail
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/sommerwelten/accessoires/170/sonnenbrille-red
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /sommerwelten/accessoires/170/sonnenbrille-red
+                    [_params] =&gt; Array(4)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(1)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; frontend
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; detail
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; index
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_action_postdispatch*-and-enlight_controller_action_postdispatchsecure*">Enlight_Controller_Action_PostDispatch* and Enlight_Controller_Action_PostDispatchSecure*</h2>
+
+<h3 id="definition-6">Definition</h3>
+
+<pre><code>public function dispatch($action)
+{
+    ...
+    if ($this-&gt;Request()-&gt;isDispatched()
+        &amp;&amp; !$this-&gt;Response()-&gt;isException()
+        &amp;&amp; $this-&gt;View()-&gt;hasTemplate()
+    ) {
+        Shopware()-&gt;Events()-&gt;notify(
+            __CLASS__ . '_PostDispatchSecure_' . $this-&gt;controller_name,
+            $args
+        );
+
+        Shopware()-&gt;Events()-&gt;notify(
+            __CLASS__ . '_PostDispatchSecure_' . $moduleName,
+            $args
+        );
+
+        Shopware()-&gt;Events()-&gt;notify(
+            __CLASS__ . '_PostDispatchSecure',
+            $args
+        );
+    }
+
+    // fire non-secure/legacy-PostDispatch-Events
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatch_' . $this-&gt;controller_name,
+        $args
+    );
+
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatch_' . $moduleName,
+        $args
+    );
+
+    Shopware()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatch',
+        $args
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-6">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Action_PostDispatch_Frontend_Detail' =&gt; 'onEnlightControllerActionPostDispatchFrontendDetail'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-6">Listener</h3>
+
+<pre><code>public function onEnlightControllerActionPostDispatchFrontendDetail(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Action */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-6">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Action_PostDispatch_Frontend_Detail
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_ShopwareControllersFrontendDetailProxy
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [view] =&gt; Enlight_View_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [controller_name] =&gt; Frontend_Detail
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/sommerwelten/accessoires/170/sonnenbrille-red
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /sommerwelten/accessoires/170/sonnenbrille-red
+                    [_params] =&gt; Array(4)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(1)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; frontend
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; detail
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; index
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(0)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_plugins_viewrenderer_prerender">Enlight_Plugins_ViewRenderer_PreRender</h2>
+
+<h3 id="definition-7">Definition</h3>
+
+<pre><code>public function renderTemplate($template, $name = null)
+{
+    ...
+    $this-&gt;Application()-&gt;Events()-&gt;notify(
+        'Enlight_Plugins_ViewRenderer_PreRender',
+        array(
+            'subject' =&gt; $this,
+            'template' =&gt; $template,
+            'request' =&gt; $this-&gt;Action()-&gt;Request()
+        )
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-7">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Plugins_ViewRenderer_PreRender' =&gt; 'onEnlightPluginsViewRendererPreRender'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-7">Listener</h3>
+
+<pre><code>public function onEnlightPluginsViewRendererPreRender(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightPlugin Enlight_Controller_Plugins_ViewRenderer_Bootstrap */
+    $enlightPlugin = $arguments-&gt;getSubject();
+ 
+    /** @var $template Enlight_Template_Default */
+    $template = $arguments-&gt;getTemplate();
+}
+</code></pre>
+
+<h3 id="arguments-dump-7">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Plugins_ViewRenderer_PreRender
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Plugins_ViewRenderer_Bootstrap
+                    [neverRender] =&gt; 
+                    [noRender] =&gt; 
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [action] =&gt; Shopware_Proxies_ShopwareControllersFrontendIndexProxy
+                    [engine] =&gt; Enlight_Template_Manager
+                    [name] =&gt; ViewRenderer
+                    [collection] =&gt; Enlight_Plugin_Namespace_Loader
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [template] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Template_Default
+                    [cache_id] =&gt; 
+                    [compile_id] =&gt; frontend_emotion_orange_de_DE_1
+                    [caching] =&gt; 
+                    [cache_lifetime] =&gt; 3600
+                    [template_resource] =&gt; 
+                    [mustCompile] =&gt; 
+                    [has_nocache_code] =&gt; 
+                    [properties] =&gt; Array(3)
+                    [required_plugins] =&gt; Array(2)
+                    [smarty] =&gt; Enlight_Template_Manager
+                    [block_data] =&gt; Array(1)
+                    [variable_filters] =&gt; Array(0)
+                    [used_tags] =&gt; Array(0)
+                    [allow_relative_path] =&gt; 
+                    [_capture_stack] =&gt; Array(1)
+                    [template_class] =&gt; Smarty_Internal_Template
+                    [tpl_vars] =&gt; Array(28)
+                    [parent] =&gt; Enlight_Template_Manager
+                    [config_vars] =&gt; Array(0)
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_plugins_viewrenderer_filterrender">Enlight_Plugins_ViewRenderer_FilterRender</h2>
+
+<h3 id="definition-8">Definition</h3>
+
+<pre><code>public function renderTemplate($template, $name = null)
+{
+    ...
+    $render = $this-&gt;Application()-&gt;Events()-&gt;filter(
+        'Enlight_Plugins_ViewRenderer_FilterRender',
+        $render,
+        array('subject' =&gt; $this, 'template' =&gt; $template)
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-8">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Plugins_ViewRenderer_FilterRender' =&gt; 'onEnlightPluginsViewRendererFilterRender'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-8">Listener</h3>
+
+<pre><code>public function onEnlightPluginsViewRendererFilterRender(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightPlugin Enlight_Controller_Plugins_ViewRenderer_Bootstrap */
+    $enlightPlugin = $arguments-&gt;getSubject();
+ 
+    /** @var $template Enlight_Template_Default */
+    $template = $arguments-&gt;getTemplate();
+}
+</code></pre>
+
+<h3 id="arguments-dump-8">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Plugins_ViewRenderer_FilterRender
+    [_return] =&gt; 
+ 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Plugins_ViewRenderer_Bootstrap
+                    [neverRender] =&gt; 
+                    [noRender] =&gt; 
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [action] =&gt; Shopware_Proxies_ShopwareControllersWidgetsIndexProxy
+                    [engine] =&gt; Enlight_Template_Manager
+                    [name] =&gt; ViewRenderer
+                    [collection] =&gt; Enlight_Plugin_Namespace_Loader
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [template] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Template_Default
+                    [cache_id] =&gt; 
+                    [compile_id] =&gt; frontend_emotion_orange_de_DE_1
+                    [caching] =&gt; 
+                    [cache_lifetime] =&gt; 3600
+                    [template_resource] =&gt; widgets/index/menu.tpl
+                    [mustCompile] =&gt; 
+                    [has_nocache_code] =&gt; 
+                    [properties] =&gt; Array(5)
+                    [required_plugins] =&gt; Array(2)
+                    [smarty] =&gt; Enlight_Template_Manager
+                    [block_data] =&gt; Array(0)
+                    [variable_filters] =&gt; Array(0)
+                    [used_tags] =&gt; Array(0)
+                    [allow_relative_path] =&gt; 
+                    [_capture_stack] =&gt; Array(1)
+                    [template_class] =&gt; Smarty_Internal_Template
+                    [tpl_vars] =&gt; Array(2)
+                    [parent] =&gt; Enlight_Template_Manager
+                    [config_vars] =&gt; Array(0)
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_plugins_viewrenderer_postrender">Enlight_Plugins_ViewRenderer_PostRender</h2>
+
+<h3 id="definition-9">Definition</h3>
+
+<pre><code>public function renderTemplate($template, $name = null)
+{
+    ...
+    $this-&gt;Application()-&gt;Events()-&gt;notify(
+        'Enlight_Plugins_ViewRenderer_PostRender',
+        array('subject' =&gt; $this, 'template' =&gt; $template)
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-9">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Plugins_ViewRenderer_PostRender' =&gt; 'onEnlightPluginsViewRendererPostRender'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-9">Listener</h3>
+
+<pre><code>public function onEnlightPluginsViewRendererPostRender(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightPlugin Enlight_Controller_Plugins_ViewRenderer_Bootstrap */
+    $enlightPlugin = $arguments-&gt;getSubject();
+ 
+    /** @var $template Enlight_Template_Default */
+    $template = $arguments-&gt;getTemplate();
+}
+</code></pre>
+
+<h3 id="arguments-dump-9">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Plugins_ViewRenderer_PostRender
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Plugins_ViewRenderer_Bootstrap
+                    [neverRender] =&gt; 
+                    [noRender] =&gt; 
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [action] =&gt; Shopware_Proxies_ShopwareControllersWidgetsIndexProxy
+                    [engine] =&gt; Enlight_Template_Manager
+                    [name] =&gt; ViewRenderer
+                    [collection] =&gt; Enlight_Plugin_Namespace_Loader
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [template] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Template_Default
+                    [cache_id] =&gt; 
+                    [compile_id] =&gt; frontend_emotion_orange_de_DE_1
+                    [caching] =&gt; 
+                    [cache_lifetime] =&gt; 3600
+                    [template_resource] =&gt; widgets/index/menu.tpl
+                    [mustCompile] =&gt; 
+                    [has_nocache_code] =&gt; 
+                    [properties] =&gt; Array(5)
+                    [required_plugins] =&gt; Array(2)
+                    [smarty] =&gt; Enlight_Template_Manager
+                    [block_data] =&gt; Array(0)
+                    [variable_filters] =&gt; Array(0)
+                    [used_tags] =&gt; Array(0)
+                    [allow_relative_path] =&gt; 
+                    [_capture_stack] =&gt; Array(1)
+                    [template_class] =&gt; Smarty_Internal_Template
+                    [tpl_vars] =&gt; Array(2)
+                    [parent] =&gt; Enlight_Template_Manager
+                    [config_vars] =&gt; Array(0)
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_postdispatch">Enlight_Controller_Front_PostDispatch</h2>
+
+<h3 id="definition-10">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_PostDispatch',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-10">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_PostDispatch' =&gt; 'onEnlightControllerFrontPostDispatch'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-10">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontPostDispatch(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-10">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_PostDispatch
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; frontend
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; index
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; index
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(1)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_front_dispatchloopshutdown">Enlight_Controller_Front_DispatchLoopShutdown</h2>
+
+<h3 id="definition-11">Definition</h3>
+
+<pre><code>public function dispatch()
+{
+    ...
+    $this-&gt;eventManager-&gt;notify(
+        'Enlight_Controller_Front_DispatchLoopShutdown',
+        $eventArgs
+    );
+    ...
+}
+</code></pre>
+
+<h3 id="registration-11">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Front_DispatchLoopShutdown' =&gt; 'onEnlightControllerFrontDispatchLoopShutdown'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-11">Listener</h3>
+
+<pre><code>public function onEnlightControllerFrontDispatchLoopShutdown(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Front */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+ 
+    /** @var $response Enlight_Controller_Response_ResponseHttp */
+    $response = $arguments-&gt;getResponse();
+}
+</code></pre>
+
+<h3 id="arguments-dump-11">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Controller_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Front_DispatchLoopShutdown
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [plugins] =&gt; Enlight_Plugin_Namespace_Loader
+                    [router] =&gt; Enlight_Controller_Router_Default
+                    [dispatcher] =&gt; Enlight_Controller_Dispatcher_Default
+                    [request] =&gt; Enlight_Controller_Request_RequestHttp
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [throwExceptions] =&gt; 
+                    [returnResponse] =&gt; 
+                    [invokeParams] =&gt; Array(7)
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /
+                    [_params] =&gt; Array(0)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(0)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; frontend
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; index
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; index
+                    [_actionKey] =&gt; action
+                )
+ 
+            [response] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [_cookies] =&gt; Array(0)
+                    [_body] =&gt; Array(1)
+                    [_exceptions] =&gt; Array(0)
+                    [_headers] =&gt; Array(1)
+                    [_headersRaw] =&gt; Array(0)
+                    [_httpResponseCode] =&gt; 200
+                    [_isRedirect] =&gt; 
+                    [_renderExceptions] =&gt; 
+                    [headersSentThrowsException] =&gt; 1
+                )
+        )
+)
+</code></pre>
+
+<h2 id="enlight_controller_dispatcher_controllerpath_*">Enlight_Controller_Dispatcher_ControllerPath_*</h2>
+
+<h3 id="definition-12">Definition</h3>
+
+<pre><code>public function getControllerPath(Enlight_Controller_Request_Request $request)
+{
+    ...
+    if ($event = Shopware()-&gt;Events()-&gt;notifyUntil(
+            'Enlight_Controller_Dispatcher_ControllerPath_' . $moduleName . '_' . $controllerName,
+            ['subject' =&gt; $this, 'request' =&gt; $request]
+            )
+    ) {
+        $path = $event-&gt;getReturn();
+    } else {
+        $path = $this-&gt;curDirectory . $controllerName . '.php';
+    }
+    ...
+}
+</code></pre>
+
+<h3 id="registration-12">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Enlight_Controller_Dispatcher_ControllerPath_Frontend_Detail' =&gt; 'onEnlightControllerDispatcherControllerPathFrontendDetail'
+    ];
+}
+</code></pre>
+
+<h3 id="listener-12">Listener</h3>
+
+<pre><code>public function onEnlightControllerDispatcherControllerPathFrontendDetail(\Enlight_Event_EventArgs $arguments)
+{
+    /** @var $enlightController Enlight_Controller_Dispatcher_Default */
+    $enlightController = $arguments-&gt;getSubject();
+ 
+    /** @var $request Enlight_Controller_Request_RequestHttp */
+    $request = $arguments-&gt;getRequest();
+}
+</code></pre>
+
+<h3 id="arguments-dump-12">Arguments dump</h3>
+
+<pre><code>stdClass Object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Enlight_Controller_Dispatcher_ControllerPath_Frontend_Detail
+    [_return] =&gt; 
+    [_elements] =&gt; Array
+        (
+            [subject] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Dispatcher_Default
+                    [curDirectory] =&gt; /var/www/sw406/engine/Shopware/Controllers/Frontend/
+                    [curModule] =&gt; frontend
+                    [defaultAction] =&gt; index
+                    [defaultController] =&gt; index
+                    [defaultModule] =&gt; frontend
+                    [frontController] =&gt; 
+                    [pathDelimiter] =&gt; _
+                    [wordDelimiter] =&gt; Array(2)
+                    [controllerDirectory] =&gt; Array(4)
+                    [front] =&gt; Shopware_Proxies_EnlightControllerFrontProxy
+                    [response] =&gt; Enlight_Controller_Response_ResponseHttp
+                    [instances] =&gt; Array(0)
+                )
+ 
+            [request] =&gt; stdClass Object
+                (
+                    [__CLASS__] =&gt; Enlight_Controller_Request_RequestHttp
+                    [_paramSources] =&gt; Array(2)
+                    [_requestUri] =&gt; /sw406/sommerwelten/accessoires/170/sonnenbrille-red
+                    [_baseUrl] =&gt; /sw406
+                    [_basePath] =&gt; /sw406
+                    [_pathInfo] =&gt; /sommerwelten/accessoires/170/sonnenbrille-red
+                    [_params] =&gt; Array(4)
+                    [_rawBody] =&gt; 
+                    [_aliases] =&gt; Array(1)
+                    [_dispatched] =&gt; 1
+                    [_module] =&gt; frontend
+                    [_moduleKey] =&gt; module
+                    [_controller] =&gt; detail
+                    [_controllerKey] =&gt; controller
+                    [_action] =&gt; 
+                    [_actionKey] =&gt; action
+                )
+        )
+)
+</code></pre>
+
+<h2 id="theme_inheritance_template_directories_collected">Theme_Inheritance_Template_Directories_Collected</h2>
+
+<h3 id="definition-13">Definition</h3>
+
+<pre><code>public function getTemplateDirectories(Shop\Template $template)
+{
+    $directories = $this-&gt;getTemplateDirectoriesRecursive(
+        $template-&gt;getId(),
+        $this-&gt;fetchTemplates()
+    );
+
+    $directories = $this-&gt;eventManager-&gt;filter(
+        'Theme_Inheritance_Template_Directories_Collected',
+        $directories,
+        ['template' =&gt; $template]
+    );
+
+    return $directories;
+}
+</code></pre>
+
+<h3 id="registration-13">Registration</h3>
+
+<pre><code>public static function getSubscribedEvents()
+{
+    return [
+        'Theme_Inheritance_Template_Directories_Collected' =&gt; 'onCollectTemplateDirectories',
+    ];
+}
+</code></pre>
+
+<h3 id="listener-13">Listener</h3>
+
+<pre><code>public function onCollectTemplateDirectories(\Enlight_Event_EventArgs $args)
+{
+    /** @var $directories array */
+    $directories = $args-&gt;getReturn();
+
+    /** @var $template \Shopware\Models\Shop\Template */
+    $template = $args-&gt;get('template');
+    
+    // adding own plugin view directory ($this-&gt;pluginDirectory contains plugin path)
+    $directories[] = $this-&gt;pluginDirectory . '/Resources/views';
+
+    $args-&gt;setReturn($directories);
+}
+</code></pre>
+
+<h3 id="arguments-dump-13">Arguments dump</h3>
+
+<pre><code>stdClass object
+(
+    [__CLASS__] =&gt; Enlight_Event_EventArgs
+    [_processed] =&gt; 
+    [_name] =&gt; Theme_Inheritance_Template_Directories_Collected
+    [_return] =&gt; Array (
+        [0] =&gt; /var/www/html/themes/Frontend/Responsive
+        [1] =&gt; /var/www/html/themes/Frontend/Bare
+    )
+    [_elements] =&gt; Array(
+        [template] =&gt; Shopware\Models\Shop\Template
+    )
+)
+</code></pre>
+
+                    </div>
+
+        <div class="clearfix"></div>
+        <a href="#0" class="dev-top">Top</a>
+    </div>
+    
+
+    <!-- Footer -->
+            <footer class="main-footer">
+            <div class="footer--container">
+                <div class="copyright">2021 © shopware AG - All rights reserved</div>
+                <div class="footer--links">
+                    <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
+                    <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a> |
+                    <a id="show-consent" href="#" title="Cookie settings">Cookie settings</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/app.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1622532189"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1622532189"></script>
+
+
+<script id="usercentrics-cmp" data-settings-id="65ynhGFvE" src="https://app.usercentrics.eu/browser-ui/latest/bundle.js" defer></script>
+<style id="usercentrics-styles">
+    [data-testid="uc-container"] {
+        --font-family: 'Brandon Text', 'Brandon', 'Arial', sans-serif;
+        --primary-color: #189eff;
+        --primary-color-fade: #189eff11;
+        --primary-color-fade-hover: #189eff22;
+        --border-color: #60718244;
+        --icon-color: #607182bb;
+        --text-color: #607182;
+        --link-color: #142432cc;
+        --headline-color: #142432;
+        --bg-color: #f8f9fd;
+    }
+
+    /* Modal
+    ----------------------------------- */
+    .modal,
+    [data-testid="uc-default-wall"] {
+        padding: 20px 20px 15px;
+        border: none;
+        max-width: 700px;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+    }
+    .modal-overlay,
+    [data-testid="uc-container"] > div:first-of-type {
+        background: rgba(20,36,50,0.8);
+        opacity: 1;
+    }
+
+    /* Head
+    ----------------------------------- */
+    .logo,
+    [data-testid="uc-header"] > div:first-of-type > div {
+        height: 38px;
+        max-height: 38px;
+    }
+    .logo-spacer,
+    [data-testid="uc-header"] > div:nth-child(2) {
+        height: 36px;
+    }
+
+    /* Language Button
+    ----------------------------------- */
+    .language-button,
+    [data-testid="uc-language-container"] [data-testid="uc-language-button"] {
+        border-radius: 4px 4px 0 0;
+        border-color: var(--border-color, #60718244);
+    }
+    .language-button:last-child,
+    [data-testid="uc-language-container"] [data-testid="uc-language-button"]:last-child {
+        border-radius: 4px;
+    }
+    .language-text,
+    [data-testid="uc-language-button"] > div {
+        padding-left: 5px;
+        padding-right: 14px;
+        font-weight: 500;
+        font-family: var(--font-family);
+        color: var(--text-color, #607182);
+    }
+    .language-arrow,
+    [data-testid="uc-language-button"] > i {
+        border-width: 0 1px 1px 0;
+        border-color: var(--icon-color, #607182bb);
+        padding: 3px;
+    }
+    .language-dropdown,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu"] {
+        border-radius: 0 0 4px 4px;
+        border: solid var(--border-color, #60718244);
+        border-width: 0 1px 1px 1px;
+        box-shadow: unset;
+    }
+    .language-dropdown-item,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"] {
+        font-weight: 500;
+        font-family: var(--font-family);
+        color: #607182AA;
+        border-width: 1px 0 0 0;
+        border-color: var(--border-color, #60718244);
+        transition: unset !important;
+    }
+    .language-dropdown-item:first-child,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"]:first-child {
+        border-top: 0;
+    }
+    .language-dropdown-item:hover,
+    [data-testid="uc-language-container"] [data-testid="uc-language-menu-item"]:hover {
+        background-color: var(--primary-color-fade, #189eff11);
+        color: var(--primary-color, #189eff);
+    }
+
+    /* Text
+    ----------------------------------- */
+    .headline,
+    [data-testid="uc-header"] > h1 {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--headline-color, #142432);
+    }
+    .description,
+    [data-testid="uc-header"] div:nth-of-type(4) {
+        font-weight: 400;
+        line-height: 1.72;
+        color: var(--text-color, #607182);
+    }
+    .text-spacer,
+    [data-testid="uc-header"] div:nth-of-type(6) {
+        height: 20px;
+    }
+
+    /* Anchor Link
+    ----------------------------------- */
+    .anchor-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"],
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"],
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"] a {
+        padding-top: 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--link-color, #142432cc);
+        transition: unset;
+    }
+    .anchor-link:hover,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"]:hover,
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"]:hover a {
+        text-decoration: underline;
+        color: var(--primary-color, #189eff);
+    }
+    .anchor-link-icon,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"] > i,
+    .settings-link,
+    [data-testid="uc-container"] [data-testid="uc-customize-anchor"] > i {
+        display: none;
+    }
+    .anchor-link,
+    [data-testid="uc-container"] [data-testid="uc-anchors"] [data-testid="uc-anchor-link"] {
+        margin-right: 14px;
+        padding-right: 14px;
+        border-right: 1px solid var(--border-color, #60718244);
+    }
+
+    /* Button
+    ----------------------------------- */
+    .button-accept-all,
+    [data-testid="uc-container"] [data-testid="uc-accept-all-button"] {
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: #fff;
+    }
+    .button-save-settings,
+    [data-testid="uc-container"] [data-testid="uc-save-button"] {
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        background-color: var(--primary-color-fade, #189eff11);
+        color: var(--primary-color, #189eff);
+    }
+    .button-save-settings:hover,
+    [data-testid="uc-container"] [data-testid="uc-save-button"]:hover {
+        background-color: var(--primary-color-fade-hover, #189eff22);
+        color: var(--primary-color, #189eff);
+    }
+
+    /* More Settings :: Tabs
+    ----------------------------------- */
+    .tabs,
+    [data-testid="uc-container"]  [data-testid="uc-tabs"] [aria-label="SettingsTabs"] {
+        border-bottom: 1px solid #ececec;
+    }
+    .tab,
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-categories"],
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-services"] {
+        padding: 8px 0 16px;
+        position: relative;
+        top: 1px;
+        font-weight: 500;
+        background: none;
+        color: var(--text-color, #607182);
+    }
+    .tab,
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-categories"][aria-selected="true"],
+    [data-testid="uc-container"] [data-testid="uc-tabs"] [data-testid="uc-tab-services"][aria-selected="true"] {
+        padding: 8px 0 16px;
+        font-weight: 600;
+        color: var(--primary-color, #189eff);
+    }
+
+    /* More Settings :: Panels
+    ----------------------------------- */
+    .panel-list,
+    [data-testid="uc-container"] [data-testid="uc-panel-categories"],
+    [data-testid="uc-container"] [data-testid="uc-panel-services"] {
+        background-color: var(--bg-color, #f8f9fd);
+    }
+    .panel-box,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] {
+        padding: 20px;
+    }
+    .panel-box-border,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button {
+        border-bottom: none;
+    }
+    .panel-headline,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button > div:first-of-type {
+        color: var(--headline-color, #142432);
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .panel-description,
+    [data-testid="uc-container"] [data-testid="uc-expandable-card"] button > div:nth-of-type(2) {
+        margin-top: 12px;
+        color: var(--text-color, #607182);
+        line-height: 1.62;
+    }
+    .panel-expandable-box,
+    [data-testid="uc-container"] [data-testid="uc-panel-categories"] [data-testid="uc-expandable-card"],
+    [data-testid="uc-container"] [data-testid="uc-panel-services"] [data-testid="uc-expandable-card"] {
+        border: 1px solid var(--border-color, #60718244);
+        box-shadow: none;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+    .panel-expandable-label,
+    [data-testid="uc-container"] [data-testid="uc-expandable-content"] label {
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-color, #607182);
+    }
+
+    /* Footer
+    ----------------------------------- */
+    .footer,
+    [data-testid="uc-container"] footer {
+        border-top: none;
+    }
+    .powered-by,
+    [data-testid="uc-container"] footer [data-testid="uc-footer"] > div:nth-of-type(2) {
+        font-size: 11px;
+        letter-spacing: 0.01em;
+        color: var(--text-color, #607182);
+        opacity: .75;
+    }
+    .tabs-footer,
+    [data-testid="uc-container"] [data-testid="uc-default-settings"] > div:first-of-type {
+        border-bottom: 1px solid #ececec;
+    }
+</style>
+
+<script>
+    // Inject styles
+    $(document).ready(function() {
+        const user = document.getElementById('usercentrics-root');
+        const styles = document.getElementById('usercentrics-styles');
+        user.shadowRoot.append(styles);
+    });
+
+    // Function to open consent modal
+    const consentButton = document.getElementById('show-consent');
+    if (consentButton) {
+        consentButton.addEventListener('click', function(){
+            UC_UI.showSecondLayer();
+        });
+    }
+
+    let userCentricsCalls = 0;
+    let userCentrics = null;
+    window.addEventListener('ucEvent', function(e) {
+        if (e.detail.event === 'consent_status' && userCentricsCalls <= 0) {
+            userCentrics = e.detail;
+        }
+        if (userCentrics !== e.detail && userCentricsCalls <= 1) {
+            location.reload();
+        }
+        userCentricsCalls++;
+    });
+</script>
+
+<!-- Google Tag Manager -->
+<script type="text/plain" data-usercentrics="Google Tag Manager">(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-WJKMNPS');</script>
+<!-- End Google Tag Manager -->
+
+</body>
+</html>

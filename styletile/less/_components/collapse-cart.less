@@ -1,0 +1,329 @@
+// collapse-cart.less
+
+.container--ajax-cart {
+  .unitize(top, 50);
+  .unitize(margin-right, 10);
+  .unitize-padding(15, 0, 0, 0);
+  position: absolute;
+  text-align: left;
+  right: 0;
+  z-index: 3000;
+  display: none;
+
+  &.off-canvas {
+    .unitize-width(280);
+    .unitize(-280, 16, right);
+    .transition(all 0.25s ease-in-out);
+    margin-right: 0;
+    display: block;
+    height: 100%;
+    left: auto;
+    position: fixed;
+    top: 0;
+    padding: 0;
+    background: #fff;
+    z-index: 8000;
+
+    .icon--loading-indicator {
+      .unitize-width(38);
+      .unitize-height(38);
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  .icon--loading-indicator {
+    .unitize-width(21);
+    .unitize-height(21);
+    .unitize-padding(20, 0);
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    box-sizing: content-box;
+
+    &:before {
+      .border-radius(100%);
+      .animation(keyframe--spin 1s linear infinite);
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: block;
+      content: "";
+      border: 2px solid #CCC;
+      border-top: 2px solid #333;
+    }
+  }
+}
+
+.ajax--cart {
+  .unitize-width(450);
+  .border-radius();
+  .unitize(font-size, 14);
+  border: 1px solid @border-color;
+  position: relative;
+  background: #fff;
+
+  &:after,
+  &:before {
+    .unitize(right, 10);
+    bottom: 100%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:after {
+    .unitize(right, 11);
+    border-bottom-color: #fff;
+    border-width: 9px;
+  }
+
+  &:before {
+    border-bottom-color: @border-color;
+    border-width: 10px;
+  }
+
+  .content--loader {
+    .unitize-width(21);
+    .unitize-height(21);
+    .unitize-padding(20, 0);
+    .box-sizing(content-box);
+    margin: 0 auto;
+  }
+
+  .item--container {
+    .unitize-padding(0, 10);
+    .unitize-max-height(353);
+    //background: #fff;
+    overflow-y: auto;
+  }
+
+  .alert {
+    .reset-border-radius();
+    .unitize(margin-bottom, 10);
+
+    .alert--icon,
+    .icon--element {
+      color: @highlight-success;
+      background: desaturate(lighten(@highlight-success, 42%),20%);
+      width: 15%;
+    }
+
+    .alert--content {
+      width: 85%;
+    }
+  }
+
+  .cart--item {
+    .unitize-padding(10, 0);
+    .unitize(line-height, 38);
+    border-bottom: 1px solid @border-color;
+    overflow: hidden;
+
+    &:last-child {
+      border: 0 none;
+    }
+
+    &.is--empty {
+      padding-bottom: 0;
+    }
+
+    .thumbnail--container {
+      .unitize-margin(0, 10, 0, 0);
+      .unitize-width(38);
+      .unitize-height(38);
+      .border-radius();
+      float: left;
+      position: relative;
+
+      &.has--image {
+        border: 1px solid @border-color;
+        background: #FFFFFF;
+      }
+    }
+
+    .thumbnail--image {
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .item--link {
+      color: @text-color;
+    }
+
+    .item--quantity {
+      .unitize-margin(0, 5, 0, 0);
+      font-weight: @font-bold-weight;
+    }
+
+    .item--price {
+      font-weight: @font-bold-weight;
+      float: right;
+    }
+
+    .action--container {
+      .unitize-width(21);
+      .unitize-height(21);
+      .unitize-margin(10, 0, 0, 10);
+      line-height: 1;
+      float: right;
+
+      .btn {
+        .unitize-height(21);
+        .unitize-width(21);
+        .unitize-padding(4, 5);
+        .unitize(font-size, 8);
+        .unitize(line-height, 14);
+      }
+
+      *[class*="icon--"] {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .prices--container {
+    .unitize-padding(10, 10);
+    background: @gray-light;
+    border-color: @border-color;
+    border-style: solid;
+    border-width: 1px 0;
+
+    .prices--articles-amount {
+      float: right;
+    }
+
+    .prices--articles {
+      color: @text-color-dark;
+      font-weight: @font-bold-weight;
+    }
+  }
+
+  .button--container {
+    .unitize-padding(10, 10);
+    overflow: hidden;
+
+    *[class*="button--"] {
+      .unitize-width(210);
+      .border-radius();
+      text-align: center;
+    }
+
+    .button--checkout {
+      float: right;
+    }
+
+    .button--open-basket *[class^="icon--"] {
+      display: none;
+    }
+  }
+}
+
+.off-canvas .ajax--cart {
+  .unitize(font-size, 14);
+  background: #fff;
+  width: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 0 none;
+  min-height: 100%;
+
+  .item--container {
+    max-height: none;
+  }
+
+  .cart--item {
+    .unitize(line-height, 19);
+
+    .item--link {
+      .unitize-width(149);
+      display: inline-block;
+    }
+
+    .item--price {
+      float: none;
+      display: block;
+    }
+  }
+
+  .prices--container {
+    background: #fff;
+    border-bottom: 0 none;
+  }
+
+  .action--container,
+  .action--container .action--remove {
+    .unitize-width(38);
+    .unitize-height(38);
+  }
+
+  .action--container {
+    margin: 0;
+
+    .action--remove {
+      .unitize(font-size, 14);
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .icon--loading-indicator {
+      .unitize-width(21);
+      .unitize-height(21);
+      position: relative;
+      margin: 9px auto 0;
+    }
+
+    *[class*="icon--"] {
+      .unitize(line-height, 28);
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .button--container {
+    text-align: left;
+
+    *[class*="button--"] {
+      .unitize-margin(10, 0, 0, 0);
+      width: 100%;
+    }
+
+    .button--checkout {
+      margin: 0;
+    }
+
+    .button--open-basket {
+      .unitize(padding-right, 30);
+
+      *[class^="icon--"] {
+        display: block;
+        .unitize(right, 10);
+      }
+    }
+  }
+}
+
+@media screen and(min-width: @tabletViewportWidth) {
+  .container--ajax-cart.is--shown {
+    display: block;
+  }
+}
+
+@media screen and(min-width: @desktopViewportWidth) {
+  .container--ajax-cart {
+    margin-right: 0;
+  }
+}

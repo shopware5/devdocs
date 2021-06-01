@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Tab menu</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-weight: 400;
+        }
+        .content--description {
+            padding: 30px;
+        }
+        .content--title {
+            font-size: 18px;
+            margin: 10px 0 5px 0;
+            font-weight: 700;
+            color: #3f4c58;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tab-menu--product js--tab-menu">
+    <div class="tab--navigation">
+        <a href="#" class="tab--link is--active" title="Tab-1" data-tabName="description">First Tab</a>
+        <a href="#" class="tab--link" title="Tab-2" data-tabName="rating">Second Tab</a>
+    </div>
+
+    <div class="tab--container-list">
+        <div class="tab--container has--content is--active">
+            <div class="tab--content">
+                <div class="content--description">
+                    <div class="content--title">
+                        Descripton "LYNDON Laurel Wreath"
+                    </div>
+                    <div class="product--description" itemprop="description">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab--container has--content">
+            <div class="tab--content">
+                <div class="content--description">
+                    <div class="content--title">
+                        Rating "LYNDON Laurel Wreath"
+                    </div>
+                    <div class="product--description" itemprop="rating">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../js/modernizr.js"></script>
+<script src="../js/main.js"></script>
+</html>

@@ -1,0 +1,78 @@
+@import (reference) '../all.less';
+
+// Animations
+.animate {
+  .appear();
+
+  &.animate--soon {
+    opacity: 0;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+  &.fill-up {
+    width: 100%;
+
+    .filled {
+      .transition(width .8s cubic-bezier(0.66, 0.2, 0.6, 0.95));
+      will-change: width;
+    }
+    &.animate--soon {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+
+      .filled {
+        width: 0 !important;
+      }
+    }
+  }
+}
+
+// Types
+.animate {
+  &.animate--bounce {
+    .appear(@timing: .5s, @cubic: @bounce);
+  }
+  &.animate--blur {
+    transition: opacity 1s @cubic, transform 1s @cubic, filter 1s @cubic;
+    will-change: opacity, transform, filter;
+
+    &.animate--soon {
+      transform: perspective(500px) translate3d(0, 0, 40px);
+      -webkit-filter: blur(1px);
+      filter: blur(1px);
+    }
+  }
+}
+
+.animate.fill-up {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background-color: fade(@border-color, 50);
+
+  .filled {
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: @blue;
+  }
+}
+
+.timing-1 { transition-duration: 0.20s !important; }
+.timing-2 { transition-duration: 0.40s !important; }
+.timing-3 { transition-duration: 0.60s !important; }
+.timing-4 { transition-duration: 0.80s !important; }
+.timing-5 { transition-duration: 1.00s !important; }
+
+// 768px (48em)
+@media screen and (min-width: @tabletViewportWidth) {
+  .delay-1 { transition-delay: 0.20s !important; }
+  .delay-2 { transition-delay: 0.40s !important; }
+  .delay-3 { transition-delay: 0.60s !important; }
+  .delay-4 { transition-delay: 0.80s !important; }
+  .delay-5 { transition-delay: 1.00s !important; }
+}

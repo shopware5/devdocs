@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.2'
+
+    - name: Install dependencies
+      run: |
+        composer install
+    - name: Build page
+      run: | 
+        ./vendor/bin/sculpin generate --env=prod --url="https://developers.shopware.com"
+        ./contrib/package_plugins.sh
+        git clone https://github.com/shopware/devdocs.git -b styletile output_prod/styletile
+        rm -rf output_prod/styletile/.git
+        echo "developers.shopware.com" > output_prod/CNAME
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./output_prod

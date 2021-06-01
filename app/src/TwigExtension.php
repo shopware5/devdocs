@@ -28,13 +28,13 @@ class TwigExtension extends \Twig_Extension
     public function versioned($resource)
     {
         $parts = pathinfo($resource);
-        $version = ($this->environment === 'prod') ? '.' . time() : '';
+        $version = ($this->environment === 'prod') ? time() : '';
 
         return $parts['dirname']
             . '/'
             . $parts['filename']
-            . $version
             . '.'
-            . $parts['extension'];
+            . $parts['extension']
+            . '?v=' . $version;
     }
 }

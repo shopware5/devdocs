@@ -177,25 +177,19 @@ class Shopware_Plugins_Frontend_SwagSloganOfTheDay_Bootstrap extends Shopware_Co
 {
     public function afterInit()
     {
-        $this->get('Loader')->registerNamespace(
-            'ShopwarePlugins\PluginName',
-            $this->Path()
-        );
+        $this->get('loader')->registerNamespace('ShopwarePlugins\PluginName', $this->Path());
     }
     
     public function install()
     {
-        
     }
     
     public function uninstall()
     {
-            
     }
 
     public function secureUninstall()
     {
-        
     }
 
     public function update()

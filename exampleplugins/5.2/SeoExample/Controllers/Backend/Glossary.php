@@ -12,7 +12,7 @@ class Shopware_Controllers_Backend_Glossary extends Shopware_Controllers_Backend
         $limit = $this->Request()->getParam('limit', 50);
 
         /** @var Shopware_Components_SeoIndex $seoIndex */
-        $seoIndex = $this->container->get('SeoIndex');
+        $seoIndex = $this->container->get('seoindex');
         $seoIndex->registerShop($shopId);
 
         /** @var sRewriteTable $rewriteTableModule */

@@ -235,7 +235,7 @@ class Shopware_Controllers_Backend_Glossary extends Shopware_Controllers_Backend
         $shopId = $this->Request()->getParam('shopId');
 
         /** @var Shopware_Components_SeoIndex $seoIndex */
-        $seoIndex = $this->container->get('SeoIndex');
+        $seoIndex = $this->container->get('seoindex');
         $seoIndex->registerShop($shopId);
 
         /** @var sRewriteTable $rewriteTableModule */

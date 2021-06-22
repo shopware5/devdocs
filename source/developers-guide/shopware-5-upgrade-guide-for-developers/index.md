@@ -21,7 +21,7 @@ including minor and bugfix releases, refer to the `UPGRADE.md` file found in you
 
 ### System requirements changes
 
-The **minimum PHP version** has been increased to **PHP 7.3 or higher**.  We’ve also added support for **PHP 8.0** and
+The **minimum PHP version** has been increased to **PHP 7.4 or higher**.  We’ve also added support for **PHP 8.0** and
 encourage you to use the latest version.
 
 The **minimum Elasticsearch version is 7.0**, support for Elasticsearch 6 has been dropped due to the 

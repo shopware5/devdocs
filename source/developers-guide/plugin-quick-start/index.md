@@ -28,15 +28,12 @@ On the left you can see Shopware's default directory structure, as you will find
 
 **custom/plugins** This directory contains all plugins based on the plugin system introduced with Shopware 5.2.
 
-**cache**: Contains various caches and generated files like smarty compile cache, proxy caches, HTML cache etc.
 
 **engine/Library**: Some libraries / dependencies which are not available in composer.
 
 **engine/Shopware**: The actual Shopware application with subdirectories for our bundles, services and models.
 
 **files**: Files for ESD products or generated documents are stored here
-
-**logs**: Our logging directory. Whenever an exception occurs in the Shopware stack, you'll find the stack trace and some context in these log files.
 
 **media**: Files uploaded via the Shopware MediaManager are stored in here (images, thumbnails and other uploads)
 
@@ -47,6 +44,10 @@ On the left you can see Shopware's default directory structure, as you will find
 **tests**: PHPUnit and Mink tests
 
 **themes**: The Shopware 5 template base (bare, responsive)
+
+**var/cache**: Contains various caches and generated files like smarty compile cache, proxy caches, HTML cache etc.
+
+**var/logs**: Our logging directory. Whenever an exception occurs in the Shopware stack, you'll find the stack trace and some context in these log files.
 
 **vendor**: Dependencies from composer. Shipped with the release package, git users will need to run `composer install` or `ant build-unit`
 

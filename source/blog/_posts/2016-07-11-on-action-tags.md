@@ -170,7 +170,7 @@ are inevitable, make sure that they *are cached as well* or that they are *not u
 Some time ago, I was wondering, if we couldn't just handle ESI tags with Ajax queries. As those queries could be handled
 all at once, we might be able to handle 3 queries with 1000ms each in (theoretically) 1000ms - instead of 3000 as in the example before.
 
-The proof of concept plugin I wrote will basically subscribe to PostDsipatch events and remote the "Surrogate-Control"
+The proof of concept plugin I wrote will basically subscribe to PostDispatch events and remote the "Surrogate-Control"
 header. This way, caches will ignore the ESI tags and deliver those tags to the client. A simple jQuery plugin will then
 find those tags and perform the ESI request via Ajax:
 
@@ -231,12 +231,12 @@ There are two downsides of this approach, however:
 1. This approach will require a custom controller, that is able to dispatch multiple URLs. This is doable - but increases
 the complexity of the system.
 2. When multiple ESI tags are requested in one HTTP request, the handling of the cache time also becomes more complex:
-You will need to figure out the lowest common cache time of all routes and set that for the request. But if the overal
+You will need to figure out the lowest common cache time of all routes and set that for the request. But if the overall
 cache time is defined by the lowest cache time - what is the point in having varying cache times in the first place?
 
 So even though this approach looks promising on a first glance, I assume that it would introduce too much complexity to
 solve a problem that should better be handled in your application's logic: If you need e.g. many ESI requests for prices
-or instock info, having a distinct Ajax requests that will fetch this info in one Ajax call is a way better solutions then
+or instock info, having a distinct Ajax requests that will fetch this info in one Ajax call is a way better solution then
 to introduce the "batch request" ESI handling discussed here.
 
 ## Conclusion

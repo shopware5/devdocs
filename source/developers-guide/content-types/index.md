@@ -113,7 +113,7 @@ With '[technicalName]-grid' can you create an association to a multi selection o
 | type          | Field type                                                    |
 | helpText      | Field helpText                                                |
 | description   | Field description                                             |
-| translateable | Field is translateable?                                       |
+| translateable | Field is translatable?                                       |
 | required      | Field is required?                                            |
 | options       | Can be used to pass variables to extjs                        |
 | custom        | Can be used to store custom variables                         |
@@ -121,7 +121,7 @@ With '[technicalName]-grid' can you create an association to a multi selection o
 | showListing   | Show the field in the extjs listing window                    |
 | searchAble    | Field should be searchable in the extjs listing window search |
 
-## Accesing using the API
+## Access using the API
 
 All Content Types have an API endpoint generated automatically. It will be accessible using the route '/api/Custom[TechnicalName]' (e.g '/api/CustomAwesomeRecipeContentType') and follows the default Shopware API schema.
 
@@ -129,7 +129,7 @@ In default, it reads the data in raw format, without resolving the associated da
 
 To resolve the associations, you can pass a GET parameter '?resolve=1'. To load the translations, can you pass a GET parameter '?loadTranslations=1' to the list and get one call.
 
-The data being passed to create or update an entity has to be in the raw format. Multi selection fields values have to been splitted by pipe (e.g '|1|2|').
+The data being passed to create or update an entity has to be in the raw format. Multi selection fields values have to been split by pipe (e.g '|1|2|').
 
 ## Usage internal in PHP
 
@@ -174,7 +174,7 @@ To enable the Frontend controller, you have to set 'showInFrontend' in the 'type
 These view fields will be used for SEO information in the '&lt;head&gt;'-tag, as well as in the listing of the contents and in the emotion world.
 
 The controller name is generated, like in the API, with the same schema 'Custom[TechnicalName]'.
-By default the controller tries to load the template in the default directory structure (`frontend/controller/action.tpl`) and if that template is missing, it willl fall back to the folder `frontend/content_type/action.tpl`).
+By default the controller tries to load the template in the default directory structure (`frontend/controller/action.tpl`) and if that template is missing, it will fall back to the folder `frontend/content_type/action.tpl`).
 
 In the default template, only fields are visible in the frontend, which implements the interface 'Shopware\Bundle\ContentTypeBundle\Field\TemplateProvidingFieldInterface'
 

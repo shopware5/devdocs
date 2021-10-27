@@ -25,7 +25,7 @@ Use the following command to install ESLint, the standardjs configuration & nece
 npm install -g eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard
 ```
 
-#### Installating the dependencies per plugin
+#### Installing the dependencies per plugin
 If you're not feeling comfortable installing the dependencies globally, you can also create a `package.json` file in your plugin directory (e.g. `SwagBundle`). You can create this file using the command `npm init`.
 
 After the file was successfully created, run the following command to install the dependencies as `devDependencies`:

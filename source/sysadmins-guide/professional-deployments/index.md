@@ -38,7 +38,7 @@ and workflows.
 - The staging system is where a thoroughly tested feature is being shown to an external customer and features are combined
   into releases.
 
-- The production system is what the end customer get's to see. If a staging system contains all relevant features
+- The production system is what the end customer gets to see. If a staging system contains all relevant features
   for e.g. a certain milestone, these can be deployed together to this system.
 
 ### Deployments

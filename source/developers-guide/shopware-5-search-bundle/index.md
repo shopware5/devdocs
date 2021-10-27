@@ -322,7 +322,7 @@ class MyHandlerClass implements FacetHandlerInterface, PartialFacetHandlerInterf
 
 ## Optimized Batch Search
 
-As of Shopware 5.3, it is possible to search for multiple critera objects at once. In addition, the fetch process for products will be minimized by fetching a product number only once. An optimization service will then try to optimize the search request by combining identical criteria objects into one. So there will be fewer search requests for identical criterias.
+As of Shopware 5.3, it is possible to search for multiple criteria objects at once. In addition, the fetch process for products will be minimized by fetching a product number only once. An optimization service will then try to optimize the search request by combining identical criteria objects into one. So there will be fewer search requests for identical criterias.
 
 Another advantage is that you won't get the same results with identical searches.
 

@@ -9,7 +9,7 @@ little more insight into our quality assurance (QA) process.
 
 As a software company, we try to cover the whole development process in an agile culture, and since the majority of our teams are using Scrum or Kanban, we try to strictly follow the <a href="http://agilemanifesto.org/" target="_blank">agile manifesto</a>. However, in an agile environment, it’s sometimes difficult to fluently integrate the quality assurance process.
 
-Before I go into what works well, let me share an attitude that doesn’t work at all: "We don't need extra testers. Tell the developers they can take more time developing and testing things by themselves, but they have to stop creating bugs." 
+Before I go into what works well, let me share an attitude that doesn't work at all: "We don't need extra testers. Tell the developers they can take more time developing and testing things by themselves, but they have to stop creating bugs." 
 
 I don’t think I need to explain why this statement is completely counterproductive, and I’m glad this viewpoint never found its way to Shopware. 
 

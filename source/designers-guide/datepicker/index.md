@@ -31,7 +31,7 @@ To add a datepicker to your template, this piece of html will suffice:
    data-datepicker="true" />
 ```
 
-The inputs `type` is set to `"text"` because we wouldn't be able to set a placeholder value for an input of type `"date"`. Also, every browser shows slightly different native behaviour for date inputs and this way we're circumventing that. The  `name` and `id` attributes are important for form submission and you're free to choose any value here. The `placeholder` attribute lets you define a placeholder string. `data-datepicker="true"` is what makes the datepicker actually work: via this statement our jQuery plugin is able to identify this input as a datepicker and will then apply various classes to it, aswell as generate the necessary markup for the calendar overlay.
+The inputs `type` is set to `"text"` because we wouldn't be able to set a placeholder value for an input of type `"date"`. Also, every browser shows slightly different native behaviour for date inputs and this way we're circumventing that. The  `name` and `id` attributes are important for form submission and you're free to choose any value here. The `placeholder` attribute lets you define a placeholder string. `data-datepicker="true"` is what makes the datepicker actually work: via this statement our jQuery plugin is able to identify this input as a datepicker and will then apply various classes to it, as well as generate the necessary markup for the calendar overlay.
 
 ## Configuration
 

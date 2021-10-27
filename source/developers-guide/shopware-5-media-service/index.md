@@ -133,7 +133,7 @@ Using the MediaService allows Shopware to better cope with problems like the one
 
 By default, adapters for local and FTP based file systems are included since Shopware 5.1.
 
-### Bullt-in Adapters since Shopware 5.5
+### Built-in Adapters since Shopware 5.5
 
 * Amazon S3
 * Google Cloud Platform

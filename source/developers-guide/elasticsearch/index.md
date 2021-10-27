@@ -1358,7 +1358,7 @@ The plugin bootstrap contains the additional source code:
          class="SwagESProduct\Bundle\SearchBundleES\SalesConditionHandler">
     <tag name="shopware_search_es.search_handler"/>
 </service>
-<service id="swag_es_prodcut.es_search.sales_sorting_handler"
+<service id="swag_es_product.es_search.sales_sorting_handler"
          class="SwagESProduct\Bundle\SearchBundleES\SalesSortingHandler">
     <tag name="shopware_search_es.search_handler"/>
 </service>
@@ -1969,9 +1969,9 @@ In ConsoleEvaluationHelper.php line 183:
                                                                                                                   
 ```
 
-As already mentionend do these options work with both, the `sw:es:index:populate` and the `sw:es:backend:index:populate` command. 
+As already mentioned do these options work with both, the `sw:es:index:populate` and the `sw:es:backend:index:populate` command. 
 
-An occured error can be viewed in detail via the system log backend view (Configuration > Logfile > System log) by selecting the correct ES logging file (something like `es_production-2018-12-06.log`).
+An occurred error can be viewed in detail via the system log backend view (Configuration > Logfile > System log) by selecting the correct ES logging file (something like `es_production-2018-12-06.log`).
 
 ![elasticsearch_system_log_detail](elasticsearch_system_log_detail.png)
 

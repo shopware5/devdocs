@@ -41,10 +41,10 @@ The [SwagThreeSixty plugin](https://github.com/shopwareLabs/SwagThreeSixtyViewer
 ### Why have we created a 3D editor?
 Before we're jumping straight into the plugin, I would like to explain why we've added a 3D editor instead of a simple upload ability for 3D models. A 3D model is just a single part of a 3D scene, next to things like the environment or the lighting, both of which are crucially important for a realistic display of your products. That is why we decided to provide a solution that seamlessly allows you to create everything necessary to present 3D representations of your products in your shop.
 
-A scene contains a camera which looks onto your product, you have different lights in place, for example a hemisphere light for environmental illumination and a spot light which is giving your project the correct lighting, as well as a backdrop or even other 3D models which you're using to put your product into the right context.
+A scene contains a camera which looks onto your product, you have different lights in place, for example a hemisphere light for environmental illumination and a spotlight which is giving your project the correct lighting, as well as a backdrop or even other 3D models which you're using to put your product into the right context.
 
 ## Technical background
-The editor is using [babylon.js](https://www.babylonjs.com/), a JavaScript framework for building 3D games with HTML5. WebGL, WebVR & Web Audio initiallly created by Microsoft. It helps you to streamline the development of 3D content in the browser. The framework itself it full-featured and includes a rich & in-depth documentation.
+The editor is using [babylon.js](https://www.babylonjs.com/), a JavaScript framework for building 3D games with HTML5. WebGL, WebVR & Web Audio initially created by Microsoft. It helps you to streamline the development of 3D content in the browser. The framework itself it full-featured and includes a rich & in-depth documentation.
 
 ### Browser support
 It works on all WebGL platforms via a **specific modern shader architecture** and native touch support:
@@ -261,7 +261,7 @@ The ambient texture / color can be seen as a second level of diffuse. The produc
 
 *Specular color / texture settings*
 
-The specular color is the color produced by a light reflecting from the surface of the element. Please note that the ambient color / texture has an unique property *"Power"* which allows you to set the intensitity of the reflection. If you don't want to have any reflection on your model either set the color of the specular color to `#000000` or lower the *"Power"* value to zero.
+The specular color is the color produced by a light reflecting from the surface of the element. Please note that the ambient color / texture has an unique property *"Power"* which allows you to set the intensity of the reflection. If you don't want to have any reflection on your model either set the color of the specular color to `#000000` or lower the *"Power"* value to zero.
 
 #### Bump map
 
@@ -303,9 +303,9 @@ In the following video I'm demonstrating how you can normalize a model in [blend
 
 As you probably noticed in the screenshot above, the 3D model object in the editor doesn't contain a Media Manager field to select the model using the media manager. The supported 3D file are linking files inside the file to another file like textures, shaders and materials. To prevent issues with the file handling of our Media Manager we're using a absolute path for the *"Model"* setting. As an recommendation you should create a new folder inside the `files` directory to manage your models.
 
-To insert your model, just place the absolute path to your model in the *"Model"* field. If you haven't scaled your model down propertly, you can use the fieldset *"Scaling"* to scale it accordantly.
+To insert your model, just place the absolute path to your model in the *"Model"* field. If you haven't scaled your model down properly, you can use the fieldset *"Scaling"* to scale it accordingly.
 
-After you inserted the model, you unfortunalty have to reload the module (i.e. close and open it up again) as we're using a download manager which manages the assets of your scene. 
+After you inserted the model, you unfortunately have to reload the module (i.e. close and open it up again) as we're using a download manager which manages the assets of your scene. 
 
 
 ## Assets - 3D scanned shoe

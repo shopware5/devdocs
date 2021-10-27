@@ -35,7 +35,7 @@ And how complex might the tasks get?
 | -------------             | -------------                                                                              | -----            |
 | Simple Entity management  | Is a simple use case with an easy implementation. The only caveats here is extensibility.  | CRUD             |
 | Complex Workflows         | Unknown complex stuff, might not have common solutions.                                    | The real fun :)  |
-| Complex due to Shopware   | Should be a simple use case, but is not easily implemented.                                | Uggly code       |
+| Complex due to Shopware   | Should be a simple use case, but is not easily implemented.                                | Ugly code        |
 
 So now we have different required parts, learned a little bit about the actors using these parts. And we also gained some insight as to how complex these parts might get.
 

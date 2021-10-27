@@ -454,7 +454,7 @@ public function returnAction()
     }
     
     if (!$success) {
-        //do errror handling like redirecting to error page
+        //do error handling like redirecting to error page
     }
     // continue with saving order
     ...

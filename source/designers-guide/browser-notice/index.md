@@ -69,7 +69,7 @@ var $buoop = {
 ```
 
 ### Edit the CSS
-The following CSS rules are applied by the script. You can overwrite them in your own CSS. To do so you need to add some more specifity to the css-rules:
+The following CSS rules are applied by the script. You can overwrite them in your own CSS. To do so you need to add some more specificity to the css-rules:
 
 ```
 .buorg {

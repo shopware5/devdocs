@@ -22,7 +22,7 @@ We're using a component based design and the goal was to create components which
 
 ## Naming Smarty blocks correctly
 
-Definiting the names of Smarty block seems harder than it is. We're using a pretty straight forward pattern here:
+Defining the names of Smarty block seems harder than it is. We're using a pretty straight forward pattern here:
 
 ```
 [module]_[controller]_[action]_[functionality / purpose]

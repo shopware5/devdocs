@@ -376,7 +376,7 @@ The structure of a Shopware 5 theme is very similar to the one already existing 
 ```
 
 ### Differences between the Shopware 4 and Shopware 5 structure
-Shopware 5 themes, like in Shopware 4, are still divided in great sections, with multiple subsections each. In addition we've divided the template files even smaller parts to increase the reusability and maintainability.
+Shopware 5 themes, like in Shopware 4, are still divided in great sections, with multiple subsections each. In addition, we've divided the template files even smaller parts to increase the re-usability and maintainability.
 
 For example, we splitted the product box template file ```box_article.tpl``` in smaller parts which can be found in the ```listing/product-box``` directory.
 

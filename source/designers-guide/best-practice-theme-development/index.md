@@ -23,7 +23,7 @@ In Shopware, we use Grunt to speed up the development of themes. In detail, we i
 
 ## Installation
 
-LESS and Grunt are based on Node.js, which makes it necessary to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your system. Node.js is available on a majority of systems and distrubition. If your system isn't listed below, please use the [official Node.js installation guide](https://github.com/joyent/node/wiki/Installation).
+LESS and Grunt are based on Node.js, which makes it necessary to have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your system. Node.js is available on a majority of systems and distribution. If your system isn't listed below, please use the [official Node.js installation guide](https://github.com/joyent/node/wiki/Installation).
 
 ### Install Node.js/npm on Ubuntu 14.04
 

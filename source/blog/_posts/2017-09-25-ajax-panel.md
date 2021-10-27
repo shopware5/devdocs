@@ -28,12 +28,12 @@ Serving all this data from a single controller action may already be hard, now i
 have to exchange with this single action when you want to enable pagination, validation and searching on this single page, 
 through this single action.
 
-This is pretty much the reason why stateless services and statefull frontends are an important topic in todays web development. 
+This is pretty much the reason why stateless services and stateful frontends are an important topic in today's web development. 
 And it is exactly the reason why we created the ajax panel. It provides us with the means to load local states from the 
 server and create a rich ui.
 
 We evaluated different frameworks to achieve this target. AngularJS and Vue.JS were possible frameworks which allows
-two way data binding and statefull frontend access.
+two way data binding and stateful frontend access.
 
 <img src="/blog/img/ajax-panel-abstract.svg" alt="image">
 
@@ -122,9 +122,9 @@ $.plugin('b2bAjaxPanelExamplePlugin', {
 
 ## Dependencies
 With the ajax panel we build a lightweight frontend framework which only depends on jQuery. Shopware delivers jQuery in the 
-Responsive theme, so we don't need to require any addional component. Awesome, isn't it?
+Responsive theme, so we don't need to require any additional component. Awesome, isn't it?
 
 ## Conclusion
 Our Ajax Panel is a complete flexible and lightweight framework with many possibilities and jQuery as a single dependency. 
 The panel can be handled with simple data attributes and additional plugins allows to use JavaScript plugins.
-We use this technology in our B2B-Suite in each module very succesfully.
+We use this technology in our B2B-Suite in each module very successfully.

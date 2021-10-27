@@ -1496,7 +1496,7 @@ The following tasks are necessary to use the `OneToMany` association using the S
 * Definition of the variant view
 * Definition of where the variant view should be displayed
 
-First, you have to extend the product model by adding the variant association and create a new file containing the varaint model in `Views/backend/swag_product/model/variant.js`:
+First, you have to extend the product model by adding the variant association and create a new file containing the variant model in `Views/backend/swag_product/model/variant.js`:
 
 **SwagProduct/Views/backend/swag_product/model/product.js**
 ```php

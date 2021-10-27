@@ -202,7 +202,7 @@ $.plugin('example', {
     
 ## Global jQuery event observer
 
-We've added a global event observer into Shopware 5 as well. It provides us with the ability to define events globally in the jQuery object and therefor every plugin can listen to these events:
+We've added a global event observer into Shopware 5 as well. It provides us with the ability to define events globally in the jQuery object and therefore every plugin can listen to these events:
 
 ```javascript
 // Register a new event

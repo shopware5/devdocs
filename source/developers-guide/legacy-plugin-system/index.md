@@ -165,8 +165,8 @@ During plugin installation / deinstallation / update / activate / deactivate a m
 - stop process by throwing an exception and notify user with a message
 - notify user on success with a message
 - flush specified caches
-- within update(), addtionally: get currently installed version number of your plugin
-- wihtin secureUninstall() keep user generated data, if he wishes so
+- within update(), additionally: get currently installed version number of your plugin
+- within secureUninstall() keep user generated data, if he wishes so
 
 Checkout the examples:
 

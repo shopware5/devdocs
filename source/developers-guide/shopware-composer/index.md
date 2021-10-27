@@ -93,7 +93,7 @@ Shopware itself got updated and need a new schema version to run properly. If yo
 remove the `post-update-cmd` hook in the `composer.json` or modify the `app/post-update.sh` according to your needs.
 
 <div class="alert alert-info">
-Though it is possible to define a more lax version constraint of a depedency in the `composer.json` (e.e.g `@stable` 
+Though it is possible to define a more lax version constraint of a dependency in the `composer.json` (e.e.g `@stable` 
 to get the latest release or `^5.4` to get the latest release of the 5.4 minor version, 
 [see Composer documentation](https://getcomposer.org/doc/articles/versions.md) for details) it is nevertheless 
 recommended to define a specific, fixed version to not update by accident. 

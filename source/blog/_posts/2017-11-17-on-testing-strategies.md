@@ -24,7 +24,7 @@ When we set of to write the B2B-Suite we as a team set a few technical goals we 
 
 ## The Application
 
-First we take a look at a fairly standard application design. We need this to have a shared base for the comparision of the different testing strategies. This model omits the framework and data structures which are not essential for our evaluation.
+First we take a look at a fairly standard application design. We need this to have a shared base for the comparison of the different testing strategies. This model omits the framework and data structures which are not essential for our evaluation.
 
 We have a controller, that uses a domain service and two auxiliary services to handle requests. The services themselves have dependencies on other services or storage implementations.
 
@@ -109,11 +109,11 @@ public function isValidResponseCode(int $code): bool
 }
 ```
 
-Boom, a mock will never automatically produce this result, but for all means it will keep the test suite green. There are certain other problems with mocks, so... Time for an excurse:
+Boom, a mock will never automatically produce this result, but for all means it will keep the test suite green. There are certain other problems with mocks, so... Time for a digression:
 
 ----
 
-## Excurse: Mocking
+## Digression: Mocking
 
 All I really can say about mocking is this: it is a pain in the ass! There are currently a few contenders for mocking in PHPUnit tests and they all work internally the same way and are kind of awful. So lets say we have a class called `Something` that has a method called `getResponse` and we want it to return `'foo'` for our test, how would we accomplish this through mocking?
 

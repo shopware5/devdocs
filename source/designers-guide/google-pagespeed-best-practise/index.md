@@ -42,7 +42,7 @@ If your server has tools available like `optipng` or `jpegtran`, they already op
 
 ### Responsive images
 
-Most images in Shopware provide the full range of the defined thumbnail sizes so the browser can choose which one to display. But to select the suitablein addition, the browser needs to know, how big the image that will be displayed is.
+Most images in Shopware provide the full range of the defined thumbnail sizes so the browser can choose which one to display. But to select the suitable addition, the browser needs to know, how big the image that will be displayed is.
 
 **Recommendation for the best score**
 

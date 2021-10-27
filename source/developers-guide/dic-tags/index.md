@@ -117,7 +117,7 @@ For details on Elasticsearch, read [Elasticsearch development](/developers-guide
 
 ## shopware_elastic_search.settings
 
-**Purpose**: Add custom Elasticsearch anaylzers
+**Purpose**: Add custom Elasticsearch analyzers
  
 For details on Elasticsearch, read [Elasticsearch development](/developers-guide/elasticsearch/).
 

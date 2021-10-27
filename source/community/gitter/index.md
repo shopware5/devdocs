@@ -34,5 +34,5 @@ Mobile users can use the [iPhone](http://appstore.com/gitter) or [android](https
 ## Why not IRC or Slack?
 The #shopware IRC channel was active since 2011 and had quite a few regular active users. It is no longer available. The reasons for discontinuing can be found <a href="{{ site.url }}/community/irc">here</a>. 
 
-Ultimatively, we choose Gitter over slack because shopware is an open source product with git as VCS and with Gitter there is a direct connection between the chat and our repository.
+Ultimately, we choose Gitter over slack because shopware is an open source product with git as VCS and with Gitter there is a direct connection between the chat and our repository.
 The community evolves around github, so Gitter was the most integrated and easily accessible medium for a chat.

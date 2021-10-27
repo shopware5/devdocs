@@ -382,11 +382,11 @@ Some real world examples for `collect` are:
 * `Shopware_SearchBundleDBAL_Collect_Facet_Handlers`: Register a facet handler for the DBAL gateway
 * `Theme_Compiler_Collect_Plugin_Javascript`: Collect javascript files for the JS compiler
 
-You can dowload a example plugin <a href="{{ site.url }}/exampleplugins/SwagEvents.zip">here</a>
+You can download an example plugin <a href="{{ site.url }}/exampleplugins/SwagEvents.zip">here</a>
 
 ## Plugins use Subscribers 
 
-The default way is to use subcriber classes that are registered in the `PluginBaseDirectory/Resources/services.xml`:
+The default way is to use subscriber classes that are registered in the `PluginBaseDirectory/Resources/services.xml`:
 Subscribers are basically custom classes which register to Shopware events. This way, the plugin base class doesn't know about the
 events, which can, in turn, be encapsulated in corresponding classes.
 

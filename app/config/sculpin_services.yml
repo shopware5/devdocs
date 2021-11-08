@@ -4,8 +4,8 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    webuni.commonmark.tablextension:
-        class: Webuni\CommonMark\TableExtension\TableExtension
+    league.commonmark.tablextension:
+        class: League\CommonMark\Extension\Table\TableExtension
         tags:
             - { name: sculpin_commonmark.extension }
 

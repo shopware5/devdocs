@@ -10,17 +10,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.2'
+        php-version: '7.4'
 
     - name: Install dependencies
       run: |
         composer install
     - name: Build page
-      run: | 
+      run: |
         ./vendor/bin/sculpin generate --env=prod --url="https://developers.shopware.com"
         ./contrib/package_plugins.sh
         git clone https://github.com/shopware/devdocs.git -b styletile output_prod/styletile

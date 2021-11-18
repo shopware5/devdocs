@@ -1,15 +1,15 @@
 {
     "require": {
-        "sculpin/sculpin": "2.1.2",
+        "bcremer/sculpin-commonmark-bundle": "^0.5.0",
+        "bcremer/sculpin-less-bundle": "^0.2.0",
         "dflydev/embedded-composer": "^1.0@dev",
-        "bcremer/sculpin-less-bundle": "~0.1",
-        "bcremer/sculpin-commonmark-bundle": "^0.4.0",
-        "mavimo/sculpin-redirect-bundle": "@dev",
-        "webuni/commonmark-table-extension": "^0.9.0",
-        "janbuecker/sculpin-meta-navigation-bundle": "^0.4",
         "ivopetkov/html5-dom-document-php": "^1.1.0",
+        "janbuecker/sculpin-meta-navigation-bundle": "^0.4",
+        "league/commonmark": "^1.3.0",
+        "mavimo/sculpin-redirect-bundle": "@dev",
+        "sculpin/sculpin": "2.1.2",
         "symfony/config": "2.8.52",
-        "symfony/dependency-injection":  "2.8.52",
+        "symfony/dependency-injection": "2.8.52",
         "symfony/event-dispatcher": "2.8.52",
         "symfony/http-kernel": "2.8.52",
         "twig/twig": "1.42.5"
@@ -18,5 +18,8 @@
         "psr-4": {
             "Shopware\\Devdocs\\": "app/src/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }

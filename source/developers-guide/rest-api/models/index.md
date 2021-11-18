@@ -19,25 +19,25 @@ subgroup: REST API
 
 ### Structure
 
-| Field                    | Type                  | Original object                                 |
-|--------------------------|-----------------------|-------------------------------------------------|
-| id                       | integer (primary key) |                                                  |                          |
-| company                  | string                |                                                    |                             |
-| department               | string                |                                                    |                             |
-| salutation               | string                |                                                    |                             |
-| title                    | string                |                                                    |                             |
-| firstname                | string                |                                                    |                             |
-| lastname                 | string                |                                                    |                             |
-| street                   | string                |                                                    |                             |
-| zipcode                  | string                |                                                    |                             |
-| city                     | string                |                                                    |                             |
-| phone                    | string                |                                                    |                             |
-| vatId                    | string                |                                                    |                             |
-| additionalAddressLine1   | string                |                                                    |                             |
-| additionalAddressLine2   | string                |                                                    |                             |
-| country                   | int (foreign key)       | **[Country](../models/#country)**               |                             |
-| state                       | int (foreign key)       | **[State](#state)**                             |                             |
-| attribute                | array                 |                                                  |                              |
+| Field                    | Type                  | Original object                   |
+|--------------------------|-----------------------|-----------------------------------|
+| id                       | integer (primary key) |                                   | 
+| company                  | string                |                                   |
+| department               | string                |                                   |
+| salutation               | string                |                                   |
+| title                    | string                |                                   |
+| firstname                | string                |                                   |
+| lastname                 | string                |                                   |
+| street                   | string                |                                   |
+| zipcode                  | string                |                                   |
+| city                     | string                |                                   |
+| phone                    | string                |                                   |
+| vatId                    | string                |                                   |
+| additionalAddressLine1   | string                |                                   |
+| additionalAddressLine2   | string                |                                   |
+| country                  | int (foreign key)     | **[Country](../models/#country)** |   
+| state                    | int (foreign key)     | **[State](#state)**               |   
+| attribute                | array                 |                                   |  
 
 ## Area
 
@@ -46,12 +46,12 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| name                | string                |                                                 |
-| active                | boolean               |                                                 |
-| countries           | object array          | **[Country](#country)**                         |
+| Field     | Type                  | Original object         |
+|-----------|-----------------------|-------------------------|
+| id        | integer (primary key) |                         |
+| name      | string                |                         |
+| active    | boolean               |                         |
+| countries | object array          | **[Country](#country)** |
 
 ## Article Attribute
 
@@ -60,30 +60,30 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| attr1                | string                |                                                 |
-| attr2                | string                |                                                 |
-| attr3                | string                |                                                 |
-| attr4                | string                |                                                 |
-| attr5                | string                |                                                 |
-| attr6                | string                |                                                 |
-| attr7                | string                |                                                 |
-| attr8                | string                |                                                 |
-| attr9                | string                |                                                 |
-| attr10                | string                |                                                 |
-| attr11                | string                |                                                 |
-| attr12                | string                |                                                 |
-| attr13                | string                |                                                 |
-| attr14                | string                |                                                 |
-| attr15                | string                |                                                 |
-| attr16                | string                |                                                 |
-| attr17                | string                |                                                 |
-| attr18                | string                |                                                 |
-| attr19                | string                |                                                 |
-| attr20                | string                |                                                 |
-| articleId              | integer (foreign key) | **[Article](../api-resource-article/)**            |
-| articleDetailId     |    integer (foreign key) | **[Detail](#article-detail)**                   |
+| Field           | Type                  | Original object                         |
+|-----------------|-----------------------|-----------------------------------------|
+| attr1           | string                |                                         |
+| attr2           | string                |                                         |
+| attr3           | string                |                                         |
+| attr4           | string                |                                         |
+| attr5           | string                |                                         |
+| attr6           | string                |                                         |
+| attr7           | string                |                                         |
+| attr8           | string                |                                         |
+| attr9           | string                |                                         |
+| attr10          | string                |                                         |
+| attr11          | string                |                                         |
+| attr12          | string                |                                         |
+| attr13          | string                |                                         |
+| attr14          | string                |                                         |
+| attr15          | string                |                                         |
+| attr16          | string                |                                         |
+| attr17          | string                |                                         |
+| attr18          | string                |                                         |
+| attr19          | string                |                                         |
+| attr20          | string                |                                         |
+| articleId       | integer (foreign key) | **[Article](../api-resource-article/)** |
+| articleDetailId | integer (foreign key) | **[Detail](#article-detail)**           |
 
 ## Article Detail
 
@@ -94,7 +94,7 @@ subgroup: REST API
 
 | Field               | Type                  | Original object                                 |
 |---------------------|-----------------------|-------------------------------------------------|
-| number                 | string                |                                                 |
+| number              | string                |                                                 |
 | supplierNumber      | string                |                                                 |
 | additionalText      | string                |                                                 |
 | weight              | string                |                                                 |
@@ -111,7 +111,7 @@ subgroup: REST API
 | configuratorOptions | object array          | **[ConfiguratorOption](#configurator-option)**  |
 | attribute           | object                | **[Attribute](#article-attribute)**             |
 | id                  | integer (primary key) |                                                 |
-| articleId           | integer (foreign key) | **[Article](../api-resource-article/)**          |
+| articleId           | integer (foreign key) | **[Article](../api-resource-article/)**         |
 | unitId              | integer (foreign key) |                                                 |
 | kind                | integer               |                                                 |
 | inStock             | integer               |                                                 |
@@ -131,31 +131,31 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| orderId             | integer (foreign key) |                                                 |
-| customerId             | integer (foreign key) |                                                 |
-| countryId             | integer (foreign key) | **[Country](#country)**                         |
-| stateId             | integer (foreign key) |                                                 |
-| company              | string                  |                                                    |
-| department          | string                  |                                                    |
-| title                | string                  |                                                    |
-| salutation          | string                  |                                                    |
-| number              | string                  |                                                    |
-| firstName              | string                  |                                                    |
-| lastName              | string                  |                                                    |
-| street              | string                  |                                                    |
-| zipCode              | string                  |                                                    |
-| city                  | string                  |                                                    |
-| additionalAddressLine1 | string                  |                                                    |
-| additionalAddressLine2 | string                  |                                                    |
-| phone                  | string                  |                                                    |
-| vatId                  | string                  |                                                    |
-| country              | object                  |    **[Country](#country)**                           |
-| state              | object/null                  |    **[State](#state)**      |
-| birthday              | date/time              |                                                    |
-| attribute              | object                  |    **[BillingAttribute](#billing-attribute)**      |
+| Field                  | Type                  | Original object                            |
+|------------------------|-----------------------|--------------------------------------------|
+| id                     | integer (primary key) |                                            |
+| orderId                | integer (foreign key) |                                            |
+| customerId             | integer (foreign key) |                                            |
+| countryId              | integer (foreign key) | **[Country](#country)**                    |
+| stateId                | integer (foreign key) |                                            |
+| company                | string                |                                            |
+| department             | string                |                                            |
+| title                  | string                |                                            |
+| salutation             | string                |                                            |
+| number                 | string                |                                            |
+| firstName              | string                |                                            |
+| lastName               | string                |                                            |
+| street                 | string                |                                            |
+| zipCode                | string                |                                            |
+| city                   | string                |                                            |
+| additionalAddressLine1 | string                |                                            |
+| additionalAddressLine2 | string                |                                            |
+| phone                  | string                |                                            |
+| vatId                  | string                |                                            |
+| country                | object                | **[Country](#country)**                    |
+| state                  | object/null           | **[State](#state)**                        |
+| birthday               | date/time             |                                            |
+| attribute              | object                | **[BillingAttribute](#billing-attribute)** |
 
 ## Billing Attribute
 
@@ -164,16 +164,16 @@ subgroup: REST API
 
 ### Structure
 
-| Field               | Type                  | Original object                                 |
-|---------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| orderBillingId      | integer (foreign key) |                                                 |
-| text1                  | string                  |                                                    |
-| text2                  | string                  |                                                    |
-| text3                  | string                  |                                                    |
-| text4                  | string                  |                                                    |
-| text5                  | string                  |                                                    |
-| text6                  | string                  |                                                    |
+| Field          | Type                  | Original object |
+|----------------|-----------------------|-----------------|
+| id             | integer (primary key) |                 |
+| orderBillingId | integer (foreign key) |                 |
+| text1          | string                |                 |
+| text2          | string                |                 |
+| text3          | string                |                 |
+| text4          | string                |                 |
+| text5          | string                |                 |
+| text6          | string                |                 |
 
 ## Category
 
@@ -182,10 +182,10 @@ subgroup: REST API
 
 ### Structure
 
-| Field                 | Type                  | Original object                                       |
-|-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key) |                                                       |
-| name                  | string                |                                                       |
+| Field | Type                  | Original object |
+|-------|-----------------------|-----------------|
+| id    | integer (primary key) |                 |
+| name  | string                |                 |
 
 ## Configurator Group
 
@@ -194,12 +194,12 @@ subgroup: REST API
 
 ### Structure
 
-| Field                 | Type                  | Original object                                       |
-|-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key) |                                                       |
-| description           | string                |                                                       |
-| name                  | string                |                                                       |
-| position              | integer               |                                                       |
+| Field       | Type                  | Original object |
+|-------------|-----------------------|-----------------|
+| id          | integer (primary key) |                 |
+| description | string                |                 |
+| name        | string                |                 |
+| position    | integer               |                 |
 
 ## Configurator Option
 
@@ -208,12 +208,12 @@ subgroup: REST API
 
 ### Structure
 
-| Field                 | Type                  | Original object                                 |
-|-----------------------|-----------------------|-------------------------------------------------|
-| id                     | integer (primary key) |                                                 |
-| groupId               | integer (foreign key) | **[ConfiguratorGroup](#configurator-group)**    |
-| name                  | string                |                                                 |
-| position              | integer               |                                                 |
+| Field    | Type                  | Original object                              |
+|----------|-----------------------|----------------------------------------------|
+| id       | integer (primary key) |                                              |
+| groupId  | integer (foreign key) | **[ConfiguratorGroup](#configurator-group)** |
+| name     | string                |                                              |
+| position | integer               |                                              |
 
 ## Configurator Set
 
@@ -222,13 +222,13 @@ subgroup: REST API
 
 ### Structure
 
-| Field                 | Type                  | Original object                                       |
-|-----------------------|-----------------------|-------------------------------------------------------|
-| id                    | integer (primary key) |                                                       |
-| name                  | string                |                                                       |
-| public                | boolean               |                                                       |
-| type                  | integer               |                                                       |
-| groups                | object array          | **[ConfiguratorGroup](#configurator-group)**          |
+| Field  | Type                  | Original object                              |
+|--------|-----------------------|----------------------------------------------|
+| id     | integer (primary key) |                                              |
+| name   | string                |                                              |
+| public | boolean               |                                              |
+| type   | integer               |                                              |
+| groups | object array          | **[ConfiguratorGroup](#configurator-group)** |
 
 ## Country
 
@@ -281,39 +281,39 @@ subgroup: REST API
 
 ### Structure
 
-| Field                 | Type                  | Original object                                 |
-|-----------------------|-----------------------|-------------------------------------------------|
-| id                    | integer (primary key) |                                                 |
-| number                | string                |                                                 |
-| groupKey              | string (foreign key)  | **[CustomerGroup](#customer-group)**            |
-| paymentId             | integer (foreign key) | **[Payment](#payment)**                         |
-| shopId                | string (foreign key)  | **[Shop](#shop)**                               |
-| priceGroupId          | integer (foreign key) | **[PriceGroup](#price-group)**                  |
-| encoderName           | string                |                                                 |
-| hashPassword          | string                |                                                 |
-| active                | boolean               |                                                 |
-| email                 | string                |                                                 |
-| firstLogin            | date/time             |                                                 |
-| lastLogin             | date/time             |                                                 |
-| accountMode           | integer               |                                                 |
-| confirmationKey       | string                |                                                 |
-| sessionId             | string                |                                                 |
-| newsletter            | boolean               |                                                 |
-| validation            | string                |                                                 |
-| affiliate             | boolean               |                                                 |
-| paymentPreset         | integer               |                                                 |
-| languageId            | integer (foreign key) | **[Shop](#shop)**                               |
-| referer               | string                |                                                 |
-| internalComment       | string                |                                                 |
-| failedLogins          | integer               |                                                 |
-| lockedUntil           | date/time             |                                                 |
-| salutation            | string                |                                                 |
-| title                 | string                |                                                 |
-| firstname             | string                |                                                 |
-| lastname              | string                |                                                 |
-| birthday              | date                  |                                                 |
-| defaultBillingAddress | integer (foreign key) | **[Billing](#address)**                         |
-| defaultShippingAddress| integer (foreign key) | **[Shipping](#address)**                        |
+| Field                         | Type                  | Original object                                 |
+|-------------------------------|-----------------------|-------------------------------------------------|
+| id                            | integer (primary key) |                                                 |
+| number                        | string                |                                                 |
+| groupKey                      | string (foreign key)  | **[CustomerGroup](#customer-group)**            |
+| paymentId                     | integer (foreign key) | **[Payment](#payment)**                         |
+| shopId                        | string (foreign key)  | **[Shop](#shop)**                               |
+| priceGroupId                  | integer (foreign key) | **[PriceGroup](#price-group)**                  |
+| encoderName                   | string                |                                                 |
+| hashPassword                  | string                |                                                 |
+| active                        | boolean               |                                                 |
+| email                         | string                |                                                 |
+| firstLogin (date of creation) | date/time             |                                                 |
+| lastLogin                     | date/time             |                                                 |
+| accountMode                   | integer               |                                                 |
+| confirmationKey               | string                |                                                 |
+| sessionId                     | string                |                                                 |
+| newsletter                    | boolean               |                                                 |
+| validation                    | string                |                                                 |
+| affiliate                     | boolean               |                                                 |
+| paymentPreset                 | integer               |                                                 |
+| languageId                    | integer (foreign key) | **[Shop](#shop)**                               |
+| referer                       | string                |                                                 |
+| internalComment               | string                |                                                 |
+| failedLogins                  | integer               |                                                 |
+| lockedUntil                   | date/time             |                                                 |
+| salutation                    | string                |                                                 |
+| title                         | string                |                                                 |
+| firstname                     | string                |                                                 |
+| lastname                      | string                |                                                 |
+| birthday                      | date                  |                                                 |
+| defaultBillingAddress         | integer (foreign key) | **[Billing](#address)**                         |
+| defaultShippingAddress        | integer (foreign key) | **[Shipping](#address)**                        |
 
 ## Customer Attribute
 

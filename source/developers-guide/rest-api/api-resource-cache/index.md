@@ -1,22 +1,29 @@
 ---
 layout: default
-title: REST API - Cache Resource
+title: REST API - Cache resource
 github_link: developers-guide/rest-api/api-resource-cache/index.md
-indexed: false
+menu_title: Cache resource
+menu_order: 50
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's cache resource. With this resource, it is possible to get information about your current cache status, as well as clear its content. We will also have a look at the associated data structures.
+In this part of the documentation you can learn more about the API's cache resource.
+With this resource, it is possible to get information about your current cache status, as well as clear its content.
+We will also have a look at the associated data structures.
 
 
 ## General Information
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                  | GET (List)            | PUT                   | PUT (Batch)            | POST                   | DELETE                | DELETE (Batch)        |
-|-----------------------------|----------------------|-----------------------|-----------------------|------------------------|------------------------|-----------------------|-----------------------|
-| /api/caches                 | ![Yes](../img/yes.png)| ![Yes](../img/yes.png) | ![No](../img/no.png)   | ![No](../img/no.png)    | ![No](../img/no.png)    | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |
+| Access URL  | GET                    | GET (List)             | PUT                  | PUT (Batch)          | POST                 | DELETE                 | DELETE (Batch)         |
+|-------------|------------------------|------------------------|----------------------|----------------------|----------------------|------------------------|------------------------|
+| /api/caches | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -32,15 +39,15 @@ Single cache details can be retrieved by using its id:
 
 ### Return Value
 
-| Field               | Type                  | Comment                                         |
-|---------------------|-----------------------|-------------------------------------------------|
-| dir                 | string                | The path to this cache directory                |
-| size                | string                | Including size unit                             |
-| files               | integer               | Amount of files within the cache directory      |
-| freeSpace           | string                | Free space, including the size unit             |
-| name                | string                | The name of the cache                           |
-| backend             | string                |                                                 |
-| id                  | string                | The identifier of this cache                    |
+| Field     | Type    | Comment                                    |
+|-----------|---------|--------------------------------------------|
+| dir       | string  | The path to this cache directory           |
+| size      | string  | Including size unit                        |
+| files     | integer | Amount of files within the cache directory |
+| freeSpace | string  | Free space, including the size unit        |
+| name      | string  | The name of the cache                      |
+| backend   | string  |                                            |
+| id        | string  | The identifier of this cache               |
 
 ## GET (List)
 
@@ -52,24 +59,25 @@ To get a list of all caches, simply query:
 
 ### Return Value
 
-This API call returns an array of elements, one for each cache type. Each of these elements has the following structure:
+This API call returns an array of elements, one for each cache type.
+Each of these elements has the following structure:
 
-| Field               | Type                  | Comment                                                     |
-|---------------------|-----------------------|-------------------------------------------------------------|
-| dir                 | string                | The path to this cache directory                            |
-| size                | string                | Spaced used by this cache's content, including size unit    |
-| files               | integer               | Number of files within the cache directory                  |
-| freeSpace           | string                | Free space, including the size unit                         |
-| name                | string                | The name of the cache                                       |
-| backend             | string                |                                                             |
-| id                  | string                | The identifier of this cache                                |
+| Field     | Type    | Comment                                                  |
+|-----------|---------|----------------------------------------------------------|
+| dir       | string  | The path to this cache directory                         |
+| size      | string  | Spaced used by this cache's content, including size unit |
+| files     | integer | Number of files within the cache directory               |
+| freeSpace | string  | Free space, including the size unit                      |
+| name      | string  | The name of the cache                                    |
+| backend   | string  |                                                          |
+| id        | string  | The identifier of this cache                             |
 
-Appended to the above mentioned list, you will also find the following data:
+Appended to the above-mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment                                      |
-|---------------------|-----------------------|----------------------------------------------|
-| total               | integer               | The number of cache resources                |
-| success             | boolean               | Indicates if the call was successful or not. |
+| Field   | Type    | Comment                                      |
+|---------|---------|----------------------------------------------|
+| total   | integer | The number of cache resources                |
+| success | boolean | Indicates if the call was successful or not. |
 
 ## DELETE
 To delete a cache's content, simply call the specified resource with the `DELETE` operation, as the following example shows:

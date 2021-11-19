@@ -1,8 +1,13 @@
 ---
 layout: default
-title: REST API - Customer Resource
+title: REST API - Customer resource
 github_link: developers-guide/rest-api/api-resource-customer/index.md
-indexed: false
+menu_title: Customer resource
+menu_order: 100
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
@@ -15,9 +20,9 @@ We will also have a look at the associated data structures.
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                   | GET (List)            | PUT                   | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
-|-----------------------------|-----------------------|-----------------------|-----------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/customers              | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| Access URL    | GET                    | GET (List)             | PUT                    | PUT (Batch)          | POST                   | DELETE                 | DELETE (Batch)       |
+|----------------|------------------------|------------------------|------------------------|----------------------|------------------------|------------------------|----------------------|
+| /api/customers | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply append your shop URL with
 
@@ -27,21 +32,23 @@ If you want to access this resource, simply append your shop URL with
 
 #### Required Parameters
 
-It is required to parametrize this API call. The following parameters are available:
+It is required to parametrize this API call.
+The following parameters are available:
 
-| Identifier      | Parameter | DB column                    | Example call                              |
-|-----------------|-----------|------------------------------|-------------------------------------------|
-| Customer Id     | id        | s_user.id                    | /api/customers/2                          |
-| Customer number | number    | s_user_billingaddress.number | /api/customers/20003?useNumberAsId=true   |
+| Identifier      | Parameter | DB column                    | Example call                            |
+|-----------------|-----------|------------------------------|-----------------------------------------|
+| Customer Id     | id        | s_user.id                    | /api/customers/2                        |
+| Customer number | number    | s_user_billingaddress.number | /api/customers/20003?useNumberAsId=true |
 
 * **useNumberAsId=true** - This tells the API to query the customer's data by its number, instead of its actual identifier.
-* Otherwise, the syntax is just **/api/customers/id**. It's not possible to provide both parameters at the same time.
+Otherwise, the syntax is just **/api/customers/id**.
+It's not possible to provide both parameters at the same time.
 
 ### Return Value
 
-| Model                                 | Table                 |
-|------------------------------------|-----------------------|
-| Shopware\Models\Customer\Customer  | s_user                |
+| Model                             | Table  |
+|-----------------------------------|--------|
+| Shopware\Models\Customer\Customer | s_user |
 
 | Field                         | Type                  | Original Object                                        |
 |-------------------------------|-----------------------|--------------------------------------------------------|
@@ -86,9 +93,9 @@ To get a list of all customers, simply query:
 * **http://my-shop-url/api/customers/**
 
 ### Return Value
-| Model                                 | Table                 |
-|------------------------------------|-----------------------|
-| Shopware\Models\Customer\Customer  | s_user                 |
+| Model                             | Table  |
+|-----------------------------------|--------|
+| Shopware\Models\Customer\Customer | s_user |
 
 This API call returns an array of elements, one for each customer. Each of these elements has the following structure:
 
@@ -132,9 +139,9 @@ Appended to the above-mentioned list, you will also find the following data:
 
 To `POST` or `PUT` content, use the same data as provided in the GET operation. Only exceptions are for `POST` as following:
 
-| Field            | Type           | Comment                                                             |
-|------------------|----------------|---------------------------------------------------------------------|
-| sendOptinMail    | boolean        | Used to decide if an necessary optin confirmation mail will be sent |
+| Field         | Type    | Comment                                                             |
+|---------------|---------|---------------------------------------------------------------------|
+| sendOptinMail | boolean | Used to decide if an necessary opt-in confirmation mail will be sent |
 
 ## DELETE
 

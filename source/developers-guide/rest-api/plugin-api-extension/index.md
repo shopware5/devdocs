@@ -11,14 +11,14 @@ tags:
 group: Developer Guides
 subgroup: REST API
 menu_title: Create your own endpoint
-menu_order: 130
+menu_order: 320
 ---
 
 <div class="toc-list"></div>
 
 ## Introduction
-This article describes how to extend the REST API and create an API endpoint. We create an example plugin which 
-provides functions for managing banners.
+This article describes how to extend the REST API and create an API endpoint.
+We create an example plugin which provides functions for managing banners.
 
 Normally every basic API resource contains of two parts:
 * a controller which handles the different request types(POST, GET, PUT, DELETE)
@@ -29,8 +29,8 @@ operations
 <img src="img/file_structure.jpg" alt="API endpoint file structure"/>
 
 ## Plugin files
-For our REST API example we only need a few files. For more information about necessary files and the 5.2 plugin system
-see the [5.2 plugin guide](/developers-guide/plugin-system).
+For our REST API example we only need a few files.
+For more information about necessary files and the 5.2 plugin system see the [5.2 plugin guide](/developers-guide/plugin-system).
 
 ### SwagBannerApi.php
 
@@ -71,30 +71,34 @@ class SwagBannerApi extends Plugin
     }
 }
 ```
-This is our plugin bootstrap which subscribes to two events. For the one thing it uses the
-`Enlight_Controller_Dispatcher_ControllerPath_Api` event to register the API controller and for 
-the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register an additional namespace for 
-our plugin. We do that, because then the API manager class can load our resource with `\Shopware\Components\Api\Manager::getResource('Banner')`.
-Since `Shopware 5.2.17`, both parts are not necessary anymore. You can simply use the services.xml file to register new resources to Shopware.
+This is our plugin bootstrap which subscribes to two events.
+For the one thing it uses the `Enlight_Controller_Dispatcher_ControllerPath_Api` event to register the API controller
+and for the other thing it uses the `Enlight_Controller_Front_StartDispatch` event to register an additional namespace for our plugin.
+We do that, because then the API manager class can load our resource with `\Shopware\Components\Api\Manager::getResource('Banner')`.
+Since `Shopware 5.2.17`, both parts are not necessary anymore.
+You can simply use the services.xml file to register new resources to Shopware.
 ```xml
 <!-- Register new resource as service -->
 <service id="shopware.api.example" class="SwagBannerApi\Components\Api\Resource\Example"/>
 ```
-The API controller will be found via auto-registration. Please refer to the [Controllers chapter](developers-guide/controller/#plugin-controllers) for further information about the controller naming convention.
+The API controller will be found via auto-registration.
+Please refer to the [Controllers chapter](developers-guide/controller/#plugin-controllers) for further information about the controller naming convention.
 
-You even have the possibility to decorate existing resources. For more information about that, have a look here: [Extend API resource](/developers-guide/rest-api/extend-api-resource/)
+You even have the possibility to decorate existing resources.
+For more information about that, have a look here: [Extend API resource](/developers-guide/rest-api/extend-api-resource/)
 
 ### Components/Api/Resource/Banner.php
-The resource gets called by our controller. Every controller action relies on one method of our resource. 
+The resource gets called by our controller.
+Every controller action relies on one method of our resource. 
 * indexAction -> getList() -> returns a list of banners
 * getAction -> getOne() -> returns one banner identified by its id
 * putAction -> update() -> updates one banner identified by its id
 * postAction -> create() -> creates a new banner
 * deleteAction -> delete() -> deletes a banner
 
-We recommend using doctrine models in the resource, because it allows you to use the `fromArray()` method in the 
-`create()` and `update()` method to write the data directly. `fromArray()` searches for the setter methods of the 
-attributes and saves the values to the variables which saves you time and code.
+We recommend using doctrine models in the resource,
+because it allows you to use the `fromArray()` method in the `create()` and `update()` method to write the data directly.
+`fromArray()` searches for the setter methods of the attributes and saves the values to the variables which saves you time and code.
 
 ```php
 <?php
@@ -280,19 +284,20 @@ class Banner extends Resource
 ```
 
 ### Controllers/Api/Banner
-The controller handles all requests to our REST API endpoint. Authorisation and routing is managed by the Shopware REST API.
+The controller handles all requests to our REST API endpoint.
+Authorisation and routing is managed by the Shopware REST API.
 
 You should name your actions after this schema:
 
-| Action name        | Request type   | parameter    |
-|--------------------|----------------|--------------|
-| indexAction        | get request    | no           |
-| getAction          | get request    | `id`         |
-| batchAction        | put request    | no           |
-| putAction          | put request    | `id`         |
-| postAction         | post request   | data fields  |
-| batchDeleteAction  | delete request | no           |
-| deleteAction       | delete request | `id`         |
+| Action name       | Request type   | parameter   |
+|-------------------|----------------|-------------|
+| indexAction       | get request    | no          |
+| getAction         | get request    | `id`        |
+| batchAction       | put request    | no          |
+| putAction         | put request    | `id`        |
+| postAction        | post request   | data fields |
+| batchDeleteAction | delete request | no          |
+| deleteAction      | delete request | `id`        |
 
 
 ```php
@@ -402,9 +407,9 @@ class Shopware_Controllers_Api_Banner extends Shopware_Controllers_Api_Rest
 ## Test the API
 This resource supports the following operations:
 
-|  Access URL                 | GET                   | GET (List)            | PUT                    | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
-|-----------------------------|-----------------------|-----------------------|------------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/banner               | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| Access URL  | GET                    | GET (List)             | PUT                    | PUT (Batch)          | POST                   | DELETE                 | DELETE (Batch)       |
+|-------------|------------------------|------------------------|------------------------|----------------------|------------------------|------------------------|----------------------|
+| /api/banner | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 * http://my-shop-url/api/banner
@@ -433,8 +438,7 @@ Result:
 ```
 
 ### GET(List)
-Get a list of banners. With the optional `limit` parameter, it is possible to specify how many banner you want the 
-API to return.
+Get a list of banners. With the optional `limit` parameter, it is possible to specify how many banner you want the API to return.
 
 {% include 'api_badge.twig' with {'route': '/api/banner', 'method': 'GET'} %}
 
@@ -484,8 +488,8 @@ Result
 ```
 
 ### PUT
-To update a banner it is always required to provide the id of the banner. In this example, we will update the 
-`description` of the banner with id 1.
+To update a banner it is always required to provide the id of the banner.
+In this example, we will update the `description` of the banner with id 1.
 
 {% include 'api_badge.twig' with {'route': '/api/banner/1', 'method': 'PUT', 'body': true} %}
 ```json

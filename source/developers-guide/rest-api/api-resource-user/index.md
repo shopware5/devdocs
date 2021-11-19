@@ -2,8 +2,8 @@
 layout: default
 title: REST API - User resource
 github_link: developers-guide/rest-api/api-resource-user/index.md
-menu_title: The user resource
-menu_order: 110
+menu_title: User resource
+menu_order: 250
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -31,12 +31,13 @@ Please read the page covering the **[REST API Basics](/developers-guide/rest-api
 If you want to get multiple user at once, you can call the /users endpoint.
 
 *Available arguments:*
-| Argument            | Type         | Required            | Description                                                             |
-|---------------------|--------------|---------------------|-------------------------------------------------------------------------|
-| limit               | int          |                     | Max. number of returned data sets                                       |
-| start               | int          |                     | Offset (ideal for batch processing, when working with large data sets)  |
-| sort                | string array |                     | ORDER BY clause                                                         |
-| filter              | string array |                     | Filter properties by expressions                                        |
+
+| Argument | Type         | Required | Description                                                            |
+|----------|--------------|----------|------------------------------------------------------------------------|
+| limit    | int          |          | Max. number of returned data sets                                      |
+| start    | int          |          | Offset (ideal for batch processing, when working with large data sets) |
+| sort     | string array |          | ORDER BY clause                                                        |
+| filter   | string array |          | Filter properties by expressions                                       |
 
 
 *Example code:*
@@ -103,7 +104,7 @@ If you want to get multiple user at once, you can call the /users endpoint.
 ```
 
 Attention: The properties apiKey, sessionId and password are missing,
-if the API user neither has the update nor the create privilege.
+if the API user neither has the "update" nor the "create" privilege.
 
 ## Get one user
 If you want to get detailed information about a specific user,
@@ -214,5 +215,4 @@ If you want to update a user, you can send a DELETE request to /users/{userId}
 }
 ```
 
-Attention: Due to a safety precaution, the API user who made the API call,
-can not delete himself.
+Attention: Due to a safety precaution, the API user who made the API call, can not delete itself.

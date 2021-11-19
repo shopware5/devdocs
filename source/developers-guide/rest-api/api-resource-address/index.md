@@ -1,22 +1,29 @@
 ---
 layout: default
-title: REST API - Address Resource
+title: REST API - Address resource
 github_link: developers-guide/rest-api/api-resource-address/index.md
 shopware_version: 5.2.0
-indexed: false
+menu_title: Address resource
+menu_order: 20
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's address resource. With this resource, it is possible to retrieve, update and delete any customer address of your shop. We will also have a look at the associated data structures.
+In this part of the documentation you can learn more about the API's address resource.
+With this resource, it is possible to retrieve, update and delete any customer address of your shop.
+We will also have a look at the associated data structures.
 
 ## General Information
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                   | GET (List)            | PUT                    | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
-|-----------------------------|-----------------------|-----------------------|------------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/addresses              | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| Access URL     | GET                    | GET (List)             | PUT                    | PUT (Batch)          | POST                   | DELETE                 | DELETE (Batch)       |
+|----------------|------------------------|------------------------|------------------------|----------------------|------------------------|------------------------|----------------------|
+| /api/addresses | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -35,25 +42,25 @@ Single address details can be retrieved via the address ID:
 | Shopware\Models\Customer\Address   | s_user_addresses |
 
 
-| Field                    | Type                  | Original Object                                          |
-|--------------------------|-----------------------|----------------------------------------------------------|
-| id                       | integer (primary key) |                                                          |
-| customer                 | integer (primary key) | **[Customer](../models/#customer)**                      |
-| company                  | string                |                                                          |
-| department               | string                |                                                          |
-| salutation               | string                |                                                          |
-| firstname                | string                |                                                          |
-| lastname                 | string                |                                                          |
-| street                   | string                |                                                          |
-| zipcode                  | string                |                                                          |
-| city                     | string                |                                                          |
-| phone                    | string                |                                                          |
-| vatId                    | string                |                                                          |
-| additionalAddressLine1   | string                |                                                          |
-| additionalAddressLine2   | string                |                                                          |
-| country                  | int (foreign key)     | **[Country](../models/#country)**                        |
-| state                    | int (foreign key)     |                                                          |
-| attribute                | array                 |                                                          |
+| Field                  | Type                  | Original Object                     |
+|------------------------|-----------------------|-------------------------------------|
+| id                     | integer (primary key) |                                     |
+| customer               | integer (primary key) | **[Customer](../models/#customer)** |
+| company                | string                |                                     |
+| department             | string                |                                     |
+| salutation             | string                |                                     |
+| firstname              | string                |                                     |
+| lastname               | string                |                                     |
+| street                 | string                |                                     |
+| zipcode                | string                |                                     |
+| city                   | string                |                                     |
+| phone                  | string                |                                     |
+| vatId                  | string                |                                     |
+| additionalAddressLine1 | string                |                                     |
+| additionalAddressLine2 | string                |                                     |
+| country                | int (foreign key)     | **[Country](../models/#country)**   |
+| state                  | int (foreign key)     |                                     |
+| attribute              | array                 |                                     |
 
 ## GET (List)
 
@@ -66,54 +73,56 @@ To get a list of all addresses, simply query:
 
 ### Return Value
 
-| Model                                 | Table            |
-|------------------------------------|------------------|
-| Shopware\Models\Customer\Address   | s_user_addresses     |
+| Model                            | Table            |
+|----------------------------------|------------------|
+| Shopware\Models\Customer\Address | s_user_addresses |
 
 
-This API call returns an array of elements, one for each address. Each of these elements has the same structure like a single element above, but without the detailed customer data.
+This API call returns an array of elements, one for each address.
+Each of these elements has the same structure as a single element from above, but without the detailed customer data.
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment                                           |
-|---------------------|-----------------------|---------------------------------------------------|
-| total               | integer               | The total number of address resources             |
-| success             | boolean               | Indicates if the call was successful or not.      |
+| Field   | Type    | Comment                                      |
+|---------|---------|----------------------------------------------|
+| total   | integer | The total number of address resources        |
+| success | boolean | Indicates if the call was successful or not. |
 
 
 ## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
-| Model                              | Table            |
-|------------------------------------|------------------|
-| Shopware\Models\Customer\Address   | s_user_addresses |
+| Model                            | Table            |
+|----------------------------------|------------------|
+| Shopware\Models\Customer\Address | s_user_addresses |
 
-| Field                    | Type                  | Comment                                              |
-|--------------------------|-----------------------|------------------------------------------------------|
-| id                       | integer (primary key) | If null, a new entity will be created                |
-| customer (required)      | integer (foreign key) |                                                      |
-| company                  | string                |                                                      |
-| department               | string                |                                                      |
-| salutation (required)    | string                |                                                      |
-| firstname (required)     | string                |                                                      |
-| lastname (required)      | string                |                                                      |
-| street (required)        | string                |                                                      |
-| zipcode (required)       | string                |                                                      |
-| city (required)          | string                |                                                      |
-| phone                    | string                |                                                      |
-| vatId                    | string                |                                                      |
-| additionalAddressLine1   | string                |                                                      |
-| additionalAddressLine2   | string                |                                                      |
-| country (required)       | int (foreign key)     | **[Country](../models/#country)**                    |
-| state                    | int (foreign key)     |                                                      |
-| attribute                | array                 |                                                      |
+| Field                  | Type                  | Comment                               |
+|------------------------|-----------------------|---------------------------------------|
+| id                     | integer (primary key) | If null, a new entity will be created |
+| customer (required)    | integer (foreign key) |                                       |
+| company                | string                |                                       |
+| department             | string                |                                       |
+| salutation (required)  | string                |                                       |
+| firstname (required)   | string                |                                       |
+| lastname (required)    | string                |                                       |
+| street (required)      | string                |                                       |
+| zipcode (required)     | string                |                                       |
+| city (required)        | string                |                                       |
+| phone                  | string                |                                       |
+| vatId                  | string                |                                       |
+| additionalAddressLine1 | string                |                                       |
+| additionalAddressLine2 | string                |                                       |
+| country (required)     | int (foreign key)     | **[Country](../models/#country)**     |
+| state                  | int (foreign key)     |                                       |
+| attribute              | array                 |                                       |
 
 
 ## PUT (update)
 
 <div class="alert alert-warning">
-<strong>Note:</strong> Changing a customer id on addresses is not supported, you can leave the customer id out of the
-request, or just set the same customer id which owns the address.
+<strong>Note:</strong> Changing a customer id on addresses is not supported,
+you can leave the customer id out of the request,
+or just set the same customer id which owns the address.
 </div>
 
 ## DELETE

@@ -1,22 +1,29 @@
 ---
 layout: default
-title: REST API - Categories Resource
+title: REST API - Category resource
 github_link: developers-guide/rest-api/api-resource-categories/index.md
-indexed: false
+menu_title: Category resource
+menu_order: 70
+indexed: true
+menu_style: bullet
+group: Developer Guides
+subgroup: REST API
 ---
 
 ## Introduction
 
-In this part of the documentation you can learn more about the API's categories resource. With this resource, it is possible to retrieve, update and delete any category data of your shop. We will also have a look at the associated data structures.
+In this part of the documentation you can learn more about the API's categories resource.
+With this resource, it is possible to retrieve, update and delete any category data of your shop.
+We will also have a look at the associated data structures.
 
 
 ## General Information
 
 This resource supports the following operations:
 
-|  Access URL                 | GET                   | GET (List)            | PUT                    | PUT (Batch)         | POST                 | DELETE                | DELETE (Batch)      |
-|-----------------------------|-----------------------|-----------------------|------------------------|---------------------|----------------------|-----------------------|---------------------|
-| /api/categories             | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
+| Access URL      | GET                    | GET (List)             | PUT                     | PUT (Batch)          | POST                   | DELETE                 | DELETE (Batch)       |
+|-----------------|------------------------|------------------------|-------------------------|----------------------|------------------------|------------------------|----------------------|
+| /api/categories | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) |  ![Yes](../img/yes.png) | ![No](../img/no.png) | ![Yes](../img/yes.png) | ![Yes](../img/yes.png) | ![No](../img/no.png) |
 
 If you want to access this resource, simply query the following URL:
 
@@ -35,37 +42,37 @@ Single category details can be retrieved via the category ID:
 | Shopware\Models\Category\Category  | s_categories     |
 
 
-| Field               | Type                  | Original Object                                                               |
-|---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id                  | integer (primary key) |                                                                               |
-| parentId            | integer (foreign key) | **[Category](../models/#category)**                                           |
-| streamId            | integer               |                                                                               |
-| name                | string                |                                                                               |
-| position            | integer               |                                                                               |
-| metaTitle           | string                |                                                                               |
-| metaKeywords        | string                |                                                                               |
-| metaDescription     | string                |                                                                               |
-| cmsHeadline         | string                |                                                                               |
-| cmsText             | string                |                                                                               |
-| active              | boolean               |                                                                               |
-| template            | string                |                                                                               |
-| productBoxLayout    | string                |                                                                               |
-| blog                | boolean               |                                                                               |
-| path                | string                |                                                                               |
-| showFilterGroups    | boolean               |                                                                               |
-| external            | string                |                                                                               |
-| hideFilter          | boolean               |                                                                               |
-| hideTop             | boolean               |                                                                               |
-| changed             | DateTime              |                                                                               |
-| added               | DateTime              |                                                                               |
-| mediaId             | integer (foreign key) |  **[Media](../models/#media)**                                                |
-| attribute           | array                 |                                                                               |
-| emotions            | array                 |     **[Media](../models/#media)**                                             |
-| media               | Media                 |                                                                               |
-| customerGroups      | array                 |                                                                               |
-| childrenCount       | integer               |                                                                               |
-| articleCount        | integer               |                                                                               |
-| translations        | object array          | **[Translation](../models/#translation)**                                     |
+| Field            | Type                  | Original Object                           |
+|------------------|-----------------------|-------------------------------------------|
+| id               | integer (primary key) |                                           |
+| parentId         | integer (foreign key) | **[Category](../models/#category)**       |
+| streamId         | integer               |                                           |
+| name             | string                |                                           |
+| position         | integer               |                                           |
+| metaTitle        | string                |                                           |
+| metaKeywords     | string                |                                           |
+| metaDescription  | string                |                                           |
+| cmsHeadline      | string                |                                           |
+| cmsText          | string                |                                           |
+| active           | boolean               |                                           |
+| template         | string                |                                           |
+| productBoxLayout | string                |                                           |
+| blog             | boolean               |                                           |
+| path             | string                |                                           |
+| showFilterGroups | boolean               |                                           |
+| external         | string                |                                           |
+| hideFilter       | boolean               |                                           |
+| hideTop          | boolean               |                                           |
+| changed          | DateTime              |                                           |
+| added            | DateTime              |                                           |
+| mediaId          | integer (foreign key) |  **[Media](../models/#media)**            |
+| attribute        | array                 |                                           |
+| emotions         | array                 |     **[Media](../models/#media)**         |
+| media            | Media                 |                                           |
+| customerGroups   | array                 |                                           |
+| childrenCount    | integer               |                                           |
+| articleCount     | integer               |                                           |
+| translations     | object array          | **[Translation](../models/#translation)** |
 
 ## GET (List)
 
@@ -78,67 +85,68 @@ To get a list of all categories, simply query:
 
 ### Return Value
 
-| Model                              | Table            |
-|------------------------------------|------------------|
-| Shopware\Models\Category\Category  | s_categories     |
+| Model                             | Table        |
+|-----------------------------------|--------------|
+| Shopware\Models\Category\Category | s_categories |
 
 
-This API call returns an array of elements, one for each category. Each of these elements has the following structure:
+This API call returns an array of elements, one for each category.
+Each of these elements has the following structure:
 
 
-| Field               | Type                  | Original Object                                                               |
-|---------------------|-----------------------|-------------------------------------------------------------------------------|
-| id                  | integer (primary key) |                                                                               |
-| active              | boolean               |                                                                               |
-| name                | string                |                                                                               |
-| position            | integer               |                                                                               |
-| parentId            | integer (foreign key) | **[Category](../models/#category)**                                           |
-| childrenCount       | integer               |                                                                               |
-| articleCount        | integer               |                                                                               |
+| Field         | Type                  | Original Object                     |
+|---------------|-----------------------|-------------------------------------|
+| id            | integer (primary key) |                                     |
+| active        | boolean               |                                     |
+| name          | string                |                                     |
+| position      | integer               |                                     |
+| parentId      | integer (foreign key) | **[Category](../models/#category)** |
+| childrenCount | integer               |                                     |
+| articleCount  | integer               |                                     |
 
 Appended to the above mentioned list, you will also find the following data:
 
-| Field               | Type                  | Comment                                         |
-|---------------------|-----------------------|-------------------------------------------------|
-| total               | integer                  | The total number of category resources       |
-| success             | boolean                  | Indicates if the call was successful or not. |
+| Field   | Type    | Comment                                      |
+|---------|---------|----------------------------------------------|
+| total   | integer | The total number of category resources       |
+| success | boolean | Indicates if the call was successful or not. |
 
 
 ## POST (create) and PUT (update)
 `POST` and `PUT` operations support the following data structure:
 
-| Model                                 | Table         |
-|------------------------------------|------------------|
-| Shopware\Models\Category\Category  | s_categories     |
+| Model                             | Table        |
+|-----------------------------------|--------------|
+| Shopware\Models\Category\Category | s_categories |
 
-| Field               | Type                  | Comment                                              | Original Object / Database Column                                             |
-|---------------------|-----------------------|------------------------------------------------------|-------------------------------------------------------------------------------|
-| name (required)     | string                  |                                                      |                                                                                |
-| id                   | integer (primary key) | If null, a new entity will be created                 | `s_category.id`                                                                  |
-| parentId            | integer               | The field `parent` can be used with the same value as well | `s_category.id`                                                             |
-| position            | integer               |                                                      |                                                                                  |
-| metaTitle           | string                |                                                         |                                                                                  |
-| metaKeywords        | string                |                                                         |                                                                                  |
-| metaDescription      | string                  |                                                      |                                                                                  |
-| cmsHeadline          | string                  |                                                      |                                                                                  |
-| cmsText              | string                  |                                                      |                                                                                  |
-| template             | string                  |                                                      |                                                                                  |
-| path                | string                  |                                                      |                                                                                  |
-| active               | boolean                  |                                                      |                                                                                  |
-| blog                | boolean                  |                                                         |                                                                                  |
-| showFilterGroup      | boolean                  | Only for SW < 5.2 |                                                                                  |
-| external             | string                  |                                                      |                                                                                  |
-| externalTarget             | string                  | `_blank` or `_parent` |                                                                                  |
-| hideFilter           | boolean                  |                                                      |                                                                                  |
-| facetIds           | string                  |                                                      |                                                                                  |
-| hideSortings           | boolean                  |                                                      |                                                                                  |
-| hideTop              | boolean                  |                                                      |                                                                                  |
-| noViewSelect        | boolean                  | Only for SW < 5.2 |                                                                                  |
-| productBoxLayout        | string                  | `extend`, `basic`, `minimal`, `image` or `list` |                                                                                  |
-| changed             | date/time              |                                                      |                                                                                  |
-| attribute           | array                  | Array with optional indexes from 1-6 and its values |                                                                                  |
-| media                | object                  | Array with either `mediaId` or `link` property |                                                                                  |
-| translations         | array                  | Array with either `shopId` `link` property and fields that should be translated | **[Translation](../models/#translation)**                                        |
+| Field            | Type                  | Comment                                                                         | Original Object / Database Column         |
+|------------------|-----------------------|---------------------------------------------------------------------------------|-------------------------------------------|
+| name (required)  | string                |                                                                                 |                                           |
+| id               | integer (primary key) | If null, a new entity will be created                                           | `s_category.id`                           |
+| parentId         | integer               | The field `parent` can be used with the same value as well                      | `s_category.id`                           |
+| position         | integer               |                                                                                 |                                           |
+| metaTitle        | string                |                                                                                 |                                           |
+| metaKeywords     | string                |                                                                                 |                                           |
+| metaDescription  | string                |                                                                                 |                                           |
+| cmsHeadline      | string                |                                                                                 |                                           |
+| cmsText          | string                |                                                                                 |                                           |
+| template         | string                |                                                                                 |                                           |
+| path             | string                |                                                                                 |                                           |
+| active           | boolean               |                                                                                 |                                           |
+| blog             | boolean               |                                                                                 |                                           |
+| showFilterGroup  | boolean               | Only for SW < 5.2                                                               |                                           |
+| external         | string                |                                                                                 |                                           |
+| externalTarget   | string                | `_blank` or `_parent`                                                           |                                           |
+| hideFilter       | boolean               |                                                                                 |                                           |
+| facetIds         | string                |                                                                                 |                                           |
+| hideSortings     | boolean               |                                                                                 |                                           |
+| hideTop          | boolean               |                                                                                 |                                           |
+| noViewSelect     | boolean               | Only for SW < 5.2                                                               |                                           |
+| productBoxLayout | string                | `extend`, `basic`, `minimal`, `image` or `list`                                 |                                           |
+| changed          | date/time             |                                                                                 |                                           |
+| attribute        | array                 | Array with optional indexes from 1-6 and its values                             |                                           |
+| media            | object                | Array with either `mediaId` or `link` property                                  |                                           |
+| translations     | array                 | Array with either `shopId` `link` property and fields that should be translated | **[Translation](../models/#translation)** |
 
 ### Example (POST)
 * Creates a new sub category with parent category id 3 and multiple properties 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: REST API - Examples using the article resource
+title: REST API - Examples using the product resource
 github_link: developers-guide/rest-api/examples/article/index.md
-menu_title: The article resource
-menu_order: 20
+menu_title: Product examples
+menu_order: 40
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -14,11 +14,14 @@ subgroup: REST API
 
 ## Introduction
 
-In this article, you will find examples of the `article` resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
-Please read the page covering the **[article API resource](/developers-guide/rest-api/api-resource-article/)** if you haven't yet, to get more information about the article resource and the data it provides.
+In this article, you will find examples of the `article` resource usage for different operations.
+For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
+Please read the page covering the **[article API resource](/developers-guide/rest-api/api-resource-article/)** if you haven't yet,
+to get more information about the article resource and the data it provides.
 
 ## Example 1 - GET
-These example show you how to obtain information about a single product, by using either its ID or product number. The API calls look, respectively, like this:
+These example show you how to obtain information about a single product, by using either its ID or product number.
+The API calls look, respectively, like this:
 
 {% include 'api_badge.twig' with {'route': '/api/articles/3', 'method': 'GET'} %}
 
@@ -379,7 +382,8 @@ In this example, we will update the name of the product with the id 3
 ```
 
 ## Example 4 - Delete a product
-To delete a product, it's always required to provide the id of the product to delete. If the number is provided, an error will be returned with the response code 500.
+To delete a product, it's always required to provide the id of the product to delete.
+If the number is provided, an error will be returned with the response code 500.
 
 **Attention, this action can not be undone**
 
@@ -615,7 +619,10 @@ In order to perform this action, an array like this is required:
 }
 ```
 
-Options (`option`) and values (`value`) can be identified by name (see example above) or by identifier (`id`). Since the values within option and options are unique in groups, it's possible to automatically recognize if a new one has to be added to the shop, or if an existing entry has to be updated. PropertyGroups (`filterGroupID`) have to be added through another resource **[PropertyGroups](../../api-resource-property-group)**.
+Options (`option`) and values (`value`) can be identified by name (see example above) or by identifier (`id`).
+Since the values within option and options are unique in groups,
+it's possible to automatically recognize if a new one has to be added to the shop, or if an existing entry has to be updated.
+PropertyGroups (`filterGroupID`) have to be added through another resource **[PropertyGroups](../../api-resource-property-group)**.
 
 {% include 'api_badge.twig' with {'route': '/api/propertyGroups', 'method': 'POST', 'body': true} %}
 ```json
@@ -716,7 +723,8 @@ It's possible to specify units using the `unit` key. The snippet below shows how
 
 ```
 
-The API itself checks if the unit already exist. If it does, the old unit will be overwritten with the new values, otherwise it simply will be added as new unit to the shop.
+The API itself checks if the unit already exist.
+If it does, the old unit will be overwritten with the new values, otherwise it simply will be added as new unit to the shop.
 
 ## Further examples
 

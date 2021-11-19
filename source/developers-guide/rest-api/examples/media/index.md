@@ -2,8 +2,8 @@
 layout: default
 title: REST API - Examples using the media resource
 github_link: developers-guide/rest-api/examples/media/index.md
-menu_title: The media resource
-menu_order: 70
+menu_title: Media examples
+menu_order: 160
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -14,8 +14,10 @@ subgroup: REST API
 
 ## Introduction
 
-In this article, you will find examples of the provided resource usage for different operations. For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
-Please read the page covering the **[media API resource](/developers-guide/rest-api/api-resource-media/)** if you haven't yet, to get more information about the media resource and the data it provides.
+In this article, you will find examples of the provided resource usage for different operations.
+For each analyzed scenario, we provide an example of the data that you are expected to provide to the API, as well as an example response.
+Please read the page covering the **[media API resource](/developers-guide/rest-api/api-resource-media/)** if you haven't yet,
+to get more information about the media resource and the data it provides.
 
 ## Image assignment
 
@@ -24,13 +26,14 @@ With the variant resource it is possible to create images for variants. This con
 ### Configuration 1
 
 The image is assigned by the mediaId.
-If the image array contains a mediaId, the resource first checks whether the media file is already assigned as an product image.
+If the image array contains a mediaId, the resource first checks whether the media file is already assigned as a product image.
 If no image with the given media ID exists, the resource creates a new product image with this media ID.
 
 ### Configuration 2
 
 Passing an image URL.
-This function is copied from the article image array. The image URL can be a local file, base64, or some other type supported by the article and media resource.
+This function is copied from the article image array.
+The image URL can be a local file, base64, or some other type supported by the article and media resource.
 
 **Types:**
 http, https, file, ftp, ftps
@@ -59,11 +62,12 @@ Both configurations automatically create the child data sets in `s_articles_img`
 ## The configuration for image assignment
 
 In addition to the image mapping option, it is possible to create new assignments by using the article resource.
-This way generates no child data sets in `s_articles_img` because a product could contain 10.000 variants. The generation for each relation would be too slow.
+This way generates no child data sets in `s_articles_img` because a product could contain 10.000 variants.
+The generation for each relation would be too slow.
 It is necessary to call a additional API request to generate images for each variant. 
 
 The following example creates a product with two variants. The first variant with `"0,2 Liter"` and the second variant with `"0,5 Liter"`.
-In addition a variant image is assigned to the `"0,2 Liter"` variant.
+In addition, a variant image is assigned to the `"0,2 Liter"` variant.
 
 {% include 'api_badge.twig' with {'route': '/api/articles', 'method': 'POST', 'body': true} %}
 ```json
@@ -284,8 +288,3 @@ To optimize the API performance it is necessary to send a second API request to 
 {% include 'api_badge.twig' with {'route': '/api/generateArticleImages/1', 'method': 'PUT'} %}
 
 {% include 'api_badge.twig' with {'route': '/api/generateArticleImages/SW-20001?useNumberAsId=true', 'method': 'PUT'} %}
-
-
-
-
-

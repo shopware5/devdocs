@@ -59,7 +59,7 @@ As a plugin developer, you can create your own custom CLI commands. To do so, yo
 
 The above example registers the `import` command. You now need to implement that command.
 
-Shopware's CLI commands are based on the Symfony 3 Console Component, the documentation of which you can find [here](https://symfony.com/doc/3.4/components/console.html).
+Shopware's CLI commands are based on the Symfony 3 Console Component, the documentation of which you can find [here](https://symfony.com/doc/4.4/components/console.html).
 
 ```php
 <?php

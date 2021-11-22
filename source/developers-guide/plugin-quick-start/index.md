@@ -16,7 +16,8 @@ This document will give you a brief overview of Shopware and everything you need
 
 ## Directory structure
 
-On the left you can see Shopware's default directory structure, as you will find in GitHub checkouts or release packages. Let's start with a quick overview:
+On the left you can see Shopware's default directory structure, as you will find in GitHub checkouts or release packages.
+Let's start with a quick overview:
 
 <img src="img/tree.png" class="is-float-left" />
 
@@ -24,7 +25,9 @@ On the left you can see Shopware's default directory structure, as you will find
 
 **bin**: Contains the `console` command which can be executed to run the Shopware command line tools
 
-**build**: (Not in release packages) Contains our ant-based build engine with various scripts to e.g. install dependencies, reset the database etc. When installing Shopware from GitHub you want to run `ant build-unit` first. If you use the install package, you can just use our web-based installer
+**build**: (Not in release packages) Contains our ant-based build engine with various scripts to e.g. install dependencies,
+reset the database etc. When installing Shopware from GitHub you want to run `ant build-unit` first.
+If you use the "install" package, you can just use our web-based installer
 
 **custom/plugins** This directory contains all plugins based on the plugin system introduced with Shopware 5.2.
 
@@ -56,13 +59,17 @@ On the left you can see Shopware's default directory structure, as you will find
 <div style="clear:both"></div>
 
 ## MVC
-Shopware makes use of the [MVC design pattern](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). For this reason, the representational aspect of the application (view), the controlling and user input (controller) as well as the data layer and business logic (model) are decoupled throughout the application.
+Shopware makes use of the [MVC design pattern](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller).
+For this reason, the representational aspect of the application (view), the controlling and user input (controller) as well as the data layer and business logic (model) are decoupled throughout the application.
 
 ### View
 Shopware uses [Smarty](http://en.wikipedia.org/wiki/Smarty) as template engine. You will find all templates in `themes`.
 
 ### Model
-[Doctrine](http://en.wikipedia.org/wiki/Doctrine_(PHP)) is used as ORM and database abstraction layer. You will find the various Doctrine models in `engine/Shopware/Models`. The models are grouped by domain, so you will find article related models in the `Article` directory, customer related models in the `Customer` directory and so on. The business logic of Shopware can be found in `Core`, `Components` or `Bundle` - depending how tight the service in question is coupled to Shopware itself.
+[Doctrine](http://en.wikipedia.org/wiki/Doctrine_(PHP)) is used as ORM and database abstraction layer.
+You will find the various Doctrine models in `engine/Shopware/Models`.
+The models are grouped by domain, so you will find product related models in the `Article` directory, customer related models in the `Customer` directory and so on.
+The business logic of Shopware can be found in `Core`, `Components` or `Bundle` - depending how tight the service in question is coupled to Shopware itself.
 
 ### Controller auto-registration
 
@@ -94,23 +101,31 @@ Shopware's controllers can be found in `engine/Shopware/Controllers` and are sep
  * backend (for the Shopware administrative panel)
  * api (for our REST API)
 
-In Shopware, any request will hit a controller, depending on the type of the request. Therefore, three decisions are made:
+In Shopware, any request will hit a controller, depending on the type of the request.
+Therefore, three decisions are made:
 
  * which module is requested (default: frontend)
  * which controller is requested (default: Index)
  * which controller action should be called (default: index)
 
-If module, controller or action are not explicitly defined, Shopware will fall back to the defaults mentioned above. For this reason, a call the the shop's root directory will be dispatched to the frontend module, index controller and index action. This is equivalent to the call to `http://my-shop.com/frontend/index/index`. In practice, however, these "technical" URLs are usually hidden by the SEO engine.
+If module, controller or action are not explicitly defined, Shopware will fall back to the defaults mentioned above.
+For this reason, a call to the shop's root directory will be dispatched to the frontend module, index controller and index action.
+This is equivalent to the call to `http://my-shop.com/frontend/index/index`.
+In practice, however, these "technical" URLs are usually hidden by the SEO engine.
 
-Inside a controller you have easy access to the `Request` and `Response` object, as well as to the DI container, so you can call other components and services.
+Inside a controller you have easy access to the `Request` and `Response` object, as well as to the DI container,
+so you can call other components and services.
 
 ## Technologies
-Shopware as an open source shopping system uses many well known libraries. We use Symfony components like the dependency injection container, the console tools and some other and are HTTP compliant with the Symfony HTTP kernel.
+Shopware as an open source shopping system uses many well known libraries.
+We use Symfony components like the dependency injection container, the console tools and some other and are HTTP compliant with the Symfony HTTP kernel.
 Other well known libraries are also used and included in Shopware, like Guzzle HTTP client, Doctrine, Smarty, Monolog and Phpunit, so that most developers should feel quite comfortable regarding the used technologies.
-The actual HTTP stack of Shopware is currently powered by Zend Framework which Shopware uses with a thin layer called `Enlight` on top. As we plan to move towards Symfony step by step, Enlight might come in handy as a transitional framework.
+The actual HTTP stack of Shopware is currently powered by Zend Framework which Shopware uses with a thin layer called `Enlight` on top.
+As we plan to move towards Symfony step by step, Enlight might come in handy as a transitional framework.
 
 ## Hooking into the system with events
-Shopware uses plugins to extend the base systems. Changes in the core are never required and never recommended.
+Shopware uses plugins to extend the base systems.
+Changes in the core are never required and never recommended.
 Extensions of the core system can basically be separated into logical extensions, data extensions and template extensions.
 
 Some global events are very powerful when it comes to extending Shopware's behaviour:
@@ -118,7 +133,8 @@ Some global events are very powerful when it comes to extending Shopware's behav
 * Enlight_Controller_Action_PreDispatch_*
 * Enlight_Controller_Action_PostDispatchSecure_*
 
-These events will be emitted whenever a controller action is about to be called ("PreDispatch") or **after** the controller action was called ("PostDispatch"). This way it is very easy to get notified any time a certain controller is executed to perform some extensions:
+These events will be emitted whenever a controller action is about to be called ("PreDispatch") or **after** the controller action was called ("PostDispatch").
+This way it is very easy to get notified any time a certain controller is executed to perform some extensions:
 
 ```xml
 <container xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
@@ -149,17 +165,25 @@ class FrontendSubscriber implements SubscriberInterface
 }
 ```
 
-This snippet will call the callback function `myDetailCallback` any time the detail controller (and therefore: the detail page) was requested. In your callback you could now load template extensions or modify view assignments.
+This snippet will call the callback function `myDetailCallback` any time the detail controller (and therefore: the detail page) was requested.
+In your callback you could now load template extensions or modify view assignments.
 
 If you want to read more about the events in Shopware you can take a look at the [events article](https://developers.shopware.com/developers-guide/event-guide/#further-events).
 
 ## Extending the database
-Your plugin is free to create its own table in the Shopware database in order to store additional data. But there is even a more convenient way: The Shopware attribute system.
-Shopware attributes are basically tables in a OneToOne relation to important Shopware entities. So, for every entry in `s_user` (the customer table), there is also an entry in `s_user_attributes`. In Shopware, it is very easy to add a new column to this table and to automatically add it to the customer doctrine attribute model. Whenever Shopware reads a customer, article or another entity from database, it will also read the attributes, so that you can make use of attributes in many places and modules.
+Your plugin is free to create its own table in the Shopware database in order to store additional data.
+But there is even a more convenient way: The Shopware attribute system.
+Shopware attributes are basically tables in a OneToOne relation to important Shopware entities.
+So, for every entry in `s_user` (the customer table), there is also an entry in `s_user_attributes`.
+In Shopware, it is very easy to add a new column to this table and to automatically add it to the customer doctrine attribute model.
+Whenever Shopware reads a customer, product or another entity from database, it will also read the attributes, so that you can make use of attributes in many places and modules.
 If you want to read more about extending the database in Shopware you can take a look at the [attribute system article](https://developers.shopware.com/developers-guide/attribute-system/#schema-operations-and-configuration)
 
 ## Extending the template
-In many cases you might want to modify the template. Shopware makes use of the Smarty block system for that. Blocks are basically named areas inside the template that you can prepend, append or even replace. Shopware's default frontend theme has more than 1.500 blocks - so more than 1.500 extension points for you as a plugin developer.
+In many cases you might want to modify the template.
+Shopware makes use of the Smarty block system for that.
+Blocks are basically named areas inside the template that you can prepend, append or even replace.
+Shopware's default frontend theme has more than 1.500 blocks - so more than 1.500 extension points for you as a plugin developer.
 
 A smarty block will usually look like this:
 
@@ -176,14 +200,15 @@ The following example will show how to write a very simple plugin, which extends
 
 ## Plugin Name
 
-The plugin name must be fashioned according to the [PHP variable name rules](http://php.net/manual/language.variables.basics.php) and should always be prefixed with your developer prefix so it's unique in the Shopware universe.
+The plugin name must be fashioned according to the [PHP variable name rules](http://php.net/manual/language.variables.basics.php) and should always be prefixed with your developer prefix, so it's unique in the Shopware universe.
 To submit plugins to the [shopware store](https://store.shopware.com/en) you have to obtain your developer prefix in the [Shopware Account](https://account.shopware.com).
 
 In the following examples the developer prefix "Swag" will be used (short for shopware AG).
 
 ## Plugin Info
 
-Provide meta information about your plugin with the `plugin.xml` file. Read the chapter [plugin metadata](#plugin-metadata) for more information.
+Provide meta information about your plugin with the `plugin.xml` file.
+Read the chapter [plugin metadata](#plugin-metadata) for more information.
 
 ## Plugin Icon
 
@@ -215,9 +240,8 @@ To have a clean structure and readability in our plugin, we sort out functionali
 ```
 
 ## The plugin base file
-The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`. This is placed
-in either `custom/plugins/SwagSloganOfTheDay` or `custom/project/SwagSloganOfTheDay` if it is a project-specific
-plugin by intention.
+The main entry point of every plugin is the plugin base file in your plugin directory `SwagSloganOfTheDay.php`.
+This is placed in either `custom/plugins/SwagSloganOfTheDay` or `custom/project/SwagSloganOfTheDay` if it is a project-specific plugin by intention.
 
  In the `SwagSloganOfTheDay.php` file, we create a simple class:
 
@@ -234,8 +258,7 @@ plugin by intention.
  }
 ```
 
-Both the PHP namespace and the class name must match the [plugin name](#plugin-name) equally and no additional
-path parts must be added.
+Both the PHP namespace and the class name must match the [plugin name](#plugin-name) equally and no additional path parts must be added.
 
 It's important to extend the `Shopware\Components\Plugin` class.
 
@@ -292,21 +315,31 @@ class RouteSubscriber implements SubscriberInterface
 }
 ```
 
-As defined in `getSubscribedEvents` the callback is called `onFrontendPostDispatch`. It takes an `Enlight_Controller_ActionEventArgs` object as parameter, which holds context about the event - in this case the context of the controller that has been executed.
+As defined in `getSubscribedEvents` the callback is called `onPostDispatch`.
+It takes an `Enlight_Controller_ActionEventArgs` object as parameter, which holds context about the event - in this case the context of the controller that has been executed.
 
-First of all we can extract the reference of the executed frontend controller using `$controller = $args->get('subject');`. Using this controller we can get a reference of the view instance: `$view = $controller->View()`.
+First we can extract the reference of the executed frontend controller using `$controller = $args->get('subject');`.
+Using this controller we can get a reference of the view instance: `$view = $controller->View()`.
 
-Now we want to inject our own template directory to Shopware using the `addTemplateDir` method. It takes a path of a template directory as parameter. Whenever rendering a template, Shopware will now automatically check your `View` directory for extensions and load them dynamically.
+Now we want to inject our own template directory to Shopware using the `addTemplateDir` method.
+It takes a path of a template directory as parameter.
+Whenever rendering a template, Shopware will now automatically check your `View` directory for extensions and load them dynamically.
 
 <div class="alert alert-warning">
 <strong>Be careful with sensitive data!</strong>
 
-Please make sure that you not assign sensitive data to the template on global events like [PostDispatch](/developers-guide/event-list/#enlight_controller_front_postdispatch). The view variables are shared accross multiple renders. The JsonRenderer for example will send all variables to the client.
+Please make sure that you not assign sensitive data to the template on global events like [PostDispatch](/developers-guide/event-list/#enlight_controller_front_postdispatch).
+The view variables are shared across multiple renders.
+The JsonRenderer for example will send all variables to the client.
 </div>
 
-Finally we want to assign some configuration to the template - in this case a slogan, a flag that indicates if the slogan should be italic or not and the font size of the slogan. For assignments `$view->assign('name', 'value')` is used - this way we will be able to access it in the Smarty template using `{$name}`.
+Finally, we want to assign some configuration to the template - in this case a slogan,
+a flag that indicates if the slogan should be italic or not and the font size of the slogan.
+For assignments `$view->assign('name', 'value')` is used - this way we will be able to access it in the Smarty template using `{$name}`.
 
-The slogan itself is randomly selected in the `getSlogan` method. This could easily be moved to a plugin configuration text field, so that the shop owner can enter his slogans line by line. But as seen above, we already picked the best ones.
+The slogan itself is randomly selected in the `getSlogan` method.
+This could easily be moved to a plugin configuration text field, so that the shop owner can enter his slogans line by line.
+But as seen above, we already picked the best ones.
 
 Subscriber classes implements the SubscriberInterface
 
@@ -374,10 +407,12 @@ In order to create the plugin configuration, we will need to implement the `Reso
 </config>
 ```
 
-In this case two config elements are added - a `select` element with the name "swagSloganFontSize" which will draw a combobox in the plugin configuration. The content of the combobox is defined in the "store" element.
-Additionally we ar able to define a label for the configuration using the "label" property and a default value using the "value" property.
+In this case two config elements are added - a `select` element with the name "swagSloganFontSize" which will draw a combobox in the plugin configuration.
+The content of the combobox is defined in the "store" element.
+Additionally, we ar able to define a label for the configuration using the "label" property and a default value using the "value" property.
 
-As a second config element we add a `boolean` element. It is called "swagSloganItalic", enabled by default and has the label "Italic".
+As a second config element we add a `boolean` element.
+It is called "swagSloganItalic", enabled by default and has the label "Italic".
 
 This will result in a configuration form like this:
 
@@ -394,13 +429,16 @@ Please be aware to not save any files that contain sensitive data to your plugin
 
 ### Frontend resources auto-registration
 
-Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_Compiler_Collect_Plugin_*` events. Since Shopware 5.2.13 the registration will be done automatically. Just place the resources into the following directories:
+Additions to CSS, LESS and JavaScript resources had to be registered via `Theme_Compiler_Collect_Plugin_*` events.
+Since Shopware 5.2.13 the registration will be done automatically.
+Just place the resources into the following directories:
 
 * `custom/plugins/SwagResource/Resources/frontend/css/**.css`
 * `custom/plugins/SwagResource/Resources/frontend/js/**.js`
 * `custom/plugins/SwagResource/Resources/frontend/less/all.less`
 
-The `css` and `js` directories may contain arbitrary sub directories. `@import`s in `all.less` will be resolved.
+The `css` and `js` directories may contain arbitrary subdirectories.
+`@import`s in `all.less` will be resolved.
 
 ```
 SwagResource
@@ -424,7 +462,9 @@ SwagResource
 So far we have set up the plugin - but where does the actual template extension come from?
 
 We already registered the `Resources/views` directory in the RouteSubscriber and can now create the template in the `Resources/views/frontend/index/index.tpl` file.
-This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`. This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions. As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
+This template is actually an extension of Shopware's default `frontend/index/index.tpl` which can be found in `themes/Frontend/Bare/frontend/index/index.tpl`.
+This template defines the whole default structure of the Shopware responsive template - and is a perfect place for global extensions.
+As we created a file with the same name, the template manager of Shopware will automatically load this template file, when the default index.tpl is loaded.
 
 Now our plugin's `index.tpl` might look like this:
 
@@ -453,7 +493,8 @@ Now our plugin's `index.tpl` might look like this:
 {/block}
 ```
 
-The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopware to not completely replace the default index.tpl file - but to extend from it. Now we can overwrite single or multiple blocks in the default index.tpl using the `block` directive:
+The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopware to not completely replace the default index.tpl file - but to extend from it.
+Now we can overwrite single or multiple blocks in the default index.tpl using the `block` directive:
 
 ```smarty
 {block name="frontend_index_navigation_categories_top_include"}
@@ -463,7 +504,8 @@ The directive `{extends file="parent:frontend/index/index.tpl"}` will tell Shopw
 {/block}
 ```
 
-This tells Smarty to prepend the content of our block to the default content of the block `frontend_index_navigation_categories_top_include`. That block is the block, which defines the top category navigation in the default template - a nice place to show a profound slogan to the customer!
+This tells Smarty to prepend the content of our block to the default content of the block `frontend_index_navigation_categories_top_include`.
+That block is the block, which defines the top category navigation in the default template - a nice place to show a profound slogan to the customer!
 
 Within the block we can use default Smarty / HTML. In the example above, we define some style sheets first:
 
@@ -480,7 +522,8 @@ Within the block we can use default Smarty / HTML. In the example above, we defi
 </style>
 ```
 
-As you can see, we use Smarty syntax here to change the style dynamically corresponding to the configuration we assigned to the template in the `onFrontendPostDispatch` callback method. So the `italic` style will only be set if the `italic` option is set. The same way the font size is set depending on the config.
+As you can see, we use Smarty syntax here to change the style dynamically corresponding to the configuration we assigned to the template in the `onFrontendPostDispatch` callback method.
+So the `italic` style will only be set if the `italic` option is set. The same way the font size is set depending on the config.
 
 Now the only thing left to do is show the slogan:
 
@@ -600,7 +643,8 @@ class SwagQuickStart extends Plugin
 }
 ```
 
-Each method, such as install, update etc. has its own context, which is passed into the method. The context provides various information and methods for the plugin.
+Each method, such as install, update etc. has its own context, which is passed into the method.
+The context provides various information and methods for the plugin.
 Like:`->scheduleClearCache()`, `->getCurrentVersion()`, `->getUpdateVersion()`, or `->keepUserData()`.
 
 ### The clear cache method
@@ -620,7 +664,7 @@ Possible settings for the parameter `caches` contains each context as constant.
 
 ## Container Configuration
 
-The [Symfony DependencyInjection Component](https://symfony.com/doc/3.4/components/dependency_injection.html)
+The [Symfony DependencyInjection Component](https://symfony.com/doc/4.4/components/dependency_injection.html)
 
 The container configuration is the main extension point for Shopware plugins.
 In this configuration new services can be defined, core services can be decorated or replaced or functionality can be added to the system.
@@ -672,7 +716,9 @@ class SwagSloganOfTheDay extends \Shopware\Components\Plugin
 ```
 
 ### Decorate a service
+
 The following example shows you how to decorate a service which implements an interface and gets defined in the Shopware dependency injection container.
+
 ```php
 <?php
 
@@ -703,7 +749,8 @@ class ListProductService implements ListProductServiceInterface
     }
 }
 ```
-The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`. The following service definition decorates this service using the service above:
+The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService` defined with the service id `shopware_storefront.list_product_service`.
+The following service definition decorates this service using the service above:
 
 ```xml
 <?xml version="1.0" ?>
@@ -725,7 +772,7 @@ The original `\Shopware\Bundle\StoreFrontBundle\Service\Core\ListProductService`
 
 ```
 
-For more information see [How to Decorate Services](https://symfony.com/doc/3.4/service_container/service_decoration.html)
+For more information see [How to Decorate Services](https://symfony.com/doc/4.4/service_container/service_decoration.html)
 
 ### Extended Container Configuration
 
@@ -771,11 +818,13 @@ As of Shopware 5.2.2 you can also register commands as a service and tag it with
 </container>
 ```
 
-You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/3.4/console/commands_as_services.html).
+You can read more in the Symfony Documentation: [How to Define Commands as Services](https://symfony.com/doc/4.4/console/commands_as_services.html).
 
 
 ## Add backend emotion components
+
 Since shopware 5.2.10 the `Shopware\Components\Emotion\ComponentInstaller` service can be used to generate backend emotion components inside plugin installations:
+
 ```php
 public function install(InstallContext $context)
 {
@@ -805,7 +854,8 @@ public function install(InstallContext $context)
 ```
 
 Registering the `Shopware\Components\Emotion\EmotionComponentViewSubscriber` as event subscriber allows to add the required template directory automatically:
-Make sure that the service id is unique. Prefix it e.g with the plugin name.
+Make sure that the service id is unique. Prefix it e.g. with the plugin name.
+
 ```xml
 <?xml version="1.0" ?>
 
@@ -840,6 +890,7 @@ SwagEmotion
 └──SwagEmotion.php
 ```
 ## Add a new payment method
+
 Since Shopware 5.2.13 the `Shopware\Components\Plugin\PaymentInstaller` service can be used to add payment methods to the database inside plugin installations.
 
 ```php
@@ -865,8 +916,8 @@ public function install(InstallContext $context)
 ```
 ## Plugin Resources
 
-Plugin meta data and configurations will be configured by using xml files which will be placed like in the example below.
-IDEs like PhpStorm support auto completion by default for these files if schema file location is valid.
+Plugin metadata and configurations will be configured by using xml files which will be placed like in the example below.
+IDEs like PhpStorm support auto-completion by default for these files if schema file location is valid.
 
 ```
 SwagSloganOfTheDay
@@ -882,7 +933,7 @@ You can find the schemas of the xml files in `engine/Shopware/Components/Plugin/
  - **config.xml:** Defines the plugin configuration form which you can access by the `Basic Settings` or in the detail window of a plugin.
  - **cronjob.xml:** Defines cronjobs installed with the plugin.
  - **menu.xml:** Defines new menu items in the backend menu structure of Shopware.
- - **plugin.xml:** Defines the meta data of your plugin, i.e. label, version, compatibility or the changelog.
+ - **plugin.xml:** Defines the metadata of your plugin, i.e. label, version, compatibility or the changelog.
 
 <div class="alert alert-warning">
 At the moment it is necessary that the order of the xml elements is equal to the schema file, otherwise you will receive an exception. <br/>
@@ -1020,12 +1071,17 @@ To read out the configuration of your plugin use this code snippet in your base 
 $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName($this->getName());
 ```
 Use it like this in other places:
+
 ```php
 $config = $this->container->get('shopware.plugin.cached_config_reader')->getByPluginName('SwagSloganOfTheDay');
 ```
-The config reader service will return an array with the config element names as keys. If you are using scoped configuration elements, don't forget to pass the shop service `$this->container->get('shop')` as a second parameter to `getByPluginName()` method. Without the shop context, the method will fall back to the main shop context.
+
+The config reader service will return an array with the config element names as keys.
+If you are using scoped configuration elements, don't forget to pass the shop service `$this->container->get('shop')` as a second parameter to `getByPluginName()` method.
+Without the shop context, the method will fall back to the main shop context.
 
 ### add store values
+
 It is possible to define custom config stores directly inside your `config.xml`.
 
 A custom config store is defined like this:
@@ -1124,6 +1180,7 @@ Example:
     </elements>
 </config>
 ```
+
 The given `label` is the display name of the button.
 You can define an option `handler` as callback for click events.
 
@@ -1161,14 +1218,16 @@ Example `Resources/menu.xml`:
 </menu>
 ```
 
-For available parent controllers take a look into the table `s_core_menu` (column `controller`). For example you can use one of the following:
+For available parent controllers take a look into the table `s_core_menu` (column `controller`).
+For example, you can use one of the following:
 - Article
 - Content
 - Customer
 - ConfigurationMenu
 - Marketing
 
-As you can see in the example above, you are also able to add child menu entries for your new menu item. Just add them under the `<children>` element
+As you can see in the example above, you are also able to add child menu entries for your new menu item.
+Just add them under the `<children>` element
 
 The menu item won't be displayed if controller and action are missing.
 
@@ -1193,9 +1252,12 @@ Example `Resources/cronjob.xml`:
 </cronjobs>
 ```
 
-This file will be analyzed and applied on every plugin installation and update. When this file is applied new cronjobs will be added, existing cronjobs updated and missing ones will be deleted. Whether a cronjob exists will be determined by the given action.
+This file will be analyzed and applied on every plugin installation and update.
+When this file is applied new cronjobs will be added, existing cronjobs updated and missing ones will be deleted.
+Whether a cronjob exists will be determined by the given action.
 
-The cronjob manager will publish an event according to the name given with the `action` tag, whenever your cronjob is due to execute. Just subscribe to this event and register a handler. Example (in your plugin or subscriber class):
+The cronjob manager will publish an event according to the name given with the `action` tag, whenever your cronjob is due to execute.
+Just subscribe to this event and register a handler. Example (in your plugin or subscriber class):
 
 ```php
 public static function getSubscribedEvents()
@@ -1223,7 +1285,10 @@ $path = $swagExample->getPath();
 ## Adding acl privilege dependencies
 
 When creating a new ACL resource for your custom backend application you can define possible dependencies that the privileges of your new application has to existing/other resources and privileges.
-This relations helps the shop owner while selecting your resource privilege to select all other required privileges. To achieve this, create a new plugin migration for table `s_core_acl_privilege_requirements` and insert your resource privilege id into the column `privilege_id` and your resource id into column `required_privilege_id` your acl resource needs.
+These relations help the shop owner while selecting your resource privilege to select all other required privileges.
+To achieve this, create a new plugin migration for table `s_core_acl_privilege_requirements`
+and insert your resource privilege id into the column `privilege_id`
+and your resource id into column `required_privilege_id` your acl resource needs.
 
 Example migration
 

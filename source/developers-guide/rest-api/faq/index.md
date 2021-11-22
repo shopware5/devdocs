@@ -12,7 +12,7 @@ tags:
 group: Developer Guides
 subgroup: REST API
 menu_title: REST API FAQ
-menu_order: 150
+menu_order: 340
 ---
 
 <div class="toc-list"></div>
@@ -34,7 +34,8 @@ Stack trace:
 #4 /engine/Shopware/Kernel.php(182): Enlight_Controller_Front-&gt;dispatch()
 #5 / in <b>2/engine/Shopware/Components/Api/Resource/Article.php</b> on line <b>155</b><br />
 ```
-This is a sign that the configs `throwExceptions` and `noErrorHandler` which are located in `config.php` are set to `true`. Removing these entries or setting them to `false` should resolve this issue. 
+This is a sign that the configs `throwExceptions` and `noErrorHandler` which are located in `config.php` are set to `true`.
+Removing these entries or setting them to `false` should resolve this issue. 
 
 
 ## How can I access the API if my shop is protected with a `.htaccess` file?

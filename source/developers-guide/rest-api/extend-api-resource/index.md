@@ -12,16 +12,18 @@ tags:
 group: Developer Guides
 subgroup: REST API
 menu_title: Extend a REST API resource
-menu_order: 140
+menu_order: 330
 ---
 
 <div class="toc-list"></div>
 
 ## Introduction
-This article will provide a small example on how to extend the existing REST API resources. As of Shopware 5.2.17 the resources are loaded as services to the dependency injection container and can be easily decorated.
+This article will provide a small example on how to extend the existing REST API resources.
+As of Shopware 5.2.17 the resources are loaded as services to the dependency injection container and can be easily decorated.
 
 ## Plugin files
-You only need a few files for this example plugin. For more information about necessary files and the Shopware 5.2 plugin system see the [5.2 plugin guide](/developers-guide/plugin-system).
+You only need a few files for this example plugin.
+For more information about necessary files and the Shopware 5.2 plugin system see the [5.2 plugin guide](/developers-guide/plugin-system).
 
 ### Services.xml
 `SwagExtendArticleResource/Resources/services.xml`:
@@ -65,7 +67,8 @@ class Article extends \Shopware\Components\Api\Resource\Article
     }
 }
 ```
-Execute the parent `getList()` function to get the original data and add your custom field to every product. Feel free to replace this with your own implementation.
+Execute the parent `getList()` function to get the original data and add your custom field to every product.
+Feel free to replace this with your own implementation.
 
 ## Download plugin
 The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagExtendArticleResource.zip">here</a>.

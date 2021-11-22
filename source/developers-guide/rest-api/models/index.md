@@ -3,7 +3,7 @@ layout: default
 title: REST API - Models
 github_link: developers-guide/rest-api/models/index.md
 menu_title: Models
-menu_order: 120
+menu_order: 310
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -19,25 +19,25 @@ subgroup: REST API
 
 ### Structure
 
-| Field                    | Type                  | Original object                   |
-|--------------------------|-----------------------|-----------------------------------|
-| id                       | integer (primary key) |                                   | 
-| company                  | string                |                                   |
-| department               | string                |                                   |
-| salutation               | string                |                                   |
-| title                    | string                |                                   |
-| firstname                | string                |                                   |
-| lastname                 | string                |                                   |
-| street                   | string                |                                   |
-| zipcode                  | string                |                                   |
-| city                     | string                |                                   |
-| phone                    | string                |                                   |
-| vatId                    | string                |                                   |
-| additionalAddressLine1   | string                |                                   |
-| additionalAddressLine2   | string                |                                   |
-| country                  | int (foreign key)     | **[Country](../models/#country)** |   
-| state                    | int (foreign key)     | **[State](#state)**               |   
-| attribute                | array                 |                                   |  
+| Field                  | Type                  | Original object                   |
+|------------------------|-----------------------|-----------------------------------|
+| id                     | integer (primary key) |                                   | 
+| company                | string                |                                   | 
+| department             | string                |                                   | 
+| salutation             | string                |                                   | 
+| title                  | string                |                                   | 
+| firstname              | string                |                                   | 
+| lastname               | string                |                                   | 
+| street                 | string                |                                   | 
+| zipcode                | string                |                                   | 
+| city                   | string                |                                   | 
+| phone                  | string                |                                   | 
+| vatId                  | string                |                                   | 
+| additionalAddressLine1 | string                |                                   | 
+| additionalAddressLine2 | string                |                                   | 
+| country                | int (foreign key)     | **[Country](../models/#country)** | 
+| state                  | int (foreign key)     | **[State](#state)**               | 
+| attribute              | array                 |                                   | 
 
 ## Area
 

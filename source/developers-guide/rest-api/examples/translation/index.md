@@ -2,8 +2,8 @@
 layout: default
 title: REST API - Examples using the translation resource
 github_link: developers-guide/rest-api/examples/translation/index.md
-menu_title: The translation resource
-menu_order: 50
+menu_title: Translation examples
+menu_order: 240
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -14,7 +14,8 @@ subgroup: REST API
 
 In this article you can read more about using the translation resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
-Please read **[Translation](/developers-guide/rest-api/api-resource-translation/)** if you did not yet, to get more information about the translation resource and the data it provides.
+Please read the page covering the **[translation API resource](/developers-guide/rest-api/api-resource-translation/)** if you did not yet,
+to get more information about the translation resource and the data it provides.
 
 ## Example 1 - Creating a new translation
 

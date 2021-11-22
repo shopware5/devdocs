@@ -1,8 +1,8 @@
 ---
 layout: default
 title: REST API - Examples using the order resource
-menu_title: The order resource
-menu_order: 40
+menu_title: Order examples
+menu_order: 180
 indexed: true
 menu_style: bullet
 group: Developer Guides
@@ -13,9 +13,10 @@ subgroup: REST API
 
 ## Introduction
 
-In this article you can read more about using the orders resource.
+In this article you can read more about using the order resource.
 The following part will show you examples including provided data and data you need to provide if you want to use this resource.
-Please read **[Orders](/developers-guide/rest-api/api-resource-orders/)** if you did not yet, to get more information about the orders resource and the data it provides.
+Please read the page covering the **[order API resource](/developers-guide/rest-api/api-resource-orders/)** if you did not yet,
+to get more information about the order resource and the data it provides.
 
 ## Example 1 - Load all orders
 This example shows you how to get all orders of the shop. You may also limit the result count by providing a limit parameter.

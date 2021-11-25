@@ -13,19 +13,24 @@ menu_title: Address Management
 menu_order: 80
 ---
 
-The address management allows a customer to manage more than only one address which gets changed with every order. The customer is now able to create more addresses, e.g. for home and work, and use them later on in an order without losing all existing address data. He can just change the reference to the default billing address, instead of changing it entirely.
+The address management allows a customer to manage more than only one address which gets changed with every order.
+The customer is now able to create more addresses, e.g. for home and work, and use them later on in an order without losing all existing address data.
+He can just change the reference to the default billing address, instead of changing it entirely.
 
 <div class="toc-list"></div>
 
 ## Address Service
 
-The address service is used to manage all address entities in Shopware. It only works with models which makes it easy to comprehend, which properties are available and can be used. To know which properties are available, please refer to the model `\Shopware\Models\Customer\Address` in the source code.
+The address service is used to manage all address entities in Shopware.
+It only works with models which makes it easy to comprehend, which properties are available and can be used.
+To know which properties are available, please refer to the model `\Shopware\Models\Customer\Address` in the source code.
 
 Please don't handle the persisting using Doctrine ORM yourself as you might risk data inconsistency.
 
 ### Create an address
 
-Like said above, you have to pass an already complete address model and an existing customer to the address service. In case of an error, you'll get an exception.
+Like said above, you have to pass an already complete address model and an existing customer to the address service.
+In case of an error, you'll get an exception.
 
 ```php
 $address = new \Shopware\Models\Customer\Address();
@@ -38,7 +43,8 @@ $this->get('shopware_account.address_service')->create($address, $customer);
 
 ### Update an address
 
-Updating an address is almost the same as creating one. The only difference is, that you don't have to provide the customer since the address is already associated with it.
+Updating an address is almost the same as creating one.
+The only difference is, that you don't have to provide the customer since the address is already associated with it.
 
 Pretending that you already fetched an address in `$address`, your update call might look like this:
 
@@ -49,7 +55,8 @@ $this->get('shopware_account.address_service')->update($address);
 
 ### Delete an address
 
-The deletion of an address also requires an existing model. In case of errors, you'll get an exception.
+The deletion of an address also requires an existing model.
+In case of errors, you'll get an exception.
 
 Pretending that you already fetched an address in `$address`, your delete call might look like this:
 
@@ -58,7 +65,6 @@ $this->get('shopware_account.address_service')->delete($address);
 ```
 
 This call might throw an exception if you are trying to delete an address, which is associated with a default billing or shipping address of a customer.
-
 
 ### Set as default billing or shipping address
 
@@ -73,11 +79,14 @@ $this->get('shopware_account.address_service')->setDefaultShippingAddress($addre
 
 ## Extending the address form
 
-The addresses are now validated by a symfony form `\Shopware\Bundle\AccountBundle\Form\Account\AddressFormType`. If you want to add your own fields to it, you can subscribe to the `Shopware_Form_Builder` event and create or modify fields inside the `additional` field.
+The addresses are now validated by a symfony form `\Shopware\Bundle\AccountBundle\Form\Account\AddressFormType`.
+If you want to add your own fields to it, you can subscribe to the `Shopware_Form_Builder` event and create or modify fields inside the `additional` field.
 
 ### Attributes
 
-The address form also supports attributes. They will automatically be mapped to the attribute model if you follow the input naming conventions. This is an example for providing attributes with an HTML input field:
+The address form also supports attributes.
+They will automatically be mapped to the attribute model if you follow the input naming conventions.
+This is an example for providing attributes with an HTML input field:
 
 ```html
 <input type="text" name="address[attribute][text3]" />
@@ -85,7 +94,9 @@ The address form also supports attributes. They will automatically be mapped to 
 
 ### Custom data
 
-If you don't want to use attributes, e.g. for temporary data transfer or non-persistent data, you can use the `additional` field. The address model now contains a new property `additional` which is declared as an array, a key/value store to be exact. This array will be filled with these form fields, you've added earlier using the event (see Example #1 below).
+If you don't want to use attributes, e.g. for temporary data transfer or non-persistent data, you can use the `additional` field.
+The address model now contains a new property `additional` which is declared as an array, a key/value store to be exact.
+This array will be filled with these form fields, you've added earlier using the event (see Example #1 below).
 
 To correctly map the submitted data to your new fields, you have to follow the convention of using the additional array as field name like:
 
@@ -93,13 +104,15 @@ To correctly map the submitted data to your new fields, you have to follow the c
 <input type="text" name="address[additional][neighboursName]" />
 ```
 
-You have access to your data by using `$address->getAdditional()`. The first example will show how to add fields to the address form.
+You have access to your data by using `$address->getAdditional()`.
+The first example will show how to add fields to the address form.
 
 #### Example #1: Adding a new field
 
 This example will add a new field named `neighboursName` and it should not be empty.
 
 ##### Add the subscriber to the service.xml
+
 ```xml
 <service id="pluginname.address_form_extender" class="PluginName\Subscriber\FormExtenderSubscriber">
     <tag name="shopware.event_subscriber" />
@@ -107,6 +120,7 @@ This example will add a new field named `neighboursName` and it should not be em
 ```
 
 ##### Create the Subscriber file
+
 ```php
 // PluginFolder/Subscriber/FormExtenderSubscriber.php
 
@@ -119,7 +133,8 @@ public static function getSubscribedEvents()
     
 public function onFormBuild(\Enlight_Event_EventArgs $event)
 {
-    if ($event->getReference() !== \Shopware\Bundle\AccountBundle\Form\Account\AddressFormType::class) {
+    /** @see \Shopware\Bundle\AccountBundle\Form\Account\AddressFormType::getBlockPrefix */
+    if ($event->getReference() !== 'address') {
         return;
     }
 
@@ -137,7 +152,8 @@ public function onFormBuild(\Enlight_Event_EventArgs $event)
 
 #### Example #2: Adding multiple fields at once
 
-The example will add multiple fields with different validation options. If you don't provide a list of constraints to a field, it will be optional.
+The example will add multiple fields with different validation options.
+If you don't provide a list of constraints to a field, it will be optional.
 
 ##### Add the subscriber to the service.xml
 ```xml
@@ -146,8 +162,8 @@ The example will add multiple fields with different validation options. If you d
 </service>
 ```
 
-
 ##### Create the Subscriber file and the onFormBuild() method
+
 ```php
 // PluginFolder/Subscriber/FormExtenderSubscriber.php
 public function onFormBuild(\Enlight_Event_EventArgs $event) {
@@ -176,7 +192,8 @@ public function onFormBuild(\Enlight_Event_EventArgs $event) {
 
 #### Example #3: Handle the additional data in the AddressService
 
-This example will decorate the address service in order to handle additional data. First, we need a new class, which implements the `AddressServiceInterface`.
+This example will decorate the address service in order to handle additional data.
+First, we need a new class, which implements the `AddressServiceInterface`.
 
 ##### MyAddressService.php
 

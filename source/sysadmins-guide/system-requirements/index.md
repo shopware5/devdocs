@@ -51,19 +51,29 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 - `innodb_buffer_pool_size` should be at least as large as the whole database
 - `query_cache_size` should normally be between 100 - 200MB
 
+Shopware is using the default transaction isolation level [REPEATABLE READ](https://dev.mysql.com/doc/refman/5.7/en/innodb-transaction-isolation-levels.html#isolevel_repeatable-read).
+You might want to try other levels for better performance, but those are not tested, so they are not supported by us.
+
 ### Recommended
  
 - <a href="https://secure.php.net/manual/en/book.apcu.php" target="_blank">APCu</a> 
 - When using Shopware ESD functionalities, it's highly recommended to use Apache `mod_xsendfile`
-- For enabling the HSTS header, Apache's `header` module is necessary. Simply add the line `Header always set Strict-Transport-Security "max-age=31536000"` to your .htaccess
+- For enabling the HSTS header, Apache's `header` module is necessary.
+Simply add the line `Header always set Strict-Transport-Security "max-age=31536000"` to your .htaccess
 
 ### Other requirements
 
-The requirements specified above reflect only the minimum requirements of Shopware. Specific hardware requirements vary depending on the size and expected traffic of your shop. Additional server configuration may be required. Plugins installed on your shop may increase Shopware's resource needs or add additional system dependencies. Please refer to each plugin's documentation for more information.
+The requirements specified above reflect only the minimum requirements of Shopware.
+Specific hardware requirements vary depending on the size and expected traffic of your shop.
+Additional server configuration may be required.
+Plugins installed on your shop may increase Shopware's resource needs or add additional system dependencies.
+Please refer to each plugin's documentation for more information.
 
 ### Alternative server setups
 
-The above requirements reflect the officially supported and recommended system setup to run Shopware. However, you might be able to run Shopware on equivalent setups (Mac OS, nginx, MariaDB, etc). Please keep in mind that we are unable to provide official support on those setups.
+The above requirements reflect the officially supported and recommended system setup to run Shopware.
+However, you might be able to run Shopware on equivalent setups (Mac OS, nginx, MariaDB, etc.).
+Please keep in mind that we are unable to provide official support on those setups.
 
 ## Elasticsearch
 
@@ -72,7 +82,9 @@ For more details see the <a href="{{ site.url }}/sysadmins-guide/elasticsearch-s
 
 ## Shopware 5 System Requirements - Administration client
 
-The administration of your shop can be done completely online via the web browser. The following requirements should be met by any client system that uses the administration backend. These requirement differ from the frontend user system requirements.
+The administration of your shop can be done completely online via the web browser.
+The following requirements should be met by any client system that uses the administration backend.
+These requirements differ from the frontend user system requirements.
 
 ### Requirements:
 

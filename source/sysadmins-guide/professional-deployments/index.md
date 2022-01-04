@@ -61,8 +61,8 @@ minor versions. This means that you can confidently deploy a coming v5.5 release
 your current proven v5.4. Of course this presumes that all installed plugins support this as well.
 
 So any deprecations to the database that were announced in v5.4 will only be applied in a v5.6 release. That way the
-intermediate v5.5 can and must support both a v5.4 and a v5.5 database. Database deprecations in v5.5 will be applied
-in a v5.7 and so on. 
+intermediate v5.5 database can and must be usable with both a v5.4 and a v5.5. Database deprecations in v5.5 will be
+applied in a v5.7 and so on.
 
 ### Best practices
 

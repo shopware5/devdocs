@@ -52,6 +52,7 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 - `query_cache_size` should normally be between 100 - 200MB
 - `max_allowed_packet` should be set to at least `16M`, as this is the size of the `data`-field of the [s_core_sessions](https://github.com/shopware/shopware/blob/5.7/_sql/install/latest.sql#L3463)
  table.
+
 Shopware is using the default transaction isolation level [REPEATABLE READ](https://dev.mysql.com/doc/refman/5.7/en/innodb-transaction-isolation-levels.html#isolevel_repeatable-read).
 You might want to try other levels for better performance, but those are not tested, so they are not supported by us.
 

@@ -615,7 +615,7 @@ The field `path` has to be the local path to the image, seen from the root of th
 | price                  | double                  |                                                            |
 | quantity              | integer               |                                                            |
 | articleName          | string                     |                                                            |
-| shipped              | boolean               |                                                            |
+| shipped              | integer               |                                                            |
 | shippedGroup          | integer               |                                                            |
 | releaseDate          | date/time               |                                                            |
 | mode                  | integer               |                                                            |

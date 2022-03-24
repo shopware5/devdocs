@@ -95,6 +95,7 @@ The API calls look, respectively, like this:
                "pseudoPrice":0,
                "basePrice":0,
                "percent":0,
+               "regulationPrice":0,
                "customerGroup":{
                   "id":1,
                   "key":"EK",

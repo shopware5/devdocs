@@ -749,19 +749,20 @@ The field `path` has to be the local path to the image, seen from the root of th
 
 ### Structure
 
-| Field               | Type                  | Original object                                       |
-|---------------------|-----------------------|-------------------------------------------------------|
-| customerGroupKey      | string (foreign key)  | **[CustomerGroup](#customer-group)**                   |
-| customerGroup       | object                | **[CustomerGroup](#customer-group)**                   |
-| articleDetailsId    | integer (foreign key) | **[Detail](#article-detail)**                         |
-| articleId           | integer (foreign key) | **[Article](../api-resource-article/)**               |
-| id                  | integer (primary key) |                                                       |
-| from                | integer/string        |                                                       |
-| to                  | string                |                                                       |
-| price               | double                |                                                       |
-| pseudoPrice         | double                |                                                       |
-| basePrice           | double                |                                                       |
-| percent             | double                |                                                       |
+| Field                       | Type                  | Original object                                       |
+|-----------------------------|-----------------------|-------------------------------------------------------|
+| customerGroupKey            | string (foreign key)  | **[CustomerGroup](#customer-group)**                  |
+| customerGroup               | object                | **[CustomerGroup](#customer-group)**                  |
+| articleDetailsId            | integer (foreign key) | **[Detail](#article-detail)**                         |
+| articleId                   | integer (foreign key) | **[Article](../api-resource-article/)**               |
+| id                          | integer (primary key) |                                                       |
+| from                        | integer/string        |                                                       |
+| to                          | string                |                                                       |
+| price                       | double                |                                                       |
+| pseudoPrice                 | double                |                                                       |
+| basePrice                   | double                |                                                       |
+| percent                     | double                |                                                       |
+| regulationPrice (>= v5.7.8) | double                |                                                       |
 
 ## Price Group
 

@@ -20,6 +20,9 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "sculpin/sculpin-theme-composer-plugin": true
+        }
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="B2bAcl\Offer\OfferValidationService"
+                 id="b2b_offer.validation_service">
+            <argument id="b2b_common.validation_builder" type="service"/>
+            <argument id="validator" type="service"/>
+        </service>
+
+        <service class="B2bAcl\Offer\OfferRepository"
+                 id="b2b_offer.repository">
+            <argument id="dbal_connection" type="service"/>
+            <argument id="b2b_common.repository_dbal_helper" type="service"/>
+            <argument id="b2b_offer.acl_repository" type="service"/>
+        </service>
+
+        <service class="B2bAcl\Offer\OfferCrudService"
+                 id="b2b_offer.crud_service">
+            <argument id="b2b_offer.repository" type="service"/>
+            <argument id="b2b_offer.validation_service" type="service"/>
+            <argument id="b2b_offer.acl_repository" type="service"/>
+        </service>
+
+        <service id="b2b_offer.grid_helper" class="Shopware\B2B\Common\Controller\GridHelper">
+            <argument type="service" id="b2b_offer.repository"/>
+        </service>
+        <service id="b2b_offer.acl_repository" class="Shopware\B2B\Acl\Framework\AclRepository">
+            <factory service="b2b_acl.repository_factory" method="createRepository"/>
+            <argument type="constant">B2bAcl\Offer\OfferRepository::TABLE_NAME</argument>
+        </service>
+        <service class="B2bAcl\Offer\OfferAclTable" id="b2b_offer.offer_acl_table">
+            <tag name="b2b_acl.table"/>
+        </service>
+
+        <service class="B2bAcl\B2bOfferController" id="b2b_acl.controller">
+            <argument id="b2b_offer.repository" type="service"/>
+            <argument id="b2b_front_auth.authentication_service" type="service"/>
+            <argument id="b2b_offer.crud_service" type="service"/>
+            <argument id="b2b_role.grid_helper" type="service"/>
+        </service>
+
+    </services>
+</container>

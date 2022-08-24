@@ -94,11 +94,24 @@
                                     {% if subgroup.children %}
                                     <ul class="navi--sub-3-tree{% if subgroup.menu_style == 'numeric' %} is--numbered{% endif %}{% if subgroup.menu_style == 'bullet' %} is--bulleted{% endif %}">
 
-                                        {% for item in subgroup.children %}
-                                        <li class="navi--sub-3-chapter">
-                                            <a class="navi--link{% if page.menu_title == item.menu_title %} is--active{% endif %}" href="{{ item.url }}">
-                                                {{ item.menu_title }}
+                                        {% for subsubgroup in subgroup.children %}
+                                        <li class="navi--sub-3-chapter{% if ((page.subsubgroup == subsubgroup.menu_title) and (page.subgroup == subgroup.menu_title)) or (page.menu_title == subsubgroup.menu_title) %} is--active{% endif %}">
+                                            <a class="navi--link{% if page.menu_title == subsubgroup.menu_title %} is--active{% endif %}" href="{{ subsubgroup.url }}">
+                                                {{ subsubgroup.menu_title }}
                                             </a>
+
+                                            {% if subsubgroup.children %}
+                                            <ul class="navi--sub-4-tree{% if subsubgroup.menu_style == 'numeric' %} is--numbered{% endif %}{% if subsubgroup.menu_style == 'bullet' %} is--bulleted{% endif %}">
+
+                                                {% for item in subsubgroup.children %}
+                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link{% if page.menu_title == item.menu_title %} is--active{% endif %}" href="{{ item.url }}">
+                                                        {{ item.menu_title }}
+                                                    </a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
                                         </li>
                                         {% endfor %}
                                     </ul>

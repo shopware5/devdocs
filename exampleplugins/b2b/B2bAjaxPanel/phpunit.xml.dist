@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="./Tests/Bootstrap.php"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    strict="true"
+>
+    <testsuite name="B2bAjaxPanel Test Suite">
+        <directory>./Tests</directory>
+    </testsuite>
+</phpunit>

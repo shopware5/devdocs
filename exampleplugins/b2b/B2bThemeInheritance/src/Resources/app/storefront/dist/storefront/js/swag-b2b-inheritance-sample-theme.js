@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["swag-b2b-inheritance-sample-theme"],{eGzE:function(e,n){}},[["eGzE","runtime"]]]);

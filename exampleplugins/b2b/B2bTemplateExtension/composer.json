@@ -1,0 +1,19 @@
+{
+  "name": "swag/b2b-template-extension",
+  "description": "B2B suite template extension example",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "B2bTemplateExtension\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "B2bTemplateExtension\\B2bTemplateExtension",
+    "label": {
+      "de-DE": "B2B-Suite Template-Erweiterungsbeispiel",
+      "en-GB": "B2B suite template extension example"
+    }
+  }
+}

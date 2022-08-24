@@ -1,0 +1,21 @@
+{
+  "name": "B2B Inheritance-Sample-Theme",
+  "author": "Shopware AG",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@SwagB2bInheritanceSampleTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/swag-b2b-inheritance-sample-theme.js"
+  ],
+  "asset": [
+    "app/storefront/src/assets"
+  ]
+}

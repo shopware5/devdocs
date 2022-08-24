@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="b2b_customer_frontend_api.controller" class="B2bCustomerFrontendApi\CustomerApi\CustomerApiController">
+            <argument type="service" id="b2b_front_auth.authentication_service"/>
+            <argument type="service" id="b2b_contact.repository"/>
+            <argument type="service" id="b2b_contact.grid_helper"/>
+        </service>
+
+        <service id="b2b_customer_frontend_api.frontend_template_extender" class="B2bCustomerFrontendApi\Subscriber\FrontendTemplateExtender">
+
+            <tag name="shopware.event_subscriber"/>
+        </service>
+    </services>
+</container>

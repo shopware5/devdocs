@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef9cf58c0c58c662a47701b6a203ddbc",
+    "content-hash": "97478faaffcb0ef0f335a5f3c54357a8",
     "packages": [
         {
             "name": "bcremer/sculpin-commonmark-bundle",
@@ -1152,16 +1152,16 @@
         },
         {
             "name": "janbuecker/sculpin-meta-navigation-bundle",
-            "version": "v0.4",
+            "version": "v0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janbuecker/sculpin-meta-navigation-bundle.git",
-                "reference": "ee38e2d090b3379891cefabcadc323b5b7cb069c"
+                "reference": "83667dce3cb72781e1d7c91b2570d98e414c71d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janbuecker/sculpin-meta-navigation-bundle/zipball/ee38e2d090b3379891cefabcadc323b5b7cb069c",
-                "reference": "ee38e2d090b3379891cefabcadc323b5b7cb069c",
+                "url": "https://api.github.com/repos/janbuecker/sculpin-meta-navigation-bundle/zipball/83667dce3cb72781e1d7c91b2570d98e414c71d9",
+                "reference": "83667dce3cb72781e1d7c91b2570d98e414c71d9",
                 "shasum": ""
             },
             "require": {
@@ -1196,9 +1196,9 @@
             ],
             "support": {
                 "issues": "https://github.com/janbuecker/sculpin-meta-navigation-bundle/issues",
-                "source": "https://github.com/janbuecker/sculpin-meta-navigation-bundle/tree/v0.4"
+                "source": "https://github.com/janbuecker/sculpin-meta-navigation-bundle/tree/v0.8"
             },
-            "time": "2016-09-28T08:03:06+00:00"
+            "time": "2022-08-24T08:40:50+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -3520,5 +3520,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

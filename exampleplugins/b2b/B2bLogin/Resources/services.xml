@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="b2b_login.subscriber.frontend_template_extender" class="B2bLogin\Subscriber\FrontendTemplateExtender">
+            <argument type="service" id="service_container"/>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="b2b_login.login_subscriber" class="B2bLogin\Login\LoginSubscriber">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <service id="b2b_contact.validation_service" class="B2bLogin\Contact\B2bContactValidationService">
+            <argument type="service" id="b2b_common.validation_builder"/>
+            <argument type="service" id="validator"/>
+            <argument type="service" id="b2b_contact.repository"/>
+            <argument type="service" id="b2b_debtor.debtor_repository"/>
+        </service>
+        <service id="b2b_contact.crud_service" class="B2bLogin\Contact\B2bContactCrudService">
+            <argument type="service" id="b2b_contact.repository"/>
+            <argument type="service" id="b2b_contact.validation_service"/>
+            <argument type="service" id="b2b_address.acl_repository"/>
+            <argument type="service" id="b2b_contact.password_provider"/>
+        </service>
+
+        <service id="b2b_debtor.debtor_repository" class="B2bLogin\Debtor\B2bDebtorRepository">
+            <argument type="service" id="dbal_connection" />
+        </service>
+
+        <service id="b2b_contact.repository" class="B2bLogin\Contact\B2bContactRepository">
+            <argument type="service" id="dbal_connection"/>
+            <argument type="service" id="b2b_common.repository_dbal_helper" />
+            <argument type="service" id="b2b_debtor.debtor_repository"/>
+            <argument type="service" id="b2b_front_auth.repository"/>
+        </service>
+
+        <service id="b2b_debtor.debtor_authentication_identity_loader" class="B2bLogin\Debtor\B2bDebtorAuthenticationIdentityLoader">
+            <argument type="service" id="b2b_debtor.debtor_repository"/>
+
+            <tag name="b2b_front_auth.authentication_repository" />
+        </service>
+
+        <service id="b2b_contact.contact_authentication_identity_loader" class="B2bLogin\Contact\B2bContactAuthenticationIdentityLoader">
+            <argument type="service" id="b2b_contact.repository"/>
+            <argument type="service" id="b2b_debtor.debtor_repository" />
+
+            <tag name="b2b_front_auth.authentication_repository" />
+        </service>
+
+        <service id="b2b_front_auth.credentials_builder" class="B2bLogin\Login\B2bCredentialsBuilder"/>
+    </services>
+</container>

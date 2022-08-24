@@ -105,7 +105,6 @@ b, strong {
 /* GRID */
 .wrapper {
     .clearfix();
-    //position: relative;
     height: 100%;
 }
 
@@ -357,7 +356,7 @@ nav.navi--main:after {
                         }
                     }
 
-                    ul.navi--sub-1-tree, ul.navi--sub-2-tree, ul.navi--sub-3-tree {
+                    ul.navi--sub-1-tree, ul.navi--sub-2-tree, ul.navi--sub-3-tree, ul.navi--sub-4-tree {
                         .transition(all 0.4s ease-out);
                         height: 0;
                         overflow: hidden;
@@ -431,9 +430,24 @@ nav.navi--main:after {
 
             ul.navi--sub-3-tree {
                 li.navi--sub-3-chapter {
+                    &.is--active {
+                        ul.navi--sub-4-tree {
+                            height: auto;
+                        }
+                    }
+
                     .navi--link {
                         font-size: 1rem;
                         padding-left: 74px;
+                    }
+                }
+            }
+
+            ul.navi--sub-4-tree {
+                li.navi--sub-4-chapter {
+                    .navi--link {
+                        font-size: 1rem;
+                        padding-left: 86px;
                     }
                 }
             }
@@ -833,6 +847,12 @@ input#search-query {
     .teaser-themes {
         float: right;
         background: url("../img/front_teaser_themes.jpg") no-repeat right center;
+        background-size: cover;
+    }
+
+    .teaser-b2b {
+        float: left;
+        background: url("../img/b2b-suite/v2/mockup-contact-index-slim.jpg") no-repeat right center;
         background-size: cover;
     }
 

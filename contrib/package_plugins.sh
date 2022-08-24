@@ -43,3 +43,34 @@ for plugindir in $(find "${__DIR__}/../exampleplugins/5.2/" -mindepth 1 -maxdept
     cd "${tmpdir}"
     zip -rq "${outputdir}/${pluginname}.zip" .
 done
+
+
+for plugindir in $(find "${__DIR__}/../exampleplugins/b2b/" -mindepth 1 -maxdepth 1 -type d); do
+    rm -rf "${tmpdir}"
+
+    pluginname="$(basename "$plugindir")"
+    parentdir="$(dirname "$plugindir")"
+
+    echo "Plugin: $pluginname "
+
+    mkdir -p "${tmpdir}/";
+    cp -r "${plugindir}" "${tmpdir}/"
+
+    cd "${tmpdir}"
+    zip -rq "${outputdir}/${pluginname}.zip" .
+done
+
+for plugindir in $(find "${__DIR__}/../exampleplugins/search/" -mindepth 1 -maxdepth 1 -type d); do
+    rm -rf "${tmpdir}"
+
+    pluginname="$(basename "$plugindir")"
+    parentdir="$(dirname "$plugindir")"
+
+    echo "Plugin: $pluginname "
+
+    mkdir -p "${tmpdir}/";
+    cp -r "${plugindir}" "${tmpdir}/"
+
+    cd "${tmpdir}"
+    zip -rq "${outputdir}/${pluginname}.zip" .
+done

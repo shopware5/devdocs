@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="./Tests/Bootstrap.php"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    strict="true"
+>
+    <testsuite name="B2bRestApi Test Suite">
+        <directory>./Tests</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>RestApi/</directory>
+            <exclude>
+                <directory suffix=".php">./Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

@@ -1,0 +1,24 @@
+{
+  "name": "swag/swag-b2b-inheritance-sample-theme",
+  "description": "B2B Inheritance-Sample-Theme",
+  "type": "shopware-platform-plugin",
+  "version": "0.0.0-dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shopware AG"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SwagB2bInheritanceSampleTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SwagB2bInheritanceSampleTheme\\SwagB2bInheritanceSampleTheme",
+    "label": {
+      "de-DE": "Beispiel B2B-Theme (ableitend)",
+      "en-GB": "Sample B2B-Theme (inheritance)"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="B2bAuditLog\AuditLogController" id="b2b_audit_log.controller">
+            <argument id="b2b_front_auth.authentication_service" type="service"/>
+            <argument id="b2b_audit_log.audit_log_service" type="service"/>
+            <argument id="b2b_audit_log.repository" type="service"/>
+            <argument id="b2b_audit_log.grid_helper" type="service"/>
+        </service>
+    </services>
+</container>

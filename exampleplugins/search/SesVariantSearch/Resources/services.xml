@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="ses_variant_search.criteria_request_handler"
+                 class="SesVariantSearch\CriteriaRequestHandler">
+            <tag name="criteria_request_handler"/>
+        </service>
+
+        <service id="ses_variant_search.variant_condition_handler" class="SesVariantSearch\VariantConditionHandler">
+            <tag name="condition_handler_dbal"/>
+            <tag name="shopware_search_es.search_handler"/>
+        </service>
+    </services>
+</container>

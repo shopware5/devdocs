@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="b2b_budget.cart_access_factory" class="B2bContingentsBudgets\Budgets\BudgetCartAccessFactory">
+            <argument type="service" id="b2b_budget.service"/>
+            <argument type="service" id="b2b_currency.service"/>
+            <tag name="b2b_cart.cart_access_strategies"/>
+        </service>
+
+        <service class="B2bContingentsBudgets\ContingentRules\RuleCartAccessFactory" id="b2b_contingent_rule.rule_cart_access_factory">
+            <argument type="service" id="b2b_contingent_group.repository"/>
+            <argument type="service" id="b2b_contingent_rule.repository"/>
+            <argument type="service" id="b2b_contingent_rule.entity_factory"/>
+            <argument type="service" id="b2b_currency.service"/>
+            <argument>%b2b_contingent_rule.release_types%</argument>
+
+            <tag name="b2b_cart.cart_access_strategies"/>
+        </service>
+    </services>
+</container>

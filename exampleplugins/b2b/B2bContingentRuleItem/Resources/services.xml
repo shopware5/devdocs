@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service class="B2bContingentRuleItem\B2bContingentRuleWeekdayController"
+                 id="b2b_contingent_rule_item.controller">
+            <argument id="b2b_contingent_rule.repository" type="service"/>
+        </service>
+
+        <service class="B2bContingentRuleItem\RuleItem\WeekdayRuleType"
+                 id="b2b_contingent_rule_item.weekday_rule_type">
+            <tag name="b2b_contingent_rule.type"/>
+        </service>
+
+        <service class="B2bContingentRuleItem\RuleItem\WeekdayRuleRepository"
+                 id="b2b_contingent_rule_item.weekday_repository">
+            <argument id="dbal_connection" type="service"/>
+        </service>
+    </services>
+</container>

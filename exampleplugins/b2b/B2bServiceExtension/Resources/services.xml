@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="b2b_role.repository" class="B2bServiceExtension\YourRoleRepository" parent="b2b_role.repository_abstract">
+            <argument id="b2b_contact.repository" type="service"/>
+        </service>
+    </services>
+</container>

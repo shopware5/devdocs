@@ -1,0 +1,19 @@
+---
+layout: default
+title: Developer
+github_link: search/developer
+indexed: true
+menu_title: Developer
+menu_order: 3
+group: Shopware Enterprise
+subgroup: Enterprise Search
+subsubgroup: Developer
+---
+
+<ul class="guide-list">
+    <li><a href="{{ site.url }}/search/developer/overview">Overview</a></li>
+    <li><a href="{{ site.url }}/search/developer/stopwords_stemmer">Stopwords & Stemmer</a></li>
+    <li><a href="{{ site.url }}/search/developer/environment">The Development Environment</a></li>
+    <li><a href="{{ site.url }}/search/developer/indexing">Indexing Additional Data</a></li>
+    <li><a href="{{ site.url }}/search/developer/compound_words">Handling Compound Words</a></li>
+</ul>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="rest_api.controller" class="B2bRestApi\RestApi\Controller\RestApiController"/>
+        <service id="rest_api.api_route_provider" class="B2bRestApi\RestApi\Routing\RestApiRouteProvider">
+            <tag name="b2b_common.rest_route_provider"/>
+        </service>
+    </services>
+</container>

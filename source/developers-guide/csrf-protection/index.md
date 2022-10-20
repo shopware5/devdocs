@@ -109,7 +109,7 @@ In some cases, you might want to disable the protection for the backend or front
 
 ```php
 ...
-'csrfProtection' => [
+'csrfprotection' => [
     'frontend' => false,
     'backend' => false
 ],

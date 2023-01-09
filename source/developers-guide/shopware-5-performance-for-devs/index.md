@@ -7,8 +7,6 @@ tags:
   - performance
   - tips
   - cache
-redirect:
-  - /developers-guide/shopware-5-performance/
 group: Developer Guides
 subgroup: General Resources
 menu_title: Performance Guide

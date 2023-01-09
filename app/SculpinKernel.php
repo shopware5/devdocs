@@ -8,10 +8,9 @@ use Shopware\Devdocs\GitHistoryBundle\SculpinGitHistoryBundle;
 
 class SculpinKernel extends AbstractKernel
 {
-    protected function getAdditionalSculpinBundles()
+    protected function getAdditionalSculpinBundles(): array
     {
         return [
-            SculpinRedirectBundle::class,
             SculpinLessBundle::class,
             SculpinCommonMarkBundle::class,
             SculpinMetaNavigationBundle::class,

@@ -5,8 +5,6 @@ github_link: community/irc/index.md
 indexed: false
 menu_title: 
 group: Community
-redirect: 
-  - /contributing/irc/
 ---
 
 ## The shopware IRC channel is discontinued

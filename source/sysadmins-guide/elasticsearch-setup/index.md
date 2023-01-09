@@ -6,8 +6,6 @@ shopware_version: 5.1.0
 tags:
   - performance
   - elasticsearch
-redirect:
-  - sysadmins-guide/elastic-search-setup/
 indexed: true
 group: System Guides
 menu_title: Elasticsearch setup

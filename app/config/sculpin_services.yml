@@ -12,6 +12,6 @@ services:
     shopware_devdocs.twig_extension:
         class: Shopware\Devdocs\TwigExtension
         arguments:
-            - %kernel.environment%
+            - '%kernel.environment%'
         tags:
             - { name: twig.extension }

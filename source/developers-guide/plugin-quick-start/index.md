@@ -3,8 +3,6 @@ layout: default
 title: Plugin quick Startup Guide
 github_link: developers-guide/plugin-quick-start/index.md
 indexed: true
-redirect:
-  - /developers-guide/plugin-system/
 group: Developer Guides
 subgroup: Developing plugins
 menu_title: Quick Startup Guide

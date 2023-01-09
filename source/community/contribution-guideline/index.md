@@ -7,8 +7,6 @@ tags: [pullrequest, github, guideline, contribute, git, pull-request, fork]
 menu_title: Contribution Guideline
 menu_order: 20
 group: Community
-redirect: 
-  - /contributing/contribution-guideline/
 ---
 
 <div class="toc-list"></div>

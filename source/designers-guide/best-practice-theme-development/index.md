@@ -4,8 +4,6 @@ title: Using Grunt for theme development
 github_link: designers-guide/best-practice-theme-development/index.md
 shopware_version: 5.0.1
 indexed: true
-redirect:
-  - /designers-guide/using-grunt/
 group: Frontend Guides
 subgroup: General Resources
 menu_title: Using the Grunt watcher

@@ -7,8 +7,6 @@ tags: [pullrequest, github, contribute, git, pull-request, fork]
 menu_title: Contributing Code
 menu_order: 30
 group: Community
-redirect: 
-  - /contributing/contributing-code/
 ---
 
 <div class="toc-list"></div>

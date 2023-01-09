@@ -10,9 +10,6 @@ tags:
   - redis
   - lock
   - transaction
-redirect:
-  - /sysadmins-guide/memcached-as-session-handler/
-  - /sysadmins-guide/memcached-as-session-handler/index.html
 indexed: true
 group: System Guides
 menu_title: Sessions

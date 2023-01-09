@@ -10,8 +10,6 @@ tags:
   - php
   - apc
   - cache
-redirect:
-  - /sysadmins-guide/optimize-performance/
 group: System Guides
 menu_title: Performance Guide
 menu_order: 50

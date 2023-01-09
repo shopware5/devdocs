@@ -5,8 +5,6 @@ github_link: community/gitter/index.md
 indexed: false
 menu_title: 
 group: Community
-redirect: 
-  - /contributing/gitter/
 ---
 
 ## The shopware Gitter channel is discontinued

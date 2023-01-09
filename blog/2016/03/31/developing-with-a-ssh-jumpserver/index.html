@@ -7,7 +7,7 @@
     <title>Developing with a SSH jumpserver</title>
 
     <meta name="description" content="Securing web servers properly is a must for customers and hosters. The more complex the setup becomes the more consideration
-is required in order to e.g. d">
+ is required in order to e.g. ">
 <meta name="keywords" content="ssh, jumpserver, netcat, security">
 
         <meta name="author" content="Daniel Nögel">
@@ -19,39 +19,39 @@ is required in order to e.g. d">
 <meta property="og:image" content="">
 <meta property="og:url" content="/blog/2016/03/31/developing-with-a-ssh-jumpserver/">
 <meta property="og:description" content="Securing web servers properly is a must for customers and hosters. The more complex the setup becomes the more consideration
-is required in order to e.g. d">
+ is required in order to e.g. ">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Developing with a SSH jumpserver">
 <meta name="twitter:description" content="Securing web servers properly is a must for customers and hosters. The more complex the setup becomes the more consideration
-is required in order to e.g. d">
+ is required in order to e.g. ">
 <meta name="twitter:image" content="">
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1666856468">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1666856468">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1666856468">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1666856468" media="screen">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1673276654" media="screen">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1666856468">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1666856468">
-    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1666856468">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1666856468">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1666856468">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1666856468">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1666856468">
-    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1666856468">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1673276654">
+    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1673276654">
+    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1673276654">
 
     <link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed">
 </head>
@@ -66,7 +66,7 @@ is required in order to e.g. d">
         </a>
 
         <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
-            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1666856468">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1673276654">
         </a>
 
     </header>
@@ -104,12 +104,6 @@ is required in order to e.g. d">
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-quick-start/">
                                                 Quick Startup Guide
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/example-plugin/">
-                                                Example plugin
                                             </a>
 
                                                                                     </li>
@@ -286,20 +280,14 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/content-types/">
-                                                Content-Types
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/csrf-protection/">
                                                 CSRF Protection
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
-                                                CLI commands
+                                            <a class="navi--link" href="/developers-guide/content-types/">
+                                                Content-Types
                                             </a>
 
                                                                                     </li>
@@ -310,14 +298,20 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
-                                                Captcha
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
                                                 SearchBundle
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
                                             </a>
 
                                                                                     </li>
@@ -346,14 +340,14 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
-                                                Register a cookie to the cookie consent manager
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
-                                                Media Optimizer
+                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
+                                                Register a cookie to the cookie consent manager
                                             </a>
 
                                                                                     </li>
@@ -392,26 +386,26 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
-                                                Create your own backend widget
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
                                                 Create custom emotion preset plugin
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
-                                                Create custom payment plugin
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-slugify/">
                                                 Create custom url slugger
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
                                             </a>
 
                                                                                     </li>
@@ -832,14 +826,14 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/external-resources/">
-                                                Embedding external resources
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/datepicker/">
-                                                Datepicker
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
                                             </a>
 
                                                                                     </li>
@@ -910,18 +904,6 @@ is required in order to e.g. d">
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/custom-templates/">
                                                 Adding custom templates
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
-                                                Example: Custom listing page
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
-                                                Example: Custom Detail page
                                             </a>
 
                                                                                     </li>
@@ -1120,14 +1102,14 @@ is required in order to e.g. d">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/technical/">
-                                                Extension Guide
+                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/installation/">
+                                                Installation Guide
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/installation/">
-                                                Installation Guide
+                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/technical/">
+                                                Extension Guide
                                             </a>
 
                                                                                     </li>
@@ -1147,120 +1129,6 @@ is required in order to e.g. d">
 
                                                                         <ul class="navi--sub-3-tree is--bulleted">
 
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/">
-                                                Component Guide
-                                            </a>
-
-                                                                                        <ul class="navi--sub-4-tree">
-
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/demo-environment/">
-                                                        Demo Environment
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/dashboard/">
-                                                        Dashboard
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/profile/">
-                                                        Profile Page
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/account/">
-                                                        Account Management
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/statistics/">
-                                                        Statistics
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/company/">
-                                                        Company
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contacts/">
-                                                        Contacts
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/addresses/">
-                                                        Addresses
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contingents/">
-                                                        Contingents
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/budgets/">
-                                                        Budgets
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order/">
-                                                        Order
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order-list/">
-                                                        Order List
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/ordernumber/">
-                                                        Custom ordernumber
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/permissions/">
-                                                        Permission Management
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/fastorder/">
-                                                        Fast Order
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/checkout/">
-                                                        Checkout
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/price/">
-                                                        Price
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/sales-representative/">
-                                                        Sales Representative
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/payment/">
-                                                        Payment
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/quick_start/">
-                                                        Quick start
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/offer/">
-                                                        Offer
-                                                    </a>
-                                                </li>
-                                                                                            </ul>
-                                                                                    </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/shopware-enterprise/b2b-suite/installation/">
                                                 Installation Guide
@@ -1285,13 +1153,13 @@ is required in order to e.g. d">
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
-                                                        Method Structure
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
+                                                        Dependency injection
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
-                                                        Dependency injection
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
+                                                        Method Structure
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1315,13 +1183,13 @@ is required in order to e.g. d">
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
-                                                        Product Search
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
+                                                        Ajax panel
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
-                                                        Ajax panel
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
+                                                        Product Search
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1536,8 +1404,8 @@ is required in order to e.g. d">
     
     <div class="blog-detail-text">
         <p>Securing web servers properly is a must for customers and hosters. The more complex the setup becomes the more consideration
-is required in order to e.g. debug a customer's development system. In this blog post I will show, how you can SSH to
-a server which is only reachable by a so called &quot;jump server&quot;.</p>
+ is required in order to e.g. debug a customer's development system. In this blog post I will show, how you can SSH to
+ a server which is only reachable by a so called "jump server".</p>
 
 <h2 id="preface">Preface</h2>
 
@@ -1563,7 +1431,7 @@ order to debug the web server, I first need to connect to the jump server:</p>
 <pre><code>user@85.158.183.193: ssh user@10.7.0.100
 </code></pre>
 
-<p>The &quot;magic&quot; here comes from the <code>-A</code> ssh option. It allows me to authenticate against the web server, even without having
+<p>The "magic" here comes from the <code>-A</code> ssh option. It allows me to authenticate against the web server, even without having
 stored my private key file on the jump server. Technically it forwards the authentication agent connection (see <a href="#preface">preface</a>)
 Now finally I am on the web server and can start debugging. Most probably there is not even <code>vim</code> available - is this going
 to become a <code>nano</code> nightmare?</p>
@@ -1586,49 +1454,40 @@ Host webserver-customer1
 <p>This configuration defines two hosts: <code>jumpserver-customer1</code> is the jump server. It has three configs:</p>
 
 <ul>
-<li>
-<code>ForwardAgent yes</code> is basically the pendant to the <code>-A</code> SSH option from above.</li>
-<li>
-<code>User user</code> will define, that I want to login with the user name <code>user</code>.</li>
-<li>
-<code>HostName 58.158.183.193</code> is the IP of that host (see above)</li>
+<li><code>ForwardAgent yes</code> is basically the pendant to the <code>-A</code> SSH option from above.</li>
+<li><code>User user</code> will define, that I want to login with the user name <code>user</code>.</li>
+<li><code>HostName 58.158.183.193</code> is the IP of that host (see above)</li>
 </ul>
 
 <p><code>webserver-customer1</code> has the following config:</p>
 
 <ul>
-<li>
-<code>HostName 10.7.0.100</code>: IP of the host</li>
-<li>
-<code>User user</code>: Definition of the username</li>
-<li>
-<code>ProxyCommand ssh jumpserver-customer1 netcat -w 120 %h %p</code>: Our jump host magic</li>
+<li><code>HostName 10.7.0.100</code>: IP of the host</li>
+<li><code>User user</code>: Definition of the username</li>
+<li><code>ProxyCommand ssh jumpserver-customer1 netcat -w 120 %h %p</code>: Our jump host magic</li>
 </ul>
 
 <p>The <code>ProxyCommand</code> basically allows you to specify a proxy for your connection - so this command is executed <em>in order</em>
 to perform the actual connection to the web server. The syntax is quite easy:</p>
 
 <ul>
-<li>
-<code>ssh jumpserver-customer1</code>: ssh to <code>jumpserver-customer1</code>
-</li>
-<li>
-<code>netcat -w 120 %h %p</code>: This command is executed on the jump host. <code>%h</code> is the IP of the current host (in this case: web server)
+<li><code>ssh jumpserver-customer1</code>: ssh to <code>jumpserver-customer1</code></li>
+<li><code>netcat -w 120 %h %p</code>: This command is executed on the jump host. <code>%h</code> is the IP of the current host (in this case: web server)
 and the corresponding port. <code>-w 120</code> defines a timeout of 120 seconds.</li>
 </ul>
 
 <p>This will now allow me to run <code>ssh webserver-customer1</code> on my local machine. Because of the <code>ProxyCommand</code> instruction SSH will then connect
 to the <code>jumpserver-customer1</code> host first and connect to the web server from there. Furthermore it will create a connection
-from the jump server to the web server using <code>netcat</code> - so it will basically pipe all input / output between those two
-host (thus the jump server will be used as a <em>proxy</em>).</p>
+ from the jump server to the web server using <code>netcat</code> - so it will basically pipe all input / output between those two
+ host (thus the jump server will be used as a <em>proxy</em>).</p>
 
 <h2 id="setting-it-up-with-phpstorm">Setting it up with PHPStorm</h2>
 
 <p>Theoretically we are done - we have a direct connection from our local machine to the web server using the jump host as
 a proxy. But how can this be hooked up with e.g. PHPStorm? In my example I decided to bind that connection to a local
-port using the command <code>ssh appserver-customer1 -L 2000:localhost:22 -N</code>. It uses the same mechanics as above but
-binds port 20 of the remote connection to my local port 2000. So if I ssh to <code>localhost:2000</code> I will actually connect
-to the web server of the customer.</p>
+ port using the command <code>ssh appserver-customer1 -L 2000:localhost:22 -N</code>. It uses the same mechanics as above but
+ binds port 20 of the remote connection to my local port 2000. So if I ssh to <code>localhost:2000</code> I will actually connect
+ to the web server of the customer.</p>
 
 <p>It is easy to configure that with PHPStorm:</p>
 
@@ -1655,7 +1514,7 @@ Once the connection is established, I can download the remote sources, upload ch
     <!-- Footer -->
             <footer class="main-footer">
             <div class="footer--container">
-                <div class="copyright">2022 © shopware AG - All rights reserved</div>
+                <div class="copyright">2023 © shopware AG - All rights reserved</div>
                 <div class="footer--links">
                     <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
                     <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a> |
@@ -1665,17 +1524,17 @@ Once the connection is established, I can download the remote sources, upload ch
         </footer>
     </div>
 
-<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/app.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1666856468"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1666856468"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/app.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1673276654"></script>
 
 
 <script id="usercentrics-cmp" data-settings-id="65ynhGFvE" src="https://app.usercentrics.eu/browser-ui/latest/bundle.js" defer></script>

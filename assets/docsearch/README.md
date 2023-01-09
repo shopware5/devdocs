@@ -1,8 +1,8 @@
-<h1>Algoia DocSearch custom styling</h1>
+<h1 id="algoia-docsearch-custom-styling">Algoia DocSearch custom styling</h1>
 
 <p>This section of the devdocs contains the custom styling for the <a href="https://github.com/algolia/docsearch">Algolia Docsearch</a>.</p>
 
-<h2>Installation</h2>
+<h2 id="installation">Installation</h2>
 
 <p>First make sure you have <code>sass</code> installed on your system. If you haven't installed it already, follow this <a href="http://sass-lang.com/install">guide</a>.</p>
 
@@ -13,7 +13,7 @@
 
 <p>Now you're ready to modify the SCSS files in the <code>src</code> directory.</p>
 
-<h2>Compiling</h2>
+<h2 id="compiling">Compiling</h2>
 
 <p>The build script can be called using NPM:</p>
 

@@ -32,26 +32,26 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1666856467">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1666856467">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1666856467">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1666856467" media="screen">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1673276654">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1673276654" media="screen">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1666856467">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1666856467">
-    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1666856467">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1666856467">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1666856467">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1666856467">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1666856467">
-    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1666856467">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1673276654">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1673276654">
+    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1673276654">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1673276654">
+    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1673276654">
 
     <link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed">
 </head>
@@ -66,7 +66,7 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
         </a>
 
         <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
-            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1666856467">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1673276654">
         </a>
 
     </header>
@@ -104,12 +104,6 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-quick-start/">
                                                 Quick Startup Guide
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/example-plugin/">
-                                                Example plugin
                                             </a>
 
                                                                                     </li>
@@ -286,20 +280,14 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/content-types/">
-                                                Content-Types
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/csrf-protection/">
                                                 CSRF Protection
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
-                                                CLI commands
+                                            <a class="navi--link" href="/developers-guide/content-types/">
+                                                Content-Types
                                             </a>
 
                                                                                     </li>
@@ -310,14 +298,20 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
-                                                Captcha
+                                            <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
+                                                CLI commands
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
                                                 SearchBundle
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
                                             </a>
 
                                                                                     </li>
@@ -346,14 +340,14 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
-                                                Register a cookie to the cookie consent manager
+                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
+                                                Media Optimizer
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/media-optimizer/">
-                                                Media Optimizer
+                                            <a class="navi--link" href="/developers-guide/cookie-consent-manager/">
+                                                Register a cookie to the cookie consent manager
                                             </a>
 
                                                                                     </li>
@@ -392,26 +386,26 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
-                                                Create your own backend widget
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
                                                 Create custom emotion preset plugin
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
-                                                Create custom payment plugin
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/plugin-slugify/">
                                                 Create custom url slugger
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/payment-plugin/">
+                                                Create custom payment plugin
                                             </a>
 
                                                                                     </li>
@@ -832,14 +826,14 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/external-resources/">
-                                                Embedding external resources
+                                            <a class="navi--link" href="/designers-guide/datepicker/">
+                                                Datepicker
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/datepicker/">
-                                                Datepicker
+                                            <a class="navi--link" href="/designers-guide/external-resources/">
+                                                Embedding external resources
                                             </a>
 
                                                                                     </li>
@@ -910,18 +904,6 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/custom-templates/">
                                                 Adding custom templates
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
-                                                Example: Custom listing page
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
-                                                Example: Custom Detail page
                                             </a>
 
                                                                                     </li>
@@ -1120,14 +1102,14 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/technical/">
-                                                Extension Guide
+                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/installation/">
+                                                Installation Guide
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/installation/">
-                                                Installation Guide
+                                            <a class="navi--link" href="/shopware-enterprise/pricing-engine/technical/">
+                                                Extension Guide
                                             </a>
 
                                                                                     </li>
@@ -1147,120 +1129,6 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
 
                                                                         <ul class="navi--sub-3-tree is--bulleted">
 
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/">
-                                                Component Guide
-                                            </a>
-
-                                                                                        <ul class="navi--sub-4-tree">
-
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/demo-environment/">
-                                                        Demo Environment
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/dashboard/">
-                                                        Dashboard
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/profile/">
-                                                        Profile Page
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/account/">
-                                                        Account Management
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/statistics/">
-                                                        Statistics
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/company/">
-                                                        Company
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contacts/">
-                                                        Contacts
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/addresses/">
-                                                        Addresses
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contingents/">
-                                                        Contingents
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/budgets/">
-                                                        Budgets
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order/">
-                                                        Order
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order-list/">
-                                                        Order List
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/ordernumber/">
-                                                        Custom ordernumber
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/permissions/">
-                                                        Permission Management
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/fastorder/">
-                                                        Fast Order
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/checkout/">
-                                                        Checkout
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/price/">
-                                                        Price
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/sales-representative/">
-                                                        Sales Representative
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/payment/">
-                                                        Payment
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/quick_start/">
-                                                        Quick start
-                                                    </a>
-                                                </li>
-                                                                                                <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/offer/">
-                                                        Offer
-                                                    </a>
-                                                </li>
-                                                                                            </ul>
-                                                                                    </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/shopware-enterprise/b2b-suite/installation/">
                                                 Installation Guide
@@ -1285,13 +1153,13 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
-                                                        Method Structure
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
+                                                        Dependency injection
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
-                                                        Dependency injection
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
+                                                        Method Structure
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1315,13 +1183,13 @@ and ways to address them in PHP. In this post I want to have a look at AOP and t
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
-                                                        Product Search
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
+                                                        Ajax panel
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
-                                                        Ajax panel
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
+                                                        Product Search
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1540,13 +1408,13 @@ library in Shopware.</p>
 
 <p><img src="/blog/img/monitor_aspect.png" alt="Monitor aspect"></p>
 
-<h1>AOP</h1>
+<h1 id="aop">AOP</h1>
 
 <p>AOP (aspect-oriented programming) is a programming paradigm which is usually attributed to Gregor Kiczales and his colleagues. The whole
 concept is about addressing cross-cutting concerns properly - not by choosing design patterns, but by having language
 constructs, which allow adding behaviour to parts of the program.</p>
 
-<h1>AOP terms</h1>
+<h1 id="aop-terms">AOP terms</h1>
 
 <p>Speaking of AOP there are usually some special terms to know:</p>
 
@@ -1558,7 +1426,7 @@ of a function / method.</li>
 add e.g. logging to parts of your application.</li>
 </ul>
 
-<h1>AOP and PHP</h1>
+<h1 id="aop-and-php">AOP and PHP</h1>
 
 <p>As AOP is more a programming paradigm than a design pattern, the language should offer some kind of support for it. Gregor Kiczales,
 as one of the authors of the AOP approach, is also one of the authors of <a href="https://en.wikipedia.org/wiki/AspectJ">AspectJ</a>,
@@ -1568,14 +1436,11 @@ which is the most recognized AOP framework for Java.</p>
 and ways, however, to make use of AOP in PHP projects.</p>
 
 <ul>
-<li>
-<a href="https://github.com/goaop/framework">Go! AOP PHP</a>: Userland AOP implementation with quite some binding to e.g.
+<li><a href="https://github.com/goaop/framework">Go! AOP PHP</a>: Userland AOP implementation with quite some binding to e.g.
 <a href="https://github.com/lisachenko/yii2-aspect">Yii2</a>, <a href="https://github.com/lisachenko/zf2-aspect">ZF2</a>, <a href="https://github.com/lisachenko/symfony-aspect">Symfony</a>
 and <a href="https://github.com/lisachenko/laravel-aspect">Laravel</a> by Alexander Lisachenko.</li>
-<li>
-<a href="https://github.com/techdev-solutions/exar-framework">Exar Framework</a> Another userland AOP implementation for PHP</li>
-<li>
-<a href="http://appserver.io/get-started/documentation/1.0/aop.html">appserver.io</a> The PHP appserver <code>appserver.io</code> also comes
+<li><a href="https://github.com/techdev-solutions/exar-framework">Exar Framework</a> Another userland AOP implementation for PHP</li>
+<li><a href="http://appserver.io/get-started/documentation/1.0/aop.html">appserver.io</a> The PHP appserver <code>appserver.io</code> also comes
 with support for AOP</li>
 </ul>
 
@@ -1586,7 +1451,7 @@ at this level. In your application you will then not work with your original cla
 transparent to the original class. This is pretty much, how the <a href="https://developers.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/">Shopware hook system</a>
 works.</p>
 
-<h1>Go! AOP PHP and Shopware</h1>
+<h1 id="go%21-aop-php-and-shopware">Go! AOP PHP and Shopware</h1>
 
 <p>In order to provide a real word example, we will try to make use of the Go! AOP PHP framework within Shopware. Of course
 this should be considered a <strong>proof of concept</strong>, neither should this be used in production nor there is any intend to include
@@ -1610,7 +1475,7 @@ Shopware has been set up properly, we will add the Go! AOP PHP library dependenc
 <p>In order to run the AOP framework, we need to register it early in Shopware's Bootstrap process. In fact, we need to bypass
 Shopware's autoloading, so we need to add it to the <code>shopware.php</code> before the actual Kernel is instantiated:</p>
 
-<pre><code class="language-php">[…]
+<pre><code class="php">[…]
 require __DIR__ . '/autoload.php';
 
 use Shopware\Kernel;
@@ -1661,7 +1526,7 @@ class MonitorAspect implements Aspect
      * Method that will be called before real method
      *
      * @param MethodInvocation $invocation Invocation
-     * @Before(&quot;execution(public Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch-&gt;*(*))&quot;)
+     * @Before("execution(public Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch-&gt;*(*))")
      */
     public function beforeMethodExecution(MethodInvocation $invocation)
     {
@@ -1709,15 +1574,12 @@ $applicationAspectKernel-&gt;init(array(
 <p>As you can see, we basically have three parts here:</p>
 
 <ul>
-<li>
-<code>MonitorAspect</code>: This is our example aspect, which will basically &quot;hook&quot; to all public function calls of the
+<li><code>MonitorAspect</code>: This is our example aspect, which will basically "hook" to all public function calls of the
 <code>Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch</code> of Shopware. The pointcut is defined with the <code>@Before</code> annotation
 the AOP framework provides (Go! AOP PHP uses doctrine annotations for this). Some more example can be found in the <a href="http://go.aopphp.com/docs/initial-configuration/">Go! AOP
 PHP documentation</a>.</li>
-<li>
-<code>ApplicationAspectKernel</code>: This is our custom AOP kernel, which extends from <code>\Go\Core\AspectKernel</code>. It is used to register
-the aspects of our application - in this case only our <code>MonitorAspect</code>
-</li>
+<li><code>ApplicationAspectKernel</code>: This is our custom AOP kernel, which extends from <code>\Go\Core\AspectKernel</code>. It is used to register
+the aspects of our application - in this case only our <code>MonitorAspect</code></li>
 <li>Instantiation and configuration: The last step is creating an instance of the AOP kernel using <code>ApplicationAspectKernel::getInstance()</code>.
 The <code>init</code> method allows quite some configuration, in our case especially the <code>cacheDir</code>, <code>appDir</code>, <code>includePaths</code> and <code>excludePaths</code> are relevant.
 We register the <code>cacheDir</code> to be <code>aopcache</code> and will have a look at it later. The <code>appDir</code> is set to Shopware's engine directory,
@@ -1725,7 +1587,7 @@ the <code>engine/Library</code> directory is excluded, however, as there were is
 want to extend the actual Shopware core anyway.</li>
 </ul>
 
-<h1>First run</h1>
+<h1 id="first-run">First run</h1>
 
 <p>After saving all changes, a call to <code>http://localhost/aop</code> will not show much of a change. But the AOP framework already
 populated the <code>aopcache</code> directory we specified before. There are (at least) the subdirectories:</p>
@@ -1737,7 +1599,7 @@ populated the <code>aopcache</code> directory we specified before. There are (at
 <p><strong><code>_proxies</code></strong></p>
 
 <p>The AOP proxies. As we only registered one aspect to the <code>ProductNumberSearch</code>, there is only one proxy
-<code>aopcache/_proxies/Shopware/Bundle/SearchBundleDBAL/ProductNumberSearch.php</code>. It looks like this:</p>
+ <code>aopcache/_proxies/Shopware/Bundle/SearchBundleDBAL/ProductNumberSearch.php</code>. It looks like this:</p>
 
 <pre><code>class ProductNumberSearch extends ProductNumberSearch__AopProxied implements \Go\Aop\Proxy
 {
@@ -1784,9 +1646,9 @@ the proxy itself, overwrites the <code>__construct</code> as well as the <code>s
 <p>In this directory the AOP framework will put proxied files, that were used during the test request. As you can see, not
 only the actually extended class, but also every other used class used during the request can be found here. But while
 all the files are basically copies of the corresponding original file, the class <code>\Shopware\Bundle\SearchBundleDBAL\ProductNumberSearch__AopProxied</code>
-now has a <code>__AopProxied</code> suffix. The rest of the file has the original content - and it is extend by the proxy shown above.</p>
+ now has a <code>__AopProxied</code> suffix. The rest of the file has the original content - and it is extend by the proxy shown above.</p>
 
-<h1>Showing some results</h1>
+<h1 id="showing-some-results">Showing some results</h1>
 
 <p>Until now we couldn't see any output, as it was written to <code>error_log</code> by the <code>MonitorAspect</code>. A simple tail will allow us to
 inspect the output:</p>
@@ -1811,7 +1673,7 @@ is not called on the front page in my example. Changing to a category listing wi
 and <code>\Go\Aop\Intercept\Invocation</code> will show you, that we could also access the original method's argument using <code>$invocation-&gt;getArguments()</code>,
 which is also shown in the <a href="https://github.com/goaop/framework#4-create-an-aspect">example section of the AOP framework</a>.</p>
 
-<h1>Problems</h1>
+<h1 id="problems">Problems</h1>
 
 <p>As discussed in the <a href="https://developers.shopware.com/blog/2015/06/09/understanding-the-shopware-hook-system/">Shopware hook system</a>
 blog post, AOP tends to hide the actually executed logic: Looking at a certain service, you are not able to tell,
@@ -1826,15 +1688,12 @@ we discussed above).</p>
 <p>Furthermore there is a limitation, that derives from the used proxy pattern: Due to the inheritance used for it, only
 protected and public methods can be used as pointcuts, so it is not possible to use the same mechanism as shown above for private methods.</p>
 
-<h1>Further reading</h1>
+<h1 id="further-reading">Further reading</h1>
 
 <ul>
-<li>
-<a href="https://github.com/dnoegel/shopware-aop">Shopware AOP</a> Github repo of the aop shopware branch</li>
-<li>
-<a href="http://www.researchgate.net/publication/220425704_Discussing_aspects_of_AOP">Discussing aspects of AOP</a> Summary of AOP and cross cutting concerns in an interview with Gregor Kiczales and others</li>
-<li>
-<a href="https://github.com/Roave/StrictPhp">Strict PHP</a> Strict PHP type handling; library by Marco Pivetta and Jefersson Nathan</li>
+<li><a href="https://github.com/dnoegel/shopware-aop">Shopware AOP</a> Github repo of the aop shopware branch</li>
+<li><a href="http://www.researchgate.net/publication/220425704_Discussing_aspects_of_AOP">Discussing aspects of AOP</a> Summary of AOP and cross cutting concerns in an interview with Gregor Kiczales and others</li>
+<li><a href="https://github.com/Roave/StrictPhp">Strict PHP</a> Strict PHP type handling; library by Marco Pivetta and Jefersson Nathan</li>
 </ul>
 
     </div>
@@ -1854,7 +1713,7 @@ protected and public methods can be used as pointcuts, so it is not possible to 
     <!-- Footer -->
             <footer class="main-footer">
             <div class="footer--container">
-                <div class="copyright">2022 © shopware AG - All rights reserved</div>
+                <div class="copyright">2023 © shopware AG - All rights reserved</div>
                 <div class="footer--links">
                     <a href="https://en.shopware.com/legal-notice" target="_blank" title="Imprint">Imprint</a> |
                     <a href="https://en.shopware.com/gtc" target="_blank" title="Terms and Conditions">Terms and Conditions</a> |
@@ -1864,17 +1723,17 @@ protected and public methods can be used as pointcuts, so it is not possible to 
         </footer>
     </div>
 
-<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/app.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1666856467"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1666856467"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/app.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1673276654"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1673276654"></script>
 
 
 <script id="usercentrics-cmp" data-settings-id="65ynhGFvE" src="https://app.usercentrics.eu/browser-ui/latest/bundle.js" defer></script>

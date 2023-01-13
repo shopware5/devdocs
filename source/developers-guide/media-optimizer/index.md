@@ -57,16 +57,16 @@ By default, the optimizer will search files within the `media` directory. Additi
 
 A full scan of files can take a long time to complete. For that, there is a `--modified` (`-m`) option to filter a range by providing a [PHP compatible time string](https://secure.php.net/manual/en/datetime.formats.php). Here are some examples:
 
-#### Files of the last 24 hours
+#### Files of the last 2 days
 
 ```bash
-$ bin/console sw:media:optimize --modified="after 24 hours ago"
+$ bin/console sw:media:optimize --modified="2 days ago"
 ```
 
 #### Files of the last 2 weeks
 
 ```bash
-$ bin/console sw:media:optimize --modified="after 2 weeks ago"
+$ bin/console sw:media:optimize --modified="2 weeks ago"
 ```
 
 ### Skip initial scan

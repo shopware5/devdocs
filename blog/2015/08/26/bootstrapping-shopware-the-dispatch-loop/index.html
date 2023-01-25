@@ -4,85 +4,54 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title></title>
+    <title>Bootstrapping Shopware - The dispatch loop</title>
 
-    <meta name="description" content="
+    <meta name="description" content="When writing Shopware plugins, you will usually use events like Enlight_Controller_Dispatcher_ControllerPath_Frontend_Test
+or Enlight_Controller_Action_Pre">
+<meta name="keywords" content="dispatch loop, controller, events, Shopware bootstrapping">
 
-title: Free Online Course: Shopware Developer Basic Training
-tags:
-- udemy
-- training
-
-categories:
-- dev
-
-authors: [dk]
-
-github_link: blog/_posts/2018-01">
-<meta name="keywords" content="">
-
-
+        <meta name="author" content="Daniel Nögel">
+    <link rel="author" href="https://developers.shopware.com/blog/authors/dn">
+    
 <!-- Facebook -->
-<meta property="og:title" content="">
+<meta property="og:title" content="Bootstrapping Shopware - The dispatch loop">
 <meta property="og:type" content="article">
 <meta property="og:image" content="">
-<meta property="og:url" content="/blog/2018/01/31/">
-<meta property="og:description" content="
-
-title: Free Online Course: Shopware Developer Basic Training
-tags:
-- udemy
-- training
-
-categories:
-- dev
-
-authors: [dk]
-
-github_link: blog/_posts/2018-01">
+<meta property="og:url" content="/blog/2015/08/26/bootstrapping-shopware-the-dispatch-loop/">
+<meta property="og:description" content="When writing Shopware plugins, you will usually use events like Enlight_Controller_Dispatcher_ControllerPath_Frontend_Test
+or Enlight_Controller_Action_Pre">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="
-
-title: Free Online Course: Shopware Developer Basic Training
-tags:
-- udemy
-- training
-
-categories:
-- dev
-
-authors: [dk]
-
-github_link: blog/_posts/2018-01">
+<meta name="twitter:title" content="Bootstrapping Shopware - The dispatch loop">
+<meta name="twitter:description" content="When writing Shopware plugins, you will usually use events like Enlight_Controller_Dispatcher_ControllerPath_Frontend_Test
+or Enlight_Controller_Action_Pre">
 <meta name="twitter:image" content="">
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#26556f">
 
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1673617163">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1673617163">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1673617163">
-    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1673617163" media="screen">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/open-sans-font.css?v=1674663914">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/highlight-github-gist.min.css?v=1674663914">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/docsearch.min.css?v=1674663914">
+    <link rel="stylesheet" href="https://developers.shopware.com/assets/css/basic.css?v=1674663914" media="screen">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1673617163">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1673617163">
-    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1673617163">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1673617163">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1673617163">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1673617163">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1673617163">
-    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1673617163">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://developers.shopware.com/assets/favicons/apple-icon-57x57.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://developers.shopware.com/assets/favicons/apple-icon-60x60.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://developers.shopware.com/assets/favicons/apple-icon-72x72.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://developers.shopware.com/assets/favicons/apple-icon-76x76.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://developers.shopware.com/assets/favicons/apple-icon-114x114.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://developers.shopware.com/assets/favicons/apple-icon-120x120.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://developers.shopware.com/assets/favicons/apple-icon-144x144.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://developers.shopware.com/assets/favicons/apple-icon-152x152.png?v=1674663914">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://developers.shopware.com/assets/favicons/apple-icon-180x180.png?v=1674663914">
+    <link rel="apple-touch-icon-precomposed" href="https://developers.shopware.com/assets/favicons/apple-icon-precomposed.png?v=1674663914">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://developers.shopware.com/assets/favicons/android-icon-192x192.png?v=1674663914">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://developers.shopware.com/assets/favicons/favicon-32x32.png?v=1674663914">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://developers.shopware.com/assets/favicons/favicon-96x96.png?v=1674663914">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://developers.shopware.com/assets/favicons/favicon-16x16.png?v=1674663914">
+    <link rel="shortcut icon" href="https://developers.shopware.com/assets/favicons/favicon.ico?v=1674663914">
 
     <link rel="alternate" type="application/atom+xml" href="https://developers.shopware.com/blog/atom.xml" title="Shopware Developer blog feed">
 </head>
@@ -97,7 +66,7 @@ github_link: blog/_posts/2018-01">
         </a>
 
         <a href="https://developers.shopware.com/" title="Shopware Developer Documentation" class="logo">
-            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1673617163">
+            <img src="https://developers.shopware.com/assets/img/shopware_developers_logo_white.svg?v=1674663914">
         </a>
 
     </header>
@@ -139,6 +108,12 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/example-plugin/">
+                                                Example plugin
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/controller/">
                                                 Controllers
                                             </a>
@@ -151,14 +126,14 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/plugin-guidelines/">
-                                                Plugin guidelines
+                                            <a class="navi--link" href="/developers-guide/event-guide/">
+                                                Events
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/event-guide/">
-                                                Events
+                                            <a class="navi--link" href="/developers-guide/plugin-guidelines/">
+                                                Plugin guidelines
                                             </a>
 
                                                                                     </li>
@@ -323,26 +298,26 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/dic-tags/">
-                                                Dependency Injection Tags
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-cli-commands/">
                                                 CLI commands
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
-                                                Captcha
+                                            <a class="navi--link" href="/developers-guide/dic-tags/">
+                                                Dependency Injection Tags
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/developers-guide/shopware-5-search-bundle/">
                                                 SearchBundle
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/developers-guide/implementing-your-own-captcha/">
+                                                Captcha
                                             </a>
 
                                                                                     </li>
@@ -417,14 +392,14 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
-                                                Create your own backend widget
+                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
+                                                Create custom emotion preset plugin
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/developers-guide/emotion-preset-plugin/">
-                                                Create custom emotion preset plugin
+                                            <a class="navi--link" href="/developers-guide/plugin-lastregistrations-widget/">
+                                                Create your own backend widget
                                             </a>
 
                                                                                     </li>
@@ -857,6 +832,12 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/responsive-images/">
+                                                Responsive images
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/external-resources/">
                                                 Embedding external resources
                                             </a>
@@ -865,12 +846,6 @@ github_link: blog/_posts/2018-01">
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/datepicker/">
                                                 Datepicker
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/responsive-images/">
-                                                Responsive images
                                             </a>
 
                                                                                     </li>
@@ -939,6 +914,18 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-listing-page/">
+                                                Example - Custom listing page
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/designers-guide/custom-detail-page/">
+                                                Example - Custom Detail page
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/designers-guide/edit-newsletter-and-document-templates/">
                                                 Edit newsletter and document templates
                                             </a>
@@ -951,14 +938,14 @@ github_link: blog/_posts/2018-01">
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/browser-notice/">
-                                                Outdated browser notification
+                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
+                                                Range slider algorithm
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/designers-guide/range-slider-algorithm/">
-                                                Range slider algorithm
+                                            <a class="navi--link" href="/designers-guide/browser-notice/">
+                                                Outdated browser notification
                                             </a>
 
                                                                                     </li>
@@ -1098,28 +1085,6 @@ github_link: blog/_posts/2018-01">
                                                         <ul class="navi--sub-2-tree is--bulleted">
                                                                 <li class="navi--sub-2-chapter">
 
-                                    <a class="navi--link has--children" href="/shopware-enterprise/performance/">
-                                        Performance
-                                    </a>
-
-                                                                        <ul class="navi--sub-3-tree">
-
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/performance/jmeter/">
-                                                JMeter
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/performance/essentials/">
-                                                Essentials
-                                            </a>
-
-                                                                                    </li>
-                                                                            </ul>
-                                                                    </li>
-                                                                <li class="navi--sub-2-chapter">
-
                                     <a class="navi--link has--children" href="/shopware-enterprise/pricing-engine/">
                                         Pricing Engine
                                     </a>
@@ -1154,33 +1119,21 @@ github_link: blog/_posts/2018-01">
                                                                     </li>
                                                                 <li class="navi--sub-2-chapter">
 
-                                    <a class="navi--link has--children" href="/shopware-enterprise/search/">
-                                        Enterprise Search
+                                    <a class="navi--link has--children" href="/shopware-enterprise/performance/">
+                                        Performance
                                     </a>
 
-                                                                        <ul class="navi--sub-3-tree is--bulleted">
+                                                                        <ul class="navi--sub-3-tree">
 
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/search/features/">
-                                                Features
+                                            <a class="navi--link" href="/shopware-enterprise/performance/jmeter/">
+                                                JMeter
                                             </a>
 
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/search/installation/">
-                                                Installation
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/search/configuration/">
-                                                Configuration
-                                            </a>
-
-                                                                                    </li>
-                                                                                <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/search/example-plugins/">
-                                                Example Plugins
+                                            <a class="navi--link" href="/shopware-enterprise/performance/essentials/">
+                                                Essentials
                                             </a>
 
                                                                                     </li>
@@ -1194,6 +1147,120 @@ github_link: blog/_posts/2018-01">
 
                                                                         <ul class="navi--sub-3-tree is--bulleted">
 
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/">
+                                                Component Guide
+                                            </a>
+
+                                                                                        <ul class="navi--sub-4-tree">
+
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/demo-environment/">
+                                                        Demo Environment
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/dashboard/">
+                                                        Dashboard
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/account/">
+                                                        Account Management
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/profile/">
+                                                        Profile Page
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/company/">
+                                                        Company
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/statistics/">
+                                                        Statistics
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contacts/">
+                                                        Contacts
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/addresses/">
+                                                        Addresses
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/contingents/">
+                                                        Contingents
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/budgets/">
+                                                        Budgets
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order/">
+                                                        Order
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/order-list/">
+                                                        Order List
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/ordernumber/">
+                                                        Custom ordernumber
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/permissions/">
+                                                        Permission Management
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/fastorder/">
+                                                        Fast Order
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/checkout/">
+                                                        Checkout
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/price/">
+                                                        Price
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/sales-representative/">
+                                                        Sales Representative
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/quick_start/">
+                                                        Quick start
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/payment/">
+                                                        Payment
+                                                    </a>
+                                                </li>
+                                                                                                <li class="navi--sub-4-chapter">
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/component-guide/offer/">
+                                                        Offer
+                                                    </a>
+                                                </li>
+                                                                                            </ul>
+                                                                                    </li>
                                                                                 <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/shopware-enterprise/b2b-suite/installation/">
                                                 Installation Guide
@@ -1218,13 +1285,13 @@ github_link: blog/_posts/2018-01">
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
-                                                        Method Structure
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
+                                                        Dependency injection
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/dependency-injection/">
-                                                        Dependency injection
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/method-structure/">
+                                                        Method Structure
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1248,13 +1315,13 @@ github_link: blog/_posts/2018-01">
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
-                                                        Ajax panel
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
+                                                        Product Search
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
-                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/product-search/">
-                                                        Product Search
+                                                    <a class="navi--link" href="/shopware-enterprise/b2b-suite/technical/ajax-panel/">
+                                                        Ajax panel
                                                     </a>
                                                 </li>
                                                                                                 <li class="navi--sub-4-chapter">
@@ -1330,14 +1397,48 @@ github_link: blog/_posts/2018-01">
                                                                                             </ul>
                                                                                     </li>
                                                                                 <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/shopware-enterprise/b2b-suite/download/">
+                                                Download
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
                                             <a class="navi--link" href="/shopware-enterprise/b2b-suite/example-plugins/">
                                                 Example Plugins
                                             </a>
 
                                                                                     </li>
+                                                                            </ul>
+                                                                    </li>
+                                                                <li class="navi--sub-2-chapter">
+
+                                    <a class="navi--link has--children" href="/shopware-enterprise/search/">
+                                        Enterprise Search
+                                    </a>
+
+                                                                        <ul class="navi--sub-3-tree is--bulleted">
+
                                                                                 <li class="navi--sub-3-chapter">
-                                            <a class="navi--link" href="/shopware-enterprise/b2b-suite/download/">
-                                                Download
+                                            <a class="navi--link" href="/shopware-enterprise/search/features/">
+                                                Features
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/shopware-enterprise/search/installation/">
+                                                Installation
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/shopware-enterprise/search/configuration/">
+                                                Configuration
+                                            </a>
+
+                                                                                    </li>
+                                                                                <li class="navi--sub-3-chapter">
+                                            <a class="navi--link" href="/shopware-enterprise/search/example-plugins/">
+                                                Example Plugins
                                             </a>
 
                                                                                     </li>
@@ -1385,50 +1486,311 @@ github_link: blog/_posts/2018-01">
             <div class="info">
 
                 
+                                <a class="edit-on-github" href="https://github.com/shopware/devdocs/blob/master/source/blog/_posts/2015-08-26-dispatch-loop.md" target="_blank"><i class="icon-github"></i> Edit this page on GitHub</a>
                 
             </div>
 
+                        <h1>
+                Bootstrapping Shopware - The dispatch loop
+            </h1>
             
             <article class="blog-post">
 
+        <div class="blog-authors">
+                        <div class="blog-user-info">
+    <div class="blog-avatar">
+        <img src="https://developers.shopware.com/blog/img/authors/author_dn.jpg" width="50" height="50">
+    </div>
+    <div class="blog-user">
+        <div class="user-info">
+            <a rel="author" href="https://developers.shopware.com/blog/authors/dn">Daniel Nögel</a>
+            <span class="user-title">, Developer</span>        </div>
+
+        <div class="release">
+            <span class="icon icon-clock"></span> August 26th, 2015
+        </div>
+
+        <div class="user-services">
+
+                            <span class="user-service">
+                    <a href="https://twitter.com/danielnoegel" target="_blank" title="Twitter Daniel Nögel">
+                        <span class="service-desc">Twitter: </span> <i class="icon icon-twitter"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://danielnoegel.de" target="_blank" title="Website Daniel Nögel">
+                        <span class="service-desc">Website: </span> <i class="icon icon-globe"></i>
+                    </a>
+                </span>
+            
+                            <span class="user-service">
+                    <a href="https://github.com/dnoegel/" target="_blank" title="Github Daniel Nögel">
+                        <span class="service-desc">Github: </span> <i class="icon icon-github"></i>
+                    </a>
+                </span>
+                    </div>
+    </div>
+</div>
+                    </div>
     
     <div class="blog-detail-text">
-        <hr>
+        <p>When writing Shopware plugins, you will usually use events like <code>Enlight_Controller_Dispatcher_ControllerPath_Frontend_Test</code>
+or <code>Enlight_Controller_Action_PreDispatch_Frontend_Listing</code>. But where do those names originate from and what is the
+"big picture" behind it?
+This post will explain what happens "behind the scenes", when Shopware boots up and handles a request.</p>
 
-<p>title: Free Online Course: Shopware Developer Basic Training
-tags:
-- udemy
-- training</p>
+<h1 id="dispatch-loop">Dispatch Loop</h1>
 
-<p>categories:
-- dev</p>
+<p>Dispatching is the process of handling a <code>Request</code> object, extracting the relevant <code>Module</code>, <code>Controller</code> and <code>Action</code> from it,
+instantiating the correct controller and making this controller handle the request.
+As controllers can forward to other controllers, this is actually a loop - Shopware will run through that loop, until no
+additional requests needs to be handled.</p>
 
-<p>authors: [dk]</p>
+<h1 id="where-it-all-begins%3A-the-front-controller">Where it all begins: The front controller</h1>
 
-<h2 id="github_link:-blog/_posts/2018-01-31-free-online-course-shopware-developer-basic-training.md">github_link: blog/_posts/2018-01-31-free-online-course-shopware-developer-basic-training.md</h2>
-
-<p><a href="https://www.udemy.com/developer-training-basic-english"><img src="/blog/img/udemy_dev_basic_training.jpg" alt="Udemy Developer Basic Training Banner"></a></p>
-
-<p>Interested in learning the basics of Shopware development? Or have you always wanted to create a plugin for Shopware? You now have the opportunity to dive into the technology behind Shopware 5 in our free course on Udemy, where you’ll be taken through the fundamentals of working with one of Europe’s leading open source eCommerce platforms.</p>
-
-<p>The course starts with setting up multiple shop configurations for different system environments and takes you through creating your first plugin from scratch. The result should serve as a foundation so that you can gradually extend the plugin by applying more knowledge throughout the remainder of the course.</p>
-
-<p>While creating new pages and setting up a redirection for unauthenticated users, you will
-cover topics like:</p>
+<p>Whenever a request hits your server, your web server will redirect it to the <code>shopware.php</code> file. There shopware will
+instantiate the <code>\Shopware\Kernel</code>, which implements <code>\Symfony\Component\HttpKernel\HttpKernelInterface</code>. The <code>handle</code>
+method of the kernel will then bootstrap the rest of Shopware (e.g. plugins) and start the dispatch loop.
+The actual dispatch loop is handled by <code>\Enlight_Controller_Front::dispatch</code>.
+This front controller will take care of the following tasks:</p>
 
 <ul>
-<li>Controllers and routing</li>
-<li>Templates</li>
-<li>Events</li>
-<li>Using the service container</li>
+<li>run the router on the request object, so the router can figure out, which <code>Module</code>, <code>Controller</code> and <code>Action</code> needs to be requested</li>
+<li>run the dispatch loop, until there is nothing more to process</li>
+<li>within any loop iteration, trigger the <code>\Enlight_Controller_Dispatcher_Default::dispatch</code> which will take care of the rest</li>
 </ul>
 
-<p>Two examples will round off the course by using what you’ve learned to create a new service and implement the plugin lifecycle methods.</p>
+<p>The front controller also emits some very early events, that might be useful in some cases:</p>
 
-<p>Your trainer will be Dominic Klein, Core Developer at Shopware.</p>
+<ul>
+<li><code>Enlight_Controller_Front_StartDispatch</code>: At the very beginning, before the front controller will actually handle the request</li>
+<li><code>Enlight_Controller_Front_RouteStartup</code>: Before the front controller will pass the <code>Request</code> object to the router in order to populate it</li>
+<li><code>Enlight_Controller_Front_RouteShutdown</code>: Just after the router handled the <code>Request</code> object. Now the routing information is available</li>
+<li><code>Enlight_Controller_Front_DispatchLoopStartup</code>: Before the dispatch loop</li>
+<li><code>Enlight_Controller_Front_PreDispatch</code>: Before the current <code>Request</code> object is passed to the <code>Dispatcher</code></li>
+<li><code>Enlight_Controller_Front_PostDispatch</code>: After the current <code>Request</code> object is passed to the `Dispatcher</li>
+<li><code>Enlight_Controller_Front_DispatchLoopShutdown</code>: After the dispatch loop</li>
+</ul>
 
-<p> 
-<a href="https://www.udemy.com/developer-training-basic-english">Enrol now and start writing your first plugin!</a></p>
+<h2 id="router">Router</h2>
+
+<p>To get an impression of what the router does, let's look at this example: We open the URL <code>http://localhost/media/living/</code>
+and look at the request object <strong>before</strong> routing:</p>
+
+<pre><code>object(Enlight_Controller_Request_RequestHttp)[379]
+  private 'validDeviceTypes' =&gt;
+    array (size=3)
+      0 =&gt; string 'desktop' (length=7)
+      1 =&gt; string 'tablet' (length=6)
+      2 =&gt; string 'mobile' (length=6)
+  protected '_paramSources' =&gt;
+    array (size=2)
+      0 =&gt; string '_GET' (length=4)
+      1 =&gt; string '_POST' (length=5)
+  protected '_requestUri' =&gt; string '/media/living/' (length=18)
+  protected '_baseUrl' =&gt; string '/media' (length=6)
+  protected '_basePath' =&gt; string '/media' (length=6)
+  protected '_pathInfo' =&gt; string '/living/' (length=12)
+  protected '_params' =&gt;
+    array (size=0)
+      empty
+  protected '_rawBody' =&gt; null
+  protected '_aliases' =&gt;
+    array (size=0)
+      empty
+  protected '_dispatched' =&gt; boolean false
+  protected '_module' =&gt; null
+  protected '_moduleKey' =&gt; string 'module' (length=6)
+  protected '_controller' =&gt; null
+  protected '_controllerKey' =&gt; string 'controller' (length=10)
+  protected '_action' =&gt; null
+  protected '_actionKey' =&gt; string 'action' (length=6)
+</code></pre>
+
+<p>As you can see, <code>module</code>, <code>controller</code> and <code>action</code> are <code>null</code>. After the routing (the router can be found in <code>engine/Shopware/Components/Routing</code>)
+the <code>request</code> object will look like this:</p>
+
+<pre><code>object(Enlight_Controller_Request_RequestHttp)[379]
+  private 'validDeviceTypes' =&gt;
+    array (size=3)
+      0 =&gt; string 'desktop' (length=7)
+      1 =&gt; string 'tablet' (length=6)
+      2 =&gt; string 'mobile' (length=6)
+  protected '_paramSources' =&gt;
+    array (size=2)
+      0 =&gt; string '_GET' (length=4)
+      1 =&gt; string '_POST' (length=5)
+  protected '_requestUri' =&gt; string '/media/living/' (length=18)
+  protected '_baseUrl' =&gt; string '/media' (length=6)
+  protected '_basePath' =&gt; string '/media' (length=6)
+  protected '_pathInfo' =&gt; string '/living/' (length=12)
+  protected '_params' =&gt;
+    array (size=0)
+      empty
+  protected '_rawBody' =&gt; null
+  protected '_aliases' =&gt;
+    array (size=0)
+      empty
+  protected '_dispatched' =&gt; boolean false
+  protected '_module' =&gt; string 'frontend' (length=8)
+  protected '_moduleKey' =&gt; string 'module' (length=6)
+  protected '_controller' =&gt; string 'cat' (length=3)
+  protected '_controllerKey' =&gt; string 'controller' (length=10)
+  protected '_action' =&gt; string 'index' (length=5)
+  protected '_actionKey' =&gt; string 'action' (length=6)
+</code></pre>
+
+<p>This time, the relevant information is set, the router resolved the SEO URL <code>/media/living/</code> to the correct <code>module</code>, <code>controller</code>
+and <code>aciton</code>. Now everything is prepared to handle the <code>request</code> object by the dispatcher.</p>
+
+<h2 id="dispatcher">Dispatcher</h2>
+
+<p>The Shopware dispatcher will handle a request in <code>\Enlight_Controller_Dispatcher_Default::dispatch</code>. First of all, it will build
+ a controller name from the request object, so e.g.</p>
+
+<pre><code>[
+   'module' =&gt; 'frontend',
+   'controller' =&gt; 'listing',
+   'action' =&gt; 'index',
+]
+</code></pre>
+
+<p>will become <code>Shopware_Controllers_Frontend_Listing</code>. The controller dispatcher will then emit the event
+ <code>Enlight_Controller_Dispatcher_ControllerPath_Frontend_Listing</code>, so that plugin developers can register this controller.
+ If no plugin returns a result, the Dispatcher will try to find this controller in Shopware's controller directory <code>engine/Shopware/Controllers</code>.
+Either way, the dispatcher will now have a path for the controller, e.g. <code>engine/Shopware/Controllers/Frontend/Listing.php</code>
+which it now will include and instantiate. Furthermore it injects the <code>Request</code>, <code>Response</code>, <code>Container</code> and <code>Front</code> object into that controller.
+As it uses a proxy object for the controller, all controllers are hookable by default.</p>
+
+<p>Finally the dispatcher will call the <code>dispatch</code> method on the controller. As every controller in Shopware extends from
+<code>Enlight_Controller_Action</code>, you might not have seen this method, yet - but it is always there.</p>
+
+<h2 id="controller-dispatching">Controller dispatching</h2>
+
+<p>Now <code>\Enlight_Controller_Action::dispatch</code> will handle the actual dispatch for the current controller. First of all, an <code>\Enlight_Controller_ActionEventArgs</code>
+object is created - it will be passed to all pre- and post dispatch events of that controller.
+After that, the <code>PreDispatch</code> events are triggered, for the current controller:</p>
+
+<pre><code>Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PreDispatch',
+    $args
+);
+
+Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PreDispatch_' . $moduleName,
+    $args
+);
+
+Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PreDispatch_' . $this-&gt;controller_name,
+    $args
+);
+</code></pre>
+
+<p>This will generate events like:</p>
+
+<ul>
+<li><code>Enlight_Controller_Action_PreDispatch</code></li>
+<li><code>Enlight_Controller_Action_PreDispatch_Frontend</code></li>
+<li><code>Enlight_Controller_Action_PreDispatch_Frontend_Listing</code></li>
+</ul>
+
+<p>depending of the current module and controller. As you see, the <code>Enlight_Controller_Action</code> prefix of the event name
+directly derives from the <code>Enlight_Controller_Action</code> class, that emits the events. The first event does not have a module or
+controller name in it - so every controller will emit it - that's why this event is always available.
+The second event just appends the module name to the event name - that's the reason, why there is a <code>Enlight_Controller_Action_PreDispatch_Frontend</code>
+event for every single controller in the frontend.</p>
+
+<p>After emitting all the events, the controller dispatcher will call the <code>preDispatch</code> method of the controller itself. So if
+you  have implemented the <code>preDispatch</code> method in your controller, it will now be executed.
+Next the event <code>Enlight_Controller_Action_Frontend_Listing_Index</code> is emitted. This is the "action" event - if a plugin
+subscribed to it, it can handle the controller action instead of the default action implementation. So instead of executing
+<code>Shopware_Controllers_Frontend_Listing::indexAction</code> only the plugin subscriber will be executed.
+If no plugin registered to that event, the controller dispatcher will execute the actual controller action, in our case
+<code>Shopware_Controllers_Frontend_Listing::indexAction</code>.</p>
+
+<p>Now the <code>postDispatch</code> method of the controller is executed - just like the <code>preDispatch</code> method before. Finally the post dispatch events
+are emitted, that you will know from most plugins:</p>
+
+<pre><code>if ($this-&gt;Request()-&gt;isDispatched() &amp;&amp; !$this-&gt;Response()-&gt;isException() &amp;&amp; $this-&gt;View()-&gt;hasTemplate()) {
+    Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatchSecure_' . $this-&gt;controller_name,
+        $args
+    );
+
+    Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatchSecure_' . $moduleName,
+        $args
+    );
+
+    Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+        __CLASS__ . '_PostDispatchSecure',
+        $args
+    );
+}
+
+Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PostDispatch_' . $this-&gt;controller_name,
+    $args
+);
+
+Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PostDispatch_' . $moduleName,
+    $args
+);
+
+Enlight_Application::Instance()-&gt;Events()-&gt;notify(
+    __CLASS__ . '_PostDispatch',
+    $args
+);
+</code></pre>
+
+<p>As you can see, the events</p>
+
+<ul>
+<li>Enlight_Controller_Action_PostDispatchSecure_Frontend_Listing</li>
+<li>Enlight_Controller_Action_PostDispatchSecure_Frontend</li>
+<li>Enlight_Controller_Action_PostDispatchSecure</li>
+</ul>
+
+<p>will only be emitted, when no exception occurred, a template is available and the request has actually been handled ("dispatched").
+This is, why we call them "secure", as you as a plugin developer can rely on this events indicating a "proper" dispatch and don't
+need to check for e.g. exceptions by yourself. That is the reason, why we highly recommend this events over the non-secure events,
+which will be emitted afterwards:</p>
+
+<ul>
+<li>Enlight_Controller_Action_PostDispatch_Frontend_Listing</li>
+<li>Enlight_Controller_Action_PostDispatch_Frontend</li>
+<li>Enlight_Controller_Action_PostDispatch</li>
+</ul>
+
+<h1 id="where-does-the-template-come-from%3F">Where does the template come from?</h1>
+
+<p>At this point, we have seen the whole dispatching in Shopware. Perhaps you will ask yourself, where the template comes into
+play and when it is rendered. This is something <code>\Enlight_Controller_Plugins_ViewRenderer_Bootstrap</code> will take care of.
+At the end of a request (PostDispatch), it will get the <code>\Enlight_View</code> object from the controller, render the template and
+ append the result to the response object. The output of e.g. the rendered template will then happen in <code>shopware.php</code>, where it all started
+ in the <code>\Symfony\Component\HttpFoundation\Response::send</code> method.</p>
+
+<h1 id="understanding-the-%7Baction%7D-plugin">Understanding the {action} plugin</h1>
+
+<p>As you might know, Shopware provides a nice Smarty plugin called <code>action</code>, that will allow you, to render results from other
+controller calls into your template. If an HTTP cache is enabled, this will happen using <a href="https://en.wikipedia.org/wiki/Edge_Side_Includes">ESI tags</a>.
+If no HTTP cache is enabled, Shopware is able to handle those requests without performing an additional HTTP request - it
+will just enter a second dispatch loop and will make it handle the sub request. The resulting template of that sub request
+ can then be just printed out, so that it is included in the surrounding main request.
+This way, Shopware does not need to run a full bootstrapping process again - all resources like plugins, services in the DI container
+or the database connection are shared.</p>
+
+<h1 id="symfony-and-enlight">Symfony and Enlight</h1>
+
+<p>As you have seen, the actual bootstrapping of Shopware happens with a Symfony Kernel, that's why we are "Symfony http kernel compliant"
+and can e.g. use the Symfony HTTP revers proxy for caching. Internally, Shopware will convert the Symfony request object
+to an Enlight request object, handle it in the dispatch loop and convert the resulting Enlight response object back to a
+Symfony response object.
+As Enlight is basically a thin layer above the Zend framework, the dispatch loop is heavily inspired by zend framework,
+the <a href="http://framework.zend.com/manual/1.12/en/zend.controller.html">Zend controller basics</a> might provide you additional insights.</p>
 
     </div>
 
@@ -1457,17 +1819,17 @@ cover topics like:</p>
         </footer>
     </div>
 
-<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/app.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1673617163"></script>
-<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1673617163"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.min.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/highlight.min.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/highlight-lang-less.min.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/anchor.min.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.expandCode.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.toc.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.offcanvas.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/app.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.backtotop.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/docsearch.min.js?v=1674663914"></script>
+<script src="https://developers.shopware.com/assets/js/jquery.api-badge-copy-button.js?v=1674663914"></script>
 
 
 <script id="usercentrics-cmp" data-settings-id="65ynhGFvE" src="https://app.usercentrics.eu/browser-ui/latest/bundle.js" defer></script>

@@ -1,5 +1,5 @@
 ---
-title: Unboxing: Meta  - Augmented Reality Glasses
+title: Unboxing - Meta - Augmented Reality Glasses
 tags: [tech, odl]
 
 categories:

@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Example: Custom detail page
+title: Example - Custom detail page
 github_link: designers-guide/custom-detail-page/index.md
 indexed: true
 group: Frontend Guides
 subgroup: Tutorials
-menu_title: Example: Custom Detail page
+menu_title: Example - Custom Detail page
 menu_order: 40
 ---
 

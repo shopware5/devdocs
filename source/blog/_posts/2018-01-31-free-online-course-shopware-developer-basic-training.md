@@ -1,5 +1,5 @@
 ---
-title: Free Online Course: Shopware Developer Basic Training
+title: Free Online Course - Shopware Developer Basic Training
 tags:
 - udemy
 - training

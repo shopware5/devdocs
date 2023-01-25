@@ -1,5 +1,5 @@
 ---
-title: New is Always Better: Mastering Legacy Software Reengineering
+title: New is Always Better - Mastering Legacy Software Reengineering
 tags:
 - legacy software
 - architecture

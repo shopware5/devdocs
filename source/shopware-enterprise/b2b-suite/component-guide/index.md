@@ -8,14 +8,13 @@ menu_title: Component Guide
 subgroup: B2B-Suite
 menu_order: 2
 group: Shopware Enterprise
-subgroup: B2B-Suite
 ---
 
 <img src="{{ site.url }}/assets/img/b2b-suite/v2/mockup-contact-index.jpg" style="width: 100%"/>
 
 ## General
 
-The B2B-Suite has many different use cases for various types of users.
+The B2B-Suite has different use cases for various types of users.
 In the following document you can find several links for workflows.
 
 <ul class="guide-list">

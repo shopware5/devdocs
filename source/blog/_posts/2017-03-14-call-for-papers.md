@@ -1,5 +1,5 @@
 ---
-title: Call for papers: Shopware Community Day 2017
+title: Call for papers - Shopware Community Day 2017
 tags:
 - cfp
 - shopware community day

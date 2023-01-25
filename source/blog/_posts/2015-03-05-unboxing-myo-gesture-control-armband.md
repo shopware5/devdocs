@@ -1,5 +1,5 @@
 ---
-title: Unboxing: Myo – Gesture Control Armband
+title: Unboxing - Myo – Gesture Control Armband
 tags: [tech, odl]
 
 categories:

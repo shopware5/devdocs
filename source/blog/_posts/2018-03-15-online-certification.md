@@ -1,5 +1,5 @@
 ---
-title: New: Get your template or developer certification online
+title: New - Get your template or developer certification online
 tags:
 - certification
 - training

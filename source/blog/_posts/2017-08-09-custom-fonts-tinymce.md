@@ -1,5 +1,5 @@
 ---
-title: Quick Tip: Custom fonts in the TinyMCE editor
+title: Quick Tip - Custom fonts in the TinyMCE editor
 tags:
 - tinymce
 - custom-fonts

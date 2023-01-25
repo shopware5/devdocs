@@ -1,5 +1,5 @@
 ---
-title: Bootstrapping Shopware: The dispatch loop
+title: Bootstrapping Shopware - The dispatch loop
 tags:
     - dispatch loop
     - controller

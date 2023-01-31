@@ -19,7 +19,7 @@ plugins according to
 [our quality guidelines](https://docs.shopware.com/en/plugin-standard-for-community-store).
 We hope the examples provided here will be helpful, please feel free to submit
 corrections and suggestions to our
-[devdocs repository](https://github.com/shopware/devdocs/)
+[devdocs repository](https://github.com/shopware5/devdocs/)
 on Github.
 
 ## Internationalisation

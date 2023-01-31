@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/shopware/devdocs.git"
+        "url": "git+https://github.com/shopware5/devdocs.git"
     },
     "keywords": [
         "devdocs",
@@ -18,9 +18,9 @@
     "author": "klarstil",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/shopware/devdocs/issues"
+        "url": "https://github.com/shopware5/devdocs/issues"
     },
-    "homepage": "https://github.com/shopware/devdocs#readme",
+    "homepage": "https://github.com/shopware5/devdocs#readme",
     "dependencies": {
         "grunt": "^1.4.1",
         "grunt-contrib-less": "^3.0.0",

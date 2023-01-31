@@ -23,7 +23,7 @@ jobs:
       run: |
         ./vendor/bin/sculpin generate --env=prod --url="https://developers.shopware.com"
         ./contrib/package_plugins.sh
-        git clone https://github.com/shopware/devdocs.git -b styletile output_prod/styletile
+        git clone https://github.com/shopware5/devdocs.git -b styletile output_prod/styletile
         rm -rf output_prod/styletile/.git
         echo "developers.shopware.com" > output_prod/CNAME
 

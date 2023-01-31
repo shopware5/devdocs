@@ -277,7 +277,7 @@ I think a quick adaption rate to changes is entirely preferable.
 
 #### Bash only, why not?
 
-So why even use `PSH`? And I get the point. [As was pointed out to me](https://github.com/shopware/devdocs/pull/353#issuecomment-244027980) bash already brings some capabilities that PSH emulates.
+So why even use `PSH`? And I get the point. [As was pointed out to me](https://github.com/shopware5/devdocs/pull/353#issuecomment-244027980) bash already brings some capabilities that PSH emulates.
 So let's discuss this a little bit here.
 
 **`set -e` - Put it at the top of your script and execution fails if a statement fails.**

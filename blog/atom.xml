@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title><![CDATA[Shopware Developers]]></title>
-    <link href="https://developers.shopware.com/atom.xml" rel="self"/>
-    <link href="https://developers.shopware.com/"/>
-    <updated>2023-01-31T15:20:41+00:00</updated>
-    <id>https://developers.shopware.com/</id>
+    <link href="https://shopware5.github.io/devdocs//atom.xml" rel="self"/>
+    <link href="https://shopware5.github.io/devdocs//"/>
+    <updated>2023-01-31T15:55:04+00:00</updated>
+    <id>https://shopware5.github.io/devdocs//</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
         <entry>
         <title type="html"><![CDATA[Shopware Tech Keynote]]></title>
-        <link href="https://developers.shopware.com/blog/2019/06/11/shopware-tech-keynote/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2019/06/11/shopware-tech-keynote/"/>
         <updated>2019-06-11T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2019/06/11/shopware-tech-keynote/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2019/06/11/shopware-tech-keynote/</id>
         <content type="html"><![CDATA[<h1 id="shopware-tech-keynote">Shopware Tech Keynote</h1>
 
 <p>Shopware Community Day 2019 was the first time, we had two keynotes at the same time: The main keynote by our CEO and co-founder Sebastian Hamann - and the tech keynote by myself. For me it was a great honor and pleasure to give you a technical overview of Shopware 6; in this blog post, I want to summarize my thoughts about Shopware 6</p>
@@ -151,9 +151,9 @@ At the SCD 19 we released the developer preview of Shopware 6. With this version
     </entry>
         <entry>
         <title type="html"><![CDATA[What is phive and why you should use it!]]></title>
-        <link href="https://developers.shopware.com/blog/2018/11/30/what-is-phive-and-why-you-should-use-it/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/11/30/what-is-phive-and-why-you-should-use-it/"/>
         <updated>2018-11-30T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/11/30/what-is-phive-and-why-you-should-use-it/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/11/30/what-is-phive-and-why-you-should-use-it/</id>
         <content type="html"><![CDATA[<p>At the beginning of this year we decided to create a new enterprise accelerator for our enterprise eco system. The so called Pricing Engine. With this new project we evaluated the PHAR Installation and Verification Environment (PHIVE) to manage all our *.phar dev tools.</p>
 
 <p>Normally we store our dev tools in the document root of our git repository. As an example in the B2B-Suite we have seven several phar files (deptrac, phpDocumentator, phpcpd, phploc, phpstan, psh and security-checker). With phive we can manage all our dev tools with a phive.xml file. As you can see in the below example, you can define the version which should be used, the position where it should be placed and at last if it should be a symlink or a real copy of the phar file. Normally phive downloads the specific phar file and symlinks it in the place where it has to be.</p>
@@ -221,9 +221,9 @@ phive install https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.
     </entry>
         <entry>
         <title type="html"><![CDATA[Clickstream analysis with server logs]]></title>
-        <link href="https://developers.shopware.com/blog/2018/09/28/clickstream-analysis-with-server-logs/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/09/28/clickstream-analysis-with-server-logs/"/>
         <updated>2018-09-28T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/09/28/clickstream-analysis-with-server-logs/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/09/28/clickstream-analysis-with-server-logs/</id>
         <content type="html"><![CDATA[<p>Demographic data like server logs are more valuable than many shop user think. With server logs we identify user groups, push valuable products or do customer specific shop marketing with data lying around on the server. In this blog post I will describe how to use the data in a theoretical way with a book selling online shop.</p>
 
 <h3 id="identify-the-customer">Identify the customer</h3>
@@ -305,9 +305,9 @@ phive install https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.
     </entry>
         <entry>
         <title type="html"><![CDATA[An Argument against Microservices]]></title>
-        <link href="https://developers.shopware.com/blog/2018/08/22/an-argument-against-microservices/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/08/22/an-argument-against-microservices/"/>
         <updated>2018-08-22T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/08/22/an-argument-against-microservices/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/08/22/an-argument-against-microservices/</id>
         <content type="html"><![CDATA[<p>Microservices... I have problems with that. And from many discussions at conferences I get the impression that I might not be the only one who's <em>not getting</em> it. So in the following article I want to attempt to deep dive into the promises behind the Microservice architecture, lament on solutions and show the costs behind it.</p>
 
 <h2 id="micro-what%3F">Micro What?</h2>
@@ -439,9 +439,9 @@ phive install https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.
     </entry>
         <entry>
         <title type="html"><![CDATA[An easy example how to switch from classic installation to composer installation]]></title>
-        <link href="https://developers.shopware.com/blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/"/>
         <updated>2018-07-25T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/07/25/an-easy-example-how-to-switch-from-classic-installation-to-composer-installation/</id>
         <content type="html"><![CDATA[<div class="alert alert-warning">
 Before you start please make a backup of your whole shop system!
 </div>
@@ -522,9 +522,9 @@ SHOPWARE_ENV="production"
     </entry>
         <entry>
         <title type="html"><![CDATA[An anecdote about pair programming]]></title>
-        <link href="https://developers.shopware.com/blog/2018/06/07/an-anecdote-about-pair-programming/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/06/07/an-anecdote-about-pair-programming/"/>
         <updated>2018-06-07T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/06/07/an-anecdote-about-pair-programming/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/06/07/an-anecdote-about-pair-programming/</id>
         <content type="html"><![CDATA[<p>When we decided to rebuild a central piece of our Merchant Integration Architecture, I was assigned to write a new component, that handles asynchronous function calls through event queueing. 
 So from the get go it was assumed that this was quite a large task. After having completed a rough prototype to interact with our queue service, I hit a problem with deciding how to proceed.
 There were many paths that needed to be worked on: error handling, at least once execution, backing up the queue to our database, et cetera.
@@ -655,9 +655,9 @@ Due to these very valid concerns, I think every team should judge pair programmi
     </entry>
         <entry>
         <title type="html"><![CDATA[Thoughtram Angular Master Class at Shopware]]></title>
-        <link href="https://developers.shopware.com/blog/2018/03/20/thoughtram-angular-master-class-at-shopware/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/03/20/thoughtram-angular-master-class-at-shopware/"/>
         <updated>2018-03-20T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/03/20/thoughtram-angular-master-class-at-shopware/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/03/20/thoughtram-angular-master-class-at-shopware/</id>
         <content type="html"><![CDATA[<p>For three days, from <strong>20th to 22nd June 2018</strong> Shopware will host an awesome event that is all about <a href="https://angularjs.org/">AngularJS</a>.</p>
 
 <p>During these three days, you'll build a real-world Angular application, learning everything you need to call yourself an angular master! It's fun, and if you plan to do something with angular anytime soon, you definitely should join.</p>
@@ -691,9 +691,9 @@ Due to these very valid concerns, I think every team should judge pair programmi
     </entry>
         <entry>
         <title type="html"><![CDATA[New - Get your template or developer certification online]]></title>
-        <link href="https://developers.shopware.com/blog/2018/03/15/new-get-your-template-or-developer-certification-online/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/03/15/new-get-your-template-or-developer-certification-online/"/>
         <updated>2018-03-15T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/03/15/new-get-your-template-or-developer-certification-online/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/03/15/new-get-your-template-or-developer-certification-online/</id>
         <content type="html"><![CDATA[<p>Interested in sharing your Shopware expertise with potential clients? Why not make it official - you can now take the exam to become a certified Shopware developer or template designer and developer online. Not only does a certificate increase your opportunities as a developer, but it’s proof of your expertise and ability to develop innovative solutions for Shopware. Equipped with everything you need to know to pass, our free trainings on Udemy are the perfect way to prepare for the exam. Those who are looking to become re-certified can also do so online.</p>
 
 <p>After booking the certification, you will receive an email with a link to the test and your individual access data. You do not have to take the test straight away - you are free to determine when and where to take the exam. There are between 19 and 20 questions for each test. You can find out what minimum score is required in order to pass plus further information about the certification on our FAQ page.</p>
@@ -707,9 +707,9 @@ Due to these very valid concerns, I think every team should judge pair programmi
     </entry>
         <entry>
         <title type="html"><![CDATA[Free Online Course - Shopware Developer Basic Training]]></title>
-        <link href="https://developers.shopware.com/blog/2018/01/31/free-online-course-shopware-developer-basic-training/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/01/31/free-online-course-shopware-developer-basic-training/"/>
         <updated>2018-01-31T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/01/31/free-online-course-shopware-developer-basic-training/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/01/31/free-online-course-shopware-developer-basic-training/</id>
         <content type="html"><![CDATA[<p><a href="https://www.udemy.com/developer-training-basic-english"><img src="/blog/img/udemy_dev_basic_training.jpg" alt="Udemy Developer Basic Training Banner" /></a></p>
 
 <p>Interested in learning the basics of Shopware development? Or have you always wanted to create a plugin for Shopware? You now have the opportunity to dive into the technology behind Shopware 5 in our free course on Udemy, where you’ll be taken through the fundamentals of working with one of Europe’s leading open source eCommerce platforms.</p>
@@ -736,9 +736,9 @@ cover topics like:</p>
     </entry>
         <entry>
         <title type="html"><![CDATA[How to use Environment Variables for Plugin Configuration]]></title>
-        <link href="https://developers.shopware.com/blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/"/>
+        <link href="https://shopware5.github.io/devdocs//blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/"/>
         <updated>2018-01-23T00:00:00+00:00</updated>
-        <id>https://developers.shopware.com/blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/</id>
+        <id>https://shopware5.github.io/devdocs//blog/2018/01/23/how-to-use-environment-variables-for-plugin-configuration/</id>
         <content type="html"><![CDATA[<div class="alert alert-info">
 Anyone who is just searching for the example source code and does not want to read the complete blog post, <a href="https://github.com/teiling88/shopware-environment-variables">here it is.</a>
 </div>

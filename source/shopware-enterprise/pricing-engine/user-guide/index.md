@@ -16,7 +16,7 @@ menu_order: 1
 
 The Pricing Engine stores several prices in price lists which can be assigned to different contexts with conditions. The whole architecture is designed for use cases where an ERP or PIM system is managing the prices. So no backend view is present for adding, inserting or deleting prices. So the backend offers only a view to manage the conditions for the imported price lists. For controlling purposes there is a separate tab added in the product detail view. In this view you can see all configured prices for this product and filter it by the existing price lists.
 
-To import price lists and prices there is a power full REST-Api present. You can find all definitions in our swagger.json [here](https://git.shopware.com/enterprise/PricingEngine/blob/master/swagger.json)
+To import price lists and prices there is a powerful REST-Api present. You can find all definitions in our swagger.json [here](https://gitlab.com/shopware/shopware/enterprise/swagenterprisepricingengine/-/blob/master/swagger.json)
 
 
 ## Backend View

@@ -377,7 +377,7 @@ In this example, we will update the name of the product with the id 3
    "success":true,
    "data":{
       "id":3,
-      "location":"http:\/\/localhost\/master\/api\/articles\/3"
+      "location":"http:\/\/localhost\/shop\/api\/articles\/3"
    }
 }
 ```

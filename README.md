@@ -99,7 +99,7 @@ To enable the search, the environment variable `SYMFONY__ALGOLIA_ENABLED` also m
 SYMFONY__ALGOLIA_ENABLED=1 SYMFONY__ALGOLIA_API_KEY=MYAPIKEY ./vendor/bin/sculpin generate
 ```
 
-These variables are automatically exported during the Travis-CI build for every merge/commit on the `master` branch.
+These variables are automatically exported during the build for every merge/commit on the `main` branch.
 
 
 ## CSS helper classes

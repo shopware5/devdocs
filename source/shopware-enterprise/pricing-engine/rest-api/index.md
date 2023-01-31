@@ -18,7 +18,7 @@ You can also find a fully comprehensive and up-to-date Swagger documentation <a 
 
 ## API Structure
 
-In order to maintain your custom pricing lists, the Pricing Engine offers a range of RESTful endpoints. In the following examples is http://10.222.222.30/api our local endpoint for the shopware api. You can find examples written with guzzle in the official <a href="https://git.shopware.com/enterprise/PricingEngine" target="_blank">git repo</a>. If you don't have access yet, please create a ticket via your shopware account. You will receive an invitation soon. 
+In order to maintain your custom pricing lists, the Pricing Engine offers a range of RESTful endpoints. In the following examples is http://10.222.222.30/api our local endpoint for the shopware api. You can find examples written with guzzle in the official <a href="https://gitlab.com/shopware/shopware/enterprise/swagenterprisepricingengine" target="_blank">git repo</a>. If you don't have access yet, please create a ticket via your shopware account. You will receive an invitation soon. 
 
 ### Price lists
 

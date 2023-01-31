@@ -162,4 +162,4 @@ At least we have to register our components in the dependency injection containe
 ```
 
 ## Conclusion 
-To add a own condition is quite simple. If you need the whole plugin, please have a look into our [example-plugins](https://git.shopware.com/enterprise/PricingEngine/tree/master/example-plugins/) directory.
+To add a own condition is quite simple. If you need the whole plugin, please have a look into our [example-plugins](https://gitlab.com/shopware/shopware/enterprise/swagenterprisepricingengine/-/tree/master/example-plugins/) directory.

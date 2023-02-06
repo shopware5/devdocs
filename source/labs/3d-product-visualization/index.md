@@ -15,10 +15,10 @@ menu_order: 0
 
 <div class="toc-list"></div>
 
-The 3D product visualization using our [SwagThreeSixty product viewer](https://github.com/shopwareLabs/SwagThreeSixtyViewer) was one of the research topics we presented on the [SCD '17](https://en.shopware.com/news/community-day/2017/). In this document we will take a closer look at some of the aspects of it, like how to create your own 3D content as well as some useful tips & tricks on how to use the module.
+The 3D product visualization using our [SwagThreeSixty product viewer](https://github.com/shopware5/SwagThreeSixtyViewer) was one of the research topics we presented on the [SCD '17](https://en.shopware.com/news/community-day/2017/). In this document we will take a closer look at some of the aspects of it, like how to create your own 3D content as well as some useful tips & tricks on how to use the module.
 
 ## Overview
-The [SwagThreeSixty plugin](https://github.com/shopwareLabs/SwagThreeSixtyViewer) provides you with a full-featured 3D scene editor inside your Shopware backend. The editor is built on top of [babylon.js](https://www.babylonjs.com/). Here's an overview of the features:
+The [SwagThreeSixty plugin](https://github.com/shopware5/SwagThreeSixtyViewer) provides you with a full-featured 3D scene editor inside your Shopware backend. The editor is built on top of [babylon.js](https://www.babylonjs.com/). Here's an overview of the features:
 
 - Import your own models (`*.obj`, `*.dae` & `*.babylon` are supported)
     - Exports from [Unity](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Unity%205), [Blender](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Blender), [Maya](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/Maya/Tools), [3ds Max](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) are available

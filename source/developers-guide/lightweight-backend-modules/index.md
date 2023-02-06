@@ -120,10 +120,11 @@ class Shopware_Controllers_Backend_ExampleModulePlainHtml extends Enlight_Contro
 <div class="alert alert-warning">
 We strongly recommend using <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> with our backend inspired theme to get the look and feel of the shopware backend.
 
-Check it out: <a href="https://github.com/shopwareLabs/bootstrap-theme-shopware" target="_blank">Bootstrap Shopware Backend Theme</a>
+Check it out: <a href="https://github.com/shopware5/bootstrap-theme-shopware" target="_blank">Bootstrap Shopware Backend Theme</a>
 </div>
 
-Now let's start templating our backend module. We recommend using [Bootstrap](http://getbootstrap.com/) as the frontend framework. First let's take a look on the directory structure in the `Views/backend` directory of our plugin:
+Now let's start templating our backend module. We recommend using [Bootstrap](http://getbootstrap.com/) as the frontend framework.
+First let's take a look on the directory structure in the `Views/backend` directory of our plugin:
 
 ```bash
 |-- _base
@@ -213,7 +214,7 @@ Here's a entire list of all available events:
 * component/set-body-style
 
 ## Demo plugin
-A demo plugin which highlights the new functionality can be found on Github in our ["shopwareLabs" repository](https://github.com/shopwareLabs/SwagLightweightModule).
+A demo plugin which highlights the new functionality can be found [on GitHub](https://github.com/shopware5/SwagLightweightModule).
 
 
 ## API documentation

@@ -178,16 +178,18 @@ By default, adapters for local and FTP based file systems are included since Sho
 
 ### Existing Adapters
 
-You can download and install the following provider plugins just like any other Shopware plugin. Keep in mind that no official support will be provided for these plugins.
+You can download and install the following provider plugins just like any other Shopware plugin.
+Keep in mind that no official support will be provided for these plugins.
 
-* [Amazon S3](https://github.com/shopwareLabs/SwagMediaS3) - Required only on < 5.5
-* [Microsoft Azure](https://github.com/shopwareLabs/SwagMediaAzure)
-* [Google Cloud Platform](https://github.com/shopwareLabs/SwagMediaGCP) - Required only on < 5.5
-* [SFTP](https://github.com/shopwareLabs/SwagMediaSFTP)
+* [Amazon S3](https://github.com/shopware5/SwagMediaS3) - Required only on < 5.5
+* [Microsoft Azure](https://github.com/shopware5/SwagMediaAzure)
+* [Google Cloud Platform](https://github.com/shopware5/SwagMediaGCP) - Required only on < 5.5
+* [SFTP](https://github.com/shopware5/SwagMediaSFTP)
 
 ### Build your own adapter
 
-Since our MediaService is built on top of [Flysystem](http://flysystem.thephpleague.com), feel free to create your own adapter and share it with the community. You can take the plugins mentioned above as example.
+Since our MediaService is built on top of [Flysystem](http://flysystem.thephpleague.com), feel free to create your own adapter and share it with the community.
+You can take the plugins mentioned above as example.
 
 ### Migrating your files
 
@@ -206,7 +208,7 @@ If you are still facing problems with media files, you should update your nginx 
 
 #### Example: Migrating all media files to Amazon S3
 
-Assuming you already installed the [Amazon S3 adapter](https://github.com/ShopwareLabs/SwagMediaS3) plugin, you now need to configure it. To do so, you have to edit your Shopware `config.php` and add a new adapter called `s3` and a configuration to access Amazon S3 account like described in the [plugin description on GitHub](https://github.com/ShopwareLabs/SwagMediaS3).
+Assuming you already installed the [Amazon S3 adapter](https://github.com/shopware5/SwagMediaS3) plugin, you now need to configure it. To do so, you have to edit your Shopware `config.php` and add a new adapter called `s3` and a configuration to access Amazon S3 account like described in the [plugin description on GitHub](https://github.com/shopware5/SwagMediaS3).
 
 You can now simply run this command to move all files from your local media file system to Amazon S3.
 

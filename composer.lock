@@ -3531,16 +3531,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.4.20",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "d0435363362a47c14e9cf50663cb8ffbf491875a"
+                "reference": "3bb6ee5582366c4176d5ce596b380117c8200bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d0435363362a47c14e9cf50663cb8ffbf491875a",
-                "reference": "d0435363362a47c14e9cf50663cb8ffbf491875a",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/3bb6ee5582366c4176d5ce596b380117c8200bbf",
+                "reference": "3bb6ee5582366c4176d5ce596b380117c8200bbf",
                 "shasum": ""
             },
             "require": {
@@ -3587,7 +3587,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v5.4.20"
+                "source": "https://github.com/symfony/http-foundation/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -3603,7 +3603,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-29T11:11:52+00:00"
+            "time": "2023-02-17T21:35:35+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -4338,16 +4338,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.4.19",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "2944bbc23f5f8da2b962fbcbf7c4a6109b2f4b7b"
+                "reference": "6c5ac3a1be8b849d59a1a77877ee110e1b55eb74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/2944bbc23f5f8da2b962fbcbf7c4a6109b2f4b7b",
-                "reference": "2944bbc23f5f8da2b962fbcbf7c4a6109b2f4b7b",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/6c5ac3a1be8b849d59a1a77877ee110e1b55eb74",
+                "reference": "6c5ac3a1be8b849d59a1a77877ee110e1b55eb74",
                 "shasum": ""
             },
             "require": {
@@ -4407,7 +4407,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.4.19"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -4423,7 +4423,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-16T10:52:33+00:00"
+            "time": "2023-02-23T10:00:28+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -4785,24 +4785,24 @@
         },
         {
             "name": "wikimedia/less.php",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/less.php.git",
-                "reference": "47c4714c68c9006c87676d76c172a18e1d180f60"
+                "reference": "0d5b30ba792bdbf8991a646fc9c30561b38a5559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/less.php/zipball/47c4714c68c9006c87676d76c172a18e1d180f60",
-                "reference": "47c4714c68c9006c87676d76c172a18e1d180f60",
+                "url": "https://api.github.com/repos/wikimedia/less.php/zipball/0d5b30ba792bdbf8991a646fc9c30561b38a5559",
+                "reference": "0d5b30ba792bdbf8991a646fc9c30561b38a5559",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.9"
             },
             "require-dev": {
-                "mediawiki/mediawiki-codesniffer": "39.0.0",
-                "mediawiki/mediawiki-phan-config": "0.11.1 || 0.12.0",
+                "mediawiki/mediawiki-codesniffer": "40.0.1",
+                "mediawiki/mediawiki-phan-config": "0.12.0",
                 "mediawiki/minus-x": "1.1.1",
                 "php-parallel-lint/php-console-highlighter": "1.0.0",
                 "php-parallel-lint/php-parallel-lint": "1.3.2",
@@ -4826,6 +4826,10 @@
             ],
             "authors": [
                 {
+                    "name": "Timo Tijhof",
+                    "homepage": "https://timotijhof.net"
+                },
+                {
                     "name": "Josh Schmidt",
                     "homepage": "https://github.com/oyejorge"
                 },
@@ -4839,6 +4843,7 @@
                 }
             ],
             "description": "PHP port of the LESS processor",
+            "homepage": "https://gerrit.wikimedia.org/g/mediawiki/libs/less.php",
             "keywords": [
                 "css",
                 "less",
@@ -4849,9 +4854,9 @@
             ],
             "support": {
                 "issues": "https://github.com/wikimedia/less.php/issues",
-                "source": "https://github.com/wikimedia/less.php/tree/v3.2.0"
+                "source": "https://github.com/wikimedia/less.php/tree/v3.2.1"
             },
-            "time": "2023-01-09T18:45:54+00:00"
+            "time": "2023-02-03T06:43:41+00:00"
         }
     ],
     "packages-dev": [],

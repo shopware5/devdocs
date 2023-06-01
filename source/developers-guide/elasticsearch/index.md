@@ -31,63 +31,66 @@ Shopware uses the official PHP low-level client for Elasticsearch [elasticsearch
 ## Public API
 The following list contains all relevant events, interfaces and public API calls for Elasticsearch:
 
-| Console Command                    | Description
-|------------------------------------|-----------------------------
-| sw:es:analyze                      | Helper tool to test the integrated analyzers.
-| sw:es:backlog:clear                | Remove backlog entries that are already synchronized.
-| sw:es:backlog:sync                 | Synchronize events from the backlog to the live index.
-| sw:es:index:cleanup                | Remove unused Elasticsearch indices.
-| sw:es:index:populate               | Reindex all shops into new indexes and switch the live system alias after the index process.
-| sw:es:backend:index:populate       | Reindex all documents for the backend.
-| sw:es:backend:sync                 | Synchronize events from the backend backlog to the live index.
-| sw:es:switch:alias                 | Switch live system aliases.
+| Console Command              | Description                                                                                  |
+|------------------------------|----------------------------------------------------------------------------------------------|
+| sw:es:analyze                | Helper tool to test the integrated analyzers.                                                |
+| sw:es:backlog:clear          | Remove backlog entries that are already synchronized.                                        |
+| sw:es:backlog:sync           | Synchronize events from the backlog to the live index.                                       |
+| sw:es:index:cleanup          | Remove unused Elasticsearch indices.                                                         |
+| sw:es:index:populate         | Reindex all shops into new indexes and switch the live system alias after the index process. |
+| sw:es:backend:index:populate | Reindex all documents for the backend.                                                       |
+| sw:es:backend:sync           | Synchronize events from the backend backlog to the live index.                               |
+| sw:es:switch:alias           | Switch live system aliases.                                                                  |
 
-| Interface                                         | Description
-|---------------------------------------------------|-----------------------------
-| DataIndexerInterface                              | Required to add new data indexer
-| MappingInterface                                  | Required to add new data mappings
-| SettingsInterface                                 | Required to add new ES settings
-| SynchronizerInterface                             | Required to add new data synchronizer
-| ShopAnalyzerInterface                             | Defines which ES analyzer(s) is used in which shop
-| SearchTermQueryBuilderInterface                   | Builds the search query for product search
-| HandlerInterface                                  | Allows handling criteria parts in ES number searches
-| ResultHydratorInterface                           | Allows hydrating ES number search results
+| Interface                       | Description                                          |
+|---------------------------------|------------------------------------------------------|
+| DataIndexerInterface            | Required to add new data indexer                     |
+| MappingInterface                | Required to add new data mappings                    |
+| SettingsInterface               | Required to add new ES settings                      |
+| SynchronizerInterface           | Required to add new data synchronizer                |
+| ShopAnalyzerInterface           | Defines which ES analyzer(s) is used in which shop   |
+| SearchTermQueryBuilderInterface | Builds the search query for product search           |
+| HandlerInterface                | Allows handling criteria parts in ES number searches |
+| ResultHydratorInterface         | Allows hydrating ES number search results            |
 
-| DI container service                              | Description
-|---------------------------------------------------|-----------------------------
-| shopware_elastic_search.client                    | ES client for communication
-| shopware_elastic_search.client.logger             | Logs specific ES requests and their responses
-| shopware_elastic_search.shop_indexer              | Starts indexing process for all shops
-| shopware_elastic_search.shop_analyzer             | Defines which ES analyzer(s) is used in which shop
-| shopware_elastic_search.backlog_processor         | Process the backlog queue
-| shopware_search_es.product_number_search          | ProductNumberSearch using ES
-| shopware_search_es.search_term_query_builder      | Builds the search query for product searches
-| shopware_es_backend.indexer                       | Starts backend indexing process for all shops
+| DI container service                         | Description                                        |
+|----------------------------------------------|----------------------------------------------------|
+| shopware_elastic_search.client               | ES client for communication                        |
+| shopware_elastic_search.client.logger        | Logs specific ES requests and their responses      |
+| shopware_elastic_search.shop_indexer         | Starts indexing process for all shops              |
+| shopware_elastic_search.shop_analyzer        | Defines which ES analyzer(s) is used in which shop |
+| shopware_elastic_search.backlog_processor    | Process the backlog queue                          |
+| shopware_search_es.product_number_search     | ProductNumberSearch using ES                       |
+| shopware_search_es.search_term_query_builder | Builds the search query for product searches       |
+| shopware_es_backend.indexer                  | Starts backend indexing process for all shops      |
 
-| DI container tag                                  | Description
-|---------------------------------------------------|-----------------------------
-| shopware_elastic_search.data_indexer              | Registers a new data indexer
-| shopware_elastic_search.mapping                   | Registers a new data mapping
-| shopware_elastic_search.synchronizer              | Registers a new data synchronizer
-| shopware_elastic_search.settings                  | Registers a new ES settings class
-| shopware_search_es.search_handler                 | Registers a new search handler
+| DI container tag                     | Description                       |
+|--------------------------------------|-----------------------------------|
+| shopware_elastic_search.data_indexer | Registers a new data indexer      |
+| shopware_elastic_search.mapping      | Registers a new data mapping      |
+| shopware_elastic_search.synchronizer | Registers a new data synchronizer |
+| shopware_elastic_search.settings     | Registers a new ES settings class |
+| shopware_search_es.search_handler    | Registers a new search handler    |
 
-| Event                                             | Description
-|---------------------------------------------------|-----------------------------
-| Shopware_ESIndexingBundle_Collect_Indexer         | Registers a new data indexer
-| Shopware_ESIndexingBundle_Collect_Mapping         | Registers a new data mapping
-| Shopware_ESIndexingBundle_Collect_Synchronizer    | Registers a new data synchronizer
-| Shopware_ESIndexingBundle_Collect_Settings        | Registers a new ES settings class
-| Shopware_SearchBundleES_Collect_Handlers          | Registers a new search handler
+| Event                                          | Description                       |
+|------------------------------------------------|-----------------------------------|
+| Shopware_ESIndexingBundle_Collect_Indexer      | Registers a new data indexer      |
+| Shopware_ESIndexingBundle_Collect_Mapping      | Registers a new data mapping      |
+| Shopware_ESIndexingBundle_Collect_Synchronizer | Registers a new data synchronizer |
+| Shopware_ESIndexingBundle_Collect_Settings     | Registers a new ES settings class |
+| Shopware_SearchBundleES_Collect_Handlers       | Registers a new search handler    |
 
 ## Indexing additional data
-One common use case is to index additional data into ES and make it searchable. The following example shows which components are required to add new data sources to ES and keep it up to date. After data is indexed, the product number search will be extended to select additional data. The example indexes Shopware blog entries. To index additional data, the following class implementations are required:
+One common use case is to index additional data into ES and make it searchable.
+The following example shows which components are required to add new data sources to ES and keep it up to date.
+After data is indexed, the product number search will be extended to select additional data.
+The example indexes Shopware blog entries. To index additional data, the following class implementations are required:
 1. DataIndexerInterface
 2. MappingInterface
 3. SynchronizerInterface
 4. A class to record Doctrine events and write them into the backlog
 
-You can find a installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagESBlog.zip">here</a>.
+You can find an installable ZIP package of this plugin <a href="{{ site.url }}/exampleplugins/SwagESBlog.zip">here</a>.
 
 ### Register the services and subscriber
 The plugin service.xml looks as follows:
@@ -154,15 +157,16 @@ The plugin service.xml looks as follows:
 </container>
 ```
 
-The service file contains only the events needed to register the new services and subscriber. The following classes are initialized and registered:
+The service file contains only the events needed to register the new services and subscriber.
+The following classes are initialized and registered:
 
-| Class                     | Description
-|---------------------------|--------------------------
-| BlogMapping               | Defines how a blog data structure looks like
-| BlogDataIndexer           | Populates the blog data into the ES indices
-| BlogProvider              | Helper class which provides data for blog entries
-| ORMBacklogSubscriber      | Traces Doctrine events for the blog entity and insert changes into the backlog queue
-| BlogSynchronizer          | Handles backlog queue to synchronize blog entities which are added by the `ORMBacklogSubscriber`
+| Class                | Description                                                                                      |
+|----------------------|--------------------------------------------------------------------------------------------------|
+| BlogMapping          | Defines how a blog data structure looks like                                                     |
+| BlogDataIndexer      | Populates the blog data into the ES indices                                                      |
+| BlogProvider         | Helper class which provides data for blog entries                                                |
+| ORMBacklogSubscriber | Traces Doctrine events for the blog entity and insert changes into the backlog queue             |
+| BlogSynchronizer     | Handles backlog queue to synchronize blog entities which are added by the `ORMBacklogSubscriber` |
 
 To index data into ES, the `BlogMapping`, `BlogDataIndexer` and `BlogProvider` are required.
 
@@ -222,7 +226,10 @@ class BlogMapping implements MappingInterface
 }
 ```
 
-`BlogMapping` uses the `FieldMappingInterface` to get definitions for language fields. It returns a string field definition with sub fields for configured shop analyzers. A language field is only required if a search term for this field has to be analyzed for different shop languages. For fields which shouldn't be searchable, it is more useful to define a simple string field. Example for shop with english locale:
+`BlogMapping` uses the `FieldMappingInterface` to get definitions for language fields.
+It returns a string field definition with sub-fields for configured shop analyzers.
+A language field is only required if a search term for this field has to be analyzed for different shop languages.
+For fields which shouldn't be searchable, it is more useful to define a simple string field. Example for shop with english locale:
 
 ```php
 [
@@ -236,7 +243,8 @@ class BlogMapping implements MappingInterface
 ]
 ```
 
-The `english_analyzer` field uses, at indexing and search time, a pre configured english analyzer of ES. The `getType` function defines the unique name for the data type, in this example `blog`.
+The `english_analyzer` field uses, at indexing and search time, a pre-configured english analyzer of ES.
+The `getType` function defines the unique name for the data type, in this example `blog`.
 
 ### Additional indexer
 After the data mapping is defined, the data can be indexed using the `BlogDataIndexer`, which looks as follows:
@@ -351,7 +359,10 @@ class BlogDataIndexer implements DataIndexerInterface
 ```
 
 The `populate` function is responsible for loading all blog entries into ES for the provided shop.
-Since the shop indexer doesn't know how to iterate the `DataIndexer` rows, the iteration has to be inside the `populate` function. A progress can be displayed using the provided `ProgressHelperInterface`. First, the function selects all blog ids for the provided shop and passes them into the `index` function. To separate data indexing and data loading, the `BlogIndexer` loads blog data using his own `BlogProvider`.
+Since the shop indexer doesn't know how to iterate the `DataIndexer` rows, the iteration has to be inside the `populate` function.
+A progress can be displayed using the provided `ProgressHelperInterface`.
+First, the function selects all blog ids for the provided shop and passes them into the `index` function.
+To separate data indexing and data loading, the `BlogIndexer` loads blog data using his own `BlogProvider`.
 
 ```php
 $blog = $this->provider->get($ids);
@@ -375,7 +386,8 @@ $this->client->bulk([
 ]);
 ```
 
-Documents provided using the bulk API must be json serializable. In this case, the provider returns a `BlogStruct`, which implements the `JsonSerializable` interface.
+Documents provided using the bulk API must be json serializable.
+In this case, the provider returns a `BlogStruct`, which implements the `JsonSerializable` interface.
 The indexing process can be started using the `sw:es:index:populate` console command:
 ```bash
 $ php bin/console sw:es:index:populate
@@ -398,7 +410,12 @@ Indexing products
 ```
 
 <div class="alert alert-info" role="alert">
-    <strong>Note:</strong> Shopware creates a index for each shop, to separate language specify data. This prevents a language mixing inside an ES index. Otherwise, the search term might be mixed, and a search couldn't be limited to the shop the user is currently browsing. This means that each indexer has to index the data directly in the provided shop language. The shop can be accessed using the provided `ShopIndex` class. Additionally, all restrictions to customer groups, shops or others have to be indexed too.
+    <strong>Note:</strong> Shopware creates a index for each shop, to separate language specify data.
+This prevents a language mixing inside an ES index.
+Otherwise, the search term might be mixed, and a search couldn't be limited to the shop the user is currently browsing.
+This means that each indexer has to index the data directly in the provided shop language.
+The shop can be accessed using the provided `ShopIndex` class.
+Additionally, all restrictions to customer groups, shops or others have to be indexed too.
 </div>
 
 ### Additional synchronisation
@@ -579,13 +596,15 @@ class ORMBacklogSubscriber implements EventSubscriber
 }
 ```
 
-It separates between update, delete and insert actions of the Shopware blog model. This class can be used as reference for other implementations.
+It separates between update, delete and insert actions of the Shopware blog model.
+This class can be used as reference for other implementations.
 To prevent database operation inside a Doctrine flush event, the `postFlush` function registers a dynamic event listener for the `Enlight_Controller_Front_DispatchLoopShutdown` event, which inserts new backlogs entries at the end of the request.
 New backlogs can be easily added using the `shopware_elastic_search.backlog_processor` service. A `Backlog` struct contains the following data structure:
 - `event` >  which can be defined manually
 - `payload` > data which will be saved as json string
 
-Changes to blog entries are traced and stored in the `s_es_backlog` table. The synchronisation process will take place when the `sw:es:backlog:sync` command is called.
+Changes to blog entries are traced and stored in the `s_es_backlog` table.
+The synchronisation process will take place when the `sw:es:backlog:sync` command is called.
 To handle the backlog queue, it is required to register an additional `SynchronizerInterface`, which looks as follows:
 
 ```php
@@ -659,10 +678,14 @@ class BlogSynchronizer implements SynchronizerInterface
 }
 ```
 
-The `BlogSynchronizer` implements the `SynchronizerInterface`, requiring a `synchronize` method implementation, which has a `ShopIndex` parameter to define which ES index has to be synchronized, and an array of `Backlog` structs which has to be processed. A Backlog struct contains the saved payload, which contains, in this case, the blog id. After all blog ids are collected, the implementation provides them, with the `ShopIndex`, to his own `BlogIndexer` to index these ids again. By filtering the selected blog ids using the `filterShopBlog`, the BlogIndexer gets only ids for the provided shop. This logic can be placed in the BlogIndexer too, which is a detail of each implementation.
+The `BlogSynchronizer` implements the `SynchronizerInterface`, requiring a `synchronize` method implementation, which has a `ShopIndex` parameter to define which ES index has to be synchronized, and an array of `Backlog` structs which has to be processed.
+A Backlog struct contains the saved payload, which contains, in this case, the blog id. After all blog ids are collected, the implementation provides them, with the `ShopIndex`, to his own `BlogIndexer` to index these ids again.
+By filtering the selected blog ids using the `filterShopBlog`, the BlogIndexer gets only ids for the provided shop.
+This logic can be placed in the BlogIndexer too, which is a detail of each implementation.
 
 ### Decorate product search
-Now the plugin has to [decorate](/developers-guide/shopware-5-core-service-extensions/) the ```ProductSearch``` to search for blog entries. This is possible using following xml code:
+Now the plugin has to [decorate](/developers-guide/shopware-5-core-service-extensions/) the ```ProductSearch``` to search for blog entries.
+This is possible using following xml code:
 
 ```xml
 <!-- Decorates product search with 'BlogSearch' -->
@@ -916,7 +939,8 @@ $result->addAttribute(
 ```
 
 ### Additional ES analyzer
-The basic blog data should be indexed and searchable with the custom ES analyzer. To add an additional analyzer, the `SettingsInterface` of the `ESIndexingBundle` can be used.
+The basic blog data should be indexed and searchable with the custom ES analyzer.
+To add an additional analyzer, the `SettingsInterface` of the `ESIndexingBundle` can be used.
 The plugin service.xml registers an additional service to add the new `BlogSettings`:
 
 ```xml
@@ -1141,7 +1165,8 @@ class ProductProvider implements ProductProviderInterface
 ```
 
 ### Extend product search query
-Now it is time to extend the product search query, so it handles the new `my_name` field. The product search query for ES is build using the `SearchTermQueryBuilderInterface` of the `SearchBundleES`, which can be decorated like all other services of the DI container:
+Now it is time to extend the product search query, so it handles the new `my_name` field.
+The product search query for ES is build using the `SearchTermQueryBuilderInterface` of the `SearchBundleES`, which can be decorated like all other services of the DI container:
 
 ```xml
 <!-- Decorates searchTermQueryBuilder -->
@@ -1257,7 +1282,8 @@ ONGR\ElasticsearchDSL\Query\BoolQuery Object
 )
 ```
 
-In this case, the query contains two `MultiMatchQuery` sub queries as a `SHOULD` query. In addition, the query contains a `minimum_should_match` parameter with a value of `1`, which means that one of the queries has to match.
+In this case, the query contains two `MultiMatchQuery` sub queries as a `SHOULD` query.
+In addition, the query contains a `minimum_should_match` parameter with a value of `1`, which means that one of the queries has to match.
 The new `SearchTermQueryBuilder` now adds an additional `MultiMatchQuery` for the new field `my_name` which is stored in `attributes.properties.swag_es_product`:
 
 ```php
@@ -1339,7 +1365,8 @@ ONGR\ElasticsearchDSL\Query\BoolQuery Object
 In the following example, the plugin adds a new `Facet`, `Sorting` and `Condition` for the product listing, which accesses the product sales field.
 This example can be used for each other field which is indexed for products.
 First, the plugin has to register his own criteria parts (`Facet`, `Sorting` and `Condition`) with a `CriteriaRequestHandler`.
-The criteria part classes have no dependencies on any search implementation like DBAL or ES. They are defined as abstract and only describe how the search should be executed.
+The criteria part classes have no dependencies on any search implementation like DBAL or ES.
+They are defined as abstract and only describe how the search should be executed.
 The plugin bootstrap contains the additional source code:
 
 ```xml
@@ -1367,7 +1394,8 @@ The plugin bootstrap contains the additional source code:
 The `criteria_request_handler` tag allows you to register an additional `CriteriaRequestHandler`.
 By using the `shopware_search_es.search_handler` tag it is possible to register additional handlers for the `SearchBundleES`.
 Each criteria part should have its own handler class.
-First, the plugin has to add the new criteria parts into the criteria for listings. This will be handled in the `CriteriaRequestHandler`, which is called if a Criteria class must be generated with the request parameters:
+First, the plugin has to add the new criteria parts into the criteria for listings.
+This will be handled in the `CriteriaRequestHandler`, which is called if a Criteria class must be generated with the request parameters:
 
 ```php
 <?php
@@ -1587,7 +1615,8 @@ class SalesFacetHandler implements HandlerInterface, ResultHydratorInterface
 }
 ```
 
-The first step is to implement a facet handler for ES. The class has to implement the `Shopware\Bundle\SearchBundleES\HandlerInterface` interface, which requires the class to implement the `supports` and the `handle` functions.
+The first step is to implement a facet handler for ES.
+The class has to implement the `Shopware\Bundle\SearchBundleES\HandlerInterface` interface, which requires the class to implement the `supports` and the `handle` functions.
 In the support function, the new handler returns `true` if it can handle the provided `CriteriaPartInterface` class - in this case only if it is a ` SalesFacet`:
 
 ```php
@@ -1597,7 +1626,9 @@ public function supports(CriteriaPartInterface $criteriaPart)
 }
 ```
 
-If the `supports` function returns `true`, the `handle` function will be called. In this function it is possible to extend the provided `ONGR\ElasticsearchDSL\Search` class which is used for the search definition. In this case the class adds a [`StatsAggregation`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-stats-aggregation.html?q=stats) to the field `sales`:
+If the `supports` function returns `true`, the `handle` function will be called.
+In this function it is possible to extend the provided `ONGR\ElasticsearchDSL\Search` class which is used for the search definition.
+In this case the class adds a [`StatsAggregation`](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-stats-aggregation.html?q=stats) to the field `sales`:
 
 ```php
 public function handle(
@@ -1681,7 +1712,7 @@ if (!isset($elasticResult['aggregations']['agg_sales'])) {
 $data = $elasticResult['aggregations']['agg_sales'];
 ```
 
-The next step is to generate a `RangeFacetResult` to display a range slider in the store front, which allows customers to filter by conditions:
+The next step is to generate a `RangeFacetResult` to display a range slider in the storefront, which allows customers to filter by conditions:
 
 ```php
 $facetResult = new RangeFacetResult(
@@ -1708,8 +1739,10 @@ The `RangeFacetResult` class has the following parameters:
 - request parameter for min value (`'minSales'`)
 - request parameter for max value (`'maxSales'`)
 
-The `getActiveValues` function validates which value should be used for activeMin and activeMax parameters, by checking if the criteria class contains the `SalesCondition`.
-If the customer uses the new range slider for sales, the request will contain the `minSales` and `maxSales` parameters, which are handled by the new `CriteriaRequestHandler` by adding a `SalesCondition` with the provided data:
+The `getActiveValues` function validates which value should be used for activeMin and activeMax parameters,
+by checking if the criteria class contains the `SalesCondition`.
+If the customer uses the new range slider for sales, the request will contain the `minSales` and `maxSales` parameters,
+which are handled by the new `CriteriaRequestHandler` by adding a `SalesCondition` with the provided data:
 
 ```php
 $minSales = $request->getParam('minSales', null);
@@ -1806,7 +1839,8 @@ After the filter is created, it is required to check if the filter should be add
 1. post filter > Filters the result after the aggregations calculated
 2. normal filter > Filters the result before the aggregations calculated
 
-This can be checked using the criteria object, by using the `hasBaseCondition` function. If the `criteriaPart` is a `BaseCondition`, the filter has to be added as normal filter, otherwise as post filter.
+This can be checked using the criteria object, by using the `hasBaseCondition` function.
+If the `criteriaPart` is a `BaseCondition`, the filter has to be added as normal filter, otherwise as post filter.
 
 ```php
 if ($criteria->hasBaseCondition($criteriaPart->getName())) {
@@ -1864,7 +1898,8 @@ To sort the search result, the `ONGR\ElasticsearchDSL\Sort\Sort` class can be ad
 
 ## Shopware 5.3 changes
 A new filter behaviour was implemented with shopware 5.3, now filters are only displayed if they can be combined with the user conditions that are currently in effect.
-In the elastic search implementation the filter behavior is controlled by the condition handlers. By adding a query as `post filter`, facets are not affected by other filters.
+In the elastic search implementation the filter behavior is controlled by the condition handlers.
+By adding a query as `post filter`, facets are not affected by other filters.
 This behavior is checked via the `Criteria->hasBaseCondition` statement:
 
 ```php
@@ -1882,7 +1917,8 @@ public function handle(
 }
 ```
 
-This behavior is now controlled in the `\Shopware\Bundle\SearchBundleES\ProductNumberSearch`. To support the new filter mode, each condition handler has to implement the `\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface`.
+This behavior is now controlled in the `\Shopware\Bundle\SearchBundleES\ProductNumberSearch`.
+To support the new filter mode, each condition handler has to implement the `\Shopware\Bundle\SearchBundleES\PartialConditionHandlerInterface`.
 It is possible to implement this interface alongside the original `\Shopware\Bundle\SearchBundleES\HandlerInterface`.
 
 ```php
@@ -1937,13 +1973,14 @@ class BonusConditionHandler implements HandlerInterface, PartialConditionHandler
 }
 ```
 ## ElasticSearch Logging
-In Shopware 5.5.5 we added an elasticsearch logger which logs several ES requests and their responses. In addition to that, you'll get an evaluation of the indexing process after each step by default.   
+In Shopware 5.5.5 we added an elasticsearch logger which logs several ES requests and their responses.
+In addition to that, you'll get an evaluation of the indexing process after each step by default.   
 The following options have been added to the index populate command for both, frontend and backend indexing:
 
-| Option                             | Description
-|------------------------------------|-----------------------------
-| --no-evaluation                    | Disable the evaluation
-| --stop-on-error                    | Abort the indexing process if an error occurs
+| Option          | Description                                   |
+|-----------------|-----------------------------------------------|
+| --no-evaluation | Disable the evaluation                        |
+| --stop-on-error | Abort the indexing process if an error occurs |
 
 An example indexing process that uses the `--stop-on-error` option could look like this:
 ```bash
@@ -1975,7 +2012,11 @@ An occurred error can be viewed in detail via the system log backend view (Confi
 
 ![elasticsearch_system_log_detail](elasticsearch_system_log_detail.png)
 
-The log files contain response and request data (in this order) for several ES requests. In production environments only errors will be logged by default. For development environments each request will be logged by default. Please notice that if every ES request is logged, the log files will become accordingly large. It is not recommended to log debug info in production environments. 
+The log files contain response and request data (in this order) for several ES requests.
+In production environments only errors will be logged by default.
+For development environments each request will be logged by default.
+Please notice that if every ES request is logged, the log files will become accordingly large.
+It is not recommended to log debug info in production environments. 
 You can customize the log level via your `config.php` from the default behaviour to fit your own needs (you can find the available log levels [here](https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels)):
 
 ```php
@@ -1983,9 +2024,8 @@ You can customize the log level via your `config.php` from the default behaviour
 'es' => [
     // ...
     'logger' => [
-        'level' => 100,
+        'level' => \Shopware\Components\Logger::DEBUG,
     ],
 ],
 // ...
 ```  
-

@@ -27,7 +27,7 @@ Shopware 5.0 is able to provide a seamless Elasticsearch integration that will g
 <div class="alert alert-info" role="alert">
     <strong>Note:</strong>
 Elasticsearch integration should be considered an advanced Shopware feature.
-It requires the installation and configuration of Elasticsearch itself as well as technical personal to monitor and maintain the synchronization continuously.
+It requires the installation and configuration of Elasticsearch itself as well as technical staff to monitor and maintain the synchronization continuously.
 This might not be possible on all hosting plans or providers.<br/>
 Additionally, it will mostly benefit shops containing hundreds of thousands or millions of items.
 On smaller shops, its usage is not recommended, as you might not experience any visible benefits from it.
@@ -36,7 +36,7 @@ On smaller shops, its usage is not recommended, as you might not experience any 
 ## Installation and configuration
 
 To enable Elasticsearch integration, you must configure both your server and your Shopware 5 installation. 
-Elasticsearch 2.0 or newer is required. For Elasticsearch 6.0 Shopware 5.5 is required. Since Shopware 5.7 a minimum Version of Elasticsearch 7 is required.
+Since Shopware 5.7 a minimum Version of Elasticsearch 7 is required.
 
 ### Elasticsearch installation and configuration
 
@@ -61,9 +61,10 @@ To enable Elasticsearch (provided it's already installed, configured and running
     // ...
     'es' => [
         'enabled' => true,
-        'number_of_replicas' => null,
-        'number_of_shards' => null,
-        'version' => '5.6.5',
+        'index_settings' => [
+            'number_of_replicas' => 1,
+            'number_of_shards' => 1,
+        ],
         'dynamic_mapping_enabled' => true,
         'client' => [
             'hosts' => [
@@ -88,9 +89,10 @@ return [
     ],
     'es' => [
         'enabled' => true,
-        'number_of_replicas' => null,
-        'number_of_shards' => null,
-        'version' => '5.6.5',
+        'index_settings' => [
+            'number_of_replicas' => 1,
+            'number_of_shards' => 1,
+        ],
         'dynamic_mapping_enabled' => true,
         'client' => [
             'hosts' => [
@@ -104,9 +106,7 @@ return [
 
 Shopware 5 communicates with Elasticsearch using the latter's REST API.
 The `hosts` array accepts multiple address syntax, about which you can read more [here](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/_configuration.html#_host_configuration).
-The version defines the used Elasticsearch Version. If not set in the config, Shopware will detect it automatically.
 The `number_of_shards` and `number_of_replicas` parameter provided to the generated index.
-A `null` configuration allows to use the elastic search server configuration of those parameters.
 
 <div class="alert alert-info" role="alert">
     <strong>Note:</strong>
@@ -114,27 +114,6 @@ For a single node configuration, which is sufficient for a development environme
 it is necessary to configure a `number_of_replicas` of `0` and `number_of_shards` of `1`,
 otherwise the indexing process would wait for cluster health `green`, which can't be reached if no replicas can be applied.
 </div>
-
-### Defining Elasticsearch version to reduce calls
-
-By default, Shopware makes an `info` request to the Elasticsearch backend to be able to determine the version of Elasticsearch that is being used.
-This happens once while the kernel is booting.
-In high load environments, this can create unnecessary additional load on all services due to the slight overhead these requests create.
-
-Starting with Shopware 5.5.5, it is possible to define the version of Elasticsearch being used in the `config.php` like described below.
-Doing so will keep Shopware from making these `info` requests.
-
-```php
-<?php
-return [
-    // ...
-    'es' => [
-        // ...
-        'version' => '7',
-    ]
-];
-```
-
 
 ### Define Elasticsearch Dynamic Mapping
 
@@ -350,16 +329,22 @@ return [
     ],
     'es' => [
         'enabled' => true,
-        'number_of_replicas' => null,
-        'number_of_shards' => null,
+        'index_settings' => [
+            'number_of_replicas' => 1,
+            'number_of_shards' => 1,
+        ],
         'client' => [
             'hosts' => [
                 'localhost:9200'
             ]
         ],
         'backend' => [
-            'write_backlog' => true,
             'enabled' => true,
+            'write_backlog' => true,
+            'index_settings' => [
+                'number_of_replicas' => 1,
+                'number_of_shards' => 1,
+            ],
         ],
     ],
 ];

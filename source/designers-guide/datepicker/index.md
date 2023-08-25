@@ -49,7 +49,7 @@ Like most of our jQuery plugins, the datepicker may be configured through data a
     data-enabledDates="2017-05-01, 2017-04-24, 2017-06-15" />
 ```
 
-Every data attribute overwrites one of the default values in [`themes/Frontend/Responsive/frontend/_public/src/js/jQuery.datepicker.js`](https://github.com/shopware/shopware/blob/5.3/themes/Frontend/Responsive/frontend/_public/src/js/jquery.datepicker.js), which alter the behaviour of the datepicker plugin.
+Every data attribute overwrites one of the default values in [`themes/Frontend/Responsive/frontend/_public/src/js/jQuery.datepicker.js`](https://github.com/shopware5/shopware/blob/5.3/themes/Frontend/Responsive/frontend/_public/src/js/jquery.datepicker.js), which alter the behaviour of the datepicker plugin.
 
 Option | Default value | Possible values | Explanation
 --- | --- | --- | ---
@@ -81,7 +81,7 @@ Option | Default value | Possible values | Explanation
 
 ### Global
 
-Apart from the element-specific configuration, theres also a global configuration file: [`themes/Frontend/Bare/frontend/index/datepicker-config.tpl`](https://github.com/shopware/shopware/blob/5.3/themes/Frontend/Bare/frontend/index/datepicker-config.tpl). The values in this file are set via Smarty snippets, so you may easily edit them in the Shopware Backend.
+Apart from the element-specific configuration, theres also a global configuration file: [`themes/Frontend/Bare/frontend/index/datepicker-config.tpl`](https://github.com/shopware5/shopware/blob/5.3/themes/Frontend/Bare/frontend/index/datepicker-config.tpl). The values in this file are set via Smarty snippets, so you may easily edit them in the Shopware Backend.
 
 ## Structure
 

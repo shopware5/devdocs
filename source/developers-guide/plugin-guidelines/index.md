@@ -137,7 +137,7 @@ this is the plugin's name in `snake_case`) and `.logger`. So for a plugin called
 `SwagExample`, the service-ID of the plugin-specific logger would be
 `swag_example.logger`. You can read more about the plugin-specific logger in the
 corresponding
-[upgrade document](https://github.com/shopware/shopware/blob/5.6/UPGRADE-5.6.md#plugin-specific-logger).
+[upgrade document](https://github.com/shopware5/shopware/blob/5.6/UPGRADE-5.6.md#plugin-specific-logger).
 
 ## Plugin installation routine
 

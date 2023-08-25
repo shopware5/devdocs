@@ -8,10 +8,10 @@ We are now on day 8 of our project 99 Papercuts, with 7 days to go.
 
 From now until Monday, 19th September, you can participate in our 99 Papercuts Project and make Shopware better - one papercut at a time.
 
-The feedback so far has been pretty good; we've already received several contributions and [merged](https://github.com/shopware/shopware/pulls?q=is%3Apr+%5BPapercut%5D+is%3Aclosed) a good amount of pull requests.
+The feedback so far has been pretty good; we've already received several contributions and [merged](https://github.com/shopware5/shopware/pulls?q=is%3Apr+%5BPapercut%5D+is%3Aclosed) a good amount of pull requests.
 We also noticed increased activity in our [IRC Channel](/community/irc/), where you can get in touch with the Community.
 
-You can help by reviewing the [open](https://github.com/shopware/shopware/pulls?utf8=%E2%9C%93&q=%3Apr%20is%3Aopen%20%5BPapercut%5D) pull requests and providing feedback.
+You can help by reviewing the [open](https://github.com/shopware5/shopware/pulls?utf8=%E2%9C%93&q=%3Apr%20is%3Aopen%20%5BPapercut%5D) pull requests and providing feedback.
 
 ## New Pull Request Workflow
 
@@ -38,4 +38,3 @@ Tickets have already been created in our Issue Tracker, and we have no schedulin
 Now it's your turn. Find a papercut bug that bothers you and try to fix it.
 
 <img style="width: 80%; margin: auto; display:block" src="/blog/img/99-paper-cuts/paper-cuts-logo.png">
-

@@ -21,7 +21,7 @@ You should be using a version control system (VCS), preferably [git](https://git
 on local machines while integrating these parts in a central point. See the <a href="{{ site.url }}/developers-guide/plugin-quick-start">developers guide</a>.
 
 If you find yourself reusing plugins, themes or configuration, think about using [Composer](https://getcomposer.org/) and
-the [Shopware Composer Project](https://github.com/shopware/composer-project) for your new projects. It will help you
+the [Shopware Composer Project](https://github.com/shopware5/composer-project) for your new projects. It will help you
 to require plugins or libraries you repeatedly use.  
 
 ### Development, staging and production systems
@@ -67,7 +67,7 @@ applied in a v5.7 and so on.
 ### Best practices
 
 Try to not store credentials on disk to minimize the information an attacker might gain in case of file system access.
-Rather use environment variable set e.g. in the webserver. The [Shopware Composer Project](https://github.com/shopware/composer-project)
+Rather use environment variable set e.g. in the webserver. The [Shopware Composer Project](https://github.com/shopware5/composer-project)
 supports environment variable for the setup of e.g. the database out of the box. 
 
 You could start your automated deployments with some simple shell scripts to e.g. checkout a specific tag on the

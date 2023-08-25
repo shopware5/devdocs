@@ -897,7 +897,7 @@ The affected routes are:
 
 There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
 dependency. If you are interested in developing Shopware using Composer, have a look at the <a href="{{ site.url }}/developers-guide/shopware-composer/">documentation</a>
- and the Shopware [Composer project](https://github.com/shopware/composer-project).
+ and the Shopware [Composer project](https://github.com/shopware5/composer-project).
 
 #### Shopware Version
 
@@ -927,7 +927,7 @@ To be compatible with most versions of Shopware, please use the `config` service
 Several paths have been added to the DIC:
 
 - `shopware.plugin_directories.projectplugins` 
-    Path to project specific plugins, see [Composer project](https://github.com/shopware/composer-project)
+    Path to project specific plugins, see [Composer project](https://github.com/shopware5/composer-project)
 - `shopware.template.templatedir`
     Path to the themes folder
 - `shopware.app.rootdir`

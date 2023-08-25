@@ -13,7 +13,7 @@ menu_order: 32
 
 ## Introduction
 
-Starting with v5.4 Shopware supports installing a shop as a [Composer dependency](https://github.com/shopware/composer-project)
+Starting with v5.4 Shopware supports installing a shop as a [Composer dependency](https://github.com/shopware5/composer-project)
 out of the box. This helps you to professionalize development and deployments of Shopware shops by providing a reliable
 versioning of Shopware itself and all the plugins required by your project.
 

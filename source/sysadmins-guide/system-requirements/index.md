@@ -50,7 +50,7 @@ It's strongly recommended that you verify the <a href="https://secure.php.net/ma
 - MySQL variable `group_concat_max_len` should be increased to 2048 (default: 1024)
 - `innodb_buffer_pool_size` should be at least as large as the whole database
 - `query_cache_size` should normally be between 100 - 200MB
-- `max_allowed_packet` should be set to at least `16M`, as this is the size of the `data`-field of the [s_core_sessions](https://github.com/shopware/shopware/blob/5.7/_sql/install/latest.sql#L3463)
+- `max_allowed_packet` should be set to at least `16M`, as this is the size of the `data`-field of the [s_core_sessions](https://github.com/shopware5/shopware/blob/5.7/_sql/install/latest.sql#L3463)
  table.
 
 Shopware is using the default transaction isolation level [REPEATABLE READ](https://dev.mysql.com/doc/refman/5.7/en/innodb-transaction-isolation-levels.html#isolevel_repeatable-read).

@@ -27,7 +27,7 @@ As always in the new plugin system we set our metadata in the `plugin.xml`
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware5/shopware/5.3/engine/Shopware/Components/Plugin/schema/plugin.xsd">
 
     <label lang="de">SwagLastRegistrationsWidget</label>
     <label lang="en">SwagLastRegistrationsWidget</label>
@@ -350,4 +350,3 @@ Ext.define('Shopware.apps.Index.swagLastRegistrationsWidget.model.Account', {
 
 ## Download plugin ##
 The whole plugin can be downloaded <a href="{{ site.url }}/exampleplugins/SwagLastRegistrationsWidget.zip">here</a>.
-

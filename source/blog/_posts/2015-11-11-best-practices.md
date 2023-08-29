@@ -427,7 +427,7 @@ This is not only good for testability - but also for the code quality.
 
 ## plugin.json
 Some time ago, we started to move all the meta data from the plugin's `Boostrap.php` to a file called `plugin.json`.
-An example can be found in the [Paypal plugin on github](https://github.com/shopwareLabs/SwagPaymentPaypalPlus/blob/master/plugin.json).
+An example can be found in the [Paypal plugin on github](https://github.com/shopware5/SwagPaymentPaypalPlus/blob/master/plugin.json).
 
 I find it very convenient to use this file - it will give you a good overview regarding Shopware version compatibility,
 change logs and other relevant information. If we release our Shopware account API at some point in the future, the

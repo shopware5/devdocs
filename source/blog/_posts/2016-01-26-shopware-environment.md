@@ -17,7 +17,7 @@ This can be used to load different config files and to separate cache files.
 
 ## How the environment is handled
 
-This environment variable is picked by [`shopware.php`](https://github.com/shopware/shopware/blob/5.2/shopware.php#L92) and [`bin/console`](https://github.com/shopware/shopware/blob/5.2/bin/console#L34) and then propagated to the kernel:
+This environment variable is picked by [`shopware.php`](https://github.com/shopware5/shopware/blob/5.2/shopware.php#L92) and [`bin/console`](https://github.com/shopware5/shopware/blob/5.2/bin/console#L34) and then propagated to the kernel:
 
 ```php
 $environment = getenv('SHOPWARE_ENV') ?: 'production';
@@ -51,7 +51,7 @@ var
 
 ## Config loading
 
-The config loading order is defined in [engine/Shopware/Configs/Default.php](https://github.com/shopware/shopware/blob/cbafdd378de2bf5afab7504a90a2bc184ebbd681/engine/Shopware/Configs/Default.php#L3).
+The config loading order is defined in [engine/Shopware/Configs/Default.php](https://github.com/shopware5/shopware/blob/cbafdd378de2bf5afab7504a90a2bc184ebbd681/engine/Shopware/Configs/Default.php#L3).
 The config loader looks for a file named `config_[ENVIRONMENT].php` first. If that file does not exists it falls back to `config.php`.
 
 On my development machine all my installations contain a file named `config_dev.php`.

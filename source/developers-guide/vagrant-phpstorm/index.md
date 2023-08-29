@@ -111,14 +111,14 @@ These directories will be marked red in your project and might not be visible an
 
 ### Coding Style
 
-As mentioned in our [CONTRIBUTING.md](https://github.com/shopware/shopware/blob/5.3/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
+As mentioned in our [CONTRIBUTING.md](https://github.com/shopware5/shopware/blob/5.3/CONTRIBUTING.md), you should follow the [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) and [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standards. PhpStorm provides you with predefined settings in `Editor` -> `PHP` -> `CodeStyling`. 
 
 
 ### Deploy with PhpStorm
 
-To deploy a locally installed project to the Vagrant server, you need to configure auto deployment in PhpStorm. Make sure you are using the developer version of Shopware which can be downloaded from [GitHub](https://github.com/shopware/shopware).
+To deploy a locally installed project to the Vagrant server, you need to configure auto deployment in PhpStorm. Make sure you are using the developer version of Shopware which can be downloaded from [GitHub](https://github.com/shopware5/shopware).
 
-`git clone https://github.com/shopware/shopware.git`
+`git clone git@github.com:shopware5/shopware.git`
 
 #### Step 1
 Open your Shopware project in PhpStorm.

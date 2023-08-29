@@ -21,7 +21,7 @@ You can find installation instructions on the official [PhpStorm Website](https:
 
 ### Requirements for developing
 
-First of all you need a working Shopware installation. Just visit our [Github Repository](https://github.com/shopware/shopware) 
+First of all you need a working Shopware installation. Just visit our [Github Repository](https://github.com/shopware5/shopware) 
 and follow the `README.md` installation instructions. You do not want to worry about a local webserver or database server?
 Then take a look at our [Vagrant and PHPStorm](/developers-guide/vagrant-phpstorm/) guide to set up a virtual
 machine, ready to develop with Shopware. If you want to contribute to the Shopware repository also check out our
@@ -96,4 +96,3 @@ From the context menu `Mark directory as` -> `Excluded`
 
 - `tests/Unit/`
 - `tests/Functional/`
-

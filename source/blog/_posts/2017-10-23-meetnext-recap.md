@@ -42,7 +42,7 @@ So the main reason is: We want to continue to make Shopware better, faster, read
 
 All that said, we want to create a second version of Shopware which only carries the good part of our legacy. We don't want to do this in the dark, doing the jack-in-the-box at some time and presenting the new and shiny brother of Shopware 5. We want to have you aboard as soon as possible. We want to hear from you if the things we are planning and implementing are what you need in the end. We want to hear what you think is a mistake, what we forgot and what is even more awesome than before.
 
-The &#35;MeetNext was the first feedback event and it was, marketing speak aside, a huge success. Before we dive in, always remember you can see for yourself what is happening, either on [github](https://github.com/shopware/shopware/tree/labs) or in the [documentation](https://developers.shopware.com/labs/).
+The &#35;MeetNext was the first feedback event and it was, marketing speak aside, a huge success. Before we dive in, always remember you can see for yourself what is happening, either on [github](https://github.com/shopware5/shopware/tree/labs) or in the [documentation](https://developers.shopware.com/labs/).
 
 # A brief summary
 

@@ -79,7 +79,7 @@ As each of the options mentioned above requires slightly different plugin logic,
 </div>
 
 In **Shopware 5.3** we implemented a new event to SEO URL generation using the cronjob. <br />
-Everytime the cronjob `RefreshSeoIndex` is triggered, the method `onRefreshSeoIndex` in [engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php#L134) is called. <br />
+Everytime the cronjob `RefreshSeoIndex` is triggered, the method `onRefreshSeoIndex` in [engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Bootstrap.php#L134) is called. <br />
 It now contains a new notify event called `Shopware_CronJob_RefreshSeoIndex_CreateRewriteTable`, which we will use to add our own SEO URL generation process.
 The event is called once for each shop after every other SEO URL (e.g. Products, Categories, ...) has been generated for this shop.
 
@@ -110,7 +110,7 @@ This option does **not** mean, that with each and every request the SEO URLs are
 You can configure the refresh interval in the backend under `Configuration > Cache/performance > Settings > SEO > Refresh strategy`.
 
 Basically, whenever a request is sent to the shop and the response is about to be sent back, Shopware checks if it's time to re-generate the SEO URLs.
-In only that case (refresh strategy is 'live' AND the interval has passed), the method `sCreateRewriteTable` from our core module [sRewriteTable](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Core/sRewriteTable.php#L220) is called.
+In only that case (refresh strategy is 'live' AND the interval has passed), the method `sCreateRewriteTable` from our core module [sRewriteTable](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Core/sRewriteTable.php#L220) is called.
 
 This method only generates the SEO URLs for the **currently** active shop.
 
@@ -153,7 +153,7 @@ You can choose a batch size, which defines how many URLs should be generated wit
 
 We want to have our own progress bar at the bottom of the window now to generate our SEO URLs for the currently selected shop in batch mode.
 
-First of all we have to extend the file [themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js](https://github.com/shopware/shopware/blob/5.3/themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js#L83).
+First of all we have to extend the file [themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js](https://github.com/shopware5/shopware/blob/5.3/themes/Backend/ExtJs/backend/performance/view/main/multi_request_tasks.js#L83).
 We have to extend the property 'seo', which contains all progress bars, their snippets and, most important, the request URL to be called for each batch call to generate the SEO URLs.
 
 So, let's overwrite the ExtJs window.
@@ -254,7 +254,7 @@ Now there's one more thing missing.
 Once we select a shop in the backend SEO module, an AJAX call is sent to collect the total counts of URLs to be created with each progress bar.
 Our glossary URLs are not collected yet, so the module can't handle our glossary URLs properly yet.
 
-To collect the URLs, the `getCountAction` of the [SEO controller](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Controllers/Seo.php#L72) is called.
+To collect the URLs, the `getCountAction` of the [SEO controller](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Plugins/Default/Core/RebuildIndex/Controllers/Seo.php#L72) is called.
 Thankfully it provides a filter event `Shopware_Controllers_Seo_filterCounts` to properly add our own counts. For this we need to use the name we used earlier for the progress bar.
 
 ```
@@ -377,7 +377,7 @@ While this already looks good, there's one more thing to do.
 Shopware needs to know our custom parameter "**wordId**" first.
 Otherwise our parameter would just get stripped and our SEO URL wouldn't work.
 
-The possible cases for parameters are handled in the [RewriteGenerator](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/Routing/Generators/RewriteGenerator.php#L166).
+The possible cases for parameters are handled in the [RewriteGenerator](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Components/Routing/Generators/RewriteGenerator.php#L166).
 It has a whole lot of cases, e.g. the parameter "**sArticle**" is only allowed when used with the **detail** controller.
 
 Thankfully, since Shopware 5.2, this method provides an event to add custom parameters.

@@ -37,14 +37,14 @@ plugins do not rely on this behaviour.
 
 #### Deprecations
 
-We've [removed](https://github.com/shopware/shopware/commit/b2709e5fd57432e92f6921dddddb76a2f7f5d0b2) all deprecations
+We've [removed](https://github.com/shopware5/shopware/commit/b2709e5fd57432e92f6921dddddb76a2f7f5d0b2) all deprecations
 marked for removal with v5.7.0.
 
 #### Development tools
 
 You may use composer v2 now, support has been added with this version. Furthermore we've removed the `psh.phar` tool for
 Shopware development, it has been replaced by a
-[Makefile](https://github.com/shopware/shopware/blob/5.7/Makefile) which may now be used for development tasks like
+[Makefile](https://github.com/shopware5/shopware/blob/5.7/Makefile) which may now be used for development tasks like
 starting the testsuite.
 
 #### Snippets
@@ -348,8 +348,8 @@ You can see the autocompletion in action in the mail templates of Shopware 5.6: 
 variables and tags like `if` or `foreach`. This might be extended to other areas as well in future releases.
 
 If you are interested in implementing this functionality in your own plugin, you'll first have to
-[register a `completer`-callback](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L107) function.
-This [`callback`](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L193) determines if an autocompletion could be possible (by performing some [sanity checks](https://github.com/shopware/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L197)) and doing an AJAX-request containing the relevant text portion of the editor. 
+[register a `completer`-callback](https://github.com/shopware5/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L107) function.
+This [`callback`](https://github.com/shopware5/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L193) determines if an autocompletion could be possible (by performing some [sanity checks](https://github.com/shopware5/shopware/blob/83b7f50837b134050a8d882cde1dbb3e66c61df9/themes/Backend/ExtJs/backend/mail/view/main/content_editor.js#L197)) and doing an AJAX-request containing the relevant text portion of the editor. 
 
 The backend now can respond with a data structure containing the relevant autocompletion suggestions. How these are
 to be determined depends on your use case and underlying data structures. The `MailBundle` uses an
@@ -503,7 +503,7 @@ on upgrade until Shopware 5.6, but they won't be kept in sync anymore.
 - Old conversion classes got removed: `Shopware_Components_Convert_Csv`, `Shopware_Components_Convert_Excel` and `Shopware_Components_Convert_Xml`
 - The action `\Shopware_Controllers_Widgets_Listing::ajaxListingAction` was removed. Use `Shopware_Controllers_Widgets_Listing::listingCountAction` instead.
 
-For a complete overview check the **Removals** part of the <a href="https://github.com/shopware/shopware/blob/5.5/UPGRADE-5.5.md#removals">Upgrade.md</a>. 
+For a complete overview check the **Removals** part of the <a href="https://github.com/shopware5/shopware/blob/5.5/UPGRADE-5.5.md#removals">Upgrade.md</a>. 
 
 ### MySQL 8 workaround
 
@@ -897,7 +897,7 @@ The affected routes are:
 
 There have been some changes to underlying constants to be able to support Shopware as a [Composer](https://getcomposer.org/)
 dependency. If you are interested in developing Shopware using Composer, have a look at the <a href="{{ site.url }}/developers-guide/shopware-composer/">documentation</a>
- and the Shopware [Composer project](https://github.com/shopware/composer-project).
+ and the Shopware [Composer project](https://github.com/shopware5/composer-project).
 
 #### Shopware Version
 
@@ -927,7 +927,7 @@ To be compatible with most versions of Shopware, please use the `config` service
 Several paths have been added to the DIC:
 
 - `shopware.plugin_directories.projectplugins` 
-    Path to project specific plugins, see [Composer project](https://github.com/shopware/composer-project)
+    Path to project specific plugins, see [Composer project](https://github.com/shopware5/composer-project)
 - `shopware.template.templatedir`
     Path to the themes folder
 - `shopware.app.rootdir`
@@ -983,10 +983,10 @@ Version 5.3 does not support IE10 anymore.
 #### Security mode
 
 We have activated the Smarty security mode globally with 5.3:
-[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
+[https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Components/DependencyInjection/Bridge/Template.php#L57)
 
 This means that certain PHP functions can no longer be used in Smarty. The available Smarty functions are stored in the following configuration file:
-[https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php)
+[https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Configs/smarty_functions.php)
 
 This can be extended via the config.php as follows:
 
@@ -1895,7 +1895,7 @@ The account section and registration have been refactored to continue the refact
     * Uses the new service `shopware_account.register_service`
     * Methods of core class `\sAdmin` regarding the registration have been removed without substitution.
     * Templates may have been rewritten
-        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
+        * For a complete list of template and event changes, refer to the [UPGRADE.md](https://github.com/shopware5/shopware/blob/5.3/UPGRADE-5.2.md).
 
 ### Address management
 
@@ -1913,7 +1913,7 @@ The address management allows a customer to manage more than only one address wh
 * Selecting another address in the checkout results in a change of the session key `checkoutBillingAddressId` or `checkoutShippingAddressId` with the corresponding address id. After the order has been saved, the session keys will be reset.
 * The customer api endpoint now uses the structure of the address model, instead of the billing or shipping model
 * The checkout templates have been rewritten which results in changed and removed blocks.
-    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware/shopware/blob/5.3/UPGRADE-5.2.md).
+    * For a complete list of template changes, refer to the [UPGRADE.md](https://github.com/shopware5/shopware/blob/5.3/UPGRADE-5.2.md).
 
 To learn more about the new address service, refer to the [Address Management Guide](/developers-guide/address-management-guide).
 
@@ -2030,7 +2030,7 @@ attributeForm.saveAttribute(record.get('id'), function (successful) {
 
 This call will send a new request which saves all attributes for this item.
 
-To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware/shopware/blob/5.3/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
+To learn more about the new attribute management, refer to the [README.md](https://github.com/shopware5/shopware/blob/5.3/engine/Shopware/Bundle/AttributeBundle/README.md) file in the source code.
 
 ### Library updates
 

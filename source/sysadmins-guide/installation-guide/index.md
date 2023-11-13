@@ -16,7 +16,7 @@ Before you start, you should check if your environment meets the <a href="{{ sit
 ### Installation
 Simply follow the instructions on our <a href="https://github.com/shopware5/shopware/blob/5.5/README.md#installation-via-git" target="_blank">README.md file</a> for installing the Shopware developer version.
 
-If you want to install the latest stable release of Shopware, download it <a href="http://en.community.shopware.com/Downloads_cat_725.html" target="_blank">here</a> and follow <a href="http://en.community.shopware.com/Shopware-5-Installer_detail_1351_729.html" target="_blank">these instructions</a>.
+If you want to install the latest stable release of Shopware, download it <a href="https://github.com/shopware5/shopware/releases" target="_blank">here</a> and follow <a href="https://docs.shopware.com/en/shopware-5-en/first-steps/installing-shopware?category=shopware-5-en/getting-started" target="_blank">these instructions</a>.
 
 ### IDE
 To make it easy as possible for you to develop with and for Shopware, a good IDE is one of the most important things.

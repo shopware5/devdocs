@@ -17,7 +17,6 @@ echo "$LICENSE" > "$DIST_FILE";
   >> "$DIST_FILE"
 
 # ./dist/cdn/docsearch.min.css
-./node_modules/.bin/postcss --use cssnano "$DIST_FILE" \
-  >> "$DIST_FILE_MIN"
+./node_modules/.bin/postcss "$PWD/$DIST_FILE" --use cssnano -o "$PWD/$DIST_FILE_MIN"
 
 echo "=> $DIST_FILE_MIN compiled"

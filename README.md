@@ -1,5 +1,9 @@
 # Shopware Development Documentation
 
+# ⚠️ DISCONTINUED ⚠️
+
+**Please head over to the fork of [SaveFive](https://github.com/safefive/devdocs)**
+
 ## Install
 
 This site is generated with [Sculpin][2], a PHP based static site generator.
